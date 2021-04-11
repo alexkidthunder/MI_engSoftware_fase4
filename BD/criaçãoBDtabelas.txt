@@ -1,0 +1,42 @@
+create database if not exists hospital_universitario;
+
+create table if not exists usuarios (  
+  CPF char(11) not null,
+  Nome varchar(50) not null,
+  Senha varchar(20) not null,  
+  Email varchar(50) not null,
+  Data_Nasc date not null,
+  Atribuicao enum('a','b','c','d') not null,
+  Sexo varchar(20) not null,
+  Ip varchar(15) not null
+);
+
+create table if not exists prontuario (  
+  Nome_Paciente varchar(50) not null,
+  Sexo varchar(20) not null,
+  Data_Nasc Date not null,
+  CPF char(11) primary key not null,
+  Tipo_Sang varchar(5) not null,
+  Data_Internacao Date not null,
+  Data_Saida Date not null,
+  Leito varchar(10) not null,
+  Status enum('internado','alta','obito') not null
+);
+
+create table if not exists cid( 
+  CPF_prontuario char(11) not null,
+  foreign key(CPF_prontuario) references prontuario(CPF),
+  CodCID char(6) not null,
+  Id bigint(20) primary key AUTO_INCREMENT
+);
+
+create table if not exists medicamento ( 
+  Nome_Medicam varchar(50) not null,
+  Quantidade int not null,
+  Fabricante varchar(30) not null,
+  Data_Validade Date not null,
+  Codigo bigint primary key not null
+);
+
+
+
