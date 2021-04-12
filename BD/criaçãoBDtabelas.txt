@@ -1,4 +1,8 @@
-create database if not exists hospital_universitario;
+create database  if not exists hospital_universitario
+default character set utf8 
+default collate utf8_general_ci;
+
+use hospital_universitario;
 
 create table if not exists usuarios (  
   CPF char(11) not null,
@@ -38,5 +42,36 @@ create table if not exists medicamento (
   Codigo bigint primary key not null
 );
 
+create table if not exists Administradores(
+	CPF char(11) NOT NULL primary key,
+	Foreign key(CPF) references Usuarios(CPF)
+); 
 
+create table if not exists Responsaveis(
+	Atribuicao  enum('a','b','c','d') NOT NULL,
+    CPF char(11) primary key NOT NULL,
+    Foreign key(CPF) references Usuarios(CPF)
+);
+
+create table if not exists Enfermeiros(
+	CPF char(11) NOT NULL,
+    COREN char(10) 	NOT NULL,
+    Plantao boolean,
+    primary key(COREN),
+    Foreign key(CPF) references Usuarios(CPF)
+);
+
+create table if not exists Estagiarios(
+	CPF char(11) NOT NULL,
+    Plantao boolean,
+    primary key(CPF),
+    Foreign key(CPF) references Usuarios(CPF)
+);
+
+create table if not exists Enfermeiros_Chefes(
+	CPF char(11) NOT NULL,
+    COREN char(10) 	NOT NULL,
+    primary key(COREN),
+    Foreign key(CPF) references Usuarios(CPF)
+);
 
