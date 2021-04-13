@@ -5,7 +5,7 @@ default collate utf8_general_ci;
 use hospital_universitario;
 
 create table if not exists usuarios (  
-  CPF char(11) not null,
+  CPF char(11) primary key not null,
   Nome varchar(50) not null,
   Senha varchar(20) not null,  
   Email varchar(50) not null,
@@ -44,13 +44,13 @@ create table if not exists medicamento (
 
 create table if not exists Administradores(
 	CPF char(11) NOT NULL primary key,
-	Foreign key(CPF) references Usuarios(CPF)
+	Foreign key(CPF) references usuarios(CPF)
 ); 
 
 create table if not exists Responsaveis(
 	Atribuicao  enum('a','b','c','d') NOT NULL,
     CPF char(11) primary key NOT NULL,
-    Foreign key(CPF) references Usuarios(CPF)
+    Foreign key(CPF) references usuarios(CPF)
 );
 
 create table if not exists Enfermeiros(
@@ -58,20 +58,20 @@ create table if not exists Enfermeiros(
     COREN char(10) 	NOT NULL,
     Plantao boolean,
     primary key(COREN),
-    Foreign key(CPF) references Usuarios(CPF)
+    Foreign key(CPF) references usuarios(CPF)
 );
 
 create table if not exists Estagiarios(
 	CPF char(11) NOT NULL,
     Plantao boolean,
     primary key(CPF),
-    Foreign key(CPF) references Usuarios(CPF)
+    Foreign key(CPF) references usuarios(CPF)
 );
 
 create table if not exists Enfermeiros_Chefes(
 	CPF char(11) NOT NULL,
     COREN char(10) 	NOT NULL,
     primary key(COREN),
-    Foreign key(CPF) references Usuarios(CPF)
+    Foreign key(CPF) references usuarios(CPF)
 );
 
