@@ -1,3 +1,6 @@
+create database if not exists hospital_universitario;
+use hospital_universitario;
+
 -- phpMyAdmin SQL Dump
 -- version 5.1.0
 -- https://www.phpmyadmin.net/
