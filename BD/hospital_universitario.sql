@@ -1,3 +1,4 @@
+drop database if exists hospital_universitario;
 create database if not exists hospital_universitario;
 use hospital_universitario;
 

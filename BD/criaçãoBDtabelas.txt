@@ -1,4 +1,6 @@
-create database  if not exists hospital_universitario
+drop database if exists hospital_universitario;
+create database if not exists hospital_universitario;
+
 default character set utf8 
 default collate utf8_general_ci;
 
