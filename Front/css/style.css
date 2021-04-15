@@ -1,68 +1,201 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+
 body{
-    background-image: url(imagemOficial.jpg);
-    background-repeat: no-repeat;
-    background-size: 100%;
+    align-items: center;
+    background-color: #F9F8FF;
+}
+
+h1,h2,h3,h4,h5,h6{
+    font-family: "Poppins",sans-serif;
+}
+
+h1{ /*Titulos*/
+    color:#0D6EFD;
+    font-weight: bold;
+    margin-top:100px;
+    margin-bottom:50px;
+    text-align: center;
+}
+
+h2,h3{
+    color:#028DCE;
+    font-weight: bold;
+    margin-top:10px;
+}
+
+label{ /*Antes do campos de inserção*/
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    font-family: "Poppins",sans-serif;
+    margin-top: 15px;
+}
+
+p{
+    color:black;
+    font-family: "Open Sans",sans-serif;
+    font-size: 18px;
+}
+
+button, input, select, textarea {
+    border:none;
+    border-radius: 10px;
+    font-family: "Open Sans",sans-serif;
+    font-size: 16px;
+    margin-bottom: 15px;
+    background-color: transparent;
+}
+
+input, select{
+    background-color: white;
+    border: 2px solid #02A7F0;
+    color: #333333;
+    padding: 5px 10px ;
+}
+
+input[type=text]:disabled, input[type="number"]:disabled, select:disabled {
+    background-color: #A2DBFE;
+    border:#A2DBFE ;
+    font-weight: bold;
+}
+
+button:focus, select:focus {
+    outline: 0;
+}
+
+textarea:focus, input:focus {
+    border-radius: 10px;
+    outline: 2px solid #0D6EFD;
+}
+
+.container{
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.content-center{
+    text-align: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.box{ /*Caixa branca padrão que tem em várias páginas*/
+    align-self: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 6px 6px 6px #f1efef;
+    padding:30px 40px;
+}
+
+.btn-white{ /* Botões brancos com borda azul*/
+    border: 2px solid #02A7F0;
+    background-color: white;
+    color:black;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 5px 25px;
+}
+
+.btn-blue{ /*Botões azuis*/
+    background-color: #58ACFA;
+    color:black;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 5px 25px;
+}
+
+.btn-blue:hover, .btn-white:hover{
+    background-color: #8ED1F0;
+    border-color:#58ACFA;
+}
+
+.btn-blue:active, .btn-white:active{
+    background-color: #4689C8;
+}
+.container-button{
+    align-items: right;
+    width: 19%;
+    margin-left: 80%;
+    margin-top: 15px;
+}
+
+.box-gray{ /*Campos de data, hora e outros campos que ficam cinzas*/
+    background-color: #E6E6E6;
+    border-radius: 10px;
+    color:black;
+    font-family: "Open Sans",sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    height: 20px;
+    margin-bottom:10px;
+    margin-right: 10px;
+    padding: 5px 10px;
     
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    }
-    
-    .form{
-        width: 30%;
-        margin: auto;
-        padding-top: 170px;
-    }
-    .card{
-        box-shadow: blue;
-        background-image: linear-gradient(to top, rgb(160, 228, 240), rgb(9, 120, 247));
-        padding: 20px;
-        border-radius: 50px;
-    }
-    
-    .card-top{
-        text-align: center;
-    }
+}
 
-    .card-group{
-        margin-bottom: 20px;
-    }
+.box-white{ /*Campo de posologia em agendamento*/
+    background-color: #ffff;
+    border-radius: 10px;
+    box-shadow: 4px 4px 4px#DBDADA;
+    color:black;
+    font-family: "Open Sans",sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    height: 20px;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+}
 
-    .card-group >label{
-        width: 100%;
-        color: black;
-        display: block;
-    }
+.container-box{
+    width: 100%;
+    align-items: center;
+}
 
-    .card-group >input{
-        border-radius: 15px;
-        outline: 0;
-        width: 95%;
-        height: 15px;
-        padding: 5px;
-    }
+/*-------- Barra de pesquisa  ------------*/
+.search-bar{
+    margin-bottom: 5px;
+}
 
-    .btn{
-        text-align: center;
-    }
-    .btn button:hover{
-        background-image: linear-gradient(to right, rgb(160, 228, 240), rgb(14, 122, 247));
-        
-    }
+.search-bar input {
+    border: 2px solid #02A7F0;
+    border-right: 0;
+    border-radius: 20px 0 0 20px;
+    background-color: white;
+    color: #333333;
+    font-family: "Open Sans",sans-serif;
+    font-size: 16px;
+    text-align: center;
+    padding-left: 15px;
+}
 
-    .card-group > button{
-        background-image: linear-gradient(to right, blue, blue);
-        width: 50%;
-        border-radius: 30px;
-        padding: 10px;
-        color: white;
-        border: 0px;
-        outline: 0;
-    }
+.search-bar button {
+    border: 2px solid #02A7F0;
+    border-left: 0;
+    border-radius: 0px 20px 20px 0px;
+    height: 36px;
+    margin-left: -5px;
+    padding-right:15px;
+}
 
-    .texto-interativo{
-        color:black;
-        text-align: center;
+.search-bar input:focus {
+    outline: 0;
+}
 
-    }
-    .titulo{
-        color:black;
-    }
+
+.search-bar button i{
+    color:#02A7F0;
+    cursor:pointer;
+    font-size: 16px;
+}
+
+.search-bar button i:hover{
+    color: #0D6EFD;
+}
+
+
+
