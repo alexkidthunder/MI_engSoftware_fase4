@@ -92,6 +92,19 @@ textarea:focus, input:focus {
     padding:30px 40px;
 }
 
+.box-auto{ /*Caixa branca padrão que tem em várias páginas*/
+    align-self: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 6px 6px 6px #f1efef;
+    padding:30px 40px;
+    margin: 0 auto;
+    margin-block: 20px;
+    width: fit-content;
+}
+
+
 .btn-white{ /* Botões brancos com borda azul*/
     border: 2px solid #02A7F0;
     background-color: white;
@@ -196,6 +209,3 @@ textarea:focus, input:focus {
 .search-bar button i:hover{
     color: #0D6EFD;
 }
-
-
-
