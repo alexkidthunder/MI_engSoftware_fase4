@@ -13,7 +13,7 @@ a{
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
     box-shadow: 5px 5px 5px #AAAAAA;
-    width: calc(100% - 20px);
+    width: 100%;
 }
 .adm-header > a{
     display: block;
