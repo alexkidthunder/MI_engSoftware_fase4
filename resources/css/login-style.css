@@ -1,0 +1,68 @@
+body{
+    background-image: url(imagemOficial.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+    
+    .form{
+        width: 30%;
+        margin: auto;
+        padding-top: 170px;
+    }
+    .card{
+        box-shadow: blue;
+        background-image: linear-gradient(to top, rgb(160, 228, 240), rgb(9, 120, 247));
+        padding: 20px;
+        border-radius: 50px;
+    }
+    
+    .card-top{
+        text-align: center;
+    }
+
+    .card-group{
+        margin-bottom: 20px;
+    }
+
+    .card-group >label{
+        width: 100%;
+        color: black;
+        display: block;
+    }
+
+    .card-group >input{
+        border-radius: 15px;
+        outline: 0;
+        width: 95%;
+        height: 15px;
+        padding: 5px;
+    }
+
+    .btn{
+        text-align: center;
+    }
+    .btn button:hover{
+        background-image: linear-gradient(to right, rgb(160, 228, 240), rgb(14, 122, 247));
+        
+    }
+
+    .card-group > button{
+        background-image: linear-gradient(to right, blue, blue);
+        width: 50%;
+        border-radius: 30px;
+        padding: 10px;
+        color: white;
+        border: 0px;
+        outline: 0;
+    }
+
+    .texto-interativo{
+        color:black;
+        text-align: center;
+
+    }
+    .titulo{
+        color:black;
+    }
