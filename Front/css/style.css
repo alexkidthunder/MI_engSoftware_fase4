@@ -11,26 +11,33 @@ h1,h2,h3,h4,h5,h6{
     font-family: "Poppins",sans-serif;
 }
 
-h1{ /*Titulos*/
+/*Titulo*/
+h1{ 
     color:#0D6EFD;
     font-weight: bold;
     margin-top:100px;
     margin-bottom:50px;
     text-align: center;
 }
-
+/*Subtitulo*/
 h2,h3{
     color:#028DCE;
     font-weight: bold;
     margin-top:10px;
 }
+h4{
+    margin-block-start: 0px;
+    margin-block-end: 20px;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
 
 label{ /*Antes do campos de inserção*/
     color: black;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 16px;
     font-family: "Poppins",sans-serif;
-    margin-top: 15px;
+    margin-top: 20px;
 }
 
 p{
@@ -70,12 +77,23 @@ textarea:focus, input:focus {
     outline: 2px solid #0D6EFD;
 }
 
-.container{
+.container-1{
     width: 60%;
     margin-left: 20%;
     margin-right: 20%;
 }
 
+
+.container-2 {
+    align-items: center;
+    margin-top: 100px;
+    margin-right: 15%;
+    margin-left: 15%;
+    width: 70%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+    
 .content-center{
     text-align: center;
     align-items: center;
@@ -83,12 +101,14 @@ textarea:focus, input:focus {
     margin-bottom: 20px;
 }
 
-.box{ /*Caixa branca padrão que tem em várias páginas*/
+/* ------------------Caixa branca padrão que tem em várias páginas--------------*/
+.box{ 
     align-self: center;
     align-items: center;
     background-color: white;
     border-radius: 20px;
     box-shadow: 6px 6px 6px #f1efef;
+    margin-bottom: 50px;
     padding:30px 40px;
 }
 
@@ -103,8 +123,6 @@ textarea:focus, input:focus {
     margin-block: 20px;
     width: fit-content;
 }
-
-
 .btn-white{ /* Botões brancos com borda azul*/
     border: 2px solid #02A7F0;
     background-color: white;
@@ -114,7 +132,8 @@ textarea:focus, input:focus {
     padding: 5px 25px;
 }
 
-.btn-blue{ /*Botões azuis*/
+ /*---------- Botões azuis----------*/
+.btn-blue{
     background-color: #58ACFA;
     color:black;
     cursor: pointer;
@@ -130,6 +149,7 @@ textarea:focus, input:focus {
 .btn-blue:active, .btn-white:active{
     background-color: #4689C8;
 }
+ /*------ Container para botão que fica na esquerda ------*/
 .container-button{
     align-items: right;
     width: 19%;
@@ -137,21 +157,22 @@ textarea:focus, input:focus {
     margin-top: 15px;
 }
 
-.box-gray{ /*Campos de data, hora e outros campos que ficam cinzas*/
+/*---------Campos de data, hora e outros campos que ficam cinzas----------*/
+.box-gray{ 
     background-color: #E6E6E6;
     border-radius: 10px;
     color:black;
     font-family: "Open Sans",sans-serif;
     font-weight: bold;
     font-size: 16px;
-    height: 20px;
+    height: 30px;
     margin-bottom:10px;
-    margin-right: 10px;
     padding: 5px 10px;
     
 }
 
-.box-white{ /*Campo de posologia em agendamento*/
+/*--------Campo de posologia em agendamento--------*/
+.box-white{ 
     background-color: #ffff;
     border-radius: 10px;
     box-shadow: 4px 4px 4px#DBDADA;
@@ -159,7 +180,7 @@ textarea:focus, input:focus {
     font-family: "Open Sans",sans-serif;
     font-weight: bold;
     font-size: 16px;
-    height: 20px;
+    height: 30px;
     margin-bottom: 10px;
     padding: 5px 10px;
 }
@@ -167,6 +188,12 @@ textarea:focus, input:focus {
 .container-box{
     width: 100%;
     align-items: center;
+}
+
+.container-atribution{
+    align-items: center;
+    width: 100%;
+    margin-top: 25px;
 }
 
 /*-------- Barra de pesquisa  ------------*/
@@ -208,4 +235,75 @@ textarea:focus, input:focus {
 
 .search-bar button i:hover{
     color: #0D6EFD;
+}
+/*------------ Alinhamento de textos  ------------*/
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/*------------ Menu  ------------*/
+
+.body-menu{
+    align-items: center;
+    background-color: #ffff;
+}
+
+.card-menu {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #F2F2F2;
+    background-clip: border-box;
+    border-radius:15px;
+    height: 140px;
+    box-shadow: 1px 1px 1px #C8C8C8;
+    -webkit-box-shadow: 2px 2px 8px #C8C8C8;
+    -moz-box-shadow: 2px 2px 8px #C8C8C8;
+}
+
+.card-menu:hover {
+    background-color: #8ED1F0;
+    border-radius:5px;
+    transform: scale(1.2); 
+
+}
+
+.card-options {
+    border: 0;
+    margin: 0 10px 30px 10px;
+}
+
+.card-options_title a{
+    align-self: center;
+    color: black;
+    font-family: "Poppins",sans-serif;
+    font-weight: bold;
+    line-height: 20px; 
+}
+.card-options_title a:hover, .card-options_title a:focus {
+    color: #0D6EFD;
+}
+.card-options_img {
+    position: relative;
+    margin: 10px 0 10px 0;
+}
+
+.card-options_img .options-img {
+    width: 50px;
+    height: 50px;
+}
+
+.options-img {
+    width: 50px;
+    height: 50px
 }
