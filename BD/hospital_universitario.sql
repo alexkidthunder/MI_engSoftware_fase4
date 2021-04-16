@@ -1,10 +1,12 @@
 CREATE DATABASE IF NOT EXISTS hospital_universitario DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE hospital_universitario;
 
-CREATE TABLE administradores (
+/*Cria tabela de admninistradores*/
+CREATE TABLE administradores ( 
   CPF char(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+/*Cria tabela de agendamentos*/
 CREATE TABLE agendamento (
   Codigo bigint(20) NOT NULL,
   Posologia float NOT NULL,
@@ -12,37 +14,43 @@ CREATE TABLE agendamento (
   Realizado tinyint(1) DEFAULT NULL,
   Hora_Agend time NOT NULL,
   CPF_prontuario char(11) NOT NULL,
-  CPF_usuario char(11) NOT NULL,
+  CPF_usuario char(11) , /* Cahve estrangeira que refencia o Responsavel*/
   Cod_medicamento bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+/*Cria tabela do relacionamento agendamento<->prontuario*/
 CREATE TABLE agendamento_prontuario (
   CPF_Prontuario char(11) DEFAULT NULL,
   Codigo_Agendamento bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+/*Cria tabela da CID*/
 CREATE TABLE cid (
   CPF_prontuario char(11) NOT NULL,
   CodCID char(6) NOT NULL,
   Id bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+/*Cria tabela de enfermeiros*/
 CREATE TABLE enfermeiros (
   CPF char(11) NOT NULL,
   COREN char(10) NOT NULL,
   Plantao tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+/*Cria tabela de enfermeiros  chefes*/
 CREATE TABLE enfermeiros_chefes (
   CPF char(11) NOT NULL,
   COREN char(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+/*Cria tabela de estagiarios*/
 CREATE TABLE estagiarios (
   CPF char(11) NOT NULL,
   Plantao tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+/*Cria tabela  log*/
 CREATE TABLE log (
   Id bigint(20) NOT NULL,
   Data_Log date NOT NULL,
@@ -51,6 +59,7 @@ CREATE TABLE log (
   Ip varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+/*Cria tabela de medicamentos*/
 CREATE TABLE medicamento (
   Nome_Medicam varchar(50) NOT NULL,
   Quantidade int(11) NOT NULL,
@@ -59,6 +68,7 @@ CREATE TABLE medicamento (
   Codigo bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+/*Cria tabela de ocorrencias*/
 CREATE TABLE ocorrencia (
   Codigo bigint(20) NOT NULL,
   Data_ocorr date NOT NULL,
@@ -67,6 +77,7 @@ CREATE TABLE ocorrencia (
   CPF char(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+/*Cria tabela de prontuarios*/
 CREATE TABLE prontuario (
   Nome_Paciente varchar(50) NOT NULL,
   Sexo varchar(20) NOT NULL,
@@ -79,11 +90,12 @@ CREATE TABLE prontuario (
   Status enum('internado','alta','obito') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+/*Cria tabela de administradores*/
 CREATE TABLE responsaveis (
-  Atribuicao enum('a','b','c','d') NOT NULL,
   CPF char(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+/*Cria tabela de usuarios*/
 CREATE TABLE usuarios (
   CPF char(11) NOT NULL,
   Nome varchar(50) NOT NULL,
