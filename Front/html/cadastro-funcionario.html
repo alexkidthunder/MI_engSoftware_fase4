@@ -5,14 +5,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="../css/body-style.css">
-    <link rel="stylesheet" href="../css/header-style.css">
-    <link rel="stylesheet" href="../css/form-style.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+
     <title>Cadastro de Funcionário</title>
   </head>
   <body>
-      <header class="adm-header">
-        <img src="../icons/svg/admin-with-cogwheels.svg" alt="Logo" width="60" height="60" />
+      <header class="header-adm">
+        <img src="../icons/svg/admin-with-cogwheels.svg" alt="Logo" class="options-img" />
           <a href="/">Nome Funcionário</a>
           <nav>
               <ul class="header-menu">
@@ -27,7 +27,7 @@
       <h1>Cadastro de Funcionários</h1>
       <section>
           <form>
-            <div class="form-layout">
+            <div class="container-1 box form-layout">
                 <div class="nome-form">
                     <label for="fnome">Nome</label> <br>
                     <input id="fnome" name="fnome" type="text" maxlength="50">

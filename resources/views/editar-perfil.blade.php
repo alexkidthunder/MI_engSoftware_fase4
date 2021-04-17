@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="../css/body-style.css">
-    <link rel="stylesheet" href="../css/header-style.css">
-    <link rel="stylesheet" href="../css/form-style.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+
     <title>Meu Perfil</title>
   </head>
   <body>
-      <header class="adm-header">
+      <header class="header-adm">
           <a href="/">Nome Funcionário</a>
           <nav>
               <ul class="header-menu">
