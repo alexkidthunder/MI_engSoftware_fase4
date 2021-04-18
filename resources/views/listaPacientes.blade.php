@@ -1,0 +1,50 @@
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+    <title>Lista de paciente</title>
+    
+  </head>
+  <body>
+    <header class="header-adm">
+          <a href="/">Nome Funcionário</a>
+          <nav>
+              <ul class="header-menu">
+                  <li><a href="/">INICIO</a></li>
+                  <li><a href="/">FUNCIONÁRIOS</a></li>
+                  <li><a href="/">LOG DO SISTEMA</a></li>
+                  <li><a href="/">ALTERAÇÕES</a></li>
+                  <li><a href="/">BACKUP</a></li>
+              </ul>
+          </nav>
+    </header>
+    <div class="container-atribution">
+    
+        <h1>PACIENTES E PRONTUÁRIOS</h1>
+            
+        <form>
+            <select id="novaAtribuicao" name="novaAtribuicao">
+                <option value="internado">Pacientes internados</option>
+                <option value="alta">Pacientes de alta</option>
+                <option value="obito">Pacientes em óbito</option>
+            </select>
+        </form>
+  
+        
+            <div>
+                <div>
+                    Paciente Fulano de Tal
+                 </div>
+                <button class="btn-blue">Prontuário</button>
+            </div>    
+               
+        </div>
+  </body>

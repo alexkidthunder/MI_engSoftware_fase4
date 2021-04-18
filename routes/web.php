@@ -31,6 +31,12 @@ Route::get('/cadastrarUsuario', [AdminController::class,'cadastro'])->name('cada
 Route::get('/removerUsuario', [AdminController::class,'remocao'])->name('removerUsuario');
 
 
+/*------------ Rota para Paciente------------------------ */
+Route::get('/listaPacientes', [HomeController::class,'listaPacientes'])->name('pacientes');
+
+
+
+
 /*------------ Rotas do enfermeiro chefe -------------*/
 
 

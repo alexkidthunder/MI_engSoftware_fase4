@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
 
-    <title>Log do Administrador</title>
+    <title>LOG DO SISTEMA</title>
   </head>
   <body>
     <header class="header-adm">

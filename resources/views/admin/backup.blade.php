@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
 
-    <title>Backup</title>
+    <title>BACKUP</title>
   </head>
   <body>
     <header class="header-adm">

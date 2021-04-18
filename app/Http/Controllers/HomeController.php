@@ -14,5 +14,8 @@ class HomeController extends Controller
         return view('editarPerfil');
     }
 
+    public function listaPacientes(){
+        return view('listaPacientes');
+    }
 
 }

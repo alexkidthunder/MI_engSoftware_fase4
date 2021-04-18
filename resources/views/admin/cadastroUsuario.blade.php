@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
 
-    <title>Cadastro de Funcionário</title>
+    <title>CADASTRO DE FUNCIONÁRIO</title>
   </head>
   <body>
       <header class="header-adm">
