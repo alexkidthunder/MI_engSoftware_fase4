@@ -1,3 +1,11 @@
+<?php 
+require_once "../../../controllers/UserController.php";
+UserController::verifyLogin();
+/*UserController::verifyAdmin();  */
+?>
+
+
+
 <!doctype html>
 <html lang="en">
   <head>

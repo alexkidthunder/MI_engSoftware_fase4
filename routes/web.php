@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+/*------------ Rota para Index ------------------------ */
+Route::get('/', [HomeController::class,'index']);
+
+
+
+/*------------ Rotas do administrador -------------------*/
+
+
+
+
+/*------------ Rotas do enfermeiro chefe -------------------*/
+
+
+
+/*------------ Rotas do enfermeiro -------------------*/
+
+
+
+/*------------ Rotas do estagiário -------------------*/
