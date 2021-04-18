@@ -4,9 +4,9 @@ select CPF from responsaveis;
 /*desc estagiarios;*/
 /* Insere na tabela de usuarios*/
 insert into usuarios values
-	('021.446.717-41','João da Silva e Silva','silvajao123','joaosilva.hp@gmail.com','1980-12-05','Admnistrador','Masculino','0010101'),
-    ('175.585.124-92','Maria joaquina Drumond','maria981','mariazinhaquina@gmail.com','1995-07-12','Admnistrador','Feminino','00100101'),
-    ('174.985.367-13','Juscelino Silva dos Santos','jusck987','santosjuscelino.hp@gmail.com','1976-01-19','Admnistrador','Masculino','11010110'),
+	('021.446.717-41','João da Silva e Silva','silvajao123','joaosilva.hp@gmail.com','1980-12-05','Administrador','Masculino','0010101'),
+    ('175.585.124-92','Maria joaquina Drumond','maria981','mariazinhaquina@gmail.com','1995-07-12','Adimnistrador','Feminino','00100101'),
+    ('174.985.367-13','Juscelino Silva dos Santos','jusck987','santosjuscelino.hp@gmail.com','1976-01-19','Administrador','Masculino','11010110'),
     
     ('202.457.365-11','Vinicius Martins magalhães','viniciinEhdeiz10','mmvinicius@gmail.com','1989-09-24','Enfermeiro Chefe','Masculino','00110101001'),
     ('658.002.101-02','Ambrozina pereira amorim','98378s2','amorim.Ambozina@gmail.com','1974-04-27','Enfermeiro Chefe','Feminino','10001010'),
