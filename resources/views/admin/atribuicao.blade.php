@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -8,7 +10,8 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
-    <title>Permissões do usuário</title>
+    <title>Atribuição do usuário</title>
+    
   </head>
   <body>
     <header class="header-adm">
@@ -23,7 +26,7 @@
               </ul>
           </nav>
     </header>
-    <h1>ALTERAR PERMISSÕES</h1>
+    <h1>ALTERAR ATRIBUIÇÃO</h1>
         <div class="container-1">
             <div class="box">
                 <!--Buscar funcionário-->
@@ -61,6 +64,41 @@
                         </div>
                     </div>
                 </div>
+
+                 <!--Alterar atrinuição do funcionário funcionário, se for estagiário-->
+                 <div class="container-atribution">
+                    <label>Nova atribuição</label>
+                    <form>
+                        <select id="novaAtribuicao" name="novaAtribuicao">
+                            <option value="enfermeiroChefe">Enfermeiro chefe</option>
+                            <option value="enfermeiro">Enfermeiro</option>
+                        </select>
+                    </form>
+                    <button type="submit" class="container-button btn-white">Alterar</button>
+                </div>
+
+                 <!--Alterar atrinuição do funcionário funcionário, se for enfermeiro
+                 <div class="container-atribution">
+                    <label>Nova atribuição</label>
+                    <form>
+                        <select id="novaAtribuicao" name="novaAtribuicao">
+                            <option value="enfermeiroChefe">Enfermeiro chefe</option>
+                        </select>
+                    </form>
+                    <button type="submit" class="container-button btn-white">Alterar</button>
+                </div>
+
+                <!--Alterar atrinuição do funcionário funcionário, se for enfermeiro chefe
+                <div class="container-atribution">
+                    <label>Nova atribuição</label>
+                    <form>
+                        <select id="novaAtribuicao" name="novaAtribuicao">
+                            <option value="Enfermeiro Chefe">Enfermeiro</option>
+                        </select>
+                    </form>
+                    <button type="submit" class="container-button btn-white">Alterar</button>
+                </div> -->
+
               
             </div>
         </div>
