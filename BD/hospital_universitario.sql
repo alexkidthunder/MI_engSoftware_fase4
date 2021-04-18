@@ -1,9 +1,9 @@
-CREATE DATABASE IF NOT EXISTS hospital_universitario2 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE hospital_universitario2;
+CREATE DATABASE IF NOT EXISTS hospital_universitario DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE hospital_universitario;
 
 /*Cria tabela de admninistradores*/
 CREATE TABLE administradores ( 
-  CPF char(11) NOT NULL
+  CPF char(14) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Cria tabela de agendamentos*/
@@ -14,7 +14,7 @@ CREATE TABLE agendamento (
   Realizado tinyint(1) DEFAULT NULL,
   Hora_Agend time NOT NULL,
   ID_prontuario bigint(20) NOT NULL,
-  CPF_usuario char(11) , /* Cahve estrangeira que refencia o Responsavel*/
+  CPF_usuario char(14) , /* Cahve estrangeira que refencia o Responsavel*/
   Cod_medicamento bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -33,20 +33,20 @@ CREATE TABLE cid (
 
 /*Cria tabela de enfermeiros*/
 CREATE TABLE enfermeiros (
-  CPF char(11) NOT NULL,
+  CPF char(14) NOT NULL,
   COREN char(10) NOT NULL,
   Plantao tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Cria tabela de enfermeiros  chefes*/
 CREATE TABLE enfermeiros_chefes (
-  CPF char(11) NOT NULL,
+  CPF char(14) NOT NULL,
   COREN char(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Cria tabela de estagiarios*/
 CREATE TABLE estagiarios (
-  CPF char(11) NOT NULL,
+  CPF char(14) NOT NULL,
   Plantao tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -74,7 +74,7 @@ CREATE TABLE ocorrencia (
   Data_ocorr date NOT NULL,
   ID_prontuario bigint(20) NOT NULL,
   Descricao text NOT NULL,
-  CPF char(11) NOT NULL
+  CPF char(14) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Cria tabela de prontuarios*/
@@ -84,7 +84,7 @@ CREATE TABLE prontuario (
   Data_Saida date NOT NULL,
   Status enum('internado','alta','obito') NOT NULL,  
   Id_leito varchar(20) NOT NULL,
-  Cpfpaciente char(11)  
+  Cpfpaciente char(14)  
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Cria tabela de prontuarios*/
@@ -92,7 +92,7 @@ CREATE TABLE paciente (
   Nome_Paciente varchar(50) NOT NULL,
   Sexo varchar(20) NOT NULL,
   Data_Nasc date NOT NULL,
-  CPF char(11) NOT NULL,
+  CPF char(14) NOT NULL,
   Tipo_Sang varchar(5) NOT NULL  
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -104,12 +104,12 @@ CREATE TABLE leito (
 
 /*Cria tabela de administradores*/
 CREATE TABLE responsaveis (
-  CPF char(11) NOT NULL
+  CPF char(14) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Cria tabela de usuarios*/
 CREATE TABLE usuarios (
-  CPF char(11) NOT NULL,
+  CPF char(14) NOT NULL,
   Nome varchar(50) NOT NULL,
   Senha varchar(20) NOT NULL,
   Email varchar(50) NOT NULL,
