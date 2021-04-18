@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
     <title>Atribuição do usuário</title>
+    
   </head>
   <body>
     <header class="header-adm">
