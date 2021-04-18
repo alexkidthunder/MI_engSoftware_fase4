@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS hospital_universitario2 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE hospital_universitario2;
+CREATE DATABASE IF NOT EXISTS hospital_universitario DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE hospital_universitario;
 
 /*Cria tabela de admninistradores*/
 CREATE TABLE administradores ( 
