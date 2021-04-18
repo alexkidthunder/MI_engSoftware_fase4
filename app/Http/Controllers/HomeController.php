@@ -10,5 +10,9 @@ class HomeController extends Controller
         return view('login');
     }
 
+    public function editPerfil(){
+        return view('editarPerfil');
+    }
+
 
 }
