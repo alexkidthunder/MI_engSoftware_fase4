@@ -1,7 +1,12 @@
 
+<<<<<<< Updated upstream
 use hospital_universitario;
 select CPF from responsaveis;
 /*desc estagiarios;*/
+=======
+use hospital_universitario2;
+
+>>>>>>> Stashed changes
 /* Insere na tabela de usuarios*/
 insert into usuarios values
 	('021.446.717-41','João da Silva e Silva','silvajao123','joaosilva.hp@gmail.com','1980-12-05','Administrador','Masculino','0010101'),
