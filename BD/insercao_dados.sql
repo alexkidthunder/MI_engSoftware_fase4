@@ -1,11 +1,10 @@
-
 use hospital_universitario;
-select CPF from responsaveis;
 /*desc estagiarios;*/
 /* Insere na tabela de usuarios*/
+
 insert into usuarios values
 	('021.446.717-41','João da Silva e Silva','silvajao123','joaosilva.hp@gmail.com','1980-12-05','Administrador','Masculino','0010101'),
-    ('175.585.124-92','Maria joaquina Drumond','maria981','mariazinhaquina@gmail.com','1995-07-12','Adimnistrador','Feminino','00100101'),
+    ('175.585.124-92','Maria joaquina Drumond','maria981','mariazinhaquina@gmail.com','1995-07-12','Admnistrador','Feminino','00100101'),
     ('174.985.367-13','Juscelino Silva dos Santos','jusck987','santosjuscelino.hp@gmail.com','1976-01-19','Administrador','Masculino','11010110'),
     
     ('202.457.365-11','Vinicius Martins magalhães','viniciinEhdeiz10','mmvinicius@gmail.com','1989-09-24','Enfermeiro Chefe','Masculino','00110101001'),
@@ -15,7 +14,7 @@ insert into usuarios values
     ('252.696.001-73','Brenda Estefanir souza','09szai2','brendasouza.hp@gmail.com','1995-07-29','Enfermeiro','Feminino','0100110101011'),
     ('250.414.528-74','Alfredo Estrada Félix','frefedo872','estrada.felixfred@gmail.com','1979-02-27','Enfermeiro','Masculino','110100101'),
     ('127.066.920-65','Rafael Yago Rocha','goya761s','Yagorafael.hp@gmail.com','1968-09-26','Enfermeiro','Masculino','11010010100'),
-    ('558.570.92086','Jaqueline Marina da Cunha','cunh87ja212que','cunha.jaquemarina@gmail.com','1987-08-21','Enfermeiro','Feminino','0010110101'),
+    ('558.570.920-86','Jaqueline Marina da Cunha','cunh87ja212que','cunha.jaquemarina@gmail.com','1987-08-21','Enfermeiro','Feminino','0010110101'),
     ('136.382.370-10','Diego Luan Cardoso','dosos23doso12','dieguinho87luan@gmail.com','1968-02-18','Enfermeiro','Masculino','1101010'),
     ('072.003.190-74','Isaac Márcio Enrico Almada','malfada234','malfada.enricoIsaac@gmail.com','1988-07-26','Enfermeiro','Masculino','110100101'),
     ('873.325.550-42','Cauã Mário da Luz','luz21s1z','cauamariodaluz.81@gmail.com','1984-07-07','Enfermeiro','Masculino','001011011'),
@@ -44,7 +43,7 @@ INSERT INTO enfermeiros_chefes VALUES
 	('202.457.365-11','01-BA00001'),
 	('658.002.101-02','01-BA00002'),
 	('475.013.135-62','01-BA00003');
-    
+
 /*Insere na tabela enfermeiros*/
 INSERT INTO enfermeiros VALUES
 	('252.696.001-73','01-BA00004','0'),
