@@ -114,7 +114,7 @@ CREATE TABLE usuarios (
   Senha varchar(20) NOT NULL,
   Email varchar(50) NOT NULL,
   Data_Nasc date NOT NULL,
-  Atribuicao enum('a','b','c','d') NOT NULL,
+  Atribuicao enum('Administrador','Enfermeiro Chefe','Enfermeiro','Estagiario') NOT NULL,
   Sexo varchar(20) NOT NULL,
   Ip varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -216,4 +216,4 @@ ALTER TABLE responsaveis
   
 ALTER TABLE prontuario
   ADD CONSTRAINT prontuario_ibfk_1 FOREIGN KEY (Id_leito) REFERENCES leito (Identificacao),
-  ADD CONSTRAINT prontuario_ibfk_2 FOREIGN KEY (Cpfpaciente) REFERENCES paciente (CPF);
+  ADD CONSTRAINT prontuario_ibfk_2 FOREIGN KEY (Cpfpaciente) REFERENCES paciente (CPF);  ADD CONSTRAINT prontuario_ibfk_2 FOREIGN KEY (Cpfpaciente) REFERENCES paciente (CPF);
