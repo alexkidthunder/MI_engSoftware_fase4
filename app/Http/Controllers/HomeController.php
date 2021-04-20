@@ -26,4 +26,7 @@ class HomeController extends Controller
         return view('meusAgendamentos');
     }*/
     
+    public function agendamentos(){
+        return view('agendamentos');
+    }
 }

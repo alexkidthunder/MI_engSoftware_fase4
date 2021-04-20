@@ -20,8 +20,9 @@ h1,h2,h3,h4,h5,h6{
 
 /*Titulo*/
 h1{ 
+    font-size: 32px;
     color:#0D6EFD;
-    font-weight: bold;
+    font-weight: bolder;
     margin-top:100px;
     margin-bottom:50px;
     text-align: center;
@@ -510,6 +511,12 @@ input[type=number] {
     border-radius: 0 50px 50px 0;
     padding: 20px;
     margin-bottom: 25px;
+}
+.box-agendamento:nth-child(even){
+    border-radius: 0 50px 0 0;
+}
+.box-agendamento:nth-child(odd){
+    border-radius: 0 0 50px 0;
 }
 .btn-Patient{
     background-color: #A2DBFE;
