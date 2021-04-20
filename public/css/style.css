@@ -90,7 +90,6 @@ textarea:focus, input:focus {
     margin-right: 20%;
 }
 
-
 .container-2 {
     align-items: center;
     margin-top: 100px;
@@ -232,7 +231,6 @@ textarea:focus, input:focus {
 .search-bar input:focus {
     outline: 0;
 }
-
 
 .search-bar button i{
     color:#02A7F0;
@@ -458,4 +456,51 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+/*------------ Listagem de pacientes ------------*/
+#patientList h1{
+    margin-bottom:10px;
+}
+
+#patientList .box-white{ 
+    background-color: #ffff;
+    border-radius: 55px;
+    box-shadow: 5px 5px 5px#DBDADA;
+    height: 60px;
+    margin-bottom: 25px;
+    -webkit-box-shadow: 3px 3px 8px #C8C8C8;
+    -moz-box-shadow: 3px 3px 8px #C8C8C8;
+    padding: 15px 30px;
+}
+
+#patientList .box-blue{
+    background-color: #A2DBFE;
+    border-radius: 10px;
+    color:black;
+    font-family: "Open Sans",sans-serif;
+    font-weight: bold;
+    font-size: 17px;
+    padding: 6px 10px;
+}
+
+#patientList .btn-blue{
+    padding: 5px 10px;
+}
+
+
+/*------------ Agendamentos ------------*/
+
+/*Nome do medicamento e posologia*/
+.box-white{ 
+    background-color: #ffff;
+    border-radius: 10px;
+    box-shadow: 4px 4px 4px#DBDADA;
+    color:black;
+    font-family: "Open Sans",sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    height: 30px;
+    margin-bottom: 10px;
+    padding: 5px 10px;
 }

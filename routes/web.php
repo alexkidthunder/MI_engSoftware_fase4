@@ -35,6 +35,12 @@ Route::get('/removerUsuario', [AdminController::class,'remocao'])->name('remover
 Route::get('/listaPacientes', [HomeController::class,'listaPacientes'])->name('pacientes');
 
 
+/*------------ Rota para agendamentos ------------------------ */
+Route::get('/agendamentosRealizados', [HomeController::class,'agendamentosRealizados'])->name('agendamentosRealizados');
+Route::get('/meusAgendamentos', [HomeController::class,'meusAgendamentos'])->name('meusAgendamentos');
+
+
+
 
 
 /*------------ Rotas do enfermeiro chefe -------------*/

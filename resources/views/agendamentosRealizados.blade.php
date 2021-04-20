@@ -11,7 +11,7 @@
     <link href="{{ ('css/style.css') }}" rel="stylesheet"> 
     <link href="{{ ('bootstrap/css/bootstrap.css') }}" rel="stylesheet">
     
-    <title>Lista de paciente</title>
+    <title>Agendamentos realizados</title>
     
   </head>
   <body>
@@ -27,9 +27,9 @@
               </ul>
           </nav>
     </header>
-        <div class="container-1" id="patientList">
+        <div class="container-1">
     
-            <h1>PACIENTES E PRONTUÁRIOS</h1>
+            <h1>AGENDAMENTOS E MEDICAMENTOS REALIZADOS</h1>
             <div class="content-center">
                 <form>
                     <select id="novaAtribuicao" name="novaAtribuicao">
@@ -40,8 +40,7 @@
                 </form>
             </div>
 
-            <!----------------------Agendamento---------------------------------->
-            <div class=>
+            <div class="box-white">
                 <div class="container-box">
                     <div class="row">
                         <div class="col-lg-10">
@@ -55,6 +54,22 @@
                     </div>
                 </div>
             </div>
-           
+            
+            <!--APAGAR DEPOIS -->
+            <div class="box-white">
+                <div class="container-box">
+                    <div class="row">
+                        <div class="col-lg-10">
+                            <div class="box-blue">
+                                Paciente Fulano de Tal
+                             </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <button class="btn-blue">Prontuário</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
   </body>
