@@ -14,5 +14,16 @@ class HomeController extends Controller
         return view('editarPerfil');
     }
 
+    public function listaPacientes(){
+        return view('listaPacientes');
+    }
 
+    public function agendamentosRealizados(){
+        return view('agendamentosRealizados');
+    }
+
+    /*public function meusAgendamentos(){
+        return view('meusAgendamentos');
+    }*/
+    
 }

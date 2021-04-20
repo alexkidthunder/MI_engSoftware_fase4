@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -9,7 +11,7 @@
     <link href="{{ ('css/style.css') }}" rel="stylesheet"> 
     <link href="{{ ('bootstrap/css/bootstrap.css') }}" rel="stylesheet">
     
-    <title>Permissões do usuário</title>
+    <title>Agendamentos realizados</title>
     
   </head>
   <body>
@@ -25,45 +27,49 @@
               </ul>
           </nav>
     </header>
-    <h1>ALTERAR PERMISSÕES</h1>
         <div class="container-1">
-            <div class="box">
-                <!--Buscar funcionário-->
-                <div class="content-center">
-                    <h3>BUSCAR FUNCIONÁRIO</h3>
-                    <form class="search-bar">
-                        <input name="cpf_user" id="cpf_user" type="text" placeholder="Informe o CPF" required maxlength="11" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
-                        <button type="submit">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </form>
-                </div>
+    
+            <h1>AGENDAMENTOS E MEDICAMENTOS REALIZADOS</h1>
 
-                 <!--Infomações do funcionário funcionário-->
-                 <h3>Funcionário</h3>
+            <!---------------------Agendamento--------------------->
+            <div class="box-agendamento">
                 <div class="container-box">
-                    <div class="box-gray">
-                        Marcos Oliveira Santana
-                    </div>
                     <div class="row">
-                        <div class="col-lg-4">
+                        <div class="col-lg-2 text-center">
                             <div class="box-gray">
-                                CPF: 011.988.999-00
+                                22:30h
+                             </div>
+                        </div>
+                        <div class="col-lg-2 text-center">
+                            <div class="box-gray">
+                                20/04/2021
                             </div>
                         </div>
-                        <div class="col-lg-4">
-                            <div class="box-gray">
-                                COREN: 0123456 BA
+                        <div class="col-lg-6">
+                            <div class="box-white">
+                            Dipirona
+                             </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="box-white">
+                                0.35 ml
                             </div>
                         </div>
-                        <div class="col-lg-4">
-                            <div class="box-gray">
-                                Enfermeiro chefe
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <button class="btn-Patient text-left">Samara Anjos de Oliveira</button>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="box-blue">
+                                Leito: AB04
                             </div>
                         </div>
                     </div>
                 </div>
-              
             </div>
+            <!---------------------Fim de agendamento--------------------->
+           
         </div>
   </body>
