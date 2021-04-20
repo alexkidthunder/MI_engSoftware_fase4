@@ -342,92 +342,40 @@ textarea:focus, input:focus {
     padding: 25px;
 }
 
-/*------------ Layout de um Form  ------------*/
+/*------------ Cadastro------------*/
 
-.form-layout{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px; 
+#register input, select{
+    width: 100%;
 }
-.form-layout > div{
-    padding: 10px;
-    padding-inline: 20px;
-    text-align: start;
-
-}
-.form-layout > div > input{
-    outline-style: none;
-    font-size: 1rem;
-    font-weight: bold;
-    inline-size: 100%;
-    border-color: #02A7F0;
-    border-style: solid;
-    border-radius: 10px;
-}
-.form-layout >.nome-form{
-    grid-column: 1 / 4;
-    grid-row: 1;
-}
-.form-layout > .email-form{
-    grid-row: 3;
-    grid-column: 1 / 3;
-}
-.form-layout > div > select{
-    border-width: 2px;
-    border-color: #02A7F0;
-    border-style: solid;
-    border-radius: 10px;
-    inline-size: 100%;
-    font-size: 1rem;
-    font-weight: bold;
-    inline-size: 100%;
-    outline-style: none;
-}
-.form-layout > div > select option{
-    font-size: 1rem;
-    font-weight: bold;
-}
-.form-layout >.submit-adm{
-    grid-row: 4;
-    grid-column: 2 / 3;
-    margin-top: 50px;
-}
-.form-layout >.submit-adm > input{
-    height: 100%;
-    inline-size: 100%;
-    font-size: 1.6rem;
-    background-color: white;
-    font-weight: normal;
-}
-.form-layout >.submit-adm > input:hover{
-    background-color: #8ED1F0;
-}
-.form-layout >.submit-adm > input:active{
-    background-color: inherit;
-    opacity: 60%;
-}
-.form-layout > .sex-form{
-    display: grid;
-}
-.form-layout > .sex-form > input{
-    background-color: white;
-    grid-row: 2;
-}
-.form-layout > .sex-form > input:hover{
-    background-color: #8ED1F0;
-}
-.form-layout > .sex-form > input:active{
-    background-color: inherit;
-    opacity: 60%;
+#register .btn-blue{ 
+    align-self: center;
+    width: 35%;
+    margin-top:20px;
+    margin-left:32%;
+    margin-right:32%;
 }
 
 /*------------ Deixar os botões de sexo daquele jeito  ------------*/
+.sex-form{
+    display: grid;
+}
+.sex-form > input{
+    background-color: white;
+    grid-row: 2;
+}
+.sex-form > input:hover{
+    background-color: #8ED1F0;
+}
+.sex-form > input:active{
+    background-color: inherit;
+    opacity: 60%;
+}
 
-.form-layout > .sex-form > input:nth-child(3){
+.sex-form > input:nth-child(3){
     border-bottom-right-radius: 0px;
     border-top-right-radius: 0px;
 }
-.form-layout > .sex-form > input:nth-child(4){
+.sex-form > input:nth-child(4){
     border-bottom-left-radius: 0px;
     border-top-left-radius: 0px;
 }
