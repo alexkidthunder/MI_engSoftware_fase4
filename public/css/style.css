@@ -167,9 +167,8 @@ textarea:focus, input:focus {
     margin-top: 15px;
 }
 
-/*---------Campos de data, hora e outros campos que ficam cinzas----------*/
-.box-gray{ 
-    background-color: #E6E6E6;
+/*--------- Caixa de texto ----------*/
+.box-gray, .box-blue, .box-white { 
     border-radius: 10px;
     color:black;
     font-family: "Open Sans",sans-serif;
@@ -177,33 +176,21 @@ textarea:focus, input:focus {
     font-size: 16px;
     height: 30px;
     margin-bottom:10px;
-    padding: 5px 10px;
-    
+    padding: 5px 10px;  
 }
-/*--------- Caixa com fundo azul ----------*/
+
+.box-gray{ 
+    background-color: #E6E6E6;
+}
+
 .box-blue{
     background-color: #A2DBFE;
-    border-radius: 10px;
-    color:black;
-    font-family: "Open Sans",sans-serif;
-    font-weight: bold;
-    font-size: 16px;
-    height: 30px;
-    margin-bottom: 10px;
-    padding: 5px 10px;
 }
-/*--------Campo de posologia em agendamento--------*/
+
 .box-white{ 
     background-color: #ffff;
-    border-radius: 10px;
     box-shadow: 4px 4px 4px#DBDADA;
-    color:black;
-    font-family: "Open Sans",sans-serif;
-    font-weight: bold;
-    font-size: 16px;
-    height: 30px;
-    margin-bottom: 10px;
-    padding: 5px 10px;
+
 }
 
 .container-box{
