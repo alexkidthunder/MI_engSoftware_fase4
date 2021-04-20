@@ -11,7 +11,7 @@
     <link href="{{ ('css/style.css') }}" rel="stylesheet"> 
     <link href="{{ ('bootstrap/css/bootstrap.css') }}" rel="stylesheet">
     
-    <title>Agendamentos realizados</title>
+    <title>Meus agendamentos</title>
     
   </head>
   <body>
@@ -29,7 +29,7 @@
     </header>
         <div class="container-1">
     
-            <h1>AGENDAMENTOS E MEDICAMENTOS REALIZADOS</h1>
+            <h1>MEUS AGENDAMENTOS ALOCADOS</h1>
 
             <!---------------------Agendamento--------------------->
             <div class="box-agendamento">
@@ -71,5 +71,6 @@
             </div>
             <!---------------------Fim de agendamento--------------------->
            
+            
         </div>
   </body>
