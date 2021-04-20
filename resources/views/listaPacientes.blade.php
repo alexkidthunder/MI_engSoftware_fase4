@@ -40,8 +40,7 @@
                 </form>
             </div>
 
-            <!----------------------Agendamento---------------------------------->
-            <div class=>
+            <div class="box-white">
                 <div class="container-box">
                     <div class="row">
                         <div class="col-lg-10">
@@ -55,6 +54,22 @@
                     </div>
                 </div>
             </div>
-           
+            
+            <!--APAGAR DEPOIS -->
+            <div class="box-white">
+                <div class="container-box">
+                    <div class="row">
+                        <div class="col-lg-10">
+                            <div class="box-blue">
+                                Paciente Fulano de Tal
+                             </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <button class="btn-blue">Prontuário</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
   </body>
