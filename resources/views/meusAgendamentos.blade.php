@@ -33,7 +33,6 @@
 
             <!---------------------Agendamento--------------------->
             <div class="box-agendamento">
-                <div class="container-box">
                     <div class="row">
                         <div class="col-lg-2 text-center">
                             <div class="box-gray">
@@ -66,11 +65,9 @@
                                 Leito: AB04
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </div>  
+                    <button class="btn-agendamento"> Finalizar aplicação </button>
             </div>
             <!---------------------Fim de agendamento--------------------->
-           
-            
         </div>
   </body>

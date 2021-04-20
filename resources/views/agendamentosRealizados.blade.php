@@ -33,7 +33,6 @@
 
             <!---------------------Agendamento--------------------->
             <div class="box-agendamento">
-                <div class="container-box">
                     <div class="row">
                         <div class="col-lg-2 text-center">
                             <div class="box-gray">
@@ -67,7 +66,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
             <!---------------------Fim de agendamento--------------------->
            

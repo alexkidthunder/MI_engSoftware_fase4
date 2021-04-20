@@ -26,6 +26,7 @@ h1{
     margin-bottom:50px;
     text-align: center;
 }
+
 /*Subtitulo*/
 h2,h3{
     color:#028DCE;
@@ -39,7 +40,7 @@ h4{
     margin-inline-end: 0px;
 }
 
-label{ /*Antes do campos de inserção*/
+label{ /*Antes dos campos de inserção*/
     color: black;
     font-weight: bold;
     font-size: 16px;
@@ -148,14 +149,16 @@ textarea:focus, input:focus {
     padding: 5px 25px;
 }
 
-.btn-blue:hover, .btn-white:hover{
+.btn-blue:hover, .btn-white:hover, .btn-agendamento:hover{
     background-color: #8ED1F0;
     border-color:#58ACFA;
 }
 
-.btn-blue:active, .btn-white:active{
+.btn-blue:active, .btn-white:active, .btn-agendamento:active{
     background-color: #4689C8;
 }
+
+
  /*------ Container para botão que fica na esquerda ------*/
 .container-button{
     align-items: right;
@@ -177,7 +180,7 @@ textarea:focus, input:focus {
     padding: 5px 10px;
     
 }
-
+/*--------- Caixa com fundo azul ----------*/
 .box-blue{
     background-color: #A2DBFE;
     border-radius: 10px;
@@ -252,18 +255,6 @@ textarea:focus, input:focus {
 
 .search-bar button i:hover{
     color: #0D6EFD;
-}
-/*------------ Alinhamento de textos  ------------*/
-.text-left {
-    text-align: left;
-}
-
-.text-right {
-    text-align: right;
-}
-
-.text-center {
-    text-align: center;
 }
 
 /*------------ Menu  ------------*/
@@ -506,7 +497,7 @@ input[type=number] {
     background-color: #ffff;
     border: 1.5px solid #58ACFA;
     border-radius: 0 50px 50px 0;
-    padding: 20px;
+    padding: 10px 20px;
     margin-bottom: 25px;
 }
 .btn-Patient{
@@ -528,4 +519,16 @@ input[type=number] {
 
 .btn-Patient:hover{
     background-color: #58ACFA;
+}
+
+.btn-agendamento{ 
+    align-self: right;
+    border: 2px solid #02A7F0;
+    background-color: white;
+    color:black;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 5px;
+    width: 23%;
+    margin-left:77%;
 }
