@@ -333,8 +333,8 @@ textarea:focus, input:focus {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding-inline: 10px;
-    align-items: center;
+    margin-inline: 10px;
+    align-items: baseline;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
     box-shadow: 5px 5px 5px #AAAAAA;
@@ -345,10 +345,12 @@ textarea:focus, input:focus {
     font-weight: bold;
     text-decoration: none;
     display: block;
-    padding: 25px;
+    padding: 15px;
     color: #0D6EFD;
 }
-
+.header-adm > img{
+    padding: 10px;
+}
 /*------------ Opções dentro do Header  ------------*/
 .header-menu{
     display: flex;
@@ -361,7 +363,7 @@ textarea:focus, input:focus {
 .header-menu li a{
     text-decoration: none;
     display: block;
-    padding: 25px;
+    padding: 15px;
 }
 
 /*------------ Layout de um Form  ------------*/
