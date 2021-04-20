@@ -5,10 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+    <link href="{{ ('css/style.css') }}" rel="stylesheet"> 
+    <link href="{{ ('bootstrap/css/bootstrap.css') }}" rel="stylesheet">
 
-    <title>Meu Perfil</title>
+    <title>MEU PERFIL</title>
   </head>
   <body>
       <header class="header-adm">
