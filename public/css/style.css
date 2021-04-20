@@ -1,0 +1,461 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+*{
+    font-family: "Poppins",sans-serif;
+    margin: 0px;
+    padding: 0px;
+}
+a:visited{
+    color: inherit;
+}
+body{
+    align-items: center;
+    background-color: #F9F8FF;
+}
+
+h1,h2,h3,h4,h5,h6{
+    font-family: "Poppins",sans-serif;
+}
+
+/*Titulo*/
+h1{ 
+    color:#0D6EFD;
+    font-weight: bold;
+    margin-top:100px;
+    margin-bottom:50px;
+    text-align: center;
+}
+/*Subtitulo*/
+h2,h3{
+    color:#028DCE;
+    font-weight: bold;
+    margin-top:10px;
+}
+h4{
+    margin-block-start: 0px;
+    margin-block-end: 20px;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+label{ /*Antes do campos de inserção*/
+    color: black;
+    font-weight: bold;
+    font-size: 16px;
+    font-family: "Poppins",sans-serif;
+    margin-top: 20px;
+}
+
+p{
+    color:black;
+    font-family: "Open Sans",sans-serif;
+    font-size: 18px;
+}
+
+button, input, select, textarea {
+    border:none;
+    border-radius: 10px;
+    font-family: "Open Sans",sans-serif;
+    font-size: 16px;
+    margin-bottom: 15px;
+    background-color: transparent;
+}
+
+input, select{
+    background-color: white;
+    border: 2px solid #02A7F0;
+    color: #333333;
+    padding: 5px 10px ;
+}
+
+input[type=text]:disabled, input[type="number"]:disabled, select:disabled {
+    background-color: #A2DBFE;
+    border:#A2DBFE ;
+    font-weight: bold;
+}
+
+button:focus, select:focus {
+    outline: 0;
+}
+
+textarea:focus, input:focus {
+    border-radius: 10px;
+    outline: 2px solid #0D6EFD;
+}
+
+.container-1{
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+
+.container-2 {
+    align-items: center;
+    margin-top: 100px;
+    margin-right: 15%;
+    margin-left: 15%;
+    width: 70%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+    
+.content-center{
+    text-align: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* ------------------Caixa branca padrão que tem em várias páginas--------------*/
+.box{ 
+    align-self: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 6px 6px 6px #f1efef;
+    margin-bottom: 50px;
+    padding:30px 40px;
+}
+
+.box-auto{ /*Caixa branca padrão que tem em várias páginas*/
+    align-self: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 6px 6px 6px #f1efef;
+    padding:30px 40px;
+    margin: 0 auto;
+    margin-block: 20px;
+    width: fit-content;
+}
+.btn-white{ /* Botões brancos com borda azul*/
+    border: 2px solid #02A7F0;
+    background-color: white;
+    color:black;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 5px 25px;
+}
+
+ /*---------- Botões azuis----------*/
+.btn-blue{
+    background-color: #58ACFA;
+    color:black;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 5px 25px;
+}
+
+.btn-blue:hover, .btn-white:hover{
+    background-color: #8ED1F0;
+    border-color:#58ACFA;
+}
+
+.btn-blue:active, .btn-white:active{
+    background-color: #4689C8;
+}
+ /*------ Container para botão que fica na esquerda ------*/
+.container-button{
+    align-items: right;
+    width: 19%;
+    margin-left: 80%;
+    margin-top: 15px;
+}
+
+/*---------Campos de data, hora e outros campos que ficam cinzas----------*/
+.box-gray{ 
+    background-color: #E6E6E6;
+    border-radius: 10px;
+    color:black;
+    font-family: "Open Sans",sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    height: 30px;
+    margin-bottom:10px;
+    padding: 5px 10px;
+    
+}
+
+/*--------Campo de posologia em agendamento--------*/
+.box-white{ 
+    background-color: #ffff;
+    border-radius: 10px;
+    box-shadow: 4px 4px 4px#DBDADA;
+    color:black;
+    font-family: "Open Sans",sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    height: 30px;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+}
+
+.container-box{
+    width: 100%;
+    align-items: center;
+}
+
+.container-atribution{
+    align-items: center;
+    width: 100%;
+    margin-top: 25px;
+}
+
+/*-------- Barra de pesquisa  ------------*/
+.search-bar{
+    margin-bottom: 5px;
+}
+
+.search-bar input {
+    border: 2px solid #02A7F0;
+    border-right: 0;
+    border-radius: 20px 0 0 20px;
+    background-color: white;
+    color: #333333;
+    font-family: "Open Sans",sans-serif;
+    font-size: 16px;
+    text-align: center;
+    padding-left: 15px;
+}
+
+.search-bar button {
+    border: 2px solid #02A7F0;
+    border-left: 0;
+    border-radius: 0px 20px 20px 0px;
+    height: 36px;
+    margin-left: -5px;
+    padding-right:15px;
+}
+
+.search-bar input:focus {
+    outline: 0;
+}
+
+
+.search-bar button i{
+    color:#02A7F0;
+    cursor:pointer;
+    font-size: 16px;
+}
+
+.search-bar button i:hover{
+    color: #0D6EFD;
+}
+/*------------ Alinhamento de textos  ------------*/
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/*------------ Menu  ------------*/
+
+.body-menu{
+    align-items: center;
+    background-color: #ffff;
+}
+
+.card-menu {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #F2F2F2;
+    background-clip: border-box;
+    border-radius:15px;
+    height: 140px;
+    box-shadow: 1px 1px 1px #C8C8C8;
+    -webkit-box-shadow: 2px 2px 8px #C8C8C8;
+    -moz-box-shadow: 2px 2px 8px #C8C8C8;
+}
+
+.card-menu:hover {
+    background-color: #8ED1F0;
+    border-radius:5px;
+    transform: scale(1.2); 
+
+}
+
+.card-options {
+    border: 0;
+    margin: 0 10px 30px 10px;
+}
+
+.card-options_title a{
+    align-self: center;
+    color: black;
+    font-family: "Poppins",sans-serif;
+    font-weight: bold;
+    line-height: 20px; 
+}
+.card-options_title a:hover, .card-options_title a:focus {
+    color: #0D6EFD;
+}
+.card-options_img {
+    position: relative;
+    margin: 10px 0 10px 0;
+}
+
+.card-options_img .options-img {
+    width: 50px;
+    height: 50px;
+}
+
+.options-img {
+    width: 50px;
+    height: 50px
+}
+
+
+/*------------ Header  ------------*/
+.header-adm{
+    font-size: 1.3rem;
+    background-color: #FFFFFF; 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-inline: 10px;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 5px 5px 5px #AAAAAA;
+    width: 100%;
+}
+
+.header-adm > a{
+    font-weight: bold;
+    text-decoration: none;
+    display: block;
+    padding: 25px;
+    color: #0D6EFD;
+}
+
+/*------------ Opções dentro do Header  ------------*/
+.header-menu{
+    display: flex;
+}
+.header-menu li{
+    list-style: none;
+    font-weight: bold;
+    margin-inline: 10px;
+}
+.header-menu li a{
+    text-decoration: none;
+    display: block;
+    padding: 25px;
+}
+
+/*------------ Layout de um Form  ------------*/
+
+.form-layout{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px; 
+}
+.form-layout > div{
+    padding: 10px;
+    padding-inline: 20px;
+    text-align: start;
+
+}
+.form-layout > div > input{
+    outline-style: none;
+    font-size: 1rem;
+    font-weight: bold;
+    inline-size: 100%;
+    border-color: #02A7F0;
+    border-style: solid;
+    border-radius: 10px;
+}
+.form-layout >.nome-form{
+    grid-column: 1 / 4;
+    grid-row: 1;
+}
+.form-layout > .email-form{
+    grid-row: 3;
+    grid-column: 1 / 3;
+}
+.form-layout > div > select{
+    border-width: 2px;
+    border-color: #02A7F0;
+    border-style: solid;
+    border-radius: 10px;
+    inline-size: 100%;
+    font-size: 1rem;
+    font-weight: bold;
+    inline-size: 100%;
+    outline-style: none;
+}
+.form-layout > div > select option{
+    font-size: 1rem;
+    font-weight: bold;
+}
+.form-layout >.submit-adm{
+    grid-row: 4;
+    grid-column: 2 / 3;
+    margin-top: 50px;
+}
+.form-layout >.submit-adm > input{
+    height: 100%;
+    inline-size: 100%;
+    font-size: 1.6rem;
+    background-color: white;
+    font-weight: normal;
+}
+.form-layout >.submit-adm > input:hover{
+    background-color: #8ED1F0;
+}
+.form-layout >.submit-adm > input:active{
+    background-color: inherit;
+    opacity: 60%;
+}
+.form-layout > .sex-form{
+    display: grid;
+}
+.form-layout > .sex-form > input{
+    background-color: white;
+    grid-row: 2;
+}
+.form-layout > .sex-form > input:hover{
+    background-color: #8ED1F0;
+}
+.form-layout > .sex-form > input:active{
+    background-color: inherit;
+    opacity: 60%;
+}
+
+/*------------ Deixar os botões de sexo daquele jeito  ------------*/
+
+.form-layout > .sex-form > input:nth-child(3){
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+}
+.form-layout > .sex-form > input:nth-child(4){
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+}
+
+
+
+/*------------ Retirar marcação dos inputs ------------*/
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
