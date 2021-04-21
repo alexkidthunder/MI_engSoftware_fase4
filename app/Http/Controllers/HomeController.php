@@ -22,9 +22,9 @@ class HomeController extends Controller
         return view('agendamentosRealizados');
     }
 
-    /*public function meusAgendamentos(){
+    public function meusAgendamentos(){
         return view('meusAgendamentos');
-    }*/
+    }
     
     public function agendamentos(){
         return view('agendamentos');

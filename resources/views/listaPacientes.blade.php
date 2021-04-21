@@ -41,7 +41,6 @@
             </div>
 
             <div class="box-white">
-                <div class="container-box">
                     <div class="row">
                         <div class="col-lg-10">
                             <div class="box-blue">
@@ -52,12 +51,10 @@
                             <button class="btn-blue">Prontuário</button>
                         </div>
                     </div>
-                </div>
             </div>
             
             <!--APAGAR DEPOIS -->
             <div class="box-white">
-                <div class="container-box">
                     <div class="row">
                         <div class="col-lg-10">
                             <div class="box-blue">
@@ -68,7 +65,6 @@
                             <button class="btn-blue">Prontuário</button>
                         </div>
                     </div>
-                </div>
             </div>
 
         </div>

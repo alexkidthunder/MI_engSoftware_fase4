@@ -24,7 +24,7 @@
                             <img class="options-img " src="imagemOficial.jpg">
                         </div>
                         <h4 class="card-options_title"><a
-                            href="{{ route('cadastrarUsuario') }}">Cadastro de funcionários</a></h4>
+                            href=" ">Pacientes e prontuários</a></h4>
                     </div>
                 </div> 
                 <div class="col-xl-4 col-lg-4 col-md-6">
@@ -33,7 +33,7 @@
                             <img class="options-img " src="imagemOficial.jpg">
                         </div>
                         <h4 class="card-options_title"><a
-                            href="{{ route('removerUsuario') }}">Remoção de funcionários</a></h4>
+                            href=" ">Agendamentos realizados</a></h4>
                     </div>
                 </div> 
                 <div class="col-xl-4 col-lg-4 col-md-6">
@@ -42,7 +42,7 @@
                             <img class="options-img " src="imagemOficial.jpg">
                         </div>
                         <h4 class="card-options_title"><a
-                            href="{{ route('log') }}">Log do sistema</a></h4>
+                            href=" ">Agendamentos</a></h4>
                     </div>
                 </div> 
 
@@ -52,29 +52,10 @@
                             <img class="options-img " src="imagemOficial.jpg">
                         </div>
                         <h4 class="card-options_title"><a
-                            href="{{ route('editarPermissao') }}">Alterar pemissões de cargos</a></h4>
+                            href=" ">Agendamentos e <br>medicamentos que estou alocado</a></h4>
                     </div>
                 </div> 
-
-                <div class="col-xl-4 col-lg-4 col-md-6">
-                    <div class="card-menu text-center card-options">
-                        <div class="card-options_img">
-                            <img class="options-img " src="imagemOficial.jpg">
-                        </div>
-                        <h4 class="card-options_title"><a
-                            href="{{ route('editarAtribuicao') }}">Alterar atribuição de funcionários</a></h4>
-                    </div>
-                </div> 
-
-                <div class="col-xl-4 col-lg-4 col-md-6">
-                    <div class="card-menu text-center card-options">
-                        <div class="card-options_img">
-                            <img class="options-img " src="imagemOficial.jpg">
-                        </div>
-                        <h4 class="card-options_title"><a
-                            href="{{ route('backup') }}">Backup do sistema</a></h4>
-                    </div>
-                </div> 
+               
             </div>  
         </div>
   </body>
