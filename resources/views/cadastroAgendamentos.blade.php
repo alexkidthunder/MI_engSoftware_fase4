@@ -104,7 +104,7 @@
                                     <div class="col-lg-4">
                                         <div>
                                             <br> <!-- Alinhar -->
-                                            <input type="button" value="Alocar Aplicador">
+                                            <input class="btn-white" type="button" value="Alocar Aplicador">
                                         </div>
                                     </div>
                                 </div>

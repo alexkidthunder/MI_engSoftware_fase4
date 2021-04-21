@@ -9,7 +9,7 @@
     <link href="{{ ('css/style.css') }}" rel="stylesheet"> 
     <link href="{{ ('bootstrap/css/bootstrap.css') }}" rel="stylesheet">
     
-    <title>LOG DO SISTEMA</title>
+    <title>Log do sistema</title>
   </head>
   <body>
     <header class="header-adm">
@@ -24,7 +24,7 @@
             </ul>
         </nav>
     </header>
-    <h1>Log do Administrador</h1>
+    <h1>LOG DO ADMINISTRADOR</h1>
     <section>
         <div class="box">
             <input type="image" src="../icons/svg/download-to-storage-drive.svg" value="Baixar" width="60" height="60">

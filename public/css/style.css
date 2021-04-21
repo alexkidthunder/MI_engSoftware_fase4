@@ -55,7 +55,18 @@ p{
     font-size: 18px;
 }
 
-button, input, select, textarea {
+/* Cria um checkbox diferente */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: white;
+    padding: 5px 10px;
+}
+
+button, input, select, textarea{
     border:none;
     border-radius: 10px;
     font-family: "Open Sans",sans-serif;
@@ -160,7 +171,7 @@ textarea:focus, input:focus {
 }
 
 
- /*------ Container para botão que fica na esquerda ------*/
+ /*------ Container para botão que fica na direita ------*/
 .container-button{
     align-items: right;
     width: 19%;
@@ -168,6 +179,13 @@ textarea:focus, input:focus {
     margin-top: 15px;
 }
 
+ /*------ Container para botão que fica na direita ------*/
+.container-button-plantonista{
+    align-items: center;
+    display:block;
+    margin: 40%;
+    margin-top: 15px;
+}
 /*--------- Caixa de texto ----------*/
 .box-gray, .box-blue, .box-white { 
     border-radius: 10px;
