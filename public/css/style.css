@@ -20,8 +20,9 @@ h1,h2,h3,h4,h5,h6{
 
 /*Titulo*/
 h1{ 
+    font-size: 32px;
     color:#0D6EFD;
-    font-weight: bold;
+    font-weight: bolder;
     margin-top:100px;
     margin-bottom:50px;
     text-align: center;
@@ -311,8 +312,8 @@ textarea:focus, input:focus {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding-inline: 10px;
-    align-items: center;
+    margin-inline: 10px;
+    align-items: baseline;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
     box-shadow: 5px 5px 5px #AAAAAA;
@@ -323,10 +324,12 @@ textarea:focus, input:focus {
     font-weight: bold;
     text-decoration: none;
     display: block;
-    padding: 25px;
+    padding: 15px;
     color: #0D6EFD;
 }
-
+.header-adm > img{
+    padding: 10px;
+}
 /*------------ Opções dentro do Header  ------------*/
 .header-menu{
     display: flex;
@@ -339,7 +342,7 @@ textarea:focus, input:focus {
 .header-menu li a{
     text-decoration: none;
     display: block;
-    padding: 25px;
+    padding: 15px;
 }
 
 /*------------ Cadastro------------*/
@@ -434,6 +437,12 @@ input[type=number] {
     border-radius: 0 50px 50px 0;
     padding: 10px 20px;
     margin-bottom: 25px;
+}
+.box-agendamento:nth-child(even){
+    border-radius: 0 50px 0 0;
+}
+.box-agendamento:nth-child(odd){
+    border-radius: 0 0 50px 0;
 }
 .btn-Patient{
     background-color: #A2DBFE;

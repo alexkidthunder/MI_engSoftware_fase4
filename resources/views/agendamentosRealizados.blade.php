@@ -31,7 +31,7 @@
     
             <h1>AGENDAMENTOS E MEDICAMENTOS REALIZADOS</h1>
 
-            <!---------------------Agendamento--------------------->
+            <!---------------------Agendamento Realizado--------------------->
             <div class="box-agendamento">
                     <div class="row">
                         <div class="col-lg-2 text-center">

@@ -41,7 +41,7 @@ Route::get('/listaPacientes', [HomeController::class,'listaPacientes'])->name('p
 /*------------ Rota para agendamentos ------------------------ */
 Route::get('/agendamentosRealizados', [HomeController::class,'agendamentosRealizados'])->name('agendamentosRealizados');
 Route::get('/meusAgendamentos', [HomeController::class,'meusAgendamentos'])->name('meusAgendamentos');
-
+Route::get('/agendamentos',[HomeController::class,'agendamentos'])->name('agendamentos');
 
 /*------------ Rotas do enfermeiro chefe -------------*/
 
