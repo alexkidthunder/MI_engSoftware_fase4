@@ -62,37 +62,54 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Parte onde cadastra o medicamento,posologia,data/hora e quem irá aplicar -->
                     <div class="box-agendamento">
-                        <div class="container-box">
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <div class="col-xs-4">
-                                        <label name="horario_agendamento">Horario</label> <br>
-                                        <input type="time" name="horario_agendamento">
+                        <form id="register">
+                            <div class="container-box">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div>
+                                            <label name="horario_agendamento">Horario</label> <br>
+                                            <input type="time" name="horario_agendamento">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div>
+                                            <label name="data_agendamento">Data</label> <br>
+                                            <input type="date" name="data_agendamento">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div>
+                                            <label name="posologia_agendamento">Posologia</label> <br>
+                                            <input type="number" name="posologia_agendamento" placeholder="Colocar em ml">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-4">
-                                    <div class="col-xs-4">
-                                        <label name="data_agendamento">Data</label> <br>
-                                        <input type="date" name="data_agendamento">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div>
+                                            <label name="medicamento_agendamento">Medicamento</label> <br>
+                                            <input type="text" name="medicamento_agendamento" placeholder="Ex: Dipirona">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-4">
-                                    <div class="col-xs-4">
-                                        <label name="posologia_agendamento">Posologia</label> <br>
-                                        <input type="number" name="posologia_agendamento">
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <div>
+                                            <label name="aplicador_agendamento">Aplicador</label> <br>
+                                            <input type="text" name="aplicador_agendamento" placeholder="Nome do Aplicador (pode estar vazio)">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div>
+                                            <br> <!-- Alinhar -->
+                                            <input type="button" value="Alocar Aplicador">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-lg-9">
-                                    <div>
-                                        <label name="medicamento_agendamento">Medicamento</label> <br>
-                                        <input type="text" name="medicamento_agendamento">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
