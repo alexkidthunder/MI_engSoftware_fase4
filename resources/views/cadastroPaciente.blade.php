@@ -6,9 +6,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
-    <link href="{{ ('public/css/style.css') }}" rel="stylesheet"> 
-    <link href="{{ ('public/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet">
+    <link href="{{ ('css/style.css') }}" rel="stylesheet"> 
+    <link href="{{ ('bootstrap/css/bootstrap.css') }}" rel="stylesheet"> 
 
     <title>Cadastro de Paciente</title>
 </head>
@@ -29,6 +29,9 @@
         </nav>
     </header>
     <h1>CADASTRO DE PACIENTE</h1>
+
+    <!--ENFERMEIRO E ENFERMEIRO CHEFE -->
+    
     <section>
         <div class="container-1">
             <div class="box">

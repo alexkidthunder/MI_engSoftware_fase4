@@ -24,7 +24,7 @@
                             <img class="options-img " src="imagemOficial.jpg">
                         </div>
                         <h4 class="card-options_title"><a
-                            href=" ">Pacientes e prontuários</a></h4>
+                            href="{{ route('pacientes') }}">Pacientes e prontuários</a></h4>
                     </div>
                 </div> 
                 <div class="col-xl-4 col-lg-4 col-md-6">
@@ -33,7 +33,7 @@
                             <img class="options-img " src="imagemOficial.jpg">
                         </div>
                         <h4 class="card-options_title"><a
-                            href=" ">Agendamentos realizados</a></h4>
+                            href="{{ route('agendamentosRealizados') }}">Agendamentos realizados</a></h4>
                     </div>
                 </div> 
                 <div class="col-xl-4 col-lg-4 col-md-6">
@@ -42,7 +42,7 @@
                             <img class="options-img " src="imagemOficial.jpg">
                         </div>
                         <h4 class="card-options_title"><a
-                            href=" ">Agendamentos</a></h4>
+                            href="{{ route('agendamentos') }}">Agendamentos</a></h4>
                     </div>
                 </div> 
 
@@ -52,7 +52,7 @@
                             <img class="options-img " src="imagemOficial.jpg">
                         </div>
                         <h4 class="card-options_title"><a
-                            href=" ">Agendamentos e <br>medicamentos que estou alocado</a></h4>
+                            href="{{ route('meusAgendamentos') }}">Agendamentos e <br>medicamentos que estou alocado</a></h4>
                     </div>
                 </div> 
                

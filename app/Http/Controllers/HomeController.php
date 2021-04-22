@@ -30,7 +30,7 @@ class HomeController extends Controller
         return view('agendamentos');
     }
 
-    public function cadastroAgendamentos(){
-        return view('cadastroAgendamentos');
+    public function cadastroPaciente(){
+        return view('cadastroPaciente');
     }
 }

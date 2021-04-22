@@ -66,7 +66,7 @@
             </div>
             <div class="box">
                 <div class="container-box">
-                    <h3 class="content-center">PERMISSÔES</h3>
+                    <h3 class="content-center">PERMISSÕES</h3>
                     <div class="row">
                         <!--Inicio de uma permissão-->
                         <div class="col-lg-3 content-center">

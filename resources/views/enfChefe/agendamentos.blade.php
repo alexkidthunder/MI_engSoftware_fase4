@@ -11,7 +11,7 @@
     <link href="{{ ('css/style.css') }}" rel="stylesheet"> 
     <link href="{{ ('bootstrap/css/bootstrap.css') }}" rel="stylesheet">
     
-    <title>Meus agendamentos</title>
+    <title>Listagem de agendamentos</title>
     
   </head>
   <body>
@@ -27,10 +27,10 @@
               </ul>
           </nav>
     </header>
-    <!--ENFERMEIRO E ESTAGIARIO -->
+   
         <div class="container-1">
     
-            <h1>MEUS AGENDAMENTOS ALOCADOS</h1>
+            <h1>LISTAGEM DE AGENDAMENTOS E MEDICAMENTOS </h1>
 
             <!---------------------Agendamento--------------------->
             <div class="box-agendamento">
@@ -66,8 +66,7 @@
                                 Leito: AB04
                             </div>
                         </div>
-                    </div>  
-                    <button class="btn-agendamento"> Finalizar aplicação </button>
+                    </div>
             </div>
             <!---------------------Fim de agendamento--------------------->
         </div>
