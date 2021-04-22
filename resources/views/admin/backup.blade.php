@@ -12,18 +12,10 @@
     <title>BACKUP</title>
   </head>
   <body>
-    <header class="header-adm">
-        <a href="/">Nome Funcionário</a>
-        <nav>
-            <ul class="header-menu">
-                <li><a href="/">INICIO</a></li>
-                <li><a href="/">FUNCIONÁRIOS</a></li>
-                <li><a href="/">LOG DO SISTEMA</a></li>
-                <li><a href="/">ALTERAÇÕES</a></li>
-                <li><a href="/">BACKUP</a></li>
-            </ul>
-        </nav>
-    </header>
+    <!----------Hearder------------>
+    @include('layouts.navbar-adm')
+    <!----------End Hearder-------->
+    
     <h1>Backup do Sistema</h1>
     <section>
         <div class="box-auto">

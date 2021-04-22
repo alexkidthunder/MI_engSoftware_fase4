@@ -13,19 +13,10 @@
 </head>
 
 <body>
-    <header class="header-adm">
-        <img src="../icons/svg/admin-with-cogwheels.svg" alt="Logo" class="options-img" />
-        <a href="/">Nome Funcionário</a>
-        <nav>
-            <ul class="header-menu">
-                <li><a href="/">INICIO</a></li>
-                <li><a href="/">FUNCIONÁRIOS</a></li>
-                <li><a href="/">LOG DO SISTEMA</a></li>
-                <li><a href="/">ALTERAÇÕES</a></li>
-                <li><a href="/">BACKUP</a></li>
-            </ul>
-        </nav>
-    </header>
+    <!----------Hearder------------>
+    @include('layouts.navbar-adm')
+    <!----------End Hearder-------->
+    
     <h1>CADASTRO DE FUNCIONÁRIO</h1>
     <section>
         <div class="container-1">

@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+*{
+    font-family: "Poppins",sans-serif;
+}
+
+
+#header{
+    background-color: #FFFFFF; 
+    align-items: baseline;
+    border-radius: 0 0 40px 40px;
+    box-shadow: 5px 5px 5px #AAAAAA;
+    height:80px;
+}
+
+#header h2{
+    padding: 0 20px;
+    color: #0D6EFD;
+}
+
+#header img{
+    padding-left: 40px;
+}
+
+.nav{
+    justify-content:flex-end; 
+}
+
+.nav > ul{
+    display: flex;
+}
+.nav > ul > li {
+    position: relative;
+    white-space: nowrap;
+    float: left;
+    margin-left: 20px;
+    list-style: none;
+}
+
+.nav > ul >li a {
+    text-decoration: none;
+    display: block;
+    padding: 15px;
+}
+
+.nav .drop-down ul {
+    display: block;
+    position: absolute;
+    left: 15px;
+    visibility: hidden;
+    background-color: #FFFFFF;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 3px 3px 3px #e4e2e2;
+    padding:0px;
+}
+
+.nav .drop-down:hover > ul{
+    visibility: visible;
+    top:100%;
+}
+
+.nav a:hover .nav .active > a, .nav li:hover > a{
+    color: #0D6EFD;
+}
+.nav .title-nav{
+    font-family: "Poppins",sans-serif;
+    font-weight: bold;
+    font-size:18px;
+}
+
+.nav .drop-down ul li{
+    font-size: 16px;
+    font-family: "Open Sans",sans-serif;
+    font-weight: 550;
+    color: rgba(48, 47, 47, 0);
+}

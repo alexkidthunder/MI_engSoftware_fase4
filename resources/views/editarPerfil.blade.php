@@ -11,18 +11,9 @@
     <title>MEU PERFIL</title>
   </head>
   <body>
-      <header class="header-adm">
-          <a href="/">Nome Funcionário</a>
-          <nav>
-              <ul class="header-menu">
-                  <li><a href="/">INICIO</a></li>
-                  <li><a href="/">FUNCIONÁRIOS</a></li>
-                  <li><a href="/">LOG DO SISTEMA</a></li>
-                  <li><a href="/">ALTERAÇÕES</a></li>
-                  <li><a href="/">BACKUP</a></li>
-              </ul>
-          </nav>
-      </header>
+    <!----------Hearder------------>
+    @include('layouts.navbar')
+    <!----------End Hearder-------->
       <h1>Meu Perfil</h1>
       <section>
           <form name= "teste">

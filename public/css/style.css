@@ -315,47 +315,6 @@ textarea:focus, input:focus {
     height: 50px
 }
 
-
-/*------------ Header  ------------*/
-.header-adm{
-    font-size: 1.3rem;
-    background-color: #FFFFFF; 
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-inline: 10px;
-    align-items: baseline;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    box-shadow: 5px 5px 5px #AAAAAA;
-    width: 100%;
-}
-
-.header-adm > a{
-    font-weight: bold;
-    text-decoration: none;
-    display: block;
-    padding: 15px;
-    color: #0D6EFD;
-}
-.header-adm > img{
-    padding: 10px;
-}
-/*------------ Opções dentro do Header  ------------*/
-.header-menu{
-    display: flex;
-}
-.header-menu li{
-    list-style: none;
-    font-weight: bold;
-    margin-inline: 10px;
-}
-.header-menu li a{
-    text-decoration: none;
-    display: block;
-    padding: 15px;
-}
-
 /*------------ Cadastro------------*/
 
 #register input, #register select{

@@ -14,20 +14,10 @@
 </head>
 
 <body>
-    <header class="header-adm">
-        <img src="../icons/svg/admin-with-cogwheels.svg" alt="Logo" class="options-img" />
-        <a href="/">Nome Funcionário</a>
-        <nav>
-            <ul class="header-menu">
-                <li><a href="/">INICIO</a></li>
-                <li><a href="/">CADASTRAR PACIENTE</a></li>
-                <li><a href="/">CADASTRAR PLANTONISTA</a></li>
-                <li><a href="/">CADASTRAR AGENDAMENTOS</a></li>
-                <li><a href="/">CADASTRAR MEDICAMENTOS</a></li>
-                <li><a href="/">PACIENTES E PRONTUARIO</a></li>
-            </ul>
-        </nav>
-    </header>
+    <!----------Hearder------------>
+    @include('layouts.navbar')
+    <!----------End Hearder-------->
+    
     <h1>CADASTRO DE PACIENTE</h1>
 
     <!--ENFERMEIRO E ENFERMEIRO CHEFE -->
