@@ -48,6 +48,7 @@ Route::get('/cadastroAgendamento',[HomeController::class,'cadastroAgendamentos']
 
 Route::get('/menuEnfermeiroChefe', [EnfChefeController::class,'menu'])->name('menu-ec');
 Route::get('/cadastroPlantonista', [EnfChefeController::class,'cadastroPlantonista'])->name('cadastroPlantonista');
+Route::get('/listagemPlantonista', [EnfChefeController::class,'listagemPlantonista'])->name('listagemPlantonista');
 
 /*------------ Rotas do enfermeiro -------------------*/
 

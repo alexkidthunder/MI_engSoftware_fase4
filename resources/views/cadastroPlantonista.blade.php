@@ -8,7 +8,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet">
     <link href="{{ ('css/style.css') }}" rel="stylesheet"> 
     <link href="{{ ('bootstrap/css/bootstrap.css') }}" rel="stylesheet"> 
-    <title>Atribuição do usuário</title>
+    <title>Cadastro Plantonista</title>
     
   </head>
   <body>
@@ -63,7 +63,7 @@
                     </div>
                     <div class="col-lg-4">
                       <div>
-                        <input class="checkmark container-button-plantonista" type="checkbox">
+                        <input class="checkmark" type="checkbox">
                       </div>
                     </div>
                   </div>
@@ -72,6 +72,4 @@
             </div>
         </div>
     </section>
-    
-
   </body>

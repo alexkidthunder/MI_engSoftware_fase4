@@ -12,4 +12,7 @@ class EnfChefeController extends Controller
     public function cadastroPlantonista(){
         return view('cadastroPlantonista');
     }
+    public function listagemPlantonista(){
+        return view('listagemPlantonista');
+    }
 }
