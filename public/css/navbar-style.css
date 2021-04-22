@@ -23,6 +23,25 @@
     padding-left: 40px;
 }
 
+#header .user{
+    line-height: 1;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+#header .user img{
+    padding-left: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
 .nav{
     justify-content:flex-end; 
 }
