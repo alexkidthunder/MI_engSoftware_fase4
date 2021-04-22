@@ -49,7 +49,7 @@ Route::get('/agendamentos',[HomeController::class,'agendamentos'])->name('agenda
 
 Route::get('/menuEnfermeiroChefe', [EnfChefeController::class,'menu'])->name('menu-ec');
 Route::get('/cadastroPlantonista', [EnfChefeController::class,'cadastroPlantonista'])->name('cadastroPlantonista');
-Route::get('/listagemPlantonistas', [EnfChefeController::class,'listalantonistas'])->name('listagemPlantonistas');
+Route::get('/listagemPlantonistas', [EnfChefeController::class,'listaPlantonistas'])->name('listagemPlantonistas');
 Route::get('/cadastroMedicamento', [EnfChefeController::class,'cadastroMedicamento'])->name('cadastroMedicamento');
 Route::get('/cadastroAgendamento', [EnfChefeController::class,'cadastroAgendamento'])->name('cadastroAgendamento');
 Route::get('/listaAgendamentos',[EnfChefeController::class,'listaAgendamentos'])->name('listaAgendamentos');
