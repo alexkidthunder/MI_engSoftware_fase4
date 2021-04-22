@@ -358,7 +358,7 @@ textarea:focus, input:focus {
 
 /*------------ Cadastro------------*/
 
-#register input, select{
+#register input, #register select{
     width: 100%;
 }
 #register .btn-blue{ 
