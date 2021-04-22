@@ -29,7 +29,7 @@
         <div class="container-1">
           <h1>CADASTRO DE AGENDAMENTO</h1>
             <div class="box">
-                <!--Buscar funcionário-->
+                <!--Buscar paciente-->
                 <div class="content-center">
                     <h3>BUSCAR PACIENTE</h3>
                     <form class="search-bar">
@@ -110,6 +110,9 @@
                                 </div>
                             </div>
                         </form>
+                    </div>
+                    <div>
+                        <button type="submit" class="container-button btn-white">Cadastrar Agendamento</button>
                     </div>
                 </div>
             </div>

@@ -63,7 +63,7 @@
                     </div>
                     <div class="col-lg-4">
                       <div>
-                        <input class="checkmark container-button-plantonista" type="checkbox">
+                        <input class="checkmark" type="checkbox">
                       </div>
                     </div>
                   </div>
@@ -72,6 +72,4 @@
             </div>
         </div>
     </section>
-    
-
   </body>
