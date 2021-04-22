@@ -11,7 +11,7 @@
     <link href="{{ ('css/style.css') }}" rel="stylesheet"> 
     <link href="{{ ('bootstrap/css/bootstrap.css') }}" rel="stylesheet">
     
-    <title>Meus agendamentos</title>
+    <title>Responsáveis por aplicações</title>
     
   </head>
   <body>
@@ -27,12 +27,12 @@
               </ul>
           </nav>
     </header>
-    <!--ENFERMEIRO E ESTAGIARIO -->
+   
         <div class="container-1">
     
-            <h1>MEUS AGENDAMENTOS ALOCADOS</h1>
+            <h1>RESPONSÁVEIS PELA APLICAÇÃO DE MEDICAMENTOS</h1>
 
-            <!---------------------Agendamento--------------------->
+            <!---------------------Agendamento Realizado--------------------->
             <div class="box-agendamento">
                     <div class="row">
                         <div class="col-lg-2 text-center">
@@ -58,7 +58,10 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-lg-9">
+                        <div class="col-lg-2">
+                            <p>Paciente</p>
+                        </div>
+                        <div class="col-lg-7">
                             <button class="btn-Patient text-left">Samara Anjos de Oliveira</button>
                         </div>
                         <div class="col-lg-3">
@@ -66,9 +69,20 @@
                                 Leito: AB04
                             </div>
                         </div>
-                    </div>  
-                    <button class="btn-agendamento"> Finalizar aplicação </button>
+                    </div>
+                   
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <p>Responsável</p>
+                        </div>
+                        <div class="col-lg-7">
+                            <div class="box-gray">
+                                José Oliveira Silva
+                            </div>
+                        </div>
+                    </div>
             </div>
             <!---------------------Fim de agendamento--------------------->
+           
         </div>
   </body>
