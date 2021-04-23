@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
     public function menu(){
-        return view('/admin/menu-adm');
+        return view('/admin/menu');
     }
 
     public function log(){
