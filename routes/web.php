@@ -32,6 +32,7 @@ Route::get('/editarPermissao', [AdminController::class,'permissao'])->name('edit
 Route::get('/backup', [AdminController::class,'backup'])->name('backup');
 Route::get('/cadastrarUsuario', [AdminController::class,'cadastro'])->name('cadastrarUsuario');
 Route::get('/removerUsuario', [AdminController::class,'remocao'])->name('removerUsuario');
+Route::get('/buscarUsuario', [AdminController::class,'busca'])->name('buscarUsuario');
 
 
 /*------------ Rota para Paciente------------------------ */
