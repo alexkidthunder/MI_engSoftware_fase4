@@ -26,6 +26,7 @@
         </nav>
     </header>
     <section>
+        <!--ENFERMEIRO E ESTAGIARIO -->
         <div class="container-1">
             <h1>VERIFICAÇÃO DE AGENDAMENTOS</h1>
 
@@ -57,9 +58,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-9">
-                            <div class="box-blue">
-                                <a>Nome do Paciente Aqui</a>
-                            </div>
+                            <button class="btn-Patient text-left">Nome do paciente aqui</button>
                         </div>
                         <div class="col-lg-3">
                             <div class="box-blue">
@@ -68,8 +67,11 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-9"> <!--isso aqui fica hidden--->
-                            <div class="box-blue"> 
+                        <div class="col-lg-2">
+                            <p>Prepador da aplicação:</p>
+                        </div>
+                        <div class="col-lg-7"> <!--isso aqui fica hidden--->
+                            <div class="box-gray"> 
                                 <a>Nome do Preparador Aqui</a> 
                             </div>
                         </div>

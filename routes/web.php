@@ -38,17 +38,23 @@ Route::get('/buscarUsuario', [AdminController::class,'busca'])->name('buscarUsua
 /*------------ Rota para Paciente------------------------ */
 Route::get('/listaPacientes', [HomeController::class,'listaPacientes'])->name('pacientes');
 
+/*------------ Rota para cadastro de paciente ------------------------ */
+Route::get('/cadastroPaciente', [HomeController::class,'cadastroPaciente'])->name('cadastroPaciente');
 
 /*------------ Rota para agendamentos ------------------------ */
 Route::get('/agendamentosRealizados', [HomeController::class,'agendamentosRealizados'])->name('agendamentosRealizados');
 Route::get('/meusAgendamentos', [HomeController::class,'meusAgendamentos'])->name('meusAgendamentos');
 Route::get('/agendamentos',[HomeController::class,'agendamentos'])->name('agendamentos');
-Route::get('/cadastroAgendamento',[HomeController::class,'cadastroAgendamentos'])->name('cadastroAgendamentos');
 
 /*------------ Rotas do enfermeiro chefe -------------*/
 
 Route::get('/menuEnfermeiroChefe', [EnfChefeController::class,'menu'])->name('menu-ec');
 Route::get('/cadastroPlantonista', [EnfChefeController::class,'cadastroPlantonista'])->name('cadastroPlantonista');
+Route::get('/listagemPlantonistas', [EnfChefeController::class,'listaPlantonistas'])->name('listagemPlantonistas');
+Route::get('/cadastroMedicamento', [EnfChefeController::class,'cadastroMedicamento'])->name('cadastroMedicamento');
+Route::get('/cadastroAgendamento', [EnfChefeController::class,'cadastroAgendamento'])->name('cadastroAgendamento');
+Route::get('/listaAgendamentos',[EnfChefeController::class,'listaAgendamentos'])->name('listaAgendamentos');
+Route::get('/listaResponsaveis',[EnfChefeController::class,'responsaveis'])->name('responsaveis');
 
 /*------------ Rotas do enfermeiro -------------------*/
 

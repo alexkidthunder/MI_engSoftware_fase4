@@ -63,7 +63,95 @@
                         </div>
                     </div>
                 </div>
-              
+            </div>
+            <div class="box">
+                <div class="container-box">
+                    <h3 class="content-center">PERMISSÕES</h3>
+                    <div class="row">
+                        <!--Inicio de uma permissão-->
+                        <div class="col-lg-3 content-center">
+                            <label>Cadastrar Paciente</label> <br>
+                            <input type="checkbox" class="checkmark">
+                        </div>
+                        <!--Fim de uma permissão-->
+                        <!--Inicio de uma permissão-->
+                        <div class="col-lg-3 content-center">
+                            <label>Cadastrar Agendamento</label> <br>
+                            <input type="checkbox" class="checkmark">
+                        </div>
+                        <!--Fim de uma permissão-->
+                        <!--Inicio de uma permissão-->
+                        <div class="col-lg-3 content-center">
+                            <label>Cadastrar Plantonista</label> <br>
+                            <input type="checkbox" class="checkmark">
+                        </div>
+                        <!--Fim de uma permissão-->
+                        <!--Inicio de uma permissão-->
+                        <div class="col-lg-3 content-center">
+                            <label>Cadastrar Medicamentos</label> <br>
+                            <input type="checkbox" class="checkmark">
+                        </div>
+                        <!--Fim de uma permissão-->
+                        <!--A cada 4 permissões, utilizar uma nova div de classe row-->
+                    </div>
+                    <div class="row">
+                        <!--Inicio de uma permissão-->
+                        <div class="col-lg-3 content-center">
+                            <label>Listagem de Pacientes</label> <br>
+                            <input type="checkbox" class="checkmark">
+                        </div>
+                        <!--Fim de uma permissão-->
+                        <!--Inicio de uma permissão-->
+                        <div class="col-lg-3 content-center">
+                            <label>Listagem de Agendamentos</label> <br>
+                            <input type="checkbox" class="checkmark">
+                        </div>
+                        <!--Fim de uma permissão-->
+                        <!--Inicio de uma permissão-->
+                        <div class="col-lg-3 content-center">
+                            <label>Visualizar Prontuário</label> <br>
+                            <input type="checkbox" class="checkmark">
+                        </div>
+                        <!--Fim de uma permissão-->
+                        <!--Inicio de uma permissão-->
+                        <div class="col-lg-3 content-center">
+                            <label>Visualizar Plantonista</label> <br>
+                            <input type="checkbox" class="checkmark">
+                        </div>
+                        <!--Fim de uma permissão-->
+                        <!--A cada 4 permissões, utilizar uma nova div de classe row-->
+                    </div>
+                    <div class="row">
+                        <!--Inicio de uma permissão-->
+                        <div class="col-lg-3 content-center">
+                            <label>Adicionar Ocorrência</label> <br>
+                            <input type="checkbox" class="checkmark">
+                        </div>
+                        <!--Fim de uma permissão-->
+                        <!--Inicio de uma permissão-->
+                        <div class="col-lg-3 content-center">
+                            <label>Visualizar Ocorrência</label> <br>
+                            <input type="checkbox" class="checkmark">
+                        </div>
+                        <!--Fim de uma permissão-->
+                        <!--Inicio de uma permissão-->
+                        <div class="col-lg-3 content-center">
+                            <label>Baixa Agendamentos</label> <br>
+                            <input type="checkbox" class="checkmark">
+                        </div>
+                        <!--Fim de uma permissão-->
+                        <!--Inicio de uma permissão-->
+                        <div class="col-lg-3 content-center">
+                            <label>Cadastrar CIDs</label> <br>
+                            <input type="checkbox" class="checkmark">
+                        </div>
+                        <!--Fim de uma permissão-->
+                        <!--A cada 4 permissões, utilizar uma nova div de classe row-->
+                    </div>
+                    <div>
+                        <button type="submit" class="container-button btn-white">Alterar</button>
+                    </div>
+                </div>
             </div>
         </div>
   </body>

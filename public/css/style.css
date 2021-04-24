@@ -52,18 +52,18 @@ label{ /*Antes dos campos de inserção*/
 p{
     color:black;
     font-family: "Open Sans",sans-serif;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 /* Cria um checkbox diferente */
-.checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 25px;
-    width: 25px;
+.checkmark { 
+    height: 30px;
+    width: 30px;
     background-color: white;
     padding: 5px 10px;
+    border: #0D6EFD;
+    border-width: 5px;
+    border-color: #0D6EFD;
 }
 
 button, input, select, textarea{
@@ -95,22 +95,6 @@ button:focus, select:focus {
 textarea:focus, input:focus {
     border-radius: 10px;
     outline: 2px solid #0D6EFD;
-}
-
-.container-1{
-    width: 60%;
-    margin-left: 20%;
-    margin-right: 20%;
-}
-
-.container-2 {
-    align-items: center;
-    margin-top: 100px;
-    margin-right: 15%;
-    margin-left: 15%;
-    width: 70%;
-    padding-right: 15px;
-    padding-left: 15px;
 }
     
 .content-center{
@@ -170,8 +154,35 @@ textarea:focus, input:focus {
     background-color: #4689C8;
 }
 
+/*-------- Containers ----------*/
+.container-box{
+    width: 100%;
+    align-items: center;
+}
 
- /*------ Container para botão que fica na direita ------*/
+.container-atribution{
+    align-items: center;
+    width: 100%;
+    margin-top: 25px;
+}
+
+.container-1{
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.container-2 {
+    align-items: center;
+    margin-top: 100px;
+    margin-right: 15%;
+    margin-left: 15%;
+    width: 70%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+/*------ Container para botão que fica na direita ------*/
 .container-button{
     align-items: right;
     width: 19%;
@@ -179,14 +190,7 @@ textarea:focus, input:focus {
     margin-top: 15px;
 }
 
- /*------ Container para botão que fica na direita ------*/
-.container-button-plantonista{
-    align-items: center;
-    display:block;
-    margin: 40%;
-    margin-top: 15px;
-}
-/*--------- Caixa de texto ----------*/
+/*--------- Caixas de texto ----------*/
 .box-gray, .box-blue, .box-white { 
     border-radius: 10px;
     color:black;
@@ -210,17 +214,6 @@ textarea:focus, input:focus {
     background-color: #ffff;
     box-shadow: 4px 4px 4px#DBDADA;
 
-}
-
-.container-box{
-    width: 100%;
-    align-items: center;
-}
-
-.container-atribution{
-    align-items: center;
-    width: 100%;
-    margin-top: 25px;
 }
 
 /*-------- Barra de pesquisa  ------------*/
@@ -365,7 +358,7 @@ textarea:focus, input:focus {
 
 /*------------ Cadastro------------*/
 
-#register input, select{
+#register input, #register select{
     width: 100%;
 }
 #register .btn-blue{ 

@@ -7,9 +7,8 @@ use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
-    public function menu()
-    {
-        return view('/admin/menu-adm');
+    public function menu(){
+        return view('/admin/menu');
     }
 
     public function log()
