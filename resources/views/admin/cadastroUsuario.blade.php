@@ -30,7 +30,8 @@
     <section>
         <div class="container-1">
             <div class="box">
-                <form id="register">
+                <form id="register" action="{{route('salvarUsuario')}}" method="POST">
+                    @csrf 
                     <div class="row">
                         <div class="col-lg-12">
                             <label>Nome</label> <br>
@@ -72,7 +73,7 @@
                         </div>
                     </div>
                     <div>
-                        <button class="btn-blue"> Cadastrar </button>
+                        <button type = "submit" class="btn-blue"> Cadastrar </button>
                     </div>
                 </form>
 
