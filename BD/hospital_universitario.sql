@@ -83,10 +83,11 @@ CREATE TABLE ocorrencias (
 
 /*Cria tabela de prontuarios*/
 CREATE TABLE prontuarios (
+  aberto tinyint(1) NOT NULL,
   ID bigint(20) NOT NULL,  
   Data_Internacao date NOT NULL,
   Data_Saida date NOT NULL,
-  Status enum('internado','alta','obito') NOT NULL,  
+  status_ enum('internado','alta','obito') NOT NULL,  
   Id_leito varchar(20) NOT NULL, /*Chave estrangeira que faz referência ao leito*/
   Cpfpaciente char(14)  /* Chave estrangeira que faz referência ao paciente*/
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -119,7 +120,7 @@ CREATE TABLE usuarios (
   Email varchar(50) NOT NULL,
   Data_Nasc date NOT NULL,
   Atribuicao enum('Administrador','Enfermeiro Chefe','Enfermeiro','Estagiario') NOT NULL,
-  Sexo varchar(20) NOT NULL,
+  Sexo enum('M','F') NOT NULL,
   Ip varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -202,21 +203,21 @@ ALTER TABLE agendamento_prontuario
 ALTER TABLE cid
   ADD CONSTRAINT cid_ibfk_1 FOREIGN KEY (ID_prontuario) REFERENCES prontuarios (ID);/*Cria chave estrangeira fazendo referencia a prontuario*/
 
+ALTER TABLE responsaveis
+  ADD CONSTRAINT responsaveis_ibfk_1 FOREIGN KEY (CPF) REFERENCES usuarios (CPF); /*Cria chave estrangeira fazendo referencia a Usuario*/
+
 ALTER TABLE enfermeiros
-  ADD CONSTRAINT enfermeiros_ibfk_1 FOREIGN KEY (CPF) REFERENCES usuarios (CPF);/*Cria chave estrangeira fazendo referencia a Usuario*/
+  ADD CONSTRAINT enfermeiros_ibfk_1 FOREIGN KEY (CPF) REFERENCES responsaveis (CPF);/*Cria chave estrangeira fazendo referencia a Usuario*/
 
 ALTER TABLE enfermeiros_chefes
-  ADD CONSTRAINT enfermeiros_chefes_ibfk_1 FOREIGN KEY (CPF) REFERENCES usuarios (CPF); /*Cria chave estrangeira fazendo referencia a Usuario*/
+  ADD CONSTRAINT enfermeiros_chefes_ibfk_1 FOREIGN KEY (CPF) REFERENCES responsaveis (CPF); /*Cria chave estrangeira fazendo referencia a Usuario*/
 
 ALTER TABLE estagiarios
-  ADD CONSTRAINT estagiarios_ibfk_1 FOREIGN KEY (CPF) REFERENCES usuarios (CPF); /*Cria chave estrangeira fazendo referencia a Usuario*/
+  ADD CONSTRAINT estagiarios_ibfk_1 FOREIGN KEY (CPF) REFERENCES responsaveis (CPF); /*Cria chave estrangeira fazendo referencia a Usuario*/
 
 ALTER TABLE ocorrencias
   ADD CONSTRAINT ocorrencia_ibfk_1 FOREIGN KEY (ID_prontuario) REFERENCES prontuarios (ID), /*Cria chave estrangeira fazendo referencia a prontuario*/
   ADD CONSTRAINT ocorrencia_ibfk_2 FOREIGN KEY (CPF) REFERENCES usuarios (CPF); /*Cria chave estrangeira fazendo referencia a Usuario*/
-
-ALTER TABLE responsaveis
-  ADD CONSTRAINT responsaveis_ibfk_1 FOREIGN KEY (CPF) REFERENCES usuarios (CPF); /*Cria chave estrangeira fazendo referencia a Usuario*/
   
 ALTER TABLE prontuarios
   ADD CONSTRAINT prontuario_ibfk_1 FOREIGN KEY (Id_leito) REFERENCES leitos (Identificacao), /*Cria chave estrangeira fazendo referencia a leito*/
