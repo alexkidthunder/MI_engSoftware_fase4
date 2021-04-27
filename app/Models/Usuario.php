@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Usuario extends Model
 {
     use HasFactory;
+    public $timestamps = false;
 
     protected $fillable = [
-        'CPF', 'Nome', 'Senha', 'Email', 'Data_Nasc','Atribuicao','Sexo','Ip' 
+        'CPF','Nome','Senha','Email','Data_Nasc','Atribuicao','Sexo','Ip'
     ];
 }
