@@ -32,6 +32,7 @@ Route::get('/editarPermissao', [AdminController::class,'permissao'])->name('edit
 Route::get('/backup', [AdminController::class,'backup'])->name('backup');
 Route::get('/cadastrarUsuario', [AdminController::class,'cadastro'])->name('cadastrarUsuario');
 Route::get('/removerUsuario', [AdminController::class,'remocao'])->name('removerUsuario');
+Route::get('/buscarUsuario', [AdminController::class,'busca'])->name('buscarUsuario');
 
 Route::post('/cadastrarUsuario',[AdminController::class,'salvarUsuario'])->name('salvarUsuario'); //rota para salvar usuario no banco de dados, capturar dados
 /*------------ Rota para Paciente------------------------ */

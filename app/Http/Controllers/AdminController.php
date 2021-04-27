@@ -9,7 +9,7 @@ use App\Models\Responsavel;
 use App\Models\Usuario;
 use App\Models\Enfermeiro;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+//use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Stmt\ElseIf_;
@@ -21,35 +21,48 @@ class AdminController extends Controller
         return view('/admin/menu');
     }
 
-    public function log(){
+    public function log()
+    {
         return view('/admin/log');
     }
 
-    public function atribuicao(){
+    public function atribuicao()
+    {
         return view('/admin/atribuicao');
     }
 
-    public function permissao(){
+    public function permissao()
+    {
         return view('/admin/permissao');
     }
 
-    public function backup(){
+    public function backup()
+    {
         return view('/admin/backup');
     }
 
-    public function cadastro(){
+    public function cadastro()
+    {
         return view('/admin/cadastroUsuario');
     }
 
-    public function remocao(){
-        return view('/admin/remocaoUsuario');
+    public function remocao()
+    {
+        
+        if (isset($_GET['usuario'])) {
+            $cpf = $_GET['usuario'];            
+            DB::table('usuarios')->where('CPF', $cpf)->delete();
+            echo ("<script> alert('Removido com Sucesso'); </script>");            
+            return view('/admin/remocaoUsuario');
+        } else {
+            return view('/admin/remocaoUsuario');
+        }
     }
     
     public function salvarUsuario(Request $request){
         
         $existeCPF = DB::table('usuarios')->where('CPF', $request->fcpf)->first();    //busca de cpf
                 
-
         if($existeCPF)                                      //se encontrar
              return redirect()->route('salvarUsuario')->with('error', "CPF já existente!");
  
@@ -101,11 +114,17 @@ class AdminController extends Controller
                     'CPF' => $request->fcpf,
                     'Plantao' => '0',           //TROCAR ISSO
                 ]);
-            }
-            
-
+            }   
         }         
          
         return redirect()->route('salvarUsuario')->with('success','Usuário cadastrado com sucesso!!');
      }
+
+    public function busca(Request $request)
+    {
+
+        $user = DB::table('usuarios')->where('CPF', $request->cpf_user)->first();
+
+        return view('/admin/remocaoUsuario', ['user' => $user]);
+    }
 }
