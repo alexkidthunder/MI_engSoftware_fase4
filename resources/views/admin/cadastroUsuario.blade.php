@@ -26,11 +26,19 @@
             </ul>
         </nav>
     </header>
+
+    @if(Session::has('error'))
+    <div class="alert alert-danger mt-5" role="alert">
+            {{Session::get('error')}}
+    </div>
+    @endif
+
     <h1>CADASTRO DE FUNCIONÁRIO</h1>
     <section>
         <div class="container-1">
             <div class="box">
-                <form id="register">
+                <form id="register" action="{{route('salvarUsuario')}}" method="POST">
+                    @csrf 
                     <div class="row">
                         <div class="col-lg-12">
                             <label>Nome</label> <br>
@@ -50,8 +58,10 @@
                         <div class="col-lg-4">
                             <div class="sex-form">
                                 <label>Sexo</label> <br>
-                                <input id="MASCULINO" name="fsexo" value="Masculino" type="button">
-                                <input id="FEMININO" name="fsexo" value="Feminino" type="button">
+                                
+                                <input type ="radio" name="fsexo" value = "Masculino">Masculino</input>
+                                <input type ="radio" name="fsexo" value = "Feminino">Feminino</input>
+
                             </div>
                         </div>
                     </div>
@@ -72,7 +82,7 @@
                         </div>
                     </div>
                     <div>
-                        <button class="btn-blue"> Cadastrar </button>
+                        <button type = "submit" class="btn-blue"> Cadastrar </button>
                     </div>
                 </form>
 
