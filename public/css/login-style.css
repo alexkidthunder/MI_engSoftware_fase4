@@ -22,17 +22,17 @@ body {
     text-align: center;
 }
 
-.card-group {
+.card-groupp {
     margin-bottom: 20px;
 }
 
-.card-group>label {
+.card-groupp>label {
     width: 100%;
     color: black;
     display: block;
 }
 
-.card-group>input {
+.card-groupp>input {
     border-radius: 15px;
     outline: 0;
     width: 95%;
@@ -48,7 +48,7 @@ body {
     background-image: linear-gradient(to right, rgb(160, 228, 240), rgb(14, 122, 247));
 }
 
-.card-group>button {
+.card-groupp>button {
     background-image: linear-gradient(to right, blue, blue);
     width: 50%;
     border-radius: 30px;
