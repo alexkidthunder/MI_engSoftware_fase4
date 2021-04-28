@@ -11,7 +11,7 @@
 
     <title>Menu</title>
   </head>
-  <body class="body-menu">
+  <body class="body-menu" hrfe = '/sessaoEnf'>
     <header class="header-adm">
         <a href="/">Nome Funcionário</a>
   </header>
