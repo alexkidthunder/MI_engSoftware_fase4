@@ -16,12 +16,13 @@
     <!----------Hearder------------>
     @include('layouts.navbar-adm')
     <!----------End Hearder-------->
-    
+
     <h1>CADASTRO DE FUNCIONÁRIO</h1>
     <section>
         <div class="container-1">
             <div class="box">
-                <form id="register">
+                <form id="register" action="{{ route('salvarUsuario') }}" method="POST">
+                    @csrf
                     <div class="row">
                         <div class="col-lg-12">
                             <label>Nome</label> <br>
@@ -36,13 +37,18 @@
                         </div>
                         <div class="col-lg-4">
                             <label>CPF</label> <br>
-                            <input id="fcpf" name="fcpf" type="text" required maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
+                            <input id="fcpf" name="fcpf" type="text" required maxlength="14"
+                                pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
                         </div>
                         <div class="col-lg-4">
-                            <div class="sex-form">
-                                <label>Sexo</label> <br>
-                                <input id="MASCULINO" name="fsexo" value="Masculino" type="button">
-                                <input id="FEMININO" name="fsexo" value="Feminino" type="button">
+                            <label>Sexo</label> <br>
+                            <div class="row no-gutters">
+                                <div class="col-lg border-m content-center">
+                                    <input type="radio" name="fsexo" value="Masculino" id="fmasc">Masculino</input>
+                                </div>
+                                <div class="col-lg border-f content-center">
+                                    <input type="radio" name="fsexo" value="Feminino" id="ffem">Feminino</input>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -63,7 +69,7 @@
                         </div>
                     </div>
                     <div>
-                        <button class="btn-blue" type="submit"> Cadastrar </button>
+                        <button type="submit" class="btn-blue"> Cadastrar </button>
                     </div>
                 </form>
 

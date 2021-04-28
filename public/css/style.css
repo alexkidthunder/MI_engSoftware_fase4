@@ -48,7 +48,6 @@ label{ /*Antes dos campos de inserção*/
     font-family: "Poppins",sans-serif;
     margin-top: 20px;
 }
-
 p{
     color:black;
     font-family: "Open Sans",sans-serif;
@@ -65,7 +64,6 @@ p{
     border-width: 5px;
     border-color: #0D6EFD;
 }
-
 button, input, select, textarea{
     border:none;
     border-radius: 10px;
@@ -73,6 +71,15 @@ button, input, select, textarea{
     font-size: 16px;
     margin-bottom: 15px;
     background-color: transparent;
+}
+
+input[type="radio"]{
+    box-sizing: border-box;
+    border:1px solid #6bc4ec;
+    display:block;
+    margin:0px;
+    padding: 0;
+    color: #333333;
 }
 
 input, select{
@@ -88,13 +95,14 @@ input[type=text]:disabled, input[type="number"]:disabled, select:disabled {
     font-weight: bold;
 }
 
-button:focus, select:focus {
+button:focus, select:focus, input[type="radio"]:focus{
     outline: 0;
 }
 
 textarea:focus, input:focus {
     border-radius: 10px;
-    outline: 2px solid #0D6EFD;
+    border: 2px solid #0D6EFD;
+    outline: 0;
 }
     
 .content-center{
@@ -328,33 +336,6 @@ textarea:focus, input:focus {
     margin-right:32%;
 }
 
-/*------------ Deixar os botões de sexo daquele jeito  ------------*/
-.sex-form{
-    display: grid;
-}
-.sex-form > input{
-    background-color: white;
-    grid-row: 2;
-}
-.sex-form > input:hover{
-    background-color: #8ED1F0;
-}
-.sex-form > input:active{
-    background-color: inherit;
-    opacity: 60%;
-}
-
-.sex-form > input:nth-child(3){
-    border-bottom-right-radius: 0px;
-    border-top-right-radius: 0px;
-}
-.sex-form > input:nth-child(4){
-    border-bottom-left-radius: 0px;
-    border-top-left-radius: 0px;
-}
-
-
-
 /*------------ Retirar marcação dos inputs ------------*/
 
 /* Chrome, Safari, Edge, Opera */
@@ -445,4 +426,27 @@ input[type=number] {
     padding: 5px;
     width: 23%;
     margin-left:77%;
+}
+
+/*----- Botão de opção de sexo -----*/
+.border-m{
+    display: flex;
+    background-color: white;
+    border: 2px solid #02A7F0;
+    padding:7px 0;
+    border-radius: 10px 0 0 10px;
+    border-right: 0;
+}
+
+.border-f{
+    display: flex;
+    background-color: white;
+    border: 2px solid #02A7F0;
+    padding:7px 0;
+    border-radius: 0 10px 10px 0;
+}
+
+.border-left:hover, .border-right:hover{
+    background-color: #8ED1F0;
+    border-color:#58ACFA;
 }
