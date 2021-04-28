@@ -32,7 +32,7 @@
                 <button type= "submit">Enviar</button>
             </div>
             <div class="texto-interativo">
-                <label><a href="_blank">Tela de Login</a></label>
+                <label><a href="/">Tela de Login</a></label>
             </div>
         </div>
     </form>
