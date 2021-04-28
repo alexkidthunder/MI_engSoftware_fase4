@@ -63,7 +63,7 @@
                         </div>
                     </div>
                     <div>
-                        <button class="btn-blue"> Cadastrar </button>
+                        <button class="btn-blue" type="submit"> Cadastrar </button>
                     </div>
                 </form>
 

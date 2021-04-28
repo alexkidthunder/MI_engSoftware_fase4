@@ -56,10 +56,6 @@
                             <label>Tipo Sanguineo</label> <br>
                             <input id="fsanguineo" name="fsanguineo" type="text" maxlength="50" required>
                         </div>
-                        <div class="col-lg-4">
-                            <label>Data de Internação</label> <br>
-                            <input id="fdatainternacao" name="fdatainternacao" type="date" required>
-                        </div>
                     </div>
                     <div>
                         <button class="btn-blue"> Cadastrar </button>
