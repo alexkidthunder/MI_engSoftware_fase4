@@ -12,18 +12,10 @@
     
   </head>
   <body>
-    <header class="header-adm">
-          <a href="/">Nome Funcionário</a>
-          <nav>
-              <ul class="header-menu">
-                  <li><a href="/">INICIO</a></li>
-                  <li><a href="/">FUNCIONÁRIOS</a></li>
-                  <li><a href="/">LOG DO SISTEMA</a></li>
-                  <li><a href="/">ALTERAÇÕES</a></li>
-                  <li><a href="/">BACKUP</a></li>
-              </ul>
-          </nav>
-    </header>
+    <!----------Hearder------------>
+    @include('layouts.navbar-adm')
+    <!----------End Hearder-------->
+    
     <h1>ALTERAR ATRIBUIÇÃO</h1>
         <div class="container-1">
             <div class="box">

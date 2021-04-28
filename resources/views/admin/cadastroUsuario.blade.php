@@ -13,32 +13,16 @@
 </head>
 
 <body>
-    <header class="header-adm">
-        <img src="../icons/svg/admin-with-cogwheels.svg" alt="Logo" class="options-img" />
-        <a href="/">Nome Funcionário</a>
-        <nav>
-            <ul class="header-menu">
-                <li><a href="/">INICIO</a></li>
-                <li><a href="/">FUNCIONÁRIOS</a></li>
-                <li><a href="/">LOG DO SISTEMA</a></li>
-                <li><a href="/">ALTERAÇÕES</a></li>
-                <li><a href="/">BACKUP</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    @if(Session::has('error'))
-    <div class="alert alert-danger mt-5" role="alert">
-            {{Session::get('error')}}
-    </div>
-    @endif
+    <!----------Hearder------------>
+    @include('layouts.navbar-adm')
+    <!----------End Hearder-------->
 
     <h1>CADASTRO DE FUNCIONÁRIO</h1>
     <section>
         <div class="container-1">
             <div class="box">
-                <form id="register" action="{{route('salvarUsuario')}}" method="POST">
-                    @csrf 
+                <form id="register" action="{{ route('salvarUsuario') }}" method="POST">
+                    @csrf
                     <div class="row">
                         <div class="col-lg-12">
                             <label>Nome</label> <br>
@@ -53,20 +37,17 @@
                         </div>
                         <div class="col-lg-4">
                             <label>CPF</label> <br>
-                            <input id="fcpf" name="fcpf" type="text" required maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
+                            <input id="fcpf" name="fcpf" type="text" required maxlength="14"
+                                pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
                         </div>
                         <div class="col-lg-4">
-                            <div class="sex-form">
-                                <label>Sexo</label> <br>
-                                <div class="row no-gutters">
-                                    <div class="col-lg sex-border content-center">
-                                        <label for="fmasc">Masculino</label>
-                                        <input class="sex-input" type ="radio" name="fsexo" value = "Masculino" id="fmasc"></input>
-                                    </div>
-                                    <div class="col-lg sex-border content-center">
-                                        <label for="ffem">Feminino</label>
-                                        <input class="sex-input" type ="radio" name="fsexo" value = "Feminino" id="ffem"></input>
-                                    </div>
+                            <label>Sexo</label> <br>
+                            <div class="row no-gutters">
+                                <div class="col-lg border-m content-center">
+                                    <input type="radio" name="fsexo" value="Masculino" id="fmasc">Masculino</input>
+                                </div>
+                                <div class="col-lg border-f content-center">
+                                    <input type="radio" name="fsexo" value="Feminino" id="ffem">Feminino</input>
                                 </div>
                             </div>
                         </div>
@@ -88,7 +69,7 @@
                         </div>
                     </div>
                     <div>
-                        <button type = "submit" class="btn-blue"> Cadastrar </button>
+                        <button type="submit" class="btn-blue"> Cadastrar </button>
                     </div>
                 </form>
 

@@ -48,7 +48,6 @@ label{ /*Antes dos campos de inserção*/
     font-family: "Poppins",sans-serif;
     margin-top: 20px;
 }
-
 p{
     color:black;
     font-family: "Open Sans",sans-serif;
@@ -65,7 +64,6 @@ p{
     border-width: 5px;
     border-color: #0D6EFD;
 }
-
 button, input, select, textarea{
     border:none;
     border-radius: 10px;
@@ -73,6 +71,15 @@ button, input, select, textarea{
     font-size: 16px;
     margin-bottom: 15px;
     background-color: transparent;
+}
+
+input[type="radio"]{
+    box-sizing: border-box;
+    border:1px solid #6bc4ec;
+    display:block;
+    margin:0px;
+    padding: 0;
+    color: #333333;
 }
 
 input, select{
@@ -88,13 +95,14 @@ input[type=text]:disabled, input[type="number"]:disabled, select:disabled {
     font-weight: bold;
 }
 
-button:focus, select:focus {
+button:focus, select:focus, input[type="radio"]:focus{
     outline: 0;
 }
 
 textarea:focus, input:focus {
     border-radius: 10px;
-    outline: 2px solid #0D6EFD;
+    border: 2px solid #0D6EFD;
+    outline: 0;
 }
     
 .content-center{
@@ -315,47 +323,6 @@ textarea:focus, input:focus {
     height: 50px
 }
 
-
-/*------------ Header  ------------*/
-.header-adm{
-    font-size: 1.3rem;
-    background-color: #FFFFFF; 
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-inline: 10px;
-    align-items: baseline;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    box-shadow: 5px 5px 5px #AAAAAA;
-    width: 100%;
-}
-
-.header-adm > a{
-    font-weight: bold;
-    text-decoration: none;
-    display: block;
-    padding: 15px;
-    color: #0D6EFD;
-}
-.header-adm > img{
-    padding: 10px;
-}
-/*------------ Opções dentro do Header  ------------*/
-.header-menu{
-    display: flex;
-}
-.header-menu li{
-    list-style: none;
-    font-weight: bold;
-    margin-inline: 10px;
-}
-.header-menu li a{
-    text-decoration: none;
-    display: block;
-    padding: 15px;
-}
-
 /*------------ Cadastro------------*/
 
 #register input, #register select{
@@ -368,33 +335,6 @@ textarea:focus, input:focus {
     margin-left:32%;
     margin-right:32%;
 }
-
-/*------------ Deixar os botões de sexo daquele jeito  ------------*/ /*---------- Como estamos usando radial, por conta do backend, não estamos utilizando essa parte
-.sex-form{
-    display: grid;
-}
-.sex-form > input{
-    background-color: white;
-    grid-row: 2;
-}
-.sex-form > input:hover{
-    background-color: #8ED1F0;
-}
-.sex-form > input:active{
-    background-color: inherit;
-    opacity: 60%;
-}
-
-.sex-form > input:nth-child(3){
-    border-bottom-right-radius: 0px;
-    border-top-right-radius: 0px;
-}
-.sex-form > input:nth-child(4){
-    border-bottom-left-radius: 0px;
-    border-top-left-radius: 0px;
-}
-
-*/
 
 /*------------ Retirar marcação dos inputs ------------*/
 
@@ -488,21 +428,25 @@ input[type=number] {
     margin-left:77%;
 }
 
-.sex-border{
+/*----- Botão de opção de sexo -----*/
+.border-m{
     display: flex;
     background-color: white;
     border: 2px solid #02A7F0;
-    border-radius: 10px;
+    padding:7px 0;
+    border-radius: 10px 0 0 10px;
+    border-right: 0;
 }
-.sex-border > label{
-    display: block;
-    block-size: auto;
-    margin: 5px;
-    padding: 5px;
-    font-weight: normal;
-    font-size: 14px;
+
+.border-f{
+    display: flex;
+    background-color: white;
+    border: 2px solid #02A7F0;
+    padding:7px 0;
+    border-radius: 0 10px 10px 0;
 }
-.sex-input{
-    display:block;
-    margin: 0px;
+
+.border-left:hover, .border-right:hover{
+    background-color: #8ED1F0;
+    border-color:#58ACFA;
 }

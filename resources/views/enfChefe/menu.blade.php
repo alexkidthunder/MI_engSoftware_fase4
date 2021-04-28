@@ -11,10 +11,12 @@
 
     <title>Menu</title>
   </head>
-  <body class="body-menu" hrfe = '/sessaoEnfChef'>
-    <header class="header-adm">
-          <a href="/">Nome Funcionário</a>
-    </header>
+
+  <body class="body-menu"  hrfe = '/sessaoEnfChef'>
+    
+    <!----------Hearder------------>
+   
+    <!----------End Hearder-------->
 
         <div class="container-2">
             <div class="row">

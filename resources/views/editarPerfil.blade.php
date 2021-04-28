@@ -1,72 +1,147 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="{{ ('css/style.css') }}" rel="stylesheet"> 
-    <link href="{{ ('bootstrap/css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ 'css/style.css' }}" rel="stylesheet">
+    <link href="{{ 'bootstrap/css/bootstrap.css' }}" rel="stylesheet">
 
-    <title>MEU PERFIL</title>
-  </head>
-  <body>
-      <header class="header-adm">
-          <a href="/">Nome Funcionário</a>
-          <nav>
-              <ul class="header-menu">
-                  <li><a href="/">INICIO</a></li>
-                  <li><a href="/">FUNCIONÁRIOS</a></li>
-                  <li><a href="/">LOG DO SISTEMA</a></li>
-                  <li><a href="/">ALTERAÇÕES</a></li>
-                  <li><a href="/">BACKUP</a></li>
-              </ul>
-          </nav>
-      </header>
-      <h1>Meu Perfil</h1>
-      <section>
-          <form name= "teste">
-            <div class="form-layout">
-                <div class="nome-form">
-                    <label for="fnome">Nome</label> <br>
-                    <input id="fnome" name="fnome" type="text" maxlength="50" value="Vinícius Dias de Jesus Maciel" placeholder= "Nome">
+    <title>Meu perfil</title>
+</head>
+
+<body>
+    <!----------Hearder------------>
+    @include('layouts.navbar')
+    <!----------End Hearder-------->
+    <h1>MEU PERFIL</h1>
+    <section>
+        <!-- <div class="container-1" id="perfil">
+                    <div class="box">
+                        <div class="change">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <label>Nome</label> <br>
+                                    <div class="box-blue">
+                                        Vinícius Dias de Jesus Maciel
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <label>Data de Nascimento</label> <br>
+                                    <div class="box-blue">
+                                        01/06/1999
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label>CPF</label> <br>
+                                    <div class="box-blue">
+                                        01.345.678-99
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label>Sexo</label> <br>
+                                    <div class="box-blue">
+                                        Masculino
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <label>Email</label> <br>
+                                    <div class="box-blue">
+                                        vinicius@gmail.com
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label>Atribuição</label> <br>
+                                    <div class="box-blue">
+                                        Enfermeiro chefe
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <div>
+                        <a class="edit"> Atualizar informações</a>
+                    </div>
                 </div>
+            </div>-->
+
+        <div class="container-1" id="perfil">
+            <div class="box">
+                <div class="change">
+                    <form id="register">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <label>Nome</label> <br>
+                                <input id="fnome" name="fnome" type="text" maxlength="50" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label>Data de Nascimento</label> <br>
+                                <input id="fnascimento" name="fnascimento" type="date" required>
+                            </div>
+                            <div class="col-lg-4">
+                                <label>CPF</label> <br>
+                                <input id="fcpf" name="fcpf" type="text" required maxlength="14"
+                                    pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
+                            </div>
+                            <div class="col-lg-4">
+                                <label>Sexo</label> <br>
+                                <div class="row no-gutters">
+                                    <div class="col-lg border-m content-center">
+                                        <input type="radio" name="fsexo" value="Masculino" id="fmasc">Masculino</input>
+                                    </div>
+                                    <div class="col-lg border-f content-center">
+                                        <input type="radio" name="fsexo" value="Feminino" id="ffem">Feminino</input>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <label>Email</label> <br>
+                                <input id="femail" name="femail" type="email" maxlength="50" required>
+                            </div>
+                        </div>
+                        <div> 
+                            <button type="submit" class="btn-blue">Editar</button>
+                        </div>
+                    </form>
                 <div>
-                    <label for="fnascimento">Data de Nascimento</label> <br>
-                    <input id="fnascimento" name="fnascimento" type="date">
+                    <form>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <input id="senha" name="senha" placeholder="insira a nova senha">
+                            </div>
+                            <div class="col-lg-4">
+                                <input id="senha-atual" name="senha-atual" placeholder="insira a senha atual">
+                            </div>
+                            <div class="col-lg-4">
+                                <button type="submit" class="btn-white">Alterar senha</button>
+                            </div>
+                    </form>
                 </div>
-                <div>
-                    <label for="fcpf">CPF</label> <br>
-                    <input id="fcpf" name="fcpf" type="text" maxlength="14" value="055.312.452.12">
                 </div>
-                <div class="sex-form">
-                    <label for="fsexo">Sexo</label> <br>
-                    <input id="MASCULINO" name="fsexo" value="Masculino" type="button">
-                    <input id="FEMININO" name="fsexo" value="Feminino" type="button">
-                </div>
-                <div class="email-form">
-                    <label for="femail">Email</label> <br>
-                    <input id="femail" name="femail" type="email" maxlength="50" value="vinicius@hotmail.com">
-                </div>
-                <div>
-                    <label for="fatribui">Atribuição</label> <br>
-                    <select id="fatribui" name="fatribui">
-                        <option value="Administrador">Administrador</option>
-                        <option value="Enfermeiro Chefe">Enfermeiro Chefe</option>
-                        <option value="Enfermeiro">Enfermeiro</option>
-                        <option value="Estagiário">Estagiário</option>
-                    </select>
-                </div>
-                <div class="submit-adm">
-                    <input class="sbm-btn" type="submit" value="Atualizar"> 
-                </div>
+
             </div>
-          </form>
-      </section>
-                <script>
-                    document.forms['teste']['fcpf'].disabled = true
-                    document.forms['teste']['fatribui'].disabled = true
-                                        ;
-                </script>
+        </div>
 
-  </body>
+    </section>
+    <script src="{{ asset('js/editarPerfil.js') }}"></script>
+    <script>
+        document.forms['teste']['fcpf'].disabled = true
+        document.forms['teste']['fatribui'].disabled = true;
+
+    </script>
+</body>
+
+</html>

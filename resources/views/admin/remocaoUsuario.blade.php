@@ -10,15 +10,14 @@
     <link href="{{ ('css/style.css') }}" rel="stylesheet">
     <link href="{{ ('bootstrap/css/bootstrap.css') }}" rel="stylesheet">
 
-    <title>Remoção de funcionário</title>
-
-</head>
-
-<body>
-     <!----------Hearder------------>
+    <title>Remoção de funcionário</title>  
+  </head>
+  
+  <body>
+    <!----------Hearder------------>
     @include('layouts.navbar-adm')
     <!----------End Hearder-------->
-    
+
     <h1>REMOÇÃO DE FUNCIONÁRIOS</h1>
     <div class="container-1">
         <div class="box">
