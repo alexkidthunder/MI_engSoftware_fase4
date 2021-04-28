@@ -369,7 +369,7 @@ textarea:focus, input:focus {
     margin-right:32%;
 }
 
-/*------------ Deixar os botões de sexo daquele jeito  ------------*/
+/*------------ Deixar os botões de sexo daquele jeito  ------------*/ /*---------- Como estamos usando radial, por conta do backend, não estamos utilizando essa parte
 .sex-form{
     display: grid;
 }
@@ -394,7 +394,7 @@ textarea:focus, input:focus {
     border-top-left-radius: 0px;
 }
 
-
+*/
 
 /*------------ Retirar marcação dos inputs ------------*/
 
@@ -486,4 +486,23 @@ input[type=number] {
     padding: 5px;
     width: 23%;
     margin-left:77%;
+}
+
+.sex-border{
+    display: flex;
+    background-color: white;
+    border: 2px solid #02A7F0;
+    border-radius: 10px;
+}
+.sex-border > label{
+    display: block;
+    block-size: auto;
+    margin: 5px;
+    padding: 5px;
+    font-weight: normal;
+    font-size: 14px;
+}
+.sex-input{
+    display:block;
+    margin: 0px;
 }

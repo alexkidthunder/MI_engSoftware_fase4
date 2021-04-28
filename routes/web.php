@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 /*------------ Rota para Index ------------------------ */
 Route::get('/', [HomeController::class,'index'])->name('index');
-
+Route::get('/esqueciSenha',[HomeController::class,'esqueciSenha'])->name('esqueciSenha');
 /*------------ Rota para o perfil ------------------------ */
 Route::get('/editarPerfil', [HomeController::class,'editPerfil'])->name('editarPerfil');
 
