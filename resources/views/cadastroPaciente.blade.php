@@ -14,20 +14,10 @@
 </head>
 
 <body>
-    <header class="header-adm">
-        <img src="../icons/svg/admin-with-cogwheels.svg" alt="Logo" class="options-img" />
-        <a href="/">Nome Funcionário</a>
-        <nav>
-            <ul class="header-menu">
-                <li><a href="/">INICIO</a></li>
-                <li><a href="/">CADASTRAR PACIENTE</a></li>
-                <li><a href="/">CADASTRAR PLANTONISTA</a></li>
-                <li><a href="/">CADASTRAR AGENDAMENTOS</a></li>
-                <li><a href="/">CADASTRAR MEDICAMENTOS</a></li>
-                <li><a href="/">PACIENTES E PRONTUARIO</a></li>
-            </ul>
-        </nav>
-    </header>
+    <!----------Hearder------------>
+    @include('layouts.navbar')
+    <!----------End Hearder-------->
+    
     <h1>CADASTRO DE PACIENTE</h1>
 
     <!--ENFERMEIRO E ENFERMEIRO CHEFE -->
@@ -53,10 +43,14 @@
                             <input id="fcpf" name="fcpf" type="text" required maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
                         </div>
                         <div class="col-lg-4">
-                            <div class="sex-form">
-                                <label>Sexo</label> <br>
-                                <input id="MASCULINO" name="fsexo" value="Masculino" type="button">
-                                <input id="FEMININO" name="fsexo" value="Feminino" type="button">
+                            <label>Sexo</label> <br>
+                            <div class="row no-gutters">
+                                <div class="col-lg border-m content-center">
+                                    <input type="radio" name="fsexo" value="Masculino" id="fmasc">Masculino</input>
+                                </div>
+                                <div class="col-lg border-f content-center">
+                                    <input type="radio" name="fsexo" value="Feminino" id="ffem">Feminino</input>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -65,10 +59,6 @@
                         <div class="col-lg-8">
                             <label>Tipo Sanguineo</label> <br>
                             <input id="fsanguineo" name="fsanguineo" type="text" maxlength="50" required>
-                        </div>
-                        <div class="col-lg-4">
-                            <label>Data de Internação</label> <br>
-                            <input id="fdatainternacao" name="fdatainternacao" type="date" required>
                         </div>
                     </div>
                     <div>
