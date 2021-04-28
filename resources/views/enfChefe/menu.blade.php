@@ -11,7 +11,7 @@
 
     <title>Menu</title>
   </head>
-  <body class="body-menu">
+  <body class="body-menu" hrfe = '/sessaoEnfChef'>
     <header class="header-adm">
           <a href="/">Nome Funcionário</a>
     </header>
@@ -24,7 +24,7 @@
                             <img class="options-img " src="imagemOficial.jpg">
                         </div>
                         <h4 class="card-options_title"><a
-                            href="{{ route('cadastroPaciente') }}">Cadastrar paciente</a></h4>
+                            href=" ">Cadastrar paciente</a></h4>
                     </div>
                 </div> 
                 <div class="col-xl-3 col-lg-3 col-md-6">
@@ -33,7 +33,7 @@
                             <img class="options-img " src="imagemOficial.jpg">
                         </div>
                         <h4 class="card-options_title"><a
-                            href="{{ route('cadastroAgendamento') }}">Cadastrar agendamentos</a></h4>
+                            href=" ">Cadastrar agendamentos</a></h4>
                     </div>
                 </div> 
                 <div class="col-xl-3 col-lg-3 col-md-6">
@@ -42,7 +42,7 @@
                             <img class="options-img " src="imagemOficial.jpg">
                         </div>
                         <h4 class="card-options_title"><a
-                            href="{{ route('cadastroPlantonista') }}">Cadastrar plantonistas</a></h4>
+                            href=" ">Cadastrar plantonistas</a></h4>
                     </div>
                 </div> 
                 <div class="col-xl-3 col-lg-3 col-md-6">
@@ -51,7 +51,7 @@
                             <img class="options-img " src="imagemOficial.jpg">
                         </div>
                         <h4 class="card-options_title"><a
-                            href="{{ route('cadastroMedicamento') }}">Cadastrar medicamentos</a></h4>
+                            href=" ">Cadastrar medicamentos</a></h4>
                     </div>
                 </div> 
 
@@ -61,7 +61,7 @@
                             <img class="options-img " src="imagemOficial.jpg">
                         </div>
                         <h4 class="card-options_title"><a
-                            href="{{ route('pacientes') }}">Pacientes e prontuários</a></h4>
+                            href=" ">Pacientes e prontuários</a></h4>
                     </div>
                 </div> 
                 <div class="col-xl-3 col-lg-3 col-md-6">
@@ -70,7 +70,7 @@
                             <img class="options-img " src="imagemOficial.jpg">
                         </div>
                         <h4 class="card-options_title"><a
-                            href="{{ route('listaAgendamentos') }}">Listagem de agendamentos</a></h4>
+                            href=" ">Listagem de agendamentos</a></h4>
                     </div>
                 </div> 
                 <div class="col-xl-3 col-lg-3 col-md-6">
@@ -79,7 +79,7 @@
                             <img class="options-img " src="imagemOficial.jpg">
                         </div>
                         <h4 class="card-options_title"><a
-                            href="{{ route('listagemPlantonistas') }}">Plantonistas</a></h4>
+                            href=" ">Plantonistas</a></h4>
                     </div>
                 </div> 
                 <div class="col-xl-3 col-lg-3 col-md-6">
@@ -88,7 +88,7 @@
                             <img class="options-img " src="imagemOficial.jpg">
                         </div>
                         <h4 class="card-options_title"><a
-                            href="{{ route('responsaveis') }}">Responsáveis pela aplicação de medicamentos</a></h4>
+                            href=" ">Responsáveis pela aplicação de medicamentos</a></h4>
                     </div>
                 </div> 
               

@@ -21,6 +21,18 @@ use Illuminate\Support\Facades\Route;
 /*------------ Rota para Index ------------------------ */
 Route::get('/', [HomeController::class,'index'])->name('index');
 
+/*------------ Rota para login ------------------------ */
+Route::post('index/menu', [HomeController::class,'login']);
+
+/*------------ Rota para sessao ------------------------ */
+Route::post('/sessaoAdmin', [HomeController::class,'sessaoAdmin'])->name('sessaoAdmin');
+Route::post('/sessaoEnf', [HomeController::class,'sessaoEnf'])->name('sessaoEnf');
+Route::post('/sessaoEst', [HomeController::class,'sessaoEst'])->name('sessaoEst');
+Route::post('/sessaoEnfChef', [HomeController::class,'sessaoEnfChef'])->name('sessaoEnfChef');
+
+/*-------------------Rota para logout----------------- */
+Route::get('/logout', [HomeController::class,'logout'])->name('logout');
+
 /*------------ Rota para o perfil ------------------------ */
 Route::get('/editarPerfil', [HomeController::class,'editPerfil'])->name('editarPerfil');
 
