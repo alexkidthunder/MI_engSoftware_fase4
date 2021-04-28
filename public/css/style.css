@@ -48,6 +48,9 @@ label{ /*Antes dos campos de inserção*/
     font-family: "Poppins",sans-serif;
     margin-top: 20px;
 }
+.label-no-margin{ /* Retirar a margem superior das label */
+    margin-top: 0px;
+}
 
 p{
     color:black;
@@ -63,6 +66,7 @@ p{
     padding: 5px 10px;
     border: #0D6EFD;
     border-width: 5px;
+    margin-bottom: 15px;
     border-color: #0D6EFD;
 }
 
@@ -505,4 +509,11 @@ input[type=number] {
 .sex-input{
     display:block;
     margin: 0px;
+}
+.item-center{
+    align-items: center;
+    text-align: center;
+}
+.hide{ /* classe para o Js */
+    display: none;
 }
