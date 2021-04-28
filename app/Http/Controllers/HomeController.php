@@ -88,4 +88,8 @@ class HomeController extends Controller
     public function cadastroAgendamentos(){
         return view('cadastroAgendamentos');
     }
+
+    public function esqueciSenha(){
+        return view('esqueciSenha');
+    }
 }

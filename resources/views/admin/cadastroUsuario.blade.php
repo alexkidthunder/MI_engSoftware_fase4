@@ -58,10 +58,16 @@
                         <div class="col-lg-4">
                             <div class="sex-form">
                                 <label>Sexo</label> <br>
-                                
-                                <input type ="radio" name="fsexo" value = "Masculino">Masculino</input>
-                                <input type ="radio" name="fsexo" value = "Feminino">Feminino</input>
-
+                                <div class="row no-gutters">
+                                    <div class="col-lg sex-border content-center">
+                                        <label for="fmasc">Masculino</label>
+                                        <input class="sex-input" type ="radio" name="fsexo" value = "Masculino" id="fmasc"></input>
+                                    </div>
+                                    <div class="col-lg sex-border content-center">
+                                        <label for="ffem">Feminino</label>
+                                        <input class="sex-input" type ="radio" name="fsexo" value = "Feminino" id="ffem"></input>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

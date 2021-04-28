@@ -33,6 +33,9 @@ Route::post('/sessaoEnfChef', [HomeController::class,'sessaoEnfChef'])->name('se
 /*-------------------Rota para logout----------------- */
 Route::get('/logout', [HomeController::class,'logout'])->name('logout');
 
+/*--------- Rota para login caso esqueceu senha ---------- */
+Route::get('/esqueciSenha',[HomeController::class,'esqueciSenha'])->name('esqueciSenha');
+
 /*------------ Rota para o perfil ------------------------ */
 Route::get('/editarPerfil', [HomeController::class,'editPerfil'])->name('editarPerfil');
 
