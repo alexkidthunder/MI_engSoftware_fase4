@@ -12,9 +12,9 @@
     <title>Menu</title>
   </head>
   <body class="body-menu" hrfe = '/sessaoAdmin'>
-    <header class="header-adm">
-        <a href="/">Nome Funcionário</a>
-    </header>
+    <!----------Hearder------------>
+    @include('layouts.navbar-menu')
+    <!----------End Hearder-------->
 
         <div class="container-2">
             <div class="row">
