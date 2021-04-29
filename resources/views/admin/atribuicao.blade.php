@@ -31,7 +31,7 @@
                 </div>
 
                  <!--Infomações do funcionário funcionário-->
-                 <h3>Funcionário</h3>
+                 <h3>Funcionário</h3> <br>
                     <div class="box-gray">
                         Marcos Oliveira Santana
                     </div>
