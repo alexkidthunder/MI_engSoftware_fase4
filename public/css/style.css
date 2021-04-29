@@ -99,24 +99,6 @@ textarea:focus, input:focus {
     border: 2px solid #0D6EFD;
     outline: 0;
 }
-/* -----------------------Alinha o texto ou caixa no centro-----------------*/
-.content-center{
-    text-align: center;
-    align-items: center;
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-/* ------------------Caixa branca padrão que tem em várias páginas--------------*/
-.box{ 
-    align-self: center;
-    align-items: center;
-    background-color: white;
-    border-radius: 20px;
-    box-shadow: 6px 6px 6px #f1efef;
-    margin-bottom: 50px;
-    padding:30px 40px;
-}
 
 /*------------- Botão branco com borda azul------------------*/
 .btn-white{ 
@@ -144,6 +126,24 @@ textarea:focus, input:focus {
 
 .btn-blue:active, .btn-white:active, .btn-agendamento:active{
     background-color: #4689C8;
+}
+/* -----------------------Alinha o texto ou caixa no centro-----------------*/
+.content-center{
+    text-align: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* ------------------Caixa branca padrão que tem em várias páginas--------------*/
+.box{ 
+    align-self: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 6px 6px 6px #f1efef;
+    margin-bottom: 50px;
+    padding:30px 40px;
 }
 
 /*-------- Containers ----------*/
@@ -248,6 +248,16 @@ textarea:focus, input:focus {
     color: #0D6EFD;
 }
 
+/*------------ Icone de download  ------------*/
+.download-icone button i{
+    color:#0D6EFD;
+    cursor:pointer;
+    font-size: 30px;
+}
+
+.download-icone button i:hover{
+    color: #02A7F0;
+}
 /*------------ Menu  ------------*/
 
 .body-menu{
@@ -364,7 +374,6 @@ input[type=number] {
     padding: 5px 10px;
 }
 
-
 /*------------ Agendamentos ------------*/
 .box-agendamento{
     background-color: #ffff;
@@ -378,6 +387,12 @@ input[type=number] {
 }
 .box-agendamento:nth-child(odd){
     border-radius: 0 0 50px 0;
+}
+
+#agendamento .btn-white{ 
+    padding: 0;
+    height:30px;
+    width: 100%;
 }
 
 /*------------ Botão para o paciente, presente no agendamento ------------*/
@@ -402,17 +417,6 @@ input[type=number] {
     background-color: #58ACFA;
 }
 
-.btn-agendamento{ 
-    align-self: right;
-    border: 2px solid #02A7F0;
-    background-color: white;
-    color:black;
-    cursor: pointer;
-    font-weight: bold;
-    padding: 5px;
-    width: 23%;
-    margin-left:77%;
-}
 
 /*----- Botão de opção de sexo -----*/
 .border-m{
@@ -450,4 +454,35 @@ input[type=number] {
 /* Cria um checkbox diferente */
 #permission input[type="checkbox"] { 
     margin-bottom: 0px;
+}
+
+/*----------------------------plantonista -------------------*/
+#plantonista .title{
+    color:#0D6EFD;
+    font-family: "Open Sans",sans-serif;
+    font-weight: bold;
+    font-size: 22px;
+    margin-bottom:10px;
+    padding: 5px 10px;  
+}
+
+#plantonista .box-blue, #plantonista .box-button{
+    height: 40px;
+    padding-top: 10px;
+}
+
+#plantonista input[type="checkbox"] {
+    height: 25px;
+    width: 25px;
+}
+
+
+.box-plantonista, 
+.box-medicamento,
+.box-backup{
+    background-color: #ffff;
+    border: 1.5px solid #58ACFA;
+    border-radius:0 50px 0 0;
+    padding: 10px 20px;
+    margin-bottom: 25px;
 }

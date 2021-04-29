@@ -113,10 +113,14 @@
                             </div>
                         </div>
                         <div> 
-                            <button type="submit" class="btn-blue">Editar</button>
+                            <button type="submit" class="btn-blue">Editar informações</button>
                         </div>
                     </form>
                 <div>
+                    <br>
+                    <br>
+                    <h3 align="center">Alterar senha</h3>
+                    <br>
                     <form>
                         <div class="row">
                             <div class="col-lg-4">

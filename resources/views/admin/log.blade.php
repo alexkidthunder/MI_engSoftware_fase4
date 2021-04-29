@@ -1,25 +1,33 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
-    <link href="{{ ('css/style.css') }}" rel="stylesheet"> 
-    <link href="{{ ('bootstrap/css/bootstrap.css') }}" rel="stylesheet">
-    
+    <link href="{{ 'css/style.css' }}" rel="stylesheet">
+    <link href="{{ 'bootstrap/css/bootstrap.css' }}" rel="stylesheet">
+
     <title>Log do sistema</title>
-  </head>
-  <body>
+</head>
+
+<body>
     <!----------Hearder------------>
     @include('layouts.navbar-adm')
     <!----------End Hearder-------->
-    
+
     <h1>LOG DO ADMINISTRADOR</h1>
     <section>
         <div class="box">
-            <input type="image" src="../icons/svg/download-to-storage-drive.svg" value="Baixar" width="60" height="60">
+            <!---Botao de donwload ----->
+            <form class="download-icone">
+                <button>
+                    <i class="fas fa-download"></i>
+                </button>
+            </form>
+            
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -30,7 +38,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>14/03/21 - 15:03</td>
+                        <td>14/03/2021 - 15:03</td>
                         <td>Login no Sistema</td>
                         <td>142.245.371.224</td>
                     </tr>
@@ -54,5 +62,7 @@
         </div>
     </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-  </body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous">
+    </script>
+</body>

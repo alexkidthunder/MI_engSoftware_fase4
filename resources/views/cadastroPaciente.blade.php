@@ -62,7 +62,7 @@
                         </div>
                     </div>
                     <div>
-                        <button class="btn-blue"> Cadastrar </button>
+                        <button type="submit" class="btn-blue"> Cadastrar </button>
                     </div>
                 </form>
 

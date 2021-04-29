@@ -55,7 +55,6 @@
                         </div>
                     </div>
                 </div>
-
                 <a href= '/removerUsuario? usuario={{$user->CPF}}' onclick=" return confirm('Tem certeza que deseja apagar o usuario?') "> <button class="container-button btn-blue "> Remover </button> </a>
             @endif
         </div>
