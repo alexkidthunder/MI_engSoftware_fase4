@@ -15,12 +15,13 @@
     <title>Meus agendamentos</title>
     
   </head>
+  <!--ENFERMEIRO E ESTAGIARIO -->
   <body>
         <!----------Hearder------------>
         @include('layouts.navbar')
         <!----------End Hearder-------->
     <section>
-        <!--ENFERMEIRO E ESTAGIARIO -->
+    
         <div class="container-1">
             <h1>VERIFICAÇÃO DE AGENDAMENTOS</h1>
 
