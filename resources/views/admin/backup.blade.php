@@ -39,7 +39,7 @@
                             </div>
                             <div class="col-lg">
                                 <label for="alwaysCheck">Sempre?</label> <br>
-                                <input class="checkmark" type="checkbox" name="alwaysCheck" id="alwaysCheck" checked>
+                                <input type="checkbox" name="alwaysCheck" id="alwaysCheck" checked>
                             </div>
                         </div>
                         <div class="row">

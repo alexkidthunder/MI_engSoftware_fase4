@@ -58,18 +58,7 @@ p{
     font-family: "Open Sans",sans-serif;
     font-size: 16px;
 }
-
-/* Cria um checkbox diferente */
-.checkmark { 
-    height: 30px;
-    width: 30px;
-    background-color: white;
-    padding: 5px 10px;
-    border: #0D6EFD;
-    border-width: 5px;
-    margin-bottom: 15px;
-    border-color: #0D6EFD;
-}
+/*------------------- Inputs --------------------*/
 button, input, select, textarea{
     border:none;
     border-radius: 10px;
@@ -110,7 +99,7 @@ textarea:focus, input:focus {
     border: 2px solid #0D6EFD;
     outline: 0;
 }
-    
+/* -----------------------Alinha o texto ou caixa no centro-----------------*/
 .content-center{
     text-align: center;
     align-items: center;
@@ -129,18 +118,7 @@ textarea:focus, input:focus {
     padding:30px 40px;
 }
 
-.box-auto{ /*Caixa branca padrão que tem em várias páginas*/
-    align-self: center;
-    align-items: center;
-    background-color: white;
-    border-radius: 20px;
-    box-shadow: 6px 6px 6px #f1efef;
-    padding:30px 40px;
-    margin: 0 auto;
-    margin-block: 20px;
-    width: fit-content;
-}
-/*------------- Botões brancos com borda azul------------------*/
+/*------------- Botão branco com borda azul------------------*/
 .btn-white{ 
     border: 2px solid #02A7F0;
     background-color: white;
@@ -150,7 +128,7 @@ textarea:focus, input:focus {
     padding: 5px 25px;
 }
 
- /*---------- Botões azuis----------*/
+ /*---------- Botão azul----------*/
 .btn-blue{
     background-color: #58ACFA;
     color:black;
@@ -401,6 +379,8 @@ input[type=number] {
 .box-agendamento:nth-child(odd){
     border-radius: 0 0 50px 0;
 }
+
+/*------------ Botão para o paciente, presente no agendamento ------------*/
 .btn-Patient{
     background-color: #A2DBFE;
     border-radius: 10px;
@@ -464,4 +444,10 @@ input[type=number] {
 
 .hide{ /* classe para o Js */
     display: none;
+}
+
+
+/* Cria um checkbox diferente */
+#permission input[type="checkbox"] { 
+    margin-bottom: 0px;
 }

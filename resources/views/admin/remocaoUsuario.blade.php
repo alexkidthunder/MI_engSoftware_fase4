@@ -35,8 +35,6 @@
             <!--Infomações do funcionário funcionário-->
             @if(isset($user))
             <h3>Funcionário</h3>
-
-            <div class="container-box">
                 <div class="box-gray">
                     NOME: {{$user->Nome}}
                 </div>
@@ -57,11 +55,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="container-box">
                 <a href= '/removerUsuario? usuario={{$user->CPF}}' onclick=" return confirm('Tem certeza que deseja apagar o usuario?') "> <button class="container-button btn-blue "> Remover </button> </a>
-            </div>
             @endif
         </div>
     </div>

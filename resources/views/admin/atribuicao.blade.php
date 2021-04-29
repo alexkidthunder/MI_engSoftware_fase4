@@ -32,7 +32,6 @@
 
                  <!--Infomações do funcionário funcionário-->
                  <h3>Funcionário</h3>
-                <div class="container-box">
                     <div class="box-gray">
                         Marcos Oliveira Santana
                     </div>
@@ -53,7 +52,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
 
                  <!--Alterar atrinuição do funcionário funcionário, se for estagiário-->
                  <div class="container-atribution">
