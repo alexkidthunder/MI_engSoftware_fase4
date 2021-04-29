@@ -380,6 +380,18 @@ input[type=number] {
     border-radius: 0 0 50px 0;
 }
 
+.btn-agendamento{ 
+    align-self: right;
+    border: 2px solid #02A7F0;
+    background-color: white;
+    color:black;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 5px;
+    width: 23%;
+    margin-left:77%;
+}
+
 /*------------ Botão para o paciente, presente no agendamento ------------*/
 .btn-Patient{
     background-color: #A2DBFE;
@@ -402,17 +414,6 @@ input[type=number] {
     background-color: #58ACFA;
 }
 
-.btn-agendamento{ 
-    align-self: right;
-    border: 2px solid #02A7F0;
-    background-color: white;
-    color:black;
-    cursor: pointer;
-    font-weight: bold;
-    padding: 5px;
-    width: 23%;
-    margin-left:77%;
-}
 
 /*----- Botão de opção de sexo -----*/
 .border-m{
@@ -450,4 +451,26 @@ input[type=number] {
 /* Cria um checkbox diferente */
 #permission input[type="checkbox"] { 
     margin-bottom: 0px;
+}
+
+/*----------------------------plantonista -------------------*/
+#plantonista .title{
+    color:#0D6EFD;
+    font-family: "Open Sans",sans-serif;
+    font-weight: bold;
+    font-size: 22px;
+    margin-bottom:10px;
+    padding: 5px 10px;  
+}
+
+#plantonista .box-blue{
+    height: 40px;
+    padding-top: 10px;
+}
+.box-plantonista{
+    background-color: #ffff;
+    border: 1.5px solid #58ACFA;
+    border-radius:0 50px 0 0;
+    padding: 10px 20px;
+    margin-bottom: 25px;
 }

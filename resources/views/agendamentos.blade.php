@@ -31,22 +31,22 @@
                     <div class="row">
                         <div class="col-lg-2 text-center">
                             <div class="box-gray">
-                                <a>xx:xx</a>
+                                xx:xx
                             </div>
                         </div>
                         <div class="col-lg-2 text-center">
                             <div class="box-gray">
-                                <a>xx/xx/xx</a>
+                                xx/xx/xx
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="box-white">
-                                <a>Nome do Medicamento Aqui</a>
+                                Nome do Medicamento Aqui
                             </div>
                         </div>
                         <div class="col-lg-2">
                             <div class="box-white">
-                                <a>Posologia</a>
+                                Posologia
                             </div>
                         </div>
                     </div>
@@ -56,7 +56,7 @@
                         </div>
                         <div class="col-lg-3">
                             <div class="box-blue">
-                                <a>Leito: Código</a>
+                                Leito: Código
                             </div>
                         </div>
                     </div>
@@ -66,7 +66,7 @@
                         </div>
                         <div class="col-lg-7"> <!--isso aqui fica hidden--->
                             <div class="box-gray"> 
-                                <a>Nome do Preparador Aqui</a> 
+                                Nome do Preparador Aqui
                             </div>
                         </div>
                         <div class="col-lg-3">
