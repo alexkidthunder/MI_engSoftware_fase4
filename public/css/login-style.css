@@ -1,68 +1,87 @@
-body {
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+.body-login {
     background-image: url(imagemOficial.jpg);
     background-repeat: no-repeat;
     background-size: 100%;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: "Poppins",sans-serif;
 }
 
-.form {
+#login{
     width: 30%;
     margin: auto;
     padding-top: 170px;
 }
 
-.card {
+.box-login {
     box-shadow: blue;
     background-image: linear-gradient(to top, rgb(160, 228, 240), rgb(9, 120, 247));
     padding: 20px;
     border-radius: 50px;
 }
 
-.card-top {
+#login h2{
+    color: black;
     text-align: center;
+    margin-block-start: 10px;
+    margin-block-end: 10px;
 }
 
-.card-groupp {
-    margin-bottom: 20px;
-}
-
-.card-groupp>label {
-    width: 100%;
+#login label {
     color: black;
     display: block;
+    font-weight: bold;
+    font-size: 16px;
 }
 
-.card-groupp>input {
+#login input {
     border-radius: 15px;
-    outline: 0;
     width: 95%;
     height: 15px;
-    padding: 5px;
+    padding: 5px 10px;
+    background:white;
+    border: 1px solid #ffff;
+    margin-bottom: 10px;
 }
 
-.btn {
+#login input:focus {
+    border: 2px solid #0D6EFD;
+    outline:0;
+}
+
+#login input:hover {
+    box-shadow: 2px 2px 2px #f1efef;
+
+}
+
+#login .text {
+    color:#333333;
+    display: block;
+    font-weight: bold;
+    text-align: center;
+    font-size: 16px;
+}
+
+#login .enter {
     text-align: center;
 }
 
-.btn button:hover {
-    background-image: linear-gradient(to right, rgb(160, 228, 240), rgb(14, 122, 247));
-}
-
-.card-groupp>button {
+#login .enter  >button {
     background-image: linear-gradient(to right, blue, blue);
-    width: 50%;
+    border:0px;
     border-radius: 30px;
-    padding: 10px;
     color: white;
-    border: 0px;
-    outline: 0;
+    cursor: pointer;
+    font-family: "Poppins",sans-serif;
+    font-weight: bold;
+    font-size:15px;
+    margin:10px 0;
+    padding: 10px;
+    width: 50%;
 }
 
-.texto-interativo {
-    color: black;
-    text-align: center;
-}
-
-.titulo {
+#login .enter  button:hover {
+    background-image: linear-gradient(to right, rgb(199, 218, 240), rgb(14, 122, 247));
     color: black;
 }

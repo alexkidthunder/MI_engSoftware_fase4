@@ -32,7 +32,6 @@
                 </div>
                  <!--Infomações do Paciente-->
                  <h3>Paciente</h3>
-                <div class="container-box">
                     <div class="box-gray">
                         Marcos Oliveira Santana
                     </div>
@@ -53,10 +52,10 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Parte onde cadastra o medicamento,posologia,data/hora e quem irá aplicar -->
+                    
+                    <!-- Cadastro do medicamento -->
                     <div class="box-agendamento">
                         <form id="register">
-                            <div class="container-box">
                                 <div class="row">
                                     <div class="col-lg-4">
                                         <div>
@@ -99,13 +98,12 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                         </form>
                     </div>
                     <div>
                         <button type="submit" class="container-button btn-white">Cadastrar Agendamento</button>
                     </div>
-                </div>
+                
             </div>
         </div>
     </section>
