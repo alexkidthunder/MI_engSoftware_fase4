@@ -22,31 +22,32 @@
         <!----------End Hearder-------->
     <section>
     
-        <div class="container-1">
+        <div class="container-1" id="agendamento">
             <h1>VERIFICAÇÃO DE AGENDAMENTOS</h1>
 
             <!----------Agendamentos------------>
             
             <div class="box-agendamento">
+                <!--=====Informação do agendamento======-->
                     <div class="row">
                         <div class="col-lg-2 text-center">
                             <div class="box-gray">
-                                <a>xx:xx</a>
+                                xx:xx
                             </div>
                         </div>
                         <div class="col-lg-2 text-center">
                             <div class="box-gray">
-                                <a>xx/xx/xx</a>
+                                xx/xx/xx
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="box-white">
-                                <a>Nome do Medicamento Aqui</a>
+                                Nome do Medicamento Aqui
                             </div>
                         </div>
                         <div class="col-lg-2">
                             <div class="box-white">
-                                <a>Posologia</a>
+                                Posologia
                             </div>
                         </div>
                     </div>
@@ -56,75 +57,37 @@
                         </div>
                         <div class="col-lg-3">
                             <div class="box-blue">
-                                <a>Leito: Código</a>
+                                Leito: Código
                             </div>
                         </div>
                     </div>
+                    <!--=====Botões do agendamento======-->
                     <div class="row">
                         <div class="col-lg-2">
                             <p>Prepador da aplicação:</p>
                         </div>
-                        <div class="col-lg-7"> <!--isso aqui fica hidden--->
+                        <!--=====isso aqui fica hidden======-->
+                        <div class="col-lg-7"> 
                             <div class="box-gray"> 
-                                <a>Nome do Preparador Aqui</a> 
+                                Nome do Preparador Aqui
                             </div>
                         </div>
+                        <!--===============================-->
+                        
                         <div class="col-lg-3">
                             <div>
-                                <input type="button" id="add_prep" value="Adicionar Preparador">
+                                <button type="submit" class="btn-white"> Adicionar preparador</button>
                             </div>
                         </div>
-                    </div>
-                
-            </div>
-            <!--Outro Agendamento-->
-            <div class="box-agendamento">
-                    <div class="row">
-                        <div class="col-lg-2 text-center">
-                            <div class="box-gray">
-                                <a>xx:xx</a>
-                            </div>
-                        </div>
-                        <div class="col-lg-2 text-center">
-                            <div class="box-gray">
-                                <a>xx/xx/xx</a>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="box-white">
-                                <a>Nome do Medicamento Aqui</a>
-                            </div>
-                        </div>
-                        <div class="col-lg-2">
-                            <div class="box-white">
-                                <a>Posologia</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-9">
-                            <div class="box-blue">
-                                <a>Nome do Paciente Aqui</a>
-                            </div>
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="box-blue">
-                                <a>Leito: Código</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-9"> <!--isso aqui fica hidden--->
-                            <div class="box-blue"> 
-                                <a>Nome do Preparador Aqui</a> 
-                            </div>
-                        </div>
+
+                        <!--isso aqui fica hidden até que seja add preparador--->
                         <div class="col-lg-3">
                             <div>
-                                <input type="button" id="add_prep" value="Adicionar Preparador">
+                                <button type="submit" class="btn-white"> Finalizar aplicação</button>
                             </div>
                         </div>
-                    </div>
+                        <!--===============================-->
+                    </div>             
             </div>         
         </div>
     </section>

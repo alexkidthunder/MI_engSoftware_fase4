@@ -1,66 +1,61 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet">
-    <link href="{{ ('css/style.css') }}" rel="stylesheet"> 
-    <link href="{{ ('bootstrap/css/bootstrap.css') }}" rel="stylesheet"> 
+    <link href="{{ 'css/style.css' }}" rel="stylesheet">
+    <link href="{{ 'bootstrap/css/bootstrap.css' }}" rel="stylesheet">
     <title>Cadastro Plantonista</title>
-    
-  </head>
-  <body>
+
+</head>
+
+<body>
     <!----------Hearder------------>
     @include('layouts.navbar')
     <!----------End Hearder-------->
     <section>
-        <div class="container-1">
-        <h1>PLANTONISTAS</h1>
-            <div class="box-agendamento">
-              <!-- Alterar Estado Plantão -->
-                <div class="container-box">
-                  <!-- Cabeçalho do "Alterar Plantão" -->
-                  <div class="row">
-                    <div class="col-lg-4">
-                      <div>
-                        <h2>NOME</h2>
-                      </div>
+        <div class="container-1" id="plantonista">
+            <h1>PLANTONISTAS</h1>
+
+            <div class="box-plantonista">
+                <!--------- Cabeçario --------->
+                <div class="title">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            NOME
+                        </div>
+                        <div class="col-lg-3">
+                            CARGO
+                        </div>
+                        <div class="col-lg-3" align="center">
+                            EM PLANTÃO
+                        </div>
                     </div>
-                    <div class="col-lg-4">
-                      <div>
-                        <h2>CARGO</h2>
-                      </div>
+                </div>
+                <!--------- Plantonista --------->
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="box-blue">
+                            Rafela Soares da Silva
+                        </div>
                     </div>
-                    <div class="col-lg-4">
-                      <div>
-                        <h2>DISPONIBILIDADE</h2>
-                      </div>
+                    <div class="col-lg-3">
+                        <div class="box-blue">
+                            Enfermeiro chefe
+                        </div>
                     </div>
-                  </div>
-                  <!-- Fim do Cabeçalho do "Alterar Plantão" -->
-                  <!-- Começo do Corpo do Alterar Plantão -->
-                  <div class="row">
-                    <div class="col-lg-4">
-                      <div>
-                        <h2 class="box-blue">NOME</h2>
-                      </div>
-                    </div>
-                    <div class="col-lg-4">
-                      <div>
-                        <h2 class="box-blue">CARGO</h2>
-                      </div>
-                    </div>
-                    <div class="col-lg-4">
-                      <div>
-                        <input class="checkmark" type="checkbox">
-                      </div>
+                    <div class="col-lg-3" align="center">
+                      <div class="box-button">
+                        <input type="checkbox">
                     </div>
                   </div>
-                  <!-- Fim do corpo do Alterar Plantonista -->
                 </div>
             </div>
         </div>
     </section>
-  </body>
+</body>

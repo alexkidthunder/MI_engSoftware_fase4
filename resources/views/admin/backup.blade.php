@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class="row hide" id="AgendamentoBackup" style="display: none;">
-                    <div class="box-agendamento item-center">
+                    <div class="box-backup item-center">
                         <h4>Agendamento de Backup</h4>
                         <div class="row">
                             <div class="col-lg">

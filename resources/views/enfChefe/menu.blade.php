@@ -15,7 +15,7 @@
   <body class="body-menu"  hrfe = '/sessaoEnfChef'>
     
     <!----------Hearder------------>
-   
+    @include('layouts.navbar-menu')
     <!----------End Hearder-------->
 
         <div class="container-2">

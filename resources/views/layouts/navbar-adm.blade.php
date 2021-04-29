@@ -13,8 +13,8 @@
     <div class="d-flex align-items-center justify-content-between">
       <div class="d-flex">
         <a href="{{ route('editarPerfil') }}" class="user"><img src="{{asset(' ')}}" class="img-fluid"></a>
-        <div>
-          <h2><a href="{{ route('editarPerfil') }}">OLÁ, NOME FUNCIONÁRIO</a></h2>
+        <div class="col-lg-3">
+          <h2><a href="{{ route('editarPerfil') }}">NOME FUNCIONÁRIO</a></h2>
         </div>
       </div>
     

@@ -12,9 +12,9 @@
     <title>Menu</title>
   </head>
   <body class="body-menu" hrfe = '/sessaoAdmin'>
-    <header class="header-adm">
-        <a href="/">Nome Funcionário</a>
-    </header>
+    <!----------Hearder------------>
+    @include('layouts.navbar-menu')
+    <!----------End Hearder-------->
 
         <div class="container-2">
             <div class="row">
@@ -52,7 +52,7 @@
                             <img class="options-img " src="imagemOficial.jpg">
                         </div>
                         <h4 class="card-options_title"><a
-                            href="{{ route('editarPermissao') }}">Alterar pemissões de cargos</a></h4>
+                            href="{{ route('editarPermissao') }}">Alterar pemissões <br>de cargos</a></h4>
                     </div>
                 </div> 
 
@@ -62,7 +62,7 @@
                             <img class="options-img " src="imagemOficial.jpg">
                         </div>
                         <h4 class="card-options_title"><a
-                            href="{{ route('editarAtribuicao') }}">Alterar atribuição de funcionários</a></h4>
+                            href="{{ route('editarAtribuicao') }}">Alterar atribuição <br>de funcionários</a></h4>
                     </div>
                 </div> 
 
