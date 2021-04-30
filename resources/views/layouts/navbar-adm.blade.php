@@ -24,7 +24,7 @@
 
           <ul>
             <li class="title-nav"><a href="{{ route('menu') }}">INÍCIO</a></li>
-            <li class="drop-down title-nav"><a>FUNCIONÁRIOS</a>
+            <li class="drop-down title-nav"><a>FUNCIONÁRIOS <i class="fas fa-angle-down"></i></a>
                 <ul>
                     <li><a href="{{ route('cadastrarUsuario') }}">Cadastrar</a></li>
                     <li><a href="{{ route('removerUsuario') }}">Remover</a></li>

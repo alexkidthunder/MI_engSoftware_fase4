@@ -23,6 +23,8 @@
                     <div class="card-menu text-center card-options">
                         <div class="card-options_img">
                             <img class="options-img " src="imagemOficial.jpg">
+                            <i class="fas fa-user-injured"></i>
+                            <i class="fas fa-plus"></i>
                         </div>
                         <h4 class="card-options_title"><a
                             href="{{ route('cadastroPaciente') }}">Cadastrar paciente</a></h4>
@@ -32,6 +34,8 @@
                     <div class="card-menu text-center card-options">
                         <div class="card-options_img">
                             <img class="options-img " src="imagemOficial.jpg">
+                            <i class="fas fa-user-injured"></i>
+                            <i class="fas fa-clipboard-list"></i>
                         </div>
                         <h4 class="card-options_title"><a
                             href="{{ route('pacientes') }}">Pacientes e prontuários</a></h4>
@@ -41,6 +45,7 @@
                     <div class="card-menu text-center card-options">
                         <div class="card-options_img">
                             <img class="options-img " src="imagemOficial.jpg">
+                            <i class="fas fa-clipboard-check"></i>
                         </div>
                         <h4 class="card-options_title"><a
                             href="{{ route('agendamentosRealizados') }}">Agendamentos realizados</a></h4>
@@ -50,6 +55,7 @@
                     <div class="card-menu text-center card-options">
                         <div class="card-options_img">
                             <img class="options-img " src="imagemOficial.jpg">
+                            <div><i class="fas fa-notes-medical"></i></div>
                         </div>
                         <h4 class="card-options_title"><a
                             href="{{ route('agendamentos') }}">Agendamentos</a></h4>
@@ -60,6 +66,8 @@
                     <div class="card-menu text-center card-options">
                         <div class="card-options_img">
                             <img class="options-img " src="imagemOficial.jpg">
+                            <i class="fas fa-user-nurse"></i>
+                            <i class="fas fa-notes-medical"></i>
                         </div>
                         <h4 class="card-options_title"><a
                             href="{{ route('meusAgendamentos') }}">Agendamentos e <br>medicamentos que estou alocado</a></h4>
