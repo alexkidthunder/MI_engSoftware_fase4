@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Usuario extends Model
+class Paciente extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $table = "usuarios";
+    protected $table = "pacientes";    //seta a o nome da tabela 
 
     protected $fillable = [
-        'CPF','Nome','Senha','Email','Data_Nasc','Atribuicao','Sexo','Ip'
+        'Nome_Paciente','Sexo','Data_Nasc','CPF','Tipo_Sang'
     ];
 }
