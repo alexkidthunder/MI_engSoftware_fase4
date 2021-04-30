@@ -72,6 +72,7 @@ Route::get('/cadastroMedicamento', [EnfChefeController::class,'cadastroMedicamen
 Route::get('/cadastroAgendamento', [EnfChefeController::class,'cadastroAgendamento'])->name('cadastroAgendamento');
 Route::get('/listaAgendamentos',[EnfChefeController::class,'listaAgendamentos'])->name('listaAgendamentos');
 Route::get('/listaResponsaveis',[EnfChefeController::class,'responsaveis'])->name('responsaveis');
+Route::get('/prontuario',[EnfChefeController::class,'prontuario'])->name('prontuario');
 
 /*------------ Rotas do enfermeiro -------------------*/
 

@@ -87,7 +87,6 @@ CREATE TABLE prontuarios (
   ID bigint(20) NOT NULL,  
   Data_Internacao date NOT NULL,
   Data_Saida date NOT NULL,
-  status_ enum('internado','alta','obito') NOT NULL,  
   Id_leito varchar(20) NOT NULL, /*Chave estrangeira que faz referência ao leito*/
   Cpfpaciente char(14)  /* Chave estrangeira que faz referência ao paciente*/
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -96,6 +95,7 @@ CREATE TABLE prontuarios (
 CREATE TABLE pacientes (
   Nome_Paciente varchar(50) NOT NULL,
   Sexo varchar(20) NOT NULL,
+  Status enum('internado','alta','obito') NOT NULL,  
   Data_Nasc date NOT NULL,
   CPF char(14) NOT NULL,
   Tipo_Sang varchar(5) NOT NULL  

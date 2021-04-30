@@ -301,6 +301,7 @@ CREATE TABLE IF NOT EXISTS `ocorrencias` (
 CREATE TABLE IF NOT EXISTS `pacientes` (
   `Nome_Paciente` varchar(50) NOT NULL,
   `Sexo` varchar(20) NOT NULL,
+  `Status` enum('internado','alta','obito') NOT NULL,
   `Data_Nasc` date NOT NULL,
   `CPF` char(14) NOT NULL,
   `Tipo_Sang` varchar(5) NOT NULL,
@@ -321,7 +322,6 @@ CREATE TABLE IF NOT EXISTS `prontuarios` (
   `ID` bigint(20) NOT NULL,
   `Data_Internacao` date NOT NULL,
   `Data_Saida` date NOT NULL,
-  `Status` enum('internado','alta','obito') NOT NULL,
   `Id_leito` varchar(20) NOT NULL,
   `Cpfpaciente` char(14) DEFAULT NULL,
   PRIMARY KEY (`ID`),
