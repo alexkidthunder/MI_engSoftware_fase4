@@ -149,7 +149,7 @@ a {
 }
 
 a:hover {
-  color: #0056b3;
+  color: #02A7F0;
 }
 
 a:not([href]):not([tabindex]) {
