@@ -38,7 +38,7 @@
                                 <input name="fhorario" type="time" id="fhorario">
                             </div>
                             <div class="col-lg">
-                                <label for="alwaysCheck">Sempre?</label> <br>
+                                <label for="alwaysCheck">Automático</label> <br>
                                 <input type="checkbox" name="alwaysCheck" id="alwaysCheck" checked>
                             </div>
                         </div>
@@ -62,7 +62,7 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th scope="col">Sempre?</th>
+                            <th scope="col">Automático</th>
                             <th scope="col">Hora</th>
                             <th scope="col">Data</th>
                             <th scope="col">IP</th>
