@@ -22,8 +22,9 @@
             <div class="row">
                 <div class="col-xl-3 col-lg-3 col-md-6">
                     <div class="card-menu text-center card-options">
-                        <div class="card-options_img">
-                            <img class="options-img " src="imagemOficial.jpg">
+                        <div class="card-options-icon options-icon">
+                            <i class="fas fa-user-injured"></i>
+                            <i class="fas fa-plus"></i>
                         </div>
                         <h4 class="card-options_title"><a
                             href="{{ route('cadastroPaciente') }}">Cadastrar paciente</a></h4>
@@ -31,8 +32,8 @@
                 </div> 
                 <div class="col-xl-3 col-lg-3 col-md-6">
                     <div class="card-menu text-center card-options">
-                        <div class="card-options_img">
-                            <img class="options-img " src="imagemOficial.jpg">
+                        <div class="card-options-icon options-icon">
+                            <i class="fas fa-calendar-plus"></i>
                         </div>
                         <h4 class="card-options_title"><a
                             href="{{ route('cadastroAgendamento') }}">Cadastrar agendamentos</a></h4>
@@ -40,8 +41,9 @@
                 </div> 
                 <div class="col-xl-3 col-lg-3 col-md-6">
                     <div class="card-menu text-center card-options">
-                        <div class="card-options_img">
-                            <img class="options-img " src="imagemOficial.jpg">
+                        <div class="card-options-icon options-icon">
+                            <i class="fas fa-user-nurse"></i>
+                            <i class="fas fa-plus"></i>
                         </div>
                         <h4 class="card-options_title"><a
                             href="{{ route('cadastroPlantonista') }}">Cadastrar plantonistas</a></h4>
@@ -49,8 +51,8 @@
                 </div> 
                 <div class="col-xl-3 col-lg-3 col-md-6">
                     <div class="card-menu text-center card-options">
-                        <div class="card-options_img">
-                            <img class="options-img " src="imagemOficial.jpg">
+                        <div class="card-options-icon options-icon">
+                            <i class="fas fa-capsules"></i>
                         </div>
                         <h4 class="card-options_title"><a
                             href="{{ route('cadastroMedicamento') }}">Cadastrar medicamentos</a></h4>
@@ -59,8 +61,9 @@
 
                 <div class="col-xl-3 col-lg-3 col-md-6">
                     <div class="card-menu text-center card-options">
-                        <div class="card-options_img">
-                            <img class="options-img " src="imagemOficial.jpg">
+                        <div class="card-options-icon options-icon">
+                            <i class="fas fa-user-injured"></i>
+                            <i class="fas fa-clipboard-list"></i>
                         </div>
                         <h4 class="card-options_title"><a
                             href="{{ route('pacientes') }}">Pacientes e prontuários</a></h4>
@@ -68,8 +71,8 @@
                 </div> 
                 <div class="col-xl-3 col-lg-3 col-md-6">
                     <div class="card-menu text-center card-options">
-                        <div class="card-options_img">
-                            <img class="options-img " src="imagemOficial.jpg">
+                        <div class="card-options-icon options-icon">
+                            <div><i class="fas fa-notes-medical"></i></div>
                         </div>
                         <h4 class="card-options_title"><a
                             href="{{ route('listaAgendamentos') }}">Listagem de agendamentos</a></h4>
@@ -77,8 +80,8 @@
                 </div> 
                 <div class="col-xl-3 col-lg-3 col-md-6">
                     <div class="card-menu text-center card-options">
-                        <div class="card-options_img">
-                            <img class="options-img " src="imagemOficial.jpg">
+                        <div class="card-options-icon options-icon">
+                            <i class="fas fa-user-nurse"></i>
                         </div>
                         <h4 class="card-options_title"><a
                             href="{{ route('listagemPlantonistas') }}">Plantonistas</a></h4>
@@ -86,8 +89,8 @@
                 </div> 
                 <div class="col-xl-3 col-lg-3 col-md-6">
                     <div class="card-menu text-center card-options">
-                        <div class="card-options_img">
-                            <img class="options-img " src="imagemOficial.jpg">
+                        <div class="card-options-icon options-icon">
+                            <i class="fas fa-syringe"></i>
                         </div>
                         <h4 class="card-options_title"><a
                             href="{{ route('responsaveis') }}">Responsáveis pela aplicação de medicamentos</a></h4>
