@@ -18,6 +18,14 @@
     <!----------Hearder------------>
     @include('layouts.navbar')
     <!----------End Hearder-------->
+        <div id="tela-icone"> <!-- Icone de Download Em Telas -->
+            <form class="download-icone">
+                <button>
+                    <i class="fas fa-download"></i>
+                </button>
+            </form>
+        </div>
+
     <section>
         <div class="container-1" id="plantonista">
             <h1>LISTAGEM DE PLANTONISTA</h1>
