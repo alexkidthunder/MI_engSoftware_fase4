@@ -20,7 +20,7 @@
     <section>
         <div class="container-1">
             <div class="box">
-                <form id="register">
+                <form id="register"> 
                     <div class="row">
                         <div class="col-lg-12">
                             <label>Nome</label> <br>

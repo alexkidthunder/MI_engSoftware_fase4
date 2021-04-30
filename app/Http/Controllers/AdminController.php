@@ -61,19 +61,24 @@ class AdminController extends Controller
     
     public function salvarUsuario(Request $request){
         
-        $existeCPF = DB::table('usuarios')->where('CPF', $request->fcpf)->first();    //busca de cpf
-                
-        if($existeCPF)                                      //se encontrar
+        //busca o cpf
+        $existeCPF = DB::table('usuarios')->where('CPF', $request->fcpf)->first();    
+           
+        //se já existir o cpf
+        if($existeCPF)   
              return redirect()->route('salvarUsuario')->with('error', "CPF já existente!");
- 
-        $validator = Validator::make($request->all(), [     //validação de erro
+       
+        //validação de erro
+        $validator = Validator::make($request->all(), [     
             'CPF' => 'required|min:14|max:14',
        ]);
-          
+        
+       //redirecionando o usuario após erro 
         if ($validator->fails()) {
-           return redirect()->route('salvarUsuario')->with('error', "Digite um CPF válido!!");   //redirecionando o usuario após erro 
+           return redirect()->route('salvarUsuario')->with('error', "Digite um CPF válido!!");   
          }      
- 
+         
+        //se não existir cpf, cria usuário
          Usuario::Create([
             'CPF' => $request->fcpf,
             'Nome' => $request->fnome,
@@ -87,12 +92,12 @@ class AdminController extends Controller
             'Ip' => $request->ip(), 
             ]);        
          
-          
+        //Adiciona usuário em tabelas correspondentes ao cargo
         if ($request->fatribui == 'Administrador'){
             Administrador::Create([
                 'CPF' => $request->fcpf,
             ]);
-        }else if ($request->fatribui == 'Enfermeiro Chefe'||$request->fatribui == 'Enfermeiro'||$request->fatribui == 'Estagiário'){
+        }else{
             Responsavel::Create([
                 'CPF' => $request->fcpf,
             ]);
