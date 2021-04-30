@@ -22,8 +22,7 @@
             <div class="row">
                 <div class="col-xl-3 col-lg-3 col-md-6">
                     <div class="card-menu text-center card-options">
-                        <div class="card-options_img">
-                            <img class="options-img " src="imagemOficial.jpg">
+                        <div class="card-options-icon options-icon">
                             <i class="fas fa-user-injured"></i>
                             <i class="fas fa-plus"></i>
                         </div>
@@ -33,8 +32,7 @@
                 </div> 
                 <div class="col-xl-3 col-lg-3 col-md-6">
                     <div class="card-menu text-center card-options">
-                        <div class="card-options_img">
-                            <img class="options-img " src="imagemOficial.jpg">
+                        <div class="card-options-icon options-icon">
                             <i class="fas fa-calendar-plus"></i>
                         </div>
                         <h4 class="card-options_title"><a
@@ -43,8 +41,7 @@
                 </div> 
                 <div class="col-xl-3 col-lg-3 col-md-6">
                     <div class="card-menu text-center card-options">
-                        <div class="card-options_img">
-                            <img class="options-img " src="imagemOficial.jpg">
+                        <div class="card-options-icon options-icon">
                             <i class="fas fa-user-nurse"></i>
                             <i class="fas fa-plus"></i>
                         </div>
@@ -54,8 +51,7 @@
                 </div> 
                 <div class="col-xl-3 col-lg-3 col-md-6">
                     <div class="card-menu text-center card-options">
-                        <div class="card-options_img">
-                            <img class="options-img " src="imagemOficial.jpg">
+                        <div class="card-options-icon options-icon">
                             <i class="fas fa-capsules"></i>
                         </div>
                         <h4 class="card-options_title"><a
@@ -65,8 +61,7 @@
 
                 <div class="col-xl-3 col-lg-3 col-md-6">
                     <div class="card-menu text-center card-options">
-                        <div class="card-options_img">
-                            <img class="options-img " src="imagemOficial.jpg">
+                        <div class="card-options-icon options-icon">
                             <i class="fas fa-user-injured"></i>
                             <i class="fas fa-clipboard-list"></i>
                         </div>
@@ -76,8 +71,7 @@
                 </div> 
                 <div class="col-xl-3 col-lg-3 col-md-6">
                     <div class="card-menu text-center card-options">
-                        <div class="card-options_img">
-                            <img class="options-img " src="imagemOficial.jpg">
+                        <div class="card-options-icon options-icon">
                             <div><i class="fas fa-notes-medical"></i></div>
                         </div>
                         <h4 class="card-options_title"><a
@@ -86,8 +80,7 @@
                 </div> 
                 <div class="col-xl-3 col-lg-3 col-md-6">
                     <div class="card-menu text-center card-options">
-                        <div class="card-options_img">
-                            <img class="options-img " src="imagemOficial.jpg">
+                        <div class="card-options-icon options-icon">
                             <i class="fas fa-user-nurse"></i>
                         </div>
                         <h4 class="card-options_title"><a
@@ -96,8 +89,7 @@
                 </div> 
                 <div class="col-xl-3 col-lg-3 col-md-6">
                     <div class="card-menu text-center card-options">
-                        <div class="card-options_img">
-                            <img class="options-img " src="imagemOficial.jpg">
+                        <div class="card-options-icon options-icon">
                             <i class="fas fa-syringe"></i>
                         </div>
                         <h4 class="card-options_title"><a
@@ -108,45 +100,3 @@
             </div>  
         </div>
   </body>
-
-
-  
-  <div><i class="fas fa-user-plus">Add</i></div>
-  <div><i class="fas fa-user-edit">editar</i></div>
-  <div><i class="fas fa-user-minus">Remover</i></div>
-
-  <div><i class="fas fa-edit"></i></div>
-  <div><i class="fas fa-database"></i></div>
-  <div><i class="fas fa-cogs"></i></div>
-
-  <div><i class="fas fa-list"></i></div>
-
-  
-  <div><i class="fas fa-angle-down"></i></div>
-  <div><i class="fas fa-bars"></i></div>
-  <div><i class="fas fa-briefcase-medical"></i></div>
-  <div><i class="fas fa-calendar-plus"></i>cadastrar agendamento</div>
-  <div><i class="fas fa-capsules"></i>medicamento</div>
-  <div><i class="fas fa-check-square"></i></div>
-  <div><i class="fas fa-clipboard-check"></i></div>
-  
-  <div><i class="fas fa-clipboard-list"></i></div>
-  <div><i class="fas fa-edit"></i></div>
-  <div><i class="fas fa-file-download"></i></div>
-  <div><i class="fas fa-file-contract"></i></div>
-  <div><i class="fas fa-file-medical"></i></div>
-  <div><i class="fas fa-file-medical-alt"></i></div>
-  <div><i class="fas fa-first-aid"></i></div>
-  <div><i class="fas fa-hand-holding-medical"></i></div>
-  <div><i class="fas fa-hospital-user"></i></div>
-  notes-medical
-  user-nurse
-  user-md
-  
-  users
-  <div><i class="fas fa-syringe"></i></div>
-  <div><i class="fas fa-user-md"></i></div>
-  <div><i class="fas fa-user-nurse"></i></div>
-  <div><i class="fas fa-notes-medical"></i></div>
-  <div><i class="fas fa-"></i></div>
-  <i class="fas fa-file-alt"></i>  

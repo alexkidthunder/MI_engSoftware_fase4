@@ -30,6 +30,7 @@
     letter-spacing: 1px;
 }
 #header .user i{
+    padding-top: 15px;
     padding-left: 20px;
     font-size:45px;
     color:black;

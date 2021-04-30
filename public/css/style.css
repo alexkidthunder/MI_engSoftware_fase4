@@ -302,21 +302,25 @@ textarea:focus, input:focus {
 .card-options_title a:hover, .card-options_title a:focus {
     color: #0D6EFD;
 }
-.card-options_img {
+.card-options-icon {
     position: relative;
     margin: 10px 0 10px 0;
 }
 
-.card-options_img .options-img {
+.card-options-icon .options-icon {
     width: 50px;
     height: 50px;
 }
 
-.options-img {
-    width: 50px;
-    height: 50px
+.options-icon i {
+    padding-top: 10px;
+    font-size: 45px;
+    color:#007bff;
 }
 
+.icon-list i{
+    font-size: 25px;
+}
 /*------------ Cadastro------------*/
 
 #register input, #register select{
