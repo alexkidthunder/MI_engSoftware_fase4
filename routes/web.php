@@ -21,6 +21,8 @@ use Illuminate\Support\Facades\Route;
 /*------------ Rota para Index ------------------------ */
 Route::get('/', [HomeController::class,'index'])->name('index');
 
+/*------------ Rota para Primeiro Acesso ------------------------ */
+Route::get('/primeiroAcesso', [HomeController::class,'primeiroAcesso'])->name('primeiroAcesso');
 /*------------ Rota para login ------------------------ */
 Route::post('index/menu', [HomeController::class,'login']);
 

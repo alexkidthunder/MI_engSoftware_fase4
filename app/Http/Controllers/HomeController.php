@@ -44,6 +44,10 @@ class HomeController extends Controller
         session_destroy();
         return view('login');
     }
+    
+    public function primeiroAcesso(){
+        return view('primeiroAcesso');
+    }
 
     public function sessaoAdmin(){
         session_start();
