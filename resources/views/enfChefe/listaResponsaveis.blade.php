@@ -18,7 +18,14 @@
     <!----------Hearder------------>
     @include('layouts.navbar')
     <!----------End Hearder-------->
-   
+        <div id="tela-icone"> <!-- Icone de Download Em Telas -->
+            <form class="download-icone">
+                <button>
+                    <i class="fas fa-download"></i>
+                </button>
+            </form>
+        </div>
+        
         <div class="container-1">
     
             <h1>RESPONSÁVEIS PELA APLICAÇÃO DE MEDICAMENTOS</h1>

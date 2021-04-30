@@ -18,9 +18,17 @@
     <!----------Hearder------------>
     @include('layouts.navbar')
     <!----------End Hearder-------->
+        <div id="tela-icone"> <!-- Icone de Download Em Telas -->
+            <form class="download-icone">
+                <button>
+                    <i class="fas fa-download"></i>
+                </button>
+            </form>
+        </div>
+
         <div class="container-1" id="patientList">
             <!--ENFERMEIRO, ENFERMEIRO CHEFE E ESTAGIARIO -->
-
+<!---Botao de donwload ----->
             <h1>PACIENTES E PRONTUÁRIOS</h1>
             <div class="content-center">
                 <form>
