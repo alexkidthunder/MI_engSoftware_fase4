@@ -25,7 +25,7 @@
         
         <div class="container-1"> 
             
-        <button class="btn-subtitle", id="action-btn3">Dados de Paciente</button>
+        <button class="btn-blue", id="action-btn3">Dados de Paciente</button>
             <div class="box", id= "container-teste3">
                 <form id="register">
                     <div class="row">
@@ -81,7 +81,7 @@
                     </div>
                 </form>
             </div>
-                <button class="btn-subtitle", id="action-btn2">Mostrar Agendamento</button>
+                <button class="btn-blue", id="action-btn2">Mostrar Agendamento</button>
                     <div class="box-agendamento", id = "container-teste2">
                     <div class="container-box">
                         <div class="row">
@@ -133,7 +133,7 @@
                     </div>
                 </div>
 
-                <button class="btn-subtitle", id="action-btn">Mostrar Medicações Ministradas</button>
+                <button class="btn-blue", id="action-btn">Mostrar Medicações Ministradas</button>
                 <div class="box-agendamento", id = "container-teste">
                     <div class="row">
                         <div class="col-lg-2 text-center">
@@ -170,7 +170,7 @@
                     </div>
                 </div>    
 
-                <button class="btn-subtitle", id="action-btn4">Ocorrencias</button>
+                <button class="btn-blue", id="action-btn4">Ocorrencias</button>
             <div class="box-agendamento", id= "container-teste4">
                 <form id="register">
                     <div class="row">
@@ -236,7 +236,7 @@
                 </form>
             </div>
             
-            <button class="btn-subtitle", id="action-btn5">CIDs</button>
+            <button class="btn-blue", id="action-btn5">CIDs</button>
             <div class="box-agendamento", id= "container-teste5">
                 <form id="register">
                     <div class="row">
