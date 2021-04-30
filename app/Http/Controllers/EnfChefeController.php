@@ -34,4 +34,8 @@ class EnfChefeController extends Controller
         return view('/enfChefe/agendamentos');
     }
 
+    public function prontuario(){
+        return view('/enfChefe/prontuario');
+    }
+
 }
