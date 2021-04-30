@@ -18,10 +18,10 @@
           <h2><a href="{{ route('editarPerfil') }}">NOME FUNCIONÁRIO</a></h2>
         </div>
       </div>
-    
+      
       <div class="d-flex align-items-center pr-5">    
         <nav class="nav d-none d-lg-block">
-          <li><a href="#"class="user"> <i class="fas fa-sign-out"></i></a></li>
+          <li><a href="#"class="logout-icon"> <i class="fas fa-sign-out-alt"></i></a></li>
           </ul>
         </nav>
         

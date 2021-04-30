@@ -35,10 +35,15 @@
     color:black;
 }
 
-#header .user i:hover{
-    color: #0D6EFD;
+#header .logout-icon i{
+    padding-top: 15px;
+    font-size:35px;
+    color:black;
 }
 
+#header .user i:hover, #header .logout-icon i:hover{
+    color: #0D6EFD;
+}
 
 .nav{
     justify-content:flex-end; 
