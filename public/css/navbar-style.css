@@ -15,7 +15,7 @@
 }
 
 #header h2{
-    padding: 0 20px;
+    padding: 0 20px 0 0;
     color: #0D6EFD;
 }
 
@@ -28,18 +28,16 @@
     font-weight: 400;
     letter-spacing: 1px;
 }
-#header .user img{
+#header .user i{
+    padding-top: 15px;
     padding-left: 20px;
+    font-size:45px;
+    color:black;
 }
 
-
-
-
-
-
-
-
-
+#header .user i:hover{
+    color: #0D6EFD;
+}
 
 
 .nav{

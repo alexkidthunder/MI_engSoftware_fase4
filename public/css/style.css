@@ -248,6 +248,9 @@ textarea:focus, input:focus {
     color: #0D6EFD;
 }
 
+.icons-style i:hover{
+    color: #0D6EFD;
+}
 /*------------ Icone de download  ------------*/
 .download-icone button i{
     color:#0D6EFD;
