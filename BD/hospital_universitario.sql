@@ -104,7 +104,7 @@ CREATE TABLE permissao_cargo (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE permissoes (
-  id int(10) NOT NULL,
+  id int(10) NOT NULL ,
   nome varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -156,7 +156,7 @@ ALTER TABLE agendamento_prontuario
   ADD KEY Codigo_Agendamento (Codigo_Agendamento); /* Seleciona o campo Codigo_agendamento como uma chave*/
 
 ALTER TABLE cargo
-  ADD PRIMARY KEY (id); /*seleciona o id como chave primaria*/  
+  ADD PRIMARY KEY (id); /*seleciona o id como chave primaria*/
 
 ALTER TABLE cid
   ADD PRIMARY KEY (Id), /* Seleciona o campo ID como chave primaria*/
@@ -187,10 +187,12 @@ ALTER TABLE ocorrencias
 ALTER TABLE permissao_cargo
   ADD PRIMARY KEY (id),
   ADD KEY permissao_id (permissao_id),
-  ADD KEY cargo_id (cargo_id);
+  ADD KEY cargo_id (cargo_id),
+  MODIFY COLUMN `id` int(10) NOT NULL AUTO_INCREMENT FIRST; /*Faz com que o campo Id tenha auto incremento a partir do primeiro*/
 
 ALTER TABLE permissoes
-  ADD PRIMARY KEY (id); /*seleciona o id como chave primaria*/  
+  ADD PRIMARY KEY (id), /*seleciona o id como chave primaria*/
+  MODIFY COLUMN `id` int(10) NOT NULL AUTO_INCREMENT FIRST; /*Faz com que o campo Id tenha auto incremento a partir do primeiro*/
 
 ALTER TABLE prontuarios
   ADD PRIMARY KEY (ID), /* Seleciona o campo ID como chave primaria*/
