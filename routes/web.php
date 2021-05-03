@@ -19,27 +19,38 @@ use Illuminate\Support\Facades\Route;
 */
 
 /*------------ Rota para Index ------------------------ */
+
 Route::get('/', [HomeController::class,'index'])->name('index');
 
+/*------------ Rota para Primeiro Acesso ------------------------ */
+
+Route::get('/primeiroAcesso', [HomeController::class,'primeiroAcesso'])->name('primeiroAcesso');
+
 /*------------ Rota para login ------------------------ */
+
 Route::post('index/menu', [HomeController::class,'login']);
 
 /*------------ Rota para sessao ------------------------ */
+
 Route::post('/sessaoAdmin', [HomeController::class,'sessaoAdmin'])->name('sessaoAdmin');
 Route::post('/sessaoEnf', [HomeController::class,'sessaoEnf'])->name('sessaoEnf');
 Route::post('/sessaoEst', [HomeController::class,'sessaoEst'])->name('sessaoEst');
 Route::post('/sessaoEnfChef', [HomeController::class,'sessaoEnfChef'])->name('sessaoEnfChef');
 
 /*-------------------Rota para logout----------------- */
+
 Route::get('/logout', [HomeController::class,'logout'])->name('logout');
 
 /*--------- Rota para login caso esqueceu senha ---------- */
+
 Route::get('/esqueciSenha',[HomeController::class,'esqueciSenha'])->name('esqueciSenha');
 
 /*------------ Rota para o perfil ------------------------ */
+
 Route::get('/editarPerfil', [HomeController::class,'editPerfil'])->name('editarPerfil');
 
 /*------------ Rotas do administrador ------------------ */
+
 Route::get('/menu', [AdminController::class,'menu'])->name('menu');
 Route::get('/log', [AdminController::class,'log'])->name('log');
 Route::get('/editarAtribuicao', [AdminController::class,'atribuicao'])->name('editarAtribuicao');
@@ -50,13 +61,17 @@ Route::get('/removerUsuario', [AdminController::class,'remocao'])->name('remover
 Route::get('/buscarUsuario', [AdminController::class,'busca'])->name('buscarUsuario');
 
 Route::post('/cadastrarUsuario',[AdminController::class,'salvarUsuario'])->name('salvarUsuario'); //rota para salvar usuario no banco de dados, capturar dados
+
 /*------------ Rota para Paciente------------------------ */
+
 Route::get('/listaPacientes', [HomeController::class,'listaPacientes'])->name('pacientes');
 
 /*------------ Rota para cadastro de paciente ------------------------ */
+
 Route::get('/cadastroPaciente', [HomeController::class,'cadastroPaciente'])->name('cadastroPaciente');
 
 /*------------ Rota para agendamentos ------------------------ */
+
 Route::get('/agendamentosRealizados', [HomeController::class,'agendamentosRealizados'])->name('agendamentosRealizados');
 Route::get('/meusAgendamentos', [HomeController::class,'meusAgendamentos'])->name('meusAgendamentos');
 Route::get('/agendamentos',[HomeController::class,'agendamentos'])->name('agendamentos');
@@ -70,6 +85,7 @@ Route::get('/cadastroMedicamento', [EnfChefeController::class,'cadastroMedicamen
 Route::get('/cadastroAgendamento', [EnfChefeController::class,'cadastroAgendamento'])->name('cadastroAgendamento');
 Route::get('/listaAgendamentos',[EnfChefeController::class,'listaAgendamentos'])->name('listaAgendamentos');
 Route::get('/listaResponsaveis',[EnfChefeController::class,'responsaveis'])->name('responsaveis');
+Route::get('/prontuario',[EnfChefeController::class,'prontuario'])->name('prontuario');
 
 /*------------ Rotas do enfermeiro -------------------*/
 

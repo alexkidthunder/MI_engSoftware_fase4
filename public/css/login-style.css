@@ -40,8 +40,8 @@
     width: 95%;
     height: 15px;
     padding: 5px 10px;
-    background:#ffff;
-    border: 1px solid #ffff;
+    background:white;
+    border: 2px solid #ffff;
     margin-bottom: 10px;
 }
 
@@ -84,4 +84,13 @@
 #login .enter  button:hover {
     background-image: linear-gradient(to right, rgb(199, 218, 240), rgb(14, 122, 247));
     color: black;
+}
+
+#primeiro-acesso {
+    background-image: radial-gradient(circle, #90bdff, #85b6ff, #7ab0ff, #6fa9ff, #64a2ff);
+}
+
+#primeiro-acesso .enter  button:hover{
+    background-image: none;
+    background-color: rgb(206, 229, 255);
 }

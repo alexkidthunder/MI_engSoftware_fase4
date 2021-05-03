@@ -249,6 +249,10 @@ textarea:focus, input:focus {
 }
 
 /*------------ Icone de download  ------------*/
+.download-icone{
+    float: right;
+}
+
 .download-icone button i{
     color:#0D6EFD;
     cursor:pointer;
@@ -257,6 +261,14 @@ textarea:focus, input:focus {
 
 .download-icone button i:hover{
     color: #02A7F0;
+}
+
+#tela-icone .download-icone{
+    margin-top: 10px;
+    margin-inline: 30px;
+}
+#tela-icone .download-icone button i{
+    font-size: 45px;
 }
 /*------------ Menu  ------------*/
 
