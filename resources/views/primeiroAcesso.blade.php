@@ -7,7 +7,9 @@
     <title>Primeiro Acesso</title>
 
     <link href="{{ ('css/login-style.css') }}" rel="stylesheet"> 
-
+    
+    <!-- Favicon -->
+    <link href="{{ asset('img/favicon.png') }}" rel="icon">
 </head>
 <body class="body-login">
 

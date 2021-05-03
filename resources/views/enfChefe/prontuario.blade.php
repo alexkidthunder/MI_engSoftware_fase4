@@ -11,6 +11,8 @@
     <link href="{{ 'bootstrap/css/bootstrap.css' }}" rel="stylesheet">
     <script src= "js/scriptprontuario.js" defer></script>
 
+    <!-- Favicon -->
+    <link href="{{ asset('img/favicon.png') }}" rel="icon">
     
     <title>PRONTÚARIO</title>
 </head>
