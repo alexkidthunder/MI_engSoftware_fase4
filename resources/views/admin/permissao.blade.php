@@ -18,58 +18,238 @@
     <!----------End Hearder-------->
 
     <h1>ALTERAR PERMISSÕES</h1>
-        <div class="container-1">
+        <div class="container-80">
             <div class="box">
                 <!--Buscar funcionário-->
                 <div class="content-center">
-                    <h3>BUSCAR FUNCIONÁRIO</h3>
-                    <form class="search-bar">
-                        <input name="cpf_user" id="cpf_user" type="text" placeholder="Informe o CPF" required maxlength="11" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
-                        <button type="submit">
-                            <i class="fas fa-search"></i>
-                        </button>
+                    <h3>SELECIONAR TIPO DE CARGO</h3>
+                    <form>
+                        <select id="atribuicao" name="atribuicao">
+                            <option value="admin">Administrador</option>
+                            <option value="enfermeiroChefe">Enfermeiro chefe</option>
+                            <option value="enfermeiro">Enfermeiro</option>
+                            <option value="estagiario">Estagiário</option>
+                        </select>
                     </form>
                 </div>
 
-                 <!--Infomações do funcionário funcionário-->
-                 <h3>Funcionário</h3> <br>
-                    <div class="box-gray">
-                        Marcos Oliveira Santana
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <div class="box-gray">
-                                CPF: 011.988.999-00
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="box-gray">
-                                COREN: 0123456 BA
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="box-gray">
-                                Enfermeiro chefe
-                            </div>
-                        </div>
-                    </div>
-            </div>
-
             <!---------------- Alterar permissões ---------------->
             <div class="box" id="permission">
-                    <h3 class="content-center">PERMISSÕES</h3> <br>
-                    <div class="row">
-                        <!--Inicio da permissão-->
-                        <div class="col-lg-3 content-center">
-                            <input type="checkbox"><br>
-                            <label>Cadastrar Paciente</label>
+                    <form>
+                        <h3 class="content-center">PERMISSÕES DO "inserir o valor selecionado" </h3> <br>
+                        <!-- ========== Linha 1 (REFERENTE AO ADM) ========== --> 
+                        <div class="row">
+                            <!--Inicio da permissão-->
+                            <div class="col-lg-13 content-center">
+                                <input type="checkbox"><br>
+                                <label>Cadastro de funcionário</label>
+                            </div>
+                            <!--Fim da permissão-->
+
+                            <!--Inicio da permissão-->
+                            <div class="col-lg-13 content-center">
+                                <input type="checkbox"><br>
+                                <label>Remoção de funcionário</label>
+                            </div>
+                            <!--Fim da permissão-->
+
+                            <!--Inicio da permissão-->
+                            <div class="col-lg-13 content-center">
+                                <input type="checkbox"><br>
+                                <label>Alterar atribuição do funcionário</label>
+                            </div>
+                            <!--Fim da permissão-->
+
+                            <!--Inicio da permissão-->
+                            <div class="col-lg-13 content-center">
+                                <input type="checkbox"><br>
+                                <label>Editar permissões de cargo</label>
+                            </div>
+                            <!--Fim da permissão-->
+
+                            <!--Inicio da permissão-->
+                            <div class="col-lg-13 content-center">
+                                <input type="checkbox"><br>
+                                <label>Visualizar permissões de cargo</label>
+                            </div>
+                            <!--Fim da permissão-->
                         </div>
-                        <!--Fim da permissão-->
-                    </div>
-                    
-                    <div>
-                        <button type="submit" class="container-button btn-white">Alterar</button>
-                    </div>  
+                        <!-- ========== fim da linha 1 ========== --> 
+
+                        <!-- ========== Linha 2 ========== --> 
+                        <div class="row">
+                            <!--Inicio da permissão-->
+                            <div class="col-lg-13 content-center">
+                                <input type="checkbox"><br>
+                                <label>Cadastro de plantonista</label>
+                            </div>
+                            <!--Fim da permissão-->
+
+                            <!--Inicio da permissão-->
+                            <div class="col-lg-13 content-center">
+                                <input type="checkbox"><br>
+                                <label>Remoção de plantonista</label>
+                            </div>
+                            <!--Fim da permissão-->
+
+                            <!--Inicio da permissão-->
+                            <div class="col-lg-13 content-center">
+                                <input type="checkbox"><br>
+                                <label>Cadastro de medicamentos</label>
+                            </div>
+                            <!--Fim da permissão-->
+
+                            <!--Inicio da permissão-->
+                            <div class="col-lg-13 content-center">
+                                <input type="checkbox"><br>
+                                <label>Cadastro de CID</label>
+                            </div>
+                            <!--Fim da permissão-->
+
+                            <!--Inicio da permissão-->
+                            <div class="col-lg-13 content-center">
+                                <input type="checkbox"><br>
+                                <label>Remoção de CID</label>
+                            </div>
+                            <!--Fim da permissão-->
+                        </div>
+                        <!-- ========== fim da linha 2 ========== --> 
+
+                        <!-- ========== Linha 3 ========== --> 
+                        <div class="row">
+                            <!--Inicio da permissão-->
+                            <div class="col-lg-13 content-center">
+                                <input type="checkbox"><br>
+                                <label>Cadastro de agendamento</label>
+                            </div>
+                            <!--Fim da permissão-->
+
+                            <!--Inicio da permissão-->
+                            <div class="col-lg-13 content-center">
+                                <input type="checkbox"><br>
+                                <label>Alocar responsável por agendamento</label>
+                            </div>
+                            <!--Fim da permissão-->
+
+                            <!--Inicio da permissão-->
+                            <div class="col-lg-13 content-center">
+                                <input type="checkbox"><br>
+                                <label>Listagem de plantonistas</label>
+                            </div>
+                            <!--Fim da permissão-->
+
+                            <!--Inicio da permissão-->
+                            <div class="col-lg-13 content-center">
+                                <input type="checkbox"><br>
+                                <label>Listagem de agendamentos</label>
+                            </div>
+                            <!--Fim da permissão-->
+
+                            <!--Inicio da permissão-->
+                            <div class="col-lg-13 content-center">
+                                <input type="checkbox"><br>
+                                <label>Responsáveis por aplicação de medicamentos</label>
+                            </div>
+                            <!--Fim da permissão-->
+                        </div>
+                        <!-- ========== fim da linha 3 ========== --> 
+
+                        <!-- ========== Linha  ========== --> 
+                        <div class="row">
+                            <!--Inicio da permissão-->
+                            <div class="col-lg-13 content-center">
+                                <input type="checkbox"><br>
+                                <label>Cadastro de pacientes</label>
+                            </div>
+                            <!--Fim da permissão-->
+
+                            <!--Inicio da permissão-->
+                            <div class="col-lg-13 content-center">
+                                <input type="checkbox"><br>
+                                <label>Visualizar pacientes e prontuários</label>
+                            </div>
+                            <!--Fim da permissão-->
+
+                            <!--Inicio da permissão-->
+                            <div class="col-lg-13 content-center">
+                                <input type="checkbox"><br>
+                                <label>Acesso ao prontuário do paciente</label>
+                            </div>
+                            <!--Fim da permissão-->
+
+                            <!--Inicio da permissão-->
+                            <div class="col-lg-13 content-center">
+                                <input type="checkbox"><br>
+                                <label>Editar informações pessoais do paciente</label>
+                            </div>
+                            <!--Fim da permissão-->
+
+                            <!--Inicio da permissão-->
+                            <div class="col-lg-13 content-center">
+                                <input type="checkbox"><br>
+                                <label>Listagem de medicamentos para preparação</label>
+                            </div>
+                            <!--Fim da permissão-->
+                        </div>
+                        <!-- ========== fim da linha ========== --> 
+
+                        <!-- ========== Linha  ========== --> 
+                        <div class="row">
+                            <!--Inicio da permissão-->
+                            <div class="col-lg-13 content-center">
+                                <input type="checkbox"><br>
+                                <label>Visualização de agendamento realizados pelo funcionário</label>
+                            </div>
+                            <!--Fim da permissão-->
+
+                            <!--Inicio da permissão-->
+                            <div class="col-lg-13 content-center">
+                                <input type="checkbox"><br>
+                                <label>Visualização de agendamento alocados para o funcionário</label>
+                            </div>
+                            <!--Fim da permissão-->
+
+                            <!--Inicio da permissão-->
+                            <div class="col-lg-13 content-center">
+                                <input type="checkbox"><br>
+                                <label>Aplicação de medicamentos</label>
+                            </div>
+                            <!--Fim da permissão-->
+
+                            <!--Inicio da permissão-->
+                            <div class="col-lg-13 content-center">
+                                <input type="checkbox"><br>
+                                <label>Nomear-se responsável por preparar a aplicação</label>
+                            </div>
+                            <!--Fim da permissão-->
+
+                            <!--Inicio da permissão-->
+                            <div class="col-lg-13 content-center">
+                                <input type="checkbox"><br>
+                                <label>Dar baixa no agendamento</label>
+                            </div>
+                            <!--Fim da permissão-->
+
+                            <!--Inicio da permissão-->
+                            <div class="col-lg-13 content-center">
+                                <input type="checkbox"><br>
+                                <label>Visualizar ocorrências do paciente</label>
+                            </div>
+                            <!--Fim da permissão-->
+
+                            <!--Inicio da permissão-->
+                            <div class="col-lg-13 content-center">
+                                <input type="checkbox"><br>
+                                <label>Registro de ocorrências</label>
+                            </div>
+                            <!--Fim da permissão-->
+                        </div>
+                        <!-- ========== fim da linha ========== --> 
+
+                        <div>
+                            <button type="submit" class="container-button btn-white">Alterar</button>
+                        </div>  
+                    </form>
             </div>
         </div>
   </body>
