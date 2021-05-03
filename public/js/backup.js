@@ -15,10 +15,13 @@ agendaBtn.addEventListener("click",function(){
 
 alwaysCheck.addEventListener("click",function(){
 
-    var dataDiv = document.getElementById("dataDiv")
+    var dataRequired = document.getElementById("date");
+    var dataDiv = document.getElementById("dataDiv");
     if(dataDiv.style.display ==="none"){
         dataDiv.style.display = "";
+        dataRequired.setAttribute("required", "");
     } else {
         dataDiv.style.display = "none";
+        dataRequired.removeAttribute("required");
     }
 })
