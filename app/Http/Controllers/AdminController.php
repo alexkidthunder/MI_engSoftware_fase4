@@ -61,69 +61,47 @@ class AdminController extends Controller
     
     public function salvarUsuario(Request $request){
         
-        //busca o cpf
-        $existeCPF = DB::table('usuarios')->where('CPF', $request->fcpf)->first();    
-           
+   
+        //validação de erro de entrada
+        $validator = Validator::make($request->all(), [     
+            'fcpf' => 'required|min:14|max:14',
+        ]);
+
+        //redirecionando o usuario caso ocorra o erro
+        if ($validator->fails()) {
+            return redirect()->route('salvarUsuario')->with('error', "Digite um CPF válido!!");   
+        }    
+
+        //busca o cpf no banco de dados
+        $existeCPF = DB::select('select * from usuarios where CPF = ?', [$request->fcpf]);
+
         //se já existir o cpf
         if($existeCPF)   
              return redirect()->route('salvarUsuario')->with('error', "CPF já existente!");
        
-        //validação de erro
-        $validator = Validator::make($request->all(), [     
-            'CPF' => 'required|min:14|max:14',
-       ]);
-        
-       //redirecionando o usuario após erro 
-        if ($validator->fails()) {
-           return redirect()->route('salvarUsuario')->with('error', "Digite um CPF válido!!");   
-         }      
-         
-        //se não existir cpf, cria usuário
-         Usuario::Create([
-            'CPF' => $request->fcpf,
-            'Nome' => $request->fnome,
-            'Senha' => '12345',                                 //exemplo de senha
-            //'Senha' => bcrypt($request->fsenha);               // PARA ALTERAR A SENHA, NÃO SALVAR COMO RECEBE
-            //Hash::make('password'),                                               VERIFICAR TAMANHO DE SENHA
-            'Email' => $request->femail,
-            'Data_Nasc' => $request->fnascimento,
-            'Atribuicao' => $request->fatribui,
-            'Sexo' => $request->fsexo,
-            'Ip' => $request->ip(), 
-            ]);        
-         
+        //se não existir: insere na tabela usuários
+        DB::insert('insert into usuarios (CPF, Nome, Senha, Email, Data_Nasc, Atribuicao, Sexo, Ip) values (?, ?, ?, ?, ?, ?, ?, ?)',
+             [$request->fcpf, $request->fnome,'12345', $request->femail, $request->fnascimento, $request->fatribui,$request->fsexo,$request->ip()]);
+
         //Adiciona usuário em tabelas correspondentes ao cargo
         if ($request->fatribui == 'Administrador'){
-            Administrador::Create([
-                'CPF' => $request->fcpf,
-            ]);
+            DB::insert('insert into administradores (CPF) values (?)', [$request->fcpf]);
         }else{
-            Responsavel::Create([
-                'CPF' => $request->fcpf,
-            ]);
-            
+            DB::insert('insert into responsaveis (CPF) values (?)', [$request->fcpf]);
+
             if ($request->fatribui == 'Enfermeiro Chefe') {
-                Enfermeiro_chefe::Create([
-                    'CPF' => $request->fcpf,
-                    'COREN' => '01-AC00024',   //TROCAR ISSO
-                ]);
+                DB::insert('insert into enfermeiros_chefes (CPF,COREN) values (?,?)', [$request->fcpf,'BA 123.456.789']);
             }
             else if ($request->fatribui == 'Enfermeiro') {
-                Enfermeiro::Create([
-                    'CPF' => $request->fcpf,
-                    'COREN' => '01-SP00100',   //TROCAR ISSO
-                    'Plantao' => '1',           //TROCAR ISSO
-                ]); 
+                DB::insert('insert into enfermeiros (CPF,COREN,Plantao) values (?,?,?)', [$request->fcpf, 'BA 123.456.789','0']);
             }else if ($request->fatribui == 'Estagiario') {
-                Estagiario::Create([
-                    'CPF' => $request->fcpf,
-                    'Plantao' => '0',           //TROCAR ISSO
-                ]);
+                DB::insert('insert into estagiarios (CPF,Plantao) values (?,?)', [$request->fcpf,'0']);
             }   
         }         
          
         return redirect()->route('salvarUsuario')->with('success','Usuário cadastrado com sucesso!!');
      }
+
 
     public function busca(Request $request)
     {
