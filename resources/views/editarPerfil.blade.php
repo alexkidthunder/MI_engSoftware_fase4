@@ -30,40 +30,47 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <label>Nome</label> <br>
-                                <input id="fnome" name="fnome" type="text" maxlength="50" required readonly>
+                                <input disabled id="fnome" name="fnome" type="text" maxlength="50" required>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-lg-4">
                                 <label>Data de Nascimento</label> <br>
-                                <input id="fnascimento" name="fnascimento" type="date" required readonly>
+                                <input disabled id="fnascimento" name="fnascimento" type="date" required>
                             </div>
                             <div class="col-lg-4">
                                 <label>CPF</label> <br>
-                                <input id="fcpf" name="fcpf" type="text" required readonly maxlength="14"
+                                <input disabled id="fcpf" name="fcpf" type="text" required maxlength="14"
                                     pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
                             </div>
                             <div class="col-lg-4">
                                 <label>Sexo</label> <br>
-                                <input id="fsexo" name="fsexo" type="text" value="feminino" required readonly>
+                                <div class="row no-gutters">
+                                    <div class="col-lg border-m content-center">
+                                        <input type="radio" name="fsexo" value="Masculino" id="fmasc" disabled>Masculino</input> <!--Usar o checked para deixar marcado-->
+                                    </div>
+                                    <div class="col-lg border-f content-center">
+                                        <input type="radio" name="fsexo" value="Feminino" id="ffem" disabled>Feminino</input> <!--Usar o checked para deixar marcado-->
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-lg-8">
                                 <label>Email</label> <br>
-                                <input id="femail" name="femail" type="email" maxlength="50" required readonly>
+                                <input disabled id="femail" name="femail" type="email" maxlength="50" required>
                             </div>
                             <div class="col-lg-4" id="atribuiDiv">
                                 <label for="fatribui">Atribuição</label>
-                                <input id="fatribui" name="fatribui" type="text" value="Enfermeiro" readonly> <!--Alterar o Value de acordo com a atribuição-->
+                                <input disabled id="fatribui" name="fatribui" type="text" value="Enfermeiro"> <!--Alterar o Value de acordo com a atribuição-->
                             </div>
                         </div>
                         <div class="row"> 
                             <div class="col-lg-4" id="corenDiv" style="display: none;"> <!--Mostrar isso somente se for Enfermeiro/Chefe-->
                                 <label for="fcoren">Coren</label>
-                                <input id="fcoren" name="fcoren" type="text" value="Coren do Usuario" readonly>
+                                <input disabled id="fcoren" name="fcoren" type="text" value="Coren do Usuario">
                             </div>
                         </div>
                         <div id="edit_div" class="row">
