@@ -110,7 +110,7 @@ CREATE TABLE permissao_cargo (
 
 CREATE TABLE permissoes (
   id int(10) NOT NULL ,
-  nome varchar(50) NOT NULL
+  nome varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Cria tabela de pacientes*/
