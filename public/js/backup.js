@@ -1,6 +1,4 @@
 var agendaBtn = document.getElementById("agenBack");
-var alwaysCheck = document.getElementById("alwaysCheck");
-
 
 agendaBtn.addEventListener("click",function(){
 
@@ -12,6 +10,9 @@ agendaBtn.addEventListener("click",function(){
     }
 
 })
+
+
+var alwaysCheck = document.getElementById("alwaysCheck");
 
 alwaysCheck.addEventListener("click",function(){
 

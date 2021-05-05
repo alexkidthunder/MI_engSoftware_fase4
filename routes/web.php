@@ -94,3 +94,7 @@ Route::get('/menuEnfermeiro', [EnfController::class,'menu'])->name('menu-e');
 /*------------ Rotas do estagiário -------------------*/
 
 Route::get('/menuEstagiario', [EstagiarioController::class,'menu'])->name('menu-es');
+
+/*------------ Rotas do medicamento -------------------*/
+
+Route::get('/listaMedicamento', [HomeController::class,'listaMedicamento'])->name('listaMedicamento');
