@@ -46,14 +46,7 @@
                             </div>
                             <div class="col-lg-4">
                                 <label>Sexo</label> <br>
-                                <div class="row no-gutters">
-                                    <div class="col-lg border-m content-center">
-                                        <input type="radio" name="fsexo" value="Masculino" id="fmasc" disabled>Masculino</input> <!--Usar o checked para deixar marcado-->
-                                    </div>
-                                    <div class="col-lg border-f content-center">
-                                        <input type="radio" name="fsexo" value="Feminino" id="ffem" disabled>Feminino</input> <!--Usar o checked para deixar marcado-->
-                                    </div>
-                                </div>
+                                <input id="fsexo" name="fsexo" type="text" value="feminino" required readonly>
                             </div>
                         </div>
 
@@ -68,7 +61,7 @@
                             </div>
                         </div>
                         <div class="row"> 
-                            <div class="col-lg" id="corenDiv" style="display: none;"> <!--Mostrar isso somente se for Enfermeiro/Chefe-->
+                            <div class="col-lg-4" id="corenDiv" style="display: none;"> <!--Mostrar isso somente se for Enfermeiro/Chefe-->
                                 <label for="fcoren">Coren</label>
                                 <input id="fcoren" name="fcoren" type="text" value="Coren do Usuario" readonly>
                             </div>
