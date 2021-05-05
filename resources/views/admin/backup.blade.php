@@ -32,26 +32,28 @@
                 <div class="row hide" id="AgendamentoBackup" style="display: none;">
                     <div class="box-backup item-center">
                         <h4>Agendamento de Backup</h4>
-                        <div class="row">
-                            <div class="col-lg">
-                                <label for="fhorario">Horario</label><br>
-                                <input name="fhorario" type="time" id="fhorario">
+                        <form>
+                            <div class="row">
+                                <div class="col-lg">
+                                    <label for="fhorario">Horario</label><br>
+                                    <input name="fhorario" type="time" id="fhorario" required>
+                                </div>
+                                <div class="col-lg">
+                                    <label for="alwaysCheck">Automático</label> <br>
+                                    <input type="checkbox" name="alwaysCheck" id="alwaysCheck" checked>
+                                </div>
                             </div>
-                            <div class="col-lg">
-                                <label for="alwaysCheck">Automático</label> <br>
-                                <input type="checkbox" name="alwaysCheck" id="alwaysCheck" checked>
+                            <div class="row">
+                                <div class="col-lg" id="dataDiv" style="display: none;">
+                                    <label class="label-no-margin" for="date">Data</label> <br>
+                                    <input type="date" name="date" id="date">
+                                </div>
+                                <div class="col-lg">
+                                    <label></label> <br>
+                                    <input class="btn-white"type="submit" value="Confirmar" id="confirmarBackup">
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg" id="dataDiv" style="display: none;">
-                                <label class="label-no-margin" for="date">Data</label> <br>
-                                <input type="date" name="date" id="date">
-                            </div>
-                            <div class="col-lg">
-                                <label></label> <br>
-                                <input class="btn-white"type="button" value="Confirmar" id="confirmarBackup">
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
