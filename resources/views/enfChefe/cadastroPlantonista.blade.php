@@ -9,6 +9,10 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet">
     <link href="{{ 'css/style.css' }}" rel="stylesheet">
     <link href="{{ 'bootstrap/css/bootstrap.css' }}" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link href="{{ asset('img/favicon.png') }}" rel="icon">
+    
     <title>Cadastro Plantonista</title>
 
 </head>

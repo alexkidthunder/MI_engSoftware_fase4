@@ -9,6 +9,9 @@
     <link href="{{ ('css/style.css') }}" rel="stylesheet"> 
     <link href="{{ ('bootstrap/css/bootstrap.css') }}" rel="stylesheet">
 
+    <!-- Favicons -->
+    <link href="{{ asset('img/favicon.png') }}" rel="icon">
+
     <title>Menu</title>
   </head>
   <body class="body-menu" hrfe = '/sessaoAdmin'>
