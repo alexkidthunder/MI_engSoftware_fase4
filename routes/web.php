@@ -18,9 +18,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+Route::get('/mensagens', [HomeController::class,'mensagens'])->name('mensagensphp');
+
 /*------------ Rota para Index ------------------------ */
 
 Route::get('/', [HomeController::class,'index'])->name('index');
+
+
 
 /*------------ Rota para Primeiro Acesso ------------------------ */
 
@@ -94,3 +99,7 @@ Route::get('/menuEnfermeiro', [EnfController::class,'menu'])->name('menu-e');
 /*------------ Rotas do estagiário -------------------*/
 
 Route::get('/menuEstagiario', [EstagiarioController::class,'menu'])->name('menu-es');
+
+/*------------ Rotas do medicamento -------------------*/
+
+Route::get('/listaMedicamento', [HomeController::class,'listaMedicamento'])->name('listaMedicamento');

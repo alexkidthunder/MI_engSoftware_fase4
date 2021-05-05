@@ -1,4 +1,4 @@
-$('.edit').click(function(){
+/*$('.edit').click(function(){
 
     $('.change').html(
         '<div class="change">'+
@@ -38,4 +38,78 @@ $('.edit').click(function(){
                     '</div>'
                         
     );
+}) */
+
+var nomeInp = document.getElementById('fnome');
+var fmInp = document.getElementById('fmasc');
+var ffInp = document.getElementById('ffem');
+var emailInp = document.getElementById('femail');
+
+var confBtnDiv = document.getElementById('confirm_info_div');
+var editBtnDiv = document.getElementById('edit_info_div');
+var passBtnDiv = document.getElementById('psw_info_div');
+
+var pswArea = document.getElementById('psw');
+var pflArea = document.getElementById('register');
+
+var editBnt = document.getElementById('edit_info');
+editBnt.addEventListener("click",function(){
+    editBtnDiv.style.display = "none";
+    confBtnDiv.style.display = "";
+    passBtnDiv.style.display = "";
+
+    nomeInp.removeAttribute("readonly");
+    fmInp.removeAttribute("disabled");
+    ffInp.removeAttribute("disabled");
+    emailInp.removeAttribute("readonly");
 })
+
+var confBtn = document.getElementById('confirm_info');
+confBtn.addEventListener("click",function(){
+    editBtnDiv.style.display = "";
+    confBtnDiv.style.display = "none";
+    passBtnDiv.style.display = "none";
+
+    nomeInp.setAttribute("readonly","");
+    fmInp.setAttribute("disabled","");
+    ffInp.setAttribute("disabled","");
+    emailInp.setAttribute("readonly","");
+})
+
+
+var pswInp = document.getElementById('psw_info');
+pswInp.addEventListener("click",function(){
+
+    pflArea.style.display = "none";
+    pswArea.style.display = "";
+
+})
+
+
+var backBtn = document.getElementById('fback');
+backBtn.addEventListener("click",function(){
+
+    editBtnDiv.style.display = "";
+    confBtnDiv.style.display = "none";
+    passBtnDiv.style.display = "none";
+
+    pflArea.style.display = "";
+    pswArea.style.display = "none";
+
+    nomeInp.setAttribute("readonly","");
+    fmInp.setAttribute("disabled","");
+    ffInp.setAttribute("disabled","");
+    emailInp.setAttribute("readonly","");
+})
+
+var atribuiInp = document.getElementById('fatribui');
+let corenDiv =  document.getElementById('corenDiv');
+console.log("Chegou aqui");
+if(atribuiInp.value === "Enfermeiro" || atribuiInp.value === "Enfermeiro Chefe"){
+    corenDiv.style.display = "";
+    console.log("Chegou na parte do coren");
+}
+else{
+    corenDiv.style.display = "none";
+    console.log("Passou reto");
+    }

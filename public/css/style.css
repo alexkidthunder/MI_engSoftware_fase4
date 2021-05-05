@@ -502,3 +502,45 @@ input[type=number] {
     padding: 10px 20px;
     margin-bottom: 25px;
 }
+
+
+
+/*---------- Confirmação de ação e erros ------------------ */
+
+.confirmation-content{
+    background-color: #fff;
+    border: 1px solid rgba(247, 245, 245, 0.2);
+    border-radius: 25px;
+    box-shadow: 4px 4px 4px #C8C8C8;
+    display: flex;
+    flex-direction: column;
+    width:90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    outline: 0;
+    position: relative;
+}
+.confirmation-content button{
+    margin-bottom: 0;
+}
+
+.msg-sucess, .msg-error{
+    border-radius: 10px;
+    border: 0.5px solid rgba(255, 255, 255, 0);
+    box-shadow: 3px 3px 3px #e0dede;
+    color:black;
+    font-family: "Poppins",sans-serif;
+    font-size:18px;
+    opacity: 0.9;
+    padding: 20px 10px;
+    width: 30%;
+    margin-bottom: 20px;
+}
+
+.msg-sucess{
+    background-image: linear-gradient( to right, #7fffd4, #00fa9a,#00ff7f );
+}
+
+.msg-error{
+    background-image: linear-gradient( to right, #ff6f88,#ff3353, #f50026 );
+}

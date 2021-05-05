@@ -10,6 +10,9 @@
     <link href="{{ ('css/style.css') }}" rel="stylesheet"> 
     <link href="{{ ('bootstrap/css/bootstrap.css') }}" rel="stylesheet"> 
 
+    <!-- Favicon -->
+    <link href="{{ asset('img/favicon.png') }}" rel="icon">
+    
     <title>Cadastro de Paciente</title>
 </head>
 

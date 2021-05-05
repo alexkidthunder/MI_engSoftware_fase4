@@ -9,6 +9,11 @@
     <link href="{{ 'css/style.css' }}" rel="stylesheet">
     <link href="{{ 'bootstrap/css/bootstrap.css' }}" rel="stylesheet">
 
+    <!-- Favicon -->
+    <link href="{{ asset('img/favicon.png') }}" rel="icon">
+    
+    <script src="{{ ('js/editarPerfil.js') }}" defer></script>
+
     <title>Meu perfil</title>
 </head>
 
@@ -18,60 +23,6 @@
     <!----------End Hearder-------->
     <h1>MEU PERFIL</h1>
     <section>
-        <!-- <div class="container-1" id="perfil">
-                    <div class="box">
-                        <div class="change">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <label>Nome</label> <br>
-                                    <div class="box-blue">
-                                        Vinícius Dias de Jesus Maciel
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <label>Data de Nascimento</label> <br>
-                                    <div class="box-blue">
-                                        01/06/1999
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <label>CPF</label> <br>
-                                    <div class="box-blue">
-                                        01.345.678-99
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <label>Sexo</label> <br>
-                                    <div class="box-blue">
-                                        Masculino
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-lg-8">
-                                    <label>Email</label> <br>
-                                    <div class="box-blue">
-                                        vinicius@gmail.com
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <label>Atribuição</label> <br>
-                                    <div class="box-blue">
-                                        Enfermeiro chefe
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
-                    <div>
-                        <a class="edit"> Atualizar informações</a>
-                    </div>
-                </div>
-            </div>-->
-
         <div class="container-1" id="perfil">
             <div class="box">
                 <div class="change">
@@ -79,28 +30,28 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <label>Nome</label> <br>
-                                <input id="fnome" name="fnome" type="text" maxlength="50" required>
+                                <input id="fnome" name="fnome" type="text" maxlength="50" required readonly>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-lg-4">
                                 <label>Data de Nascimento</label> <br>
-                                <input id="fnascimento" name="fnascimento" type="date" required>
+                                <input id="fnascimento" name="fnascimento" type="date" required readonly>
                             </div>
                             <div class="col-lg-4">
                                 <label>CPF</label> <br>
-                                <input id="fcpf" name="fcpf" type="text" required maxlength="14"
+                                <input id="fcpf" name="fcpf" type="text" required readonly maxlength="14"
                                     pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
                             </div>
                             <div class="col-lg-4">
                                 <label>Sexo</label> <br>
                                 <div class="row no-gutters">
                                     <div class="col-lg border-m content-center">
-                                        <input type="radio" name="fsexo" value="Masculino" id="fmasc">Masculino</input>
+                                        <input type="radio" name="fsexo" value="Masculino" id="fmasc" disabled>Masculino</input> <!--Usar o checked para deixar marcado-->
                                     </div>
                                     <div class="col-lg border-f content-center">
-                                        <input type="radio" name="fsexo" value="Feminino" id="ffem">Feminino</input>
+                                        <input type="radio" name="fsexo" value="Feminino" id="ffem" disabled>Feminino</input> <!--Usar o checked para deixar marcado-->
                                     </div>
                                 </div>
                             </div>
@@ -109,38 +60,57 @@
                         <div class="row">
                             <div class="col-lg-8">
                                 <label>Email</label> <br>
-                                <input id="femail" name="femail" type="email" maxlength="50" required>
+                                <input id="femail" name="femail" type="email" maxlength="50" required readonly>
+                            </div>
+                            <div class="col-lg-4" id="atribuiDiv">
+                                <label for="fatribui">Atribuição</label>
+                                <input id="fatribui" name="fatribui" type="text" value="Enfermeiro" readonly> <!--Alterar o Value de acordo com a atribuição-->
                             </div>
                         </div>
-                        <div> 
-                            <button type="submit" class="btn-blue">Editar informações</button>
+                        <div class="row"> 
+                            <div class="col-lg" id="corenDiv" style="display: none;"> <!--Mostrar isso somente se for Enfermeiro/Chefe-->
+                                <label for="fcoren">Coren</label>
+                                <input id="fcoren" name="fcoren" type="text" value="Coren do Usuario" readonly>
+                            </div>
+                        </div>
+                        <div id="edit_div" class="row">
+                            <div class="col-lg" id="edit_info_div">
+                                <button type="button" class="btn-blue" name="edit_info" id="edit_info">Editar informações</button>
+                            </div>
+                            <div class="col-lg" id="psw_info_div" style="display: none;">
+                                <button type="button" class="btn-blue" name="psw_info" id="psw_info">Alterar Senha</button>
+                            </div>
+                            <div class="col-lg" id="confirm_info_div" style="display: none;">
+                                <button type="button" class="btn-blue" name="confirm_info" id="confirm_info">Confirmar mudanças</button> <!--Alterar para Submit depois-->
+                            </div>
                         </div>
                     </form>
-                <div>
-                    <br>
-                    <br>
-                    <h3 align="center">Alterar senha</h3>
-                    <br>
-                    <form>
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <input id="senha" name="senha" placeholder="insira a nova senha">
+                    <div id="psw" style="display: none">
+                    <h3 class="text-center">Alterar senha</h3>
+                        <form class="content-center">
+                            <div class="row">
+                                <div class="col-lg">
+                                    <input type="password" id="senha-atual" name="senha-atual" placeholder="insira a senha atual" required>
+                                </div>
+                                <div class="col-lg">
+                                    <input type="password" id="senha" name="senha" placeholder="insira a nova senha" required>
+                                </div>
                             </div>
-                            <div class="col-lg-4">
-                                <input id="senha-atual" name="senha-atual" placeholder="insira a senha atual">
+                            <div class="row">
+                                <div class="col-lg">
+                                    <button type="button" id="fback" class="btn-white">Voltar</button> <!--Fazer Atualizar a Página-->
+                                </div>
+                                <div class="col-lg">
+                                    <button type="submit" class="btn-white">Confirmar</button>
+                                </div>
                             </div>
-                            <div class="col-lg-4">
-                                <button type="submit" class="btn-white">Alterar senha</button>
-                            </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
-                </div>
-
             </div>
         </div>
 
     </section>
-    <script src="{{ asset('js/editarPerfil.js') }}"></script>
     <script>
         document.forms['teste']['fcpf'].disabled = true
         document.forms['teste']['fatribui'].disabled = true;

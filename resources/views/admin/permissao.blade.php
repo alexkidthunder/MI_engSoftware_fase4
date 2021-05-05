@@ -9,6 +9,9 @@
     <link href="{{ ('css/style.css') }}" rel="stylesheet"> 
     <link href="{{ ('bootstrap/css/bootstrap.css') }}" rel="stylesheet">
     
+    <!-- Favicons -->
+    <link href="{{ asset('img/favicon.png') }}" rel="icon">
+    
     <title>Permissões do usuário</title>
     
   </head>
@@ -154,7 +157,7 @@
                         </div>
                         <!-- ========== fim da linha 3 ========== --> 
 
-                        <!-- ========== Linha  ========== --> 
+                        <!-- ========== Linha 4 ========== --> 
                         <div class="row">
                             <!--Inicio da permissão-->
                             <div class="col-lg-13 content-center">
@@ -191,7 +194,7 @@
                             </div>
                             <!--Fim da permissão-->
                         </div>
-                        <!-- ========== fim da linha ========== --> 
+                        <!-- ========== fim da linha 4 ========== --> 
 
                         <!-- ========== Linha  ========== --> 
                         <div class="row">
@@ -241,6 +244,27 @@
                             <div class="col-lg-13 content-center">
                                 <input type="checkbox"><br>
                                 <label>Registro de ocorrências</label>
+                            </div>
+                            <!--Fim da permissão-->
+
+                            <!--Inicio da permissão-->
+                            <div class="col-lg-13 content-center">
+                                <input type="checkbox"><br>
+                                <label>Cadastro do leito</label>
+                            </div>
+                            <!--Fim da permissão-->
+
+                            <!--Inicio da permissão-->
+                            <div class="col-lg-13 content-center">
+                                <input type="checkbox"><br>
+                                <label>Remoção do leito</label>
+                            </div>
+                            <!--Fim da permissão-->
+
+                            <!--Inicio da permissão-->
+                            <div class="col-lg-13 content-center">
+                                <input type="checkbox"><br>
+                                <label>Realizar / Agendar Backup</label>
                             </div>
                             <!--Fim da permissão-->
                         </div>

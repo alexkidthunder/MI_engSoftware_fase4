@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
     <link href="{{ ('css/style.css') }}" rel="stylesheet"> 
     <link href="{{ ('bootstrap/css/bootstrap.css') }}" rel="stylesheet">
+
+    <!-- Favicons -->
+    <link href="{{ asset('img/favicon.png') }}" rel="icon">
     
     <title>Listagem de agendamentos</title>
     
