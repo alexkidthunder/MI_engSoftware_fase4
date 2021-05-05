@@ -39,79 +39,83 @@
                     </form>
                 </div>
                 <div id="user_Data" style="display: none;">
-                <!--Infomações do Paciente-->
-                <h3>Paciente</h3><br>
-                <div class="box-gray">
-                    Marcos Oliveira Santana
+                    <!--Infomações do Paciente-->
+                    <h3>Paciente</h3><br>
+                    <div class="box-gray">
+                        Marcos Oliveira Santana
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="box-gray">
+                                CPF: 011.988.999-00
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="box-gray">
+                                CID: 0123456 BA
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="box-gray">
+                                Leito: XXX
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div id="btn_register_medicine" class="content-center">
+                        <button type="button" class="btn-blue"> Cadastrar Agendamento </button>
+                    </div>
+                    <!-- Cadastro do medicamento -->
                 </div>
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="box-gray">
-                            CPF: 011.988.999-00
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="box-gray">
-                            CID: 0123456 BA
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="box-gray">
-                            Leito: XXX
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Cadastro do medicamento -->
-                <br>
-                <form id="register">
-                    <div class="box-medicamento">
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <div>
-                                    <label name="horario_agendamento">Horario</label>
-                                    <input type="time" name="horario_agendamento" requerid>
+                <div>
+                    <form id="register" style="display: none;">
+                        <div class="box-medicamento">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div>
+                                        <label for="horario_agendamento">Horario</label>
+                                        <input type="time" name="horario_agendamento" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div>
+                                        <label for="data_agendamento">Data</label>
+                                        <input type="date" name="data_agendamento" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div>
+                                        <label for="posologia_agendamento">Posologia</label>
+                                        <input type="number" name="posologia_agendamento" required>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4">
-                                <div>
-                                    <label name="data_agendamento">Data</label>
-                                    <input type="date" name="data_agendamento" requerid>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div>
+                                        <label for="medicamento_agendamento">Medicamento</label>
+                                        <input type="text" name="medicamento_agendamento" required>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4">
-                                <div>
-                                    <label name="posologia_agendamento">Posologia</label>
-                                    <input type="number" name="posologia_agendamento" requerid>
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <div> <!-----FICA HIDDEN ATÉ QUE SEJA CLICALDO NO BOTÃO DE ALOCAR APLICADOR ----->
+                                        <label for="aplicador_agendamento">Aplicador</label>
+                                        <input id="aloc_inp" type="text" name="aplicador_agendamento"
+                                            placeholder="nome do aplicador" readonly>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div>
-                                    <label name="medicamento_agendamento">Medicamento</label>
-                                    <input type="text" name="medicamento_agendamento" requerid>
+                                <div class="col-lg-4">
+                                    <br>
+                                    <button id="aloc_btn" type="button" class="btn-white"> Alocar aplicador </button>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-lg-8">
-                                <div> <!-----FICA HIDDEN ATÉ QUE SEJA CLICALDO NO BOTÃO DE ALOCAR APLICADOR ----->
-                                    <label name="aplicador_agendamento">Aplicador</label>
-                                    <input type="text" name="aplicador_agendamento"
-                                        placeholder="nome do aplicador">
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <br>
-                                <button class="btn-white"> Alocar aplicador </button>
-                            </div>
+                        <div>
+                            <button type="submit" class="btn-blue"> Cadastrar </button>
                         </div>
-                    </div>
-                    <div>
-                        <button type="submit" class="btn-blue"> Cadastrar </button>
-                    </div>
-                </form>
+                    </form>
                 </div>
             </div>
         </div>
