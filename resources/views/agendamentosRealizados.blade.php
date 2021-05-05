@@ -32,7 +32,7 @@
             <h1>AGENDAMENTOS E MEDICAMENTOS REALIZADOS</h1>
 
             <!---------------------Agendamento Realizado--------------------->
-            <div class="box-agendamento">
+            <div class="box-scheduling">
                     <div class="row">
                         <div class="col-lg-2 text-center">
                             <div class="box-gray">

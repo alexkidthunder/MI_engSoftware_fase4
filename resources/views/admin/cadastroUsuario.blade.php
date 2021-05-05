@@ -75,7 +75,7 @@
                         </div>
                     </div>
                     <div id="corenDiv" class="row" style="display: none">
-                        <div class="col-lg">
+                        <div class="col-lg-4">
                             <label for="fcoren">Coren</label>
                             <input id="fcoren" name="fcoren" type="text">
                         </div>
