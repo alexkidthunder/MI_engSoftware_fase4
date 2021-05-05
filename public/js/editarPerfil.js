@@ -58,10 +58,10 @@ editBnt.addEventListener("click",function(){
     confBtnDiv.style.display = "";
     passBtnDiv.style.display = "";
 
-    nomeInp.removeAttribute("readonly");
+    nomeInp.removeAttribute("disabled");
     fmInp.removeAttribute("disabled");
     ffInp.removeAttribute("disabled");
-    emailInp.removeAttribute("readonly");
+    emailInp.removeAttribute("disabled");
 })
 
 var confBtn = document.getElementById('confirm_info');
@@ -70,10 +70,10 @@ confBtn.addEventListener("click",function(){
     confBtnDiv.style.display = "none";
     passBtnDiv.style.display = "none";
 
-    nomeInp.setAttribute("readonly","");
+    nomeInp.setAttribute("disabled","");
     fmInp.setAttribute("disabled","");
     ffInp.setAttribute("disabled","");
-    emailInp.setAttribute("readonly","");
+    emailInp.setAttribute("disabled","");
 })
 
 
@@ -96,10 +96,10 @@ backBtn.addEventListener("click",function(){
     pflArea.style.display = "";
     pswArea.style.display = "none";
 
-    nomeInp.setAttribute("readonly","");
+    nomeInp.setAttribute("disabled","");
     fmInp.setAttribute("disabled","");
     ffInp.setAttribute("disabled","");
-    emailInp.setAttribute("readonly","");
+    emailInp.setAttribute("disabled","");
 })
 
 var atribuiInp = document.getElementById('fatribui');
