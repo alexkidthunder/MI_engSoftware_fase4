@@ -18,9 +18,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+Route::get('/mensagens', [HomeController::class,'mensagens'])->name('mensagensphp');
+
 /*------------ Rota para Index ------------------------ */
 
 Route::get('/', [HomeController::class,'index'])->name('index');
+
+
 
 /*------------ Rota para Primeiro Acesso ------------------------ */
 

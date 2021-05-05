@@ -9,7 +9,11 @@
     <link href="{{ 'css/style.css' }}" rel="stylesheet">
     <link href="{{ 'bootstrap/css/bootstrap.css' }}" rel="stylesheet">
 
+    <!-- Favicons -->
+    <link href="{{ asset('img/favicon.png') }}" rel="icon">
+
     <script src="{{ ('js/cadastroUsuario.js') }}" defer></script>
+
 
     <title>Cadastro de funcionários</title>
 </head>

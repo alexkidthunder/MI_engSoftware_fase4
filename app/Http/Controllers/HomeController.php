@@ -101,6 +101,9 @@ class HomeController extends Controller
         return view('esqueciSenha');
     }
 
+    public function mensagens(){
+        return view('mensagens');
+  
     public function listaMedicamento(){
         return view('listaMedicamento');
     }

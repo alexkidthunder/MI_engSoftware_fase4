@@ -21,7 +21,7 @@
       
       <div class="d-flex align-items-center pr-5">    
         <nav class="nav d-none d-lg-block">
-          <li><a href="#"class="logout-icon"> <i class="fas fa-sign-out-alt"></i></a></li>
+          <li><a href="{{ route('index') }}" class="logout-icon"> <i class="fas fa-sign-out-alt"></i></a></li>
           </ul>
         </nav>
         
