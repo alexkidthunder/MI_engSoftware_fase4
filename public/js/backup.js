@@ -1,6 +1,4 @@
 var agendaBtn = document.getElementById("agenBack");
-var alwaysCheck = document.getElementById("alwaysCheck");
-
 
 agendaBtn.addEventListener("click",function(){
 
@@ -13,12 +11,18 @@ agendaBtn.addEventListener("click",function(){
 
 })
 
+
+var alwaysCheck = document.getElementById("alwaysCheck");
+
 alwaysCheck.addEventListener("click",function(){
 
-    var dataDiv = document.getElementById("dataDiv")
+    var dataRequired = document.getElementById("date");
+    var dataDiv = document.getElementById("dataDiv");
     if(dataDiv.style.display ==="none"){
         dataDiv.style.display = "";
+        dataRequired.setAttribute("required", "");
     } else {
         dataDiv.style.display = "none";
+        dataRequired.removeAttribute("required");
     }
 })

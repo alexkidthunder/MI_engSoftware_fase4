@@ -12,6 +12,9 @@
     <!-- Favicons -->
     <link href="{{ asset('img/favicon.png') }}" rel="icon">
 
+    <script src="{{ ('js/cadastroUsuario.js') }}" defer></script>
+
+
     <title>Cadastro de funcionários</title>
 </head>
 
@@ -28,18 +31,18 @@
                     @csrf
                     <div class="row">
                         <div class="col-lg-12">
-                            <label>Nome</label> <br>
+                            <label for="fnome">Nome</label> <br>
                             <input id="fnome" name="fnome" type="text" maxlength="50" required>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-4">
-                            <label>Data de Nascimento</label> <br>
+                            <label for="fnascimento">Data de Nascimento</label> <br>
                             <input id="fnascimento" name="fnascimento" type="date" required>
                         </div>
                         <div class="col-lg-4">
-                            <label>CPF</label> <br>
+                            <label for="fcpf">CPF</label> <br>
                             <input id="fcpf" name="fcpf" type="text" required maxlength="14"
                                 pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
                         </div>
@@ -58,17 +61,23 @@
 
                     <div class="row">
                         <div class="col-lg-8">
-                            <label>Email</label> <br>
+                            <label for="femail">Email</label> <br>
                             <input id="femail" name="femail" type="email" maxlength="50" required>
                         </div>
                         <div class="col-lg-4">
-                            <label>Atribuição</label> <br>
+                            <label for="fatribui">Atribuição</label> <br>
                             <select id="fatribui" name="fatribui">
                                 <option value="Administrador">Administrador</option>
                                 <option value="Enfermeiro Chefe">Enfermeiro Chefe</option>
                                 <option value="Enfermeiro">Enfermeiro</option>
                                 <option value="Estagiário">Estagiário</option>
                             </select>
+                        </div>
+                    </div>
+                    <div id="corenDiv" class="row" style="display: none">
+                        <div class="col-lg">
+                            <label for="fcoren">Coren</label>
+                            <input id="fcoren" name="fcoren" type="text">
                         </div>
                     </div>
                     <div>
