@@ -1,96 +1,104 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
-
-*{
-    font-family: "Poppins",sans-serif;
+* {
+    font-family: "Poppins", sans-serif;
     margin: 0px;
     padding: 0px;
 }
-a:visited{
+
+a:visited {
     color: inherit;
 }
-body{
+
+body {
     align-items: center;
     background-color: #F9F8FF;
 }
 
-h1,h2,h3,h4,h5,h6{
-    font-family: "Poppins",sans-serif;
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Poppins", sans-serif;
 }
 
 /*Titulo*/
-h1{ 
+
+h1 {
     font-size: 32px;
-    color:#0D6EFD;
+    color: #0D6EFD;
     font-weight: bolder;
-    margin-top:100px;
-    margin-bottom:50px;
+    margin-top: 100px;
+    margin-bottom: 50px;
     text-align: center;
 }
 
 /*Subtitulo*/
-h2,h3{
-    color:#028DCE;
+
+h2, h3 {
+    color: #028DCE;
     font-weight: bold;
-    margin-top:10px;
+    margin-top: 10px;
 }
-h4{
+
+h4 {
     margin-block-start: 0px;
     margin-block-end: 20px;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
 }
 
-label{ /*Antes dos campos de inserção*/
+label {
+    /*Antes dos campos de inserção*/
     color: black;
     font-weight: bold;
     font-size: 16px;
-    font-family: "Poppins",sans-serif;
+    font-family: "Poppins", sans-serif;
     margin-top: 20px;
 }
 
-.label-no-margin{ /* Retirar a margem superior das label */
+.label-no-margin {
+    /* Retirar a margem superior das label */
     margin-top: 0px;
 }
 
-p{
-    color:black;
-    font-family: "Open Sans",sans-serif;
+p {
+    color: black;
+    font-family: "Open Sans", sans-serif;
     font-size: 16px;
 }
+
 /*------------------- Inputs --------------------*/
-button, input, select, textarea{
-    border:none;
+
+button, input, select, textarea {
+    border: none;
     border-radius: 10px;
-    font-family: "Open Sans",sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-size: 16px;
     margin-bottom: 15px;
     background-color: transparent;
 }
 
-input[type="radio"]{
+input[type="radio"] {
     box-sizing: border-box;
-    border:1px solid #6bc4ec;
-    display:block;
-    margin:0px;
+    border: 1px solid #6bc4ec;
+    display: block;
+    margin: 0px;
     padding: 0;
     color: #333333;
 }
 
-input, select{
+input, select {
     background-color: white;
     border: 2px solid #02A7F0;
     color: #333333;
-    padding: 5px 10px ;
+    padding: 5px 10px;
 }
 
-input[type=text]:disabled, input[type="number"]:disabled, select:disabled {
+input[type=text]:disabled, input[type="number"]:disabled, input[type="email"]:disabled, input[type="date"]:disabled, select:disabled {
     background-color: #A2DBFE;
-    border:#A2DBFE ;
+    border: #A2DBFE;
     font-weight: bold;
 }
 
-button:focus, select:focus, input[type="radio"]:focus{
+button:focus, select:focus, input[type="radio"]:focus {
     outline: 0;
 }
 
@@ -101,34 +109,38 @@ textarea:focus, input:focus {
 }
 
 /*------------- Botão branco com borda azul------------------*/
-.btn-white{ 
+
+.btn-white {
     border: 2px solid #02A7F0;
     background-color: white;
-    color:black;
+    color: black;
     cursor: pointer;
     font-weight: bold;
     padding: 5px 25px;
 }
 
- /*---------- Botão azul----------*/
-.btn-blue{
+/*---------- Botão azul----------*/
+
+.btn-blue {
     background-color: #58ACFA;
-    color:black;
+    color: black;
     cursor: pointer;
     font-weight: bold;
     padding: 5px 25px;
 }
 
-.btn-blue:hover, .btn-white:hover, .btn-agendamento:hover{
+.btn-blue:hover, .btn-white:hover, .btn-agendamento:hover {
     background-color: #8ED1F0;
-    border-color:#58ACFA;
+    border-color: #58ACFA;
 }
 
-.btn-blue:active, .btn-white:active, .btn-agendamento:active{
+.btn-blue:active, .btn-white:active, .btn-agendamento:active {
     background-color: #4689C8;
 }
+
 /* -----------------------Alinha o texto ou caixa no centro-----------------*/
-.content-center{
+
+.content-center {
     text-align: center;
     align-items: center;
     width: 100%;
@@ -136,29 +148,31 @@ textarea:focus, input:focus {
 }
 
 /* ------------------Caixa branca padrão que tem em várias páginas--------------*/
-.box{ 
+
+.box {
     align-self: center;
     align-items: center;
     background-color: white;
     border-radius: 20px;
     box-shadow: 6px 6px 6px #f1efef;
     margin-bottom: 50px;
-    padding:30px 40px;
+    padding: 30px 40px;
 }
 
 /*-------- Containers ----------*/
-.container-box{
+
+.container-box {
     width: 100%;
     align-items: center;
 }
 
-.container-atribution{
+.container-atribution {
     align-items: center;
     width: 100%;
     margin-top: 25px;
 }
 
-.container-1{
+.container-1 {
     width: 60%;
     margin-left: 20%;
     margin-right: 20%;
@@ -175,7 +189,8 @@ textarea:focus, input:focus {
 }
 
 /*------ Container para botão que fica na direita ------*/
-.container-button{
+
+.container-button {
     align-items: right;
     width: 19%;
     margin-left: 80%;
@@ -183,33 +198,34 @@ textarea:focus, input:focus {
 }
 
 /*--------- Caixas de texto ----------*/
-.box-gray, .box-blue, .box-white { 
+
+.box-gray, .box-blue, .box-white {
     border-radius: 10px;
-    color:black;
-    font-family: "Open Sans",sans-serif;
+    color: black;
+    font-family: "Open Sans", sans-serif;
     font-weight: bold;
     font-size: 16px;
     height: 30px;
-    margin-bottom:10px;
-    padding: 5px 10px;  
+    margin-bottom: 10px;
+    padding: 5px 10px;
 }
 
-.box-gray{ 
+.box-gray {
     background-color: #E6E6E6;
 }
 
-.box-blue{
+.box-blue {
     background-color: #A2DBFE;
 }
 
-.box-white{ 
+.box-white {
     background-color: #ffff;
     box-shadow: 4px 4px 4px#DBDADA;
-
 }
 
 /*-------- Barra de pesquisa  ------------*/
-.search-bar{
+
+.search-bar {
     margin-bottom: 5px;
 }
 
@@ -219,7 +235,7 @@ textarea:focus, input:focus {
     border-radius: 20px 0 0 20px;
     background-color: white;
     color: #333333;
-    font-family: "Open Sans",sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-size: 16px;
     text-align: center;
     padding-left: 15px;
@@ -231,48 +247,51 @@ textarea:focus, input:focus {
     border-radius: 0px 20px 20px 0px;
     height: 36px;
     margin-left: -5px;
-    padding-right:15px;
+    padding-right: 15px;
 }
 
 .search-bar input:focus {
     outline: 0;
 }
 
-.search-bar button i{
-    color:#02A7F0;
-    cursor:pointer;
+.search-bar button i {
+    color: #02A7F0;
+    cursor: pointer;
     font-size: 16px;
 }
 
-.search-bar button i:hover{
+.search-bar button i:hover {
     color: #0D6EFD;
 }
 
 /*------------ Icone de download  ------------*/
-.download-icone{
+
+.download-icone {
     float: right;
 }
 
-.download-icone button i{
-    color:#0D6EFD;
-    cursor:pointer;
+.download-icone button i {
+    color: #0D6EFD;
+    cursor: pointer;
     font-size: 30px;
 }
 
-.download-icone button i:hover{
+.download-icone button i:hover {
     color: #02A7F0;
 }
 
-#tela-icone .download-icone{
+#tela-icone .download-icone {
     margin-top: 10px;
     margin-inline: 30px;
 }
-#tela-icone .download-icone button i{
+
+#tela-icone .download-icone button i {
     font-size: 45px;
 }
+
 /*------------ Menu  ------------*/
 
-.body-menu{
+.body-menu {
     align-items: center;
     background-color: #ffff;
 }
@@ -285,7 +304,7 @@ textarea:focus, input:focus {
     word-wrap: break-word;
     background-color: #F2F2F2;
     background-clip: border-box;
-    border-radius:15px;
+    border-radius: 15px;
     height: 140px;
     box-shadow: 1px 1px 1px #C8C8C8;
     -webkit-box-shadow: 2px 2px 8px #C8C8C8;
@@ -294,9 +313,8 @@ textarea:focus, input:focus {
 
 .card-menu:hover {
     background-color: #8ED1F0;
-    border-radius:5px;
-    transform: scale(1.2); 
-
+    border-radius: 5px;
+    transform: scale(1.2);
 }
 
 .card-options {
@@ -304,16 +322,18 @@ textarea:focus, input:focus {
     margin: 0 10px 30px 10px;
 }
 
-.card-options_title a{
+.card-options_title a {
     align-self: center;
     color: black;
-    font-family: "Poppins",sans-serif;
+    font-family: "Poppins", sans-serif;
     font-weight: bold;
-    line-height: 20px; 
+    line-height: 20px;
 }
+
 .card-options_title a:hover, .card-options_title a:focus {
     color: #0D6EFD;
 }
+
 .card-options-icon {
     position: relative;
     margin: 10px 0 10px 0;
@@ -327,45 +347,49 @@ textarea:focus, input:focus {
 .options-icon i {
     padding-top: 10px;
     font-size: 45px;
-    color:#007bff;
+    color: #007bff;
 }
 
-.icon-list i{
+.icon-list i {
     font-size: 25px;
 }
+
 /*------------ Cadastro------------*/
 
-#register input, #register select{
+#register input, #register select {
     width: 100%;
 }
-#register .btn-blue{ 
+
+#register .btn-blue {
     align-self: center;
     width: 35%;
-    margin-top:20px;
-    margin-left:32%;
-    margin-right:32%;
+    margin-top: 20px;
+    margin-left: 32%;
+    margin-right: 32%;
 }
 
 /*------------ Retirar marcação dos inputs ------------*/
 
 /* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 /* Firefox */
+
 input[type=number] {
-  -moz-appearance: textfield;
+    -moz-appearance: textfield;
 }
 
 /*------------ Listagem de pacientes ------------*/
-#patientList h1{
-    margin-bottom:10px;
+
+#patientList h1 {
+    margin-bottom: 10px;
 }
 
-#patientList .box-white{ 
+#patientList .box-white {
     background-color: #ffff;
     border-radius: 55px;
     box-shadow: 5px 5px 5px#DBDADA;
@@ -376,47 +400,51 @@ input[type=number] {
     padding: 15px 30px;
 }
 
-#patientList .box-blue{
+#patientList .box-blue {
     background-color: #A2DBFE;
     border-radius: 10px;
-    color:black;
-    font-family: "Open Sans",sans-serif;
+    color: black;
+    font-family: "Open Sans", sans-serif;
     font-weight: bold;
     font-size: 17px;
     padding: 6px 10px;
 }
 
-#patientList .btn-blue{
+#patientList .btn-blue {
     padding: 5px 10px;
 }
 
 /*------------ Agendamentos ------------*/
-.box-agendamento{
+
+.box-agendamento {
     background-color: #ffff;
     border: 1.5px solid #58ACFA;
     border-radius: 0 50px 50px 0;
     padding: 10px 20px;
     margin-bottom: 25px;
 }
-.box-agendamento:nth-child(even){
+
+.box-agendamento:nth-child(even) {
     border-radius: 0 50px 0 0;
 }
-.box-agendamento:nth-child(odd){
+
+.box-agendamento:nth-child(odd) {
     border-radius: 0 0 50px 0;
 }
 
-#agendamento .btn-white{ 
+#agendamento .btn-white {
     padding: 0;
-    height:30px;
+    height: 30px;
     width: 100%;
 }
 
 /*------------ Botão para o paciente, presente no agendamento ------------*/
-.btn-Patient{
+
+.btn-Patient {
     background-color: #A2DBFE;
     border-radius: 10px;
-    color:black;
-    font-family: "Open Sans",sans-serif;
+    color: black;
+    font-family: "Open Sans", sans-serif;
     font-weight: bold;
     font-size: 16px;
     width: 100%;
@@ -425,64 +453,66 @@ input[type=number] {
     padding: 5px 10px;
 }
 
-.btn-Patient:active{
+.btn-Patient:active {
     background-color: #4689C8;
 }
 
-.btn-Patient:hover{
+.btn-Patient:hover {
     background-color: #58ACFA;
 }
 
-
 /*----- Botão de opção de sexo -----*/
-.border-m{
+
+.border-m {
     display: flex;
     background-color: white;
     border: 2px solid #02A7F0;
-    padding:7px 0;
+    padding: 7px 0;
     border-radius: 10px 0 0 10px;
     border-right: 0;
 }
 
-.border-f{
+.border-f {
     display: flex;
     background-color: white;
     border: 2px solid #02A7F0;
-    padding:7px 0;
+    padding: 7px 0;
     border-radius: 0 10px 10px 0;
 }
 
-.border-left:hover, .border-right:hover{
+.border-left:hover, .border-right:hover {
     background-color: #8ED1F0;
-    border-color:#58ACFA;
+    border-color: #58ACFA;
 }
 
-.item-center{
+.item-center {
     align-items: center;
     text-align: center;
 }
 
-.hide{ /* classe para o Js */
+.hide {
+    /* classe para o Js */
     display: none;
 }
 
-
 /* Cria um checkbox diferente */
-#permission input[type="checkbox"] { 
+
+#permission input[type="checkbox"] {
     margin-bottom: 0px;
 }
 
 /*----------------------------plantonista -------------------*/
-#plantonista .title{
-    color:#0D6EFD;
-    font-family: "Open Sans",sans-serif;
+
+#plantonista .title {
+    color: #0D6EFD;
+    font-family: "Open Sans", sans-serif;
     font-weight: bold;
     font-size: 22px;
-    margin-bottom:10px;
-    padding: 5px 10px;  
+    margin-bottom: 10px;
+    padding: 5px 10px;
 }
 
-#plantonista .box-blue, #plantonista .box-button{
+#plantonista .box-blue, #plantonista .box-button {
     height: 40px;
     padding-top: 10px;
 }
@@ -492,55 +522,51 @@ input[type=number] {
     width: 25px;
 }
 
-
-.box-plantonista, 
-.box-medicamento,
-.box-backup{
+.box-plantonista, .box-medicamento, .box-backup {
     background-color: #ffff;
     border: 1.5px solid #58ACFA;
-    border-radius:0 50px 0 0;
+    border-radius: 0 50px 0 0;
     padding: 10px 20px;
     margin-bottom: 25px;
 }
 
-
-
 /*---------- Confirmação de ação e erros ------------------ */
 
-.confirmation-content{
+.confirmation-content {
     background-color: #fff;
     border: 1px solid rgba(247, 245, 245, 0.2);
     border-radius: 25px;
     box-shadow: 4px 4px 4px #C8C8C8;
     display: flex;
     flex-direction: column;
-    width:90%;
+    width: 90%;
     margin-left: 5%;
     margin-right: 5%;
     outline: 0;
     position: relative;
 }
-.confirmation-content button{
+
+.confirmation-content button {
     margin-bottom: 0;
 }
 
-.msg-sucess, .msg-error{
+.msg-sucess, .msg-error {
     border-radius: 10px;
     border: 0.5px solid rgba(255, 255, 255, 0);
     box-shadow: 3px 3px 3px #e0dede;
-    color:black;
-    font-family: "Poppins",sans-serif;
-    font-size:18px;
+    color: black;
+    font-family: "Poppins", sans-serif;
+    font-size: 18px;
     opacity: 0.9;
     padding: 20px 10px;
     width: 30%;
     margin-bottom: 20px;
 }
 
-.msg-sucess{
-    background-image: linear-gradient( to right, #7fffd4, #00fa9a,#00ff7f );
+.msg-sucess {
+    background-image: linear-gradient( to right, #7fffd4, #00fa9a, #00ff7f);
 }
 
-.msg-error{
-    background-image: linear-gradient( to right, #ff6f88,#ff3353, #f50026 );
+.msg-error {
+    background-image: linear-gradient( to right, #ff6f88, #ff3353, #f50026);
 }
