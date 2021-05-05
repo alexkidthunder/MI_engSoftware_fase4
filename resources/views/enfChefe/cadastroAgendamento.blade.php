@@ -31,11 +31,12 @@
                     <form class="search-bar">
                         <input name="cpf_user" id="cpf_user" type="text" placeholder="Informe o CPF" required
                             maxlength="11" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
-                        <button type="submit">
+                        <button type="submit" id="busca_user">
                             <i class="fas fa-search"></i>
                         </button>
                     </form>
                 </div>
+                <div id="user_Data" style="display: none;">
                 <!--Infomações do Paciente-->
                 <h3>Paciente</h3><br>
                 <div class="box-gray">
@@ -109,6 +110,7 @@
                         <button type="submit" class="btn-blue"> Cadastrar </button>
                     </div>
                 </form>
+                </div>
             </div>
         </div>
     </section>
