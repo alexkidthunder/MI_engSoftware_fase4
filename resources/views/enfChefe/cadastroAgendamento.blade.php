@@ -13,6 +13,8 @@
     <!-- Favicon -->
     <link href="{{ asset('img/favicon.png') }}" rel="icon">
 
+    <script src="{{ ('js/cadastroAgendamento.js') }}" defer></script>
+
     <title>Cadastro Agendamento</title>
 
 </head>
