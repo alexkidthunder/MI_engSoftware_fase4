@@ -28,7 +28,7 @@
         <h1>MEUS AGENDAMENTOS ALOCADOS</h1>
 
         <!---------------------Agendamento--------------------->
-        <div class="box-agendamento" id="agendamento">
+        <div class="box-scheduling" id="scheduling">
             <div class="row">
                 <div class="col-lg-2 text-center">
                     <div class="box-gray">
