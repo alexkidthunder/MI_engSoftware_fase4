@@ -8,6 +8,9 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet">
     <link href="{{ ('css/style.css') }}" rel="stylesheet"> 
     <link href="{{ ('bootstrap/css/bootstrap.css') }}" rel="stylesheet"> 
+
+    <script src="{{ ('js/editarAtribuicao.js') }}" defer></script>
+
     <title>Atribuição do usuário</title>
     
   </head>
@@ -24,70 +27,47 @@
                     <h3>BUSCAR FUNCIONÁRIO</h3>
                     <form class="search-bar">
                         <input name="cpf_user" id="cpf_user" type="text" placeholder="Informe o CPF" required maxlength="11" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
-                        <button type="submit">
+                        <button type="submit" id="busca_user">
                             <i class="fas fa-search"></i>
                         </button>
                     </form>
                 </div>
-
-                 <!--Infomações do funcionário funcionário-->
-                 <h3>Funcionário</h3> <br>
+                <div id="user_Data" style="display: none;">
+                     <!--Infomações do funcionário funcionário-->
+                    <h3>Funcionário</h3> <br>
                     <div class="box-gray">
-                        Marcos Oliveira Santana
+                        <p>Marcos Oliveira Santana</p>
                     </div>
                     <div class="row">
                         <div class="col-lg-4">
                             <div class="box-gray">
-                                CPF: 011.988.999-00
+                                <p>CPF: 011.988.999-00</p>
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="box-gray">
-                                COREN: 0123456 BA
+                                <p>COREN: 0123456 BA</p>
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="box-gray">
-                                Enfermeiro chefe
+                                <p id="atribuicaoAtual">Enfermeiro Chefe</p>
                             </div>
                         </div>
                     </div>
 
-                 <!--Alterar atrinuição do funcionário funcionário, se for estagiário-->
-                 <div class="container-atribution">
-                    <label>Nova atribuição</label>
-                    <form>
-                        <select id="novaAtribuicao" name="novaAtribuicao">
-                            <option value="enfermeiroChefe">Enfermeiro chefe</option>
-                            <option value="enfermeiro">Enfermeiro</option>
-                        </select>
-                    </form>
-                    <button type="submit" class="container-button btn-white">Alterar</button>
-                </div>
-
-                 <!--Alterar atrinuição do funcionário funcionário, se for enfermeiro
-                 <div class="container-atribution">
-                    <label>Nova atribuição</label>
-                    <form>
-                        <select id="novaAtribuicao" name="novaAtribuicao">
-                            <option value="enfermeiroChefe">Enfermeiro chefe</option>
-                        </select>
-                    </form>
-                    <button type="submit" class="container-button btn-white">Alterar</button>
-                </div>
-
-                <!--Alterar atrinuição do funcionário funcionário, se for enfermeiro chefe
-                <div class="container-atribution">
-                    <label>Nova atribuição</label>
-                    <form>
-                        <select id="novaAtribuicao" name="novaAtribuicao">
-                            <option value="Enfermeiro Chefe">Enfermeiro</option>
-                        </select>
-                    </form>
-                    <button type="submit" class="container-button btn-white">Alterar</button>
-                </div> -->
-
-              
+                    <!--Alterar atrinuição do funcionário funcionário, se for estagiário-->
+                    <div class="container-atribution">
+                        <label>Nova atribuição</label>
+                            <form>
+                                <select id="novaAtribuicao" name="novaAtribuicao">
+                                    <option value="enfermeiroChefe">Enfermeiro chefe</option>
+                                    <option value="enfermeiro">Enfermeiro</option>
+                                </select>
+                            </form>
+                            <button type="submit" class="container-button btn-white">Alterar</button>
+                    </div>
+                </div>       
             </div>
         </div>
   </body>
