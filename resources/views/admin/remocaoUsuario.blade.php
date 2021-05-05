@@ -59,9 +59,33 @@
                     </div>
                 </div>
                 <form>
-                    <a href= '/removerUsuario? usuario={{$user->CPF}}' onclick=" return confirm('Tem certeza que deseja apagar o usuario?') "> <button class="container-button btn-blue "> Remover </button> </a>
+                    <a href= '/removerUsuario? usuario={{$user->CPF}}' data-toggle="modal"
+                        data-target="#delete" onclick=" return confirm('Tem certeza que deseja apagar o usuario?') "> <button class="container-button btn-blue "> Remover </button> </a>
                 </form>
             @endif
         </div>
+       
+        <div id="delete" class="modal">
+            <div class="modal-dialog">
+                <div class="confirmation-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Tem certeza que deseja remover ....?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary">Cancelar</button>
+                        <form>
+                            <button type="button" class="btn btn-danger">Remover</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 </body>

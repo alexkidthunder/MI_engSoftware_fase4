@@ -54,7 +54,7 @@
               </ul>
             </li>
           -->
-          <li><a href="#"class="logout-icon"> <i class="fas fa-sign-out-alt"></i></a></li>
+          <li><a href="{{ route('index') }}" class="logout-icon"> <i class="fas fa-sign-out-alt"></i></a></li>
          
           </ul>
         </nav>
