@@ -21,8 +21,8 @@
      <!----------Hearder------------>
      @include('layouts.navbar')
     <!----------End Hearder-------->
-    <div id="tela-icone"> <!-- Icone de Download Em Telas -->
-        <form class="download-icone">
+    <div id="screen-icon"> <!-- Icone de Download Em Telas -->
+        <form class="download-icon">
             <button>
                 <i class="fas fa-download"></i>
             </button>
@@ -91,7 +91,7 @@
                 </form>
             </div>
                 <button class="btn-blue", id="action-btn2">Mostrar Agendamento</button>
-                    <div class="box-agendamento", id = "container-teste2">
+                    <div class="box-scheduling" id = "container-teste2">
                     <div class="container-box">
                         <div class="row">
                             <div class="col-lg-2 text-center">
@@ -143,7 +143,7 @@
                 </div>
 
                 <button class="btn-blue", id="action-btn">Mostrar Medicações Ministradas</button>
-                <div class="box-agendamento", id = "container-teste">
+                <div class="box-scheduling", id = "container-teste">
                     <div class="row">
                         <div class="col-lg-2 text-center">
                             <div class="box-gray">
@@ -180,7 +180,7 @@
                 </div>    
 
                 <button class="btn-blue", id="action-btn4">Ocorrencias</button>
-            <div class="box-agendamento", id= "container-teste4">
+            <div class="box-scheduling", id= "container-teste4">
                 <form id="register">
                     <div class="row">
                         <div class="col-lg-12">
@@ -193,7 +193,7 @@
                         <h3>Tabela de ocorrencias</h3>
                     </div>  
                             
-                        <div class="box-agendamento">
+                        <div class="box-scheduling">
                             <div class="row">
                                 <div class="col-lg-2 text-center">
                                     <div class="box-gray">
@@ -217,7 +217,7 @@
                                 </div>
                             </div>
                         </div> 
-                        <div class="box-agendamento">
+                        <div class="box-scheduling">
                             <div class="row">
                                 <div class="col-lg-2 text-center">
                                     <div class="box-gray">
@@ -246,7 +246,7 @@
             </div>
             
             <button class="btn-blue", id="action-btn5">CIDs</button>
-            <div class="box-agendamento", id= "container-teste5">
+            <div class="box-scheduling", id= "container-teste5">
                 <form id="register">
                     <div class="row">
                         <div class="col-lg-6">
@@ -258,7 +258,7 @@
                         </div>
                     </div>  
                     <h3>CIDs do Paciente</h3>
-                        <div class="box-agendamento">
+                        <div class="box-scheduling">
                             <div class="row">
                                 <div class="col-lg-2 text-center">
                                     <div class="box-gray">

@@ -16,8 +16,8 @@
     <!----------Hearder------------>
     @include('layouts.navbar')
     <!----------End Hearder-------->
-    <div id="tela-icone"> <!-- Icone de Download Em Telas -->
-        <form class="download-icone">
+    <div id="screen-icon"> <!-- Icone de Download Em Telas -->
+        <form class="download-icon">
             <button>
                 <i class="fas fa-download"></i>
             </button>
@@ -27,7 +27,7 @@
     <div class="container-1">
         <h1>LISTA DE MEDICAMENTOS</h1>
 
-            <div class="box-agendamento"> <!--Medicamento listado-->
+            <div class="box-scheduling"> <!--Medicamento listado-->
                 <div class="row">
                     <div class="col-lg-8 text-center">
                         <div class="box-gray">

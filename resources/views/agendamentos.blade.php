@@ -25,12 +25,12 @@
         <!----------End Hearder-------->
     <section>
     
-        <div class="container-1" id="agendamento">
+        <div class="container-1" id="scheduling">
             <h1>VERIFICAÇÃO DE AGENDAMENTOS</h1>
 
             <!----------Agendamentos------------>
             
-            <div class="box-agendamento">
+            <div class="box-scheduling">
                 <!--=====Informação do agendamento======-->
                     <div class="row">
                         <div class="col-lg-2 text-center">

@@ -21,8 +21,8 @@
     <!----------Hearder------------>
     @include('layouts.navbar')
     <!----------End Hearder-------->
-        <div id="tela-icone"> <!-- Icone de Download Em Telas -->
-            <form class="download-icone">
+        <div id="screen-icon"> <!-- Icone de Download Em Telas -->
+            <form class="download-icon">
                 <button>
                     <i class="fas fa-download"></i>
                 </button>
@@ -30,10 +30,10 @@
         </div>
 
     <section>
-        <div class="container-1" id="plantonista">
+        <div class="container-1" id="on-duty">
             <h1>LISTAGEM DE PLANTONISTA</h1>
 
-            <div class="box-plantonista">
+            <div class="box-on-duty">
               <!--------- Cabeçario --------->
               <div class="title">
                 <div class="row">
