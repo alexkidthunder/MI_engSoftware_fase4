@@ -47,11 +47,15 @@
                             <div class="col-lg-4">
                                 <label>Sexo</label> <br>
                                 <div class="row no-gutters">
-                                    <div class="col-lg border-m content-center">
-                                        <input type="radio" name="fsexo" value="Masculino" id="fmasc" disabled>Masculino</input> <!--Usar o checked para deixar marcado-->
+                                    <div id="fmasc_div" class="col-lg-6 border-m content-center">
+                                        <input type="radio" name="fsexo" value="Masculino" id="fmasc" disabled>
+                                            <label for="fmasc" class="normal-label">Masculino</label>
+                                        </input> <!--Usar o checked para deixar marcado-->
                                     </div>
-                                    <div class="col-lg border-f content-center">
-                                        <input type="radio" name="fsexo" value="Feminino" id="ffem" disabled>Feminino</input> <!--Usar o checked para deixar marcado-->
+                                    <div id="ffem_div" class="col-lg-6 border-f content-center">
+                                        <input type="radio" name="fsexo" value="Feminino" id="ffem" disabled>
+                                            <label for="ffem" class="normal-label">Feminino</label>
+                                        </input> <!--Usar o checked para deixar marcado-->
                                     </div>
                                 </div>
                             </div>

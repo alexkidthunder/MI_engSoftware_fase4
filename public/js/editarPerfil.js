@@ -62,6 +62,13 @@ editBnt.addEventListener("click",function(){
     fmInp.removeAttribute("disabled");
     ffInp.removeAttribute("disabled");
     emailInp.removeAttribute("disabled");
+    radioFemDiv.style.display = "";
+    radioMascDiv.style.display = "";
+    radioFemDiv.classList.remove("radial-no-edit");
+    radioMascDiv.classList.remove("radial-no-edit");
+    radioFemDiv.classList.add("radial-edit");
+    radioMascDiv.classList.add("radial-edit");
+
 })
 
 var confBtn = document.getElementById('confirm_info');
@@ -74,6 +81,17 @@ confBtn.addEventListener("click",function(){
     fmInp.setAttribute("disabled","");
     ffInp.setAttribute("disabled","");
     emailInp.setAttribute("disabled","");
+    radioFemDiv.classList.add("radial-no-edit");
+    radioMascDiv.classList.add("radial-no-edit");
+    radioFemDiv.classList.remove("radial-edit");
+    radioMascDiv.classList.remove("radial-edit");
+    if(ffInp.checked){
+        radioMascDiv.style.display = "none";
+    }
+    else if(fmInp.checked){
+        radioFemDiv.style.display = "none";
+    }
+    
 })
 
 
@@ -113,3 +131,21 @@ else{
     corenDiv.style.display = "none";
     console.log("Passou reto");
     }
+
+
+var radioMascDiv = document.getElementById('fmasc_div');
+var radioFemDiv = document.getElementById('ffem_div');
+
+// fmInp = Input radial masculino
+// ffInp = Input radial feminino
+
+if(ffInp.checked === false && fmInp.checked === false){
+    radioFemDiv.classList.add("radial-no-edit");
+    radioMascDiv.classList.add("radial-no-edit");
+}
+else if(ffInp.checked === true){
+    radioMascDiv.style.display = "none";
+}
+else{
+    radioFemDiv.style.display = "none";
+}

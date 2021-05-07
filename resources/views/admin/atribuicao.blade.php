@@ -42,33 +42,41 @@
                         <p>Marcos Oliveira Santana</p>
                     </div>
                     <div class="row">
-                        <div class="col-lg-4">
+                        <div class="col-lg">
                             <div class="box-gray">
                                 <p>CPF: 011.988.999-00</p>
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        <div id="corenUser" class="col-lg">
                             <div class="box-gray">
                                 <p>COREN: 0123456 BA</p>
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg">
                             <div class="box-gray">
                                 <p id="atribuicaoAtual">Enfermeiro Chefe</p>
                             </div>
                         </div>
                     </div>
-
+                
                     <!--Alterar atrinuição do funcionário funcionário, se for estagiário-->
                     <div class="container-atribution">
-                        <label>Nova atribuição</label>
-                            <form>
-                                <select id="novaAtribuicao" name="novaAtribuicao">
-                                    <option value="enfermeiroChefe">Enfermeiro chefe</option>
-                                    <option value="enfermeiro">Enfermeiro</option>
-                                </select>
-                            </form>
+                        <form>
+                            <div class="row"> 
+                                <div class="col-lg-4"> 
+                                    <label for="novaAtribuicao">Nova atribuição</label> <br>
+                                    <select id="novaAtribuicao" name="novaAtribuicao">
+                                        <option value="enfermeiroChefe">Enfermeiro chefe</option>
+                                        <option value="enfermeiro">Enfermeiro</option>
+                                    </select>
+                                </div>
+                                <div id="corenDiv" class="col-lg-4" style="display: none">
+                                    <label for="fcoren">Coren</label> <br>
+                                    <input placeholder="Digte um Coren" id="fcoren" name="fcoren" type="text">
+                                </div>
+                            </div>
                             <button type="submit" class="container-button btn-white">Alterar</button>
+                        </form>
                     </div>
                 </div>       
             </div>
