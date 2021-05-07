@@ -90,7 +90,7 @@
                         </div>
                     </form>
                     <div id="psw" style="display: none">
-                    <h3 class="text-center">Alterar senha</h3>
+                    <h3 class="text-center">Alterar senha</h3> <br>
                         <form class="content-center">
                             <div class="row">
                                 <div class="col-lg">
