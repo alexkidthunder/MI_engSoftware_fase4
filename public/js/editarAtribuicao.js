@@ -23,6 +23,7 @@ searchBtn.addEventListener("click",function(){
     Mostrar o usuário buscado
     */
     let userDataDiv = document.getElementById('user_Data');
+    let corenUserData = document.getElementById('corenUser');
     if(userDataDiv.style.display === "none"){
         userDataDiv.style.display = "";
     }
@@ -37,12 +38,40 @@ searchBtn.addEventListener("click",function(){
 
         selectMudanca.appendChild(EnfermeiroChefe);
         selectMudanca.appendChild(Enfermeiro);
+        corenUserData.style.display = "";
+        if(atribuiçãoAtual.innerHTML === "Enfermeiro Chefe"){
+            selectMudanca.value = "Enfermeiro Chefe";
+        }
+        else{
+            selectMudanca.value = "Enfermeiro";
+        }
         
     } else{
 
         selectMudanca.appendChild(EnfermeiroChefe);
         selectMudanca.appendChild(Enfermeiro);
         selectMudanca.appendChild(Estagiario);
+        corenUserData.style.display = "none";
+        selectMudanca.value = "Estagiário";
     }
 })
 
+selectMudanca.addEventListener("change",function(){
+    var CorenDiv = document.getElementById('corenDiv');
+    var CorenInpt = document.getElementById('fcoren');
+    if(atribuiçãoAtual.innerHTML === "Estagiário"){
+        if(selectMudanca.value === "Enfermeiro Chefe" || selectMudanca.value === "Enfermeiro"){ 
+            CorenDiv.style.display = "";
+            if(CorenInpt.hasAttribute("required") === false){
+                CorenInpt.setAttribute("required","");
+            }
+        }
+        else{
+            CorenDiv.style.display = "none";
+            if(CorenInpt.hasAttribute("required")){
+                CorenDiv.style.display = "none";
+                CorenInpt.removeAttribute("required");
+            }
+        }
+    }
+})

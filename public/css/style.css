@@ -94,7 +94,7 @@ input, select {
 
 input[type=text]:disabled, input[type="number"]:disabled, input[type="email"]:disabled, input[type="date"]:disabled, select:disabled {
     background-color: #A2DBFE;
-    border: #A2DBFE;
+    border: 2px solid #A2DBFE;
     font-weight: bold;
 }
 
@@ -469,7 +469,7 @@ input[type=number] {
     border: 2px solid #02A7F0;
     padding: 7px 0;
     border-radius: 10px 0 0 10px;
-    border-right: 0;
+
 }
 
 .border-f {
@@ -569,4 +569,16 @@ input[type=number] {
 
 .msg-error {
     background-image: linear-gradient( to right, #ff6f88, #ff3353, #f50026);
+}
+
+.radial-no-edit {
+    background-color: #A2DBFE; /* Não selecionado */
+}
+.radial-edit{
+    background-color: white; /* Selecionado */
+}
+
+.normal-label{ /* Label dentro de input do tipo Radio */
+    margin: 0;
+    font-weight: normal;
 }
