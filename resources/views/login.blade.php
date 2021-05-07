@@ -51,8 +51,7 @@
             <div class="enter">
                 <button type= "submit">ENTRAR</button>
             </div>
-
-            <label class="text">Esqueceu a senha?</label>
+            <a href="{{ route('esqueciSenha')}}"><label class="text">Esqueceu a senha?</label></a>
         </div>
     </form>
     <!-- JavaScript Bundle with Popper -->
