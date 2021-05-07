@@ -58,16 +58,13 @@ editBnt.addEventListener("click",function(){
     confBtnDiv.style.display = "";
     passBtnDiv.style.display = "";
 
-    nomeInp.removeAttribute("disabled");
-    fmInp.removeAttribute("disabled");
-    ffInp.removeAttribute("disabled");
-    emailInp.removeAttribute("disabled");
+    
     radioFemDiv.style.display = "";
     radioMascDiv.style.display = "";
-    radioFemDiv.classList.remove("radial-no-edit");
-    radioMascDiv.classList.remove("radial-no-edit");
-    radioFemDiv.classList.add("radial-edit");
-    radioMascDiv.classList.add("radial-edit");
+
+    enable();   
+    removeNoRadialEdit();
+    addRadialEdit();
 
 })
 
@@ -77,20 +74,10 @@ confBtn.addEventListener("click",function(){
     confBtnDiv.style.display = "none";
     passBtnDiv.style.display = "none";
 
-    nomeInp.setAttribute("disabled","");
-    fmInp.setAttribute("disabled","");
-    ffInp.setAttribute("disabled","");
-    emailInp.setAttribute("disabled","");
-    radioFemDiv.classList.add("radial-no-edit");
-    radioMascDiv.classList.add("radial-no-edit");
-    radioFemDiv.classList.remove("radial-edit");
-    radioMascDiv.classList.remove("radial-edit");
-    if(ffInp.checked){
-        radioMascDiv.style.display = "none";
-    }
-    else if(fmInp.checked){
-        radioFemDiv.style.display = "none";
-    }
+    disable();
+    addNoRadialEdit();
+    removeRadialEdit();
+    checkRadial();
     
 })
 
@@ -114,14 +101,20 @@ backBtn.addEventListener("click",function(){
     pflArea.style.display = "";
     pswArea.style.display = "none";
 
-    nomeInp.setAttribute("disabled","");
-    fmInp.setAttribute("disabled","");
-    ffInp.setAttribute("disabled","");
-    emailInp.setAttribute("disabled","");
+    disable();
+
+    ffInp.checked = false;
+    fmInp.checked = false;
+
+    removeRadialEdit();
+    addNoRadialEdit();
+    checkRadial();
+
+
 })
 
 var atribuiInp = document.getElementById('fatribui');
-let corenDiv =  document.getElementById('corenDiv');
+var corenDiv =  document.getElementById('corenDiv');
 console.log("Chegou aqui");
 if(atribuiInp.value === "Enfermeiro" || atribuiInp.value === "Enfermeiro Chefe"){
     corenDiv.style.display = "";
@@ -140,12 +133,48 @@ var radioFemDiv = document.getElementById('ffem_div');
 // ffInp = Input radial feminino
 
 if(ffInp.checked === false && fmInp.checked === false){
+    addNoRadialEdit();
+}
+else{
+    checkRadial();
+}
+
+function addNoRadialEdit(){
     radioFemDiv.classList.add("radial-no-edit");
     radioMascDiv.classList.add("radial-no-edit");
 }
-else if(ffInp.checked === true){
-    radioMascDiv.style.display = "none";
+function removeNoRadialEdit(){
+    radioFemDiv.classList.remove("radial-no-edit");
+    radioMascDiv.classList.remove("radial-no-edit");
 }
-else{
-    radioFemDiv.style.display = "none";
+function addRadialEdit(){
+    radioFemDiv.classList.add("radial-edit");
+    radioMascDiv.classList.add("radial-edit");
+}
+function removeRadialEdit(){
+    radioFemDiv.classList.remove("radial-edit");
+    radioMascDiv.classList.remove("radial-edit");
+}
+
+function checkRadial(){
+    if(ffInp.checked === true){
+        radioMascDiv.style.display = "none";
+    }
+    else if(fmInp.checked === true){
+        radioFemDiv.style.display = "none";
+    }
+}
+
+function disable(){
+    nomeInp.setAttribute("disabled","");
+    fmInp.setAttribute("disabled","");
+    ffInp.setAttribute("disabled","");
+    emailInp.setAttribute("disabled","");
+}
+
+function enable(){
+    nomeInp.removeAttribute("disabled");
+    fmInp.removeAttribute("disabled");
+    ffInp.removeAttribute("disabled");
+    emailInp.removeAttribute("disabled");
 }
