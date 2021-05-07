@@ -10,7 +10,7 @@
     <link href="{{ ('css/style.css') }}" rel="stylesheet"> 
     <link href="{{ ('bootstrap/css/bootstrap.css') }}" rel="stylesheet"> 
 
-    <title>Lista de Medicamentos</title>
+    <title>Medicamentos cadastrados</title>
 </head>
 <body>
     <!----------Hearder------------>
@@ -25,7 +25,7 @@
     </div>
 
     <div class="container-1">
-        <h1>LISTA DE MEDICAMENTOS</h1>
+        <h1>MEDICAMENTOS CADASTRADOS</h1>
 
             <div class="box-scheduling"> <!--Medicamento listado-->
                 <div class="row">

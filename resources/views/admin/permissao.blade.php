@@ -289,9 +289,16 @@
                             <!--Inicio da permissão-->
                             <div class="col-lg-13 content-center">
                                 <input type="checkbox"><br>
-                                <label>Inserir data de internação do paciente</label>
+                                <label>Inserir data de saída do paciente</label>
                             </div>
                             <!--Fim da permissão-->
+
+                            <!--Inicio da permissão-->
+                            <div class="col-lg-13 content-center">
+                                <input type="checkbox"><br>
+                                <label>Alocar leito do paciente</label>
+                            </div>
+                            <!--Fim da permissão-->                        
                         </div>
                         <!-- ========== fim da linha 7 ========== --> 
 

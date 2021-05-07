@@ -9,7 +9,7 @@
     <link href="{{ ('bootstrap/css/bootstrap.css') }}" rel="stylesheet">
 </head>
 <body>
-  <header  class="header" id="header" class="fixed-top">
+  <header id="header">
     
     <div class="d-flex align-items-center justify-content-between">
       <div class="d-flex">

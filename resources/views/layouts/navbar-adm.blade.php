@@ -9,9 +9,10 @@
     <link href="{{ ('bootstrap/css/bootstrap.css') }}" rel="stylesheet">
 </head>
 <body>
-  <header  class="header" id="header" class="fixed-top">
+  <header id="header">
     
     <div class="d-flex align-items-center justify-content-between">
+      
       <div class="d-flex">
         <a href="{{ route('editarPerfil') }} " class="user"> <i class="fas fa-user"></i></a>
         <div class="col-lg-3">
@@ -36,12 +37,15 @@
             <li class="title-nav"><a href="{{ route('log') }}">LOG DO SISTEMA</a></li>
          
             <li class="title-nav"><a href="{{ route('backup') }}">BACKUP</a></li>
+
+            <li class="title-nav"><a href="#">RELATÓRIOS GERENCIAIS</a></li>
          
-            <li><a href="{{ route('index') }}" class="logout-icon"> <i class="fas fa-sign-out-alt"></i></a></li>
+            <li><a href="{{ route('index') }}" class="logout-icon"><i class="fas fa-sign-out-alt"></i></a></li>
          
           </ul>
         </nav>
       </div>
+
     </div>
   </header>
 </body>

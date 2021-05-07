@@ -77,7 +77,7 @@
                     <div id="corenDiv" class="row" style="display: none">
                         <div class="col-lg-4">
                             <label for="fcoren">Coren</label>
-                            <input id="fcoren" name="fcoren" type="text">
+                            <input placeholder="Informe o Coren" id="fcoren" name="fcoren" type="text" required maxlength="9">
                         </div>
                     </div>
                     <div>

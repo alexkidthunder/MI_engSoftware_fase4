@@ -29,7 +29,7 @@
                 <div class="content-center">
                     <h3>BUSCAR FUNCIONÁRIO</h3>
                     <form class="search-bar">
-                        <input name="cpf_user" id="cpf_user" type="text" placeholder="Informe o CPF" required maxlength="11" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
+                        <input name="cpf_user" id="cpf_user" type="text" placeholder="Informe o CPF" required maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
                         <button type="submit" id="busca_user">
                             <i class="fas fa-search"></i>
                         </button>
@@ -72,7 +72,7 @@
                                 </div>
                                 <div id="corenDiv" class="col-lg-4" style="display: none">
                                     <label for="fcoren">Coren</label> <br>
-                                    <input placeholder="Digte um Coren" id="fcoren" name="fcoren" type="text">
+                                    <input placeholder="Informe o Coren" id="fcoren" name="fcoren" type="text" required maxlength="9">
                                 </div>
                             </div>
                             <button type="submit" class="container-button btn-white">Alterar</button>

@@ -9,7 +9,7 @@
     <link href="{{ ('bootstrap/css/bootstrap.css') }}" rel="stylesheet">
 </head>
 <body>
-  <header  class="header" id="header" class="fixed-top">
+  <header id="header">
     
     <div class="d-flex align-items-center justify-content-between">
       <div class="d-flex">
@@ -21,7 +21,6 @@
     
       <div class="d-flex align-items-center pr-5">    
         <nav class="nav d-none d-lg-block">
-
           <ul>
             <li class="title-nav"><a href="{{ route('menu') }}">INÍCIO</a></li>
             <li class="drop-down title-nav"><a>PACIENTES <i class="fas fa-angle-down"></i></a>
@@ -35,17 +34,17 @@
               <ul>
                 <li class=""><a href="{{ route('agendamentos') }}">Verificação de agendamentos</a></li>
                 <li class=""><a href="{{ route('meusAgendamentos') }}">Meus agendamentos</a></li>
+                <li class=""><a href="{{ route('agendamentosRealizados') }}">Meus agendamentos realizados</a></li>
                 <!-- Enfermeiro chefe 
                 <li class=""><a href="{{ route('cadastroAgendamento') }}">Cadastro de agendamentos</a></li>
                 <li class=""><a href="{{ route('listaAgendamentos') }}">Listagem de agendamentos</a></li>
                 <li class=""><a href="{{ route('cadastroMedicamento') }}">Cadastro de medicamentos</a></li>
+                <li class=""><a href="{{ route('listaMedicamento') }}">Medicamentos cadastados</a></li>
                 <li class=""><a href="{{ route('responsaveis') }}">Responsáveis por aplicação</a></li>
                 -->
               </ul>
             </li>
-            
-            <li class="title-nav"><a href="{{ route('agendamentosRealizados') }}">AGENDAMENTOS REALIZADOS</a></li>
-         
+          
             <!-- Enfermeiro chefe   
             <li class="drop-down title-nav"><a>PLANTONISTAS <i class="fas fa-angle-down"></i></a>
               <ul>
@@ -58,7 +57,7 @@
          
           </ul>
         </nav>
-      </div>
+    </div>
     </div>
   </header>
 </body>
