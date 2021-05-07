@@ -582,3 +582,15 @@ input[type=number] {
     margin: 0;
     font-weight: normal;
 }
+
+/*---------------------Listagem de medicamentos ---------------------------*/
+#medicament-list .box-white {
+    background-color: #ffff;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px#DBDADA;
+    height: 150px;
+    margin-bottom: 20px;
+    -webkit-box-shadow: 3px 3px 8px #C8C8C8;
+    -moz-box-shadow: 3px 3px 8px #C8C8C8;
+    padding: 15px 30px;
+}
