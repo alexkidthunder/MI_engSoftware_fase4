@@ -69,7 +69,7 @@
                 </div>
                 <div>
                     <form id="register" style="display: none;">
-                        <div class="box-medicamento">
+                        <div class="box-medicament">
                             <div class="row">
                                 <div class="col-lg-4">
                                     <div>

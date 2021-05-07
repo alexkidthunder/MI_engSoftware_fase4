@@ -266,27 +266,27 @@ textarea:focus, input:focus {
 
 /*------------ Icone de download  ------------*/
 
-.download-icone {
+.download-icon {
     float: right;
 }
 
-.download-icone button i {
+.download-icon button i {
     color: #0D6EFD;
     cursor: pointer;
     font-size: 30px;
 }
 
-.download-icone button i:hover {
+.download-icon button i:hover {
     color: #02A7F0;
 }
 
-#tela-icone .download-icone {
+#screen-icon .download-icon {
     margin-top: 10px;
     margin-inline: 30px;
 }
 
-#tela-icone .download-icone button i {
-    font-size: 45px;
+#screen-icon .download-icon button i {
+    font-size: 35px;
 }
 
 /*------------ Menu  ------------*/
@@ -416,7 +416,7 @@ input[type=number] {
 
 /*------------ Agendamentos ------------*/
 
-.box-agendamento {
+.box-scheduling {
     background-color: #ffff;
     border: 1.5px solid #58ACFA;
     border-radius: 0 50px 50px 0;
@@ -424,15 +424,15 @@ input[type=number] {
     margin-bottom: 25px;
 }
 
-.box-agendamento:nth-child(even) {
+.box-scheduling:nth-child(even) {
     border-radius: 0 50px 0 0;
 }
 
-.box-agendamento:nth-child(odd) {
+.box-scheduling:nth-child(odd) {
     border-radius: 0 0 50px 0;
 }
 
-#agendamento .btn-white {
+#scheduling .btn-white {
     padding: 0;
     height: 30px;
     width: 100%;
@@ -503,7 +503,7 @@ input[type=number] {
 
 /*----------------------------plantonista -------------------*/
 
-#plantonista .title {
+#on-duty .title {
     color: #0D6EFD;
     font-family: "Open Sans", sans-serif;
     font-weight: bold;
@@ -512,17 +512,17 @@ input[type=number] {
     padding: 5px 10px;
 }
 
-#plantonista .box-blue, #plantonista .box-button {
+#on-duty .box-blue, #on-duty .box-button {
     height: 40px;
     padding-top: 10px;
 }
 
-#plantonista input[type="checkbox"] {
+#on-duty input[type="checkbox"] {
     height: 25px;
     width: 25px;
 }
 
-.box-plantonista, .box-medicamento, .box-backup {
+.box-on-duty, .box-medicament, .box-backup {
     background-color: #ffff;
     border: 1.5px solid #58ACFA;
     border-radius: 0 50px 0 0;

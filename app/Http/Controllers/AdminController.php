@@ -47,16 +47,21 @@ class AdminController extends Controller
     }
 
     public function remocao()
-    {
+    {  
         
-        if (isset($_GET['usuario'])) {
-            $cpf = $_GET['usuario'];            
-            DB::table('usuarios')->where('CPF', $cpf)->delete();
-            echo ("<script> alert('Removido com Sucesso'); </script>");            
-            return view('/admin/remocaoUsuario');
+        
+        include('..\app\Http\Controllers\db.php'); 
+        if (isset($_GET['cpf'])) {
+            $cpf = $_GET['cpf'];
+            //$atr = $_GET['atr'];    
+            $query ="DELETE FROM usuarios WHERE 'CPF' = '$cpf'";
+            $status = mysqli_query($connect, $query);            
+                    
+            return view('/admin/remocaoUsuario',['status'=>$status]);
         } else {
             return view('/admin/remocaoUsuario');
-        }
+        }       
+      
     }
     
     public function salvarUsuario(Request $request){
@@ -126,10 +131,31 @@ class AdminController extends Controller
      }
 
     public function busca(Request $request)
-    {
+    {          
+        
+        include('..\app\Http\Controllers\db.php');        
+        $query = "SELECT * FROM usuarios WHERE CPF= '$request->cpf_user'";
+        $result = mysqli_query($connect, $query);       
+        $user = mysqli_fetch_array($result);
+        
+        
+        if ($user == null) {
+            $user = 0;
+            $atribuicao = 0;
+        }
 
-        $user = DB::table('usuarios')->where('CPF', $request->cpf_user)->first();
-
-        return view('/admin/remocaoUsuario', ['user' => $user]);
+        if($user != 0){
+            if(strcmp($user['Atribuicao'],"Enfermeiro") == 0){
+                $enfermeiro = mysqli_query($connect, "SELECT * FROM enfermeiros WHERE CPF= '$request->cpf_user'");
+                $atribuicao = mysqli_fetch_array($enfermeiro);  
+            }else if(strcmp($user['Atribuicao'], "Enfermeiro Chefe") == 0){
+                $enfermeiro_Chefe = mysqli_query($connect, "SELECT * FROM enfermeiros_chefes WHERE CPF= '$request->cpf_user'");   
+                $atribuicao = mysqli_fetch_array($enfermeiro_Chefe);   
+            }else{
+                $atribuicao = 0;
+            }
+        }
+        return view('/admin/remocaoUsuario', ['user' => $user, 'atribuicao'=> $atribuicao]);
+        
     }
 }

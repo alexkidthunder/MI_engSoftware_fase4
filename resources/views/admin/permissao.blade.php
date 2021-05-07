@@ -21,8 +21,8 @@
     <!----------End Hearder-------->
 
     <h1>ALTERAR PERMISSÕES</h1>
-        <div class="container-80">
-            <div class="box">
+        <div class="container-80" >
+            <div class="box" id="permission">
                 <!--Buscar funcionário-->
                 <div class="content-center">
                     <h3>SELECIONAR TIPO DE CARGO</h3>
@@ -35,9 +35,10 @@
                         </select>
                     </form>
                 </div>
+                <br>
 
             <!---------------- Alterar permissões ---------------->
-            <div class="box" id="permission">
+          {{-- <div class="box" id="permission">--}}
                     <form>
                         <h3 class="content-center">PERMISSÕES DO "inserir o valor selecionado" </h3> <br>
                         <!-- ========== Linha 1 (REFERENTE AO ADM) ========== --> 
@@ -196,7 +197,7 @@
                         </div>
                         <!-- ========== fim da linha 4 ========== --> 
 
-                        <!-- ========== Linha  ========== --> 
+                        <!-- ========== Linha 5  ========== --> 
                         <div class="row">
                             <!--Inicio da permissão-->
                             <div class="col-lg-13 content-center">
@@ -232,7 +233,11 @@
                                 <label>Dar baixa no agendamento</label>
                             </div>
                             <!--Fim da permissão-->
+                        </div>
+                        <!-- ========== fim da linha 5 ========== --> 
 
+                        <!-- ========== Linha 6 ========== --> 
+                        <div class="row">
                             <!--Inicio da permissão-->
                             <div class="col-lg-13 content-center">
                                 <input type="checkbox"><br>
@@ -268,12 +273,30 @@
                             </div>
                             <!--Fim da permissão-->
                         </div>
-                        <!-- ========== fim da linha ========== --> 
+                        <!-- ========== fim da linha 6 ========== --> 
+
+                        <!-- ========== fim da linha 7 ========== --> 
+                        <div class="row">
+                            <!--Inicio da permissão-->
+                            <div class="col-lg-13 content-center">
+                                <input type="checkbox"><br>
+                                <label>Inserir data de internação do paciente</label>
+                            </div>
+                            <!--Fim da permissão-->
+
+                            <!--Inicio da permissão-->
+                            <div class="col-lg-13 content-center">
+                                <input type="checkbox"><br>
+                                <label>Inserir data de internação do paciente</label>
+                            </div>
+                            <!--Fim da permissão-->
+                        </div>
+                        <!-- ========== fim da linha 7 ========== --> 
 
                         <div>
                             <button type="submit" class="container-button btn-white">Alterar</button>
                         </div>  
                     </form>
-            </div>
+          {{--  </div> --}}
         </div>
   </body>
