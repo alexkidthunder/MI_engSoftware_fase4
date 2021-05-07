@@ -11,6 +11,8 @@
     
     <!-- Favicons -->
     <link href="{{ asset('img/favicon.png') }}" rel="icon">
+
+    <script src="{{ ('js/permissao.js') }}" defer></script>
     
     <title>Permissões do usuário</title>
     
