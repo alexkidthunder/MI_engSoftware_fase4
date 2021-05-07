@@ -62,4 +62,8 @@ class EnfChefeController extends Controller
         return view('/enfChefe/prontuario');
     }
 
+    public function cadastroLeito(){
+        return view('/enfChefe/cadastroLeito');
+    }
+
 }
