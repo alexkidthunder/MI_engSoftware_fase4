@@ -76,16 +76,19 @@
                                 <label for="fcoren">Coren</label>
                                 <input disabled id="fcoren" name="fcoren" type="text" value="Coren do Usuario" required maxlength="9">
                             </div>
+                            <div class="col-lg-4" id="edit_div">
+                                <br>
+                                <div id="psw_info_div" style="display: none;">
+                                    <button type="button" class="btn-white" name="psw_info" id="psw_info">Alterar Senha</button>
+                                </div>
+                            </div>
                         </div>
                         <div id="edit_div" class="row">
                             <div class="col-lg" id="edit_info_div">
                                 <button type="button" class="btn-blue" name="edit_info" id="edit_info">Editar informações</button>
                             </div>
-                            <div class="col-lg" id="psw_info_div" style="display: none;">
-                                <button type="button" class="btn-blue" name="psw_info" id="psw_info">Alterar Senha</button>
-                            </div>
                             <div class="col-lg" id="confirm_info_div" style="display: none;">
-                                <button type="button" class="btn-blue" name="confirm_info" id="confirm_info">Confirmar mudanças</button> <!--Alterar para Submit depois-->
+                               <button type="button" class="btn-blue" name="confirm_info" id="confirm_info">Salvar</button> <!--Alterar para Submit depois-->
                             </div>
                         </div>
                     </form>

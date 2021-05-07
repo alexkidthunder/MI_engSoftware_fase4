@@ -119,6 +119,9 @@ textarea:focus, input:focus {
     padding: 5px 25px;
 }
 
+#edit_div .btn-white {
+    border: 2px dashed #0D6EFD;
+}
 /*---------- Botão azul----------*/
 
 .btn-blue {
@@ -138,6 +141,29 @@ textarea:focus, input:focus {
     background-color: #4689C8;
 }
 
+
+/*---------- Botão cinza----------*/
+ .btn-gray {
+  color: #fff;
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.btn-gray:hover {
+  color: #fff;
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+
+.btn-gray.focus ,.btn-gray:focus {
+  box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.5);
+}
+
+.btn-gray.disabled, .btn-gray:disabled   {
+  color: #fff;
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
 /* -----------------------Alinha o texto ou caixa no centro-----------------*/
 
 .content-center {
@@ -594,3 +620,5 @@ input[type=number] {
     -moz-box-shadow: 3px 3px 8px #C8C8C8;
     padding: 15px 30px;
 }
+
+
