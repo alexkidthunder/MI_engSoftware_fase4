@@ -97,7 +97,7 @@
                                     @if($user["Atribuicao"] == "Estagiario")
                                     <div id="corenDiv" class="col-lg-4">
                                         <label for="fcoren">Coren</label> <br>
-                                        <input placeholder="Informe o Coren" id="fcoren" name="fcoren" type="text"  maxlength="10"pattern="\d{2}\-\d{7}">
+                                        <input placeholder="Informe o Coren" id="fcoren" name="fcoren" type="text"  maxlength="10" pattern="\d{2}\-\d{7}" required>
                                     </div>
                                     @endif
                                 </div>
