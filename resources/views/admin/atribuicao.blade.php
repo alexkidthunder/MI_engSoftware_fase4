@@ -94,10 +94,12 @@
                                             <option name="enfermeiro" value="enfermeiro">Enfermeiro</option>
                                         </select>
                                     </div>
-                                    <div id="corenDiv" class="col-lg-4" style="display: none">
+                                    @if($user["Atribuicao"] == "Estagiario")
+                                    <div id="corenDiv" class="col-lg-4">
                                         <label for="fcoren">Coren</label> <br>
-                                        <input placeholder="Informe o Coren" id="fcoren" name="fcoren" type="text"  maxlength="9">
+                                        <input placeholder="Informe o Coren" id="fcoren" name="fcoren" type="text"  maxlength="10"pattern="\d{2}\-\d{7}">
                                     </div>
+                                    @endif
                                 </div>
                                 <button type="submit" class="container-button btn-white">Alterar</button>
                             </form> 
