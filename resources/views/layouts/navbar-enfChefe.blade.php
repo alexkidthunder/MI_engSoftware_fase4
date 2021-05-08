@@ -21,8 +21,8 @@
     
       <div class="d-flex align-items-center pr-5">    
         <nav class="nav d-none d-lg-block">
-          <ul> <!--Enfermeiro chefe e enfermeiro -->
-            <li class="title-nav"><a href="{{ route('menu-e') }}">INÍCIO</a></li>
+          <ul>
+            <li class="title-nav"><a href="{{ route('menu-ec') }}">INÍCIO</a></li>
             <li class="drop-down title-nav"><a>PACIENTES <i class="fas fa-angle-down"></i></a>
                 <ul>
                     <li><a href="{{ route('cadastroPaciente') }}">Cadastro de pacientes</a></li>
@@ -32,27 +32,27 @@
      
             <li class="drop-down title-nav"><a>AGENDAMENTOS E<br> MEDICAMENTOS <i class="fas fa-angle-down"></i></a>
               <ul>
+                <!-- Enfermeiro e estagiário
                 <li class=""><a href="{{ route('agendamentos') }}">Verificação de agendamentos</a></li>
                 <li class=""><a href="{{ route('meusAgendamentos') }}">Meus agendamentos</a></li>
                 <li class=""><a href="{{ route('agendamentosRealizados') }}">Meus agendamentos realizados</a></li>
-                <!-- Enfermeiro chefe 
+              -->
                 <li class=""><a href="{{ route('cadastroAgendamento') }}">Cadastro de agendamentos</a></li>
                 <li class=""><a href="{{ route('listaAgendamentos') }}">Listagem de agendamentos</a></li>
                 <li class=""><a href="{{ route('cadastroMedicamento') }}">Cadastro de medicamentos</a></li>
                 <li class=""><a href="{{ route('listaMedicamento') }}">Medicamentos cadastados</a></li>
-                <li class=""><a href="{{ route('responsaveis') }}">Responsáveis por aplicação</a></li>
-                -->
+                <li class=""><a href="{{ route('responsaveis') }}">Responsáveis por aplicação</a></li>            
               </ul>
             </li>
           
-            <!-- Enfermeiro chefe   
+            
             <li class="drop-down title-nav"><a>PLANTONISTAS <i class="fas fa-angle-down"></i></a>
               <ul>
                 <li class=""><a href="{{ route('cadastroPlantonista') }}">Cadastro de plantonista</a></li>
                 <li class=""><a href="{{ route('listagemPlantonistas') }}">Listagem de plantonista</a></li>
               </ul>
             </li>
-          -->
+
           <li><a href="{{ route('index') }}" class="logout-icon"> <i class="fas fa-sign-out-alt"></i></a></li>
          
           </ul>

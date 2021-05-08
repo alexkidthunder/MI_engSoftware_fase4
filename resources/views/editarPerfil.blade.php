@@ -79,7 +79,7 @@
                             <div class="col-lg-4" id="edit_div">
                                 <br>
                                 <div id="psw_info_div" style="display: none;">
-                                    <button type="button" class="btn-white" name="psw_info" id="psw_info">Alterar Senha</button>
+                                    <button type="button" class="btn-white" name="psw_info" id="psw_info">Alterar senha</button>
                                 </div>
                             </div>
                         </div>
