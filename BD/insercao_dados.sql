@@ -44,22 +44,23 @@ INSERT INTO cargo Values
 
 /*Insere na tabela enfermeiros*/
 INSERT INTO enfermeiros VALUES
-	('252.696.001-73','01-BA00004','1'),
-	('250.414.528-74','01-BA00005','1'),
-	('127.066.920-65','01-BA00006','1'),
-	('558.570.920-86','01-BA00007','1'),
-	('136.382.370-10','01-BA00008','1'),
-	('072.003.190-74','01-BA00009','0'),
-	('873.325.550-42','01-BA00010','0'),
-	('607.500.500-55','01-BA00011','0'),
-	('841.084.862-77','01-BA00012','0'),
-	('046.822.991-40','01-BA00013','0');
+	('252.696.001-73','BA000000004','1'),
+	('250.414.528-74','BA000000005','1'),
+	('127.066.920-65','BA000000006','1'),
+	('558.570.920-86','BA000000007','1'),
+	('136.382.370-10','BA000000008','1'),
+	('072.003.190-74','BA000000009','0'),
+	('873.325.550-42','BA000000010','0'),
+	('607.500.500-55','BA000000011','0'),
+	('841.084.862-77','BA000000012','0'),
+	('046.822.991-40','BA000000013','0');
 
 /* Insere na tabela de enfermeiros_chefes*/
 INSERT INTO enfermeiros_chefes VALUES
-	('202.457.365-11','01-BA00001'),
-	('658.002.101-02','01-BA00002'),
-	('475.013.135-62','01-BA00003');
+	('202.457.365-11', 'BA000000001'),
+	('658.002.101-02', 'BA000000002'),
+	('475.013.135-62', 'BA000000003');
+
     
 /*Insere na tabela estagiarios*/
 INSERT INTO estagiarios VALUES
@@ -137,7 +138,7 @@ INSERT INTO pacientes VALUES
 ('Giovana Lorena Pires','F','alta','1975-12-03', '501.661.629-90', 'AB-');
 
 /* Insere na tabela de permissões */
-INSERT INTO permissoes (id, nome, Ativo) VALUES
+INSERT INTO permissoes  VALUES
 (1, 'Cadastrar funcionário', 1),
 (2, 'Remover funcionário', 1),
 (3, 'Alterar atribuição do funcionário', 1),
