@@ -21,7 +21,7 @@
 
 <body>
     <!----------Hearder------------>
-    @include('layouts.navbar')
+    @include('layouts.navbar-enfChefe')
     <!----------End Hearder-------->
     <section>
         <div class="container-1">
@@ -32,7 +32,7 @@
                     <h3>BUSCAR PACIENTE</h3>
                     <form class="search-bar">
                         <input name="cpf_user" id="cpf_user" type="text" placeholder="Informe o CPF" required
-                            maxlength="11" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
+                            maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
                         <button type="submit" id="busca_user">
                             <i class="fas fa-search"></i>
                         </button>
@@ -69,7 +69,7 @@
                 </div>
                 <div>
                     <form id="register" style="display: none;">
-                        <div class="box-medicamento">
+                        <div class="box-medicament">
                             <div class="row">
                                 <div class="col-lg-4">
                                     <div>

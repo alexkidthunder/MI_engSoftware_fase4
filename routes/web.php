@@ -37,10 +37,8 @@ Route::post('index/menu', [HomeController::class,'login']);
 
 /*------------ Rota para sessao ------------------------ */
 
-Route::post('/sessaoAdmin', [HomeController::class,'sessaoAdmin'])->name('sessaoAdmin');
-Route::post('/sessaoEnf', [HomeController::class,'sessaoEnf'])->name('sessaoEnf');
-Route::post('/sessaoEst', [HomeController::class,'sessaoEst'])->name('sessaoEst');
-Route::post('/sessaoEnfChef', [HomeController::class,'sessaoEnfChef'])->name('sessaoEnfChef');
+Route::get('/sessao', [HomeController::class,'verificarLoguin'])->name('sessao');
+
 
 /*-------------------Rota para logout----------------- */
 
@@ -64,9 +62,10 @@ Route::get('/backup', [AdminController::class,'backup'])->name('backup');
 Route::get('/cadastrarUsuario', [AdminController::class,'cadastro'])->name('cadastrarUsuario');
 Route::get('/removerUsuario', [AdminController::class,'remocao'])->name('removerUsuario');
 Route::get('/buscarUsuario', [AdminController::class,'busca'])->name('buscarUsuario');
-
+Route::post('/alterarAtribuicao',[AdminController::class,'alterarAtribuicao'])->name('alterarAtribuicao'); // rota para alterar atribuição
 Route::post('/cadastrarUsuario',[AdminController::class,'salvarUsuario'])->name('salvarUsuario'); //rota para salvar usuario no banco de dados, capturar dados
-
+/*------------ Rota para Busca ------------------------ */
+Route::get('/lupinha', [AdminController::class,'lupinha'])->name('lupinha');
 /*------------ Rota para Paciente------------------------ */
 
 Route::get('/listaPacientes', [HomeController::class,'listaPacientes'])->name('pacientes');
@@ -91,6 +90,8 @@ Route::get('/cadastroAgendamento', [EnfChefeController::class,'cadastroAgendamen
 Route::get('/listaAgendamentos',[EnfChefeController::class,'listaAgendamentos'])->name('listaAgendamentos');
 Route::get('/listaResponsaveis',[EnfChefeController::class,'responsaveis'])->name('responsaveis');
 Route::get('/prontuario',[EnfChefeController::class,'prontuario'])->name('prontuario');
+Route::get('/cadastroLeito',[EnfChefeController::class,'cadastroLeito'])->name('cadastroLeito');
+Route::get('/historicoEntradaSaida',[EnfChefeController::class,'historicoEntradaSaida'])->name('historicoEntradaSaida');
 
 /*------------ Rotas do enfermeiro -------------------*/
 

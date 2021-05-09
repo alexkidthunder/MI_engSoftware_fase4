@@ -21,8 +21,8 @@
     <!----------Hearder------------>
     @include('layouts.navbar')
     <!----------End Hearder-------->
-        <div id="tela-icone"> <!-- Icone de Download Em Telas -->
-            <form class="download-icone">
+        <div id="screen-icon"> <!-- Icone de Download Em Telas -->
+            <form class="download-icon">
                 <button>
                     <i class="fas fa-download"></i>
                 </button>

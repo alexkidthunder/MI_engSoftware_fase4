@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 05-Maio-2021 às 08:27
+-- Tempo de geração: 05-Maio-2021 às 15:14
 -- Versão do servidor: 10.4.18-MariaDB
 -- versão do PHP: 8.0.3
 
@@ -699,19 +699,19 @@ ALTER TABLE `cid_prontuario`
 -- Limitadores para a tabela `enfermeiros`
 --
 ALTER TABLE `enfermeiros`
-  ADD CONSTRAINT `enfermeiros_ibfk_1` FOREIGN KEY (`CPF`) REFERENCES `responsaveis` (`CPF`);
+  ADD CONSTRAINT `enfermeiros_ibfk_1` FOREIGN KEY (`CPF`) REFERENCES `responsaveis` (`CPF`) ON DELETE CASCADE;
 
 --
 -- Limitadores para a tabela `enfermeiros_chefes`
 --
 ALTER TABLE `enfermeiros_chefes`
-  ADD CONSTRAINT `enfermeiros_chefes_ibfk_1` FOREIGN KEY (`CPF`) REFERENCES `responsaveis` (`CPF`);
+  ADD CONSTRAINT `enfermeiros_chefes_ibfk_1` FOREIGN KEY (`CPF`) REFERENCES `responsaveis` (`CPF`) ON DELETE CASCADE;
 
 --
 -- Limitadores para a tabela `estagiarios`
 --
 ALTER TABLE `estagiarios`
-  ADD CONSTRAINT `estagiarios_ibfk_1` FOREIGN KEY (`CPF`) REFERENCES `responsaveis` (`CPF`);
+  ADD CONSTRAINT `estagiarios_ibfk_1` FOREIGN KEY (`CPF`) REFERENCES `responsaveis` (`CPF`) ON DELETE CASCADE;
 
 --
 -- Limitadores para a tabela `ocorrencias`
@@ -738,7 +738,7 @@ ALTER TABLE `prontuarios`
 -- Limitadores para a tabela `responsaveis`
 --
 ALTER TABLE `responsaveis`
-  ADD CONSTRAINT `responsaveis_ibfk_1` FOREIGN KEY (`CPF`) REFERENCES `usuarios` (`CPF`);
+  ADD CONSTRAINT `responsaveis_ibfk_1` FOREIGN KEY (`CPF`) REFERENCES `usuarios` (`CPF`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

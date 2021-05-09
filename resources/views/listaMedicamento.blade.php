@@ -10,49 +10,52 @@
     <link href="{{ ('css/style.css') }}" rel="stylesheet"> 
     <link href="{{ ('bootstrap/css/bootstrap.css') }}" rel="stylesheet"> 
 
-    <title>Lista de Medicamentos</title>
+    <title>Medicamentos cadastrados</title>
 </head>
 <body>
     <!----------Hearder------------>
     @include('layouts.navbar')
     <!----------End Hearder-------->
-    <div id="tela-icone"> <!-- Icone de Download Em Telas -->
-        <form class="download-icone">
+    <div id="screen-icon"> <!-- Icone de Download Em Telas -->
+        <form class="download-icon">
             <button>
                 <i class="fas fa-download"></i>
             </button>
         </form>
     </div>
 
-    <div class="container-1">
-        <h1>LISTA DE MEDICAMENTOS</h1>
+    <div class="container-1" id="medicament-list">
+        <h1>MEDICAMENTOS CADASTRADOS</h1>
 
-            <div class="box-agendamento"> <!--Medicamento listado-->
+            <div class="box-white"> <!--Medicamento listado-->
                 <div class="row">
-                    <div class="col-lg-8 text-center">
-                        <div class="box-gray">
-                            Nome Medicamento
+                    <div class="col-lg-12">
+                        <label>Nome</label> <br>
+                        <div class="box-blue">
+                            Nome do medicamento
                         </div>
-                    </div>    
-                    <div class="col-lg-2">
-                        <div class="box-gray text-center">
-                            Posologia
+                    </div>  
+                </div>  
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label>Data de validade</label> <br>
+                        <div class="box-gray">
+                            Data de validade
                         </div>
                     </div>
-                    <div class="col-lg-2 text-center">
+                    <div class="col-lg-3">
+                        <label>Em estoque</label> <br>
                         <div class="box-gray">
-                            Qtd do Medicamento
+                            Em estoque
                         </div>
                     </div>
-                </div>
-                <div class="row"> 
-                    <div class="col-lg">
+                    <div class="col-lg-6">
+                        <label>Fabricante</label> <br>
                         <div class="box-gray">
                             Descrição
                         </div>
                     </div>
                 </div>
             </div>
-    </div>
-    
+    </div>  
 </body>

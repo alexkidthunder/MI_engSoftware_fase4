@@ -30,28 +30,32 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <label>Nome</label> <br>
-                                <input id="fnome" name="fnome" type="text" maxlength="50" required readonly>
+                                <input disabled id="fnome" name="fnome" type="text" maxlength="50" required>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-lg-4">
                                 <label>Data de Nascimento</label> <br>
-                                <input id="fnascimento" name="fnascimento" type="date" required readonly>
+                                <input disabled id="fnascimento" name="fnascimento" type="date" required>
                             </div>
                             <div class="col-lg-4">
                                 <label>CPF</label> <br>
-                                <input id="fcpf" name="fcpf" type="text" required readonly maxlength="14"
+                                <input disabled id="fcpf" name="fcpf" type="text" required maxlength="14"
                                     pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
                             </div>
                             <div class="col-lg-4">
                                 <label>Sexo</label> <br>
                                 <div class="row no-gutters">
-                                    <div class="col-lg border-m content-center">
-                                        <input type="radio" name="fsexo" value="Masculino" id="fmasc" disabled>Masculino</input> <!--Usar o checked para deixar marcado-->
+                                    <div id="fmasc_div" class="col-lg-6 border-m content-center">
+                                        <input type="radio" name="fsexo" value="Masculino" id="fmasc" disabled>
+                                            <label for="fmasc" class="normal-label">Masculino</label>
+                                        </input> <!--Usar o checked para deixar marcado-->
                                     </div>
-                                    <div class="col-lg border-f content-center">
-                                        <input type="radio" name="fsexo" value="Feminino" id="ffem" disabled>Feminino</input> <!--Usar o checked para deixar marcado-->
+                                    <div id="ffem_div" class="col-lg-6 border-f content-center">
+                                        <input type="radio" name="fsexo" value="Feminino" id="ffem" disabled>
+                                            <label for="ffem" class="normal-label">Feminino</label>
+                                        </input> <!--Usar o checked para deixar marcado-->
                                     </div>
                                 </div>
                             </div>
@@ -60,33 +64,36 @@
                         <div class="row">
                             <div class="col-lg-8">
                                 <label>Email</label> <br>
-                                <input id="femail" name="femail" type="email" maxlength="50" required readonly>
+                                <input disabled id="femail" name="femail" type="email" maxlength="50" required>
                             </div>
                             <div class="col-lg-4" id="atribuiDiv">
                                 <label for="fatribui">Atribuição</label>
-                                <input id="fatribui" name="fatribui" type="text" value="Enfermeiro" readonly> <!--Alterar o Value de acordo com a atribuição-->
+                                <input disabled id="fatribui" name="fatribui" type="text" value="Enfermeiro"> <!--Alterar o Value de acordo com a atribuição-->
                             </div>
                         </div>
                         <div class="row"> 
-                            <div class="col-lg" id="corenDiv" style="display: none;"> <!--Mostrar isso somente se for Enfermeiro/Chefe-->
+                            <div class="col-lg-4" id="corenDiv" style="display: none;"> <!--Mostrar isso somente se for Enfermeiro/Chefe-->
                                 <label for="fcoren">Coren</label>
-                                <input id="fcoren" name="fcoren" type="text" value="Coren do Usuario" readonly>
+                                <input disabled id="fcoren" name="fcoren" type="text" value="Coren do Usuario" required maxlength="9">
+                            </div>
+                            <div class="col-lg-4" id="edit_div">
+                                <br>
+                                <div id="psw_info_div" style="display: none;">
+                                    <button type="button" class="btn-white" name="psw_info" id="psw_info">Alterar senha</button>
+                                </div>
                             </div>
                         </div>
                         <div id="edit_div" class="row">
                             <div class="col-lg" id="edit_info_div">
                                 <button type="button" class="btn-blue" name="edit_info" id="edit_info">Editar informações</button>
                             </div>
-                            <div class="col-lg" id="psw_info_div" style="display: none;">
-                                <button type="button" class="btn-blue" name="psw_info" id="psw_info">Alterar Senha</button>
-                            </div>
                             <div class="col-lg" id="confirm_info_div" style="display: none;">
-                                <button type="button" class="btn-blue" name="confirm_info" id="confirm_info">Confirmar mudanças</button> <!--Alterar para Submit depois-->
+                               <button type="button" class="btn-blue" name="confirm_info" id="confirm_info">Salvar</button> <!--Alterar para Submit depois-->
                             </div>
                         </div>
                     </form>
                     <div id="psw" style="display: none">
-                    <h3 class="text-center">Alterar senha</h3>
+                    <h3 class="text-center">Alterar senha</h3> <br>
                         <form class="content-center">
                             <div class="row">
                                 <div class="col-lg">

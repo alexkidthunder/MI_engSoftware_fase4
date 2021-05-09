@@ -37,34 +37,53 @@
 
             <!--Infomações do funcionário funcionário-->
             @if(isset($user))
+                @if(!is_array($user))
+                @if($user == 0)            
+                <div class='alert alert-danger'> USUÁRIO NÃO ENCONTRADO</div>
+                @endif
+                @else
+
+
             <h3>Funcionário</h3>
                 <div class="box-gray">
-                    NOME: {{$user->Nome}}
+                    NOME: {{$user['Nome']}}
                 </div>
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="box-gray">
-                            CPF: {{$user->CPF}}
+                            CPF: {{$user['CPF']}}
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="box-gray">
-                            COREN:
+                            COREN: {{$atribuicao['COREN']}}
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="box-gray">
-                            {{$user->Atribuicao}}
+                           ATRIBUIÇÃO: {{$user['Atribuicao']}}
                         </div>
                     </div>
                 </div>
-                <form>
-                    <a href= '/removerUsuario? usuario={{$user->CPF}}' data-toggle="modal"
-                        data-target="#delete" onclick=" return confirm('Tem certeza que deseja apagar o usuario?') "> <button class="container-button btn-blue "> Remover </button> </a>
+                <form action="/removerUsuario" method="GET" > 
+                           <input type="hidden" name="cpf" value="{{$user['CPF']}}">
+                           <input type="hidden" name="atr" value="{{$user['Atribuicao']}}">
+                          <button type="submit" class="container-button btn-blue " 
+                          data-toggle="modal" data-target="#delete"> Remover </button>
                 </form>
+              @endif  
+            @endif
+                <!--  -->
+            @if(isset($status))
+            @if($status == 1)
+            <div class='alert alert-success'> REMOVIDO COM SUCESSO </div>
+            @else
+            <div class='alert alert-danger'> OCORREU ALGUM ERRO AO REMOVER, TENTE NOVAMENTE</div>
+            @endif
             @endif
         </div>
-       
+        
+        <!-- Modal -->
         <div id="delete" class="modal">
             <div class="modal-dialog">
                 <div class="confirmation-content">

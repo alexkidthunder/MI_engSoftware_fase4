@@ -19,13 +19,13 @@
 
 <body>
     <!----------Hearder------------>
-    @include('layouts.navbar')
+    @include('layouts.navbar-enfChefe')
     <!----------End Hearder-------->
     <section>
-        <div class="container-1" id="plantonista">
+        <div class="container-1" id="on-duty">
             <h1>PLANTONISTAS</h1>
 
-            <div class="box-plantonista">
+            <div class="box-on-duty">
                 <!--------- Cabeçario --------->
                 <div class="title">
                     <div class="row">

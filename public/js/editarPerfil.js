@@ -58,10 +58,17 @@ editBnt.addEventListener("click",function(){
     confBtnDiv.style.display = "";
     passBtnDiv.style.display = "";
 
-    nomeInp.removeAttribute("readonly");
+    nomeInp.removeAttribute("disabled");
     fmInp.removeAttribute("disabled");
     ffInp.removeAttribute("disabled");
-    emailInp.removeAttribute("readonly");
+    emailInp.removeAttribute("disabled");
+    radioFemDiv.style.display = "";
+    radioMascDiv.style.display = "";
+    radioFemDiv.classList.remove("radial-no-edit");
+    radioMascDiv.classList.remove("radial-no-edit");
+    radioFemDiv.classList.add("radial-edit");
+    radioMascDiv.classList.add("radial-edit");
+
 })
 
 var confBtn = document.getElementById('confirm_info');
@@ -70,10 +77,21 @@ confBtn.addEventListener("click",function(){
     confBtnDiv.style.display = "none";
     passBtnDiv.style.display = "none";
 
-    nomeInp.setAttribute("readonly","");
+    nomeInp.setAttribute("disabled","");
     fmInp.setAttribute("disabled","");
     ffInp.setAttribute("disabled","");
-    emailInp.setAttribute("readonly","");
+    emailInp.setAttribute("disabled","");
+    radioFemDiv.classList.add("radial-no-edit");
+    radioMascDiv.classList.add("radial-no-edit");
+    radioFemDiv.classList.remove("radial-edit");
+    radioMascDiv.classList.remove("radial-edit");
+    if(ffInp.checked){
+        radioMascDiv.style.display = "none";
+    }
+    else if(fmInp.checked){
+        radioFemDiv.style.display = "none";
+    }
+    
 })
 
 
@@ -96,10 +114,10 @@ backBtn.addEventListener("click",function(){
     pflArea.style.display = "";
     pswArea.style.display = "none";
 
-    nomeInp.setAttribute("readonly","");
+    nomeInp.setAttribute("disabled","");
     fmInp.setAttribute("disabled","");
     ffInp.setAttribute("disabled","");
-    emailInp.setAttribute("readonly","");
+    emailInp.setAttribute("disabled","");
 })
 
 var atribuiInp = document.getElementById('fatribui');
@@ -113,3 +131,21 @@ else{
     corenDiv.style.display = "none";
     console.log("Passou reto");
     }
+
+
+var radioMascDiv = document.getElementById('fmasc_div');
+var radioFemDiv = document.getElementById('ffem_div');
+
+// fmInp = Input radial masculino
+// ffInp = Input radial feminino
+
+if(ffInp.checked === false && fmInp.checked === false){
+    radioFemDiv.classList.add("radial-no-edit");
+    radioMascDiv.classList.add("radial-no-edit");
+}
+else if(ffInp.checked === true){
+    radioMascDiv.style.display = "none";
+}
+else{
+    radioFemDiv.style.display = "none";
+}

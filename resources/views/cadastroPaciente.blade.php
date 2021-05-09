@@ -30,9 +30,22 @@
             <div class="box">
                 <form id="register">
                     <div class="row">
-                        <div class="col-lg-12">
+                        <div class="col-lg-9">
                             <label>Nome</label> <br>
                             <input id="fnome" name="fnome" type="text" maxlength="50" required>
+                        </div>
+                        <div class="col-lg-3">
+                            <label>Tipo Sanguineo</label> <br>
+                            <select id="fsanguineo" name="fsanguineo">
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                            </select>
                         </div>
                     </div>
 
@@ -58,12 +71,6 @@
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <label>Tipo Sanguineo</label> <br>
-                            <input id="fsanguineo" name="fsanguineo" type="text" maxlength="50" required>
-                        </div>
-                    </div>
                     <div>
                         <button type="submit" class="btn-blue"> Cadastrar </button>
                     </div>

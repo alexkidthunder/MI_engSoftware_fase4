@@ -21,56 +21,91 @@
     <!----------Hearder------------>
     @include('layouts.navbar-adm')
     <!----------End Hearder-------->
-    
+    <div class="container">
+        <div class="row">
+            <div class="col-lg">
+                    @if ($errors->any()) <!--Verificando se existe qualquer erro -->
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error) <!--Percorre todos os erros-->
+                                    <li>{{ $error }}</li> <!--Obtem o erro -->
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    @if (session('msg')) <!-- Verifica se a mensagem de rro foi instanciada -->
+                    <div class="alert alert-danger">
+                        {{session('msg')}} <!--Obtem mensagem de erro -->
+                    </div>
+                    @endif
+            </div>
+        </div>
+    </div>
     <h1>ALTERAR ATRIBUIÇÃO</h1>
         <div class="container-1">
             <div class="box">
                 <!--Buscar funcionário-->
                 <div class="content-center">
                     <h3>BUSCAR FUNCIONÁRIO</h3>
-                    <form class="search-bar">
-                        <input name="cpf_user" id="cpf_user" type="text" placeholder="Informe o CPF" required maxlength="11" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
+                    <form class="search-bar" action="/lupinha" method="GET">
+                        <input name="cpf_user" id="cpf_user" type="text" placeholder="Informe o CPF" required maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
                         <button type="submit" id="busca_user">
                             <i class="fas fa-search"></i>
                         </button>
                     </form>
                 </div>
-                <div id="user_Data" style="display: none;">
+                <div id="user_Data" >
                      <!--Infomações do funcionário funcionário-->
-                    <h3>Funcionário</h3> <br>
-                    <div class="box-gray">
-                        <p>Marcos Oliveira Santana</p>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <div class="box-gray">
-                                <p>CPF: 011.988.999-00</p>
+                    @if(isset($user))
+                        <h3>Funcionário</h3> <br>   
+                        <div class="box-gray">
+                            <p>{{$user["Nome"]}}</p>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg">
+                                <div class="box-gray">
+                                    <p>CPF: {{$user["CPF"]}}</p>
+                                </div>
+                            </div>
+                            @if(isset($user2))
+                            <div id="corenUser" class="col-lg">
+                                <div class="box-gray">
+                                    <p>COREN: {{$user2["COREN"]}}</p>
+                                </div>
+                            </div>
+                            @endif
+                            <div class="col-lg">
+                                <div class="box-gray">
+                                    <p id="atribuicaoAtual">{{$user["Atribuicao"]}}</p>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-lg-4">
-                            <div class="box-gray">
-                                <p>COREN: 0123456 BA</p>
-                            </div>
+                
+                        <!--Alterar atrinuição do funcionário funcionário, se for estagiário-->
+                        <div class="container-atribution">
+                            <form method="post" action='/alterarAtribuicao'>
+                            @csrf
+                                <input type="hidden" name="cpf" value='{{$user["CPF"]}}'><!--Usado para obter o CPF pesquisado pela função de busca-->
+                                <div class="row"> 
+                                    <div class="col-lg-4"> 
+                                        <label for="novaAtribuicao">Nova atribuição</label> <br>
+                                        <select id="novaAtribuicao" name="novaAtribuicao">
+                                            <option name="enfermeiroChefe" value="enfermeiroChefe">Enfermeiro chefe</option>
+                                            <option name="enfermeiro" value="enfermeiro">Enfermeiro</option>
+                                        </select>
+                                    </div>
+                                    @if($user["Atribuicao"] == "Estagiario")
+                                    <div id="corenDiv" class="col-lg-4">
+                                        <label for="fcoren">Coren</label> <br>                                    
+                                        <input placeholder="Informe o Coren" id="fcoren" name="fcoren" type="text"  maxlength="14" pattern="\d{2}\-\d{3}.\d{3}.\d{3}" required>
+                                    </div>
+                                    @endif
+                                </div>
+                                <button type="submit" class="container-button btn-white">Alterar</button>
+                            </form> 
                         </div>
-                        <div class="col-lg-4">
-                            <div class="box-gray">
-                                <p id="atribuicaoAtual">Enfermeiro Chefe</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!--Alterar atrinuição do funcionário funcionário, se for estagiário-->
-                    <div class="container-atribution">
-                        <label>Nova atribuição</label>
-                            <form>
-                                <select id="novaAtribuicao" name="novaAtribuicao">
-                                    <option value="enfermeiroChefe">Enfermeiro chefe</option>
-                                    <option value="enfermeiro">Enfermeiro</option>
-                                </select>
-                            </form>
-                            <button type="submit" class="container-button btn-white">Alterar</button>
-                    </div>
-                </div>       
+                    @endif
+                </div>        
             </div>
         </div>
   </body>
