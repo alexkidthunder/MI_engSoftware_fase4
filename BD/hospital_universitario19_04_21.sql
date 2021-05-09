@@ -3,11 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
-<<<<<<< HEAD
--- Tempo de geração: 05-Maio-2021 às 15:14
-=======
 -- Tempo de geração: 07-Maio-2021 às 21:37
->>>>>>> parent of 8d17bb2 (Revert "BD atualização")
 -- Versão do servidor: 10.4.18-MariaDB
 -- versão do PHP: 8.0.3
 
@@ -556,7 +552,6 @@ INSERT INTO `permissoes` (`id`, `nome`, `Ativo`) VALUES
 (28, 'Cadastro do leito', 0),
 (29, 'Remoção do leito', 0),
 (30, 'Realizar / Agendar Backup', 0);
->>>>>>> parent of 8d17bb2 (Revert "BD atualização")
 
 -- --------------------------------------------------------
 
@@ -688,7 +683,6 @@ ALTER TABLE `estagiarios`
 --
 ALTER TABLE `log`
   ADD CONSTRAINT `log_ibfk_1` FOREIGN KEY (`CPF_usuario`) REFERENCES `usuarios` (`CPF`);
->>>>>>> parent of 8d17bb2 (Revert "BD atualização")
 
 --
 -- Limitadores para a tabela `ocorrencias`
