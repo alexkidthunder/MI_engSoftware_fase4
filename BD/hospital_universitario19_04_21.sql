@@ -174,7 +174,7 @@ CREATE TABLE IF NOT EXISTS `cid_prontuario` (
 
 CREATE TABLE IF NOT EXISTS `enfermeiros` (
   `CPF` char(14) NOT NULL,
-  `COREN` char(10) NOT NULL,
+  `COREN` char(12) NOT NULL,
   `Plantao` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`COREN`),
   KEY `CPF` (`CPF`)
@@ -191,11 +191,11 @@ CREATE TABLE IF NOT EXISTS `enfermeiros` (
 --
 
 INSERT INTO `enfermeiros` (`CPF`, `COREN`, `Plantao`) VALUES
-('252.696.001-73', '01-BA00004', 0),
-('250.414.528-74', '01-BA00005', 0),
-('127.066.920-65', '01-BA00006', 0),
-('558.570.920-86', '01-BA00007', 0),
-('136.382.370-10', '01-BA00008', 0),
+('252.696.001-73', '01-BA00004', 1),
+('250.414.528-74', '01-BA00005', 1),
+('127.066.920-65', '01-BA00006', 1),
+('558.570.920-86', '01-BA00007', 1),
+('136.382.370-10', '01-BA00008', 1),
 ('072.003.190-74', '01-BA00009', 0),
 ('873.325.550-42', '01-BA00010', 0),
 ('607.500.500-55', '01-BA00011', 0),
@@ -210,7 +210,7 @@ INSERT INTO `enfermeiros` (`CPF`, `COREN`, `Plantao`) VALUES
 
 CREATE TABLE IF NOT EXISTS `enfermeiros_chefes` (
   `CPF` char(14) NOT NULL,
-  `COREN` char(10) NOT NULL,
+  `COREN` char(12) NOT NULL,
   PRIMARY KEY (`COREN`),
   KEY `CPF` (`CPF`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
