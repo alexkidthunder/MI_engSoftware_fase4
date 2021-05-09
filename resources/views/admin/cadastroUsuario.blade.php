@@ -77,7 +77,7 @@
                     <div id="corenDiv" class="row" style="display: none">
                         <div class="col-lg-4">
                             <label for="fcoren">Coren</label>
-                            <input placeholder="Informe o Coren" id="fcoren" name="fcoren" type="text" required maxlength="9">
+                            <input placeholder="Informe o Coren" id="fcoren" name="fcoren" type="text" maxlength="14" pattern="\d{2}\-\d{3}.\d{3}.\d{3}" required>
                         </div>
                     </div>
                     <div>
