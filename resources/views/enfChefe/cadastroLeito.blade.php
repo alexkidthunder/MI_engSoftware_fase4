@@ -16,7 +16,7 @@
 
 <body>
     <!----------Hearder------------>
-    @include('layouts.navbar')
+    @include('layouts.navbar-enfChefe')
     <!----------End Hearder-------->
     <section> 
 

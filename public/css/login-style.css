@@ -6,36 +6,51 @@
     background-repeat: no-repeat;
     background-size: 100%;
     font-family: "Poppins",sans-serif;
+    padding-top: 0;
+}
+
+a{
+    text-decoration: none;
+}
+
+#first-access{
+    width: 30%;
+    margin:0 35%;
+    padding-top: 100px;
 }
 
 #login{
     width: 30%;
-    margin: auto;
-    padding-top: 170px;
+    margin:0 35%;
+    padding-top: 150px;
 }
 
 .box-login {
-    box-shadow: blue;
+    box-shadow: rgb(233, 233, 240);
     background-image: linear-gradient(to top, rgb(160, 228, 240), rgb(9, 120, 247));
     padding: 20px;
     border-radius: 50px;
 }
 
-#login h2{
+#first-access .box-login {
+    background-image: radial-gradient(circle, #90bdff, #85b6ff, #7ab0ff, #6fa9ff, #64a2ff);
+}
+
+h2{
     color: black;
     text-align: center;
     margin-block-start: 10px;
     margin-block-end: 10px;
 }
 
-#login label {
+label {
     color: black;
     display: block;
     font-weight: bold;
     font-size: 16px;
 }
 
-#login input {
+input {
     border-radius: 15px;
     width: 95%;
     height: 15px;
@@ -45,17 +60,18 @@
     margin-bottom: 10px;
 }
 
-#login input:focus {
+input:focus {
     border: 2px solid #0D6EFD;
     outline:0;
 }
 
-#login input:hover {
+input:hover {
     box-shadow: 2px 2px 2px #f1efef;
 
 }
 
-#login .text {
+.text {
+    cursor: pointer;
     color:#333333;
     display: block;
     font-weight: bold;
@@ -63,11 +79,11 @@
     font-size: 16px;
 }
 
-#login .enter {
+.enter {
     text-align: center;
 }
 
-#login .enter  >button {
+.enter  >button {
     background-image: linear-gradient(to right, blue, blue);
     border:0px;
     border-radius: 30px;
@@ -86,11 +102,27 @@
     color: black;
 }
 
-#primeiro-acesso {
-    background-image: radial-gradient(circle, #90bdff, #85b6ff, #7ab0ff, #6fa9ff, #64a2ff);
-}
-
-#primeiro-acesso .enter  button:hover{
+#first-access .enter  button:hover{
     background-image: none;
     background-color: rgb(206, 229, 255);
+    color: black;
 }
+
+#access-box{
+    background-color: blue;
+    border-radius: 0 0 30px 30px;
+    padding:15px;
+    width:40%;
+    margin: 0 30%;
+    text-align:center;
+}
+#access-box a{
+    color:white;
+    font-weight: bold;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+#access-box  a:hover {
+    color: #d6eeee;
+  }

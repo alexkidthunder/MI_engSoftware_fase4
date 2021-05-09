@@ -18,7 +18,7 @@
 
 <body>
     <!----------Hearder------------>
-    @include('layouts.navbar')
+    @include('layouts.navbar-enfChefe')
     <!----------End Hearder-------->
     <h1>CADASTRO DE MEDICAMENTOS</h1>
     <section>

@@ -18,7 +18,7 @@
   </head>
   <body>
     <!----------Hearder------------>
-    @include('layouts.navbar')
+    @include('layouts.navbar-enfChefe')
     <!----------End Hearder-------->
     
     <!--ENFERMEIRO E ESTAGIARIO -->

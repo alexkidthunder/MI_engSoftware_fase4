@@ -15,6 +15,11 @@
 
 </head>
 <body class="body-login">
+
+    <div id="access-box">
+        <a href="{{ route('primeiroAcesso') }}">Primeiro acesso? Clique aqui para definir a senha</a>
+    </div>
+
     <div class="container">
         <div class="row">
             <div class="col-lg">
@@ -35,6 +40,7 @@
             </div>
         </div>
     </div>
+
    
     <form id="login" action="/index/menu" method= "post">
     @csrf
