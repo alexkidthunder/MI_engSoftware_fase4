@@ -12,7 +12,9 @@ use Illuminate\Http\Request;
 //use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+use mysqli;
 use PhpParser\Node\Stmt\ElseIf_;
+
 
 class AdminController extends Controller
 {
@@ -32,9 +34,16 @@ class AdminController extends Controller
     }
 
     public function permissao()
+    {      
+        return view('/admin/permissao');         
+    }
+    
+
+    public function alterarPermissao()
     {
         return view('/admin/permissao');
     }
+
 
     public function backup()
     {
@@ -189,70 +198,74 @@ class AdminController extends Controller
     }
     
     public function salvarUsuario(Request $request){
-        
-        //busca o cpf
-        $existeCPF = DB::table('usuarios')->where('CPF', $request->fcpf)->first();    
-           
-        //se já existir o cpf
-        if($existeCPF)   
-             return redirect()->route('salvarUsuario')->with('error', "CPF já existente!");
-       
-        //validação de erro
+        include("conexao.php");
+   
+        //validação de erro de entrada
         $validator = Validator::make($request->all(), [     
-            'CPF' => 'required|min:14|max:14',
-       ]);
-        
-       //redirecionando o usuario após erro 
+            'fcpf' => 'required|min:14|max:14',
+        ]);
+                 
+        //redirecionando o usuario caso ocorra o erro
         if ($validator->fails()) {
-           return redirect()->route('salvarUsuario')->with('error', "Digite um CPF válido!!");   
-         }      
-         
-        //se não existir cpf, cria usuário
-         Usuario::Create([
-            'CPF' => $request->fcpf,
-            'Nome' => $request->fnome,
-            'Senha' => '12345',                                 //exemplo de senha
-            //'Senha' => bcrypt($request->fsenha);               // PARA ALTERAR A SENHA, NÃO SALVAR COMO RECEBE
-            //Hash::make('password'),                                               VERIFICAR TAMANHO DE SENHA
-            'Email' => $request->femail,
-            'Data_Nasc' => $request->fnascimento,
-            'Atribuicao' => $request->fatribui,
-            'Sexo' => $request->fsexo,
-            'Ip' => $request->ip(), 
-            ]);        
-         
-        //Adiciona usuário em tabelas correspondentes ao cargo
+            return redirect()->route('salvarUsuario')->with('error', "Digite um CPF válido!!");   
+        }    
+
+      //busca de cpf no banco  
+      $existeCPF = mysqli_query($conn,"SELECT COUNT(*) FROM usuarios WHERE CPF = '$request->fcpf'");
+    
+      //se não existe cpf
+      if($usuario = mysqli_fetch_assoc($existeCPF)){
+
+        $ip = $request->ip();
+
+       //insere na trabela usuário
+        $novoUsuario = "INSERT INTO usuarios (CPF, Nome, Senha, Email, Data_Nasc, Atribuicao, Sexo, Ip) values ('$request->fcpf', 
+        '$request->fnome', 12345, '$request->femail', '$request->fnascimento', '$request->fatribui','$request->fsexo','$ip')";
+        mysqli_query($conn,$novoUsuario);
+        
         if ($request->fatribui == 'Administrador'){
-            Administrador::Create([
-                'CPF' => $request->fcpf,
-            ]);
+            //insere na tabela de administrador
+            $novoAdm = "INSERT INTO administradores (CPF) values ('$request->fcpf')";
+            mysqli_query($conn,$novoAdm);
+
         }else{
-            Responsavel::Create([
-                'CPF' => $request->fcpf,
-            ]);
-            
+            //insere na tabela de responsáveis
+            $novoRespon = "INSERT INTO responsaveis (CPF) values ('$request->fcpf')";
+            mysqli_query($conn,$novoRespon);
+
+            //insere na tabela de enfermeiro chefe
             if ($request->fatribui == 'Enfermeiro Chefe') {
-                Enfermeiro_chefe::Create([
-                    'CPF' => $request->fcpf,
-                    'COREN' => '01-AC00024',   //TROCAR ISSO
-                ]);
+                $novoEnfChefe = "INSERT INTO enfermeiros_chefes (CPF,COREN) values ('$request->fcpf','$request->fcoren')";
+                mysqli_query($conn,$novoEnfChefe);
             }
+            //insere na tabela de enfermeiro
             else if ($request->fatribui == 'Enfermeiro') {
-                Enfermeiro::Create([
-                    'CPF' => $request->fcpf,
-                    'COREN' => '01-SP00100',   //TROCAR ISSO
-                    'Plantao' => '1',           //TROCAR ISSO
-                ]); 
-            }else if ($request->fatribui == 'Estagiario') {
-                Estagiario::Create([
-                    'CPF' => $request->fcpf,
-                    'Plantao' => '0',           //TROCAR ISSO
-                ]);
+                $novoEnf = "INSERT INTO enfermeiros (CPF,COREN,Plantao) values ('$request->fcpf', '$request->fcoren','false')";
+                mysqli_query($conn,$novoEnf);
+            }
+            //insere na tabela de estagiario
+            else if ($request->fatribui == 'Estagiário') {
+                $novoEst = "INSERT INTO estagiarios (CPF,Plantao) values ('$request->fcpf','false')";
+                mysqli_query($conn,$novoEst);
             }   
         }         
-         
+        //FINALIZAR AQUI
         return redirect()->route('salvarUsuario')->with('success','Usuário cadastrado com sucesso!!');
-     }
+
+        }
+        else{
+            //FINALIZAR AQUI
+
+
+                //return redirect()->route('salvarUsuario')->with('error','Usuário já cadastrado no sistema!!');
+                //return redirect() -> back() ->with('msg','Você não pode alterar o cargo de administradores!!!');
+
+                return redirect()->route('salvarUsuario')->with('error','Erro ao cadastrar usuário!!');
+        }
+      }
+     
+    
+
 
     public function busca(Request $request)
     {          
