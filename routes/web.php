@@ -50,7 +50,7 @@ Route::get('/esqueciSenha',[HomeController::class,'esqueciSenha'])->name('esquec
 
 /*------------ Rota para o perfil ------------------------ */
 
-Route::get('/editarPerfil', [HomeController::class,'editPerfil'])->name('editarPerfil');
+Route::get('/meuPerfil', [HomeController::class,'editPerfil'])->name('editarPerfil');
 
 /*------------ Rotas do administrador ------------------ */
 
