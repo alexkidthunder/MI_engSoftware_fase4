@@ -144,9 +144,13 @@ textarea:focus, input:focus {
 
 /*---------- Botão cinza----------*/
  .btn-gray {
-  color: #fff;
-  background-color: #6c757d;
   border-color: #6c757d;
+  background-color: #6c757d;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 5px 25px;
+  margin-right: 10px;
 }
 
 .btn-gray:hover {

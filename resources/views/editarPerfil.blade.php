@@ -95,20 +95,23 @@
                     <div id="psw" style="display: none">
                     <h3 class="text-center">Alterar senha</h3> <br>
                         <form class="content-center">
-                            <div class="row">
-                                <div class="col-lg">
+                                <div align="center">
                                     <input type="password" id="senha-atual" name="senha-atual" placeholder="insira a senha atual" required>
                                 </div>
-                                <div class="col-lg">
+                                <div align="center">
                                     <input type="password" id="senha" name="senha" placeholder="insira a nova senha" required>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg">
-                                    <button type="button" id="fback" class="btn-white">Voltar</button> <!--Fazer Atualizar a Página-->
+                                <div align="center">
+                                    <input type="password" id="confirmacao" name="confirmacao" placeholder="Confirme a nova senha" required>
                                 </div>
-                                <div class="col-lg">
-                                    <button type="submit" class="btn-white">Confirmar</button>
+                                <br>
+                                <br>
+                            <div class="row" align="right">
+                                <div align="right">
+                                    <button class="btn-gray">Cancelar</button>
+                                </div>
+                                <div align="right">
+                                    <button type="submit" class="btn-blue">Alterar senha</button>  
                                 </div>
                             </div>
                         </form>
