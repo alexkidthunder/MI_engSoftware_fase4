@@ -35,29 +35,32 @@ insert into usuarios values
 	('175.585.124-92'),
 	('174.985.367-13');
 
-
-/*Insere na tabela de responsaveis*/
- INSERT INTO responsaveis select CPF from Usuarios where atribuicao NOT LIKE 'a%';
-
-
-/* Insere na tabela de enfermeiros_chefes*/
-INSERT INTO enfermeiros_chefes VALUES
-	('202.457.365-11','01-BA00001'),
-	('658.002.101-02','01-BA00002'),
-	('475.013.135-62','01-BA00003');
+/* Insere na tabela de cargos*/
+INSERT INTO cargo Values
+	('1','Administrador'),
+    ('2','Enfermeiro Chefe'),
+    ('3','Enfermeiro'),
+    ('4','Estagiario');
 
 /*Insere na tabela enfermeiros*/
 INSERT INTO enfermeiros VALUES
-	('252.696.001-73','01-BA00004','0'),
-	('250.414.528-74','01-BA00005','0'),
-	('127.066.920-65','01-BA00006','0'),
-	('558.570.920-86','01-BA00007','0'),
-	('136.382.370-10','01-BA00008','0'),
-	('072.003.190-74','01-BA00009','0'),
-	('873.325.550-42','01-BA00010','0'),
-	('607.500.500-55','01-BA00011','0'),
-	('841.084.862-77','01-BA00012','0'),
-	('046.822.991-40','01-BA00013','0');
+	('252.696.001-73','BA000000004','1'),
+	('250.414.528-74','BA000000005','1'),
+	('127.066.920-65','BA000000006','1'),
+	('558.570.920-86','BA000000007','1'),
+	('136.382.370-10','BA000000008','1'),
+	('072.003.190-74','BA000000009','0'),
+	('873.325.550-42','BA000000010','0'),
+	('607.500.500-55','BA000000011','0'),
+	('841.084.862-77','BA000000012','0'),
+	('046.822.991-40','BA000000013','0');
+
+/* Insere na tabela de enfermeiros_chefes*/
+INSERT INTO enfermeiros_chefes VALUES
+	('202.457.365-11', 'BA000000001'),
+	('658.002.101-02', 'BA000000002'),
+	('475.013.135-62', 'BA000000003');
+
     
 /*Insere na tabela estagiarios*/
 INSERT INTO estagiarios VALUES
@@ -134,45 +137,38 @@ INSERT INTO pacientes VALUES
 ('Jennifer Clarice Assunção','F','alta','1993-04-09', '029.226.827-06', 'B-'),
 ('Giovana Lorena Pires','F','alta','1975-12-03', '501.661.629-90', 'AB-');
 
-/* Insere na tabela de cargos*/
-INSERT INTO cargo Values
-	('1','Administrador'),
-    ('2','Enfermeiro Chefe'),
-    ('3','Enfermeiro'),
-    ('4','Estagiario');
-
 /* Insere na tabela de permissões */
-INSERT INTO permissoes VALUES	
-	('1','Cadastrar funcionário'),
-	(DEFAULT,'Remover funcionário'),	
-	(DEFAULT,'Alterar atribuição do funcionário'),
-	(DEFAULT,'Editar permissões de cargo'),
-	(DEFAULT,'Visualizar permissões de cargo'),
-	(DEFAULT,'Cadastro de plantonista'),
-	(DEFAULT,'Remoção de plantonista'),
-	(DEFAULT,'Cadastro de medicamentos'),
-	(DEFAULT,'Cadastro de CID'),
-	(DEFAULT,'Remoção de CID'),
-	(DEFAULT,'Cadastro de agendamento'),
-	(DEFAULT,'Alocar responsável por agendamento'),
-	(DEFAULT,'Listagem de plantonistas'),
-	(DEFAULT,'Listagem de agendamentos'),
-	(DEFAULT,'Responsáveis por aplicação de medicamentos'),
-	(DEFAULT,'Cadastro de pacientes'),
-	(DEFAULT,'Visualizar pacientes e prontuários'),
-	(DEFAULT,'Acesso ao prontuário do paciente'),
-	(DEFAULT,'Editar informações pessoais do paciente'),
-	(DEFAULT,'Listagem de medicamentos para preparação'),
-	(DEFAULT,'Visualização de agendamento realizados pelo funcionário'),
-	(DEFAULT,'Visualização de agendamento alocados para o funcionário'),
-	(DEFAULT,'Aplicação de medicamentos'),
-	(DEFAULT,'Nomear-se responsável por preparar a aplicação'),
-	(DEFAULT,'Dar baixa no agendamento'),
-	(DEFAULT,'Visualizar ocorrências do paciente'),
-	(DEFAULT,'Registro de ocorrências'),
-	(DEFAULT,'Cadastro do leito'),
-	(DEFAULT,'Remoção do leito'),
-	(DEFAULT,'Realizar / Agendar Backup');
+INSERT INTO permissoes  VALUES
+('1', 'Cadastrar funcionário', '1'),
+(DEFAULT, 'Remover funcionário', '1'),
+(DEFAULT, 'Alterar atribuição do funcionário', '1'),
+(DEFAULT, 'Editar permissões de cargo', '0'),
+(DEFAULT, 'Visualizar permissões de cargo', '0'),
+(DEFAULT, 'Cadastro de plantonista', '0'),
+(DEFAULT, 'Remoção de plantonista', '0'),
+(DEFAULT, 'Cadastro de medicamentos', '1'),
+(DEFAULT, 'Cadastro de CID', '1'),
+(DEFAULT, 'Remoção de CID', '1'),
+(DEFAULT, 'Cadastro de agendamento', '0'),
+(DEFAULT, 'Alocar responsável por agendamento', '0'),
+(DEFAULT, 'Listagem de plantonistas', '1'),
+(DEFAULT, 'Listagem de agendamentos', '1'),
+(DEFAULT, 'Responsáveis por aplicação de medicamentos', '0'),
+(DEFAULT, 'Cadastro de pacientes', '1'),
+(DEFAULT, 'Visualizar pacientes e prontuários', '0'),
+(DEFAULT, 'Acesso ao prontuário do paciente', '0'),
+(DEFAULT, 'Editar informações pessoais do paciente', '0'),
+(DEFAULT, 'Listagem de medicamentos para preparação', '0'),
+(DEFAULT, 'Visualização de agendamento realizados pelo funcio', '0'),
+(DEFAULT, 'Visualização de agendamento alocados para o funcio', '0'),
+(DEFAULT, 'Aplicação de medicamentos', '0'),
+(DEFAULT, 'Nomear-se responsável por preparar a aplicação', '0'),
+(DEFAULT, 'Dar baixa no agendamento', '0'),
+(DEFAULT, 'Visualizar ocorrências do paciente', '0'),
+(DEFAULT, 'Registro de ocorrências', '0'),
+(DEFAULT, 'Cadastro do leito', '0'),
+(DEFAULT, 'Remoção do leito', '0'),
+(DEFAULT, 'Realizar / Agendar Backup', '0');
 
 /* Insere na tabela de permisssao_cargo*/
 INSERT INTO permissao_cargo VALUES

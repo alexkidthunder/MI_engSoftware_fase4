@@ -21,7 +21,7 @@
 
 <body>
     <!----------Hearder------------>
-    @include('layouts.navbar')
+    @include('layouts.navbar-enfChefe')
     <!----------End Hearder-------->
     <section>
         <div class="container-1">

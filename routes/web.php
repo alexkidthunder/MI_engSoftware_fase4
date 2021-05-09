@@ -37,10 +37,8 @@ Route::post('index/menu', [HomeController::class,'login']);
 
 /*------------ Rota para sessao ------------------------ */
 
-Route::post('/sessaoAdmin', [HomeController::class,'sessaoAdmin'])->name('sessaoAdmin');
-Route::post('/sessaoEnf', [HomeController::class,'sessaoEnf'])->name('sessaoEnf');
-Route::post('/sessaoEst', [HomeController::class,'sessaoEst'])->name('sessaoEst');
-Route::post('/sessaoEnfChef', [HomeController::class,'sessaoEnfChef'])->name('sessaoEnfChef');
+Route::get('/sessao', [HomeController::class,'verificarLoguin'])->name('sessao');
+
 
 /*-------------------Rota para logout----------------- */
 
@@ -52,21 +50,22 @@ Route::get('/esqueciSenha',[HomeController::class,'esqueciSenha'])->name('esquec
 
 /*------------ Rota para o perfil ------------------------ */
 
-Route::get('/editarPerfil', [HomeController::class,'editPerfil'])->name('editarPerfil');
+Route::get('/meuPerfil', [HomeController::class,'editPerfil'])->name('editarPerfil');
 
 /*------------ Rotas do administrador ------------------ */
 
 Route::get('/menu', [AdminController::class,'menu'])->name('menu');
 Route::get('/log', [AdminController::class,'log'])->name('log');
-Route::get('/editarAtribuicao', [AdminController::class,'atribuicao'])->name('editarAtribuicao');
+Route::post('/editarAtribuicao', [AdminController::class,'atribuicao'])->name('editarAtribuicao');
 Route::get('/editarPermissao', [AdminController::class,'permissao'])->name('editarPermissao');
 Route::get('/backup', [AdminController::class,'backup'])->name('backup');
 Route::get('/cadastrarUsuario', [AdminController::class,'cadastro'])->name('cadastrarUsuario');
 Route::get('/removerUsuario', [AdminController::class,'remocao'])->name('removerUsuario');
 Route::get('/buscarUsuario', [AdminController::class,'busca'])->name('buscarUsuario');
-
+Route::post('/alterarAtribuicao',[AdminController::class,'alterarAtribuicao'])->name('alterarAtribuicao'); // rota para alterar atribuição
 Route::post('/cadastrarUsuario',[AdminController::class,'salvarUsuario'])->name('salvarUsuario'); //rota para salvar usuario no banco de dados, capturar dados
-
+/*------------ Rota para Busca ------------------------ */
+Route::get('/lupinha', [AdminController::class,'lupinha'])->name('lupinha');
 /*------------ Rota para Paciente------------------------ */
 
 Route::get('/listaPacientes', [HomeController::class,'listaPacientes'])->name('pacientes');

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 05-Maio-2021 às 15:14
+-- Tempo de geração: 07-Maio-2021 às 21:37
 -- Versão do servidor: 10.4.18-MariaDB
 -- versão do PHP: 8.0.3
 
@@ -174,7 +174,7 @@ CREATE TABLE IF NOT EXISTS `cid_prontuario` (
 
 CREATE TABLE IF NOT EXISTS `enfermeiros` (
   `CPF` char(14) NOT NULL,
-  `COREN` char(10) NOT NULL,
+  `COREN` char(12) NOT NULL,
   `Plantao` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`COREN`),
   KEY `CPF` (`CPF`)
@@ -191,16 +191,16 @@ CREATE TABLE IF NOT EXISTS `enfermeiros` (
 --
 
 INSERT INTO `enfermeiros` (`CPF`, `COREN`, `Plantao`) VALUES
-('252.696.001-73', '01-BA00004', 0),
-('250.414.528-74', '01-BA00005', 0),
-('127.066.920-65', '01-BA00006', 0),
-('558.570.920-86', '01-BA00007', 0),
-('136.382.370-10', '01-BA00008', 0),
-('072.003.190-74', '01-BA00009', 0),
-('873.325.550-42', '01-BA00010', 0),
-('607.500.500-55', '01-BA00011', 0),
-('841.084.862-77', '01-BA00012', 0),
-('046.822.991-40', '01-BA00013', 0);
+('252.696.001-73', 'BA000000004', 1),
+('250.414.528-74', 'BA000000005', 1),
+('127.066.920-65', 'BA000000006', 1),
+('558.570.920-86', 'BA000000007', 1),
+('136.382.370-10', 'BA000000008', 1),
+('072.003.190-74', 'BA000000009', 0),
+('873.325.550-42', 'BA000000010', 0),
+('607.500.500-55', 'BA000000011', 0),
+('841.084.862-77', 'BA000000012', 0),
+('046.822.991-40', 'BA000000013', 0);
 
 -- --------------------------------------------------------
 
@@ -210,7 +210,7 @@ INSERT INTO `enfermeiros` (`CPF`, `COREN`, `Plantao`) VALUES
 
 CREATE TABLE IF NOT EXISTS `enfermeiros_chefes` (
   `CPF` char(14) NOT NULL,
-  `COREN` char(10) NOT NULL,
+  `COREN` char(12) NOT NULL,
   PRIMARY KEY (`COREN`),
   KEY `CPF` (`CPF`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -226,9 +226,9 @@ CREATE TABLE IF NOT EXISTS `enfermeiros_chefes` (
 --
 
 INSERT INTO `enfermeiros_chefes` (`CPF`, `COREN`) VALUES
-('202.457.365-11', '01-BA00001'),
-('475.013.135-62', '01-BA00003'),
-('658.002.101-02', '01-BA00002');
+('202.457.365-11', 'BA000000001'),
+('658.002.101-02', 'BA000000002'),
+('475.013.135-62', 'BA000000003');
 
 -- --------------------------------------------------------
 
@@ -304,11 +304,14 @@ CREATE TABLE IF NOT EXISTS `log` (
   `Hora_Agend` time NOT NULL,
   `CPF_usuario` varchar(255) NOT NULL,
   `Ip` varchar(15) NOT NULL,
-  PRIMARY KEY (`Id`)
+  PRIMARY KEY (`Id`),
+  UNIQUE KEY `CPF_usuario` (`CPF_usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- RELACIONAMENTOS PARA TABELAS `log`:
+--   `CPF_usuario`
+--       `usuarios` -> `CPF`
 --
 
 -- --------------------------------------------------------
@@ -506,6 +509,7 @@ INSERT INTO `permissao_cargo` (`id`, `permissao_id`, `cargo_id`) VALUES
 CREATE TABLE IF NOT EXISTS `permissoes` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `nome` varchar(50) NOT NULL,
+  `Ativo` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4;
 
@@ -517,37 +521,37 @@ CREATE TABLE IF NOT EXISTS `permissoes` (
 -- Extraindo dados da tabela `permissoes`
 --
 
-INSERT INTO `permissoes` (`id`, `nome`) VALUES
-(1, 'Cadastrar funcionário'),
-(2, 'Remover funcionário'),
-(3, 'Alterar atribuição do funcionário'),
-(4, 'Editar permissões de cargo'),
-(5, 'Visualizar permissões de cargo'),
-(6, 'Cadastro de plantonista'),
-(7, 'Remoção de plantonista'),
-(8, 'Cadastro de medicamentos'),
-(9, 'Cadastro de CID'),
-(10, 'Remoção de CID'),
-(11, 'Cadastro de agendamento'),
-(12, 'Alocar responsável por agendamento'),
-(13, 'Listagem de plantonistas'),
-(14, 'Listagem de agendamentos'),
-(15, 'Responsáveis por aplicação de medicamentos'),
-(16, 'Cadastro de pacientes'),
-(17, 'Visualizar pacientes e prontuários'),
-(18, 'Acesso ao prontuário do paciente'),
-(19, 'Editar informações pessoais do paciente'),
-(20, 'Listagem de medicamentos para preparação'),
-(21, 'Visualização de agendamento realizados pelo funcio'),
-(22, 'Visualização de agendamento alocados para o funcio'),
-(23, 'Aplicação de medicamentos'),
-(24, 'Nomear-se responsável por preparar a aplicação'),
-(25, 'Dar baixa no agendamento'),
-(26, 'Visualizar ocorrências do paciente'),
-(27, 'Registro de ocorrências'),
-(28, 'Cadastro do leito'),
-(29, 'Remoção do leito'),
-(30, 'Realizar / Agendar Backup');
+INSERT INTO `permissoes` (`id`, `nome`, `Ativo`) VALUES
+(1, 'Cadastrar funcionário', 1),
+(2, 'Remover funcionário', 1),
+(3, 'Alterar atribuição do funcionário', 1),
+(4, 'Editar permissões de cargo', 0),
+(5, 'Visualizar permissões de cargo', 0),
+(6, 'Cadastro de plantonista', 0),
+(7, 'Remoção de plantonista', 0),
+(8, 'Cadastro de medicamentos', 1),
+(9, 'Cadastro de CID', 1),
+(10, 'Remoção de CID', 1),
+(11, 'Cadastro de agendamento', 0),
+(12, 'Alocar responsável por agendamento', 0),
+(13, 'Listagem de plantonistas', 1),
+(14, 'Listagem de agendamentos', 1),
+(15, 'Responsáveis por aplicação de medicamentos', 0),
+(16, 'Cadastro de pacientes', 1),
+(17, 'Visualizar pacientes e prontuários', 0),
+(18, 'Acesso ao prontuário do paciente', 0),
+(19, 'Editar informações pessoais do paciente', 0),
+(20, 'Listagem de medicamentos para preparação', 0),
+(21, 'Visualização de agendamento realizados pelo funcio', 0),
+(22, 'Visualização de agendamento alocados para o funcio', 0),
+(23, 'Aplicação de medicamentos', 0),
+(24, 'Nomear-se responsável por preparar a aplicação', 0),
+(25, 'Dar baixa no agendamento', 0),
+(26, 'Visualizar ocorrências do paciente', 0),
+(27, 'Registro de ocorrências', 0),
+(28, 'Cadastro do leito', 0),
+(29, 'Remoção do leito', 0),
+(30, 'Realizar / Agendar Backup', 0);
 
 -- --------------------------------------------------------
 
@@ -574,46 +578,6 @@ CREATE TABLE IF NOT EXISTS `prontuarios` (
 --   `Cpfpaciente`
 --       `pacientes` -> `CPF`
 --
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `responsaveis`
---
-
-CREATE TABLE IF NOT EXISTS `responsaveis` (
-  `CPF` char(14) NOT NULL,
-  PRIMARY KEY (`CPF`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- RELACIONAMENTOS PARA TABELAS `responsaveis`:
---   `CPF`
---       `usuarios` -> `CPF`
---
-
---
--- Extraindo dados da tabela `responsaveis`
---
-
-INSERT INTO `responsaveis` (`CPF`) VALUES
-('046.822.991-40'),
-('072.003.190-74'),
-('127.066.920-65'),
-('136.382.370-10'),
-('202.457.365-11'),
-('213.223.336-53'),
-('250.414.528-74'),
-('252.696.001-73'),
-('475.013.135-62'),
-('558.570.920-86'),
-('607.500.500-55'),
-('645.566.964-96'),
-('657.687.833-85'),
-('658.002.101-02'),
-('841.084.862-77'),
-('868.500.956-17'),
-('873.325.550-42');
 
 -- --------------------------------------------------------
 
@@ -671,7 +635,7 @@ INSERT INTO `usuarios` (`CPF`, `Nome`, `Senha`, `Email`, `Data_Nasc`, `Atribuica
 -- Limitadores para a tabela `administradores`
 --
 ALTER TABLE `administradores`
-  ADD CONSTRAINT `administradores_ibfk_1` FOREIGN KEY (`CPF`) REFERENCES `usuarios` (`CPF`);
+  ADD CONSTRAINT `administradores_ibfk_1` FOREIGN KEY (`CPF`) REFERENCES `usuarios` (`CPF`) ON DELETE CASCADE;
 
 --
 -- Limitadores para a tabela `agendamentos`
@@ -699,19 +663,26 @@ ALTER TABLE `cid_prontuario`
 -- Limitadores para a tabela `enfermeiros`
 --
 ALTER TABLE `enfermeiros`
-  ADD CONSTRAINT `enfermeiros_ibfk_1` FOREIGN KEY (`CPF`) REFERENCES `responsaveis` (`CPF`) ON DELETE CASCADE;
+  ADD CONSTRAINT `enfermeiros_ibfk_1` FOREIGN KEY (`CPF`) REFERENCES `usuarios` (`CPF`) ON DELETE CASCADE;
+
 
 --
 -- Limitadores para a tabela `enfermeiros_chefes`
 --
 ALTER TABLE `enfermeiros_chefes`
-  ADD CONSTRAINT `enfermeiros_chefes_ibfk_1` FOREIGN KEY (`CPF`) REFERENCES `responsaveis` (`CPF`) ON DELETE CASCADE;
+  ADD CONSTRAINT `enfermeiros_chefes_ibfk_1` FOREIGN KEY (`CPF`) REFERENCES `usuarios` (`CPF`) ON DELETE CASCADE;
 
 --
 -- Limitadores para a tabela `estagiarios`
 --
 ALTER TABLE `estagiarios`
-  ADD CONSTRAINT `estagiarios_ibfk_1` FOREIGN KEY (`CPF`) REFERENCES `responsaveis` (`CPF`) ON DELETE CASCADE;
+  ADD CONSTRAINT `estagiarios_ibfk_1` FOREIGN KEY (`CPF`) REFERENCES `usuarios` (`CPF`) ON DELETE CASCADE;
+
+--
+-- Limitadores para a tabela `log`
+--
+ALTER TABLE `log`
+  ADD CONSTRAINT `log_ibfk_1` FOREIGN KEY (`CPF_usuario`) REFERENCES `usuarios` (`CPF`);
 
 --
 -- Limitadores para a tabela `ocorrencias`
@@ -734,12 +705,6 @@ ALTER TABLE `prontuarios`
   ADD CONSTRAINT `prontuario_ibfk_1` FOREIGN KEY (`Id_leito`) REFERENCES `leitos` (`Identificacao`),
   ADD CONSTRAINT `prontuario_ibfk_2` FOREIGN KEY (`Cpfpaciente`) REFERENCES `pacientes` (`CPF`);
 
---
--- Limitadores para a tabela `responsaveis`
---
-ALTER TABLE `responsaveis`
-  ADD CONSTRAINT `responsaveis_ibfk_1` FOREIGN KEY (`CPF`) REFERENCES `usuarios` (`CPF`) ON DELETE CASCADE;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

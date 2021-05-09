@@ -29,6 +29,7 @@
                 <div class="content-center">
                     <h3>SELECIONAR TIPO DE CARGO</h3>
                     <form>
+                        @csrf
                         <select id="atribuicao" name="atribuicao">
                             <option value="admin">Administrador</option>
                             <option value="enfermeiroChefe">Enfermeiro chefe</option>
@@ -42,6 +43,7 @@
             <!---------------- Alterar permissões ---------------->
           {{-- <div class="box" id="permission">--}}
                     <form>
+                        @csrf
                         <h3 class="content-center">PERMISSÕES DO "inserir o valor selecionado" </h3> <br>
                         <!-- ========== Linha 1 (REFERENTE AO ADM) ========== --> 
                         <div class="row">

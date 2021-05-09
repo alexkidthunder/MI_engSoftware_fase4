@@ -49,20 +49,26 @@ CREATE TABLE cid_prontuario (
 /*Cria tabela de enfermeiros*/
 CREATE TABLE enfermeiros (
   CPF char(14) NOT NULL, /* Chave estrangeira que faz referência ao responsável*/
-  COREN char(10) NOT NULL,
+  COREN char(12) NOT NULL,
   Plantao tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Cria tabela de enfermeiros  chefes*/
 CREATE TABLE enfermeiros_chefes (
   CPF char(14) NOT NULL, /* Chave estrangeira que faz referência ao responsável*/
-  COREN char(10) NOT NULL
+  COREN char(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Cria tabela de estagiarios*/
 CREATE TABLE estagiarios (
   CPF char(14) NOT NULL, /* Chave estrangeira que faz referência ao responsável*/
   Plantao tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+/*Cria tabela de prontuarios*/
+CREATE TABLE leitos (
+  Ocupado tinyint(1) NOT NULL,
+  Identificacao varchar(20) NOT NULL    
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Cria tabela  log*/
@@ -92,27 +98,6 @@ CREATE TABLE ocorrencias (
   CPF char(14) NOT NULL /* Chave estrangeira que faz refência ao Responsável*/
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-/*Cria tabela de prontuarios*/
-CREATE TABLE prontuarios (
-  aberto tinyint(1) NOT NULL,
-  ID bigint(20) NOT NULL,  
-  Data_Internacao date NOT NULL,
-  Data_Saida date NOT NULL,
-  Id_leito varchar(20) NOT NULL, /*Chave estrangeira que faz referência ao leito*/
-  Cpfpaciente char(14)  /* Chave estrangeira que faz referência ao paciente*/
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-CREATE TABLE permissao_cargo (
-  id int(10) NOT NULL,
-  permissao_id int(10) NOT NULL,
-  cargo_id int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-CREATE TABLE permissoes (
-  id int(10) NOT NULL ,
-  nome varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 /*Cria tabela de pacientes*/
 CREATE TABLE pacientes (
   Nome_Paciente varchar(50) NOT NULL,
@@ -123,15 +108,26 @@ CREATE TABLE pacientes (
   Tipo_Sang varchar(5) NOT NULL  
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-/*Cria tabela de prontuarios*/
-CREATE TABLE leitos (
-  Ocupado tinyint(1) NOT NULL,
-  Identificacao varchar(20) NOT NULL    
+CREATE TABLE permissao_cargo (
+  id int(10) NOT NULL,
+  permissao_id int(10) NOT NULL,
+  cargo_id int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-/*Cria tabela de administradores*/
-CREATE TABLE responsaveis (
-  CPF char(14) NOT NULL /* Chave estrangeira que faz referência ao Usuário*/
+CREATE TABLE permissoes (
+  id int(10) NOT NULL,
+  nome varchar(50) NOT NULL,
+  Ativo tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+/*Cria tabela de prontuarios*/
+CREATE TABLE prontuarios (
+  aberto tinyint(1) NOT NULL,
+  ID bigint(20) NOT NULL,  
+  Data_Internacao date NOT NULL,
+  Data_Saida date NOT NULL,
+  Id_leito varchar(20) NOT NULL, /*Chave estrangeira que faz referência ao leito*/
+  Cpfpaciente char(14)  /* Chave estrangeira que faz referência ao paciente*/
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Cria tabela de usuarios*/
@@ -196,20 +192,15 @@ ALTER TABLE ocorrencias
 ALTER TABLE permissao_cargo
   ADD PRIMARY KEY (id),
   ADD KEY permissao_id (permissao_id),
-  ADD KEY cargo_id (cargo_id),
-  MODIFY COLUMN `id` int(10) NOT NULL AUTO_INCREMENT FIRST; /*Faz com que o campo Id tenha auto incremento a partir do primeiro*/
+  ADD KEY cargo_id (cargo_id);   
 
 ALTER TABLE permissoes
-  ADD PRIMARY KEY (id), /*seleciona o id como chave primaria*/
-  MODIFY COLUMN `id` int(10) NOT NULL AUTO_INCREMENT FIRST; /*Faz com que o campo Id tenha auto incremento a partir do primeiro*/
+  ADD PRIMARY KEY (id); /*seleciona o id como chave primaria*/  
 
 ALTER TABLE prontuarios
   ADD PRIMARY KEY (ID), /* Seleciona o campo ID como chave primaria*/
   ADD KEY Id_leito (Id_leito), /* Seleciona o campo como chave */
   ADD KEY Cpfpaciente (Cpfpaciente); /* Seleciona o campo como chave */
-
-ALTER TABLE responsaveis
-  ADD PRIMARY KEY (CPF); /* Seleciona o campo CPF como chave primaria*/
 
 ALTER TABLE usuarios
   ADD PRIMARY KEY (CPF); /* Seleciona o campo CPF como chave primaria*/
@@ -227,6 +218,12 @@ ALTER TABLE cid
 
 ALTER TABLE cid_prontuario
   MODIFY id bigint(20) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE permissao_cargo /*Faz com que o campo Id tenha auto incremento a partir do primeiro*/
+  MODIFY id int(10) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE permissoes /*Faz com que o campo Id tenha auto incremento a partir do primeiro*/
+  MODIFY id int(10) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE prontuarios
   MODIFY COLUMN ID bigint(20) NOT NULL AUTO_INCREMENT; /*Faz com que o campo Id tenha auto incremento*/
@@ -249,17 +246,14 @@ ALTER TABLE cid_prontuario
   ADD CONSTRAINT cid_prontuario_ibfk_1 FOREIGN KEY (id_CID) REFERENCES cid (Id) ON DELETE CASCADE,/*Cria chave estrangeira fazendo referencia ao CID*/
   ADD CONSTRAINT cid_prontuario_ibfk_2 FOREIGN KEY (id_prontuario) REFERENCES prontuarios (ID) ON DELETE CASCADE;/*Cria chave estrangeira fazendo referencia a prontuario*/
 
-ALTER TABLE responsaveis
-  ADD CONSTRAINT responsaveis_ibfk_1 FOREIGN KEY (CPF) REFERENCES usuarios (CPF); /*Cria chave estrangeira fazendo referencia a Usuario*/
-
 ALTER TABLE enfermeiros
-  ADD CONSTRAINT enfermeiros_ibfk_1 FOREIGN KEY (CPF) REFERENCES responsaveis (CPF);/*Cria chave estrangeira fazendo referencia a Usuario*/
+  ADD CONSTRAINT enfermeiros_ibfk_1 FOREIGN KEY (CPF) REFERENCES usuarios (CPF);/*Cria chave estrangeira fazendo referencia a Usuario*/
 
 ALTER TABLE enfermeiros_chefes
-  ADD CONSTRAINT enfermeiros_chefes_ibfk_1 FOREIGN KEY (CPF) REFERENCES responsaveis (CPF); /*Cria chave estrangeira fazendo referencia a Usuario*/
+  ADD CONSTRAINT enfermeiros_chefes_ibfk_1 FOREIGN KEY (CPF) REFERENCES usuarios (CPF); /*Cria chave estrangeira fazendo referencia a Usuario*/
 
 ALTER TABLE estagiarios
-  ADD CONSTRAINT estagiarios_ibfk_1 FOREIGN KEY (CPF) REFERENCES responsaveis (CPF); /*Cria chave estrangeira fazendo referencia a Usuario*/
+  ADD CONSTRAINT estagiarios_ibfk_1 FOREIGN KEY (CPF) REFERENCES usuarios (CPF); /*Cria chave estrangeira fazendo referencia a Usuario*/
 
 ALTER TABLE ocorrencias
   ADD CONSTRAINT ocorrencia_ibfk_1 FOREIGN KEY (ID_prontuario) REFERENCES prontuarios (ID), /*Cria chave estrangeira fazendo referencia a prontuario*/
