@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 
@@ -22,7 +23,7 @@
     <!----------Hearder------------>
     @include('layouts.navbar-adm')
     <!----------End Hearder-------->
-
+             
     <h1>CADASTRO DE FUNCIONÁRIO</h1>
     <section>
         <div class="container-1">

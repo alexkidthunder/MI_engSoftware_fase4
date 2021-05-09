@@ -18,27 +18,28 @@ class EnfChefeController extends Controller
     }
 
     public function cadastroMedicamento(Request $request){
-/*
-        //buscao medicamento
-        $existeMed = DB::table('medicamentos')->where('Nome_Medicam', $request->fnome)->first();    
-           
-        //se já existir o cpf
-        if($existeMed){
+        include('conexao.php');
 
-
+        //buscar medicamento
+        $existeMed = mysqli_query($conn,"SELECT COUNT(*) FROM medicamentos WHERE Nome_Medicam = '$request->fnome'");
+     
+        //se não existir o medicamento
+        if($medicamento = mysqli_fetch_assoc($existeMed)){
+            $cod = rand ( 00000, 99999);
+             $novoMed = "INSERT INTO medicamentos (Nome_Medicam, Quantidade, Fabricante, Data_Validade, Codigo) values
+             ('$request->fnome', '$request->fquantidade', '$request->ffabricante', '$request->fnascimento', '$cod')";
+            mysqli_query($conn,$novoMed);
             
-            return redirect()->route('cadastroMedicamento')->with('error', "Nova quantidade do medicamento adicionada!");
+            //return redirect()->route('cadastroMedicamento')->with('error', "Nova quantidade do medicamento adicionada!");
+        }else{
+            $buscaMed = mysqli_query($conn,"SELECT * FROM medicamentos WHERE Nome_Medicam LIKE: '$request->fnome'");
+            dd($buscaMed);
         }
+
         
-        Medicamento::Create([
-            'Nome_Medicam' => $request->fnome,
-            'Quantidade' => $request->fquantidade,
-            'Fabricante' => $request->ffabricante,
-            'Data_Validade' => $request->fnascimento,
-            'Codigo' => $request->fnascimento,
-            ]);        
-             
- */
+       
+
+
         return view('/enfChefe/cadastroMedicamento');
     }
 
