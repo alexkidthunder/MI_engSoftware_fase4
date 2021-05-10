@@ -13,10 +13,10 @@
     <!-- Favicons -->
     <link href="{{ asset('img/favicon.png') }}" rel="icon">
 
-    <title>Remoção de funcionário</title>  
-  </head>
-  
-  <body>
+    <title>Remoção de funcionário</title>
+</head>
+
+<body>
     <!----------Hearder------------>
     @include('layouts.navbar-adm')
     <!----------End Hearder-------->
@@ -37,74 +37,80 @@
 
             <!--Infomações do funcionário funcionário-->
             @if(isset($user))
-                @if(!is_array($user))
-                @if($user == 0)            
-                <div class='alert alert-danger'> USUÁRIO NÃO ENCONTRADO</div>
-                @endif
-                @else
+            @if(!is_array($user))
+            @if($user == 0)
+            <div class='alert alert-danger'> USUÁRIO NÃO ENCONTRADO</div>
+            @endif
+            @else
 
 
             <h3>Funcionário</h3>
-                <div class="box-gray">
-                    NOME: {{$user['Nome']}}
-                </div>
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="box-gray">
-                            CPF: {{$user['CPF']}}
-                        </div>
+            <div class="box-gray">
+                NOME: {{$user['Nome']}}
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="box-gray">
+                        CPF: {{$user['CPF']}}
                     </div>
+
+                    <!-- Se a atribuição for igual a zero é por que ele é do tipo Estagiário ou ADM,
+                        logo não precisa exibir o COREN -->
+                    @if($atribuicao == 0)
+                    <!-- Não exibe nada, pois não tem coren -->
+                    @else
                     <div class="col-lg-4">
                         <div class="box-gray">
                             COREN: {{$atribuicao['COREN']}}
                         </div>
                     </div>
+                    @endif
+
                     <div class="col-lg-4">
                         <div class="box-gray">
-                           ATRIBUIÇÃO: {{$user['Atribuicao']}}
+                            ATRIBUIÇÃO: {{$user['Atribuicao']}}
                         </div>
                     </div>
                 </div>
-                <form action="/removerUsuario" method="GET" > 
-                           <input type="hidden" name="cpf" value="{{$user['CPF']}}">
-                           <input type="hidden" name="atr" value="{{$user['Atribuicao']}}">
-                          <button type="submit" class="container-button btn-blue " 
-                          data-toggle="modal" data-target="#delete"> Remover </button>
+                <form action="/removerUsuario" method="GET">
+                    <input type="hidden" name="cpf" value="{{$user['CPF']}}">
+                    <input type="hidden" name="atr" value="{{$user['Atribuicao']}}">
+                    <button type="submit" class="container-button btn-blue " data-toggle="modal" data-target="#delete"> Remover </button>
                 </form>
-              @endif  
-            @endif
+                @endif
+                @endif
                 <!--  -->
-            @if(isset($status))
-            @if($status == 1)
-            <div class='alert alert-success'> REMOVIDO COM SUCESSO </div>
-            @else
-            <div class='alert alert-danger'> OCORREU ALGUM ERRO AO REMOVER, TENTE NOVAMENTE</div>
-            @endif
-            @endif
-        </div>
-        
-        <!-- Modal -->
-        <div id="delete" class="modal">
-            <div class="modal-dialog">
-                <div class="confirmation-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Tem certeza que deseja remover ....?</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary">Cancelar</button>
-                        <form>
-                            <button type="button" class="btn btn-danger">Remover</button>
-                        </form>
+                @if(isset($status))
+                @if($status == 1)
+                <div class='alert alert-success'> REMOVIDO COM SUCESSO </div>
+                @else
+                <div class='alert alert-danger'> OCORREU ALGUM ERRO AO REMOVER, TENTE NOVAMENTE</div>
+                @endif
+                @endif
+            </div>
+
+            <!-- Modal -->
+            <div id="delete" class="modal">
+                <div class="modal-dialog">
+                    <div class="confirmation-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Tem certeza que deseja remover ....?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary">Cancelar</button>
+                            <form>
+                                <button type="button" class="btn btn-danger">Remover</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
+
+
         </div>
-
-
-    </div>
 </body>

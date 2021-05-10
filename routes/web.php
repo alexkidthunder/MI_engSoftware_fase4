@@ -58,6 +58,7 @@ Route::get('/menu', [AdminController::class,'menu'])->name('menu');
 Route::get('/log', [AdminController::class,'log'])->name('log');
 Route::post('/editarAtribuicao', [AdminController::class,'atribuicao'])->name('editarAtribuicao');
 Route::get('/editarPermissao', [AdminController::class,'permissao'])->name('editarPermissao');
+Route::get('/alterarPermissao', [AdminController::class,'alterarPermissao'])->name('alterarPermissao');
 Route::get('/backup', [AdminController::class,'backup'])->name('backup');
 Route::get('/cadastrarUsuario', [AdminController::class,'cadastro'])->name('cadastrarUsuario');
 Route::get('/removerUsuario', [AdminController::class,'remocao'])->name('removerUsuario');
