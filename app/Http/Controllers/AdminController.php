@@ -154,8 +154,9 @@ class AdminController extends Controller
     {
         return view('/admin/backup');
     }
-
-    public function cadastro()
+    
+    
+    public function cadastro()              //função para chamar a função salvar usuário pela view
     {
         return view('/admin/cadastroUsuario');
     }
@@ -330,12 +331,7 @@ class AdminController extends Controller
             if ($request->fatribui == 'Administrador'){             
                 $novoAdm = "INSERT INTO administradores (CPF) values ('$request->fcpf')";
                 mysqli_query($conn,$novoAdm);
-
             }else{
-                //insere na tabela de responsáveis
-                $novoRespon = "INSERT INTO responsaveis (CPF) values ('$request->fcpf')";
-                mysqli_query($conn,$novoRespon);
-
                 //insere na tabela de enfermeiro chefe
                 if ($request->fatribui == 'Enfermeiro Chefe') {
                     $novoEnfChefe = "INSERT INTO enfermeiros_chefes (CPF,COREN) values ('$request->fcpf','$request->fcoren')";
@@ -353,9 +349,9 @@ class AdminController extends Controller
                 }   
             }         
             return redirect()->route('cadastrarUsuario')->with('success','Usuário cadastrado com sucesso!!');
-
             }
             else{
+                //se o usuário já existir
                 return redirect()->route('cadastrarUsuario')->with('error','Usuário já cadastrado!!');
             }
       }
