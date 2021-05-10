@@ -20,11 +20,13 @@
     <!----------Hearder------------>
     @include('layouts.navbar-enfChefe')
     <!----------End Hearder-------->
+
+
     <h1>CADASTRO DE MEDICAMENTOS</h1>
     <section>
         <div class="container-1">
             <div class="box">
-                <form id="register"> 
+                <form id="register" action="{{ route('cadastroMedicamento') }}" method="POST"> 
                     <div class="row">
                         <div class="col-lg-12">
                             <label>Nome</label> <br>

@@ -59,13 +59,15 @@ Route::get('/log', [AdminController::class,'log'])->name('log');
 Route::post('/editarAtribuicao', [AdminController::class,'atribuicao'])->name('editarAtribuicao');
 Route::get('/editarPermissao', [AdminController::class,'permissao'])->name('editarPermissao');
 Route::get('/backup', [AdminController::class,'backup'])->name('backup');
-Route::get('/cadastrarUsuario', [AdminController::class,'cadastro'])->name('cadastrarUsuario');
+Route::post('/cadastrarUsuario', [AdminController::class,'cadastro'])->name('cadastrarUsuario');
 Route::get('/removerUsuario', [AdminController::class,'remocao'])->name('removerUsuario');
 Route::get('/buscarUsuario', [AdminController::class,'busca'])->name('buscarUsuario');
 Route::post('/alterarAtribuicao',[AdminController::class,'alterarAtribuicao'])->name('alterarAtribuicao'); // rota para alterar atribuição
-Route::post('/cadastrarUsuario',[AdminController::class,'salvarUsuario'])->name('salvarUsuario'); //rota para salvar usuario no banco de dados, capturar dados
+//Route::post('/cadastrarUsuario',[AdminController::class,'salvarUsuario'])->name('salvarUsuario'); 
+
 /*------------ Rota para Busca ------------------------ */
 Route::get('/lupinha', [AdminController::class,'lupinha'])->name('lupinha');
+
 /*------------ Rota para Paciente------------------------ */
 
 Route::get('/listaPacientes', [HomeController::class,'listaPacientes'])->name('pacientes');
@@ -85,7 +87,7 @@ Route::get('/agendamentos',[HomeController::class,'agendamentos'])->name('agenda
 Route::get('/menuEnfermeiroChefe', [EnfChefeController::class,'menu'])->name('menu-ec');
 Route::get('/cadastroPlantonista', [EnfChefeController::class,'cadastroPlantonista'])->name('cadastroPlantonista');
 Route::get('/listagemPlantonistas', [EnfChefeController::class,'listaPlantonistas'])->name('listagemPlantonistas');
-Route::get('/cadastroMedicamento', [EnfChefeController::class,'cadastroMedicamento'])->name('cadastroMedicamento');
+Route::post('/cadastroMedicamento', [EnfChefeController::class,'cadastroMedicamento'])->name('cadastroMedicamento');
 Route::get('/cadastroAgendamento', [EnfChefeController::class,'cadastroAgendamento'])->name('cadastroAgendamento');
 Route::get('/listaAgendamentos',[EnfChefeController::class,'listaAgendamentos'])->name('listaAgendamentos');
 Route::get('/listaResponsaveis',[EnfChefeController::class,'responsaveis'])->name('responsaveis');
