@@ -31,11 +31,126 @@ class AdminController extends Controller
         return view('/admin/atribuicao');
     }
 
+<<<<<<< Updated upstream
     public function permissao()
+=======
+    public function permissao(Request $request)
     {
-        return view('/admin/permissao');
+        include("db.php");
+        $atribuicao = $request->atribuicao;
+        $p = [];
+
+        if ($atribuicao != "Administrador") {
+
+            if ($atribuicao == 'enfermeiroChefe') {
+
+
+                $sql = "";
+                $query = null;
+                             
+               
+              
+                
+                for ($i = 1; $i <= 32; $i++) {          
+                $sql = "SELECT * FROM permissao_cargo where permissao_id = $i";
+                $query = mysqli_query($connect, $sql);   
+                    while($sql = $query->fetch_array()){
+                        if($sql['cargo_id'] == 2){
+                            $p[$i] = $sql['ativo'] ? 'checked' : 'unchecked';
+                        }
+                        
+                    }
+                } 
+                 //dd($p);
+                return view('/admin/permissao',['p'=>$p]);
+
+            }
+
+
+            /*
+            else if($atribuicao == 'Enfermeiro'){
+                echo "2";
+                $p = null;
+                $sql = "";
+                $query = null;
+                $count = count($permissoes);
+                for($i = 0; $i < $count; $i++){
+                    $sql = "SELECT * FROM enfPermisoes where Id = $permissoes[$i]";
+                    $query = mysqli_query($connect,$sql);
+                    while($sql = mysqli_fetch_array($query)){
+                        $p = $sql["Permissao"] ? true : 'checked';
+                        return view('/admin/permissao', $p);
+                    }
+                }
+            }
+            else if($atribuicao == 'Estagiario'){
+                echo "3";
+                $p = null;
+                $sql = "";
+                $query = null;
+                $count = count($permissoes);
+                for($i = 0; $i < $count; $i++){
+                    $sql = "SELECT * FROM estPermissoes where Id = $permissoes[$i]";
+                    $query = mysqli_query($connect,$sql);
+                    while($sql = mysqli_fetch_array($query)){
+                        $p = $sql["Permissao"] ? true : 'checked';
+                        return view('/admin/permissao', $p);
+                    }
+                }
+            }
+            */ else {
+
+                return view('/admin/permissao');
+            }
+        }
     }
 
+
+    public function alterarPermissao(Request $request)
+>>>>>>> Stashed changes
+    {
+
+<<<<<<< Updated upstream
+=======
+
+        include("db.php");
+        $atribuicao = $request->atribuicao;
+        $permissoes = [
+            1 => $request->p1,
+            2 => $request->p2,
+            3 => $request->p3,
+            4 => $request->p4
+        ];
+
+        if ($atribuicao != "Administrador") {
+            if ($atribuicao == 'Enfermeiro Chefe') {
+                for ($i = 1; $i <= 32; $i++) {
+                    if (isset($_POST['p' . $i])) {
+                        $update = "UPDATE enfcPermisoes set='true' where Id = $i";
+                        mysqli_query($connect, $update);
+                    } else {
+                        $update = "UPDATE enfcPermisoes set='false' where Id = $i";
+                        mysqli_query($connect, $update);
+                    }
+                }
+            } else if ($atribuicao == 'Enfermeiro') {
+                for ($i = 0; $i < $count; $i++) {
+                    $update = "UPDATE enfPermisoes set='true' where Id = $i";
+                    mysqli_query($connect, $update);
+                }
+            } else if ($atribuicao == 'Estagiario') {
+                for ($i = 0; $i < $count; $i++) {
+                    $update = "UPDATE estPermissoes set='true' where Id = $i";
+                    mysqli_query($connect, $update);
+                }
+                return view('/admin/permissao');
+            }
+        } else {
+            return redirect()->back()->with('msg', '');
+        }
+    }
+
+>>>>>>> Stashed changes
     public function backup()
     {
         return view('/admin/backup');
