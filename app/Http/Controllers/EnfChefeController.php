@@ -6,6 +6,7 @@ use App\Models\Medicamento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use mysqli;
 
 class EnfChefeController extends Controller
 {
@@ -17,30 +18,32 @@ class EnfChefeController extends Controller
         return view('/enfChefe/cadastroPlantonista');
     }
 
-    public function cadastroMedicamento(Request $request){
-        include('conexao.php');
+    public function cadastroMedicamento(){          //função para chamar a função salvar medicamento pela view
+        return view('/enfChefe/cadastroMedicamento');
+    }
+
+    public function salvarMedicamento(Request $request){
+         include('conexao.php');
 
         //buscar medicamento
         $existeMed = mysqli_query($conn,"SELECT COUNT(*) FROM medicamentos WHERE Nome_Medicam = '$request->fnome'");
-     
+
         //se não existir o medicamento
-        if($medicamento = mysqli_fetch_assoc($existeMed)){
-            $cod = rand ( 00000, 99999);
-             $novoMed = "INSERT INTO medicamentos (Nome_Medicam, Quantidade, Fabricante, Data_Validade, Codigo) values
-             ('$request->fnome', '$request->fquantidade', '$request->ffabricante', '$request->fnascimento', '$cod')";
+        if(mysqli_fetch_assoc($existeMed)['COUNT(*)'] == 0){
+            //gera um código aleatório
+            $cod = rand (00000, 99999);
+            
+            //cria medicamento e adiciona
+            $novoMed = "INSERT INTO medicamentos (Nome_Medicam, Quantidade, Fabricante, Data_Validade, Codigo) values
+            ('$request->fnome', '$request->fquantidade', '$request->ffabricante', '$request->fnascimento', '$cod')";
             mysqli_query($conn,$novoMed);
             
-            //return redirect()->route('cadastroMedicamento')->with('error', "Nova quantidade do medicamento adicionada!");
+            return redirect()->route('cadastroMedicamento')->with('success', "Novo medicamento adicionado!");
         }else{
-            $buscaMed = mysqli_query($conn,"SELECT * FROM medicamentos WHERE Nome_Medicam LIKE: '$request->fnome'");
-            dd($buscaMed);
+            //se existir o medicamento cadastrado
+            return redirect()->route('cadastroMedicamento')->with('error', "Medicamento já cadastrado!!");
         }
-
         
-       
-
-
-        return view('/enfChefe/cadastroMedicamento');
     }
 
     public function cadastroAgendamento(){
