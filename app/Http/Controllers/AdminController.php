@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Administrador;
 use App\Models\Enfermeiro_chefe;
 use App\Models\Estagiario;
-use App\Models\Responsavel;
 use App\Models\Usuario;
 use App\Models\Enfermeiro;
 use Illuminate\Http\Request;
@@ -331,7 +330,8 @@ class AdminController extends Controller
             if ($request->fatribui == 'Administrador'){             
                 $novoAdm = "INSERT INTO administradores (CPF) values ('$request->fcpf')";
                 mysqli_query($conn,$novoAdm);
-            }else{
+
+            }else{  
                 //insere na tabela de enfermeiro chefe
                 if ($request->fatribui == 'Enfermeiro Chefe') {
                     $novoEnfChefe = "INSERT INTO enfermeiros_chefes (CPF,COREN) values ('$request->fcpf','$request->fcoren')";
@@ -351,6 +351,7 @@ class AdminController extends Controller
             return redirect()->route('cadastrarUsuario')->with('success','Usuário cadastrado com sucesso!!');
             }
             else{
+              
                 //se o usuário já existir
                 return redirect()->route('cadastrarUsuario')->with('error','Usuário já cadastrado!!');
             }

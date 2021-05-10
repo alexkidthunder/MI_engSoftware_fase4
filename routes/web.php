@@ -61,7 +61,7 @@ Route::get('/editarPermissao', [AdminController::class,'permissao'])->name('edit
 Route::get('/alterarPermissao', [AdminController::class,'alterarPermissao'])->name('alterarPermissao');
 Route::get('/backup', [AdminController::class,'backup'])->name('backup');
 Route::get('/cadastrarUsuario', [AdminController::class,'cadastro'])->name('cadastrarUsuario');
-Route::post('/cadastrarUsuario',[AdminController::class,'salvarUsuario'])->name('salvarUsuario'); 
+Route::post('/cadastrarUsuario',[AdminController::class,'salvarUsuario'])->name('salvarUsuario');//Antes estava como comentário de linha 
 Route::get('/removerUsuario', [AdminController::class,'remocao'])->name('removerUsuario');
 Route::get('/buscarUsuario', [AdminController::class,'busca'])->name('buscarUsuario');
 Route::post('/alterarAtribuicao',[AdminController::class,'alterarAtribuicao'])->name('alterarAtribuicao'); // rota para alterar atribuição
