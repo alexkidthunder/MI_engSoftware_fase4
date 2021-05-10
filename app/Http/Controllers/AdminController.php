@@ -12,7 +12,9 @@ use Illuminate\Http\Request;
 //use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+use mysqli;
 use PhpParser\Node\Stmt\ElseIf_;
+
 
 class AdminController extends Controller
 {
@@ -31,10 +33,11 @@ class AdminController extends Controller
         return view('/admin/atribuicao');
     }
 
-<<<<<<< Updated upstream
+
+    
+
     public function permissao()
-=======
-    public function permissao(Request $request)
+
     {
         include("db.php");
         $atribuicao = $request->atribuicao;
@@ -107,11 +110,7 @@ class AdminController extends Controller
 
 
     public function alterarPermissao(Request $request)
->>>>>>> Stashed changes
     {
-
-<<<<<<< Updated upstream
-=======
 
         include("db.php");
         $atribuicao = $request->atribuicao;
@@ -150,7 +149,7 @@ class AdminController extends Controller
         }
     }
 
->>>>>>> Stashed changes
+
     public function backup()
     {
         return view('/admin/backup');
@@ -178,72 +177,200 @@ class AdminController extends Controller
         }       
       
     }
+
+    public function alterarAtribuicao(Request $request){
+        echo "Eu to achando a rota";
+        include("db.php"); // Importando BD
+        $request -> validate([
+            'novaAtribuicao' => 'required' // Verificação de preenchimento de campo 
+        ]);
+        $cpf = $request->cpf;  // Obtenndo CPF
+        /*--------Query para obter usuario com o CPF */
+        $sql = "SELECT * FROM usuarios where CPF='$cpf'";
+        $query = mysqli_query($connect,$sql);
+        while($sql = mysqli_fetch_array($query)){ //Percorrendo array com todos os usuarios com determinado cpf
+            $atribuicao = $sql["Atribuicao"]; // Obtem array de uma posição
+            if($atribuicao != "Estagiario"){
+                if($atribuicao == "Enfermeiro"){
+                    $sql2 = "SELECT * FROM enfermeiros where CPF='$cpf'";
+                    $query2 = mysqli_query($connect,$sql2);
+                    while($sql2 = mysqli_fetch_array($query2)){
+                        $coren = $sql2["COREN"];
+                    }
+                }else if($atribuicao == "Enfermeiro Chefe"){
+                    $sql2 = "SELECT * FROM enfermeiros_chefes where CPF='$cpf'";
+                    $query2 = mysqli_query($connect,$sql2);
+                    while($sql2 = mysqli_fetch_array($query2)){
+                        $coren = $sql2["COREN"];
+                    }
+                }else{
+                    $coren = null;
+                }
+                
+            }else{
+                $coren = null;
+            }
+        }
+        // Encontra a qual tabela o usuario pertence desde que não seja administrador
+        
+        if($atribuicao != "Administrador"){
+            if ($atribuicao == 'Enfermeiro Chefe') {
+                if($request->novaAtribuicao == "enfermeiro"){
+                    $delete = "DELETE enfermeiros_chefes WHERE CPF='$cpf'";
+                    mysqli_query($connect,$delete); // Deleta usuarios
+                    $update = "UPDATE usuarios SET Atribuicao = 'Enfermeiro' WHERE CPF='$cpf'";
+                    mysqli_query($connect,$update); // atualiza a atribuicao no BD
+                    $insert = "INSERT INTO enfermeiros (CPF,COREN,Plantao) VALUES ('$cpf','$coren','false')";
+                    mysqli_query($connect,$insert); // Adicioa usuario a novo cargo
+                    return redirect() -> back() ->with('msg','O enfermeiro chefe de cpf :'.$cpf.'foi rebaixado para enfermeiro com sucesso!!!!'); //Redireciona para pagina anterior e mostra mensagem de erro
+                }else{
+                    return redirect() -> back() ->with('msg','Cargo selecionado invalido'); //Redireciona para pagina anterior e mostra mensagem de erro
+                }
+            }
+            else if($atribuicao == 'Enfermeiro'){
+                if($request->novaAtribuicao == "enfermeiroChefe"){
+                    $delete = "DELETE enfermeiros WHERE CPF='$cpf'";
+                    mysqli_query($connect,$delete); // Deleta usuarios
+                    $update = "UPDATE usuarios SET Atribuicao = 'Enfermeiro Chefe' WHERE CPF='$cpf'";
+                    mysqli_query($connect,$update); // atualiza a atribuicao no BD
+                    $insert = "INSERT INTO enfermeiros_chefes (CPF,COREN) VALUES ('$cpf','$coren')";
+                    mysqli_query($connect,$insert);// Adicioa usuario a novo cargo
+                    return redirect() -> back() ->with('msg','O enfermeiro de cpf :'.$cpf.'foi promovido para enfermeiro chefe com sucesso!!!!'); //Redireciona para pagina anterior e mostra mensagem de erro
+                }else{
+                    return redirect() -> back() ->with('msg','Cargo selecionado invalido'); //Redireciona para pagina anterior e mostra mensagem de erro
+                }
+            }
+            else if($atribuicao == 'Estagiario'){
+                if($request->novaAtribuicao == "enfermeiro"){
+                    $delete = "DELETE estagiarios WHERE CPF='$cpf'";
+                    mysqli_query($connect,$delete); // Deleta usuarios
+                    $update = "UPDATE usuarios SET Atribuicao = 'Estagiario' WHERE CPF='$cpf'";
+                    mysqli_query($connect,$update); // atualiza a atribuicao no BD
+                    $insert = "INSERT INTO enfermeiros (CPF,COREN,Plantao) VALUES ('$cpf','$request->fcoren','false')";
+                    mysqli_query($connect,$insert);// Adicioa usuario a novo cargo
+                    return redirect() -> back() ->with('msg','O estagiario de cpf :'.$cpf.'foi promovido para enfermeiro com sucesso!!!!'); //Redireciona para pagina anterior e mostra mensagem de erro
+                }else if($request->novaAtribuicao == "enfermeiroChefe"){
+                    $delete = "DELETE estagiarios WHERE CPF='$cpf'";
+                    mysqli_query($connect,$delete); // Deleta usuarios
+                    $update = "UPDATE usuarios SET Atribuicao = 'Enfermeiro Chefe' WHERE CPF='$cpf'";
+                    mysqli_query($connect,$update); // atualiza a atribuicao no BD
+                    $insert = "INSERT INTO enfermeiros_chefes (CPF,COREN) VALUES ('$cpf','$request->fcoren')";
+                    mysqli_query($connect,$insert);// Adicioa usuario a novo cargo
+                    return redirect() -> back() ->with('msg','O estagiario de cpf :'.$cpf.'foi promovido para enfermeiro chefe com sucesso!!!!'); //Redireciona para pagina anterior e mostra mensagem de erro
+                }else{
+                    return redirect() -> back() ->with('msg','Cargo selecionado invalido'); //Redireciona para pagina anterior e mostra mensagem de erro
+                }
+            }
+        }else{       
+            return redirect() -> back() ->with('msg','Você não pode alterar o cargo de administradores!!!'); //Redireciona para pagina anterior e mostra mensagem de erro
+        }
+
+    }
+
+    public function lupinha(Request $request){
+        include("db.php"); // inclusão do banco de dados
+        $user = null; // garantia de existência da variavel
+        // busca do usuario no banco de dados
+        $sql = "SELECT * FROM usuarios where CPF = '$request->cpf_user'";
+        $query = mysqli_query($connect,$sql);
+        while($sql = mysqli_fetch_array($query)){ //percorrendo array de usuarios com determinado cpf
+            $user = $sql; //retorno do usuario
+        }
+        /*garantido que usuario foi pego na busca*/
+        if($user != null){
+            if($user["Atribuicao"] == "Enfermeiro Chefe"){
+                $sql2 = "SELECT * FROM enfermeiros_chefes where CPF = '$request->cpf_user'";
+                $query2 = mysqli_query($connect,$sql2);
+                while($sql2 = mysqli_fetch_array($query2)){ //percorrendo array de usuarios com determinado cpf
+                    $user2 = $sql2; //retorno do usuario
+                    return view('/admin/atribuicao', ['user' => $user],['user2' => $user2]); // se encontrou retorna usuario para view 
+                }
+            }elseif($user["Atribuicao"] == "Enfermeiro"){
+                $sql2 = "SELECT * FROM enfermeiros where CPF = '$request->cpf_user'";
+                $query2 = mysqli_query($connect,$sql2);
+                while($sql2 = mysqli_fetch_array($query2)){ //percorrendo array de usuarios com determinado cpf
+                    $user2 = $sql2; //retorno do usuario
+                    return view('/admin/atribuicao', ['user' => $user], ['user2' => $user2]); // se encontrou retorna usuario para view 
+                }
+            }else{
+                return view('/admin/atribuicao', ['user' => $user]); // se encontrou retorna usuario para view 
+            }
+           
+        }
+        else{
+            return redirect() -> back() ->with('msg','CPF não cadastrado no sistema!!'); //Redireciona para pagina anterior e mostra mensagem de erro
+        }
+    }
     
     public function salvarUsuario(Request $request){
-        
-        //busca o cpf
-        $existeCPF = DB::table('usuarios')->where('CPF', $request->fcpf)->first();    
-           
-        //se já existir o cpf
-        if($existeCPF)   
-             return redirect()->route('salvarUsuario')->with('error', "CPF já existente!");
-       
-        //validação de erro
+        include("conexao.php");
+   
+        //validação de erro de entrada
         $validator = Validator::make($request->all(), [     
-            'CPF' => 'required|min:14|max:14',
-       ]);
-        
-       //redirecionando o usuario após erro 
+            'fcpf' => 'required|min:14|max:14',
+        ]);
+                 
+        //redirecionando o usuario caso ocorra o erro
         if ($validator->fails()) {
-           return redirect()->route('salvarUsuario')->with('error', "Digite um CPF válido!!");   
-         }      
-         
-        //se não existir cpf, cria usuário
-         Usuario::Create([
-            'CPF' => $request->fcpf,
-            'Nome' => $request->fnome,
-            'Senha' => '12345',                                 //exemplo de senha
-            //'Senha' => bcrypt($request->fsenha);               // PARA ALTERAR A SENHA, NÃO SALVAR COMO RECEBE
-            //Hash::make('password'),                                               VERIFICAR TAMANHO DE SENHA
-            'Email' => $request->femail,
-            'Data_Nasc' => $request->fnascimento,
-            'Atribuicao' => $request->fatribui,
-            'Sexo' => $request->fsexo,
-            'Ip' => $request->ip(), 
-            ]);        
-         
-        //Adiciona usuário em tabelas correspondentes ao cargo
+            return redirect()->route('salvarUsuario')->with('error', "Digite um CPF válido!!");   
+        }    
+
+      //busca de cpf no banco  
+      $existeCPF = mysqli_query($conn,"SELECT COUNT(*) FROM usuarios WHERE CPF = '$request->fcpf'");
+    
+      //se não existe cpf
+      if($usuario = mysqli_fetch_assoc($existeCPF)){
+
+        $ip = $request->ip();
+
+       //insere na trabela usuário
+        $novoUsuario = "INSERT INTO usuarios (CPF, Nome, Senha, Email, Data_Nasc, Atribuicao, Sexo, Ip) values ('$request->fcpf', 
+        '$request->fnome', 12345, '$request->femail', '$request->fnascimento', '$request->fatribui','$request->fsexo','$ip')";
+        mysqli_query($conn,$novoUsuario);
+        
         if ($request->fatribui == 'Administrador'){
-            Administrador::Create([
-                'CPF' => $request->fcpf,
-            ]);
+            //insere na tabela de administrador
+            $novoAdm = "INSERT INTO administradores (CPF) values ('$request->fcpf')";
+            mysqli_query($conn,$novoAdm);
+
         }else{
-            Responsavel::Create([
-                'CPF' => $request->fcpf,
-            ]);
-            
+            //insere na tabela de responsáveis
+            $novoRespon = "INSERT INTO responsaveis (CPF) values ('$request->fcpf')";
+            mysqli_query($conn,$novoRespon);
+
+            //insere na tabela de enfermeiro chefe
             if ($request->fatribui == 'Enfermeiro Chefe') {
-                Enfermeiro_chefe::Create([
-                    'CPF' => $request->fcpf,
-                    'COREN' => '01-AC00024',   //TROCAR ISSO
-                ]);
+                $novoEnfChefe = "INSERT INTO enfermeiros_chefes (CPF,COREN) values ('$request->fcpf','$request->fcoren')";
+                mysqli_query($conn,$novoEnfChefe);
             }
+            //insere na tabela de enfermeiro
             else if ($request->fatribui == 'Enfermeiro') {
-                Enfermeiro::Create([
-                    'CPF' => $request->fcpf,
-                    'COREN' => '01-SP00100',   //TROCAR ISSO
-                    'Plantao' => '1',           //TROCAR ISSO
-                ]); 
-            }else if ($request->fatribui == 'Estagiario') {
-                Estagiario::Create([
-                    'CPF' => $request->fcpf,
-                    'Plantao' => '0',           //TROCAR ISSO
-                ]);
+                $novoEnf = "INSERT INTO enfermeiros (CPF,COREN,Plantao) values ('$request->fcpf', '$request->fcoren','false')";
+                mysqli_query($conn,$novoEnf);
+            }
+            //insere na tabela de estagiario
+            else if ($request->fatribui == 'Estagiário') {
+                $novoEst = "INSERT INTO estagiarios (CPF,Plantao) values ('$request->fcpf','false')";
+                mysqli_query($conn,$novoEst);
             }   
         }         
-         
+        //FINALIZAR AQUI
         return redirect()->route('salvarUsuario')->with('success','Usuário cadastrado com sucesso!!');
-     }
+
+        }
+        else{
+            //FINALIZAR AQUI
+
+
+                //return redirect()->route('salvarUsuario')->with('error','Usuário já cadastrado no sistema!!');
+                //return redirect() -> back() ->with('msg','Você não pode alterar o cargo de administradores!!!');
+
+                return redirect()->route('salvarUsuario')->with('error','Erro ao cadastrar usuário!!');
+        }
+      }
+     
+    
+
 
     public function busca(Request $request)
     {          

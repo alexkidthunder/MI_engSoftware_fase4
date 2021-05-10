@@ -13,7 +13,10 @@
     
 </head>
 <body class="body-login">
-
+    <div id="access-box">
+        <a href="{{ route('index') }}">Login</a>
+    </div>
+    
     <form id="login" class = "form" action="">
     <div class="box-login">
             <h2>Esqueci a Senha</h2>

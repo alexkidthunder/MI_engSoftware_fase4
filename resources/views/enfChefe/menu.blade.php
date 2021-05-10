@@ -18,7 +18,7 @@
   <body class="body-menu"  hrfe = '/sessaoEnfChef'>
     
     <!----------Hearder------------>
-    @include('layouts.navbar-menu')
+    @include('layouts.navbar-enfChefe')
     <!----------End Hearder-------->
 
         <div class="container-2">
@@ -97,6 +97,15 @@
                         </div>
                         <h4 class="card-options_title"><a
                             href="{{ route('responsaveis') }}">Responsáveis pela aplicação de medicamentos</a></h4>
+                    </div>
+                </div> 
+                <div class="col-xl-3 col-lg-3 col-md-6">
+                    <div class="card-menu text-center card-options">
+                        <div class="card-options-icon options-icon">
+                            <i class="fas fa-briefcase-medical"></i>
+                        </div>
+                        <h4 class="card-options_title"><a
+                            href="{{ route('listaMedicamento') }}">Medicamentos cadastrados</a></h4>
                     </div>
                 </div> 
               

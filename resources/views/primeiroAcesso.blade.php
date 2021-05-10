@@ -12,14 +12,21 @@
     <link href="{{ asset('img/favicon.png') }}" rel="icon">
 </head>
 <body class="body-login">
+    <div id="access-box">
+        <a href="{{ route('index') }}">Login</a>
+    </div>
 
-    <form id="login" class = "form" action="">
-    <div class="box-login" id="primeiro-acesso">
-            <h2>Bem Vindo ao "Nome do App"</h2>
-            <h4>Este é o seu primeiro acesso "Primeiro nome do usuário"!<br>Defina sua senha abaixo:</h4>
+    <form id="first-access" class = "form" action="">
+    <div class="box-login">
+            <h2>Primeiro acesso</h2>
+            <h4>Defina sua senha abaixo:</h4>
             <div>
                 <label>Senha</label>
                 <input type="password" name= "senha" placeholder="Digite sua senha" required>
+            </div>
+            <div>
+                <label>Confirmação</label>
+                <input type="password" name= "senha" placeholder="Digite a mesma senha" required>
             </div>
             <div class="enter">
                 <button type= "submit">Enviar</button>

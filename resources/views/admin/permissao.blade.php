@@ -11,6 +11,8 @@
     
     <!-- Favicons -->
     <link href="{{ asset('img/favicon.png') }}" rel="icon">
+
+    <script src="{{ ('js/permissao.js') }}" defer></script>
     
     <title>Permissões do usuário</title>
     
@@ -26,13 +28,11 @@
                 <!--Buscar funcionário-->
                 <div class="content-center">
                     <h3>SELECIONAR TIPO DE CARGO</h3>
-                    <form>
-<<<<<<< Updated upstream
-                        <select id="atribuicao" name="atribuicao">
-=======
+                    <form action="/editarPermissoes" method="GET">                     
+
                         @csrf
                         <select id="atribuicao" name="atribuicao" onchange="this.form.submit()">
->>>>>>> Stashed changes
+
                             <option value="admin">Administrador</option>
                             <option value="enfermeiroChefe">Enfermeiro chefe</option>
                             <option value="enfermeiro">Enfermeiro</option>
@@ -45,6 +45,7 @@
             <!---------------- Alterar permissões ---------------->
           {{-- <div class="box" id="permission">--}}
                     <form>
+                        @csrf
                         <h3 class="content-center">PERMISSÕES DO "inserir o valor selecionado" </h3> <br>
                         <!-- ========== Linha 1 (REFERENTE AO ADM) ========== --> 
                         @if(isset($p))
@@ -296,14 +297,24 @@
 
                             <!--Inicio da permissão-->
                             <div class="col-lg-13 content-center">
-<<<<<<< Updated upstream
+
                                 <input type="checkbox"><br>
-=======
+
                                 <input type="checkbox" name="p32" $p><br>
->>>>>>> Stashed changes
+
                                 <label>Inserir data de internação do paciente</label>
+
+                                <label>Inserir data de saída do paciente</label>
+
                             </div>
                             <!--Fim da permissão-->
+
+                            <!--Inicio da permissão-->
+                            <div class="col-lg-13 content-center">
+                                <input type="checkbox"><br>
+                                <label>Alocar leito do paciente</label>
+                            </div>
+                            <!--Fim da permissão-->                        
                         </div>
                         <!-- ========== fim da linha 7 ========== -->   
                         @endif

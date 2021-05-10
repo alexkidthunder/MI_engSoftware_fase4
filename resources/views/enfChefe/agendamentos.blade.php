@@ -19,7 +19,7 @@
   </head>
   <body>
     <!----------Hearder------------>
-    @include('layouts.navbar')
+    @include('layouts.navbar-enfChefe')
     <!----------End Hearder-------->
         <div id="screen-icon"> <!-- Icone de Download Em Telas -->
             <form class="download-icon">

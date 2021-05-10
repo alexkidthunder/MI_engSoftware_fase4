@@ -14,7 +14,7 @@
 
     <title>Menu</title>
   </head>
-  <body class="body-menu" hrfe = '/sessaoAdmin'>
+  <body class="body-menu">
     <!----------Hearder------------>
     @include('layouts.navbar-menu')
     <!----------End Hearder-------->
