@@ -8,6 +8,8 @@ var container4 = document.getElementById("container-teste4");
 var button4 = document.getElementById("action-btn4");
 var container5 = document.getElementById("container-teste5");
 var button5 = document.getElementById("action-btn5");
+var container6 = document.getElementById("container-teste6");
+var button6 = document.getElementById("action-btn6");
 
 var esconde;
 
@@ -58,6 +60,17 @@ button4.addEventListener("click", function() {
 button5.addEventListener("click", function() {
 
     esconde = document.getElementById("container-teste5");
+
+    if(esconde.style.display === "none"){
+        esconde.style.display = "block";
+    } else {
+        esconde.style.display = "none";
+    }
+});
+
+button6.addEventListener("click", function() {
+
+    esconde = document.getElementById("container-teste6");
 
     if(esconde.style.display === "none"){
         esconde.style.display = "block";

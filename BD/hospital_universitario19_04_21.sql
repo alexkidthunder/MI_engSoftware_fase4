@@ -183,7 +183,7 @@ CREATE TABLE IF NOT EXISTS `enfermeiros` (
 --
 -- RELACIONAMENTOS PARA TABELAS `enfermeiros`:
 --   `CPF`
---       `responsaveis` -> `CPF`
+--       `usuarios` -> `CPF`
 --
 
 --
@@ -218,7 +218,7 @@ CREATE TABLE IF NOT EXISTS `enfermeiros_chefes` (
 --
 -- RELACIONAMENTOS PARA TABELAS `enfermeiros_chefes`:
 --   `CPF`
---       `responsaveis` -> `CPF`
+--       `usuarios` -> `CPF`
 --
 
 --
@@ -245,7 +245,7 @@ CREATE TABLE IF NOT EXISTS `estagiarios` (
 --
 -- RELACIONAMENTOS PARA TABELAS `estagiarios`:
 --   `CPF`
---       `responsaveis` -> `CPF`
+--       `usuarios` -> `CPF`
 --
 
 --

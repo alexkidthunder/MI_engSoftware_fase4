@@ -61,12 +61,14 @@ Route::get('/editarPermissao', [AdminController::class,'permissao'])->name('edit
 Route::get('/alterarPermissao', [AdminController::class,'alterarPermissao'])->name('alterarPermissao');
 Route::get('/backup', [AdminController::class,'backup'])->name('backup');
 Route::get('/cadastrarUsuario', [AdminController::class,'cadastro'])->name('cadastrarUsuario');
+Route::post('/cadastrarUsuario',[AdminController::class,'salvarUsuario'])->name('salvarUsuario');//Antes estava como comentário de linha 
 Route::get('/removerUsuario', [AdminController::class,'remocao'])->name('removerUsuario');
 Route::get('/buscarUsuario', [AdminController::class,'busca'])->name('buscarUsuario');
 Route::post('/alterarAtribuicao',[AdminController::class,'alterarAtribuicao'])->name('alterarAtribuicao'); // rota para alterar atribuição
-Route::post('/cadastrarUsuario',[AdminController::class,'salvarUsuario'])->name('salvarUsuario'); //rota para salvar usuario no banco de dados, capturar dados
+
 /*------------ Rota para Busca ------------------------ */
 Route::get('/lupinha', [AdminController::class,'lupinha'])->name('lupinha');
+
 /*------------ Rota para Paciente------------------------ */
 
 Route::get('/listaPacientes', [HomeController::class,'listaPacientes'])->name('pacientes');
@@ -93,6 +95,7 @@ Route::get('/listaResponsaveis',[EnfChefeController::class,'responsaveis'])->nam
 Route::get('/prontuario',[EnfChefeController::class,'prontuario'])->name('prontuario');
 Route::get('/cadastroLeito',[EnfChefeController::class,'cadastroLeito'])->name('cadastroLeito');
 Route::get('/historicoEntradaSaida',[EnfChefeController::class,'historicoEntradaSaida'])->name('historicoEntradaSaida');
+Route::post('/cadastroMedicamento', [EnfChefeController::class,'salvarMedicamento'])->name('salvarMedicamento');
 
 /*------------ Rotas do enfermeiro -------------------*/
 
