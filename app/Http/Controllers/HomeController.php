@@ -106,4 +106,26 @@ class HomeController extends Controller
     public function listaMedicamento(){
         return view('listaMedicamento');
     }
+
+    public function salvarPaciente(Request $request){
+        include('conexao.php');
+
+        //buscar paciente
+        $existePac = mysqli_query($conn,"SELECT COUNT(*) FROM pacientes WHERE CPF = '$request->fcpf'");
+
+        //se não existir o paciente
+        if(mysqli_fetch_assoc($existePac)['COUNT(*)'] == 0){
+
+            //cria paciente e adiciona
+            $novoPac = "INSERT INTO pacientes (Nome_Paciente, Sexo, Data_Nasc, CPF, Tipo_Sang) values
+            ('$request->fnome', '$request->fsexo', '$request->fnascimento', '$request->fcpf', '$request->fsanguineo')";
+            mysqli_query($conn,$novoPac);
+            
+            return redirect()->route('cadastroPaciente')->with('success', "Paciente cadastrado com sucesso!");
+        }else{
+            //se existir o paciente cadastrado
+            return redirect()->route('cadastroPaciente')->with('error', "Paciente já existente no banco de dados!!");
+        } 
+    }
+
 }
