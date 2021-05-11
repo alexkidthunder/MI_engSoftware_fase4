@@ -38,7 +38,7 @@
         <div class="container-1">
             <div class="box">
                 <form id="register" action="{{ route('salvarMedicamento') }}" method="POST">
-                @csrf 
+                    @csrf 
                     <div class="row">
                         <div class="col-lg-12">
                             <label>Nome</label> <br>
