@@ -40,7 +40,7 @@
     <section>
         <div class="container-1">
             <div class="box">
-                <form id="register" action="{{ route('cadastrarUsuario') }}" method="POST">
+                <form id="register" action="{{ route('salvarUsuario') }}" method="POST">
                     @csrf
                     <div class="row">
                         <div class="col-lg-12">
