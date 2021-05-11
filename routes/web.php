@@ -7,6 +7,7 @@ use App\Http\Controllers\EnfController;
 use App\Http\Controllers\EstagiarioController;
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -76,6 +77,7 @@ Route::get('/listaPacientes', [HomeController::class,'listaPacientes'])->name('p
 /*------------ Rota para cadastro de paciente ------------------------ */
 
 Route::get('/cadastroPaciente', [HomeController::class,'cadastroPaciente'])->name('cadastroPaciente');
+Route::post('/cadastroPaciente', [HomeController::class,'salvarPaciente'])->name('salvarPaciente');
 
 /*------------ Rota para agendamentos ------------------------ */
 
