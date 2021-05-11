@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Administrador;
 use App\Models\Enfermeiro_chefe;
 use App\Models\Estagiario;
-use App\Models\Responsavel;
 use App\Models\Usuario;
 use App\Models\Enfermeiro;
 use Illuminate\Http\Request;
@@ -33,15 +32,120 @@ class AdminController extends Controller
         return view('/admin/atribuicao');
     }
 
-    public function permissao()
-    {      
-        return view('/admin/permissao');         
-    }
+
     
 
-    public function alterarPermissao()
+    public function permissao()
+
     {
-        return view('/admin/permissao');
+        include("db.php");
+        $atribuicao = $request->atribuicao;
+        $p = [];
+
+        if ($atribuicao != "Administrador") {
+
+            if ($atribuicao == 'enfermeiroChefe') {
+
+
+                $sql = "";
+                $query = null;
+                             
+               
+              
+                
+                for ($i = 1; $i <= 32; $i++) {          
+                $sql = "SELECT * FROM permissao_cargo where permissao_id = $i";
+                $query = mysqli_query($connect, $sql);   
+                    while($sql = $query->fetch_array()){
+                        if($sql['cargo_id'] == 2){
+                            $p[$i] = $sql['ativo'] ? 'checked' : 'unchecked';
+                        }
+                        
+                    }
+                } 
+                 //dd($p);
+                return view('/admin/permissao',['p'=>$p]);
+
+            }
+
+
+            /*
+            else if($atribuicao == 'Enfermeiro'){
+                echo "2";
+                $p = null;
+                $sql = "";
+                $query = null;
+                $count = count($permissoes);
+                for($i = 0; $i < $count; $i++){
+                    $sql = "SELECT * FROM enfPermisoes where Id = $permissoes[$i]";
+                    $query = mysqli_query($connect,$sql);
+                    while($sql = mysqli_fetch_array($query)){
+                        $p = $sql["Permissao"] ? true : 'checked';
+                        return view('/admin/permissao', $p);
+                    }
+                }
+            }
+            else if($atribuicao == 'Estagiario'){
+                echo "3";
+                $p = null;
+                $sql = "";
+                $query = null;
+                $count = count($permissoes);
+                for($i = 0; $i < $count; $i++){
+                    $sql = "SELECT * FROM estPermissoes where Id = $permissoes[$i]";
+                    $query = mysqli_query($connect,$sql);
+                    while($sql = mysqli_fetch_array($query)){
+                        $p = $sql["Permissao"] ? true : 'checked';
+                        return view('/admin/permissao', $p);
+                    }
+                }
+            }
+            */ else {
+
+                return view('/admin/permissao');
+            }
+        }
+    }
+
+
+    public function alterarPermissao(Request $request)
+    {
+
+        include("db.php");
+        $atribuicao = $request->atribuicao;
+        $permissoes = [
+            1 => $request->p1,
+            2 => $request->p2,
+            3 => $request->p3,
+            4 => $request->p4
+        ];
+
+        if ($atribuicao != "Administrador") {
+            if ($atribuicao == 'Enfermeiro Chefe') {
+                for ($i = 1; $i <= 32; $i++) {
+                    if (isset($_POST['p' . $i])) {
+                        $update = "UPDATE enfcPermisoes set='true' where Id = $i";
+                        mysqli_query($connect, $update);
+                    } else {
+                        $update = "UPDATE enfcPermisoes set='false' where Id = $i";
+                        mysqli_query($connect, $update);
+                    }
+                }
+            } else if ($atribuicao == 'Enfermeiro') {
+                for ($i = 0; $i < $count; $i++) {
+                    $update = "UPDATE enfPermisoes set='true' where Id = $i";
+                    mysqli_query($connect, $update);
+                }
+            } else if ($atribuicao == 'Estagiario') {
+                for ($i = 0; $i < $count; $i++) {
+                    $update = "UPDATE estPermissoes set='true' where Id = $i";
+                    mysqli_query($connect, $update);
+                }
+                return view('/admin/permissao');
+            }
+        } else {
+            return redirect()->back()->with('msg', '');
+        }
     }
 
 
@@ -49,8 +153,9 @@ class AdminController extends Controller
     {
         return view('/admin/backup');
     }
-
-    public function cadastro()
+    
+    
+    public function cadastro()              //função para chamar a função salvar usuário pela view
     {
         return view('/admin/cadastroUsuario');
     }
@@ -199,7 +304,7 @@ class AdminController extends Controller
     
     public function salvarUsuario(Request $request){
         include("conexao.php");
-   
+
         //validação de erro de entrada
         $validator = Validator::make($request->all(), [     
             'fcpf' => 'required|min:14|max:14',
@@ -210,62 +315,48 @@ class AdminController extends Controller
             return redirect()->route('salvarUsuario')->with('error', "Digite um CPF válido!!");   
         }    
 
-      //busca de cpf no banco  
-      $existeCPF = mysqli_query($conn,"SELECT COUNT(*) FROM usuarios WHERE CPF = '$request->fcpf'");
-    
-      //se não existe cpf
-      if($usuario = mysqli_fetch_assoc($existeCPF)){
+        //busca de cpf no banco  
+        $existeCPF = mysqli_query($conn,"SELECT COUNT(*) FROM usuarios WHERE CPF = '$request->fcpf'");
 
-        $ip = $request->ip();
+        if(mysqli_fetch_assoc($existeCPF)['COUNT(*)'] == 0){
+            $ip = $request->ip();
 
-       //insere na trabela usuário
-        $novoUsuario = "INSERT INTO usuarios (CPF, Nome, Senha, Email, Data_Nasc, Atribuicao, Sexo, Ip) values ('$request->fcpf', 
-        '$request->fnome', 12345, '$request->femail', '$request->fnascimento', '$request->fatribui','$request->fsexo','$ip')";
-        mysqli_query($conn,$novoUsuario);
-        
-        if ($request->fatribui == 'Administrador'){
+            //insere na trabela usuário
+            $novoUsuario = "INSERT INTO usuarios (CPF, Nome, Senha, Email, Data_Nasc, Atribuicao, Sexo, Ip) values ('$request->fcpf', 
+            '$request->fnome', 12345, '$request->femail', '$request->fnascimento', '$request->fatribui','$request->fsexo','$ip')";
+            mysqli_query($conn,$novoUsuario);
+            
             //insere na tabela de administrador
-            $novoAdm = "INSERT INTO administradores (CPF) values ('$request->fcpf')";
-            mysqli_query($conn,$novoAdm);
+            if ($request->fatribui == 'Administrador'){             
+                $novoAdm = "INSERT INTO administradores (CPF) values ('$request->fcpf')";
+                mysqli_query($conn,$novoAdm);
 
-        }else{
-            //insere na tabela de responsáveis
-            $novoRespon = "INSERT INTO responsaveis (CPF) values ('$request->fcpf')";
-            mysqli_query($conn,$novoRespon);
-
-            //insere na tabela de enfermeiro chefe
-            if ($request->fatribui == 'Enfermeiro Chefe') {
-                $novoEnfChefe = "INSERT INTO enfermeiros_chefes (CPF,COREN) values ('$request->fcpf','$request->fcoren')";
-                mysqli_query($conn,$novoEnfChefe);
+            }else{  
+                //insere na tabela de enfermeiro chefe
+                if ($request->fatribui == 'Enfermeiro Chefe') {
+                    $novoEnfChefe = "INSERT INTO enfermeiros_chefes (CPF,COREN) values ('$request->fcpf','$request->fcoren')";
+                    mysqli_query($conn,$novoEnfChefe);
+                }
+                //insere na tabela de enfermeiro
+                else if ($request->fatribui == 'Enfermeiro') {
+                    $novoEnf = "INSERT INTO enfermeiros (CPF,COREN,Plantao) values ('$request->fcpf', '$request->fcoren','false')";
+                    mysqli_query($conn,$novoEnf);
+                }
+                //insere na tabela de estagiario
+                else if ($request->fatribui == 'Estagiário') {
+                    $novoEst = "INSERT INTO estagiarios (CPF,Plantao) values ('$request->fcpf','false')";
+                    mysqli_query($conn,$novoEst);
+                }   
+            }         
+            return redirect()->route('cadastrarUsuario')->with('success','Usuário cadastrado com sucesso!!');
             }
-            //insere na tabela de enfermeiro
-            else if ($request->fatribui == 'Enfermeiro') {
-                $novoEnf = "INSERT INTO enfermeiros (CPF,COREN,Plantao) values ('$request->fcpf', '$request->fcoren','false')";
-                mysqli_query($conn,$novoEnf);
+            else{
+              
+                //se o usuário já existir
+                return redirect()->route('cadastrarUsuario')->with('error','Usuário já cadastrado!!');
             }
-            //insere na tabela de estagiario
-            else if ($request->fatribui == 'Estagiário') {
-                $novoEst = "INSERT INTO estagiarios (CPF,Plantao) values ('$request->fcpf','false')";
-                mysqli_query($conn,$novoEst);
-            }   
-        }         
-        //FINALIZAR AQUI
-        return redirect()->route('salvarUsuario')->with('success','Usuário cadastrado com sucesso!!');
-
-        }
-        else{
-            //FINALIZAR AQUI
-
-
-                //return redirect()->route('salvarUsuario')->with('error','Usuário já cadastrado no sistema!!');
-                //return redirect() -> back() ->with('msg','Você não pode alterar o cargo de administradores!!!');
-
-                return redirect()->route('salvarUsuario')->with('error','Erro ao cadastrar usuário!!');
-        }
       }
      
-    
-
 
     public function busca(Request $request)
     {          

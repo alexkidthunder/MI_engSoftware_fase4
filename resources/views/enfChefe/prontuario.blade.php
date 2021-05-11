@@ -72,10 +72,6 @@
                             <input id="fdatainternacao" name="fdatainternacao" type="date" required>
                         </div>
                         <div class="col-lg-4">
-                            <label>Data de Saida</label> <br>
-                            <input id="fdatasaida" name="fdatasaida" type="date" required>
-                        </div>
-                        <div class="col-lg-4">
                             <label>Leito</label> <br>
                             <input id="fleito" name="fleito" type="text" maxlength="50" value="A26" required>
                         </div>
@@ -183,13 +179,7 @@
             <div class="box-scheduling", id= "container-teste4">
                 <form id="register">
                     <div class="row">
-                        <div class="col-lg-12">
-                            <label>Nova Ocorrencia</label> <br>
-                            <input id="focorrencia" name="focorrencia" type="text" maxlength="100" required>
-                                <div>
-                                <button class="btn-blue"> Adcionar </button>
-                                </div>
-                        </div>
+                        
                         <h3>Tabela de ocorrencias</h3>
                     </div>  
                             
@@ -241,6 +231,14 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="col-lg-12">
+                            <label>Nova Ocorrencia</label> <br>
+                            <input id="focorrencia" name="focorrencia" type="text" maxlength="100" required>
+                                <div>
+                                <button class="btn-blue"> Adcionar </button>
+                                </div>
+                        </div>
                     
                 </form>
             </div>
@@ -287,6 +285,22 @@
                                 </div>
                             </div>   
                         </div>                 
+                </form>
+            </div>
+
+            <button class="btn-blue", id="action-btn6">Encerrar Prontuario</button>
+            <div class="box-scheduling", id= "container-teste6">
+                <form id="register">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <label>Data de Saída</label> <br>
+                            <input id="fsaida" name="fsaida" type="date" required>
+                        </div>   
+                    </div>  
+                        <div>
+                            <button class="btn-blue"> Finalizar </button>
+                        </div>
+                                     
                 </form>
             </div>
         </div>

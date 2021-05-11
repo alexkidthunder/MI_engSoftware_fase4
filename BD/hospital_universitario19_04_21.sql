@@ -183,7 +183,7 @@ CREATE TABLE IF NOT EXISTS `enfermeiros` (
 --
 -- RELACIONAMENTOS PARA TABELAS `enfermeiros`:
 --   `CPF`
---       `responsaveis` -> `CPF`
+--       `usuarios` -> `CPF`
 --
 
 --
@@ -218,7 +218,7 @@ CREATE TABLE IF NOT EXISTS `enfermeiros_chefes` (
 --
 -- RELACIONAMENTOS PARA TABELAS `enfermeiros_chefes`:
 --   `CPF`
---       `responsaveis` -> `CPF`
+--       `usuarios` -> `CPF`
 --
 
 --
@@ -245,7 +245,7 @@ CREATE TABLE IF NOT EXISTS `estagiarios` (
 --
 -- RELACIONAMENTOS PARA TABELAS `estagiarios`:
 --   `CPF`
---       `responsaveis` -> `CPF`
+--       `usuarios` -> `CPF`
 --
 
 --
@@ -444,6 +444,7 @@ CREATE TABLE IF NOT EXISTS `permissao_cargo` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `permissao_id` int(10) NOT NULL,
   `cargo_id` int(10) NOT NULL,
+  `ativo` int(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `permissao_id` (`permissao_id`),
   KEY `cargo_id` (`cargo_id`)
@@ -461,44 +462,44 @@ CREATE TABLE IF NOT EXISTS `permissao_cargo` (
 -- Extraindo dados da tabela `permissao_cargo`
 --
 
-INSERT INTO `permissao_cargo` (`id`, `permissao_id`, `cargo_id`) VALUES
-(1, 1, 1),
-(2, 2, 1),
-(3, 3, 1),
-(4, 4, 1),
-(5, 5, 1),
-(6, 6, 1),
-(7, 7, 2),
-(8, 7, 3),
-(9, 8, 2),
-(10, 8, 3),
-(11, 8, 2),
-(12, 8, 3),
-(13, 9, 2),
-(14, 10, 2),
-(15, 10, 3),
-(16, 10, 4),
-(17, 11, 2),
-(18, 12, 2),
-(19, 12, 3),
-(20, 12, 4),
-(21, 13, 2),
-(22, 13, 3),
-(23, 13, 4),
-(24, 14, 2),
-(25, 15, 2),
-(26, 16, 2),
-(27, 16, 3),
-(28, 16, 4),
-(29, 17, 2),
-(30, 17, 3),
-(31, 17, 4),
-(32, 18, 2),
-(33, 18, 3),
-(34, 18, 4),
-(35, 19, 2),
-(36, 19, 3),
-(37, 19, 4);
+INSERT INTO `permissao_cargo` (`id`, `permissao_id`, `cargo_id`, `ativo`) VALUES
+(1, 1, 1, 1),
+(2, 2, 1, 1),
+(3, 3, 1, 1),
+(4, 4, 1, 1),
+(5, 5, 1, 1),
+(6, 6, 1, 1),
+(7, 7, 2, 1),
+(8, 7, 3, 1),
+(9, 8, 2, 0),
+(10, 8, 3, 0),
+(11, 8, 2, 1),
+(12, 8, 3, 0),
+(13, 9, 2, 0),
+(14, 10, 2, 0),
+(15, 10, 3, 1),
+(16, 10, 4, 0),
+(17, 11, 2, 1),
+(18, 12, 2, 0),
+(19, 12, 3, 0),
+(20, 12, 4, 0),
+(21, 13, 2, 0),
+(22, 13, 3, 0),
+(23, 13, 4, 0),
+(24, 14, 2, 0),
+(25, 15, 2, 0),
+(26, 16, 2, 0),
+(27, 16, 3, 0),
+(28, 16, 4, 0),
+(29, 17, 2, 1),
+(30, 17, 3, 0),
+(31, 17, 4, 0),
+(32, 18, 2, 1),
+(33, 18, 3, 0),
+(34, 18, 4, 0),
+(35, 19, 2, 0),
+(36, 19, 3, 0),
+(37, 19, 4, 0);
 
 -- --------------------------------------------------------
 
@@ -509,7 +510,6 @@ INSERT INTO `permissao_cargo` (`id`, `permissao_id`, `cargo_id`) VALUES
 CREATE TABLE IF NOT EXISTS `permissoes` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `nome` varchar(50) NOT NULL,
-  `Ativo` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4;
 
@@ -521,37 +521,37 @@ CREATE TABLE IF NOT EXISTS `permissoes` (
 -- Extraindo dados da tabela `permissoes`
 --
 
-INSERT INTO `permissoes` (`id`, `nome`, `Ativo`) VALUES
-(1, 'Cadastrar funcionário', 1),
-(2, 'Remover funcionário', 1),
-(3, 'Alterar atribuição do funcionário', 1),
-(4, 'Editar permissões de cargo', 0),
-(5, 'Visualizar permissões de cargo', 0),
-(6, 'Cadastro de plantonista', 0),
-(7, 'Remoção de plantonista', 0),
-(8, 'Cadastro de medicamentos', 1),
-(9, 'Cadastro de CID', 1),
-(10, 'Remoção de CID', 1),
-(11, 'Cadastro de agendamento', 0),
-(12, 'Alocar responsável por agendamento', 0),
-(13, 'Listagem de plantonistas', 1),
-(14, 'Listagem de agendamentos', 1),
-(15, 'Responsáveis por aplicação de medicamentos', 0),
-(16, 'Cadastro de pacientes', 1),
-(17, 'Visualizar pacientes e prontuários', 0),
-(18, 'Acesso ao prontuário do paciente', 0),
-(19, 'Editar informações pessoais do paciente', 0),
-(20, 'Listagem de medicamentos para preparação', 0),
-(21, 'Visualização de agendamento realizados pelo funcio', 0),
-(22, 'Visualização de agendamento alocados para o funcio', 0),
-(23, 'Aplicação de medicamentos', 0),
-(24, 'Nomear-se responsável por preparar a aplicação', 0),
-(25, 'Dar baixa no agendamento', 0),
-(26, 'Visualizar ocorrências do paciente', 0),
-(27, 'Registro de ocorrências', 0),
-(28, 'Cadastro do leito', 0),
-(29, 'Remoção do leito', 0),
-(30, 'Realizar / Agendar Backup', 0);
+INSERT INTO `permissoes` (`id`, `nome`) VALUES
+(1, 'Cadastrar funcionário'),
+(2, 'Remover funcionário'),
+(3, 'Alterar atribuição do funcionário'),
+(4, 'Editar permissões de cargo'),
+(5, 'Visualizar permissões de cargo'),
+(6, 'Cadastro de plantonista'),
+(7, 'Remoção de plantonista'),
+(8, 'Cadastro de medicamentos'),
+(9, 'Cadastro de CID'),
+(10, 'Remoção de CID'),
+(11, 'Cadastro de agendamento'),
+(12, 'Alocar responsável por agendamento'),
+(13, 'Listagem de plantonistas'),
+(14, 'Listagem de agendamentos'),
+(15, 'Responsáveis por aplicação de medicamentos'),
+(16, 'Cadastro de pacientes'),
+(17, 'Visualizar pacientes e prontuários'),
+(18, 'Acesso ao prontuário do paciente'),
+(19, 'Editar informações pessoais do paciente'),
+(20, 'Listagem de medicamentos para preparação'),
+(21, 'Visualização de agendamento realizados pelo funcio'),
+(22, 'Visualização de agendamento alocados para o funcio'),
+(23, 'Aplicação de medicamentos'),
+(24, 'Nomear-se responsável por preparar a aplicação'),
+(25, 'Dar baixa no agendamento'),
+(26, 'Visualizar ocorrências do paciente'),
+(27, 'Registro de ocorrências'),
+(28, 'Cadastro do leito'),
+(29, 'Remoção do leito'),
+(30, 'Realizar / Agendar Backup');
 
 -- --------------------------------------------------------
 
