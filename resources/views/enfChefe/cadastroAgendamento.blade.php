@@ -38,7 +38,7 @@
                         </button>
                     </form>
                 </div>
-                <div id="user_Data" style="display: none;">
+                <div class="hide" id="user_Data">
                     <!--Infomações do Paciente-->
                     <h3>Paciente</h3><br>
                     <div class="box-gray">
@@ -68,7 +68,7 @@
                     <!-- Cadastro do medicamento -->
                 </div>
                 <div>
-                    <form id="register" style="display: none;">
+                    <form class="hide" id="register">
                         <div class="box-medicament">
                             <div class="row">
                                 <div class="col-lg-4">
@@ -103,7 +103,7 @@
                                     <div> <!-----FICA HIDDEN ATÉ QUE SEJA CLICALDO NO BOTÃO DE ALOCAR APLICADOR ----->
                                         <label for="aplicador_agendamento">Aplicador</label>
                                         <input id="aloc_inp" type="text" name="aplicador_agendamento"
-                                            placeholder="nome do aplicador" readonly>
+                                            placeholder="nome do aplicador" disabled>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
