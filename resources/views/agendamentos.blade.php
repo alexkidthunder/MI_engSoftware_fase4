@@ -15,6 +15,8 @@
     <!-- Favicon -->
     <link href="{{ asset('img/favicon.png') }}" rel="icon">
     
+    <script src="{{ ('js/agendamentos.js') }}" defer></script>
+
     <title>Meus agendamentos</title>
     
   </head>
@@ -66,27 +68,28 @@
                     </div>
                     <!--=====Botões do agendamento======-->
                     <div class="row">
-                        <div class="col-lg-2">
+                        <div class="col-lg-2 hide" name="preparador_div">
                             <p>Prepador da aplicação:</p>
                         </div>
                         <!--=====isso aqui fica hidden======-->
-                        <div class="col-lg-7" id="preparador_div"> 
+                        <div class="col-lg-7 hide" name="preparador_div">
+                            <!--Utilizar Jquery (inner.html)-->
                             <div class="box-gray" id="preparador"> 
-                                <!--Utilizar Jquery (inner.html)-->
+                                
                             </div>
                         </div>
                         <!--===============================-->
                         
                         <div class="col-lg-3" id="add_prep_btn_div">
                             <div>
-                                <button type="submit" class="btn-white" id="add_prep_btn"> Adicionar preparador</button>
+                                <button type="button" class="btn-white" id="add_prep_btn"> Adicionar preparador</button>
                             </div>
                         </div>
 
                         <!--isso aqui fica hidden até que seja add preparador--->
-                        <div class="col-lg-3" id="end_prep_div">
+                        <div class="col-lg-3 hide" id="end_prep_div">
                             <div>
-                                <button type="submit" class="btn-white"> Finalizar aplicação</button>
+                                <button type="button" class="btn-white" id="end_prep_btn"> Finalizar aplicação</button>
                             </div>
                         </div>
                         <!--===============================-->
