@@ -57,7 +57,7 @@ Route::get('/meuPerfil', [HomeController::class,'editPerfil'])->name('editarPerf
 
 Route::get('/menu', [AdminController::class,'menu'])->name('menu');
 Route::get('/log', [AdminController::class,'log'])->name('log');
-Route::post('/editarAtribuicao', [AdminController::class,'atribuicao'])->name('editarAtribuicao');
+Route::get('/editarAtribuicao', [AdminController::class,'atribuicao'])->name('editarAtribuicao');
 Route::get('/editarPermissao', [AdminController::class,'permissao'])->name('editarPermissao');
 Route::get('/alterarPermissao', [AdminController::class,'alterarPermissao'])->name('alterarPermissao');
 Route::get('/backup', [AdminController::class,'backup'])->name('backup');

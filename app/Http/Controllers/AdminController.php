@@ -177,9 +177,8 @@ class AdminController extends Controller
         }       
       
     }
-
+    
     public function alterarAtribuicao(Request $request){
-        echo "Eu to achando a rota";
         include("db.php"); // Importando BD
         $request -> validate([
             'novaAtribuicao' => 'required' // Verificação de preenchimento de campo 
