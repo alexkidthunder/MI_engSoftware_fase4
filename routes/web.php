@@ -113,3 +113,7 @@ Route::get('/menuEstagiario', [EstagiarioController::class,'menu'])->name('menu-
 /*------------ Rotas do medicamento -------------------*/
 
 Route::get('/listaMedicamento', [HomeController::class,'listaMedicamento'])->name('listaMedicamento');
+
+/*------------ Rotas do Prontuário -------------------*/
+
+Route::get('/HistoricoDeProntuario', [HomeController::class,'historicoProntuario'])->name('historicoProntuario');

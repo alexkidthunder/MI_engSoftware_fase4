@@ -649,3 +649,7 @@ input[type=number] {
     font-weight: bold;
     padding: 15px;
 }
+
+.input-full-width{
+    width: 100%;
+}
