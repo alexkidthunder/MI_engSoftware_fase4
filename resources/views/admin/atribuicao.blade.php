@@ -83,7 +83,7 @@
                 
                         <!--Alterar atrinuição do funcionário funcionário, se for estagiário-->
                         <div class="container-atribution">
-                            <form method="post" action='/alterarAtribuicao'>
+                            <form method="POST" action='/alterarAtribuicao'>
                             @csrf
                                 <input type="hidden" name="cpf" value='{{$user["CPF"]}}'><!--Usado para obter o CPF pesquisado pela função de busca-->
                                 <div class="row"> 
