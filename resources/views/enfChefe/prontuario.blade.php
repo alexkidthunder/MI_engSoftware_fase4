@@ -183,54 +183,37 @@
                         <h3>Tabela de ocorrencias</h3>
                     </div>  
                             
-                        <div class="box-scheduling">
-                            <div class="row">
-                                <div class="col-lg-2 text-center">
-                                    <div class="box-gray">
-                                        22:30h
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 text-center">
-                                    <div class="box-gray">
-                                        20/04/21
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="box-white">                                       
-                                         O paciente vomitou
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="box-gray">                                       
-                                        Enfermeira: Elisa Defierro
-                                    </div>
-                                </div>
-                            </div>
-                        </div> 
-                        <div class="box-scheduling">
-                            <div class="row">
-                                <div class="col-lg-2 text-center">
-                                    <div class="box-gray">
-                                        21:22h
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 text-center">
-                                    <div class="box-gray">
-                                        19/04/21
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="box-white">                                       
-                                         O paciente está alucinando
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="box-gray">                                       
-                                        Enfermeira: Elisa Defierro
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Data/Hora</th>
+                                <th scope="col">Responsável</th>
+                                <th scope="col">Ocorrencia</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>14/03/21 - 15:03</td>
+                                <td>Julia Maria Souza</td>
+                                <td>Vomitou muito</td>
+                            </tr>
+                            <tr>
+                                <td>14/03/21 - 15:02</td>
+                                <td>Rubens Carvalho</td>
+                                <td>Infarto</td>
+                            </tr>
+                            <tr>
+                                <td>14/03/21 - 15:00</td>
+                                <td>Daniel Masvidal Covas</td>
+                                <td>Pressão alta</td>
+                            </tr>
+                            <tr>
+                                <td>13/03/21 - 12:30</td>
+                                <td>Vinícius Maciel</td>
+                                <td>Fortes dores na lombar</td>
+                            </tr>
+                        </tbody>
+                    </table>
 
                         <div class="col-lg-12">
                             <label>Nova Ocorrencia</label> <br>
