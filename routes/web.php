@@ -80,6 +80,9 @@ Route::get('/listaPacientes', [HomeController::class,'listaPacientes'])->name('p
 Route::get('/cadastroPaciente', [HomeController::class,'cadastroPaciente'])->name('cadastroPaciente');
 Route::post('/cadastroPaciente', [HomeController::class,'salvarPaciente'])->name('salvarPaciente');
 
+/*------------ Rota para cadastro de prontuario ------------------------ */
+Route::get('/cadastroProntuario', [HomeController::class,'cadastroProntuario'])->name('cadastroProntuario');
+
 /*------------ Rota para agendamentos ------------------------ */
 
 Route::get('/agendamentosRealizados', [HomeController::class,'agendamentosRealizados'])->name('agendamentosRealizados');
