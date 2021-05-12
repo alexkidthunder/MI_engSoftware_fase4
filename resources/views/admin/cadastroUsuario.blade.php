@@ -87,17 +87,18 @@
                             </select>
                         </div>
                     </div>
-                    <div id="corenDiv" class="row" style="display: none">
-                        <div class="col-lg-4">
-                            <label for="fcoren">Coren</label>
-                            <input placeholder="Informe o Coren" id="fcoren" name="fcoren" type="text" maxlength="14" pattern="\d{2}\-\d{3}.\d{3}.\d{3}" required>
+                    <div id="corenDiv" class="hide">
+                        <div  class="row">
+                            <div class="col-lg-4">
+                                <label for="fcoren">Coren</label>
+                                <input placeholder="Informe o Coren" id="fcoren" name="fcoren" type="text" maxlength="14" pattern="\d{2}\-\d{3}.\d{3}.\d{3}" required>
+                            </div>
                         </div>
                     </div>
                     <div>
                         <button type="submit" class="btn-blue"> Cadastrar </button>
                     </div>
                 </form>
-
             </div>
         </div>
     </section>

@@ -3,10 +3,10 @@ var agendaBtn = document.getElementById("agenBack");
 agendaBtn.addEventListener("click",function(){
 
     var agendamento = document.getElementById("AgendamentoBackup");
-    if(agendamento.style.display === "none"){
-        agendamento.style.display = "";
+    if(!agendamento.classList.contains('hide')){
+        agendamento.classList.add('hide');
     } else {
-        agendamento.style.display = "none";
+        agendamento.classList.remove('hide');
     }
 
 })
@@ -18,11 +18,11 @@ alwaysCheck.addEventListener("click",function(){
 
     var dataRequired = document.getElementById("date");
     var dataDiv = document.getElementById("dataDiv");
-    if(dataDiv.style.display ==="none"){
-        dataDiv.style.display = "";
-        dataRequired.setAttribute("required", "");
-    } else {
-        dataDiv.style.display = "none";
+    if(!dataDiv.classList.contains('hide')){
+        dataDiv.classList.add('hide');
         dataRequired.removeAttribute("required");
+    } else {
+        dataDiv.classList.remove('hide');
+        dataRequired.setAttribute("required", "");
     }
 })
