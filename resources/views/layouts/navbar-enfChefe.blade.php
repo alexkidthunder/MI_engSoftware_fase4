@@ -26,6 +26,7 @@
             <li class="drop-down title-nav"><a>PACIENTES <i class="fas fa-angle-down"></i></a>
                 <ul>
                     <li><a href="{{ route('cadastroPaciente') }}">Cadastro de pacientes</a></li>
+                    <li><a href="#">Cadastro de prontuário</a></li>
                     <li><a href="{{ route('pacientes') }}">Pacientes e prontuários</a></li>
                 </ul>
             </li>
@@ -45,6 +46,13 @@
               </ul>
             </li>
           
+            <li class="drop-down title-nav"><a>LEITOS <i class="fas fa-angle-down"></i></a>
+              <ul>
+                <li class=""><a href="#">Cadastro de leito</a></li>
+                <li class=""><a href="#">Remoção de leito</a></li>
+              </ul>
+            </li>
+
             
             <li class="drop-down title-nav"><a>PLANTONISTAS <i class="fas fa-angle-down"></i></a>
               <ul>

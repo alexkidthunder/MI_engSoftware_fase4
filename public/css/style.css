@@ -216,12 +216,12 @@ textarea:focus, input:focus {
 
 .container-2 {
     align-items: center;
-    margin-top: 100px;
-    margin-right: 15%;
-    margin-left: 15%;
-    width: 70%;
-    padding-right: 15px;
-    padding-left: 15px;
+    margin-top: 80px;
+    margin-right: 10%;
+    margin-left: 10%;
+    width: 80%;
+    /*padding-right: 15px;
+    padding-left: 15px;*/
 }
 
 /*------ Container para botão que fica na direita ------*/
