@@ -24,7 +24,7 @@
         <div class="row">
             <div class="col-lg">
                     @if ($errors->any())
-                        <div class="alert alert-danger">
+                        <div class="msg-error">
                             <ul>
                                 @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
@@ -33,7 +33,7 @@
                         </div>
                     @endif
                     @if (session('msg'))
-                    <div class="alert alert-danger">
+                    <div class="msg-error">
                         {{session('msg')}}
                     </div>
                     @endif
