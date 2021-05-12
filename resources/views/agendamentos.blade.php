@@ -70,21 +70,21 @@
                             <p>Prepador da aplicação:</p>
                         </div>
                         <!--=====isso aqui fica hidden======-->
-                        <div class="col-lg-7"> 
-                            <div class="box-gray"> 
-                                Nome do Preparador Aqui
+                        <div class="col-lg-7" id="preparador_div"> 
+                            <div class="box-gray" id="preparador"> 
+                                <!--Utilizar Jquery (inner.html)-->
                             </div>
                         </div>
                         <!--===============================-->
                         
-                        <div class="col-lg-3">
+                        <div class="col-lg-3" id="add_prep_btn_div">
                             <div>
-                                <button type="submit" class="btn-white"> Adicionar preparador</button>
+                                <button type="submit" class="btn-white" id="add_prep_btn"> Adicionar preparador</button>
                             </div>
                         </div>
 
                         <!--isso aqui fica hidden até que seja add preparador--->
-                        <div class="col-lg-3">
+                        <div class="col-lg-3" id="end_prep_div">
                             <div>
                                 <button type="submit" class="btn-white"> Finalizar aplicação</button>
                             </div>

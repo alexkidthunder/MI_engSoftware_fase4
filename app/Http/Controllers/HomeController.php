@@ -128,4 +128,7 @@ class HomeController extends Controller
         } 
     }
 
+    public function historicoProntuario(){
+        return view('historicoProntuario');
+    }
 }
