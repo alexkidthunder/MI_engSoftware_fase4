@@ -70,8 +70,4 @@ class EnfChefeController extends Controller
         return view('/enfChefe/cadastroLeito');
     }
 
-    public function historicoEntradaSaida(){
-        return view('/enfChefe/historicoEntradaSaida');
-    }
-
 }
