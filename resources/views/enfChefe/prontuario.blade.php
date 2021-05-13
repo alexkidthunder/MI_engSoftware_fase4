@@ -35,7 +35,7 @@
         <div class="container-1"> 
             
         <button class="btn-blue", id="action-btn3">Dados de Paciente</button>
-            <div class="box", id= "container-teste3">
+            <div class="box-scheduling", id= "container-teste3">
                 <form id="register">
                     <div class="row">
                         <div class="col-lg-12">
@@ -289,3 +289,4 @@
         </div>
     </section>
 </body>
+</html>

@@ -216,12 +216,12 @@ textarea:focus, input:focus {
 
 .container-2 {
     align-items: center;
-    margin-top: 100px;
-    margin-right: 15%;
-    margin-left: 15%;
-    width: 70%;
-    padding-right: 15px;
-    padding-left: 15px;
+    margin-top: 80px;
+    margin-right: 10%;
+    margin-left: 10%;
+    width: 80%;
+    /*padding-right: 15px;
+    padding-left: 15px;*/
 }
 
 /*------ Container para botão que fica na direita ------*/
@@ -587,6 +587,7 @@ input[type=number] {
 }
 
 .msg-sucess, .msg-error {
+    position: relative;
     border-radius: 10px;
     border: 0.5px solid rgba(255, 255, 255, 0);
     box-shadow: 3px 3px 3px #e0dede;
@@ -595,8 +596,9 @@ input[type=number] {
     font-size: 18px;
     opacity: 0.9;
     padding: 20px 10px;
-    width: 30%;
-    margin-bottom: 20px;
+    margin-bottom: 1rem;
+    position: relative;
+    text-align:center;
 }
 
 .msg-sucess {
@@ -604,7 +606,7 @@ input[type=number] {
 }
 
 .msg-error {
-    background-image: linear-gradient( to right, #ff6f88, #ff3353, #f50026);
+    background-image: linear-gradient( to right, #ff6f88, #f5566e, #f51a3b);
 }
 
 .radial-no-edit {

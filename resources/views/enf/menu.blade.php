@@ -35,6 +35,16 @@
                 <div class="col-xl-4 col-lg-4 col-md-6">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
+                            <i class="fas fa-clipboard-list"></i>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <h4 class="card-options_title"><a
+                            href="#">Cadastrar prontuário</a></h4>
+                    </div>
+                </div> 
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="card-menu text-center card-options">
+                        <div class="card-options-icon options-icon">
                             <i class="fas fa-user-injured"></i>
                             <i class="fas fa-clipboard-list"></i>
                         </div>
@@ -75,3 +85,4 @@
             </div>  
         </div>
   </body>
+  </html>
