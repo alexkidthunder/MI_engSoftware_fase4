@@ -11,7 +11,6 @@ selectAtribuicao.addEventListener('change',function(){
 
 document.addEventListener("DOMContentLoaded", function(){
     text = sessionStorage.getItem("Atribuicao");
-    selectAtribuicao.value = text;
     text = text.toString();
     text = text.toUpperCase();
     h3NomePermissao.innerHTML = "PERMISSÕES DO " + text;
