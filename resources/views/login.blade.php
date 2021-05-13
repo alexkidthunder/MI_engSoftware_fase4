@@ -20,7 +20,13 @@
         <a href="{{ route('primeiroAcesso') }}">Primeiro acesso? Clique aqui para definir a senha</a>
     </div>
 
-    <div class="container">
+
+   
+    <form id="login" action="/index/menu" method= "post">
+    @csrf
+    <div class="box-login">
+            <h2>Login</h2>
+            <div class="container">
         <div class="row">
             <div class="col-lg">
                     @if ($errors->any())
@@ -32,20 +38,14 @@
                             </ul>
                         </div>
                     @endif
-                    @if (session('msg'))
+                    @if (session('msg-error'))
                     <div class="msg-error">
-                        {{session('msg')}}
+                        {{session('msg-error')}}
                     </div>
                     @endif
             </div>
         </div>
-    </div>
-
-   
-    <form id="login" action="/index/menu" method= "post">
-    @csrf
-    <div class="box-login">
-            <h2>Login</h2>
+            </div>
             <div>
                 <label>CPF</label>
                 <input type="text" name= "cpf" placeholder="Digite seu CPF" required maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
