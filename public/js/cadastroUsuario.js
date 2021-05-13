@@ -1,3 +1,6 @@
+/**
+ * Seletor de atribuição para cadastrar usuário
+ */
 var selAtri = document.getElementById('fatribui');
 
 
@@ -8,7 +11,9 @@ document.addEventListener('DOMContentLoaded',function(){
 selAtri.addEventListener("change",function(){
     reloadCorenDiv();
 });
-
+/**
+ * Mostra ou Esconde a opção de digitar o Coren
+ */
 function reloadCorenDiv(){
     let selectedAtri = selAtri.value;
     let corenDiv = document.getElementById('corenDiv');

@@ -1,9 +1,9 @@
 var searchBtn = document.getElementById('busca_user');
 
 searchBtn.addEventListener("click",function(){
-    /*
-    Mostrar o usuário buscado
-    */
+    /**
+     * Mostra dados do usuário buscado
+     */
     let userDataDiv = document.getElementById('user_Data');
     if(userDataDiv.classList.contains('hide')){
         userDataDiv.classList.remove('hide');
