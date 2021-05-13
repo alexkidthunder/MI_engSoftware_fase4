@@ -37,10 +37,10 @@ class HomeController extends Controller
             }else if($atribuicao == "Estagiario"){
                 return redirect() -> intended('menuEstagiario');
             }else{
-                return redirect() -> back() ->with('msg','Funcionario sem cargo, algo esta errado!!!');
+                return redirect() -> back() ->with('msg-error','Funcionario sem cargo, algo esta errado!!!');
             }
         }else{ // caso em que o $row = 0
-            return redirect() -> back() ->with('msg','Acesso negado para essas credenciais');
+            return redirect() -> back() ->with('msg-error','Acesso negado para essas credenciais');
         }
 
     }

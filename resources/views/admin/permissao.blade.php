@@ -43,12 +43,27 @@
 
             <!---------------- Alterar permissões ---------------->
           {{-- <div class="box" id="permission">--}}
-                    <form>
+                    <form action="/alterarPermissao" method="get">
                         @csrf
                         <h3 class="content-center">PERMISSÕES DO "inserir o valor selecionado" </h3> <br>
                         <!-- ========== Linha 1 (REFERENTE AO ADM) ========== --> 
-                        
-                       
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg">
+                                        @if (session('msg')) <!-- Verifica se a mensagem de erro foi instanciada -->
+                                        <div class="msg-sucess">
+                                            {{session('msg')}} <!--Obtem mensagem de erro -->
+                                        </div>
+                                        @endif
+                                        @if (session('msg-error')) <!-- Verifica se a mensagem de erro foi instanciada -->
+                                        <div class="msg-error">
+                                            {{session('msg-error')}} <!--Obtem mensagem de erro -->
+                                        </div>
+                                        @endif
+                                </div>
+                            </div>
+                        </div>
+                        @if(isset($p))
                         <div class="row">
                             <!--Inicio da permissão-->
                                                       
@@ -96,25 +111,26 @@
                             </div>
                             @endif
                             <!--Fim da permissão-->
+
+                            @if(isset($p[6]))
+                            <!--Inicio da permissão-->
+                            <div class="col-lg-13 content-center">
+                                <input type="checkbox" name="p6" {{ $p[6]}}><br>
+                                <label>Realizar / Agendar Backup</label> 
+                            </div>
+                            @endif
+                            <!--Fim da permissão-->
                         </div>
                         <!-- ========== fim da linha 1 ========== --> 
 
                         <!-- ========== Linha 2 ========== --> 
                         <div class="row">
-                            @if(isset($p[6]))
-                            <!--Inicio da permissão-->
-                            <div class="col-lg-13 content-center">
-                                <input type="checkbox" name="p6" {{ $p[6]}}><br> 
-                                <label>Cadastro de plantonista</label>
-                            </div>
-                            @endif
-                            <!--Fim da permissão-->
 
                             <!--Inicio da permissão-->
                             @if(isset($p[7]))
                             <div class="col-lg-13 content-center">
                                 <input type="checkbox" name="p7" {{ $p[7]}}><br>
-                                <label>Remoção de plantonista</label>
+                                <label>Cadastro de plantonista</label>
                             </div>
                             @endif
                             <!--Fim da permissão-->
@@ -338,7 +354,7 @@
                             @if(isset($p[30]))
                             <div class="col-lg-13 content-center">
                                 <input type="checkbox" name="p30" {{ $p[30]}}><br>
-                                <label>Realizar / Agendar Backup</label>
+                                <label>Remoção de plantonista</label>
                             </div>
                             @endif
                             <!--Fim da permissão-->
@@ -375,9 +391,8 @@
                             <!--Fim da permissão-->                        
                         </div>
                         <!-- ========== fim da linha 7 ========== -->   
-   
+                        @endif
                         <div>
-                        
                             <button type="submit" class="container-button btn-white">Alterar</button>
                         </div>  
                     </form>

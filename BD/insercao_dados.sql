@@ -47,7 +47,7 @@ INSERT INTO responsaveis VALUES
 	('607.500.500-55'),
 	('841.084.862-77'),
 	('046.822.991-40'),
-    ('202.457.365-11'),
+  ('202.457.365-11'),
 	('658.002.101-02'),
 	('475.013.135-62'),
 	('657.687.833-85'),
@@ -227,9 +227,9 @@ INSERT INTO permissao_cargo VALUES
 	(DEFAULT, '28', '2', '0'),
 	(DEFAULT, '29', '2', '0'),
 	(DEFAULT, '30', '2', '0'),
-    (DEFAULT, '31', '2', '0'),
-    (DEFAULT, '32', '2', '0'),
-    (DEFAULT, '33', '2', '0'),
+  (DEFAULT, '31', '2', '0'),
+  (DEFAULT, '32', '2', '0'),
+  (DEFAULT, '33', '2', '0'),
     
 	(DEFAULT, '7', '3', '1'),
 	(DEFAULT, '8', '3', '1'),
@@ -255,10 +255,9 @@ INSERT INTO permissao_cargo VALUES
 	(DEFAULT, '28', '3', '0'),
 	(DEFAULT, '29', '3', '0'),
 	(DEFAULT, '30', '3', '0'),
-    (DEFAULT, '31', '3', '0'),
-    (DEFAULT, '32', '3', '0'),
-    (DEFAULT, '33', '3', '0'),
-    
+  (DEFAULT, '31', '3', '0'),
+  (DEFAULT, '32', '3', '0'),
+  (DEFAULT, '33', '3', '0'),   
     
 	(DEFAULT, '7', '4', '1'),
 	(DEFAULT, '8', '4', '1'),
@@ -284,6 +283,6 @@ INSERT INTO permissao_cargo VALUES
 	(DEFAULT, '28', '4', '0'),
 	(DEFAULT, '29', '4', '0'),
 	(DEFAULT, '30', '4', '0'),
-    (DEFAULT, '31', '4', '0'),
-    (DEFAULT, '32', '4', '0'),
-    (DEFAULT, '33', '4', '0');
+  (DEFAULT, '31', '4', '0'),
+  (DEFAULT, '32', '4', '0'),
+  (DEFAULT, '33', '4', '0');
