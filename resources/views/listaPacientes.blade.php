@@ -51,7 +51,7 @@
                              </div>
                         </div>
                         <div class="col-lg-2">
-                            <button class="btn-blue">Prontuário</button>
+                        <a href="{{ route('prontuario')}}" target="_parent"><button class="btn-blue">Prontuário</button></a>   
                         </div>
                     </div>
             </div>
@@ -65,7 +65,7 @@
                              </div>
                         </div>
                         <div class="col-lg-2">
-                            <button class="btn-blue">Prontuário</button>
+                        <a href="{{ route('prontuario')}}" target="_parent"><button class="btn-blue">Prontuário</button></a>   
                         </div>
                     </div>
             </div>
