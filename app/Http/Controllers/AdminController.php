@@ -35,7 +35,7 @@ class AdminController extends Controller
 
     
 
-    public function permissao()
+    public function permissao(Request $request)
 
     {
         include("db.php");
@@ -62,8 +62,7 @@ class AdminController extends Controller
                         }
                         
                     }
-                } 
-                 //dd($p);
+                }
                 return view('/admin/permissao',['p'=>$p]);
 
             }
