@@ -18,63 +18,78 @@
     <!----------Hearder------------>
     @include('layouts.navbar')
     <!----------End Hearder-------->
-    <section> 
+    <section>
 
         <div class="container-1">
-                <h1>CADASTRO DE PRONTUARIO</h1>
-                <div class="box">
-                    <!--Buscar paciente-->
-                    <div class="content-center">
-                        <h3>BUSCAR PACIENTE</h3>
-                        <form class="search-bar">
-                            <input name="cpf_user" id="cpf_user" type="text" placeholder="Informe o CPF" required
-                                maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
-                            <button type="submit">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </form>
-                    </div>
-                </div>
-                <!--Infomações do Paciente-->
-                <h3>Paciente</h3><br>
-                <div class="box-gray">
-                    Marcos Oliveira Santana
-                </div>
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="box-gray">
-                            CPF: 011.988.999-00
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="box-gray">
-                            CID: 0123456 BA
-                        </div>
-                    </div>
-                </div>
+            <h1>CADASTRO DE PRONTUARIO</h1>
 
-                <br>
-                <form id="register">
-                    <div class="box-cadastroLeito">
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <div>
-                                    <label name="Leito">Leito:</label>
-                                    <input type="text" name="Leito Alocado" requerid>
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div>
-                                    <label name="data_internacao">Data de Internação</label>
-                                    <input type="date" name="data_internacao" requerid>
-                                </div>
+            <!------------- Busca do paciente ------------->
+            <div class="box">
+                <div class="content-center">
+                    <h3>BUSCAR PACIENTE</h3>
+                    <form class="search-bar">
+                        <!--- Campo para a inserção do CPF do paciente --->
+                        <input name="cpf_user" id="cpf_user" type="text" placeholder="Informe o CPF" required
+                            maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
+                        <button type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <!---------- Fim da Busca do paciente ---------->
+
+            <!---------- Infomações do Paciente buscado ---------->
+            <h3>Paciente</h3><br>
+            <!------ Nome do Paciente ------>
+            <div class="box-gray">
+                Marcos Oliveira Santana
+            </div>
+            <div class="row">
+                <!------ CPF do Paciente ------>
+                <div class="col-lg-4">
+                    <div class="box-gray">
+                        CPF: 011.988.999-00
+                    </div>
+                </div>
+                <!------ CID do Paciente ------>
+                <div class="col-lg-4">
+                    <div class="box-gray">
+                        CID: C00
+                    </div>
+                </div>
+            </div>
+            <!------ Fim das infomações do Paciente buscado ------>
+
+            <br>
+            <!---------- Cadastro do prontuário ---------->
+            <form id="register">
+                <div class="box-cadastroLeito">
+                    <div class="row">
+                        <!------ Nome do leito de internamento do Paciente ------>
+                        <div class="col-lg-4">
+                            <div>
+                                <label name="Leito">Leito:</label>
+                                <input type="text" name="Leito Alocado" requerid>
                             </div>
                         </div>
-                        <div>
+                        <!------ Data de internação do Paciente ------>
+                        <div class="col-lg-4">
+                            <div>
+                                <label name="data_internacao">Data de Internação</label>
+                                <input type="date" name="data_internacao" requerid>
+                            </div>
+                        </div>
+                    </div>
+                    <!------ Botão para cadastrar ------>
+                    <div>
                         <button type="submit" class="btn-blue"> Cadastrar </button>
-                        </div>
-                    </div> 
-                </form>           
-        </div>      
-    </section> 
- </body>
+                    </div>
+                </div>
+            </form>
+            <!---------- Fim do cadastro do prontuário ---------->
+        </div>
+    </section>
+</body>
+
+</html>
