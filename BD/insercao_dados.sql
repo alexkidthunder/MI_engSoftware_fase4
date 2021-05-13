@@ -189,8 +189,10 @@ INSERT INTO permissoes  VALUES
 (DEFAULT, 'Visualizar ocorrências do paciente'),
 (DEFAULT, 'Registro de ocorrências'),
 (DEFAULT, 'Cadastro do leito'),
-(DEFAULT, 'Remoção do leito');
-
+(DEFAULT, 'Remoção do leito'),
+(DEFAULT, 'Inserir data de internação do paciente'),
+(DEFAULT, 'Inserir data de saída do paciente'),
+(DEFAULT, 'Alocar leito do paciente');
 
 /* Insere na tabela de permisssao_cargo*/
 INSERT INTO permissao_cargo VALUES
@@ -226,6 +228,9 @@ INSERT INTO permissao_cargo VALUES
 	(DEFAULT, '28', '2', '1'),
 	(DEFAULT, '29', '2', '0'),
 	(DEFAULT, '30', '2', '0'),
+    (DEFAULT, '31', '2', '0'),
+    (DEFAULT, '32', '2', '0'),
+    (DEFAULT, '33', '2', '0'),
     
 	(DEFAULT, '7', '3', '1'),
 	(DEFAULT, '8', '3', '1'),
@@ -252,6 +257,10 @@ INSERT INTO permissao_cargo VALUES
 	(DEFAULT, '28', '3', '1'),
 	(DEFAULT, '29', '3', '0'),
 	(DEFAULT, '30', '3', '0'),
+    (DEFAULT, '31', '3', '0'),
+    (DEFAULT, '32', '3', '0'),
+    (DEFAULT, '33', '3', '0'),
+    
     
 	(DEFAULT, '7', '4', '1'),
 	(DEFAULT, '8', '4', '1'),
@@ -277,4 +286,7 @@ INSERT INTO permissao_cargo VALUES
 	(DEFAULT, '28', '4', '0'),
 	(DEFAULT, '28', '4', '1'),
 	(DEFAULT, '29', '4', '0'),
-	(DEFAULT, '30', '4', '0');
+	(DEFAULT, '30', '4', '0'),
+    (DEFAULT, '31', '4', '0'),
+    (DEFAULT, '32', '4', '0'),
+    (DEFAULT, '33', '4', '0');
