@@ -10,7 +10,7 @@
     <link href="{{ 'css/style.css' }}" rel="stylesheet">
     <link href="{{ 'bootstrap/css/bootstrap.css' }}" rel="stylesheet">
 
-    <title>Cadastro e Remoção de Leito</title>
+    <title>Cadastro e remoção de Leito</title>
 
 </head>
 
@@ -18,10 +18,10 @@
     <!----------Hearder------------>
     @include('layouts.navbar-enfChefe')
     <!----------End Hearder-------->
-    <section> 
+    <section>
 
         <div class="container-1">
-                <h1>CADASTRO DE LEITO</h1>
+            <h1>CADASTRO E REMOÇÃO DE LEITO</h1>
             <div class="box">
                 <br>
                 <form id="register">
@@ -35,13 +35,13 @@
                             </div>
                             <button type="submit" class="btn-blue"> Cadastrar </button>
                         </div>
-                        <div class="box-scheduling", id= "container-teste4">
+                        <div class="box-scheduling" , id="container-teste4">
                             <form id="register">
                                 <div class="row">
-                                    
+
                                     <h3>Tabela de Leitos</h3>
-                                </div>  
-                                        
+                                </div>
+
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
@@ -69,20 +69,20 @@
                                     </tbody>
                                 </table>
 
-                                    <div class="col-lg-6">
-                                        <label>Apagar leito</label> <br>
-                                        <input id="focorrencia" name="focorrencia" type="text" maxlength="10" required>
-                                            <div>
-                                            <button class="btn-blue"> Deletar </button>
-                                            </div>
+                                <div class="col-lg-6">
+                                    <label>Remover leito</label> <br> <br>
+                                    <input id="focorrencia" name="focorrencia" type="text" maxlength="10" required>
+                                    <div>
+                                        <button class="btn-blue"> Deletar </button>
                                     </div>
-                                
+                                </div>
+
                             </form>
                         </div>
 
-                    </div> 
-                </form>      
-            </div>         
-        </div>      
-    </section> 
- </body>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</body>

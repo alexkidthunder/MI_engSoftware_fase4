@@ -116,4 +116,4 @@ Route::get('/listaMedicamento', [HomeController::class,'listaMedicamento'])->nam
 
 /*------------ Rotas do Prontuário -------------------*/
 
-Route::get('/HistoricoDeProntuario', [HomeController::class,'historicoProntuario'])->name('historicoProntuario');
+Route::get('/historicoDeProntuario', [HomeController::class,'historicoProntuario'])->name('historicoProntuario');

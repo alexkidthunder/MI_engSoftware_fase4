@@ -67,6 +67,7 @@ class HomeController extends Controller
     public function menu(){
         return view('admin.menu');
     }
+
     public function editPerfil(){
         return view('editarPerfil');
     }
@@ -111,6 +112,10 @@ class HomeController extends Controller
         return view('listaMedicamento');
     }
 
+    public function historicoProntuario(){
+        return view('historicoProntuario');
+    }
+
     public function salvarPaciente(Request $request){
         include('conexao.php');
 
@@ -130,9 +135,5 @@ class HomeController extends Controller
             //se existir o paciente cadastrado
             return redirect()->route('cadastroPaciente')->with('error', "Paciente já existente no banco de dados!!");
         } 
-    }
-
-    public function historicoProntuario(){
-        return view('historicoProntuario');
     }
 }

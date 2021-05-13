@@ -39,7 +39,7 @@
                             <i class="fas fa-plus"></i>
                         </div>
                         <h4 class="card-options_title"><a
-                            href="#">Cadastrar prontuário</a></h4>
+                            href="{{ route('cadastroProntuario') }}">Cadastrar prontuário</a></h4>
                     </div>
                 </div> 
                 <div class="col-xl-4 col-lg-4 col-md-6">
