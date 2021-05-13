@@ -21,12 +21,16 @@
     <!----------Hearder------------>
     @include('layouts.navbar')
     <!----------End Hearder-------->
-    <h1>MEU PERFIL</h1>
+
     <section>
         <div class="container-1" id="perfil">
+            <h1>MEU PERFIL</h1>
+
+            <!------------ Informações pessoais do usuário ------------>
             <div class="box" id="perfilArea">
                 <div class="change">
                     <form id="register">
+                        <!------------ Nome do usuário ------------>
                         <div class="row">
                             <div class="col-lg-12">
                                 <label>Nome</label> <br>
@@ -35,15 +39,20 @@
                         </div>
 
                         <div class="row">
+                            <!------------ Data de nascimento ------------>
                             <div class="col-lg-4">
                                 <label>Data de Nascimento</label> <br>
                                 <input disabled id="fnascimento" name="fnascimento" type="date">
                             </div>
+
+                            <!------------ CPF do usuário ------------>
                             <div class="col-lg-4">
                                 <label>CPF</label> <br>
                                 <input disabled id="fcpf" name="fcpf" type="text" maxlength="14"
                                     pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
                             </div>
+
+                            <!------------ Sexo do usuário------------>
                             <div class="col-lg-4">
                                 <label>Sexo</label> <br>
                                 <div class="row no-gutters">
@@ -64,10 +73,12 @@
                         </div>
 
                         <div class="row">
+                            <!------------ E-mail do usuário------------>
                             <div class="col-lg-8">
-                                <label>Email</label> <br>
+                                <label>E-mail</label> <br>
                                 <input disabled id="femail" name="femail" type="email" maxlength="50">
                             </div>
+                            <!------------ Atribuição do usuário------------>
                             <div class="col-lg-4" id="atribuiDiv">
                                 <label for="fatribui">Atribuição</label>
                                 <input disabled id="fatribui" name="fatribui" type="text" value="Enfermeiro">
@@ -75,12 +86,14 @@
                             </div>
                         </div>
                         <div class="row">
+                            <!------------ Coren se usuário for enfermeiro ou enfermeiro chefe ------------>
                             <div class="col-lg-4" id="corenDiv">
                                 <!--Mostrar isso somente se for Enfermeiro/Chefe-->
                                 <label for="fcoren">Coren</label>
                                 <input disabled id="fcoren" name="fcoren" type="text" value="Coren do Usuario"
                                     maxlength="9">
                             </div>
+                            <!------------ Botão para alterar a senha ------------>
                             <div class="col-lg-4" id="edit_div">
                                 <br>
                                 <div id="psw_info_div">
@@ -89,11 +102,14 @@
                                 </div>
                             </div>
                         </div>
+
                         <div id="edit_div" class="row">
+                            <!------------ Botão para editar as infomações ------------>
                             <div class="col-lg" id="edit_info_div">
                                 <button type="button" class="btn-blue" name="edit_info" id="edit_info">Editar
                                     informações</button>
                             </div>
+                            <!------------ Botão para cancelar ------------>
                             <div class="col-lg hide" id="confirm_info_div">
                                 <button type="button" class="btn-blue" name="confirm_info"
                                     id="confirm_info">Salvar</button>
@@ -103,18 +119,24 @@
                     </form>
                 </div>
             </div>
+            <!------------ Fim das informações pessoais do usuário ------------>
+
+            <!------------ Alteração de senha ------------>
             <div class="set-password hide" id="pswArea">
                 <div>
                     <h3 class="password-title text-center">Alterar senha</h3>
                     <br> <br>
                     <form class="content-center">
+                        <!------------ Senha atual ------------>
                         <div align="center">
                             <input type="password" id="senha-atual" name="senha-atual"
                                 placeholder="insira a senha atual">
                         </div>
+                        <!------------ Nova senha ------------>
                         <div align="center">
                             <input type="password" id="senha" name="senha" placeholder="insira a nova senha">
                         </div>
+                        <!------------ Confirmação da nova senha ------------>
                         <div align="center">
                             <input type="password" id="confirmacao" name="confirmacao"
                                 placeholder="Confirme a nova senha">
@@ -122,9 +144,11 @@
                         <br>
                         <div class="content-right">
                             <div class="row">
+                                <!------------ Botão para cancelar ------------>
                                 <div class="col-lg">
                                     <button id="cancelar" type="button" class="btn-gray">Cancelar</button>
                                 </div>
+                                <!------------ Botão para alterar a senha ------------>
                                 <div class="col-lg">
                                     <button id="alterarSenha" type="submit" class="btn-blue">Alterar senha</button>
                                 </div>
@@ -133,6 +157,7 @@
                     </form>
                 </div>
             </div>
+            <!------------ Fim da alteração de senha ------------>
         </div>
     </section>
 </body>
