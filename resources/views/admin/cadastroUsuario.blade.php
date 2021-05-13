@@ -83,7 +83,7 @@
                                 <option value="Administrador">Administrador</option>
                                 <option value="Enfermeiro Chefe">Enfermeiro Chefe</option>
                                 <option value="Enfermeiro">Enfermeiro</option>
-                                <option value="Estagiário">Estagiário</option>
+                                <option value="Estagiário">Estagiario</option>
                             </select>
                         </div>
                     </div>
