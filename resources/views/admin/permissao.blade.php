@@ -68,7 +68,7 @@
                                                       
                             @if(isset($p[1]))
                             <div class="col-lg-13 content-center">
-                                <input type="checkbox" name="p1"  {{ $p[1]}} > ><br>
+                                <input type="checkbox" name="p1"  {{ $p[1]}} ><br>
                                 <label>Cadastro de funcionário</label>
                             </div>
                             @endif

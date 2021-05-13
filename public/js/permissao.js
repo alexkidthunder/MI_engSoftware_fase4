@@ -4,30 +4,28 @@ selectAtribuicao.value = "";
 var h3NomePermissao = document.getElementById('Nome_Permissao');
 
 selectAtribuicao.addEventListener('change',function(){
-    localStorage.clear();
-    localStorage.setItem("Atribuicao",selectAtribuicao.value);
-    console.log("Atribuicao salva: " + localStorage.getItem("Atribuicao"));
+    sessionStorage.clear();
+    sessionStorage.setItem("Atribuicao",selectAtribuicao.value);
+    
 })
 
 document.addEventListener("DOMContentLoaded", function(){
-    console.log("Conteudo Carregado! " + localStorage.getItem("Atribuicao"));
-    console.log("innerHTML: " + h3NomePermissao.innerHTML);
-    text = localStorage.getItem("Atribuicao");
+    text = sessionStorage.getItem("Atribuicao");
     text = text.toString();
     text = text.toUpperCase();
     h3NomePermissao.innerHTML = "PERMISSÕES DO " + text;
-    replaceCargoText()
-    localStorage.clear();
+    replaceCargoText();
+    sessionStorage.clear();
 });
 
- function replaceCargoText(){
-     if(localStorage.getItem("Atribuicao") === "admin"){
+function replaceCargoText(){
+    if(sessionStorage.getItem("Atribuicao") === "admin"){
         h3NomePermissao.innerHTML = h3NomePermissao.innerHTML.replace('ADMIN','ADMINISTRADOR');
-     }
-     else if(localStorage.getItem("Atribuicao") === "enfermeiroChefe"){
+    }
+    else if(sessionStorage.getItem("Atribuicao") === "enfermeiroChefe"){
         h3NomePermissao.innerHTML = h3NomePermissao.innerHTML.replace('ENFERMEIROCHEFE',"ENFERMEIRO CHEFE");
-     }
-     else if(localStorage.getItem("Atribuicao") === "estagiario"){
+    }
+    else if(sessionStorage.getItem("Atribuicao") === "estagiario"){
         h3NomePermissao.innerHTML = h3NomePermissao.innerHTML.replace('ESTAGIARIO','ESTAGIÁRIO');
-     }
- }
+    }
+}
