@@ -334,7 +334,7 @@ class AdminController extends Controller
            
         }
         else{
-            return redirect() -> back() ->with('msg','CPF não cadastrado no sistema!!'); //Redireciona para pagina anterior e mostra mensagem de erro
+            return redirect() -> back() ->with('msg-error','CPF não cadastrado no sistema!!'); //Redireciona para pagina anterior e mostra mensagem de erro
         }
     }
     
