@@ -48,13 +48,13 @@
                                 <label>Sexo</label> <br>
                                 <div class="row no-gutters">
                                     <div id="fmasc_div" class="col-lg-6 border-m content-center">
-                                        <input type="radio" name="fsexo" value="Masculino" id="fmasc" disabled>
+                                        <input type="radio" name="fsexo" value="M" id="fmasc" disabled>
                                         <label for="fmasc" class="normal-label">Masculino</label>
                                         </input>
                                         <!--Usar o checked para deixar marcado-->
                                     </div>
                                     <div id="ffem_div" class="col-lg-6 border-f content-center">
-                                        <input type="radio" name="fsexo" value="Feminino" id="ffem" disabled>
+                                        <input type="radio" name="fsexo" value="F" id="ffem" disabled>
                                         <label for="ffem" class="normal-label">Feminino</label>
                                         </input>
                                         <!--Usar o checked para deixar marcado-->
