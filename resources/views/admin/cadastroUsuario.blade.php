@@ -63,10 +63,10 @@
                             <label>Sexo</label> <br>
                             <div class="row no-gutters">
                                 <div class="col-lg border-m content-center">
-                                    <input type="radio" name="fsexo" value="Masculino" id="fmasc">Masculino</input>
+                                    <input type="radio" name="fsexo" value="M" id="fmasc">Masculino</input>
                                 </div>
                                 <div class="col-lg border-f content-center">
-                                    <input type="radio" name="fsexo" value="Feminino" id="ffem">Feminino</input>
+                                    <input type="radio" name="fsexo" value="F" id="ffem">Feminino</input>
                                 </div>
                             </div>
                         </div>
@@ -83,7 +83,7 @@
                                 <option value="Administrador">Administrador</option>
                                 <option value="Enfermeiro Chefe">Enfermeiro Chefe</option>
                                 <option value="Enfermeiro">Enfermeiro</option>
-                                <option value="Estagiário">Estagiário</option>
+                                <option value="Estagiário">Estagiario</option>
                             </select>
                         </div>
                     </div>
@@ -91,7 +91,7 @@
                         <div  class="row">
                             <div class="col-lg-4">
                                 <label for="fcoren">Coren</label>
-                                <input placeholder="Informe o Coren" id="fcoren" name="fcoren" type="text" maxlength="14" pattern="\d{2}\-\d{3}.\d{3}.\d{3}" required>
+                                <input placeholder="Informe o Coren" id="fcoren" name="fcoren" type="text" maxlength="14" pattern="\d{2}\-\d{3}.\d{3}.\d{3}">
                             </div>
                         </div>
                     </div>

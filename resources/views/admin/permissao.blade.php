@@ -31,7 +31,6 @@
                     <form action="/editarPermissao" method="GET">                     
 
                         <select id="atribuicao" name="atribuicao" onchange="this.form.submit()">
-
                             <option value="admin">Administrador</option>
                             <option value="enfermeiroChefe">Enfermeiro chefe</option>
                             <option value="enfermeiro">Enfermeiro</option>
@@ -45,7 +44,7 @@
           {{-- <div class="box" id="permission">--}}
                     <form action="/alterarPermissao" method="get">
                         @csrf
-                        <h3 class="content-center">PERMISSÕES DO "inserir o valor selecionado" </h3> <br>
+                        <h3 id="Nome_Permissao" class="content-center">ESCOLHA UM CARGO</h3> <br>
                         <!-- ========== Linha 1 (REFERENTE AO ADM) ========== --> 
                         <div class="container">
                             <div class="row">
@@ -69,7 +68,7 @@
                                                       
                             @if(isset($p[1]))
                             <div class="col-lg-13 content-center">
-                                <input type="checkbox" name="p1"  {{ $p[1]}} > ><br>
+                                <input type="checkbox" name="p1"  {{ $p[1]}} ><br>
                                 <label>Cadastro de funcionário</label>
                             </div>
                             @endif
