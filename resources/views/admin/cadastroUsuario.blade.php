@@ -25,13 +25,13 @@
     <!----------End Hearder-------->
 
     @if(Session::has('error'))
-    <div class="alert alert-danger" role="alert">
+    <div class="msg-error" role="alert">
             {{Session::get('error')}}
     </div>
     @endif  
 
     @if(Session::has('success'))
-    <div class="alert alert-success" role="alert">
+    <div class="msg-sucess">
             {{Session::get('success')}}
     </div>
     @endif
@@ -87,18 +87,20 @@
                             </select>
                         </div>
                     </div>
-                    <div id="corenDiv" class="row" style="display: none">
-                        <div class="col-lg-4">
-                            <label for="fcoren">Coren</label>
-                            <input placeholder="Informe o Coren" id="fcoren" name="fcoren" type="text" maxlength="14" pattern="\d{2}\-\d{3}.\d{3}.\d{3}" required>
+                    <div id="corenDiv" class="hide">
+                        <div  class="row">
+                            <div class="col-lg-4">
+                                <label for="fcoren">Coren</label>
+                                <input placeholder="Informe o Coren" id="fcoren" name="fcoren" type="text" maxlength="14" pattern="\d{2}\-\d{3}.\d{3}.\d{3}" required>
+                            </div>
                         </div>
                     </div>
                     <div>
                         <button type="submit" class="btn-blue"> Cadastrar </button>
                     </div>
                 </form>
-
             </div>
         </div>
     </section>
 </body>
+</html>

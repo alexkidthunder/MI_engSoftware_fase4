@@ -91,6 +91,10 @@ class HomeController extends Controller
         return view('cadastroAgendamentos');
     }
 
+    public function cadastroProntuario(){
+        return view('cadastroProntuario');
+    }
+
     public function cadastroPaciente(){
         return view('cadastroPaciente');
     }
@@ -128,4 +132,7 @@ class HomeController extends Controller
         } 
     }
 
+    public function historicoProntuario(){
+        return view('historicoProntuario');
+    }
 }

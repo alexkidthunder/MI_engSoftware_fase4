@@ -5,11 +5,11 @@ selAtri.addEventListener("change",function(){
     let corenDiv = document.getElementById('corenDiv');
     let fcoren = document.getElementById('fcoren');
     if(selectedAtri === "Enfermeiro" || selectedAtri === "Enfermeiro Chefe"){
-        corenDiv.style.display = "";
+        corenDiv.classList.remove('hide');
         fcoren.setAttribute("required","");
     }
     else{
-        corenDiv.style.display = "none";
+        corenDiv.classList.add('hide');
         fcoren.removeAttribute("required");
     }
 })

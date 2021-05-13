@@ -25,7 +25,11 @@
             <li class="title-nav"><a href="{{ route('menu-e') }}">INÍCIO</a></li>
             <li class="drop-down title-nav"><a>PACIENTES <i class="fas fa-angle-down"></i></a>
                 <ul>
+                  <!-- Apenas enfermeiro -->
                     <li><a href="{{ route('cadastroPaciente') }}">Cadastro de pacientes</a></li>
+                    <li><a href="#">Cadastro de prontuário</a></li>
+
+                    <!-- Comum a enfermeiro e estagiário -->
                     <li><a href="{{ route('pacientes') }}">Pacientes e prontuários</a></li>
                 </ul>
             </li>

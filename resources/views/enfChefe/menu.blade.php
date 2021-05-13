@@ -18,7 +18,7 @@
   <body class="body-menu"  hrfe = '/sessaoEnfChef'>
     
     <!----------Hearder------------>
-    @include('layouts.navbar-enfChefe')
+    @include('layouts.navbar-menu')
     <!----------End Hearder-------->
 
         <div class="container-2">
@@ -31,6 +31,16 @@
                         </div>
                         <h4 class="card-options_title"><a
                             href="{{ route('cadastroPaciente') }}">Cadastrar paciente</a></h4>
+                    </div>
+                </div> 
+                <div class="col-xl-3 col-lg-3 col-md-6">
+                    <div class="card-menu text-center card-options">
+                        <div class="card-options-icon options-icon">
+                            <i class="fas fa-clipboard-list"></i>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <h4 class="card-options_title"><a
+                            href="#">Cadastrar prontuário</a></h4>
                     </div>
                 </div> 
                 <div class="col-xl-3 col-lg-3 col-md-6">
@@ -75,7 +85,7 @@
                 <div class="col-xl-3 col-lg-3 col-md-6">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
-                            <div><i class="fas fa-notes-medical"></i></div>
+                            <div><i class="fas fa-clipboard"></i></div>
                         </div>
                         <h4 class="card-options_title"><a
                             href="{{ route('listaAgendamentos') }}">Listagem de agendamentos</a></h4>
@@ -108,7 +118,27 @@
                             href="{{ route('listaMedicamento') }}">Medicamentos cadastrados</a></h4>
                     </div>
                 </div> 
-              
+                <div class="col-xl-3 col-lg-3 col-md-6">
+                    <div class="card-menu text-center card-options">
+                        <div class="card-options-icon options-icon">
+                            <i class="fas fa-procedures"></i>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <h4 class="card-options_title"><a
+                            href="#">Cadastrar leito</a></h4>
+                    </div>
+                </div> 
+                <div class="col-xl-3 col-lg-3 col-md-6">
+                    <div class="card-menu text-center card-options">
+                        <div class="card-options-icon options-icon">
+                            <i class="fas fa-procedures"></i>
+                            <i class="fas fa-minus"></i>
+                        </div>
+                        <h4 class="card-options_title"><a
+                            href="#">Remover leito</a></h4>
+                    </div>
+                </div> 
             </div>  
         </div>
   </body>
+  </html>

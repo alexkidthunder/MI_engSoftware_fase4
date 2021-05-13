@@ -57,7 +57,7 @@ Route::get('/meuPerfil', [HomeController::class,'editPerfil'])->name('editarPerf
 
 Route::get('/menu', [AdminController::class,'menu'])->name('menu');
 Route::get('/log', [AdminController::class,'log'])->name('log');
-Route::post('/editarAtribuicao', [AdminController::class,'atribuicao'])->name('editarAtribuicao');
+Route::get('/editarAtribuicao', [AdminController::class,'atribuicao'])->name('editarAtribuicao');
 Route::get('/editarPermissao', [AdminController::class,'permissao'])->name('editarPermissao');
 Route::get('/alterarPermissao', [AdminController::class,'alterarPermissao'])->name('alterarPermissao');
 Route::get('/backup', [AdminController::class,'backup'])->name('backup');
@@ -78,6 +78,9 @@ Route::get('/listaPacientes', [HomeController::class,'listaPacientes'])->name('p
 
 Route::get('/cadastroPaciente', [HomeController::class,'cadastroPaciente'])->name('cadastroPaciente');
 Route::post('/cadastroPaciente', [HomeController::class,'salvarPaciente'])->name('salvarPaciente');
+
+/*------------ Rota para cadastro de prontuario ------------------------ */
+Route::get('/cadastroProntuario', [HomeController::class,'cadastroProntuario'])->name('cadastroProntuario');
 
 /*------------ Rota para agendamentos ------------------------ */
 
@@ -110,3 +113,7 @@ Route::get('/menuEstagiario', [EstagiarioController::class,'menu'])->name('menu-
 /*------------ Rotas do medicamento -------------------*/
 
 Route::get('/listaMedicamento', [HomeController::class,'listaMedicamento'])->name('listaMedicamento');
+
+/*------------ Rotas do Prontuário -------------------*/
+
+Route::get('/HistoricoDeProntuario', [HomeController::class,'historicoProntuario'])->name('historicoProntuario');

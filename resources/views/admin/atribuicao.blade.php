@@ -25,7 +25,7 @@
         <div class="row">
             <div class="col-lg">
                     @if ($errors->any()) <!--Verificando se existe qualquer erro -->
-                        <div class="alert alert-danger">
+                        <div class="msg-error">
                             <ul>
                                 @foreach ($errors->all() as $error) <!--Percorre todos os erros-->
                                     <li>{{ $error }}</li> <!--Obtem o erro -->
@@ -33,8 +33,8 @@
                             </ul>
                         </div>
                     @endif
-                    @if (session('msg')) <!-- Verifica se a mensagem de rro foi instanciada -->
-                    <div class="alert alert-danger">
+                    @if (session('msg')) <!-- Verifica se a mensagem de erro foi instanciada -->
+                    <div class="msg-sucess">
                         {{session('msg')}} <!--Obtem mensagem de erro -->
                     </div>
                     @endif
@@ -83,7 +83,7 @@
                 
                         <!--Alterar atrinuição do funcionário funcionário, se for estagiário-->
                         <div class="container-atribution">
-                            <form method="post" action='/alterarAtribuicao'>
+                            <form method="POST" action='/alterarAtribuicao'>
                             @csrf
                                 <input type="hidden" name="cpf" value='{{$user["CPF"]}}'><!--Usado para obter o CPF pesquisado pela função de busca-->
                                 <div class="row"> 
@@ -109,3 +109,4 @@
             </div>
         </div>
   </body>
+</html>

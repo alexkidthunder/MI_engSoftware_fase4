@@ -33,30 +33,32 @@
                         <input class="btn-white" type="button" name="agenback" id="agenBack" value="Agendar Backup">
                     </div>
                 </div>
-                <div class="row hide" id="AgendamentoBackup" style="display: none;">
-                    <div class="box-backup item-center">
-                        <h4>Agendamento de Backup</h4>
-                        <form>
-                            <div class="row align-items-center">
-                                <div class="col-lg-4">
-                                    <label for="alwaysCheck">Automático</label> <br>
-                                    <input type="checkbox" name="alwaysCheck" id="alwaysCheck" checked>
+                <div class="hide" id="AgendamentoBackup">
+                    <div class="row">
+                        <div class="box-backup item-center">
+                            <h4>Agendamento de Backup</h4>
+                            <form>
+                                <div class="row align-items-center">
+                                    <div class="col-lg-4">
+                                        <label for="alwaysCheck">Automático</label> <br>
+                                        <input type="checkbox" name="alwaysCheck" id="alwaysCheck" checked>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <label for="fhorario">Horario</label><br>
+                                        <input name="fhorario" type="time" id="fhorario" required>
+                                    </div>
+                                    <div class="col-lg-4 hide" id="dataDiv">
+                                        <label for="date">Data</label> <br>
+                                        <input type="date" name="date" id="date">
+                                    </div>
                                 </div>
-                                <div class="col-lg-4">
-                                    <label for="fhorario">Horario</label><br>
-                                    <input name="fhorario" type="time" id="fhorario" required>
+                                <div class="row">
+                                    <input class="container-button btn-white"type="submit" value="Confirmar" id="confirmarBackup">
                                 </div>
-                                <div class="col-lg-4" id="dataDiv" style="display: none;">
-                                    <label for="date">Data</label> <br>
-                                    <input type="date" name="date" id="date">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <input class="container-button btn-white"type="submit" value="Confirmar" id="confirmarBackup">
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
-                </div>
+                </div>    
             </div>
         </div>      
         <div class="container-1">
@@ -95,3 +97,4 @@
     </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
   </body>
+</html>

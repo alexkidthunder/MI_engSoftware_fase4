@@ -39,7 +39,7 @@
             @if(isset($user))
             @if(!is_array($user))
             @if($user == 0)
-            <div class='alert alert-danger'> USUÁRIO NÃO ENCONTRADO</div>
+            <div class='msg-error'> O usuário não foi encontrado</div>
             @endif
             @else
 
@@ -82,9 +82,9 @@
                 <!--  -->
                 @if(isset($status))
                 @if($status == 1)
-                <div class='alert alert-success'> REMOVIDO COM SUCESSO </div>
+                <div class='msg-sucess'>O usuário foi removido com sucesso!</div>
                 @else
-                <div class='alert alert-danger'> OCORREU ALGUM ERRO AO REMOVER, TENTE NOVAMENTE</div>
+                <div class='msg-error'>A remoção não pôde ser concluida, tente novamente!</div>
                 @endif
                 @endif
             </div>
@@ -114,3 +114,4 @@
 
         </div>
 </body>
+</html>
