@@ -256,16 +256,16 @@ ALTER TABLE cid_prontuario
   ADD CONSTRAINT cid_prontuario_ibfk_2 FOREIGN KEY (id_prontuario) REFERENCES prontuarios (ID);/*Cria chave estrangeira fazendo referencia a prontuario*/
 
 ALTER TABLE responsaveis
-  ADD CONSTRAINT responsaveis_ibfk_1 FOREIGN KEY (CPF) REFERENCES usuarios (CPF) ON DELETE CASCADE;/*Cria chave estrangeira fazendo referencia a Usuario*/
+  ADD CONSTRAINT responsaveis_ibfk_1 FOREIGN KEY (CPF) REFERENCES usuarios (CPF);/*Cria chave estrangeira fazendo referencia a Usuario*/
 
 ALTER TABLE enfermeiros
-  ADD CONSTRAINT enfermeiros_ibfk_1 FOREIGN KEY (CPF) REFERENCES responsaveis (CPF) ON DELETE CASCADE;/*Cria chave estrangeira fazendo referencia a Usuario*/
+  ADD CONSTRAINT enfermeiros_ibfk_1 FOREIGN KEY (CPF) REFERENCES responsaveis (CPF);/*Cria chave estrangeira fazendo referencia a Usuario*/
 
 ALTER TABLE enfermeiros_chefes
-  ADD CONSTRAINT enfermeiros_chefes_ibfk_1 FOREIGN KEY (CPF) REFERENCES responsaveis (CPF) ON DELETE CASCADE; /*Cria chave estrangeira fazendo referencia a Usuario*/
+  ADD CONSTRAINT enfermeiros_chefes_ibfk_1 FOREIGN KEY (CPF) REFERENCES responsaveis (CPF); /*Cria chave estrangeira fazendo referencia a Usuario*/
 
 ALTER TABLE estagiarios
-  ADD CONSTRAINT estagiarios_ibfk_1 FOREIGN KEY (CPF) REFERENCES responsaveis (CPF) ON DELETE CASCADE; /*Cria chave estrangeira fazendo referencia a Usuario*/
+  ADD CONSTRAINT estagiarios_ibfk_1 FOREIGN KEY (CPF) REFERENCES responsaveis (CPF); /*Cria chave estrangeira fazendo referencia a Usuario*/
 
 ALTER TABLE ocorrencias
   ADD CONSTRAINT ocorrencia_ibfk_1 FOREIGN KEY (ID_prontuario) REFERENCES prontuarios (ID), /*Cria chave estrangeira fazendo referencia a prontuario*/

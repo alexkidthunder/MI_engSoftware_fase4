@@ -21,32 +21,37 @@
     <!----------Hearder------------>
     @include('layouts.navbar-adm')
     <!----------End Hearder-------->
-    <div class="container">
-        <div class="row">
-            <div class="col-lg">
-                    @if ($errors->any()) <!--Verificando se existe qualquer erro -->
-                        <div class="msg-error">
-                            <ul>
-                                @foreach ($errors->all() as $error) <!--Percorre todos os erros-->
-                                    <li>{{ $error }}</li> <!--Obtem o erro -->
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                    @if (session('msg')) <!-- Verifica se a mensagem de erro foi instanciada -->
-                    <div class="msg-sucess">
-                        {{session('msg')}} <!--Obtem mensagem de erro -->
-                    </div>
-                    @endif
-            </div>
-        </div>
-    </div>
     <h1>ALTERAR ATRIBUIÇÃO</h1>
         <div class="container-1">
             <div class="box">
                 <!--Buscar funcionário-->
                 <div class="content-center">
                     <h3>BUSCAR FUNCIONÁRIO</h3>
+                    <div class="container">
+                    <div class="row">
+                        <div class="col-lg">
+                                @if ($errors->any()) <!--Verificando se existe qualquer erro -->
+                                    <div class="msg-error">
+                                        <ul>
+                                            @foreach ($errors->all() as $error) <!--Percorre todos os erros-->
+                                                <li>{{ $error }}</li> <!--Obtem o erro -->
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+                                @if (session('msg')) <!-- Verifica se a mensagem de erro foi instanciada -->
+                                <div class="msg-sucess">
+                                    {{session('msg')}} <!--Obtem mensagem de erro -->
+                                </div>
+                                @endif
+                                @if (session('msg-error')) <!-- Verifica se a mensagem de erro foi instanciada -->
+                                <div class="msg-error">
+                                    {{session('msg-error')}} <!--Obtem mensagem de erro -->
+                                </div>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
                     <form class="search-bar" action="/lupinha" method="GET">
                         <input name="cpf_user" id="cpf_user" type="text" placeholder="Informe o CPF" required maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
                         <button type="submit" id="busca_user">
