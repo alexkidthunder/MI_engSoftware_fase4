@@ -27,10 +27,11 @@
                 <ul>
                   <!-- Apenas enfermeiro -->
                     <li><a href="{{ route('cadastroPaciente') }}">Cadastro de pacientes</a></li>
-                    <li><a href="#">Cadastro de prontuário</a></li>
+                    <li><a href="{{ route('cadastroProntuario') }}">Cadastro de prontuário</a></li>
 
                     <!-- Comum a enfermeiro e estagiário -->
                     <li><a href="{{ route('pacientes') }}">Pacientes e prontuários</a></li>
+                    <li><a href="{{ route('historicoProntuario') }}">Histórico de prontuários</a></li>
                 </ul>
             </li>
      
