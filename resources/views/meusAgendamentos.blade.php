@@ -19,14 +19,14 @@
 
 <body>
     <!----------Hearder------------>
-    @if(isset($_SESSION['enfermeiro']))
-    @include('layouts.navbar')
+    @if (isset($_SESSION['enfermeiro']))
+        @include('layouts.navbar')
     @endif
-    @if(isset($_SESSION['enfermeiroChefe']))
-    @include('layouts.navbar-enfChefe')
+    @if (isset($_SESSION['enfermeiroChefe']))
+        @include('layouts.navbar-enfChefe')
     @endif
-    @if(isset($_SESSION['estagiario']))
-    @include('layouts.navbar')
+    @if (isset($_SESSION['estagiario']))
+        @include('layouts.navbar')
     @endif
     <!----------End Hearder-------->
 
@@ -65,7 +65,8 @@
             <div class="row">
                 <!------ Nome do paciente ao qual o agendamento pertence ---->
                 <div class="col-lg-9">
-                    <button class="btn-Patient text-left">Samara Anjos de Oliveira</button>
+                    <a href="{{ route('prontuario') }}" target="_parent"><button class="btn-Patient text-left">Samara
+                            Anjos de Oliveira</button></a>
                 </div>
                 <!------ Leito em que o paciente está internado ---->
                 <div class="col-lg-3">
@@ -118,12 +119,13 @@
             <div class="row">
                 <!------ Nome do paciente ao qual o agendamento pertence ---->
                 <div class="col-lg-9">
-                    <button class="btn-Patient text-left">Marcos Abreu da Silva</button>
+                    <a href="{{ route('prontuario') }}" target="_parent"><button class="btn-Patient text-left">Marcos
+                            Abreu da Silva</button></a>
                 </div>
                 <!------ Leito em que o paciente está internado ---->
                 <div class="col-lg-3">
                     <div class="box-blue">
-                        Leito: AB05
+                        Leito: AB005
                     </div>
                 </div>
             </div>
