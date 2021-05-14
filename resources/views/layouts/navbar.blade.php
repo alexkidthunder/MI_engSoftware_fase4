@@ -39,9 +39,10 @@
                         <li class="drop-down title-nav"><a>PACIENTES <i class="fas fa-angle-down"></i></a>
                             <ul>
                                 <!-- Apenas enfermeiro -->
+                                @if(isset($_SESSION['enfermeiro']))
                                 <li><a href="{{ route('cadastroPaciente') }}">Cadastro de pacientes</a></li>
                                 <li><a href="{{ route('cadastroProntuario') }}">Cadastro de prontuário</a></li>
-
+                                @endif
                                 <!-- Comum a enfermeiro e estagiário -->
                                 <li><a href="{{ route('pacientes') }}">Pacientes e prontuários</a></li>
                                 <li><a href="{{ route('historicoProntuario') }}">Histórico de prontuários</a></li>
