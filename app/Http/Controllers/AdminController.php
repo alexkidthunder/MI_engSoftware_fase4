@@ -138,6 +138,7 @@ class AdminController extends Controller
 
     public function alterarPermissao(Request $request)
     {
+        session_start();
         $array = explode("=",$_SERVER['HTTP_REFERER']);
         $atribuicao = $array[count($array)-1];
 
@@ -221,6 +222,7 @@ class AdminController extends Controller
     }
     
     public function alterarAtribuicao(Request $request){
+        session_start();
         include("db.php"); // Importando BD
         $request -> validate([
             'novaAtribuicao' => 'required' // Verificação de preenchimento de campo 
@@ -309,6 +311,7 @@ class AdminController extends Controller
     }
 
     public function lupinha(Request $request){
+        session_start();
         include("db.php"); // inclusão do banco de dados
         $user = null; // garantia de existência da variavel
         // busca do usuario no banco de dados
@@ -345,7 +348,7 @@ class AdminController extends Controller
     
     public function salvarUsuario(Request $request){
         include("conexao.php");
-
+        session_start();
         //validação de erro de entrada
         $validator = Validator::make($request->all(), [     
             'fcpf' => 'required|min:14|max:14',
@@ -401,7 +404,7 @@ class AdminController extends Controller
 
     public function busca(Request $request)
     {          
-        
+        session_start();
         include('..\app\Http\Controllers\db.php');        
         $query = "SELECT * FROM usuarios WHERE CPF= '$request->cpf_user'";
         $result = mysqli_query($connect, $query);       
