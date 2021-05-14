@@ -33,7 +33,11 @@ Route::post('index/menu', [HomeController::class,'login']);
 
 /*------------ Rota para sessao ------------------------ */
 
-Route::get('/sessao', [HomeController::class,'verificarLoguin'])->name('sessao');
+Route::get('/verificarLoginAdmin', [ VerificaLoginController::class,'verificarLoginAdmin'])->name('verificarLoginA');
+Route::get('/verificarLoginEnfC', [ VerificaLoginController::class,'verificarLoginEnfC'])->name('verificarLoginEC');
+Route::get('/verificarLoginEnf', [ VerificaLoginController::class,'verificarLoginEnf'])->name('verificarLoginE');
+Route::get('/verificarLoginEst', [ VerificaLoginController::class,'verificarLoginEst'])->name('verificarLoginEst');
+Route::get('/verificarLogin', [ VerificaLoginController::class,'verificarLogin'])->name('verificarLogin');
 
 
 /*-------------------Rota para logout----------------- */

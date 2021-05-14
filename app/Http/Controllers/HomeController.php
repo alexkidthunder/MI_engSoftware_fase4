@@ -25,17 +25,24 @@ class HomeController extends Controller
             $atribuicao = $sql["Atribuicao"];
         }
         if($row == 1){ // verifica se o usuario existe no sistema. $row = 1 significa que sim
-            $_SESSION['usuario'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
-            
+            session_start();
             /*Sequência de condicionais que verifica o cargo para reirecionar para o menu correto */
             if($atribuicao == "Administrador"){
-                return redirect() -> intended('menu');
+                $_SESSION['administrador'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
+                header("Location: /menu");
+                exit();
             }else if($atribuicao == "Enfermeiro Chefe"){
-                return redirect() -> intended('menuEnfermeiroChefe');
+                $_SESSION['enfermeiroChefe'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
+                header("Location: /menuEnfermeiroChefe");
+                exit();
             }else if($atribuicao == "Enfermeiro"){
-                return redirect() -> intended('menuEnfermeiro');
+                $_SESSION['enfermeiro'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
+                header("Location: /menuEnfermeiro");
+                exit();
             }else if($atribuicao == "Estagiario"){
-                return redirect() -> intended('menuEstagiario');
+                $_SESSION['estagiario'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
+                header("Location: /menuEstagiario");
+                exit();
             }else{
                 return redirect() -> back() ->with('msg-error','Funcionario sem cargo, algo esta errado!!!');
             }
@@ -45,13 +52,7 @@ class HomeController extends Controller
 
     }
 
-    public function verificarLoguin(){
-        include('db.php');
-        session_start();
-        if(!$_SESSION['usuario']){
-            return view('../login.php');
-        }
-    }
+
 
     public function logout(){
         session_start();
@@ -69,34 +70,43 @@ class HomeController extends Controller
     }
 
     public function editPerfil(){
+        VerificaLoginController::verificarLogin();
         return view('editarPerfil');
     }
+    
 
     public function listaPacientes(){
+        VerificaLoginController::verificarLogin();
         return view('listaPacientes');
     }
 
     public function agendamentosRealizados(){
+        VerificaLoginController::verificarLogin();
         return view('agendamentosRealizados');
     }
 
     public function meusAgendamentos(){
+        VerificaLoginController::verificarLogin();
         return view('meusAgendamentos');
     }
     
     public function agendamentos(){
+        VerificaLoginController::verificarLogin();
         return view('agendamentos');
     }
 
     public function cadastroAgendamentos(){
+        VerificaLoginController::verificarLogin();
         return view('cadastroAgendamentos');
     }
 
     public function cadastroProntuario(){
+        VerificaLoginController::verificarLogin();
         return view('cadastroProntuario');
     }
 
     public function cadastroPaciente(){
+        VerificaLoginController::verificarLogin();
         return view('cadastroPaciente');
     }
 
@@ -105,14 +115,17 @@ class HomeController extends Controller
     }
     
     public function listaMedicamento(){
+        VerificaLoginController::verificarLogin();
         return view('listaMedicamento');
     }
 
     public function historicoProntuario(){
+        VerificaLoginController::verificarLogin();
         return view('historicoProntuario');
     }
 
     public function salvarPaciente(Request $request){
+        VerificaLoginController::verificarLogin();
         include('conexao.php');
 
         //buscar paciente

@@ -18,7 +18,12 @@
             <div class="d-flex">
                 <a href="{{ route('editarPerfil') }} " class="user"> <i class="fas fa-user"></i></a>
                 <div class="col-lg-3">
-                    <h2><a href="{{ route('editarPerfil') }}">NOME FUNCIONÁRIO</a></h2>
+                    @if(isset($_SESSION['enfermeiro']))
+                    <h2><a href="{{ route('editarPerfil') }}">{{$_SESSION['enfermeiro']}}</a></h2>
+                    @endif
+                    @if(isset($_SESSION['estagiario']))
+                    <h2><a href="{{ route('editarPerfil') }}">{{$_SESSION['estagiario']}}</a></h2>
+                    @endif
                 </div>
             </div>
 
@@ -49,7 +54,7 @@
                         </li>
 
                         <!-------- Botão de logout -------->
-                        <li><a href="{{ route('index') }}" class="logout-icon"> <i
+                        <li><a href="/logout" class="logout-icon"> <i
                                     class="fas fa-sign-out-alt"></i></a></li>
                     </ul>
                 </nav>

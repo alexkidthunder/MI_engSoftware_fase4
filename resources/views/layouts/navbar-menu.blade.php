@@ -18,14 +18,26 @@
             <div class="d-flex">
                 <a href="{{ route('editarPerfil') }} " class="user"> <i class="fas fa-user"></i></a>
                 <div class="col-lg-3">
-                    <h2><a href="{{ route('editarPerfil') }}">NOME FUNCIONÁRIO</a></h2>
+                     @if(isset($_SESSION['administrador']))
+                    <h2><a href="{{ route('editarPerfil') }}">{{$_SESSION['administrador']}}</a></h2>
+                    @endif
+                    @if(isset($_SESSION['enfermeiroChefe']))
+                    <h2><a href="{{ route('editarPerfil') }}">{{$_SESSION['enfermeiroChefe']}}</a></h2>
+                    @endif
+                    @if(isset($_SESSION['enfermeiro']))
+                    <h2><a href="{{ route('editarPerfil') }}">{{$_SESSION['enfermeiro']}}</a></h2>
+                    @endif
+                    @if(isset($_SESSION['estagiario']))
+                    <h2><a href="{{ route('editarPerfil') }}">{{$_SESSION['estagiario']}}</a></h2>
+                    @endif
+                    
                 </div>
             </div>
 
             <!-------- Botão de logout -------->
             <div class="d-flex align-items-center pr-5">
                 <nav class="nav d-none d-lg-block">
-                    <li><a href="{{ route('index') }}" class="logout-icon"> <i class="fas fa-sign-out-alt"></i></a>
+                    <li><a href="/logout" class="logout-icon"> <i class="fas fa-sign-out-alt"></i></a>
                     </li>
                     </ul>
                 </nav>

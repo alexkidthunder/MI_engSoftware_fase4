@@ -11,20 +11,23 @@ use mysqli;
 class EnfChefeController extends Controller
 {
     public function menu(){
+        VerificaLoginController::verificarLoginEnfC();
         return view('/enfChefe/menu');
     }
     
     public function cadastroPlantonista(){
+        VerificaLoginController::verificarLoginEnfC();
         return view('/enfChefe/cadastroPlantonista');
     }
 
     public function cadastroMedicamento(){          //função para chamar a função salvar medicamento pela view
+        VerificaLoginController::verificarLoginEnfC();
         return view('/enfChefe/cadastroMedicamento');
     }
 
     public function salvarMedicamento(Request $request){
          include('conexao.php');
-
+         session_start();
         //buscar medicamento
         $existeMed = mysqli_query($conn,"SELECT COUNT(*) FROM medicamentos WHERE Nome_Medicam = '$request->fnome'");
 
@@ -47,26 +50,32 @@ class EnfChefeController extends Controller
     }
 
     public function cadastroAgendamento(){
+        VerificaLoginController::verificarLoginEnfC();
         return view('/enfChefe/cadastroAgendamento');
     }
 
     public function listaPlantonistas(){
+        VerificaLoginController::verificarLoginEnfC();
         return view('/enfChefe/listagemPlantonistas');
     }
 
     public function responsaveis(){
+        VerificaLoginController::verificarLoginEnfC();
         return view('/enfChefe/listaResponsaveis');
     }
 
     public function listaAgendamentos(){
+        VerificaLoginController::verificarLoginEnfC();
         return view('/enfChefe/agendamentos');
     }
 
     public function prontuario(){
+        VerificaLoginController::verificarLoginEnfC();
         return view('/enfChefe/prontuario');
     }
 
     public function cadastroLeito(){
+        VerificaLoginController::verificarLoginEnfC();
         return view('/enfChefe/cadastroLeito');
     }
 

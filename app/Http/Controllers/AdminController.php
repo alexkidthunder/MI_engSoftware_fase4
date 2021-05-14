@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Administrador;
 use App\Models\Enfermeiro_chefe;
 use App\Models\Estagiario;
@@ -19,16 +18,19 @@ class AdminController extends Controller
 {
 
     public function menu(){
+        VerificaLoginController::verificarLoginAdmin();
         return view('/admin/menu');
     }
 
     public function log()
-    {
+    {   
+        VerificaLoginController::verificarLoginAdmin();
         return view('/admin/log');
     }
 
     public function atribuicao()
-    {
+    {   
+        VerificaLoginController::verificarLoginAdmin();
         return view('/admin/atribuicao');
     }
 
@@ -38,6 +40,7 @@ class AdminController extends Controller
     public function permissao(Request $request)
 
     {
+        VerificaLoginController::verificarLoginAdmin();
         include("db.php");
         $atribuicao = $request->atribuicao;
         $p = [];
@@ -135,6 +138,7 @@ class AdminController extends Controller
 
     public function alterarPermissao(Request $request)
     {
+        session_start();
         $array = explode("=",$_SERVER['HTTP_REFERER']);
         $atribuicao = $array[count($array)-1];
 
@@ -188,24 +192,26 @@ class AdminController extends Controller
 
     public function backup()
     {
+        VerificaLoginController::verificarLoginAdmin();
         return view('/admin/backup');
     }
     
     
     public function cadastro()              //função para chamar a função salvar usuário pela view
     {
+        VerificaLoginController::verificarLoginAdmin();
         return view('/admin/cadastroUsuario');
     }
 
     public function remocao()
     {  
         
-        
+        VerificaLoginController::verificarLoginAdmin();
         include('..\app\Http\Controllers\db.php'); 
         if (isset($_GET['cpf'])) {
             $cpf = $_GET['cpf'];
             //$atr = $_GET['atr'];    
-            $query ="DELETE FROM usuarios WHERE 'CPF' = '$cpf'";
+            $query ="DELETE FROM usuarios WHERE CPF = '$cpf'";
             $status = mysqli_query($connect, $query);            
                     
             return view('/admin/remocaoUsuario',['status'=>$status]);
@@ -216,6 +222,7 @@ class AdminController extends Controller
     }
     
     public function alterarAtribuicao(Request $request){
+        session_start();
         include("db.php"); // Importando BD
         $request -> validate([
             'novaAtribuicao' => 'required' // Verificação de preenchimento de campo 
@@ -252,7 +259,7 @@ class AdminController extends Controller
         if($atribuicao != "Administrador"){
             if ($atribuicao == 'Enfermeiro Chefe') {
                 if($request->novaAtribuicao == "Enfermeiro"){
-                    $delete = "DELETE enfermeiros_chefes WHERE CPF='$cpf'";
+                    $delete = "DELETE FROM enfermeiros_chefes WHERE CPF='$cpf'";
                     mysqli_query($connect,$delete); // Deleta usuarios
                     $update = "UPDATE usuarios SET Atribuicao = 'Enfermeiro' WHERE CPF='$cpf'";
                     mysqli_query($connect,$update); // atualiza a atribuicao no BD
@@ -265,7 +272,7 @@ class AdminController extends Controller
             }
             else if($atribuicao == 'Enfermeiro'){
                 if($request->novaAtribuicao == "Enfermeiro Chefe"){
-                    $delete = "DELETE enfermeiros WHERE CPF='$cpf'";
+                    $delete = "DELETE FROM enfermeiros WHERE CPF='$cpf'";
                     mysqli_query($connect,$delete); // Deleta usuarios
                     $update = "UPDATE usuarios SET Atribuicao = 'Enfermeiro Chefe' WHERE CPF='$cpf'";
                     mysqli_query($connect,$update); // atualiza a atribuicao no BD
@@ -278,7 +285,7 @@ class AdminController extends Controller
             }
             else if($atribuicao == 'Estagiario'){
                 if($request->novaAtribuicao == "Enfermeiro"){
-                    $delete = "DELETE estagiarios WHERE CPF='$cpf'";
+                    $delete = "DELETE FROM estagiarios WHERE CPF='$cpf'";
                     mysqli_query($connect,$delete); // Deleta usuarios
                     $update = "UPDATE usuarios SET Atribuicao = 'Estagiario' WHERE CPF='$cpf'";
                     mysqli_query($connect,$update); // atualiza a atribuicao no BD
@@ -286,7 +293,7 @@ class AdminController extends Controller
                     mysqli_query($connect,$insert);// Adicioa usuario a novo cargo
                     return redirect() -> back() ->with('msg','Cargo alterado com sucesso!!!!'); //Redireciona para pagina anterior e mostra mensagem de erro
                 }else if($request->novaAtribuicao == "Enfermeiro Chefe"){
-                    $delete = "DELETE estagiarios WHERE CPF='$cpf'";
+                    $delete = "DELETE FROM estagiarios WHERE CPF='$cpf'";
                     mysqli_query($connect,$delete); // Deleta usuarios
                     $update = "UPDATE usuarios SET Atribuicao = 'Enfermeiro Chefe' WHERE CPF='$cpf'";
                     mysqli_query($connect,$update); // atualiza a atribuicao no BD
@@ -304,6 +311,7 @@ class AdminController extends Controller
     }
 
     public function lupinha(Request $request){
+        session_start();
         include("db.php"); // inclusão do banco de dados
         $user = null; // garantia de existência da variavel
         // busca do usuario no banco de dados
@@ -340,7 +348,7 @@ class AdminController extends Controller
     
     public function salvarUsuario(Request $request){
         include("conexao.php");
-
+        session_start();
         //validação de erro de entrada
         $validator = Validator::make($request->all(), [     
             'fcpf' => 'required|min:14|max:14',
@@ -396,7 +404,7 @@ class AdminController extends Controller
 
     public function busca(Request $request)
     {          
-        
+        session_start();
         include('..\app\Http\Controllers\db.php');        
         $query = "SELECT * FROM usuarios WHERE CPF= '$request->cpf_user'";
         $result = mysqli_query($connect, $query);       
