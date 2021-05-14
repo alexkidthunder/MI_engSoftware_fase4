@@ -89,7 +89,7 @@
                         </div>
                         <!----------Card responsável pelo Histórico de Prontuário------------>
                         <h4 class="card-options_title"><a
-                            href="#">Ver Histórico de Prontuário</a></h4>
+                            href="{{ route('historicoProntuario') }}">Ver Histórico de Prontuário</a></h4>
                     </div>
                 </div>
             </div>  
