@@ -53,27 +53,27 @@ else{
 /* -- ao clicar no botão "Editar Informações" -- */
 editBnt.addEventListener("click",function(){
 
-    enable();   
-    removeNoRadialEdit();
-    addRadialEdit();
-    setSexRequired();
-    setPerfilDataRequired();
-    toggleHideBtnPerfil();
-    refreshSex();
-    checkRadial();
+    enable();   // Habilita os inputs e Radios
+    removeNoRadialEdit(); // Retira o estilo que indicava que não poderia editar
+    addRadialEdit(); // Adiciona o estilo que indica que pode editar
+    setSexRequired(); // Coloca o campo do sexo como Obrigatório
+    setPerfilDataRequired(); // Coloca os campos habilitados como Obrigatórios
+    toggleHideBtnPerfil(); // Esconde o botão de "Editar Informações" e Mostra os outros botões
+    refreshSex(); // Retira as marcações do sexo
+    checkRadial(); // Verifica se o sexo está marcado, se não estiver, volta ao estado padrão (mostrando os dois)
 
 })
 
 /* -- ao clicar no botão "Salvar" -- */
 saveBtn.addEventListener("click",function(){
 
-    disable();
-    addNoRadialEdit();
-    removeRadialEdit();
-    checkRadial();
-    removePerfilDataRequired();
-    removeSexRequired();
-    toggleHideBtnPerfil();
+    disable(); // Desabilita os inputs e Radios
+    addNoRadialEdit(); // Adiciona o estilo que indica que não poderia editar
+    removeRadialEdit(); // Retira o estilo que indicava que pode editar
+    checkRadial(); // Verifica se o sexo está marcado, se não estiver, volta ao estado padrão (mostrando os dois)
+    removePerfilDataRequired(); // Coloca os campos disabilitados (inputs) como Não-Obrigatórios
+    removeSexRequired();  // Coloca o campo do sexo como Não-Obrigatório
+    toggleHideBtnPerfil(); // Mostra o botão de "Editar Informações" e Esconde os outros botões
 
 })
 
@@ -100,23 +100,36 @@ cancelarBtn.addEventListener("click",function(){
     removePswRequired();
 
 })
-
+/**
+ * bota "Required" nos campos de senha
+ */
 function setPswRequired(){
     SenhaAtual.setAttribute("required","");
     SenhaNova.setAttribute("required","")
     SenhaNovaConfirmacao.setAttribute("required","");
 }
+/**
+ * remove "Required" nos campos de senha
+ */
 function removePswRequired(){
     SenhaAtual.removeAttribute("required");
     SenhaNova.removeAttribute("required");
     SenhaNovaConfirmacao.removeAttribute("required");
 }
+
+/**
+ * retorna a tela para o estado inicial
+ */
 function setInitialState(){
     if(editBtnDiv.classList.contains('hide')){
         editBtnDiv.classList.remove('hide');
         saveBtnDiv.classList.add('hide');
     }
 }
+/**
+ * Toggle para os estados da tela. 
+ * Utiliza-se a classe Hide
+ */
 function toggleHideBtnPerfil(){
     if(saveBtnDiv.classList.contains('hide')){
         editBtnDiv.classList.add('hide');
@@ -127,24 +140,39 @@ function toggleHideBtnPerfil(){
         saveBtnDiv.classList.add('hide');
     }
 }
+/**
+ * Seta os Inputs de texto do perfil como Required
+ */
 function setPerfilDataRequired(){
     nomeInp.setAttribute("required","");
     emailInp.setAttribute("required","");
 }
+/**
+ * Remove os Required dos Inputs de texto do perfil
+ */
 function removePerfilDataRequired(){
     nomeInp.removeAttribute("required");
     emailInp.removeAttribute("required");
 }
+/**
+ * Seta os Inputs radiais do perfil como Required
+ */
 function setSexRequired(){
     radioSexBtn.forEach(element => {
         element.setAttribute("required","");
     });
 }
+/**
+ * Remove os Required dos Inputs radiais do perfil
+ */
 function removeSexRequired(){
     radioSexBtn.forEach(element => {
         element.removeAttribute("required");
     });
 }
+/**
+ * Reseta o estado dos botões radiais
+ */
 function refreshSex(){
     radioSexBtn.forEach(element => {
         if(element.checked){
@@ -152,23 +180,42 @@ function refreshSex(){
         }
     })
 }
+/**
+ * Adiciona um estilo ao botão para indicar que ele não
+ * está no modo de edição
+ */
 function addNoRadialEdit(){
     radioFemDiv.classList.add("radial-no-edit");
     radioMascDiv.classList.add("radial-no-edit");
 }
+/**
+ * Remove um estilo ao botão para indicar que ele não
+ * está no modo de edição
+ */
 function removeNoRadialEdit(){
     radioFemDiv.classList.remove("radial-no-edit");
     radioMascDiv.classList.remove("radial-no-edit");
 }
+/**
+ * Adiciona um estilo ao botão para indicar que ele
+ * está no modo de edição
+ */
 function addRadialEdit(){
     radioFemDiv.classList.add("radial-edit");
     radioMascDiv.classList.add("radial-edit");
 }
+/**
+ * Remove um estilo ao botão para indicar que ele
+ * está no modo de edição
+ */
 function removeRadialEdit(){
     radioFemDiv.classList.remove("radial-edit");
     radioMascDiv.classList.remove("radial-edit");
 }
-
+/**
+ * Verifica se o usuário já tem um sexo definido e esconde o outro sexo
+ * 
+ */
 function checkRadial(){
     if(femInp.checked === true){
         radioMascDiv.classList.add('hide');
@@ -181,14 +228,18 @@ function checkRadial(){
         radioFemDiv.classList.remove('hide');
     }
 }
-
+/**
+ * Disabilita a edição dos dados do perfil
+ */
 function disable(){
     nomeInp.setAttribute("disabled","");
     mascInp.setAttribute("disabled","");
     femInp.setAttribute("disabled","");
     emailInp.setAttribute("disabled","");
 }
-
+/**
+ * Habilita a edição dos dados do perfil
+ */
 function enable(){
     nomeInp.removeAttribute("disabled");
     mascInp.removeAttribute("disabled");

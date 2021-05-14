@@ -1,8 +1,15 @@
-/* Campo onde fica o dado da atribuição atual do usuário buscado */
+/** 
+ * Campo onde fica o dado da atribuição atual do usuário buscado
+ * */ 
 var atribuiçãoAtual = document.getElementById('atribuicaoAtual');
 
-/* Select onde fica as opções para alterar as atribuições */
+/**
+ *  Select onde fica as opções para alterar as atribuições
+ * */ 
 var selectMudanca = document.getElementById('novaAtribuicao');
+/**
+ * Botão de busca de um usuário
+ */
 var searchBtn = document.getElementById('busca_user');
 
 /* Criando options de valor Enfermeiro para um Select */
@@ -29,36 +36,45 @@ var AdministradorText = document.createTextNode('Administrador');
 Administrador.appendChild(AdministradorText);
 Administrador.setAttribute("value","Administrador");
 
+/**
+ * Div onde o coren se encontra
+ */
 var CorenDiv = document.getElementById('corenDiv');
+/**
+ * Input do coren
+ */
 var CorenInpt = document.getElementById('fcoren');
     
-    atualizarSelect();
-    setSelectByCargo();
+atualizarSelect();
+setSelectByCargo();
 
 selectMudanca.addEventListener("change",function(){
     atualizarSelect();
     
 })
 
+/**
+ * Esconde ou Mostra o select do coren de acordo com o cargo do usuário
+ */
 function atualizarSelect(){
-    console.log('foi');
     if(atribuiçãoAtual.innerHTML === "Estagiario"){
         if(selectMudanca.value === "Enfermeiro Chefe" || selectMudanca.value === "Enfermeiro"){ 
             CorenDiv.classList.remove('hide');
             if(CorenInpt.hasAttribute("required") === false){
                 CorenInpt.setAttribute("required","");
             }
-            console.log('foi aqui');
         }
         else{
             CorenDiv.classList.add('hide');
             if(CorenInpt.hasAttribute("required")){
                 CorenInpt.removeAttribute("required");
             }
-            console.log('foi aqui 2');
         }
     }
 }
+/**
+ * Limpa as opções do Select
+ */
 function resetSelect(){
     var i = selectMudanca.length;
     do{
@@ -66,6 +82,10 @@ function resetSelect(){
         i --;
     }while(i > 0);
 }
+
+/**
+ * Põe as options no select de acordo com o cargo do usuário
+ */
 function setSelectByCargo(){
     
     resetSelect();

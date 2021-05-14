@@ -1,3 +1,6 @@
+/**
+ * Botão de agendar backup
+ */
 var agendaBtn = document.getElementById("agenBack");
 
 agendaBtn.addEventListener("click",function(){
@@ -11,7 +14,9 @@ agendaBtn.addEventListener("click",function(){
 
 })
 
-
+/**
+ * Botão "Automático"
+ */
 var alwaysCheck = document.getElementById("alwaysCheck");
 
 alwaysCheck.addEventListener("click",function(){

@@ -24,15 +24,18 @@
     <h1>Backup do Sistema</h1>
     <section>
         <div class="container-1">
-            <div class="box">
+            <div class="box"> <!--Caixa onde as opções se encontram-->
                 <div class="row item-center">
                     <div class="col-lg">
+                        <!--Botão onde, quando clicado, o backup deve ser feito na hora-->
                         <input class="btn-white" type="button" name="realBack" id="realBack" value="Realizar Backup">
                     </div>
                     <div class="col-lg">
+                        <!--Botão onde, quando clicado, o backup deve ser agendado-->
                         <input class="btn-white" type="button" name="agenback" id="agenBack" value="Agendar Backup">
                     </div>
                 </div>
+                <!--Area onde o agendamento do backup é feita-->
                 <div class="hide" id="AgendamentoBackup">
                     <div class="row">
                         <div class="box-backup item-center">
@@ -40,19 +43,23 @@
                             <form>
                                 <div class="row align-items-center">
                                     <div class="col-lg-4">
+                                        <!--Botão para marcar caso o agendamento seja de um backup automático-->
                                         <label for="alwaysCheck">Automático</label> <br>
                                         <input type="checkbox" name="alwaysCheck" id="alwaysCheck" checked>
                                     </div>
                                     <div class="col-lg-4">
+                                        <!--Horario em que o backup será feito-->
                                         <label for="fhorario">Horario</label><br>
                                         <input name="fhorario" type="time" id="fhorario" required>
                                     </div>
                                     <div class="col-lg-4 hide" id="dataDiv">
+                                        <!--Data em que o backup será feito. Se for um backup automático, está parte não aparece-->
                                         <label for="date">Data</label> <br>
                                         <input type="date" name="date" id="date">
                                     </div>
                                 </div>
                                 <div class="row">
+                                    <!--Botão para confirmar o agendamento de um backup-->
                                     <input class="container-button btn-white"type="submit" value="Confirmar" id="confirmarBackup">
                                 </div>
                             </form>

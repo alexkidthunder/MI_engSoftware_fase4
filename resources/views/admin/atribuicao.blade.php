@@ -60,7 +60,7 @@
                     </form>
                 </div>
                 <div id="user_Data" >
-                     <!--Infomações do funcionário funcionário-->
+                     <!--Infomações do funcionário-->
                     @if(isset($user))
                         <h3>Funcionário</h3> <br>   
                         <div class="box-gray">

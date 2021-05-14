@@ -53,25 +53,25 @@
                     <div class="box-gray">
                         CPF: {{$user['CPF']}}
                     </div>
-
-                    <!-- Se a atribuição for igual a zero é por que ele é do tipo Estagiário ou ADM,
-                        logo não precisa exibir o COREN -->
-                    @if($atribuicao == 0)
-                    <!-- Não exibe nada, pois não tem coren -->
-                    @else
-                    <div class="col-lg-4">
-                        <div class="box-gray">
-                            COREN: {{$atribuicao['COREN']}}
-                        </div>
-                    </div>
-                    @endif
-
-                    <div class="col-lg-4">
-                        <div class="box-gray">
-                            ATRIBUIÇÃO: {{$user['Atribuicao']}}
-                        </div>
+                </div>
+                <!-- Se a atribuição for igual a zero é por que ele é do tipo Estagiário ou ADM,
+                    logo não precisa exibir o COREN -->
+                @if($atribuicao == 0)
+                <!-- Não exibe nada, pois não tem coren -->
+                @else
+                <div class="col-lg-4">
+                    <div class="box-gray">
+                        COREN: {{$atribuicao['COREN']}}
                     </div>
                 </div>
+                @endif
+
+                <div class="col-lg-4">
+                    <div class="box-gray">
+                        ATRIBUIÇÃO: {{$user['Atribuicao']}}
+                    </div>
+                </div>
+            </div>
                 <form action="/removerUsuario" method="GET">
                     <input type="hidden" name="cpf" value="{{$user['CPF']}}">
                     <input type="hidden" name="atr" value="{{$user['Atribuicao']}}">
