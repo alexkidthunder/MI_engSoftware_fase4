@@ -70,7 +70,7 @@
             <div class="row">
                 <!------ Nome do paciente ao qual o agendamento pertence ---->
                 <div class="col-lg-9">
-                    <button class="btn-Patient text-left">Samara Anjos de Oliveira</button>
+                    <a href="{{ route('prontuario') }}" target="_parent"><button class="btn-Patient text-left">Samara Anjos de Oliveira</button></a>
                 </div>
                 <!------ Leito em que o paciente está internado ---->
                 <div class="col-lg-3">
@@ -114,7 +114,7 @@
             <div class="row">
                 <!------ Nome do paciente ao qual o agendamento pertence ---->
                 <div class="col-lg-9">
-                    <button class="btn-Patient text-left">Alberto Alencar</button>
+                    <a href="{{ route('prontuario') }}" target="_parent"><button class="btn-Patient text-left">Alberto Alencar</button></a>
                 </div>
                 <!------ Leito em que o paciente está internado ---->
                 <div class="col-lg-3">

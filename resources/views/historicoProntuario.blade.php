@@ -111,7 +111,8 @@
                     <!------ Botão para acessar prontuário ------>
                     <div class="col-lg-3 input-full-width">
                         <br>
-                        <button href="{{ route('prontuario') }}" class="btn-blue">Prontuário</button>
+                        <a href="{{ route('prontuario') }}" target="_parent"><button
+                            class="btn-blue">Prontuário</button></a>
                     </div>
                 </div>
             </div>
@@ -144,7 +145,8 @@
                     <!------ Botão para acessar prontuário ------>
                     <div class="col-lg-3 input-full-width">
                         <br>
-                        <button href="{{ route('prontuario') }}" class="btn-blue">Prontuário</button>
+                        <a href="{{ route('prontuario') }}" target="_parent"><button
+                            class="btn-blue">Prontuário</button></a>
                     </div>
                 </div>
             </div>
