@@ -25,7 +25,7 @@
     <div class="container-1">
         <div class="box">
             <!--Buscar funcionário-->
-            <div class="content-center">
+            <div class="content-center"> <!--Área onde se busca um funcionário-->
                 <h3>BUSCAR FUNCIONÁRIO</h3>
                 <form class="search-bar" action="/buscarUsuario" method="GET">
                     <input name="cpf_user" id="cpf_user" type="text" placeholder="Informe o CPF" required maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
@@ -33,7 +33,7 @@
                         <i class="fas fa-search"></i>
                     </button>
                 </form>
-            </div>
+            </div> <!--Fim da área onde se busca um funcionário-->
 
             <!--Infomações do funcionário funcionário-->
             @if(isset($user))
@@ -45,8 +45,8 @@
 
 
             <h3>Funcionário</h3>
-            <div class="box-gray">
-                NOME: {{$user['Nome']}}
+            <div class="box-gray"> <!--Campos de informações sobre o usuário buscado-->
+                {{$user['Nome']}}
             </div>
             <div class="row">
                 <div class="col-lg-4">
@@ -68,11 +68,11 @@
 
                 <div class="col-lg-4">
                     <div class="box-gray">
-                        ATRIBUIÇÃO: {{$user['Atribuicao']}}
+                        {{$user['Atribuicao']}}
                     </div>
                 </div>
-            </div>
-                <form action="/removerUsuario" method="GET">
+            </div> <!--Fim dos campos de informações sobre o usuário-->
+                <form action="/removerUsuario" method="GET"> <!--Form para deletar o usuário buscado-->
                     <input type="hidden" name="cpf" value="{{$user['CPF']}}">
                     <input type="hidden" name="atr" value="{{$user['Atribuicao']}}">
                     <button type="submit" class="container-button btn-blue " data-toggle="modal" data-target="#delete"> Remover </button>
