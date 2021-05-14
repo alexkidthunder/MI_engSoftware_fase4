@@ -18,19 +18,19 @@ class AdminController extends Controller
 {
 
     public function menu(){
-        VerificaLoginController::verificarLogin();
+        VerificaLoginController::verificarLoginAdmin();
         return view('/admin/menu');
     }
 
     public function log()
     {   
-        VerificaLoginController::verificarLogin();
+        VerificaLoginController::verificarLoginAdmin();
         return view('/admin/log');
     }
 
     public function atribuicao()
     {   
-        VerificaLoginController::verificarLogin();
+        VerificaLoginController::verificarLoginAdmin();
         return view('/admin/atribuicao');
     }
 
