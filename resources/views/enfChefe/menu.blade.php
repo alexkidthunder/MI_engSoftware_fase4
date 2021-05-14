@@ -133,24 +133,23 @@
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <i class="fas fa-procedures"></i>
-                            <i class="fas fa-plus"></i>
                         </div>
                         <!----------Card responsável pelo Cadastro e Exclusão de Leito------------>
                         <h4 class="card-options_title"><a
-                            href="#">Cadastrar leito</a></h4>
+                            href="{{ route('cadastroLeito') }}">Cadastrar e Remover leito</a></h4>
                     </div>
-                </div> 
+                </div>
                 <div class="col-xl-3 col-lg-3 col-md-6">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
-                            <i class="fas fa-procedures"></i>
-                            <i class="fas fa-minus"></i>
+                            <i class="fas fa-clipboard-list"></i>
+                            <i class="far fa-hourglass"></i>
                         </div>
-                         <!----------Card responsável pelo Cadastro e Exclusão de Leito------------>
+                        <!----------Card responsável pelo Histórico de Prontuário------------>
                         <h4 class="card-options_title"><a
-                            href="#">Remover leito</a></h4>
+                            href="#">Ver Histórico de Prontuário</a></h4>
                     </div>
-                </div> 
+                </div>
             </div>  
         </div>
   </body>

@@ -52,12 +52,12 @@
                             </div>
                         </div>
                     </div>
-                    <form class="search-bar" action="/lupinha" method="GET">
+                    <form class="search-bar" action="/lupinha" method="GET"> <!--Área onde busca um usuário-->
                         <input name="cpf_user" id="cpf_user" type="text" placeholder="Informe o CPF" required maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
                         <button type="submit" id="busca_user">
                             <i class="fas fa-search"></i>
                         </button>
-                    </form>
+                    </form> <!--Fim da área onde se busca um usuário-->
                 </div>
                 <div id="user_Data" >
                      <!--Infomações do funcionário-->
@@ -85,28 +85,28 @@
                                 </div>
                             </div>
                         </div>
-                
-                        <!--Alterar atrinuição do funcionário funcionário, se for estagiário-->
-                        <div class="container-atribution">
+                        <!--Fim da área de informações do funcionário-->
+                        <!--Alterar atribuição do funcionário, se for estagiário-->
+                        <div class="container-atribution"> 
                             <form method="POST" action='/alterarAtribuicao'>
                             @csrf
                                 <input type="hidden" name="cpf" value='{{$user["CPF"]}}'><!--Usado para obter o CPF pesquisado pela função de busca-->
                                 <div class="row"> 
                                     <div class="col-lg-4"> 
                                         <label for="novaAtribuicao">Nova atribuição</label> <br>
-                                        <select id="novaAtribuicao" name="novaAtribuicao">
+                                        <select id="novaAtribuicao" name="novaAtribuicao"> <!--Select com as opções de atribuição-->
                                             <option name="enfermeiroChefe" value="enfermeiroChefe">Enfermeiro chefe</option>
                                             <option name="enfermeiro" value="enfermeiro">Enfermeiro</option>
                                         </select>
                                     </div>
-                                    @if($user["Atribuicao"] == "Estagiario")
+                                    @if($user["Atribuicao"] == "Estagiario") <!--Se a atribuição do funcionário for "Estagiário", o Campo do coren aparece"-->
                                     <div id="corenDiv" class="col-lg-4">
-                                        <label for="fcoren">Coren</label> <br>                                    
-                                        <input placeholder="Informe o Coren" id="fcoren" name="fcoren" type="text"  maxlength="14" pattern="\d{2}\-\d{3}.\d{3}.\d{3}" required>
+                                        <label for="fcoren">Coren</label> <br>    <!--Label para o Coren-->                                
+                                        <input placeholder="Informe o Coren" id="fcoren" name="fcoren" type="text"  maxlength="14" pattern="\d{2}\-\d{3}.\d{3}.\d{3}" required> <!--Campo de Input para digitar o Coren-->
                                     </div>
                                     @endif
                                 </div>
-                                <button type="submit" class="container-button btn-white">Alterar</button>
+                                <button type="submit" class="container-button btn-white">Alterar</button> <!--Botão para enviar as informações do form de alterar atribuição-->
                             </form> 
                         </div>
                     @endif
