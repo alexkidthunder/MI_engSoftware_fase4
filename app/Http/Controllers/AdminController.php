@@ -257,7 +257,7 @@ class AdminController extends Controller
         if($atribuicao != "Administrador"){
             if ($atribuicao == 'Enfermeiro Chefe') {
                 if($request->novaAtribuicao == "Enfermeiro"){
-                    $delete = "DELETE enfermeiros_chefes WHERE CPF='$cpf'";
+                    $delete = "DELETE FROM enfermeiros_chefes WHERE CPF='$cpf'";
                     mysqli_query($connect,$delete); // Deleta usuarios
                     $update = "UPDATE usuarios SET Atribuicao = 'Enfermeiro' WHERE CPF='$cpf'";
                     mysqli_query($connect,$update); // atualiza a atribuicao no BD
@@ -270,7 +270,7 @@ class AdminController extends Controller
             }
             else if($atribuicao == 'Enfermeiro'){
                 if($request->novaAtribuicao == "Enfermeiro Chefe"){
-                    $delete = "DELETE enfermeiros WHERE CPF='$cpf'";
+                    $delete = "DELETE FROM enfermeiros WHERE CPF='$cpf'";
                     mysqli_query($connect,$delete); // Deleta usuarios
                     $update = "UPDATE usuarios SET Atribuicao = 'Enfermeiro Chefe' WHERE CPF='$cpf'";
                     mysqli_query($connect,$update); // atualiza a atribuicao no BD
@@ -283,7 +283,7 @@ class AdminController extends Controller
             }
             else if($atribuicao == 'Estagiario'){
                 if($request->novaAtribuicao == "Enfermeiro"){
-                    $delete = "DELETE estagiarios WHERE CPF='$cpf'";
+                    $delete = "DELETE FROM estagiarios WHERE CPF='$cpf'";
                     mysqli_query($connect,$delete); // Deleta usuarios
                     $update = "UPDATE usuarios SET Atribuicao = 'Estagiario' WHERE CPF='$cpf'";
                     mysqli_query($connect,$update); // atualiza a atribuicao no BD
@@ -291,7 +291,7 @@ class AdminController extends Controller
                     mysqli_query($connect,$insert);// Adicioa usuario a novo cargo
                     return redirect() -> back() ->with('msg','Cargo alterado com sucesso!!!!'); //Redireciona para pagina anterior e mostra mensagem de erro
                 }else if($request->novaAtribuicao == "Enfermeiro Chefe"){
-                    $delete = "DELETE estagiarios WHERE CPF='$cpf'";
+                    $delete = "DELETE FROM estagiarios WHERE CPF='$cpf'";
                     mysqli_query($connect,$delete); // Deleta usuarios
                     $update = "UPDATE usuarios SET Atribuicao = 'Enfermeiro Chefe' WHERE CPF='$cpf'";
                     mysqli_query($connect,$update); // atualiza a atribuicao no BD
