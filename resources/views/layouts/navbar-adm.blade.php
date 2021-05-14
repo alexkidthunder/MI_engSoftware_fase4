@@ -19,7 +19,9 @@
             <div class="d-flex">
                 <a href="{{ route('editarPerfil') }} " class="user"> <i class="fas fa-user"></i></a>
                 <div class="col-lg-3">
-                    <h2><a href="{{ route('editarPerfil') }}">NOME FUNCIONÁRIO</a></h2>
+                @if(isset($_SESSION['administrador']))
+                <h2><a href="{{ route('editarPerfil') }}">{{$_SESSION['administrador']}}</a></h2>
+                @endif
                 </div>
             </div>
 

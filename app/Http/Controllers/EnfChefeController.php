@@ -27,7 +27,7 @@ class EnfChefeController extends Controller
 
     public function salvarMedicamento(Request $request){
          include('conexao.php');
-
+         session_start();
         //buscar medicamento
         $existeMed = mysqli_query($conn,"SELECT COUNT(*) FROM medicamentos WHERE Nome_Medicam = '$request->fnome'");
 

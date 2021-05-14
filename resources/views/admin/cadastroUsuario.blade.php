@@ -24,6 +24,9 @@
     @include('layouts.navbar-adm')
     <!----------End Hearder-------->
 
+    
+    
+    <h1>CADASTRO DE FUNCIONÁRIO</h1>
     @if(Session::has('error'))
     <div class="msg-error" role="alert">
             {{Session::get('error')}}
@@ -35,8 +38,6 @@
             {{Session::get('success')}}
     </div>
     @endif
-    
-    <h1>CADASTRO DE FUNCIONÁRIO</h1>
     <section>
         <div class="container-1">
             <div class="box">
