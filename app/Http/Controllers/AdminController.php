@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Administrador;
 use App\Models\Enfermeiro_chefe;
 use App\Models\Estagiario;
@@ -19,16 +18,19 @@ class AdminController extends Controller
 {
 
     public function menu(){
+        VerificaLoginController::verificarLoginAdmin();
         return view('/admin/menu');
     }
 
     public function log()
-    {
+    {   
+        VerificaLoginController::verificarLoginAdmin();
         return view('/admin/log');
     }
 
     public function atribuicao()
-    {
+    {   
+        VerificaLoginController::verificarLoginAdmin();
         return view('/admin/atribuicao');
     }
 
@@ -38,6 +40,7 @@ class AdminController extends Controller
     public function permissao(Request $request)
 
     {
+        VerificaLoginController::verificarLoginAdmin();
         include("db.php");
         $atribuicao = $request->atribuicao;
         $p = [];
@@ -188,19 +191,21 @@ class AdminController extends Controller
 
     public function backup()
     {
+        VerificaLoginController::verificarLoginAdmin();
         return view('/admin/backup');
     }
     
     
     public function cadastro()              //função para chamar a função salvar usuário pela view
     {
+        VerificaLoginController::verificarLoginAdmin();
         return view('/admin/cadastroUsuario');
     }
 
     public function remocao()
     {  
         
-        
+        VerificaLoginController::verificarLoginAdmin();
         include('..\app\Http\Controllers\db.php'); 
         if (isset($_GET['cpf'])) {
             $cpf = $_GET['cpf'];

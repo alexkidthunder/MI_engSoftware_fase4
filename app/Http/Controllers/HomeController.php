@@ -25,17 +25,24 @@ class HomeController extends Controller
             $atribuicao = $sql["Atribuicao"];
         }
         if($row == 1){ // verifica se o usuario existe no sistema. $row = 1 significa que sim
-            $_SESSION['usuario'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
-            
+            session_start();
             /*Sequência de condicionais que verifica o cargo para reirecionar para o menu correto */
             if($atribuicao == "Administrador"){
-                return redirect() -> intended('menu');
+                $_SESSION['administrador'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
+                header("Location: /menu");
+                exit();
             }else if($atribuicao == "Enfermeiro Chefe"){
-                return redirect() -> intended('menuEnfermeiroChefe');
+                $_SESSION['enfermeiroChefe'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
+                header("Location: /menuEnfermeiroChefe");
+                exit();
             }else if($atribuicao == "Enfermeiro"){
-                return redirect() -> intended('menuEnfermeiro');
+                $_SESSION['enfermeiro'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
+                header("Location: /menuEnfermeiro");
+                exit();
             }else if($atribuicao == "Estagiario"){
-                return redirect() -> intended('menuEstagiario');
+                $_SESSION['estagiario'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
+                header("Location: /menuEstagiario");
+                exit();
             }else{
                 return redirect() -> back() ->with('msg-error','Funcionario sem cargo, algo esta errado!!!');
             }
@@ -45,13 +52,7 @@ class HomeController extends Controller
 
     }
 
-    public function verificarLoguin(){
-        include('db.php');
-        session_start();
-        if(!$_SESSION['usuario']){
-            return view('../login.php');
-        }
-    }
+
 
     public function logout(){
         session_start();
@@ -71,6 +72,7 @@ class HomeController extends Controller
     public function editPerfil(){
         return view('editarPerfil');
     }
+    
 
     public function listaPacientes(){
         return view('listaPacientes');
