@@ -30,7 +30,12 @@
             <div class="d-flex align-items-center pr-5">
                 <nav class="nav d-none d-lg-block">
                     <ul>
+                        @if(isset($_SESSION['enfermeiro']))
                         <li class="title-nav"><a href="{{ route('menu-e') }}">INÍCIO</a></li>
+                        @endif
+                        @if(isset($_SESSION['estagiario']))
+                        <li class="title-nav"><a href="{{ route('menu-es') }}">INÍCIO</a></li>
+                        @endif
                         <li class="drop-down title-nav"><a>PACIENTES <i class="fas fa-angle-down"></i></a>
                             <ul>
                                 <!-- Apenas enfermeiro -->
