@@ -77,17 +77,99 @@ class HomeController extends Controller
 
     public function listaPacientes(){
         VerificaLoginController::verificarLogin();
+        // Qual a permissão pra isso? 
         return view('listaPacientes');
     }
 
     public function agendamentosRealizados(){
         VerificaLoginController::verificarLogin();
-        return view('agendamentosRealizados');
+        include("db.php");
+        if(isset($_SESSION['enfermeiroChefe'])){
+            $sql = "SELECT * FROM permissao_cargo where permissao_id = '22'";
+            $query = mysqli_query($connect,$sql);
+            while($sql = mysqli_fetch_array($query)){
+                if($sql['cargo_id'] == '2'){
+                    $resultado = $sql['ativo'];
+                }
+            }
+            if($resultado == "1"){
+                return view('agendamentosRealizados');
+            }else{
+                return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
+            }
+        }else if(isset($_SESSION['enfermeiro'])){
+            $sql = "SELECT * FROM permissao_cargo where permissao_id = '22'";
+            $query = mysqli_query($connect,$sql);
+            while($sql = mysqli_fetch_array($query)){
+                if($sql['cargo_id'] == '3'){
+                    $resultado = $sql['ativo'];
+                }
+            }
+            if($resultado == "1"){
+                return view('agendamentosRealizados');
+            }else{
+                return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
+            }
+        }else if(isset($_SESSION['estagiario'])){
+            $sql = "SELECT * FROM permissao_cargo where permissao_id = '22'";
+            $query = mysqli_query($connect,$sql);
+            while($sql = mysqli_fetch_array($query)){
+                if($sql['cargo_id'] == '4'){
+                    $resultado = $sql['ativo'];
+                }
+            }
+            if($resultado == "1"){
+                return view('agendamentosRealizados');
+            }else{
+                return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
+            }
+        }
     }
 
     public function meusAgendamentos(){
         VerificaLoginController::verificarLogin();
-        return view('meusAgendamentos');
+        include("db.php");
+        if(isset($_SESSION['enfermeiroChefe'])){
+            $sql = "SELECT * FROM permissao_cargo where permissao_id = '23'";
+            $query = mysqli_query($connect,$sql);
+            while($sql = mysqli_fetch_array($query)){
+                if($sql['cargo_id'] == '2'){
+                    $resultado = $sql['ativo'];
+                }
+            }
+            if($resultado == "1"){
+                return view('meusAgendamentos');
+            }else{
+                return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
+            }
+        }else if(isset($_SESSION['enfermeiro'])){
+            $sql = "SELECT * FROM permissao_cargo where permissao_id = '23'";
+            $query = mysqli_query($connect,$sql);
+            while($sql = mysqli_fetch_array($query)){
+                if($sql['cargo_id'] == '3'){
+                    $resultado = $sql['ativo'];
+                }
+            }
+            if($resultado == "1"){
+                return view('meusAgendamentos');
+            }else{
+                return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
+            }
+        }else if(isset($_SESSION['estagiario'])){
+            $sql = "SELECT * FROM permissao_cargo where permissao_id = '23'";
+            $query = mysqli_query($connect,$sql);
+            while($sql = mysqli_fetch_array($query)){
+                if($sql['cargo_id'] == '4'){
+                    $resultado = $sql['ativo'];
+                }
+            }
+            if($resultado == "1"){
+                return view('meusAgendamentos');
+            }else{
+                return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
+            }
+        }
+        
     }
     
     public function agendamentos(){
@@ -97,7 +179,48 @@ class HomeController extends Controller
 
     public function cadastroAgendamentos(){
         VerificaLoginController::verificarLogin();
-        return view('cadastroAgendamentos');
+        include("db.php");
+        if(isset($_SESSION['enfermeiroChefe'])){
+            $sql = "SELECT * FROM permissao_cargo where permissao_id = '12'";
+            $query = mysqli_query($connect,$sql);
+            while($sql = mysqli_fetch_array($query)){
+                if($sql['cargo_id'] == '2'){
+                    $resultado = $sql['ativo'];
+                }
+            }
+            if($resultado == "1"){
+                return view('cadastroAgendamentos');
+            }else{
+                return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
+            }
+        }else if(isset($_SESSION['enfermeiro'])){
+            $sql = "SELECT * FROM permissao_cargo where permissao_id = '12'";
+            $query = mysqli_query($connect,$sql);
+            while($sql = mysqli_fetch_array($query)){
+                if($sql['cargo_id'] == '3'){
+                    $resultado = $sql['ativo'];
+                }
+            }
+            if($resultado == "1"){
+                return view('cadastroAgendamentos');
+            }else{
+                return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
+            }
+        }else if(isset($_SESSION['estagiario'])){
+            $sql = "SELECT * FROM permissao_cargo where permissao_id = '12'";
+            $query = mysqli_query($connect,$sql);
+            while($sql = mysqli_fetch_array($query)){
+                if($sql['cargo_id'] == '4'){
+                    $resultado = $sql['ativo'];
+                }
+            }
+            if($resultado == "1"){
+                return view('cadastroAgendamentos');
+            }else{
+                return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
+            }
+        }
+ 
     }
 
     public function cadastroProntuario(){
@@ -107,7 +230,47 @@ class HomeController extends Controller
 
     public function cadastroPaciente(){
         VerificaLoginController::verificarLogin();
-        return view('cadastroPaciente');
+        include("db.php");
+        if(isset($_SESSION['enfermeiroChefe'])){
+            $sql = "SELECT * FROM permissao_cargo where permissao_id = '17'";
+            $query = mysqli_query($connect,$sql);
+            while($sql = mysqli_fetch_array($query)){
+                if($sql['cargo_id'] == '2'){
+                    $resultado = $sql['ativo'];
+                }
+            }
+            if($resultado == "1"){
+                return view('cadastroPaciente');
+            }else{
+                return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
+            }
+        }else if(isset($_SESSION['enfermeiro'])){
+            $sql = "SELECT * FROM permissao_cargo where permissao_id = '17'";
+            $query = mysqli_query($connect,$sql);
+            while($sql = mysqli_fetch_array($query)){
+                if($sql['cargo_id'] == '3'){
+                    $resultado = $sql['ativo'];
+                }
+            }
+            if($resultado == "1"){
+                return view('cadastroPaciente');
+            }else{
+                return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
+            }
+        }else if(isset($_SESSION['estagiario'])){
+            $sql = "SELECT * FROM permissao_cargo where permissao_id = '17'";
+            $query = mysqli_query($connect,$sql);
+            while($sql = mysqli_fetch_array($query)){
+                if($sql['cargo_id'] == '4'){
+                    $resultado = $sql['ativo'];
+                }
+            }
+            if($resultado == "1"){
+                return view('cadastroPaciente');
+            }else{
+                return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
+            }
+        }
     }
 
     public function esqueciSenha(){
@@ -116,7 +279,48 @@ class HomeController extends Controller
     
     public function listaMedicamento(){
         VerificaLoginController::verificarLogin();
-        return view('listaMedicamento');
+        include("db.php");
+        if(isset($_SESSION['enfermeiroChefe'])){
+            $sql = "SELECT * FROM permissao_cargo where permissao_id = '21'";
+            $query = mysqli_query($connect,$sql);
+            while($sql = mysqli_fetch_array($query)){
+                if($sql['cargo_id'] == '2'){
+                    $resultado = $sql['ativo'];
+                }
+            }
+            if($resultado == "1"){
+                return view('listaMedicamento');
+            }else{
+                return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
+            }
+        }else if(isset($_SESSION['enfermeiro'])){
+            $sql = "SELECT * FROM permissao_cargo where permissao_id = '21'";
+            $query = mysqli_query($connect,$sql);
+            while($sql = mysqli_fetch_array($query)){
+                if($sql['cargo_id'] == '3'){
+                    $resultado = $sql['ativo'];
+                }
+            }
+            if($resultado == "1"){
+                return view('listaMedicamento');
+            }else{
+                return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
+            }
+        }else if(isset($_SESSION['estagiario'])){
+            $sql = "SELECT * FROM permissao_cargo where permissao_id = '21'";
+            $query = mysqli_query($connect,$sql);
+            while($sql = mysqli_fetch_array($query)){
+                if($sql['cargo_id'] == '4'){
+                    $resultado = $sql['ativo'];
+                }
+            }
+            if($resultado == "1"){
+                return view('listaMedicamento');
+            }else{
+                return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
+            }
+        }
+        
     }
 
     public function historicoProntuario(){
@@ -125,7 +329,7 @@ class HomeController extends Controller
     }
 
     public function salvarPaciente(Request $request){
-        VerificaLoginController::verificarLogin();
+        session_start();
         include('conexao.php');
 
         //buscar paciente
