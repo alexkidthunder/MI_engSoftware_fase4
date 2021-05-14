@@ -46,7 +46,7 @@
 
             <h3>Funcionário</h3>
             <div class="box-gray">
-                NOME: {{$user['Nome']}}
+                {{$user['Nome']}}
             </div>
             <div class="row">
                 <div class="col-lg-4">
@@ -68,7 +68,7 @@
 
                 <div class="col-lg-4">
                     <div class="box-gray">
-                        ATRIBUIÇÃO: {{$user['Atribuicao']}}
+                        {{$user['Atribuicao']}}
                     </div>
                 </div>
             </div>
