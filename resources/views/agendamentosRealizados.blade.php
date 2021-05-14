@@ -75,7 +75,7 @@
                 <!------ Leito em que o paciente está internado ---->
                 <div class="col-lg-3">
                     <div class="box-blue">
-                        Leito: AB04
+                        Leito: AB004
                     </div>
                 </div>
             </div>
