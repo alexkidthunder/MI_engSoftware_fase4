@@ -315,7 +315,7 @@ class EnfChefeController extends Controller
     }
 
     public function prontuario(){
-        VerificaLoginController::verificarLoginEnfC();
+        VerificaLoginController::verificarLogin();
         include("db.php");
         if(isset($_SESSION['enfermeiroChefe'])){
             $sql = "SELECT * FROM permissao_cargo where permissao_id = '18'";
