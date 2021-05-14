@@ -7,7 +7,7 @@ class VerificaLoginController extends Controller
     public static function verificarLogin(){
         session_start();  
         if((isset($_SESSION['administrador']) == false) AND (isset($_SESSION['enfermeiroChefe']) == false) 
-        AND (isset($_SESSION['enfermeiro']) == false) AND (isset($_SESSION['astagiario']) == false)){
+        AND (isset($_SESSION['enfermeiro']) == false) AND (isset($_SESSION['estagiario']) == false)){
             header("Location: /");
             exit();
         }
