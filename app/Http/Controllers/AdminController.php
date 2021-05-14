@@ -167,7 +167,7 @@ class AdminController extends Controller
         if (isset($_GET['cpf'])) {
             $cpf = $_GET['cpf'];
             //$atr = $_GET['atr'];    
-            $query ="DELETE FROM usuarios WHERE 'CPF' = '$cpf'";
+            $query ="DELETE FROM usuarios WHERE CPF = '$cpf'";
             $status = mysqli_query($connect, $query);            
                     
             return view('/admin/remocaoUsuario',['status'=>$status]);
