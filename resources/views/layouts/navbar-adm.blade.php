@@ -44,7 +44,7 @@
                         <li class="title-nav"><a href="#">RELATÓRIOS GERENCIAIS</a></li>
 
                         <!-------- Botão de logout -------->
-                        <li><a href="{{ route('index') }}" class="logout-icon"><i
+                        <li><a href="/logout" class="logout-icon"><i
                                     class="fas fa-sign-out-alt"></i></a></li>
 
                     </ul>

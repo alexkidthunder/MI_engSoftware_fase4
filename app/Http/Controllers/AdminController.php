@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Administrador;
 use App\Models\Enfermeiro_chefe;
 use App\Models\Estagiario;
@@ -19,16 +18,19 @@ class AdminController extends Controller
 {
 
     public function menu(){
+        VerificaLoginController::verificarLoginAdmin();
         return view('/admin/menu');
     }
 
     public function log()
-    {
+    {   
+        VerificaLoginController::verificarLoginAdmin();
         return view('/admin/log');
     }
 
     public function atribuicao()
-    {
+    {   
+        VerificaLoginController::verificarLoginAdmin();
         return view('/admin/atribuicao');
     }
 
@@ -38,6 +40,7 @@ class AdminController extends Controller
     public function permissao(Request $request)
 
     {
+        VerificaLoginController::verificarLoginAdmin();
         include("db.php");
         $atribuicao = $request->atribuicao;
         $p = [];
@@ -188,19 +191,21 @@ class AdminController extends Controller
 
     public function backup()
     {
+        VerificaLoginController::verificarLoginAdmin();
         return view('/admin/backup');
     }
     
     
     public function cadastro()              //função para chamar a função salvar usuário pela view
     {
+        VerificaLoginController::verificarLoginAdmin();
         return view('/admin/cadastroUsuario');
     }
 
     public function remocao()
     {  
         
-        
+        VerificaLoginController::verificarLoginAdmin();
         include('..\app\Http\Controllers\db.php'); 
         if (isset($_GET['cpf'])) {
             $cpf = $_GET['cpf'];
@@ -252,7 +257,7 @@ class AdminController extends Controller
         if($atribuicao != "Administrador"){
             if ($atribuicao == 'Enfermeiro Chefe') {
                 if($request->novaAtribuicao == "Enfermeiro"){
-                    $delete = "DELETE enfermeiros_chefes WHERE CPF='$cpf'";
+                    $delete = "DELETE FROM enfermeiros_chefes WHERE CPF='$cpf'";
                     mysqli_query($connect,$delete); // Deleta usuarios
                     $update = "UPDATE usuarios SET Atribuicao = 'Enfermeiro' WHERE CPF='$cpf'";
                     mysqli_query($connect,$update); // atualiza a atribuicao no BD
@@ -265,7 +270,7 @@ class AdminController extends Controller
             }
             else if($atribuicao == 'Enfermeiro'){
                 if($request->novaAtribuicao == "Enfermeiro Chefe"){
-                    $delete = "DELETE enfermeiros WHERE CPF='$cpf'";
+                    $delete = "DELETE FROM enfermeiros WHERE CPF='$cpf'";
                     mysqli_query($connect,$delete); // Deleta usuarios
                     $update = "UPDATE usuarios SET Atribuicao = 'Enfermeiro Chefe' WHERE CPF='$cpf'";
                     mysqli_query($connect,$update); // atualiza a atribuicao no BD
@@ -278,7 +283,7 @@ class AdminController extends Controller
             }
             else if($atribuicao == 'Estagiario'){
                 if($request->novaAtribuicao == "Enfermeiro"){
-                    $delete = "DELETE estagiarios WHERE CPF='$cpf'";
+                    $delete = "DELETE FROM estagiarios WHERE CPF='$cpf'";
                     mysqli_query($connect,$delete); // Deleta usuarios
                     $update = "UPDATE usuarios SET Atribuicao = 'Estagiario' WHERE CPF='$cpf'";
                     mysqli_query($connect,$update); // atualiza a atribuicao no BD
@@ -286,7 +291,7 @@ class AdminController extends Controller
                     mysqli_query($connect,$insert);// Adicioa usuario a novo cargo
                     return redirect() -> back() ->with('msg','Cargo alterado com sucesso!!!!'); //Redireciona para pagina anterior e mostra mensagem de erro
                 }else if($request->novaAtribuicao == "Enfermeiro Chefe"){
-                    $delete = "DELETE estagiarios WHERE CPF='$cpf'";
+                    $delete = "DELETE FROM estagiarios WHERE CPF='$cpf'";
                     mysqli_query($connect,$delete); // Deleta usuarios
                     $update = "UPDATE usuarios SET Atribuicao = 'Enfermeiro Chefe' WHERE CPF='$cpf'";
                     mysqli_query($connect,$update); // atualiza a atribuicao no BD

@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -18,7 +19,7 @@
     <!----------Hearder------------>
     @include('layouts.navbar-menu')
     <!----------End Hearder-------->
-
+    {{$_SESSION['administrador']}}
         <div class="container-2">
             <div class="row">
                 <div class="col-xl-3 col-lg-3 col-md-6">
