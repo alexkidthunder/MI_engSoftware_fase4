@@ -11,13 +11,13 @@ use mysqli;
 class EnfChefeController extends Controller
 {
     public function menu(){
-        VerificaLoginController::verificarLoginEnfC();
+        VerificaLoginController::verificarLogin();
         return view('/enfChefe/menu');
     }
     
     public function cadastroPlantonista(){
         include("db.php");
-        VerificaLoginController::verificarLoginEnfC();
+        VerificaLoginController::verificarLogin();
         if(isset($_SESSION['enfermeiroChefe'])){
             $sql = "SELECT * FROM permissao_cargo where permissao_id = '7'";
             $query = mysqli_query($connect,$sql);
@@ -62,7 +62,7 @@ class EnfChefeController extends Controller
     }
 
     public function cadastroMedicamento(){          //função para chamar a função salvar medicamento pela view
-        VerificaLoginController::verificarLoginEnfC();
+        VerificaLoginController::verificarLogin();
         include("db.php");
         if(isset($_SESSION['enfermeiroChefe'])){
             $sql = "SELECT * FROM permissao_cargo where permissao_id = '9'";
@@ -132,7 +132,7 @@ class EnfChefeController extends Controller
     }
 
     public function cadastroAgendamento(){
-        VerificaLoginController::verificarLoginEnfC();
+        VerificaLoginController::verificarLogin();
         include("db.php");
         if(isset($_SESSION['enfermeiroChefe'])){
             $sql = "SELECT * FROM permissao_cargo where permissao_id = '12'";
@@ -178,7 +178,7 @@ class EnfChefeController extends Controller
     }
 
     public function listaPlantonistas(){
-        VerificaLoginController::verificarLoginEnfC();
+        VerificaLoginController::verificarLogin();
         include("db.php");
         if(isset($_SESSION['enfermeiroChefe'])){
             $sql = "SELECT * FROM permissao_cargo where permissao_id = '14'";
@@ -224,7 +224,7 @@ class EnfChefeController extends Controller
     }
 
     public function responsaveis(){
-        VerificaLoginController::verificarLoginEnfC();
+        VerificaLoginController::verificarLogin();
         include("db.php");
         if(isset($_SESSION['enfermeiroChefe'])){
             $sql = "SELECT * FROM permissao_cargo where permissao_id = '16'";
@@ -269,7 +269,7 @@ class EnfChefeController extends Controller
     }
 
     public function listaAgendamentos(){
-        VerificaLoginController::verificarLoginEnfC();
+        VerificaLoginController::verificarLogin();
         include("db.php");
         if(isset($_SESSION['enfermeiroChefe'])){
             $sql = "SELECT * FROM permissao_cargo where permissao_id = '15'";
@@ -315,7 +315,7 @@ class EnfChefeController extends Controller
     }
 
     public function prontuario(){
-        VerificaLoginController::verificarLoginEnfC();
+        VerificaLoginController::verificarLogin();
         include("db.php");
         if(isset($_SESSION['enfermeiroChefe'])){
             $sql = "SELECT * FROM permissao_cargo where permissao_id = '18'";
@@ -360,7 +360,7 @@ class EnfChefeController extends Controller
     }
 
     public function cadastroLeito(){
-        VerificaLoginController::verificarLoginEnfC();
+        VerificaLoginController::verificarLogin();
         include("db.php");
         if(isset($_SESSION['enfermeiroChefe'])){
             $sql = "SELECT * FROM permissao_cargo where permissao_id = '29'";
