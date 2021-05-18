@@ -19,16 +19,9 @@
   </head>
   <body>
     <!----------Hearder------------>
-    @if(isset($_SESSION['enfermeiro']))
     @include('layouts.navbar')
-    @endif
-    @if(isset($_SESSION['enfermeiroChefe']))
-    @include('layouts.navbar-enfChefe')
-    @endif
-    @if(isset($_SESSION['estagiario']))
-    @include('layouts.navbar')
-    @endif
     <!----------End Hearder-------->
+    
         <div id="screen-icon"> <!-- Icone de Download Em Telas -->
             <form class="download-icon">
                 <button>
@@ -36,7 +29,7 @@
                 </button>
             </form>
         </div>
-   
+
         <div class="container-1">
     
             <h1>LISTAGEM DE AGENDAMENTOS E MEDICAMENTOS </h1>
