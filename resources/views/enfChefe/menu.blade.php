@@ -24,7 +24,7 @@
         <div class="container-2">
         <!----------Apresentação dos Cards pertencentes ao Menu------------>
             <div class="row">
-                <div class="col-xl-3 col-lg-3 col-md-6">
+                <div class="col-sm-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <i class="fas fa-user-injured"></i>
@@ -35,7 +35,7 @@
                             href="{{ route('cadastroPaciente') }}">Cadastrar paciente</a></h4>
                     </div>
                 </div> 
-                <div class="col-xl-3 col-lg-3 col-md-6">
+                <div class="col-sm-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <i class="fas fa-clipboard-list"></i>
@@ -46,7 +46,7 @@
                             href="{{ route('cadastroProntuario') }}">Cadastrar prontuário</a></h4>
                     </div>
                 </div> 
-                <div class="col-xl-3 col-lg-3 col-md-6">
+                <div class="col-sm-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <i class="fas fa-calendar-plus"></i>
@@ -56,7 +56,7 @@
                             href="{{ route('cadastroAgendamento') }}">Cadastrar agendamentos</a></h4>
                     </div>
                 </div> 
-                <div class="col-xl-3 col-lg-3 col-md-6">
+                <div class="col-sm-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <i class="fas fa-user-nurse"></i>
@@ -67,7 +67,7 @@
                             href="{{ route('cadastroPlantonista') }}">Cadastrar plantonistas</a></h4>
                     </div>
                 </div> 
-                <div class="col-xl-3 col-lg-3 col-md-6">
+                <div class="col-sm-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <i class="fas fa-capsules"></i>
@@ -78,7 +78,7 @@
                     </div>
                 </div> 
 
-                <div class="col-xl-3 col-lg-3 col-md-6">
+                <div class="col-sm-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <i class="fas fa-user-injured"></i>
@@ -89,7 +89,7 @@
                             href="{{ route('pacientes') }}">Pacientes e prontuários</a></h4>
                     </div>
                 </div> 
-                <div class="col-xl-3 col-lg-3 col-md-6">
+                <div class="col-sm-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <div><i class="fas fa-clipboard"></i></div>
@@ -99,7 +99,7 @@
                             href="{{ route('listaAgendamentos') }}">Listagem de agendamentos</a></h4>
                     </div>
                 </div> 
-                <div class="col-xl-3 col-lg-3 col-md-6">
+                <div class="col-sm-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <i class="fas fa-user-nurse"></i>
@@ -109,7 +109,7 @@
                             href="{{ route('listagemPlantonistas') }}">Plantonistas</a></h4>
                     </div>
                 </div> 
-                <div class="col-xl-3 col-lg-3 col-md-6">
+                <div class="col-sm-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <i class="fas fa-syringe"></i>
@@ -119,7 +119,7 @@
                             href="{{ route('responsaveis') }}">Responsáveis pela aplicação de medicamentos</a></h4>
                     </div>
                 </div> 
-                <div class="col-xl-3 col-lg-3 col-md-6">
+                <div class="col-sm-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <i class="fas fa-briefcase-medical"></i>
@@ -129,7 +129,7 @@
                             href="{{ route('listaMedicamento') }}">Medicamentos cadastrados</a></h4>
                     </div>
                 </div> 
-                <div class="col-xl-3 col-lg-3 col-md-6">
+                <div class="col-sm-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <i class="fas fa-procedures"></i>
@@ -139,11 +139,11 @@
                             href="{{ route('cadastroLeito') }}">Cadastrar e Remover leito</a></h4>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-3 col-md-6">
+                <div class="col-sm-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
-                            <i class="fas fa-clipboard-list"></i>
-                            <i class="far fa-hourglass"></i>
+                            <i class="fas fa-book-medical"></i>
+                            
                         </div>
                         <!----------Card responsável pelo Histórico de Prontuário------------>
                         <h4 class="card-options_title"><a

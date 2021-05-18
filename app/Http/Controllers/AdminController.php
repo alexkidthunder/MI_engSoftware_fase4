@@ -195,7 +195,6 @@ class AdminController extends Controller
         VerificaLoginController::verificarLoginAdmin();
         return view('/admin/backup');
     }
-    
 
     public function remocao()
     {  
@@ -346,6 +345,7 @@ class AdminController extends Controller
         VerificaLoginController::verificarLoginAdmin();
         return view('/admin/cadastroUsuario');
     }
+
 
     public function salvarUsuario(Request $request){
         include("conexao.php");
