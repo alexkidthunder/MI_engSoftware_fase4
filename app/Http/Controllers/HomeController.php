@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Monolog\Handler\SendGridHandler;
+
+
 class HomeController extends Controller
 {
     public function index(){
@@ -60,8 +64,36 @@ class HomeController extends Controller
         return view('login');
     }
     
-    public function primeiroAcesso(){
+     
+    public function acessarPrimeiroAcesso(){
         return view('primeiroAcesso');
+    }
+
+    public function primeiroAcesso(Request $request){
+        include('conexao.php');
+        $senhaDefinida = $request->senha;
+        $senhaConfirmacao = $request->confirmacao;
+        //dd($request->cpf);
+        //se a nova senha desejada for igual a de confimação
+        if ($senhaConfirmacao == $senhaDefinida){
+            //$senhaCript = Hash::make($senhaConfimacao);         //cria um hash a partir da nova senha 
+
+            $cpf = $request->cpf;          
+            $select = "SELECT * FROM usuarios where CPF = '$cpf'";
+            mysqli_query($conn,$select);
+            //dd($select);
+
+            //se existe o cpf no banco de dados
+            $update = "UPDATE usuarios SET Senha = '$senhaConfirmacao' WHERE CPF = '$cpf'";     //atualiza no banco de dados
+            mysqli_query($conn,$update);
+
+            return redirect()->route('index')->with('success','Senha cadastrada com sucesso!!');
+
+        //se a nova senha desejada for diferente da confirmada
+        }else{
+            return redirect()->route('acessarPrimeiroAcesso')->with('error','A senha de confirmação está diferente da nova senha!!');
+       }
+
     }
 
 

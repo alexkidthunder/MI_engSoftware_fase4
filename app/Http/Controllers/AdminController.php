@@ -37,10 +37,10 @@ class AdminController extends Controller
 
     
 
-    public function permissao(Request $request)
 
-    {
+    public function permissao(Request $request){
         VerificaLoginController::verificarLoginAdmin();
+
         include("db.php");
         $atribuicao = $request->atribuicao;
         $p = [];
@@ -196,12 +196,13 @@ class AdminController extends Controller
         return view('/admin/backup');
     }
     
-    
+
     public function cadastro()              //função para chamar a função salvar usuário pela view
     {
         VerificaLoginController::verificarLoginAdmin();
         return view('/admin/cadastroUsuario');
     }
+
 
     public function remocao()
     {  
@@ -268,6 +269,7 @@ class AdminController extends Controller
                     return redirect() -> back() ->with('msg','Cargo alterado com sucesso!!!!'); //Redireciona para pagina anterior e mostra mensagem de erro
                 }else{
                     return redirect() -> back() ->with('msg-error','Cargo selecionado invalido'); //Redireciona para pagina anterior e mostra mensagem de erro
+
                 }
             }
             else if($atribuicao == 'Enfermeiro'){
@@ -345,7 +347,12 @@ class AdminController extends Controller
             return redirect() -> back() ->with('msg-error','CPF não cadastrado no sistema!!'); //Redireciona para pagina anterior e mostra mensagem de erro
         }
     }
-    
+        
+    public function cadastro()              //função para chamar a função salvar usuário pela view
+    {
+        return view('/admin/cadastroUsuario');
+    }
+
     public function salvarUsuario(Request $request){
         include("conexao.php");
         session_start();
@@ -353,12 +360,12 @@ class AdminController extends Controller
         $validator = Validator::make($request->all(), [     
             'fcpf' => 'required|min:14|max:14',
         ]);
-                 
+            
         //redirecionando o usuario caso ocorra o erro
         if ($validator->fails()) {
             return redirect()->route('salvarUsuario')->with('error', "Digite um CPF válido!!");   
         }    
-
+ 
         //busca de cpf no banco  
         $existeCPF = mysqli_query($conn,"SELECT COUNT(*) FROM usuarios WHERE CPF = '$request->fcpf'");
 
@@ -370,6 +377,7 @@ class AdminController extends Controller
             '$request->fnome', 12345, '$request->femail', '$request->fnascimento', '$request->fatribui','$request->fsexo','$ip')";
             mysqli_query($conn,$novoUsuario);
             
+           
             //insere na tabela de administrador
             if ($request->fatribui == 'Administrador'){             
                 $novoAdm = "INSERT INTO administradores (CPF) values ('$request->fcpf')";
@@ -395,7 +403,6 @@ class AdminController extends Controller
             return redirect()->route('cadastrarUsuario')->with('success','Usuário cadastrado com sucesso!!');
             }
             else{
-              
                 //se o usuário já existir
                 return redirect()->route('cadastrarUsuario')->with('error','Usuário já cadastrado!!');
             }
