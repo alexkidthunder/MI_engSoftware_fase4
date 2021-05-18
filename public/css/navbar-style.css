@@ -79,6 +79,7 @@
 
 .nav .drop-down:hover > ul{
     visibility: visible;
+    position: absolute;
     top:100%;
 }
 
