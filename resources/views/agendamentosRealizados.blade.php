@@ -38,7 +38,7 @@
 
         <h1>AGENDAMENTOS E MEDICAMENTOS REALIZADOS</h1>
 
-        <!---------------------Agendamento Realizado 1--------------------->
+        <!---------------------Agendamento Realizado --------------------->
         <div class="box-scheduling">
             <div class="row">
                 <!------ Horário da aplicação ---->
@@ -80,51 +80,7 @@
                 </div>
             </div>
         </div>
-        <!---------------------Fim de agendamento realizado 1--------------------->
-
-        <!---------------------Agendamento Realizado 2--------------------->
-        <div class="box-scheduling">
-            <div class="row">
-                <!------ Horário da aplicação ---->
-                <div class="col-lg-2 text-center">
-                    <div class="box-gray">
-                        16:40h
-                    </div>
-                </div>
-                <!------ Data de aplicação ---->
-                <div class="col-lg-2 text-center">
-                    <div class="box-gray">
-                        13/05/2021
-                    </div>
-                </div>
-                <!------ Nome do medicamento ---->
-                <div class="col-lg-6">
-                    <div class="box-white">
-                        Alodipina
-                    </div>
-                </div>
-                <!------ Posologia do medicamento ---->
-                <div class="col-lg-2">
-                    <div class="box-white">
-                        10 ml
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <!------ Nome do paciente ao qual o agendamento pertence ---->
-                <div class="col-lg-9">
-                    <a href="{{ route('prontuario') }}" target="_parent"><button class="btn-Patient text-left">Alberto Alencar</button></a>
-                </div>
-                <!------ Leito em que o paciente está internado ---->
-                <div class="col-lg-3">
-                    <div class="box-blue">
-                        Leito: LC001
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!---------------------Fim de agendamento realizado 2--------------------->
+        <!---------------------Fim de agendamento realizado --------------------->
 
     </div>
 </body>
