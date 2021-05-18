@@ -203,7 +203,11 @@ class AdminController extends Controller
         return view('/admin/cadastroUsuario');
     }
 
-
+   /* public function cadastro()              //função para chamar a função salvar usuário pela view
+    {
+        return view('/admin/cadastroUsuario');
+    }
+*/
     public function remocao()
     {  
         
@@ -348,10 +352,6 @@ class AdminController extends Controller
         }
     }
         
-    public function cadastro()              //função para chamar a função salvar usuário pela view
-    {
-        return view('/admin/cadastroUsuario');
-    }
 
     public function salvarUsuario(Request $request){
         include("conexao.php");
