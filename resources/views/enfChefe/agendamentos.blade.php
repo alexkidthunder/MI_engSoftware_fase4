@@ -73,7 +73,7 @@
                     <div class="row">
                     <!---------------------Nome da Paciente--------------------->
                         <div class="col-lg-9">
-                            <button class="btn-Patient text-left">Samara Anjos de Oliveira</button>
+                            <a href="{{ route('prontuario') }}" target="_parent"><button class="btn-Patient text-left">Samara Anjos de Oliveira</button></a>
                         </div>
                         <!---------------------Leito da Paciente--------------------->
                         <div class="col-lg-3">

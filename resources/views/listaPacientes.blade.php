@@ -55,7 +55,7 @@
             </form>
         </div>
 
-        <!--------------------- Paciente 1 --------------------->
+        <!--------------------- Paciente --------------------->
         <div class="box-white">
             <div class="row">
                 <!---------- Nome do paciente ------------>
@@ -71,43 +71,7 @@
                 </div>
             </div>
         </div>
-        <!--------------------- Fim do paciente 1 --------------------->
-
-        <!--------------------- Paciente 2 --------------------->
-        <div class="box-white">
-            <div class="row">
-                <!---------- Nome do paciente ------------>
-                <div class="col-lg-10">
-                    <div class="box-blue">
-                        Carlos Henrique Santos
-                    </div>
-                </div>
-                <!----- Link para o prontuário do paciente ----->
-                <div class="col-lg-2">
-                    <a href="{{ route('prontuario') }}" target="_parent"><button
-                            class="btn-blue">Prontuário</button></a>
-                </div>
-            </div>
-        </div>
-        <!--------------------- Fim do paciente 2 --------------------->
-
-        <!--------------------- Paciente 3 --------------------->
-        <div class="box-white">
-            <div class="row">
-                <!---------- Nome do paciente ------------>
-                <div class="col-lg-10">
-                    <div class="box-blue">
-                        Marieta Liro de Jesus
-                    </div>
-                </div>
-                <!----- Link para o prontuário do paciente ----->
-                <div class="col-lg-2">
-                    <a href="{{ route('prontuario') }}" target="_parent"><button
-                            class="btn-blue">Prontuário</button></a>
-                </div>
-            </div>
-        </div>
-        <!--------------------- Fim do paciente 3 --------------------->
+        <!--------------------- Fim do paciente --------------------->
     </div>
 </body>
 
