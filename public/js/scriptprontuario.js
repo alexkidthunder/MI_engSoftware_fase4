@@ -17,10 +17,10 @@ button.addEventListener("click", function() {
 
      esconde = document.getElementById("container-teste");
 
-     if(esconde.style.display === "none"){
-         esconde.style.display = "block";
+     if(esconde.classList.contains('hide')){
+         esconde.classList.remove('hide');
      } else {
-         esconde.style.display = "none";
+         esconde.classList.add('hide');
      }
 });
 
@@ -28,10 +28,10 @@ button2.addEventListener("click", function() {
 
      esconde = document.getElementById("container-teste2");
 
-    if(esconde.style.display === "none"){
-        esconde.style.display = "block";
+    if(esconde.classList.contains('hide')){
+        esconde.classList.remove('hide');
     } else {
-        esconde.style.display = "none";
+        esconde.classList.add('hide');
     }
 });
 
@@ -39,10 +39,10 @@ button3.addEventListener("click", function() {
 
      esconde = document.getElementById("container-teste3");
 
-    if(esconde.style.display === "none"){
-        esconde.style.display = "block";
+    if(esconde.classList.contains('hide')){
+        esconde.classList.remove('hide');
     } else {
-        esconde.style.display = "none";
+        esconde.classList.add('hide');
     }
 });
 
@@ -50,10 +50,10 @@ button4.addEventListener("click", function() {
 
     esconde = document.getElementById("container-teste4");
 
-    if(esconde.style.display === "none"){
-        esconde.style.display = "block";
+    if(esconde.classList.contains('hide')){
+        esconde.classList.remove('hide');
     } else {
-        esconde.style.display = "none";
+        esconde.classList.add('hide');
     }
 });
 
@@ -61,10 +61,10 @@ button5.addEventListener("click", function() {
 
     esconde = document.getElementById("container-teste5");
 
-    if(esconde.style.display === "none"){
-        esconde.style.display = "block";
+    if(esconde.classList.contains('hide')){
+        esconde.classList.remove('hide');
     } else {
-        esconde.style.display = "none";
+        esconde.classList.add('hide');
     }
 });
 
@@ -72,9 +72,9 @@ button6.addEventListener("click", function() {
 
     esconde = document.getElementById("container-teste6");
 
-    if(esconde.style.display === "none"){
-        esconde.style.display = "block";
+    if(esconde.classList.contains('hide')){
+        esconde.classList.remove('hide');
     } else {
-        esconde.style.display = "none";
+        esconde.classList.add('hide');
     }
 });

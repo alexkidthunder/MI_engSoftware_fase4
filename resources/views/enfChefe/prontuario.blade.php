@@ -18,9 +18,18 @@
 </head>
 
 <body>
-     <!----------Hearder------------>
-     @include('layouts.navbar')
+    <!----------Hearder------------>
+    @if(isset($_SESSION['enfermeiro']))
+    @include('layouts.navbar')
+    @endif
+    @if(isset($_SESSION['enfermeiroChefe']))
+    @include('layouts.navbar-enfChefe')
+    @endif
+    @if(isset($_SESSION['estagiario']))
+    @include('layouts.navbar')
+    @endif
     <!----------End Hearder-------->
+
     <div id="screen-icon"> <!-- Icone de Download Em Telas -->
         <form class="download-icon">
             <button>
@@ -28,19 +37,20 @@
             </button>
         </form>
     </div>
-   
+      <!----------Criação de Prontuario------------>
     <h1>PRONTÚARIO</h1>
     <section>
         
         <div class="container-1"> 
-            
+               <!----------Primeira parte do Prontuario, onde fica localizado os dados do Paciente------------>
         <button class="btn-blue", id="action-btn3">Dados de Paciente</button>
-            <div class="box", id= "container-teste3">
+            <div class="box-scheduling", id= "container-teste3">
                 <form id="register">
                     <div class="row">
+                    <!----------Dados do Paciente------------>
                         <div class="col-lg-12">
                             <label>Nome</label> <br>
-                            <input id="fnome" name="fnome" type="text" maxlength="50" value="Nome do paciente" required>
+                            <input id="fnome" name="fnome" type="text" maxlength="50" value="Emanoel de Souza" required>
                         </div>
                     </div>
 
@@ -61,7 +71,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-lg-8">
                             <label>Tipo Sanguineo</label> <br>
@@ -86,23 +95,24 @@
                     </div>
                 </form>
             </div>
+                <!----------Segunda parte de Prontuario, onde vai ter a ala de Agendamentos daquele Prontuario------------>
                 <button class="btn-blue", id="action-btn2">Mostrar Agendamento</button>
                     <div class="box-scheduling" id = "container-teste2">
                     <div class="container-box">
                         <div class="row">
                             <div class="col-lg-2 text-center">
                                 <div class="box-gray">
-                                    <a>xx:xx</a>
+                                    <a>12:23</a>
                                 </div>
                             </div>
                             <div class="col-lg-2 text-center">
                                 <div class="box-gray">
-                                    <a>xx/xx/xx</a>
+                                    <a>11/05/21</a>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="box-white">
-                                    <a>Nome do Medicamento Aqui</a>
+                                    <a>Bezotassil</a>
                                 </div>
                             </div>
                             <div class="col-lg-2">
@@ -114,7 +124,7 @@
                         <div class="row">
                             <div class="col-lg-9">
                                 <div class="box-blue">
-                                    <a>Nome do Paciente Aqui</a>
+                                    <a>Emanoel de Souza</a>
                                 </div>
                             </div>
                             <div class="col-lg-3">
@@ -126,7 +136,7 @@
                         <div class="row">
                             <div class="col-lg-9"> <!--isso aqui fica hidden--->
                                 <div class="box-blue"> 
-                                    <a>Nome do Preparador Aqui</a> 
+                                    <a>Luiz Marcelo da Silva</a> 
                                 </div>
                             </div>
                             <div class="col-lg-3">
@@ -137,7 +147,7 @@
                         </div>
                     </div>
                 </div>
-
+                <!----------Terceira parte do Prontuario, onde fica localizada medicações ministradas------------>
                 <button class="btn-blue", id="action-btn">Mostrar Medicações Ministradas</button>
                 <div class="box-scheduling", id = "container-teste">
                     <div class="row">
@@ -162,7 +172,7 @@
                             </div>
                         </div>
                     </div>
-
+                    <!----------Parte onde fica o nome do Aplicador do medicamento e o leito do paciente------------>
                     <div class="row">
                         <div class="col-lg-9">
                             <button class="btn-Patient text-left">Samara Anjos de Oliveira</button>
@@ -174,7 +184,7 @@
                         </div>
                     </div>
                 </div>    
-
+                <!----------Quarta parte do Prontuario, onde fica localizada as ocorrências------------>
                 <button class="btn-blue", id="action-btn4">Ocorrencias</button>
             <div class="box-scheduling", id= "container-teste4">
                 <form id="register">
@@ -182,7 +192,7 @@
                         
                         <h3>Tabela de ocorrencias</h3>
                     </div>  
-                            
+                            <!----------Tabela de ocorrencias para ajudar na visualização do quadro do paciente------------>
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -214,7 +224,7 @@
                             </tr>
                         </tbody>
                     </table>
-
+                        <!----------Onde o enfermeiro ou enfermeiro chefe colocara sua nova ocorrencia------------>
                         <div class="col-lg-12">
                             <label>Nova Ocorrencia</label> <br>
                             <input id="focorrencia" name="focorrencia" type="text" maxlength="100" required>
@@ -225,7 +235,7 @@
                     
                 </form>
             </div>
-            
+            <!----------Quinta parte do Prontuario, onde fica localizado as CIDs do paciente------------>
             <button class="btn-blue", id="action-btn5">CIDs</button>
             <div class="box-scheduling", id= "container-teste5">
                 <form id="register">
@@ -270,7 +280,7 @@
                         </div>                 
                 </form>
             </div>
-
+            <!----------Ultima parte do Prontuario, onde o responsável podera encerrar o Prontuario------------>
             <button class="btn-blue", id="action-btn6">Encerrar Prontuario</button>
             <div class="box-scheduling", id= "container-teste6">
                 <form id="register">
@@ -280,6 +290,7 @@
                             <input id="fsaida" name="fsaida" type="date" required>
                         </div>   
                     </div>  
+                    <!----------Com a finalização do Prontuario o responsável irá arquivar o mesmo, tornando assim ineditável.------------>
                         <div>
                             <button class="btn-blue"> Finalizar </button>
                         </div>
@@ -289,3 +300,4 @@
         </div>
     </section>
 </body>
+</html>

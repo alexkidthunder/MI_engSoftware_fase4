@@ -19,14 +19,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-Route::get('/mensagens', [HomeController::class,'mensagens'])->name('mensagensphp');
-
 /*------------ Rota para Index ------------------------ */
 
 Route::get('/', [HomeController::class,'index'])->name('index');
-
-
 
 /*------------ Rota para Primeiro Acesso ------------------------ */
 
@@ -39,7 +34,11 @@ Route::post('index/menu', [HomeController::class,'login']);
 
 /*------------ Rota para sessao ------------------------ */
 
-Route::get('/sessao', [HomeController::class,'verificarLoguin'])->name('sessao');
+Route::get('/verificarLoginAdmin', [ VerificaLoginController::class,'verificarLoginAdmin'])->name('verificarLoginA');
+Route::get('/verificarLoginEnfC', [ VerificaLoginController::class,'verificarLoginEnfC'])->name('verificarLoginEC');
+Route::get('/verificarLoginEnf', [ VerificaLoginController::class,'verificarLoginEnf'])->name('verificarLoginE');
+Route::get('/verificarLoginEst', [ VerificaLoginController::class,'verificarLoginEst'])->name('verificarLoginEst');
+Route::get('/verificarLogin', [ VerificaLoginController::class,'verificarLogin'])->name('verificarLogin');
 
 
 /*-------------------Rota para logout----------------- */
@@ -58,7 +57,7 @@ Route::get('/meuPerfil', [HomeController::class,'editPerfil'])->name('editarPerf
 
 Route::get('/menu', [AdminController::class,'menu'])->name('menu');
 Route::get('/log', [AdminController::class,'log'])->name('log');
-Route::post('/editarAtribuicao', [AdminController::class,'atribuicao'])->name('editarAtribuicao');
+Route::get('/editarAtribuicao', [AdminController::class,'atribuicao'])->name('editarAtribuicao');
 Route::get('/editarPermissao', [AdminController::class,'permissao'])->name('editarPermissao');
 Route::get('/alterarPermissao', [AdminController::class,'alterarPermissao'])->name('alterarPermissao');
 Route::get('/backup', [AdminController::class,'backup'])->name('backup');
@@ -71,16 +70,16 @@ Route::post('/alterarAtribuicao',[AdminController::class,'alterarAtribuicao'])->
 /*------------ Rota para Busca ------------------------ */
 Route::get('/lupinha', [AdminController::class,'lupinha'])->name('lupinha');
 
-/*------------ Rota para Paciente------------------------ */
+/*------------ Rota para Paciente e Prontuário------------------------ */
 
 Route::get('/listaPacientes', [HomeController::class,'listaPacientes'])->name('pacientes');
+Route::get('/prontuario',[EnfChefeController::class,'prontuario'])->name('prontuario');
+Route::get('/historicoDeProntuario', [HomeController::class,'historicoProntuario'])->name('historicoProntuario');
 
-/*------------ Rota para cadastro de paciente ------------------------ */
+/*------------ Rota para cadastro de paciente  e prontuário------------------------ */
 
 Route::get('/cadastroPaciente', [HomeController::class,'cadastroPaciente'])->name('cadastroPaciente');
 Route::post('/cadastroPaciente', [HomeController::class,'salvarPaciente'])->name('salvarPaciente');
-
-/*------------ Rota para cadastro de prontuario ------------------------ */
 Route::get('/cadastroProntuario', [HomeController::class,'cadastroProntuario'])->name('cadastroProntuario');
 
 /*------------ Rota para agendamentos ------------------------ */
@@ -98,9 +97,7 @@ Route::get('/cadastroMedicamento', [EnfChefeController::class,'cadastroMedicamen
 Route::get('/cadastroAgendamento', [EnfChefeController::class,'cadastroAgendamento'])->name('cadastroAgendamento');
 Route::get('/listaAgendamentos',[EnfChefeController::class,'listaAgendamentos'])->name('listaAgendamentos');
 Route::get('/listaResponsaveis',[EnfChefeController::class,'responsaveis'])->name('responsaveis');
-Route::get('/prontuario',[EnfChefeController::class,'prontuario'])->name('prontuario');
 Route::get('/cadastroLeito',[EnfChefeController::class,'cadastroLeito'])->name('cadastroLeito');
-Route::get('/historicoEntradaSaida',[EnfChefeController::class,'historicoEntradaSaida'])->name('historicoEntradaSaida');
 Route::post('/cadastroMedicamento', [EnfChefeController::class,'salvarMedicamento'])->name('salvarMedicamento');
 
 /*------------ Rotas do enfermeiro -------------------*/
@@ -114,3 +111,4 @@ Route::get('/menuEstagiario', [EstagiarioController::class,'menu'])->name('menu-
 /*------------ Rotas do medicamento -------------------*/
 
 Route::get('/listaMedicamento', [HomeController::class,'listaMedicamento'])->name('listaMedicamento');
+

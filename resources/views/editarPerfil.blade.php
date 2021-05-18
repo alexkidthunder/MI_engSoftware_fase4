@@ -19,42 +19,62 @@
 
 <body>
     <!----------Hearder------------>
+    @if(isset($_SESSION['administrador']))
+    @include('layouts.navbar-adm')
+    @endif
+    @if(isset($_SESSION['enfermeiro']))
     @include('layouts.navbar')
+    @endif
+    @if(isset($_SESSION['enfermeiroChefe']))
+    @include('layouts.navbar-enfChefe')
+    @endif
+    @if(isset($_SESSION['estagiario']))
+    @include('layouts.navbar')
+    @endif
     <!----------End Hearder-------->
-    <h1>MEU PERFIL</h1>
+
     <section>
         <div class="container-1" id="perfil">
-            <div class="box">
+            <h1>MEU PERFIL</h1>
+
+            <!------------ Informações pessoais do usuário ------------>
+            <div class="box" id="perfilArea">
                 <div class="change">
                     <form id="register">
+                        <!------------ Nome do usuário ------------>
                         <div class="row">
                             <div class="col-lg-12">
                                 <label>Nome</label> <br>
-                                <input disabled id="fnome" name="fnome" type="text" maxlength="50" required>
+                                <input disabled id="fnome" name="fnome" type="text" maxlength="50">
                             </div>
                         </div>
 
                         <div class="row">
+                            <!------------ Data de nascimento ------------>
                             <div class="col-lg-4">
                                 <label>Data de Nascimento</label> <br>
-                                <input disabled id="fnascimento" name="fnascimento" type="date" required>
+                                <input disabled id="fnascimento" name="fnascimento" type="date">
                             </div>
+
+                            <!------------ CPF do usuário ------------>
                             <div class="col-lg-4">
                                 <label>CPF</label> <br>
-                                <input disabled id="fcpf" name="fcpf" type="text" required maxlength="14"
+                                <input disabled id="fcpf" name="fcpf" type="text" maxlength="14"
                                     pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
                             </div>
+
+                            <!------------ Sexo do usuário------------>
                             <div class="col-lg-4">
                                 <label>Sexo</label> <br>
                                 <div class="row no-gutters">
                                     <div id="fmasc_div" class="col-lg-6 border-m content-center">
-                                        <input type="radio" name="fsexo" value="Masculino" id="fmasc" disabled>
+                                        <input type="radio" name="fsexo" value="M" id="fmasc" disabled>
                                         <label for="fmasc" class="normal-label">Masculino</label>
                                         </input>
                                         <!--Usar o checked para deixar marcado-->
                                     </div>
                                     <div id="ffem_div" class="col-lg-6 border-f content-center">
-                                        <input type="radio" name="fsexo" value="Feminino" id="ffem" disabled>
+                                        <input type="radio" name="fsexo" value="F" id="ffem" disabled>
                                         <label for="ffem" class="normal-label">Feminino</label>
                                         </input>
                                         <!--Usar o checked para deixar marcado-->
@@ -64,10 +84,12 @@
                         </div>
 
                         <div class="row">
+                            <!------------ E-mail do usuário------------>
                             <div class="col-lg-8">
-                                <label>Email</label> <br>
-                                <input disabled id="femail" name="femail" type="email" maxlength="50" required>
+                                <label>E-mail</label> <br>
+                                <input disabled id="femail" name="femail" type="email" maxlength="50">
                             </div>
+                            <!------------ Atribuição do usuário------------>
                             <div class="col-lg-4" id="atribuiDiv">
                                 <label for="fatribui">Atribuição</label>
                                 <input disabled id="fatribui" name="fatribui" type="text" value="Enfermeiro">
@@ -75,26 +97,31 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-4" id="corenDiv" style="display: none;">
+                            <!------------ Coren se usuário for enfermeiro ou enfermeiro chefe ------------>
+                            <div class="col-lg-4" id="corenDiv">
                                 <!--Mostrar isso somente se for Enfermeiro/Chefe-->
                                 <label for="fcoren">Coren</label>
-                                <input disabled id="fcoren" name="fcoren" type="text" value="Coren do Usuario" required
+                                <input disabled id="fcoren" name="fcoren" type="text" value="Coren do Usuario"
                                     maxlength="9">
                             </div>
+                            <!------------ Botão para alterar a senha ------------>
                             <div class="col-lg-4" id="edit_div">
                                 <br>
-                                <div id="psw_info_div" style="display: none;">
+                                <div id="psw_info_div">
                                     <button type="button" class="btn-white" name="psw_info" id="psw_info">Alterar
                                         senha</button>
                                 </div>
                             </div>
                         </div>
+
                         <div id="edit_div" class="row">
+                            <!------------ Botão para editar as infomações ------------>
                             <div class="col-lg" id="edit_info_div">
                                 <button type="button" class="btn-blue" name="edit_info" id="edit_info">Editar
                                     informações</button>
                             </div>
-                            <div class="col-lg" id="confirm_info_div" style="display: none;">
+                            <!------------ Botão para cancelar ------------>
+                            <div class="col-lg hide" id="confirm_info_div">
                                 <button type="button" class="btn-blue" name="confirm_info"
                                     id="confirm_info">Salvar</button>
                                 <!--Alterar para Submit depois-->
@@ -103,44 +130,47 @@
                     </form>
                 </div>
             </div>
-            <div class="set-password">
-                <div id="psw" style="display: none">
+            <!------------ Fim das informações pessoais do usuário ------------>
+
+            <!------------ Alteração de senha ------------>
+            <div class="set-password hide" id="pswArea">
+                <div>
                     <h3 class="password-title text-center">Alterar senha</h3>
                     <br> <br>
                     <form class="content-center">
+                        <!------------ Senha atual ------------>
                         <div align="center">
                             <input type="password" id="senha-atual" name="senha-atual"
-                                placeholder="insira a senha atual" required>
+                                placeholder="insira a senha atual">
                         </div>
+                        <!------------ Nova senha ------------>
                         <div align="center">
-                            <input type="password" id="senha" name="senha" placeholder="insira a nova senha" required>
+                            <input type="password" id="senha" name="senha" placeholder="insira a nova senha">
                         </div>
+                        <!------------ Confirmação da nova senha ------------>
                         <div align="center">
                             <input type="password" id="confirmacao" name="confirmacao"
-                                placeholder="Confirme a nova senha" required>
+                                placeholder="Confirme a nova senha">
                         </div>
                         <br>
                         <div class="content-right">
                             <div class="row">
+                                <!------------ Botão para cancelar ------------>
                                 <div class="col-lg">
-                                    <button class="btn-gray">Cancelar</button>
+                                    <button id="cancelar" type="button" class="btn-gray">Cancelar</button>
                                 </div>
+                                <!------------ Botão para alterar a senha ------------>
                                 <div class="col-lg">
-                                    <button type="submit" class="btn-blue">Alterar senha</button>
+                                    <button id="alterarSenha" type="submit" class="btn-blue">Alterar senha</button>
                                 </div>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
+            <!------------ Fim da alteração de senha ------------>
         </div>
-
     </section>
-    <script>
-        document.forms['teste']['fcpf'].disabled = true
-        document.forms['teste']['fatribui'].disabled = true;
-
-    </script>
 </body>
 
 </html>

@@ -18,21 +18,29 @@
 
 <body>
     <!----------Hearder------------>
+    @if(isset($_SESSION['enfermeiro']))
+    @include('layouts.navbar')
+    @endif
+    @if(isset($_SESSION['enfermeiroChefe']))
     @include('layouts.navbar-enfChefe')
+    @endif
+    @if(isset($_SESSION['estagiario']))
+    @include('layouts.navbar')
+    @endif
     <!----------End Hearder-------->
     
     @if(Session::has('error'))
-    <div class="alert alert-danger" role="alert">
+    <div class="msg-error" role="alert">
             {{Session::get('error')}}
     </div>
     @endif  
 
     @if(Session::has('success'))
-    <div class="alert alert-success" role="alert">
+    <div class="msg-sucess" role="alert">
             {{Session::get('success')}}
     </div>
     @endif
-
+    <!---------------------Inicio do cadastro de medicamentos--------------------->
     <h1>CADASTRO DE MEDICAMENTOS</h1>
     <section>
         <div class="container-1">
@@ -40,12 +48,14 @@
                 <form id="register" action="{{ route('salvarMedicamento') }}" method="POST">
                     @csrf 
                     <div class="row">
+                    <!---------------------Inserção do nome do medicamento--------------------->
                         <div class="col-lg-12">
                             <label>Nome</label> <br>
                             <input id="fnome" name="fnome" type="text" maxlength="50" required>
                         </div>
                     </div>
                     <div class="row">
+                    <!---------------------Inserção do nome do fabricante--------------------->
                         <div class="col-lg-12">
                             <label>Fabricante</label> <br>
                             <input id="ffabricante" name="ffabricante" type="text" maxlength="50" required>
@@ -53,10 +63,12 @@
                     </div>
 
                     <div class="row">
+                    <!---------------------Inserção da data de validade do medicamento--------------------->
                         <div class="col-lg-4">
                             <label>Data de Validade</label> <br>
-                            <input id="fnascimento" name="fnascimento" type="date" required>
+                            <input id="fvalidade" name="fvalidade" type="date" required>
                         </div>
+                        <!---------------------Inserção da quantidadedo medicamento--------------------->
                         <div class="col-lg-4">
                             <label>Quantidade</label> <br>
                             <input id="fquantidade" name="fquantidade" type="text" required maxlength="40" required>
@@ -67,8 +79,10 @@
                         <button class="btn-blue"> Cadastrar </button>
                     </div>
                 </form>
+                <!---------------------Fim da tabela de cadastro de medicamento--------------------->
 
             </div>
         </div>
     </section>
 </body>
+</html>

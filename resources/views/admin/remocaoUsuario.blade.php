@@ -25,7 +25,7 @@
     <div class="container-1">
         <div class="box">
             <!--Buscar funcionário-->
-            <div class="content-center">
+            <div class="content-center"> <!--Área onde se busca um funcionário-->
                 <h3>BUSCAR FUNCIONÁRIO</h3>
                 <form class="search-bar" action="/buscarUsuario" method="GET">
                     <input name="cpf_user" id="cpf_user" type="text" placeholder="Informe o CPF" required maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
@@ -33,46 +33,46 @@
                         <i class="fas fa-search"></i>
                     </button>
                 </form>
-            </div>
+            </div> <!--Fim da área onde se busca um funcionário-->
 
             <!--Infomações do funcionário funcionário-->
             @if(isset($user))
             @if(!is_array($user))
             @if($user == 0)
-            <div class='alert alert-danger'> USUÁRIO NÃO ENCONTRADO</div>
+            <div class='msg-error'> O usuário não foi encontrado</div>
             @endif
             @else
 
 
             <h3>Funcionário</h3>
-            <div class="box-gray">
-                NOME: {{$user['Nome']}}
+            <div class="box-gray"> <!--Campos de informações sobre o usuário buscado-->
+                {{$user['Nome']}}
             </div>
             <div class="row">
                 <div class="col-lg-4">
                     <div class="box-gray">
                         CPF: {{$user['CPF']}}
                     </div>
-
-                    <!-- Se a atribuição for igual a zero é por que ele é do tipo Estagiário ou ADM,
-                        logo não precisa exibir o COREN -->
-                    @if($atribuicao == 0)
-                    <!-- Não exibe nada, pois não tem coren -->
-                    @else
-                    <div class="col-lg-4">
-                        <div class="box-gray">
-                            COREN: {{$atribuicao['COREN']}}
-                        </div>
-                    </div>
-                    @endif
-
-                    <div class="col-lg-4">
-                        <div class="box-gray">
-                            ATRIBUIÇÃO: {{$user['Atribuicao']}}
-                        </div>
+                </div>
+                <!-- Se a atribuição for igual a zero é por que ele é do tipo Estagiário ou ADM,
+                    logo não precisa exibir o COREN -->
+                @if($atribuicao == 0)
+                <!-- Não exibe nada, pois não tem coren -->
+                @else
+                <div class="col-lg-4">
+                    <div class="box-gray">
+                        COREN: {{$atribuicao['COREN']}}
                     </div>
                 </div>
-                <form action="/removerUsuario" method="GET">
+                @endif
+
+                <div class="col-lg-4">
+                    <div class="box-gray">
+                        {{$user['Atribuicao']}}
+                    </div>
+                </div>
+            </div> <!--Fim dos campos de informações sobre o usuário-->
+                <form action="/removerUsuario" method="GET"> <!--Form para deletar o usuário buscado-->
                     <input type="hidden" name="cpf" value="{{$user['CPF']}}">
                     <input type="hidden" name="atr" value="{{$user['Atribuicao']}}">
                     <button type="submit" class="container-button btn-blue " data-toggle="modal" data-target="#delete"> Remover </button>
@@ -82,9 +82,9 @@
                 <!--  -->
                 @if(isset($status))
                 @if($status == 1)
-                <div class='alert alert-success'> REMOVIDO COM SUCESSO </div>
+                <div class='msg-sucess'>O usuário foi removido com sucesso!</div>
                 @else
-                <div class='alert alert-danger'> OCORREU ALGUM ERRO AO REMOVER, TENTE NOVAMENTE</div>
+                <div class='msg-error'>A remoção não pôde ser concluida, tente novamente!</div>
                 @endif
                 @endif
             </div>
@@ -114,3 +114,4 @@
 
         </div>
 </body>
+</html>

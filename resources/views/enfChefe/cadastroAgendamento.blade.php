@@ -21,7 +21,15 @@
 
 <body>
     <!----------Hearder------------>
+    @if(isset($_SESSION['enfermeiro']))
+    @include('layouts.navbar')
+    @endif
+    @if(isset($_SESSION['enfermeiroChefe']))
     @include('layouts.navbar-enfChefe')
+    @endif
+    @if(isset($_SESSION['estagiario']))
+    @include('layouts.navbar')
+    @endif
     <!----------End Hearder-------->
     <section>
         <div class="container-1">
@@ -38,7 +46,7 @@
                         </button>
                     </form>
                 </div>
-                <div id="user_Data" style="display: none;">
+                <div class="hide" id="user_Data">
                     <!--Infomações do Paciente-->
                     <h3>Paciente</h3><br>
                     <div class="box-gray">
@@ -65,25 +73,28 @@
                     <div id="btn_register_medicine" class="content-center">
                         <button type="button" class="btn-blue"> Cadastrar Agendamento </button>
                     </div>
-                    <!-- Cadastro do medicamento -->
+                    <!-- Inicio de Cadastro de Agendamento -->
                 </div>
                 <div>
-                    <form id="register" style="display: none;">
+                    <form class="hide" id="register">
                         <div class="box-medicament">
                             <div class="row">
                                 <div class="col-lg-4">
+                                 <!----------Inserção de Horario do Agendamento------------>
                                     <div>
                                         <label for="horario_agendamento">Horario</label>
                                         <input type="time" name="horario_agendamento" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
+                                <!----------Inserção da Data do Agendamento------------>
                                     <div>
                                         <label for="data_agendamento">Data</label>
                                         <input type="date" name="data_agendamento" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
+                                <!----------Inserção da dosagem de medicamento aplicada naquele agendamento------------>
                                     <div>
                                         <label for="posologia_agendamento">Posologia</label>
                                         <input type="number" name="posologia_agendamento" required>
@@ -100,24 +111,29 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-8">
-                                    <div> <!-----FICA HIDDEN ATÉ QUE SEJA CLICALDO NO BOTÃO DE ALOCAR APLICADOR ----->
+                                    <div> <!-----FICA HIDDEN ATÉ QUE SEJA CLICADO NO BOTÃO DE ALOCAR APLICADOR ----->
+                                    <!----------Inicio de alocação de aplicador------------>
                                         <label for="aplicador_agendamento">Aplicador</label>
                                         <input id="aloc_inp" type="text" name="aplicador_agendamento"
-                                            placeholder="nome do aplicador" readonly>
+                                            placeholder="nome do aplicador" disabled>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <br>
                                     <button id="aloc_btn" type="button" class="btn-white"> Alocar aplicador </button>
                                 </div>
+                                 <!----------Fim de alocação de aplicador------------>
                             </div>
                         </div>
                         <div>
                             <button type="submit" class="btn-blue"> Cadastrar </button>
                         </div>
+                       
                     </form>
+                    <!----------Fim de cadastro de agendamento------------>
                 </div>
             </div>
         </div>
     </section>
 </body>
+</html>

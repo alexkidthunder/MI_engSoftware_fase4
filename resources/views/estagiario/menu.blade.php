@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 
@@ -60,7 +61,17 @@
                             <br>medicamentos que estou alocado</a></h4>
                 </div>
             </div>
-
+            <div class="col-xl-3 col-lg-3 col-md-6">
+                    <div class="card-menu text-center card-options">
+                        <div class="card-options-icon options-icon">
+                            <i class="fas fa-clipboard-list"></i>
+                            <i class="far fa-hourglass"></i>
+                        </div>
+                        <!----------Card responsável pelo Histórico de Prontuário------------>
+                        <h4 class="card-options_title"><a
+                            href="{{ route('historicoProntuario') }}">Histórico de Prontuário</a></h4>
+                    </div>
+                </div>
         </div>
     </div>
 </body>
