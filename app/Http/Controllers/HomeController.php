@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Monolog\Handler\SendGridHandler;
+
+
 class HomeController extends Controller
 {
     public function index(){
@@ -27,20 +31,37 @@ class HomeController extends Controller
         if($row == 1){ // verifica se o usuario existe no sistema. $row = 1 significa que sim
             $_SESSION['usuario'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
             
+            $cpf=$request->cpf;
+            
             /*Sequência de condicionais que verifica o cargo para reirecionar para o menu correto */
             if($atribuicao == "Administrador"){
+                if($request->senha == "12345"){
+                  // header("Location: /primeiroAcesso.$cpf");
+                 //  exit();
+                   return redirect('/primeiroAcesso')->with('cpf', $request->cpf);
+
+                }
                 return redirect() -> intended('menu');
             }else if($atribuicao == "Enfermeiro Chefe"){
+                if($request->senha == "12345"){
+                    return redirect('/primeiroAcesso')->with('cpf', $request->cpf);
+                }    
                 return redirect() -> intended('menuEnfermeiroChefe');
             }else if($atribuicao == "Enfermeiro"){
+                if($request->senha == "12345"){
+                    return redirect('/primeiroAcesso')->with('cpf', $request->cpf);
+                }   
                 return redirect() -> intended('menuEnfermeiro');
             }else if($atribuicao == "Estagiario"){
+                if($request->senha == "12345"){
+                    return redirect('/primeiroAcesso')->with('cpf', $request->cpf);
+                }   
                 return redirect() -> intended('menuEstagiario');
             }else{
-                return redirect() -> back() ->with('msg','Funcionario sem cargo, algo esta errado!!!');
+                return redirect() -> back() ->with('msg','Funcionário sem cargo, algo está errado!!!');
             }
         }else{ // caso em que o $row = 0
-            return redirect() -> back() ->with('msg','Acesso negado para essas credenciais');
+            return redirect() -> back() ->with('msg','Acesso negado para essas credenciais!!');
         }
 
     }
@@ -59,8 +80,36 @@ class HomeController extends Controller
         return view('login');
     }
     
-    public function primeiroAcesso(){
+     
+    public function acessarPrimeiroAcesso(){
         return view('primeiroAcesso');
+    }
+
+    public function primeiroAcesso(Request $request){
+        include('conexao.php');
+        $senhaDefinida = $request->senha;
+        $senhaConfirmacao = $request->confirmacao;
+        //dd($request->cpf);
+        //se a nova senha desejada for igual a de confimação
+        if ($senhaConfirmacao == $senhaDefinida){
+            //$senhaCript = Hash::make($senhaConfimacao);         //cria um hash a partir da nova senha 
+
+            $cpf = $request->cpf;          
+            $select = "SELECT * FROM usuarios where CPF = '$cpf'";
+            mysqli_query($conn,$select);
+            //dd($select);
+
+            //se existe o cpf no banco de dados
+            $update = "UPDATE usuarios SET Senha = '$senhaConfirmacao' WHERE CPF = '$cpf'";     //atualiza no banco de dados
+            mysqli_query($conn,$update);
+
+            return redirect()->route('index')->with('success','Senha cadastrada com sucesso!!');
+
+        //se a nova senha desejada for diferente da confirmada
+        }else{
+            return redirect()->route('acessarPrimeiroAcesso')->with('error','A senha de confirmação está diferente da nova senha!!');
+       }
+
     }
 
 

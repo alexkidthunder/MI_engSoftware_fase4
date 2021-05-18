@@ -11,22 +11,37 @@
     <!-- Favicon -->
     <link href="{{ asset('img/favicon.png') }}" rel="icon">
 </head>
-<body class="body-login">
+<body class="body-login">  
+
     <div id="access-box">
         <a href="{{ route('index') }}">Login</a>
     </div>
+    <form id="first-access" class = "form" action="{{ route('primeiroAcesso') }}" method="POST">
+    @csrf
 
-    <form id="first-access" class = "form" action="">
+    @if(Session::has('error'))
+        <div class="alert alert-danger" role="alert">
+            {{Session::get('error')}}
+        </div>
+    @endif  
+    @if(Session::has('success'))
+        <div class="alert alert-success" role="alert">
+            {{Session::get('success')}}
+        </div>
+    @endif      
+        
     <div class="box-login">
+            <input type="hidden" name="cpf" value="{{Session::get('cpf')}}">
+
             <h2>Primeiro acesso</h2>
             <h4>Defina sua senha abaixo:</h4>
-            <div>
+            <div> 
                 <label>Senha</label>
                 <input type="password" name= "senha" placeholder="Digite sua senha" required>
             </div>
             <div>
                 <label>Confirmação</label>
-                <input type="password" name= "senha" placeholder="Digite a mesma senha" required>
+                <input type="password" name= "confirmacao" placeholder="Digite a mesma senha" required>
             </div>
             <div class="enter">
                 <button type= "submit">Enviar</button>

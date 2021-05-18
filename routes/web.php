@@ -30,7 +30,8 @@ Route::get('/', [HomeController::class,'index'])->name('index');
 
 /*------------ Rota para Primeiro Acesso ------------------------ */
 
-Route::get('/primeiroAcesso', [HomeController::class,'primeiroAcesso'])->name('primeiroAcesso');
+Route::post('/primeiroAcesso', [HomeController::class,'primeiroAcesso'])->name('primeiroAcesso');
+Route::get('/primeiroAcesso', [HomeController::class,'acessarPrimeiroAcesso'])->name('acessarPrimeiroAcesso');
 
 /*------------ Rota para login ------------------------ */
 

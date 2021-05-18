@@ -217,7 +217,7 @@ class AdminController extends Controller
                     mysqli_query($connect,$insert); // Adicioa usuario a novo cargo
                     return redirect() -> back() ->with('msg','O enfermeiro chefe de cpf :'.$cpf.'foi rebaixado para enfermeiro com sucesso!!!!'); //Redireciona para pagina anterior e mostra mensagem de erro
                 }else{
-                    return redirect() -> back() ->with('msg','Cargo selecionado invalido'); //Redireciona para pagina anterior e mostra mensagem de erro
+                    return redirect() -> back() ->with('msg','Cargo selecionado inválido!!'); //Redireciona para pagina anterior e mostra mensagem de erro
                 }
             }
             else if($atribuicao == 'Enfermeiro'){
@@ -230,7 +230,7 @@ class AdminController extends Controller
                     mysqli_query($connect,$insert);// Adicioa usuario a novo cargo
                     return redirect() -> back() ->with('msg','O enfermeiro de cpf :'.$cpf.'foi promovido para enfermeiro chefe com sucesso!!!!'); //Redireciona para pagina anterior e mostra mensagem de erro
                 }else{
-                    return redirect() -> back() ->with('msg','Cargo selecionado invalido'); //Redireciona para pagina anterior e mostra mensagem de erro
+                    return redirect() -> back() ->with('msg','Cargo selecionado inválido!!'); //Redireciona para pagina anterior e mostra mensagem de erro
                 }
             }
             else if($atribuicao == 'Estagiario'){
@@ -241,7 +241,7 @@ class AdminController extends Controller
                     mysqli_query($connect,$update); // atualiza a atribuicao no BD
                     $insert = "INSERT INTO enfermeiros (CPF,COREN,Plantao) VALUES ('$cpf','$request->fcoren','false')";
                     mysqli_query($connect,$insert);// Adicioa usuario a novo cargo
-                    return redirect() -> back() ->with('msg','O estagiario de cpf :'.$cpf.'foi promovido para enfermeiro com sucesso!!!!'); //Redireciona para pagina anterior e mostra mensagem de erro
+                    return redirect() -> back() ->with('msg','O estagiário de cpf :'.$cpf.'foi promovido para enfermeiro com sucesso!!!!'); //Redireciona para pagina anterior e mostra mensagem de erro
                 }else if($request->novaAtribuicao == "enfermeiroChefe"){
                     $delete = "DELETE estagiarios WHERE CPF='$cpf'";
                     mysqli_query($connect,$delete); // Deleta usuarios
@@ -249,9 +249,9 @@ class AdminController extends Controller
                     mysqli_query($connect,$update); // atualiza a atribuicao no BD
                     $insert = "INSERT INTO enfermeiros_chefes (CPF,COREN) VALUES ('$cpf','$request->fcoren')";
                     mysqli_query($connect,$insert);// Adicioa usuario a novo cargo
-                    return redirect() -> back() ->with('msg','O estagiario de cpf :'.$cpf.'foi promovido para enfermeiro chefe com sucesso!!!!'); //Redireciona para pagina anterior e mostra mensagem de erro
+                    return redirect() -> back() ->with('msg','O estagiário de cpf :'.$cpf.'foi promovido para enfermeiro chefe com sucesso!!!!'); //Redireciona para pagina anterior e mostra mensagem de erro
                 }else{
-                    return redirect() -> back() ->with('msg','Cargo selecionado invalido'); //Redireciona para pagina anterior e mostra mensagem de erro
+                    return redirect() -> back() ->with('msg','Cargo selecionado inválido!!'); //Redireciona para pagina anterior e mostra mensagem de erro
                 }
             }
         }else{       
@@ -331,9 +331,6 @@ class AdminController extends Controller
                 mysqli_query($conn,$novoAdm);
 
             }else{  
-                $novoResp = "INSERT INTO responsaveis (CPF) values ('$request->fcpf')";
-                mysqli_query($conn,$novoResp);
-
                 //insere na tabela de enfermeiro chefe
                 if ($request->fatribui == 'Enfermeiro Chefe') {
                     $novoEnfChefe = "INSERT INTO enfermeiros_chefes (CPF,COREN) values ('$request->fcpf','$request->fcoren')";
