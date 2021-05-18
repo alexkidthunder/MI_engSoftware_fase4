@@ -13,14 +13,14 @@
     <link href="{{ asset('img/favicon.png') }}" rel="icon">
 </head>
 
-<body class="body-login">  
-
+<body class="body-login">
+    <!----- Caixa para tela de primeiro acesso ----->
     <div id="access-box">
         <a href="{{ route('index') }}">Login</a>
     </div>
-    <form id="first-access" class = "form" action="{{ route('primeiroAcesso') }}" method="POST">
-    @csrf
+    <!---------------- fim da Caixa --------------->
 
+    
     @if(Session::has('error'))
         <div class="alert alert-danger" role="alert">
             {{Session::get('error')}}
@@ -31,24 +31,10 @@
             {{Session::get('success')}}
         </div>
     @endif      
-        
-    <div class="box-login">
-            <input type="hidden" name="cpf" value="{{Session::get('cpf')}}">
-
-            <h2>Primeiro acesso</h2>
-            <h4>Defina sua senha abaixo:</h4>
-            <div> 
-
-
-<body class="body-login">
-    <!----- Caixa para tela de primeiro acesso ----->
-    <div id="access-box">
-        <a href="{{ route('index') }}">Login</a>
-    </div>
-    <!---------------- fim da Caixa --------------->
 
     <!--Página de meu primeiro acesso -->
-    <form id="first-access" class="form" action="">
+    <form id="first-access"  class = "form" action="{{ route('primeiroAcesso') }}" method="POST">
+        @csrf
         <div class="box-login">
             <h2>Primeiro acesso</h2>
             <h4>Defina sua senha abaixo:</h4>
