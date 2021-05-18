@@ -84,7 +84,7 @@
         <!---------- Histórico de prontuários ---------->
         <div {{-- class="hide" --}} id="record">
 
-            <!------------- Prontuário 1 ------------->
+            <!------------- Prontuário ------------->
             <div class="box-scheduling">
                 <div class="row">
                     <!------ Data de internação ------>
@@ -116,42 +116,8 @@
                     </div>
                 </div>
             </div>
-            <!------------- fim do prontuário 1 ------------->
+            <!------------- fim do prontuário ------------->
 
-            <!------------- Prontuário 2 ------------->
-            <div class="box-scheduling">
-                <div class="row">
-                    <!------ Data de internação ------>
-                    <div class="col-lg-3">
-                        <label>Data de Internação:</label> <br>
-                        <div class="box-gray">
-                            01/02/2021
-                        </div>
-                    </div>
-                    <!------ Data de saída ------>
-                    <div class="col-lg-3">
-                        <label>Data de Saída:</label> <br>
-                        <div class="box-gray">
-                            05/02/2021
-                        </div>
-                    </div>
-                    <!------ Motivo da saída ------>
-                    <div class="col-lg-3">
-                        <label>Motivo:</label> <br>
-                        <div class="box-gray">
-                            Em alta
-                        </div>
-                    </div>
-                    <!------ Botão para acessar prontuário ------>
-                    <div class="col-lg-3 input-full-width">
-                        <br>
-                        <a href="{{ route('prontuario') }}" target="_parent"><button
-                            class="btn-blue">Prontuário</button></a>
-                    </div>
-                </div>
-            </div>
-            <!------------- fim do prontuário 2 ------------->
-        </div>
         <!---------- Fim de histórico de prontuários ---------->
     </div>
 </body>

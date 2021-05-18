@@ -39,7 +39,7 @@
     <div class="container-1" id="medicament-list">
         <h1>MEDICAMENTOS CADASTRADOS</h1>
 
-        <!-------------- Medicamento 1 -------------->
+        <!-------------- Medicamento  -------------->
         <div class="box-white">
             <!----- Nome do medicamento----->
             <div class="row">
@@ -74,44 +74,7 @@
                 </div>
             </div>
         </div>
-        <!-------------- Fim do medicamento 1 -------------->
-
-        <!-------------- Medicamento 2 -------------->
-        <div class="box-white">
-            <!----- Nome do medicamento----->
-            <div class="row">
-                <div class="col-lg-12">
-                    <label>Nome</label> <br>
-                    <div class="box-blue">
-                        Dipirona
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <!----- Data de validade do medicamento----->
-                <div class="col-lg-3">
-                    <label>Data de validade</label> <br>
-                    <div class="box-gray">
-                        10/03/2022
-                    </div>
-                </div>
-                <!-----Quantidade do medicamento----->
-                <div class="col-lg-3">
-                    <label>Em estoque</label> <br>
-                    <div class="box-gray">
-                        250
-                    </div>
-                </div>
-                <!-----Fabricante do medicamento----->
-                <div class="col-lg-6">
-                    <label>Fabricante</label> <br>
-                    <div class="box-gray">
-                        União MDN
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-------------- Fim do medicamento 2 -------------->
+        <!-------------- Fim do medicamento  -------------->
     </div>
 </body>
 
