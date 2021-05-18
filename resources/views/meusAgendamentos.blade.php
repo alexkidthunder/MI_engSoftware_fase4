@@ -33,7 +33,7 @@
     <div class="container-1">
         <h1>MEUS AGENDAMENTOS ALOCADOS</h1>
 
-        <!---------------------Agendamento 1 --------------------->
+        <!---------------------Agendamento --------------------->
         <div class="box-scheduling" id="scheduling">
             <div class="row">
                 <div class="col-lg-2 text-center">
@@ -85,62 +85,7 @@
                 </div>
             </div>
         </div>
-        <!---------------------Fim de agendamento 1--------------------->
-
-        <!---------------------Agendamento 2 --------------------->
-        <div class="box-scheduling" id="scheduling">
-            <div class="row">
-                <div class="col-lg-2 text-center">
-                    <!------ Horário previsto para o agendamento ---->
-                    <div class="box-gray">
-                        00:30h
-                    </div>
-                </div>
-                <!------ Data prevista para o agendamento ---->
-                <div class="col-lg-2 text-center">
-                    <div class="box-gray">
-                        23/05/2021
-                    </div>
-                </div>
-                <!------ Nome do medicamento ---->
-                <div class="col-lg-6">
-                    <div class="box-white">
-                        Besetasil
-                    </div>
-                </div>
-                <!------ Posologia do medicamento ---->
-                <div class="col-lg-2">
-                    <div class="box-white">
-                        0.36 ml
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <!------ Nome do paciente ao qual o agendamento pertence ---->
-                <div class="col-lg-9">
-                    <a href="{{ route('prontuario') }}" target="_parent"><button class="btn-Patient text-left">Marcos
-                            Abreu da Silva</button></a>
-                </div>
-                <!------ Leito em que o paciente está internado ---->
-                <div class="col-lg-3">
-                    <div class="box-blue">
-                        Leito: AB005
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-9">
-                </div>
-                <div class="col-lg-3">
-                    <!---------- Botão para finalizar aplicação ---------->
-                    <div>
-                        <button type="submit" class="btn-white"> Finalizar aplicação</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!---------------------Fim de agendamento 2--------------------->
+        <!---------------------Fim de agendamento --------------------->
     </div>
 </body>
 
