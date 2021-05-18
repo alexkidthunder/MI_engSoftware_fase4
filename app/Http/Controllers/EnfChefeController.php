@@ -314,7 +314,7 @@ class EnfChefeController extends Controller
         
     }
 
-    public function prontuario(){
+   /* public function prontuario(){
         VerificaLoginController::verificarLogin();
         include("db.php");
         if(isset($_SESSION['enfermeiroChefe'])){
@@ -357,7 +357,7 @@ class EnfChefeController extends Controller
                 return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
             }
         }
-    }
+    }*/
 
     public function cadastroLeito(){
         VerificaLoginController::verificarLogin();
