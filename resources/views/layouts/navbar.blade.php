@@ -11,7 +11,8 @@
 </head>
 
 <body>
-    <header id="header">
+    <header id="header" class="fixed-top">
+        <div class="container-fluid">
 
         <!-------- Nome do funcionário e acesso ao perfil -------->
         <div class="d-flex align-items-center justify-content-between">
@@ -92,6 +93,7 @@
                     </ul>
                 </nav>
             </div>
+        </div>
         </div>
     </header>
 </body>
