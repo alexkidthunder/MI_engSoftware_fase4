@@ -36,20 +36,20 @@
                         </div>
                     </div>
                     <div class="col"> <!--CARGO-->
-                        <div class="row no-gutters title">
+                        <div class="row no-gutters title"> <!--CABEÇÁRIO CARGO -->
                             CARGO
                         </div>
-                        <div class="row no-gutters box-blue">
+                        <div class="row no-gutters box-blue"> <!--FUNCIONÁRIO CARGO -->
                             <nobr>Enfermeiro Chefe</nobr>
                         </div>
                     </div>
                     <div class="col"> <!--EM PLANTÃO-->
                         <div class="row no-gutters title"> <!--align="center"-->
                             <div class="mx-auto">
-                                <nobr>EM PLANTÃO</nobr>
+                                <nobr>EM PLANTÃO</nobr> <!--CABEÇÁRIO EM PLANTÃO -->
                             </div>
                         </div>
-                        <div class="row no-gutters box-button">
+                        <div class="row no-gutters box-button"> <!--FUNCIONÁRIO EM PLANTÃO-->
                             <input type="checkbox" class="mx-auto">
                         </div>
                     </div>
