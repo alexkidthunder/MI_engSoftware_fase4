@@ -32,12 +32,13 @@
         </div>
     @endif      
         
-    <div class="box-login">
+   {{-- <div class="box-login">
             <input type="hidden" name="cpf" value="{{Session::get('cpf')}}">
 
             <h2>Primeiro acesso</h2>
             <h4>Defina sua senha abaixo:</h4>
-            <div> 
+            <div>
+                --}} 
 
 
 <body class="body-login">
