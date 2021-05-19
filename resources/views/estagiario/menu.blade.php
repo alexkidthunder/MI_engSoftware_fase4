@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 
@@ -23,7 +24,7 @@
 
     <div class="container-2">
         <div class="row">
-            <div class="col-xl-4 col-lg-4 col-md-6">
+            <div class="col-sm-6 col-md-4 col-lg-3">
                 <div class="card-menu text-center card-options">
                     <div class="card-options-icon options-icon">
                         <i class="fas fa-user-injured"></i>
@@ -32,7 +33,7 @@
                     <h4 class="card-options_title"><a href="{{ route('pacientes') }}">Pacientes e prontuários</a></h4>
                 </div>
             </div>
-            <div class="col-xl-4 col-lg-4 col-md-6">
+            <div class="col-sm-6 col-md-4 col-lg-3">
                 <div class="card-menu text-center card-options">
                     <div class="card-options-icon options-icon">
                         <i class="fas fa-clipboard-check"></i>
@@ -41,7 +42,7 @@
                             realizados</a></h4>
                 </div>
             </div>
-            <div class="col-xl-4 col-lg-4 col-md-6">
+            <div class="col-sm-6 col-md-4 col-lg-3">
                 <div class="card-menu text-center card-options">
                     <div class="card-options-icon options-icon">
                         <div><i class="fas fa-notes-medical"></i></div>
@@ -50,7 +51,7 @@
                 </div>
             </div>
 
-            <div class="col-xl-4 col-lg-4 col-md-6">
+            <div class="col-sm-6 col-md-4 col-lg-3">
                 <div class="card-menu text-center card-options">
                     <div class="card-options-icon options-icon">
                         <i class="fas fa-user-nurse"></i>
@@ -60,7 +61,16 @@
                             <br>medicamentos que estou alocado</a></h4>
                 </div>
             </div>
-
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                    <div class="card-menu text-center card-options">
+                        <div class="card-options-icon options-icon">
+                            <i class="fas fa-book-medical"></i>
+                        </div>
+                        <!----------Card responsável pelo Histórico de Prontuário------------>
+                        <h4 class="card-options_title"><a
+                            href="{{ route('historicoProntuario') }}">Histórico de Prontuário</a></h4>
+                    </div>
+                </div>
         </div>
     </div>
 </body>

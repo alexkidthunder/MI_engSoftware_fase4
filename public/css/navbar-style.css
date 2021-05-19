@@ -12,15 +12,13 @@
     border-radius: 0 0 40px 40px;
     box-shadow: 5px 5px 5px #AAAAAA;
     height:80px;
+    transition: all 0.5s;
+    z-index: 997;
 }
 
 #header h2{
     color: #0D6EFD;
     display:block;
-}
-
-#header img{
-    padding-left: 40px;
 }
 
 #header .user{
@@ -49,21 +47,34 @@
     justify-content:flex-end; 
 }
 
+.nav ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
 .nav > ul{
     display: flex;
 }
+
 .nav > ul > li {
     position: relative;
     white-space: nowrap;
     float: left;
     margin-left: 20px;
     list-style: none;
+    padding-top: 5px;
 }
 
 .nav > ul >li a {
     text-decoration: none;
     display: block;
     padding: 15px;
+}
+
+.nav .title-nav{
+    font-family: "Poppins",sans-serif;
+    font-weight: bold;
+    font-size:18px;
 }
 
 .nav .drop-down ul {
@@ -75,6 +86,7 @@
     border-radius: 0 0 5px 5px;
     box-shadow: 3px 3px 3px #e4e2e2;
     padding:0px;
+    margin-top: -5px;
 }
 
 .nav .drop-down:hover > ul{
@@ -82,13 +94,11 @@
     top:100%;
 }
 
-.nav a:hover .nav .active > a, .nav li:hover > a{
+.nav a:hover, .nav .active > a, .nav li:hover > a {
     color: #0D6EFD;
 }
-.nav .title-nav{
-    font-family: "Poppins",sans-serif;
-    font-weight: bold;
-    font-size:18px;
+.nav .drop-down a:hover, .nav .drop-down ul a:hover, .nav .drop-down ul .active > a, .nav .drop-down ul li:hover > a {
+    color: #0D6EFD;
 }
 
 .nav .drop-down ul li{
@@ -97,4 +107,3 @@
     font-weight: 550;
     color: rgba(48, 47, 47, 0);
 }
-

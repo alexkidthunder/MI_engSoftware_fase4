@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -18,10 +19,9 @@
     <!----------Hearder------------>
     @include('layouts.navbar-menu')
     <!----------End Hearder-------->
-
-        <div class="container-2">
+        <div class="container-2"> <!--Menu do Administrador-->
             <div class="row">
-                <div class="col-xl-3 col-lg-3 col-md-6">
+                <div class="col-xl-3 col-lg-3 col-md-6"> <!--Botão para cadastro de funcionários-->
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <i class="fas fa-user-plus"></i>
@@ -29,8 +29,8 @@
                         <h4 class="card-options_title"><a
                             href="{{ route('cadastrarUsuario') }}">Cadastro de funcionários</a></h4>
                     </div>
-                </div> 
-                <div class="col-xl-3 col-lg-3 col-md-6">
+                </div> <!--Fim do Botão-->
+                <div class="col-xl-3 col-lg-3 col-md-6"> <!--Botão para remoção de funcionários-->
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <i class="fas fa-user-minus"></i>
@@ -38,8 +38,8 @@
                         <h4 class="card-options_title"><a
                             href="{{ route('removerUsuario') }}">Remoção de funcionários</a></h4>
                     </div>
-                </div> 
-                <div class="col-xl-3 col-lg-3 col-md-6">
+                </div> <!--Fim do Botão-->
+                <div class="col-xl-3 col-lg-3 col-md-6"> <!--Botão para Log do Sistema-->
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <i class="fas fa-cogs"></i>
@@ -47,9 +47,9 @@
                         <h4 class="card-options_title"><a
                             href="{{ route('log') }}">Log do sistema</a></h4>
                     </div>
-                </div> 
+                </div> <!--Fim do Botão-->
 
-                <div class="col-xl-3 col-lg-3 col-md-6">
+                <div class="col-xl-3 col-lg-3 col-md-6"> <!--Botão para Alterar Permissão funcionários-->
                     <div class="card-menu text-center card-options"> 
                         <div class="card-options-icon options-icon">
                             <i class="fas fa-user-cog"></i>
@@ -57,9 +57,9 @@
                         <h4 class="card-options_title"><a
                             href="{{ route('editarPermissao') }}">Alterar pemissões <br>de cargos</a></h4>
                     </div>
-                </div> 
+                </div> <!--Fim do Botão-->
 
-                <div class="col-xl-3 col-lg-3 col-md-6">
+                <div class="col-xl-3 col-lg-3 col-md-6"> <!--Botão para Alterar Atribuição de funcionário-->
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <i class="fas fa-user-edit"></i>
@@ -67,9 +67,9 @@
                         <h4 class="card-options_title"><a
                             href="{{ route('editarAtribuicao') }}">Alterar atribuição <br>de funcionários</a></h4>
                     </div>
-                </div> 
+                </div> <!--Fim do Botão-->
 
-                <div class="col-xl-3 col-lg-3 col-md-6">
+                <div class="col-xl-3 col-lg-3 col-md-6"> <!--Botão para backup do sistema-->
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <i class="fas fa-database"></i>
@@ -77,8 +77,8 @@
                         <h4 class="card-options_title"><a
                             href="{{ route('backup') }}">Backup do sistema</a></h4>
                     </div>
-                </div> 
-                <div class="col-xl-3 col-lg-3 col-md-6">
+                </div> <!--Fim do Botão-->
+                <div class="col-xl-3 col-lg-3 col-md-6"> <!--Botão para relatórios gerenciais-->
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <i class="fas fa-file-alt"></i>
@@ -86,7 +86,7 @@
                         <h4 class="card-options_title"><a
                             href="#">Relatórios gerenciais</a></h4>
                     </div>
-                </div> 
+                </div> <!--Fim do Botão-->
             </div>
         </div>   
   </body>

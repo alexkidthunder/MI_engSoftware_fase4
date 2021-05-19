@@ -19,8 +19,9 @@
   </head>
   <body>
     <!----------Hearder------------>
-    @include('layouts.navbar-enfChefe')
+    @include('layouts.navbar')
     <!----------End Hearder-------->
+    
         <div id="screen-icon"> <!-- Icone de Download Em Telas -->
             <form class="download-icon">
                 <button>
@@ -28,7 +29,7 @@
                 </button>
             </form>
         </div>
-   
+
         <div class="container-1">
     
             <h1>LISTAGEM DE AGENDAMENTOS E MEDICAMENTOS </h1>
@@ -36,21 +37,25 @@
             <!---------------------Agendamento--------------------->
             <div class="box-scheduling">
                     <div class="row">
+                        <!---------------------Hora--------------------->
                         <div class="col-lg-2 text-center">
                             <div class="box-gray">
                                 22:30h
                              </div>
                         </div>
+                        <!---------------------Data--------------------->
                         <div class="col-lg-2 text-center">
                             <div class="box-gray">
                                 20/04/2021
                             </div>
                         </div>
+                        <!---------------------Nome do Medicamento--------------------->
                         <div class="col-lg-6">
                             <div class="box-white">
                             Dipirona
                              </div>
                         </div>
+                        <!---------------------Posologia--------------------->
                         <div class="col-lg-2">
                             <div class="box-white">
                                 0.35 ml
@@ -59,9 +64,11 @@
                     </div>
 
                     <div class="row">
+                    <!---------------------Nome da Paciente--------------------->
                         <div class="col-lg-9">
-                            <button class="btn-Patient text-left">Samara Anjos de Oliveira</button>
+                            <a href="{{ route('prontuario') }}" target="_parent"><button class="btn-Patient text-left">Samara Anjos de Oliveira</button></a>
                         </div>
+                        <!---------------------Leito da Paciente--------------------->
                         <div class="col-lg-3">
                             <div class="box-blue">
                                 Leito: AB04

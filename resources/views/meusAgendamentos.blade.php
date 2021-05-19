@@ -12,7 +12,7 @@
 
     <!-- Favicon -->
     <link href="{{ asset('img/favicon.png') }}" rel="icon">
-    
+
     <title>Meus agendamentos</title>
 
 </head>
@@ -22,29 +22,31 @@
     @include('layouts.navbar')
     <!----------End Hearder-------->
 
-    <!--ENFERMEIRO E ESTAGIARIO -->
     <div class="container-1">
-
         <h1>MEUS AGENDAMENTOS ALOCADOS</h1>
 
-        <!---------------------Agendamento--------------------->
+        <!---------------------Agendamento --------------------->
         <div class="box-scheduling" id="scheduling">
             <div class="row">
                 <div class="col-lg-2 text-center">
+                    <!------ Horário previsto para o agendamento ---->
                     <div class="box-gray">
                         22:30h
                     </div>
                 </div>
+                <!------ Data prevista para o agendamento ---->
                 <div class="col-lg-2 text-center">
                     <div class="box-gray">
-                        20/04/2021
+                        20/05/2021
                     </div>
                 </div>
+                <!------ Nome do medicamento ---->
                 <div class="col-lg-6">
                     <div class="box-white">
                         Dipirona
                     </div>
                 </div>
+                <!------ Posologia do medicamento ---->
                 <div class="col-lg-2">
                     <div class="box-white">
                         0.35 ml
@@ -53,12 +55,15 @@
             </div>
 
             <div class="row">
+                <!------ Nome do paciente ao qual o agendamento pertence ---->
                 <div class="col-lg-9">
-                    <button class="btn-Patient text-left">Samara Anjos de Oliveira</button>
+                    <a href="{{ route('prontuario') }}" target="_parent"><button class="btn-Patient text-left">Samara
+                            Anjos de Oliveira</button></a>
                 </div>
+                <!------ Leito em que o paciente está internado ---->
                 <div class="col-lg-3">
                     <div class="box-blue">
-                        Leito: AB04
+                        Leito: AB004
                     </div>
                 </div>
             </div>
@@ -72,6 +77,8 @@
                 </div>
             </div>
         </div>
-        <!---------------------Fim de agendamento--------------------->
+        <!---------------------Fim de agendamento --------------------->
     </div>
 </body>
+
+</html>

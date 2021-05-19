@@ -22,7 +22,7 @@
         <div class="container-2">
             <div class="row">
                 
-                <div class="col-xl-4 col-lg-4 col-md-6">
+                <div class="col-sm-6 col-md-4 col-lg-3"> <!--Botão para cadastro de paciente-->
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <i class="fas fa-user-injured"></i>
@@ -31,18 +31,18 @@
                         <h4 class="card-options_title"><a
                             href="{{ route('cadastroPaciente') }}">Cadastrar paciente</a></h4>
                     </div>
-                </div> 
-                <div class="col-xl-4 col-lg-4 col-md-6">
+                </div> <!--Fim do Botão-->
+                <div class="col-sm-6 col-md-4 col-lg-3"> <!--Botão para cadastrar prontuário-->
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <i class="fas fa-clipboard-list"></i>
                             <i class="fas fa-plus"></i>
                         </div>
                         <h4 class="card-options_title"><a
-                            href="#">Cadastrar prontuário</a></h4>
+                            href="{{ route('cadastroProntuario') }}">Cadastrar prontuário</a></h4>
                     </div>
-                </div> 
-                <div class="col-xl-4 col-lg-4 col-md-6">
+                </div>  <!--Fim do Botão-->
+                <div class="col-sm-6 col-md-4 col-lg-3"> <!--Botão para ver pacientes e prontuários-->
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <i class="fas fa-user-injured"></i>
@@ -51,8 +51,8 @@
                         <h4 class="card-options_title"><a
                             href="{{ route('pacientes') }}">Pacientes e prontuários</a></h4>
                     </div>
-                </div> 
-                <div class="col-xl-4 col-lg-4 col-md-6">
+                </div> <!--Fim do Botão-->
+                <div class="col-sm-6 col-md-4 col-lg-3"> <!--Botão para visualizar agendamentos realizados-->
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <i class="fas fa-clipboard-check"></i>
@@ -60,8 +60,8 @@
                         <h4 class="card-options_title"><a
                             href="{{ route('agendamentosRealizados') }}">Agendamentos realizados</a></h4>
                     </div>
-                </div> 
-                <div class="col-xl-4 col-lg-4 col-md-6">
+                </div> <!--Fim do Botão-->
+                <div class="col-sm-6 col-md-4 col-lg-3"> <!--Botão para visualizar agendamentos-->
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <div><i class="fas fa-notes-medical"></i></div>
@@ -69,9 +69,9 @@
                         <h4 class="card-options_title"><a
                             href="{{ route('agendamentos') }}">Agendamentos</a></h4>
                     </div>
-                </div> 
+                </div> <!--Fim do Botão-->
 
-                <div class="col-xl-4 col-lg-4 col-md-6">
+                <div class="col-sm-6 col-md-4 col-lg-3"> <!--Botão para visualizar agendamentos que está alocado-->
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <i class="fas fa-user-nurse"></i>
@@ -80,8 +80,17 @@
                         <h4 class="card-options_title"><a
                             href="{{ route('meusAgendamentos') }}">Agendamentos e <br>medicamentos que estou alocado</a></h4>
                     </div>
-                </div> 
-               
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                    <div class="card-menu text-center card-options">
+                        <div class="card-options-icon options-icon">
+                            <i class="fas fa-book-medical"></i>
+                        </div>
+                        <!----------Card responsável pelo Histórico de Prontuário------------>
+                        <h4 class="card-options_title"><a
+                            href="{{ route('historicoProntuario') }}">Histórico de prontuário</a></h4>
+                    </div>
+                </div>
             </div>  
         </div>
   </body>

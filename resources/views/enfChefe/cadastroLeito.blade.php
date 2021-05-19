@@ -10,20 +10,21 @@
     <link href="{{ 'css/style.css' }}" rel="stylesheet">
     <link href="{{ 'bootstrap/css/bootstrap.css' }}" rel="stylesheet">
 
-    <title>Cadastro e Remoção de Leito</title>
+    <title>Cadastro e remoção de Leito</title>
 
 </head>
 
 <body>
     <!----------Hearder------------>
-    @include('layouts.navbar-enfChefe')
+    @include('layouts.navbar')
     <!----------End Hearder-------->
-    <section> 
+    <section>
 
         <div class="container-1">
-                <h1>CADASTRO DE LEITO</h1>
+            <h1>CADASTRO E REMOÇÃO DE LEITO</h1>
             <div class="box">
                 <br>
+                <!---------------------Inicio de cadastro de um novo leito--------------------->
                 <form id="register">
                     <div class="box-cadastroLeito">
                         <div class="row">
@@ -35,13 +36,14 @@
                             </div>
                             <button type="submit" class="btn-blue"> Cadastrar </button>
                         </div>
-                        <div class="box-scheduling", id= "container-teste4">
+                        <!---------------------Fim de cadastro de leitos--------------------->
+                        <div class="box-scheduling" , id="container-teste4">
                             <form id="register">
                                 <div class="row">
-                                    
+                            <!---------------------Inicio da Tabela com todos os leitos cadastrados--------------------->
                                     <h3>Tabela de Leitos</h3>
-                                </div>  
-                                        
+                                </div>
+
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
@@ -68,21 +70,23 @@
                                         </tr>
                                     </tbody>
                                 </table>
-
-                                    <div class="col-lg-6">
-                                        <label>Apagar leito</label> <br>
-                                        <input id="focorrencia" name="focorrencia" type="text" maxlength="10" required>
-                                            <div>
-                                            <button class="btn-blue"> Deletar </button>
-                                            </div>
+                            <!---------------------Fim da Tabela com todos os leitos cadastrados--------------------->
+                                <div class="col-lg-6">
+                                    <label>Remover leito</label> <br> <br>
+                                    <!---------------------Inicio de remover leito--------------------->
+                                    <input id="focorrencia" name="focorrencia" type="text" maxlength="10" required>
+                                    <div>
+                                        <button class="btn-blue"> Deletar </button>
                                     </div>
-                                
+                                </div>
+                                    <!---------------------Fim de remover leito--------------------->
                             </form>
                         </div>
 
-                    </div> 
-                </form>      
-            </div>         
-        </div>      
-    </section> 
- </body>
+                    </div>
+                </form>
+                <!---------------------Fim da tela de cadastro leito--------------------->
+            </div>
+        </div>
+    </section>
+</body>

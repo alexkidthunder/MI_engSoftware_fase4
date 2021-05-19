@@ -19,7 +19,7 @@
 
 <body>
     <!----------Hearder------------>
-    @include('layouts.navbar-enfChefe')
+    @include('layouts.navbar')
     <!----------End Hearder-------->
     <section>
         <div class="container-1" id="on-duty">

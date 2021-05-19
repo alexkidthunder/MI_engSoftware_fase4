@@ -30,36 +30,36 @@
                     <i class="fas fa-download"></i>
                 </button>
             </form>
-            
+            <!--Tabela com os Logs do Sistema-->
             <table class="table table-striped">
                 <thead>
-                    <tr>
+                    <tr> <!--Header da Tabela-->
                         <th scope="col">Data/Hora</th>
                         <th scope="col">Ação</th>
                         <th scope="col">IP</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr> <!--Inicio de um Log-->
                         <td>14/03/2021 - 15:03</td>
                         <td>Login no Sistema</td>
                         <td>142.245.371.224</td>
-                    </tr>
-                    <tr>
+                    </tr> <!--Fim de um Log-->
+                    <tr> <!--Inicio de um Log-->
                         <td>14/03/21 - 15:02</td>
                         <td>Visualizou Prontuários</td>
                         <td>120.762.301.102</td>
-                    </tr>
-                    <tr>
+                    </tr> <!--Fim de um Log-->
+                    <tr> <!--Inicio de um Log-->
                         <td>14/03/21 - 15:02</td>
                         <td>Visualizou Agendamentos</td>
                         <td>120.762.301.102</td>
-                    </tr>
-                    <tr>
+                    </tr> <!--Fim de um Log-->
+                    <tr> <!--Inicio de um Log-->
                         <td>13/03/21 - 12:30</td>
                         <td>Removeu Usuario João Vítor</td>
                         <td>182.271.211.654</td>
-                    </tr>
+                    </tr> <!--Fim de um Log-->
                 </tbody>
             </table>
         </div>
