@@ -139,7 +139,7 @@ CREATE TABLE prontuarios (
 CREATE TABLE usuarios (
   CPF char(14) NOT NULL, /*Chave primaria*/
   Nome varchar(50) NOT NULL,
-  Senha varchar(20) NOT NULL,
+  Senha varchar(60) NOT NULL,
   Email varchar(50) NOT NULL,
   Data_Nasc date NOT NULL,
   Atribuicao enum('Administrador','Enfermeiro Chefe','Enfermeiro','Estagiario') NOT NULL,
