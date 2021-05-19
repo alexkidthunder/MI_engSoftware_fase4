@@ -49,20 +49,20 @@ CREATE TABLE cid_prontuario (
 
 /*Cria tabela de enfermeiros*/
 CREATE TABLE enfermeiros (
-  CPF char(14) NOT NULL, /* Chave estrangeira que faz referência ao responsável*/
+  CPF char(14) NOT NULL, /* Chave estrangeira que faz referência ao usuarios*/
   COREN char(12) NOT NULL,
   Plantao tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Cria tabela de enfermeiros  chefes*/
 CREATE TABLE enfermeiros_chefes (
-  CPF char(14) NOT NULL, /* Chave estrangeira que faz referência ao responsável*/
+  CPF char(14) NOT NULL, /* Chave estrangeira que faz referência ao usuarios*/
   COREN char(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Cria tabela de estagiarios*/
 CREATE TABLE estagiarios (
-  CPF char(14) NOT NULL, /* Chave estrangeira que faz referência ao responsável*/
+  CPF char(14) NOT NULL, /* Chave estrangeira que faz referência ao usuarios*/
   Plantao tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -96,7 +96,7 @@ CREATE TABLE ocorrencias (
   Data_ocorr date NOT NULL,
   ID_prontuario bigint(20) NOT NULL,
   Descricao text NOT NULL,
-  CPF char(14) NOT NULL /* Chave estrangeira que faz refência ao Responsável*/
+  CPF char(14) NOT NULL /* Chave estrangeira que faz refência ao usuarios*/
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Cria tabela de pacientes*/
@@ -135,7 +135,7 @@ CREATE TABLE prontuarios (
 CREATE TABLE usuarios (
   CPF char(14) NOT NULL, /*Chave primaria*/
   Nome varchar(50) NOT NULL,
-  Senha varchar(20) NOT NULL,
+  Senha varchar(60) NOT NULL,
   Email varchar(50) NOT NULL,
   Data_Nasc date NOT NULL,
   Atribuicao enum('Administrador','Enfermeiro Chefe','Enfermeiro','Estagiario') NOT NULL,
