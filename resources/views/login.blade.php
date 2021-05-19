@@ -18,12 +18,6 @@
 
 <body class="body-login">
 
-    <!----- Caixa para tela de primeiro acesso ----->
-    <div id="access-box">
-        <a href="{{ route('primeiroAcesso') }}">Primeiro acesso? Clique aqui para definir a senha</a>
-    </div>
-    <!---------------- fim da Caixa --------------->
-
     <form id="login" action="/index/menu" method="post">
         @csrf
         <div class="box-login">
