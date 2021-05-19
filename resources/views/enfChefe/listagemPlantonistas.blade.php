@@ -34,25 +34,33 @@
             <h1>LISTAGEM DE PLANTONISTA</h1>
 
             <div class="box-on-duty">
-              <!--------- Cabeçario --------->
-              <div class="title">
                 <div class="row">
-                    <div class="col-lg-8">
-                        NOME
-                    </div>
-                    <div class="col-lg-4">
-                        CARGO
-                    </div>
-                </div>
-              </div>
-              <!--------- Plantonista --------->
-                <div class="box-blue">
-                    <div class="row">
-                        <div class="col-lg-8">
-                            Rafela Soares da Silva
+                    <div class="col">
+                        <!--------- Cabeçario - Nome --------->
+                        <div class="row no-gutters title">
+                            <div class="col">
+                                NOME
+                            </div>
                         </div>
-                        <div class="col-lg-4">
-                            Enfermeiro chefe
+                        <!--------- Nome do Plantonista --------->
+                        <div class="row no-gutters box-blue">
+                            <div class="col">
+                                <p><nobr>Rafaela Soares da Silva</nobr></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <!--------- Cabeçario - Cargo --------->
+                        <div class="row no-gutters title">
+                            <div class="col">
+                                CARGO
+                            </div>
+                        </div>
+                        <!--------- Cargo do Plantonista --------->
+                        <div class="row no-gutters box-blue">
+                            <div class="col">
+                                <p><nobr>Enfermeiro Chefe</nobr></p>
+                            </div>
                         </div>
                     </div>
                 </div>
