@@ -33,18 +33,30 @@ class HomeController extends Controller
             /*Sequência de condicionais que verifica o cargo para reirecionar para o menu correto */
             if($atribuicao == "Administrador"){
                 $_SESSION['administrador'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
+                if($request->senha == 12345){
+                    return redirect('/primeiroAcesso')->with('cpf', $request->cpf);
+                }
                 header("Location: /menu");
                 exit();
             }else if($atribuicao == "Enfermeiro Chefe"){
                 $_SESSION['enfermeiroChefe'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
+                if($request->senha == 12345){
+                    return redirect('/primeiroAcesso')->with('cpf', $request->cpf);
+                }
                 header("Location: /menuEnfermeiroChefe");
                 exit();
             }else if($atribuicao == "Enfermeiro"){
                 $_SESSION['enfermeiro'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
+                if($request->senha == 12345){
+                    return redirect('/primeiroAcesso')->with('cpf', $request->cpf);
+                }
                 header("Location: /menuEnfermeiro");
                 exit();
             }else if($atribuicao == "Estagiario"){
                 $_SESSION['estagiario'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
+                if($request->senha == 12345){
+                    return redirect('/primeiroAcesso')->with('cpf', $request->cpf);
+                }
                 header("Location: /menuEstagiario");
                 exit();
             }else{
@@ -71,6 +83,8 @@ class HomeController extends Controller
 
     public function primeiroAcesso(Request $request){
         include('conexao.php');
+        session_start();
+
         $senhaDefinida = $request->senha;
         $senhaConfirmacao = $request->confirmacao;
         //dd($request->cpf);
@@ -78,20 +92,19 @@ class HomeController extends Controller
         if ($senhaConfirmacao == $senhaDefinida){
             //$senhaCript = Hash::make($senhaConfimacao);         //cria um hash a partir da nova senha 
 
-            $cpf = $request->cpf;          
+            $cpf = $request->cpf;        
             $select = "SELECT * FROM usuarios where CPF = '$cpf'";
-            mysqli_query($conn,$select);
-            //dd($select);
+            $busca = mysqli_query($conn,$select);
 
             //se existe o cpf no banco de dados
             $update = "UPDATE usuarios SET Senha = '$senhaConfirmacao' WHERE CPF = '$cpf'";     //atualiza no banco de dados
             mysqli_query($conn,$update);
 
-            return redirect()->route('index')->with('success','Senha cadastrada com sucesso!!');
+            return redirect()->route('index')->with('msg-sucess','Senha cadastrada com sucesso!!');
 
         //se a nova senha desejada for diferente da confirmada
         }else{
-            return redirect()->route('acessarPrimeiroAcesso')->with('error','A senha de confirmação está diferente da nova senha!!');
+            return redirect()->route('acessarPrimeiroAcesso')->with('msg-error','A senha de confirmação está diferente da nova senha!!');
        }
 
     }
@@ -380,5 +393,50 @@ class HomeController extends Controller
             //se existir o paciente cadastrado
             return redirect()->route('cadastroPaciente')->with('error', "Paciente já existente no banco de dados!!");
         } 
+    }
+
+    public function prontuario(){
+        VerificaLoginController::verificarLogin();
+        include("db.php");
+        if(isset($_SESSION['enfermeiroChefe'])){
+            $sql = "SELECT * FROM permissao_cargo where permissao_id = '18'";
+            $query = mysqli_query($connect,$sql);
+            while($sql = mysqli_fetch_array($query)){
+                if($sql['cargo_id'] == '2'){
+                    $resultado = $sql['ativo'];
+                }
+            }
+            if($resultado == "1"){
+                return view('prontuario');
+            }else{
+                return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
+            }
+        }else if(isset($_SESSION['enfermeiro'])){
+            $sql = "SELECT * FROM permissao_cargo where permissao_id = '18'";
+            $query = mysqli_query($connect,$sql);
+            while($sql = mysqli_fetch_array($query)){
+                if($sql['cargo_id'] == '3'){
+                    $resultado = $sql['ativo'];
+                }
+            }
+            if($resultado == "1"){
+                return view('prontuario');
+            }else{
+                return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
+            }
+        }else if(isset($_SESSION['estagiario'])){
+            $sql = "SELECT * FROM permissao_cargo where permissao_id = '18'";
+            $query = mysqli_query($connect,$sql);
+            while($sql = mysqli_fetch_array($query)){
+                if($sql['cargo_id'] == '4'){
+                    $resultado = $sql['ativo'];
+                }
+            }
+            if($resultado == "1"){
+                return view('prontuario');
+            }else{
+                return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
+            }
+        }
     }
 }

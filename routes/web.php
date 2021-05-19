@@ -23,14 +23,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class,'index'])->name('index');
 
-/*------------ Rota para Primeiro Acesso ------------------------ */
+/*------------ Rota do login------------------------ */
 
 Route::post('/primeiroAcesso', [HomeController::class,'primeiroAcesso'])->name('primeiroAcesso');
 Route::get('/primeiroAcesso', [HomeController::class,'acessarPrimeiroAcesso'])->name('acessarPrimeiroAcesso');
 
-/*------------ Rota para login ------------------------ */
-
 Route::post('index/menu', [HomeController::class,'login']);
+
+Route::get('/esqueciSenha',[HomeController::class,'esqueciSenha'])->name('esqueciSenha');
+
+/*-------------------Rota para logout----------------- */
+
+Route::get('/logout', [HomeController::class,'logout'])->name('logout');
 
 /*------------ Rota para sessao ------------------------ */
 
@@ -39,15 +43,6 @@ Route::get('/verificarLoginEnfC', [ VerificaLoginController::class,'verificarLog
 Route::get('/verificarLoginEnf', [ VerificaLoginController::class,'verificarLoginEnf'])->name('verificarLoginE');
 Route::get('/verificarLoginEst', [ VerificaLoginController::class,'verificarLoginEst'])->name('verificarLoginEst');
 Route::get('/verificarLogin', [ VerificaLoginController::class,'verificarLogin'])->name('verificarLogin');
-
-
-/*-------------------Rota para logout----------------- */
-
-Route::get('/logout', [HomeController::class,'logout'])->name('logout');
-
-/*--------- Rota para login caso esqueceu senha ---------- */
-
-Route::get('/esqueciSenha',[HomeController::class,'esqueciSenha'])->name('esqueciSenha');
 
 /*------------ Rota para o perfil ------------------------ */
 
@@ -73,7 +68,7 @@ Route::get('/lupinha', [AdminController::class,'lupinha'])->name('lupinha');
 /*------------ Rota para Paciente e Prontuário------------------------ */
 
 Route::get('/listaPacientes', [HomeController::class,'listaPacientes'])->name('pacientes');
-Route::get('/prontuario',[EnfChefeController::class,'prontuario'])->name('prontuario');
+Route::get('/prontuario',[HomeController::class,'prontuario'])->name('prontuario');
 Route::get('/historicoDeProntuario', [HomeController::class,'historicoProntuario'])->name('historicoProntuario');
 
 /*------------ Rota para cadastro de paciente  e prontuário------------------------ */

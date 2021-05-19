@@ -25,7 +25,7 @@ h1 {
     font-size: 32px;
     color: #0D6EFD;
     font-weight: bolder;
-    margin-top: 100px;
+    margin-top: 150px;
     margin-bottom: 50px;
     text-align: center;
 }
@@ -45,6 +45,44 @@ h4 {
     margin-inline-end: 0px;
 }
 
+
+@media (min-width: 426px) and (max-width:768px){
+    h1 {
+        font-size: 26px;
+        margin-top: 110px;
+        margin-bottom: 40px;
+    }
+    h2{
+        font-size:20px;
+    }
+    h3{
+        font-size:18px;
+    }
+    h4{
+        font-size:16px;
+        margin-block-end: 15px;
+    }
+}
+
+@media (max-width: 425px){
+    h1 {
+        font-size: 18px;
+        margin-top: 80px;
+        margin-bottom: 35px;
+    }
+    h2{
+        font-size:14px;
+    }
+    h3{
+        font-size:12px;
+    }
+    h4{
+        font-size:10px;
+        margin-block-end: 16px;
+    }
+}
+
+
 label {
     /*Antes dos campos de inserção*/
     color: black;
@@ -52,6 +90,18 @@ label {
     font-size: 16px;
     font-family: "Poppins", sans-serif;
     margin-top: 20px;
+}
+
+@media (min-width: 426px) and (max-width:768px){
+    label {
+        margin-top: 16px;
+    }
+}
+
+@media (max-width: 425px){
+    label {
+        margin-top: 12px;
+    }
 }
 
 .label-no-margin {
@@ -195,6 +245,18 @@ textarea:focus, input:focus {
     padding: 30px 40px;
 }
 
+@media (min-width: 426px) and (max-width:768px){
+    .box {
+        margin-bottom: 40px;
+    }
+}
+
+@media (max-width: 425px){
+   .box {
+        margin-top: 30px;
+    }
+}
+
 /*-------- Containers ----------*/
 
 .container-box {
@@ -206,6 +268,11 @@ textarea:focus, input:focus {
     align-items: center;
     width: 100%;
     margin-top: 25px;
+}
+
+
+label {
+    margin-top: 12px;
 }
 
 .container-1 {
@@ -222,6 +289,21 @@ textarea:focus, input:focus {
     width: 80%;
     /*padding-right: 15px;
     padding-left: 15px;*/
+}
+
+/*------------ Retirar marcação dos inputs ------------*/
+
+/* Chrome, Safari, Edge, Opera */
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+
+input[type=number] {
+    -moz-appearance: textfield;
 }
 
 /*------ Container para botão que fica na direita ------*/
@@ -244,6 +326,7 @@ textarea:focus, input:focus {
     height: 30px;
     margin-bottom: 10px;
     padding: 5px 10px;
+    width: 100%;
 }
 
 .box-gray {
@@ -257,6 +340,25 @@ textarea:focus, input:focus {
 .box-white {
     background-color: #ffff;
     box-shadow: 4px 4px 4px#DBDADA;
+}
+
+@media (min-width: 321px) and (max-width:760px){
+    .box-gray, .box-blue, .box-white {
+        padding: 5px;
+        font-size: 15px;
+        text-align: center;
+        height:auto;
+    }
+}
+
+@media (max-width: 320px){
+    .box-gray, .box-blue, .box-white {
+        padding: 5px;
+        font-size: 14px;
+        font-weight: normal;
+        text-align: center;
+        height:auto;
+    }
 }
 
 /*-------- Barra de pesquisa  ------------*/
@@ -300,7 +402,37 @@ textarea:focus, input:focus {
     color: #0D6EFD;
 }
 
-/*------------ Icone de download  ------------*/
+@media (min-width: 321px) and (max-width:760px){
+    .search-bar input {
+        padding-left: 5px;
+        width: 85%;
+        font-size: 14px;
+    }
+    .search-bar button {
+        height: 34px;
+        padding-right: 5px;
+    }
+    .search-bar button i {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 320px){
+    .search-bar input {
+        padding-left: 5px;
+        width: 80%;
+        font-size: 14px;
+    }
+    .search-bar button {
+        height: 34px;
+        padding-right: 5px;
+    }
+    .search-bar button i {
+        font-size: 13px;
+    }
+}
+
+/*------------ Icone de download  ------------*/ 
 
 .download-icon {
     float: right;
@@ -325,8 +457,20 @@ textarea:focus, input:focus {
     font-size: 35px;
 }
 
-/*------------ Menu  ------------*/
+@media (min-width: 426px) and (max-width:768px){
+    #screen-icon .download-icon button i {
+        font-size: 30px;
+    }
+}
 
+@media (max-width: 425px){
+    #screen-icon .download-icon button i {
+        font-size: 25px;
+    }
+}
+
+
+/*------------ Menu  ------------*/
 .body-menu {
     align-items: center;
     background-color: #ffff;
@@ -345,6 +489,7 @@ textarea:focus, input:focus {
     box-shadow: 1px 1px 1px #C8C8C8;
     -webkit-box-shadow: 2px 2px 8px #C8C8C8;
     -moz-box-shadow: 2px 2px 8px #C8C8C8;
+    padding: 0 5px;
 }
 
 .card-menu:hover {
@@ -390,6 +535,41 @@ textarea:focus, input:focus {
     font-size: 25px;
 }
 
+@media (min-width: 426px) and (max-width:768px){
+    .card-options {
+        margin: 0 5px 20px 5px;
+    }
+    .card-options-icon .options-icon {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .options-icon i {
+        padding-top: 8px;
+        font-size: 35px;
+    }
+}
+
+@media (max-width: 425px){
+    .card-options {
+        margin: 0 5px 20px 5px;
+    }
+    .card-options-icon .options-icon {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .options-icon i {
+        padding-top: 8px;
+        font-size: 35px;
+    }
+
+    .card-menu{
+        height: 120px;
+    }
+}
+
+
 /*------------ Cadastro------------*/
 
 #register input, #register select {
@@ -404,21 +584,21 @@ textarea:focus, input:focus {
     margin-right: 32%;
 }
 
-/*------------ Retirar marcação dos inputs ------------*/
-
-/* Chrome, Safari, Edge, Opera */
-
-input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+@media (max-width: 767px){
+    #register .btn-blue{
+        width: 100%;
+        margin-top: 0;
+        margin-left: 0;
+        margin-right: 0;
+    }
 }
 
-/* Firefox */
-
-input[type=number] {
-    -moz-appearance: textfield;
+@media (max-width: 320px){
+    #register .btn-blue{
+        font-size: 15px;
+        padding: 5px 0;
+    }
 }
-
 /*------------ Listagem de pacientes ------------*/
 
 #patientList h1 {
@@ -434,6 +614,7 @@ input[type=number] {
     -webkit-box-shadow: 3px 3px 8px #C8C8C8;
     -moz-box-shadow: 3px 3px 8px #C8C8C8;
     padding: 15px 30px;
+    width:100%;
 }
 
 #patientList .box-blue {
@@ -450,6 +631,24 @@ input[type=number] {
     padding: 5px 10px;
 }
 
+@media (max-width: 1024px){
+    #patientList .box-white {
+        margin-bottom: 20px;
+        padding: 15px;
+    }
+    #patientList .box-blue {
+        font-size: 16px;
+        padding: 6px;
+    }
+    #patientList .btn-blue {
+        font-size: 16px;
+        padding: 5px;
+        margin-left: -12px;
+        margin-bottom: 0;
+    }
+}
+
+/*TERMINO AQUI*/
 /*------------ Agendamentos ------------*/
 
 .box-scheduling {

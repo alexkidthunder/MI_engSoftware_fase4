@@ -195,14 +195,6 @@ class AdminController extends Controller
         VerificaLoginController::verificarLoginAdmin();
         return view('/admin/backup');
     }
-    
-
-    public function cadastro()              //função para chamar a função salvar usuário pela view
-    {
-        VerificaLoginController::verificarLoginAdmin();
-        return view('/admin/cadastroUsuario');
-    }
-
 
     public function remocao()
     {  
@@ -350,8 +342,10 @@ class AdminController extends Controller
         
     public function cadastro()              //função para chamar a função salvar usuário pela view
     {
+        VerificaLoginController::verificarLoginAdmin();
         return view('/admin/cadastroUsuario');
     }
+
 
     public function salvarUsuario(Request $request){
         include("conexao.php");
