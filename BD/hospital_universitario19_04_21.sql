@@ -636,7 +636,8 @@ CREATE TABLE IF NOT EXISTS `prontuarios` (
 
 CREATE TABLE IF NOT EXISTS `responsaveis` (
   `CPF` char(14) NOT NULL,
-  PRIMARY KEY (`CPF`)
+  PRIMARY KEY (`CPF`),
+  UNIQUE KEY `CPF` (`CPF`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
