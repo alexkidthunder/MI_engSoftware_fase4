@@ -45,6 +45,44 @@ h4 {
     margin-inline-end: 0px;
 }
 
+
+@media (min-width: 426px) and (max-width:768px){
+    h1 {
+        font-size: 26px;
+        margin-top: 110px;
+        margin-bottom: 40px;
+    }
+    h2{
+        font-size:20px;
+    }
+    h3{
+        font-size:18px;
+    }
+    h4{
+        font-size:16px;
+        margin-block-end: 15px;
+    }
+}
+
+@media (max-width: 425px){
+    h1 {
+        font-size: 18px;
+        margin-top: 80px;
+        margin-bottom: 35px;
+    }
+    h2{
+        font-size:14px;
+    }
+    h3{
+        font-size:12px;
+    }
+    h4{
+        font-size:10px;
+        margin-block-end: 16px;
+    }
+}
+
+
 label {
     /*Antes dos campos de inserção*/
     color: black;
@@ -52,6 +90,18 @@ label {
     font-size: 16px;
     font-family: "Poppins", sans-serif;
     margin-top: 20px;
+}
+
+@media (min-width: 426px) and (max-width:768px){
+    label {
+        margin-top: 16px;
+    }
+}
+
+@media (max-width: 425px){
+    label {
+        margin-top: 12px;
+    }
 }
 
 .label-no-margin {
@@ -194,6 +244,19 @@ textarea:focus, input:focus {
     margin-bottom: 50px;
     padding: 30px 40px;
 }
+
+@media (min-width: 426px) and (max-width:768px){
+    .box {
+        margin-bottom: 40px;
+    }
+}
+
+@media (max-width: 425px){
+   .box {
+        margin-top: 30px;
+    }
+}
+
 /*-------- Containers ----------*/
 
 .container-box {
@@ -205,6 +268,11 @@ textarea:focus, input:focus {
     align-items: center;
     width: 100%;
     margin-top: 25px;
+}
+
+
+label {
+    margin-top: 12px;
 }
 
 .container-1 {
