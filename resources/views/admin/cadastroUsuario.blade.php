@@ -38,6 +38,7 @@
             {{Session::get('success')}}
     </div>
     @endif
+    
     <section>
         <div class="container-1"> <!--Inicio do form para se cadastrar um usuário-->
             <div class="box">

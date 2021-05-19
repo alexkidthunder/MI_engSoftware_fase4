@@ -22,20 +22,23 @@
 
     
     @if(Session::has('error'))
-        <div class="alert alert-danger" role="alert">
+    <div class="msg-error" role="alert">
             {{Session::get('error')}}
-        </div>
+    </div>
     @endif  
+
     @if(Session::has('success'))
-        <div class="alert alert-success" role="alert">
+    <div class="msg-sucess">
             {{Session::get('success')}}
-        </div>
+    </div>
     @endif      
 
     <!--Página de meu primeiro acesso -->
     <form id="first-access"  class = "form" action="{{ route('primeiroAcesso') }}" method="POST">
         @csrf
         <div class="box-login">
+            <input type="hidden" name="cpf" value="{{Session::get('cpf')}}">
+
             <h2>Primeiro acesso</h2>
             <h4>Defina sua senha abaixo:</h4>
             <div>
