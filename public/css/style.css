@@ -45,6 +45,44 @@ h4 {
     margin-inline-end: 0px;
 }
 
+
+@media (min-width: 426px) and (max-width:768px){
+    h1 {
+        font-size: 26px;
+        margin-top: 120px;
+        margin-bottom: 40px;
+    }
+    h2{
+        font-size:20px;
+    }
+    h3{
+        font-size:18px;
+    }
+    h4{
+        font-size:16px;
+        margin-block-end: 15px;
+    }
+}
+
+@media (max-width: 425px){
+    h1 {
+        font-size: 22px;
+        margin-top: 130px;
+        margin-bottom: 35px;
+    }
+    h2{
+        font-size:14px;
+    }
+    h3{
+        font-size:12px;
+    }
+    h4{
+        font-size:10px;
+        margin-block-end: 16px;
+    }
+}
+
+
 label {
     /*Antes dos campos de inserção*/
     color: black;
@@ -52,6 +90,18 @@ label {
     font-size: 16px;
     font-family: "Poppins", sans-serif;
     margin-top: 20px;
+}
+
+@media (min-width: 426px) and (max-width:768px){
+    label {
+        margin-top: 16px;
+    }
+}
+
+@media (max-width: 425px){
+    label {
+        margin-top: 12px;
+    }
 }
 
 .label-no-margin {
@@ -194,6 +244,21 @@ textarea:focus, input:focus {
     margin-bottom: 50px;
     padding: 30px 40px;
 }
+
+@media (min-width: 426px) and (max-width:768px){
+    .box {
+        margin-bottom: 40px;
+        padding: 20px 25px;
+    }
+}
+
+@media (max-width: 425px){
+   .box {
+        margin-top: 30px;
+        padding: 20px;
+    }
+}
+
 /*-------- Containers ----------*/
 
 .container-box {
@@ -205,6 +270,11 @@ textarea:focus, input:focus {
     align-items: center;
     width: 100%;
     margin-top: 25px;
+}
+
+
+label {
+    margin-top: 12px;
 }
 
 .container-1 {
@@ -223,6 +293,21 @@ textarea:focus, input:focus {
     padding-left: 15px;*/
 }
 
+@media (min-width: 321px) and (max-width:768px){
+    .container-1 {
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+}
+
+@media (max-width: 320px){
+    .container-1, .container-2{
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+ }
 /*------------ Retirar marcação dos inputs ------------*/
 
 /* Chrome, Safari, Edge, Opera */
@@ -255,7 +340,7 @@ input[type=number] {
     font-family: "Open Sans", sans-serif;
     font-weight: bold;
     font-size: 16px;
-    height: 30px;
+    height: fit-content;
     margin-bottom: 10px;
     padding: 5px 10px;
     width: 100%;
@@ -581,6 +666,7 @@ input[type=number] {
 }
 
 /*TERMINO AQUI*/
+/*COMEÇA O DE JOÃO AQUI */
 /*------------ Agendamentos ------------*/
 
 .box-scheduling {
@@ -646,7 +732,14 @@ input[type=number] {
     padding: 7px 0;
     border-radius: 0 10px 10px 0;
 }
-
+@media (max-width: 990px){ /*Botões de Sexo perdem a borda reta caso não apareçam um do lado do outro mais*/
+    .border-f{
+        border-radius: 10px;
+    }
+    .border-m{
+        border-radius: 10px;
+    }
+}
 .border-left:hover, .border-right:hover {
     background-color: #8ED1F0;
     border-color: #58ACFA;
@@ -669,7 +762,6 @@ input[type=number] {
 }
 
 /*----------------------------plantonista -------------------*/
-
 #on-duty .title {
     color: #0D6EFD;
     font-family: "Open Sans", sans-serif;
@@ -678,7 +770,18 @@ input[type=number] {
     margin-bottom: 10px;
     padding: 5px 10px;
 }
-
+@media (max-width: 724px){
+    
+    #on-duty .title{
+        font-size: 1.2rem;
+    }
+    #on-duty p{
+        font-size: 0.8rem;
+    }
+    #on-duty .box-blue{
+        width: 100%;
+    }
+}
 #on-duty .box-blue, #on-duty .box-button {
     height: 40px;
     padding-top: 10px;
@@ -757,7 +860,7 @@ input[type=number] {
     background-color: #ffff;
     border-radius: 20px;
     box-shadow: 5px 5px 5px#DBDADA;
-    height: 150px;
+    height: fit-content;
     margin-bottom: 20px;
     -webkit-box-shadow: 3px 3px 8px #C8C8C8;
     -moz-box-shadow: 3px 3px 8px #C8C8C8;
@@ -782,7 +885,21 @@ input[type=number] {
     font-weight: bold;
     padding: 15px;
 }
+@media (max-width: 430px){
+    .password-title{
+        font-size: 1rem;
+    }
+    .input-full-width{
+        width: max-content;
+    }
+}
 
 .input-full-width{
     width: 100%;
+}
+
+.no-overflow-text{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

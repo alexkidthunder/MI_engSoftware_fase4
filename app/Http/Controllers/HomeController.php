@@ -33,18 +33,30 @@ class HomeController extends Controller
             /*Sequência de condicionais que verifica o cargo para reirecionar para o menu correto */
             if($atribuicao == "Administrador"){
                 $_SESSION['administrador'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
+                if($request->senha == 12345){
+                    return redirect('/primeiroAcesso')->with('cpf', $request->cpf);
+                }
                 header("Location: /menu");
                 exit();
             }else if($atribuicao == "Enfermeiro Chefe"){
                 $_SESSION['enfermeiroChefe'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
+                if($request->senha == 12345){
+                    return redirect('/primeiroAcesso')->with('cpf', $request->cpf);
+                }
                 header("Location: /menuEnfermeiroChefe");
                 exit();
             }else if($atribuicao == "Enfermeiro"){
                 $_SESSION['enfermeiro'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
+                if($request->senha == 12345){
+                    return redirect('/primeiroAcesso')->with('cpf', $request->cpf);
+                }
                 header("Location: /menuEnfermeiro");
                 exit();
             }else if($atribuicao == "Estagiario"){
                 $_SESSION['estagiario'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
+                if($request->senha == 12345){
+                    return redirect('/primeiroAcesso')->with('cpf', $request->cpf);
+                }
                 header("Location: /menuEstagiario");
                 exit();
             }else{
@@ -71,6 +83,8 @@ class HomeController extends Controller
 
     public function primeiroAcesso(Request $request){
         include('conexao.php');
+        session_start();
+
         $senhaDefinida = $request->senha;
         $senhaConfirmacao = $request->confirmacao;
         //dd($request->cpf);
@@ -78,20 +92,19 @@ class HomeController extends Controller
         if ($senhaConfirmacao == $senhaDefinida){
             //$senhaCript = Hash::make($senhaConfimacao);         //cria um hash a partir da nova senha 
 
-            $cpf = $request->cpf;          
+            $cpf = $request->cpf;        
             $select = "SELECT * FROM usuarios where CPF = '$cpf'";
-            mysqli_query($conn,$select);
-            //dd($select);
+            $busca = mysqli_query($conn,$select);
 
             //se existe o cpf no banco de dados
             $update = "UPDATE usuarios SET Senha = '$senhaConfirmacao' WHERE CPF = '$cpf'";     //atualiza no banco de dados
             mysqli_query($conn,$update);
 
-            return redirect()->route('index')->with('success','Senha cadastrada com sucesso!!');
+            return redirect()->route('index')->with('msg-sucess','Senha cadastrada com sucesso!!');
 
         //se a nova senha desejada for diferente da confirmada
         }else{
-            return redirect()->route('acessarPrimeiroAcesso')->with('error','A senha de confirmação está diferente da nova senha!!');
+            return redirect()->route('acessarPrimeiroAcesso')->with('msg-error','A senha de confirmação está diferente da nova senha!!');
        }
 
     }
