@@ -45,14 +45,14 @@
             <div class="row">
                 <!----- Data de validade do medicamento----->
                 <div class="col-lg-3">
-                    <label>Data de validade</label> <br>
+                    <label><nobr>Data de validade</nobr></label> <br>
                     <div class="box-gray">
                         01/10/2021
                     </div>
                 </div>
                 <!-----Quantidade do medicamento----->
                 <div class="col-lg-3">
-                    <label>Em estoque</label> <br>
+                    <label><nobr>Em estoque</nobr></label> <br>
                     <div class="box-gray">
                         100
                     </div>

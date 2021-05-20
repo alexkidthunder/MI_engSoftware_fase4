@@ -1,13 +1,24 @@
+/*Container dos dados do paciente*/
 var container = document.getElementById("container-teste");
 var button = document.getElementById("action-btn");
+
+/*Container dos agendamentos do paciente*/
 var container2 = document.getElementById("container-teste2");
 var button2 = document.getElementById("action-btn2");
+
+/*Container das medicações ministradas*/
 var container3 = document.getElementById("container-teste3");
 var button3 = document.getElementById("action-btn3");
+
+/*Container do nome do aplicador do medicamento e seu leito*/
 var container4 = document.getElementById("container-teste4");
 var button4 = document.getElementById("action-btn4");
+
+/*Container onde fica localizadas as ocorrências*/
 var container5 = document.getElementById("container-teste5");
 var button5 = document.getElementById("action-btn5");
+
+/**/
 var container6 = document.getElementById("container-teste6");
 var button6 = document.getElementById("action-btn6");
 

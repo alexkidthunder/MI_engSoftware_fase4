@@ -41,7 +41,7 @@
                         <div class="row">
                             <!------------ Data de nascimento ------------>
                             <div class="col-lg-4">
-                                <label>Data de Nascimento</label> <br>
+                                <label><nobr>Data de Nascimento</nobr></label> <br>
                                 <input disabled id="fnascimento" name="fnascimento" type="date">
                             </div>
 
@@ -59,13 +59,11 @@
                                     <div id="fmasc_div" class="col-lg-6 border-m content-center">
                                         <input type="radio" name="fsexo" value="M" id="fmasc" disabled>
                                         <label for="fmasc" class="normal-label">Masculino</label>
-                                        </input>
                                         <!--Usar o checked para deixar marcado-->
                                     </div>
                                     <div id="ffem_div" class="col-lg-6 border-f content-center">
                                         <input type="radio" name="fsexo" value="F" id="ffem" disabled>
                                         <label for="ffem" class="normal-label">Feminino</label>
-                                        </input>
                                         <!--Usar o checked para deixar marcado-->
                                     </div>
                                 </div>
@@ -97,8 +95,7 @@
                             <div class="col-lg-4" id="edit_div">
                                 <br>
                                 <div id="psw_info_div">
-                                    <button type="button" class="btn-white" name="psw_info" id="psw_info">Alterar
-                                        senha</button>
+                                    <button type="button" class="btn-white" name="psw_info" id="psw_info">Alterar senha</button>
                                 </div>
                             </div>
                         </div>
@@ -106,8 +103,7 @@
                         <div id="edit_div" class="row">
                             <!------------ Botão para editar as infomações ------------>
                             <div class="col-lg" id="edit_info_div">
-                                <button type="button" class="btn-blue" name="edit_info" id="edit_info">Editar
-                                    informações</button>
+                                <button type="button" class="btn-blue" name="edit_info" id="edit_info">Editar informações</button>
                             </div>
                             <!------------ Botão para cancelar ------------>
                             <div class="col-lg hide" id="confirm_info_div">
@@ -142,14 +138,14 @@
                                 placeholder="Confirme a nova senha">
                         </div>
                         <br>
-                        <div class="content-right">
+                        <div>
                             <div class="row">
                                 <!------------ Botão para cancelar ------------>
-                                <div class="col-lg">
+                                <div class="col-lg col-md col-sm">
                                     <button id="cancelar" type="button" class="btn-gray">Cancelar</button>
                                 </div>
                                 <!------------ Botão para alterar a senha ------------>
-                                <div class="col-lg">
+                                <div class="col-lg col-md col-sm">
                                     <button id="alterarSenha" type="submit" class="btn-blue">Alterar senha</button>
                                 </div>
                             </div>
