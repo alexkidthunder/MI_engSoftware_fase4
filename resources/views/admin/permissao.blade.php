@@ -138,14 +138,6 @@
                         <!--Fim da permissão-->
 
                         <!--Inicio da permissão-->
-                        <div class="col-lg-13 content-center">
-                            <input type="checkbox" name=><br>
-                            <label>Cadastrar prontuário</label>
-                        </div>
-
-                        <!--Fim da permissão-->
-
-                        <!--Inicio da permissão-->
                         @if (isset($p[17]))
                             <div class="col-lg-13 content-center">
                                 <input type="checkbox" name="p17" {{ $p[17] }}><br>
@@ -155,11 +147,12 @@
                         <!--Fim da permissão-->
 
                         <!--Inicio da permissão-->
-                        <div class="col-lg-13 content-center">
-                            <input type="checkbox" name=><br>
-                            <label>Visualizar histórico de prontuários</label>
-                        </div>
-
+                        @if (isset($p[34]))
+                            <div class="col-lg-13 content-center">
+                                <input type="checkbox" name="p34" {{ $p[34] }}><br>
+                                <label>Visualizar histórico de prontuários</label>
+                            </div>
+                        @endif
                         <!--Fim da permissão-->
 
                         <!--Inicio da permissão-->
@@ -238,7 +231,7 @@
                         @if (isset($p[33]))
                             <div class="col-lg-13 content-center">
                                 <input type="checkbox" name="p33" {{ $p[33] }}><br>
-                                <label>Alocar leito do paciente</label>
+                                <label>Cadastrar prontuário</label>
                             </div>
                         @endif
                         <!--Fim da permissão-->
@@ -253,7 +246,7 @@
                         @if (isset($p[28]))
                             <div class="col-lg-13 content-center">
                                 <input type="checkbox" name="p28" {{ $p[28] }}><br>
-                                <label>Cadastro do leito</label>
+                                <label>Cadastro e Alocação do leito</label>
                             </div>
                         @endif
                         <!--Fim da permissão-->
@@ -277,12 +270,15 @@
                         <!--Fim da permissão-->
 
                         <!--Inicio da permissão-->
+                        @if (isset($p[35]))
                             <div class="col-lg-13 content-center">
-                                <input type="checkbox"><br>
+                                <input type="checkbox" name="p35" {{ $p[35] }}><br>
                                 <label>Listagem de medicamentos cadastrados</label>
                             </div>
+                        @endif
                         <!--Fim da permissão-->
                         </div>
+
                         <!-- ========== fim da linha 3 ========== -->
 
                         <!-- ========== Linha 4 ========== -->
