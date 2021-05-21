@@ -22,9 +22,13 @@ class AdminController extends Controller
         return view('/admin/menu');
     }
 
-    public function log()
-    {   
+    public function log($acao){   
         VerificaLoginController::verificarLoginAdmin();
+        $ip = $_SERVER['REMOTE_ADDR'];
+        $data = date('d/m/Y');
+        $horas = date('H:i:s');
+
+        
         return view('/admin/log');
     }
 
