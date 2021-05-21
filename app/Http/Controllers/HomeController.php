@@ -83,7 +83,7 @@ class HomeController extends Controller
 
     public function primeiroAcesso(Request $request){
         include('conexao.php');
-        session_start();
+        //session_start();
 
         $senhaDefinida = $request->senha;
         $senhaConfirmacao = $request->confirmacao;
@@ -97,7 +97,7 @@ class HomeController extends Controller
             $busca = mysqli_query($conn,$select);
 
             //se existe o cpf no banco de dados
-            $update = "UPDATE usuarios SET Senha = '$senhaConfirmacao' WHERE CPF = '$cpf'";     //atualiza no banco de dados
+            $update = "UPDATE usuarios SET Senha = $senhaConfirmacao WHERE CPF = $cpf";     //atualiza no banco de dados
             mysqli_query($conn,$update);
 
             return redirect()->route('index')->with('msg-sucess','Senha cadastrada com sucesso!!');
