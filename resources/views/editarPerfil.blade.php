@@ -19,7 +19,11 @@
 
 <body>
     <!----------Hearder------------>
-    @include('layouts.navbar')
+    @if(isset($_SESSION['administrador']))
+        @include('layouts.navbar-adm')
+    @else
+        @include('layouts.navbar')
+    @endif
     <!----------End Hearder-------->
 
     <section>

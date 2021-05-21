@@ -10,10 +10,10 @@ use mysqli;
 
 class EnfChefeController extends Controller
 {
-    public function menu(){
+   /* public function menu(){
         VerificaLoginController::verificarLogin();
         return view('/enfChefe/menu');
-    }
+    }*/
     
     public function cadastroPlantonista(){
         include("db.php");
