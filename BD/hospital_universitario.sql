@@ -140,7 +140,8 @@ CREATE TABLE usuarios (
   Data_Nasc date NOT NULL,
   Atribuicao enum('Administrador','Enfermeiro Chefe','Enfermeiro','Estagiario') NOT NULL,
   Sexo enum('M','F') NOT NULL,
-  Ip varchar(15) NOT NULL
+  Ip varchar(15) NOT NULL,
+  Ativo tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
