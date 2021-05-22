@@ -34,7 +34,7 @@
             <h1>VERIFICAÇÃO DE AGENDAMENTOS</h1>
 
             <!---------------------- Agendamento  ---------------------->
-            <div class="box-scheduling">
+            <div class="box-scheduling" id="scheduling">
                 <!----- Fim das informações do agendamento ----->
                 <div class="row">
                     <div class="col-6 col-sm-6 col-md-6 col-lg-2 text-center">
@@ -91,6 +91,8 @@
                         </div>
                     </div>
                     <!---------- Botao para adicionar preparador ---------->
+                    <div class="col-lg-9">
+                    </div>
                     <div class="col-12 col-sm-12 col-md-12 col-lg-3" id="add_prep_btn_div">
                         <div>
                             <button type="button" class="btn-white" id="add_prep_btn"> Adicionar preparador</button>

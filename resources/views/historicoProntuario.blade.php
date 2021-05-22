@@ -41,17 +41,19 @@
         <h1>HISTÓRIO DE PRONTUÁRIOS </h1>
 
         <!------------- Busca do paciente ------------->
-        <div class="box">
-            <div class="content-center">
-                <h3>BUSCAR PACIENTE</h3>
-                <form class="search-bar">
-                    <!--- Campo para a inserção do CPF do paciente --->
-                    <input name="cpf_user" id="cpf_user" type="text" placeholder="Informe o CPF" required maxlength="14"
-                        pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
-                    <button type="submit">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </form>
+        <div id="search">
+            <div class="box">
+                <div class="content-center">
+                    <h3>BUSCAR PACIENTE</h3>
+                    <form class="search-bar">
+                        <!--- Campo para a inserção do CPF do paciente --->
+                        <input name="cpf_user" id="cpf_user" type="text" placeholder="Informe o CPF" required maxlength="14"
+                            pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
+                        <button type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
         <!---------- Fim da Busca do paciente ---------->
@@ -78,7 +80,7 @@
         <div {{-- class="hide" --}} id="record">
 
             <!------------- Prontuário ------------->
-            <div class="box-scheduling">
+            <div class="box-historic">
                 <div class="row">
                     <!------ Data de internação ------>
                     <div class="col-12 col-sm-12 col-md-4 col-lg-3">

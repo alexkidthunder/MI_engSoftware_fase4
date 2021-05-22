@@ -70,10 +70,10 @@ h4 {
         margin-bottom: 35px;
     }
     h2 {
-        font-size: 14px;
+        font-size: 18px;
     }
     h3 {
-        font-size: 12px;
+        font-size: 16px;
     }
     h4 {
         font-size: 10px;
@@ -452,6 +452,18 @@ input[type=number] {
     }
 }
 
+@media (max-width:760px) {
+    #search .box {
+        margin-top: 20px;
+        margin-bottom: 40px;
+        padding: 20px 15px 10px 15px;
+    }
+    #search .content-center{
+        margin-bottom: 0;
+    }
+}
+
+
 /*------------ Icone de download  ------------*/
 
 .download-icon {
@@ -704,7 +716,7 @@ input[type=number] {
     a>.btn-Patient {
         padding: 5px;
         text-align: center;
-        height: 27px;
+        height: fit-content;
         margin-bottom: 15px;
     }
 }
@@ -714,7 +726,7 @@ input[type=number] {
         padding: 5px;
         font-size: 14px;
         text-align: center;
-        height: 27px;
+        height: fit-content;
     }
 }
 
@@ -722,7 +734,7 @@ input[type=number] {
 
 /*------------ Agendamentos ------------*/
 
-.box-scheduling {
+.box-scheduling, .box-historic{
     background-color: #ffff;
     border: 1.5px solid #58ACFA;
     border-radius: 0 50px 50px 0;
@@ -730,11 +742,11 @@ input[type=number] {
     margin-bottom: 25px;
 }
 
-.box-scheduling:nth-child(even) {
+.box-scheduling:nth-child(even), .box-historic:nth-child(even) {
     border-radius: 0 50px 0 0;
 }
 
-.box-scheduling:nth-child(odd) {
+.box-scheduling:nth-child(odd), .box-historic:nth-child(odd){
     border-radius: 0 0 50px 0;
 }
 
@@ -744,10 +756,23 @@ input[type=number] {
     width: 100%;
 }
 
+@media (min-width: 1000px) and (max-width:1024px) {
+    #scheduling .box-blue, #scheduling .box-white {
+        width: 100%;
+    }
+    #scheduling  .box-gray {
+        width:fit-content;
+    }
+    #scheduling .btn-white {
+        width: 125%;
+        margin-left: -25%;
+    }
+}
+
 @media (min-width: 761px) and (max-width:768px) {
     #scheduling .btn-white {
-        width: 40%;
-        margin-left: 60%;
+        width: 32%;
+        margin-left: 68%;
     }
 }
 
@@ -756,7 +781,36 @@ input[type=number] {
         width: 90%;
         margin: 0 5%;
     }
+
+    .box-scheduling, .box-historic{
+        border-radius: 0 40px 40px 0;
+        padding: 10px 15px;
+        margin-bottom: 20px;
+    }
+    
+    .box-scheduling:nth-child(even), .box-historic:nth-child(even){
+        border-radius: 0 40px 0 0;
+    }
+    
+    .box-scheduling:nth-child(odd), .box-historic:nth-child(odd){
+        border-radius: 0 0 40px 0;
+    }
 }
+
+@media (min-width: 426px) and (max-width:768px) {
+    #historic .btn-blue {
+        width: 30%;
+        margin-left: 70%;
+    }
+}
+
+@media (max-width: 425px) {
+    #historic .btn-blue {
+        width: 90%;
+        margin: 0 5%;
+    }
+}
+
 
 /*----- Botão de opção de sexo -----*/
 
@@ -840,13 +894,28 @@ input[type=number] {
     width: 25px;
 }
 
-.box-on-duty, .box-medicament, .box-backup {
+.box-on-duty, .box-medicament, .box-backup{
     background-color: #ffff;
     border: 1.5px solid #58ACFA;
     border-radius: 0 50px 0 0;
     padding: 10px 20px;
     margin-bottom: 25px;
 }
+
+@media (max-width:1024px){
+    #on-duty .box-blue{
+        height: fit-content;
+        padding: 5px 15px;
+    }
+}
+
+@media (max-width:760px){
+    .box-on-duty{
+        border-radius: 0 40px 0 0;
+        padding: 10px 5px;
+    }
+}
+
 
 /*---------- Confirmação de ação e erros ------------------ */
 

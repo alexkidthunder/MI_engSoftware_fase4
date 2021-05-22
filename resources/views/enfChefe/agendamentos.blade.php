@@ -35,7 +35,7 @@
             <h1>LISTAGEM DE AGENDAMENTOS E MEDICAMENTOS </h1>
 
             <!---------------------Agendamento--------------------->
-            <div class="box-scheduling">
+            <div class="box-scheduling" id="scheduling">
                     <div class="row">
                         <!---------------------Hora--------------------->
                         <div class="col-6 col-sm-6 col-md-6 col-lg-2 text-center">
@@ -58,7 +58,7 @@
                         <!---------------------Posologia--------------------->
                         <div class="col-6 col-sm-6 col-md-6 col-lg-2">
                             <div class="box-white">
-                                0.35 ml
+                                0.3555 ml
                             </div>
                         </div>
                     </div>
