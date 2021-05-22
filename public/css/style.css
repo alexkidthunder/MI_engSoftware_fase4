@@ -45,43 +45,41 @@ h4 {
     margin-inline-end: 0px;
 }
 
-
-@media (min-width: 426px) and (max-width:768px){
+@media (min-width: 426px) and (max-width:768px) {
     h1 {
         font-size: 26px;
         margin-top: 120px;
         margin-bottom: 40px;
     }
-    h2{
-        font-size:20px;
+    h2 {
+        font-size: 20px;
     }
-    h3{
-        font-size:18px;
+    h3 {
+        font-size: 18px;
     }
-    h4{
-        font-size:16px;
+    h4 {
+        font-size: 16px;
         margin-block-end: 15px;
     }
 }
 
-@media (max-width: 425px){
+@media (max-width: 425px) {
     h1 {
         font-size: 22px;
         margin-top: 130px;
         margin-bottom: 35px;
     }
-    h2{
-        font-size:14px;
+    h2 {
+        font-size: 14px;
     }
-    h3{
-        font-size:12px;
+    h3 {
+        font-size: 12px;
     }
-    h4{
-        font-size:10px;
+    h4 {
+        font-size: 10px;
         margin-block-end: 16px;
     }
 }
-
 
 label {
     /*Antes dos campos de inserção*/
@@ -92,27 +90,28 @@ label {
     margin-top: 20px;
 }
 
-@media (min-width: 426px) and (max-width:768px){
+@media (min-width: 426px) and (max-width:768px) {
     label {
         margin-top: 16px;
     }
 }
 
-@media (max-width: 425px){
+@media (max-width: 425px) {
     label {
         margin-top: 12px;
     }
-}
-
-.label-no-margin {
-    /* Retirar a margem superior das label */
-    margin-top: 0px;
 }
 
 p {
     color: black;
     font-family: "Open Sans", sans-serif;
     font-size: 16px;
+}
+
+@media (max-width: 320px) {
+    label, p {
+        font-size: 14px;
+    }
 }
 
 /*------------------- Inputs --------------------*/
@@ -172,6 +171,7 @@ textarea:focus, input:focus {
 #edit_div .btn-white {
     border: 2px dashed #0D6EFD;
 }
+
 /*---------- Botão azul----------*/
 
 .btn-blue {
@@ -191,33 +191,34 @@ textarea:focus, input:focus {
     background-color: #4689C8;
 }
 
-
 /*---------- Botão cinza----------*/
- .btn-gray {
-  border-color: #6c757d;
-  background-color: #6c757d;
-  color: #fff;
-  cursor: pointer;
-  font-weight: bold;
-  padding: 5px 25px;
-  margin-right: 10px;
+
+.btn-gray {
+    border-color: #6c757d;
+    background-color: #6c757d;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 5px 25px;
+    margin-right: 10px;
 }
 
 .btn-gray:hover {
-  color: #fff;
-  background-color: #5a6268;
-  border-color: #545b62;
+    color: #fff;
+    background-color: #5a6268;
+    border-color: #545b62;
 }
 
-.btn-gray.focus ,.btn-gray:focus {
-  box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.5);
+.btn-gray.focus, .btn-gray:focus {
+    box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.5);
 }
 
-.btn-gray.disabled, .btn-gray:disabled   {
-  color: #fff;
-  background-color: #6c757d;
-  border-color: #6c757d;
+.btn-gray.disabled, .btn-gray:disabled {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
 }
+
 /* -----------------------Alinha o texto ou caixa no centro-----------------*/
 
 .content-center {
@@ -226,13 +227,16 @@ textarea:focus, input:focus {
     width: 100%;
     margin-bottom: 20px;
 }
+
 /* -----------------------Alinha a caixa na direita-----------------*/
-.content-right{
+
+.content-right {
     text-align: center;
     width: 50%;
     margin-left: 50%;
     margin-bottom: 20px;
 }
+
 /* ------------------Caixa branca padrão que tem em várias páginas--------------*/
 
 .box {
@@ -245,15 +249,15 @@ textarea:focus, input:focus {
     padding: 30px 40px;
 }
 
-@media (min-width: 426px) and (max-width:768px){
+@media (min-width: 426px) and (max-width:768px) {
     .box {
         margin-bottom: 40px;
         padding: 20px 25px;
     }
 }
 
-@media (max-width: 425px){
-   .box {
+@media (max-width: 425px) {
+    .box {
         margin-top: 30px;
         padding: 20px;
     }
@@ -271,7 +275,6 @@ textarea:focus, input:focus {
     width: 100%;
     margin-top: 25px;
 }
-
 
 label {
     margin-top: 12px;
@@ -293,7 +296,7 @@ label {
     padding-left: 15px;*/
 }
 
-@media (min-width: 321px) and (max-width:768px){
+@media (min-width: 321px) and (max-width:768px) {
     .container-1 {
         width: 80%;
         margin-left: 10%;
@@ -301,13 +304,14 @@ label {
     }
 }
 
-@media (max-width: 320px){
-    .container-1, .container-2{
+@media (max-width: 320px) {
+    .container-1, .container-2 {
         width: 90%;
         margin-left: 5%;
         margin-right: 5%;
     }
- }
+}
+
 /*------------ Retirar marcação dos inputs ------------*/
 
 /* Chrome, Safari, Edge, Opera */
@@ -359,22 +363,21 @@ input[type=number] {
     box-shadow: 4px 4px 4px#DBDADA;
 }
 
-@media (min-width: 321px) and (max-width:760px){
+@media (min-width: 321px) and (max-width:768px) {
     .box-gray, .box-blue, .box-white {
         padding: 5px;
-        font-size: 15px;
         text-align: center;
-        height:auto;
+        height: fit-content;
+        margin-bottom: 15px;
     }
 }
 
-@media (max-width: 320px){
+@media (max-width: 320px) {
     .box-gray, .box-blue, .box-white {
         padding: 5px;
         font-size: 14px;
-        font-weight: normal;
         text-align: center;
-        height:auto;
+        height: fit-content;
     }
 }
 
@@ -419,7 +422,7 @@ input[type=number] {
     color: #0D6EFD;
 }
 
-@media (min-width: 321px) and (max-width:760px){
+@media (min-width: 321px) and (max-width:760px) {
     .search-bar input {
         padding-left: 5px;
         width: 85%;
@@ -434,7 +437,7 @@ input[type=number] {
     }
 }
 
-@media (max-width: 320px){
+@media (max-width: 320px) {
     .search-bar input {
         padding-left: 5px;
         width: 80%;
@@ -449,7 +452,7 @@ input[type=number] {
     }
 }
 
-/*------------ Icone de download  ------------*/ 
+/*------------ Icone de download  ------------*/
 
 .download-icon {
     float: right;
@@ -474,20 +477,20 @@ input[type=number] {
     font-size: 35px;
 }
 
-@media (min-width: 426px) and (max-width:768px){
+@media (min-width: 426px) and (max-width:768px) {
     #screen-icon .download-icon button i {
         font-size: 30px;
     }
 }
 
-@media (max-width: 425px){
+@media (max-width: 425px) {
     #screen-icon .download-icon button i {
         font-size: 25px;
     }
 }
 
-
 /*------------ Menu  ------------*/
+
 .body-menu {
     align-items: center;
     background-color: #ffff;
@@ -552,7 +555,7 @@ input[type=number] {
     font-size: 25px;
 }
 
-@media (min-width: 426px) and (max-width:768px){
+@media (min-width: 426px) and (max-width:768px) {
     .card-options {
         margin: 0 5px 20px 5px;
     }
@@ -560,14 +563,13 @@ input[type=number] {
         width: 40px;
         height: 40px;
     }
-    
     .options-icon i {
         padding-top: 8px;
         font-size: 35px;
     }
 }
 
-@media (max-width: 425px){
+@media (max-width: 425px) {
     .card-options {
         margin: 0 5px 20px 5px;
     }
@@ -575,17 +577,14 @@ input[type=number] {
         width: 35px;
         height: 35px;
     }
-    
     .options-icon i {
         padding-top: 8px;
         font-size: 35px;
     }
-
-    .card-menu{
+    .card-menu {
         height: 120px;
     }
 }
-
 
 /*------------ Cadastro------------*/
 
@@ -601,8 +600,8 @@ input[type=number] {
     margin-right: 32%;
 }
 
-@media (max-width: 767px){
-    #register .btn-blue{
+@media (max-width: 767px) {
+    #register .btn-blue {
         width: 100%;
         margin-top: 0;
         margin-left: 0;
@@ -610,12 +609,13 @@ input[type=number] {
     }
 }
 
-@media (max-width: 320px){
-    #register .btn-blue{
+@media (max-width: 320px) {
+    #register .btn-blue {
         font-size: 15px;
         padding: 5px 0;
     }
 }
+
 /*------------ Listagem de pacientes ------------*/
 
 #patientList h1 {
@@ -631,7 +631,7 @@ input[type=number] {
     -webkit-box-shadow: 3px 3px 8px #C8C8C8;
     -moz-box-shadow: 3px 3px 8px #C8C8C8;
     padding: 15px 30px;
-    width:100%;
+    width: 100%;
 }
 
 #patientList .box-blue {
@@ -648,7 +648,7 @@ input[type=number] {
     padding: 5px 10px;
 }
 
-@media (max-width: 1024px){
+@media (max-width: 1024px) {
     #patientList .box-white {
         margin-bottom: 20px;
         padding: 15px;
@@ -665,8 +665,61 @@ input[type=number] {
     }
 }
 
-/*TERMINO AQUI*/
+@media (max-width:760px) {
+    #patientList .btn-blue {
+        width: 90%;
+        margin: 0 5%;
+    }
+    #patientList .box-white {
+        height: fit-content;
+        border-radius: 25px;
+    }
+}
+
+/*------------ Botão para o paciente, presente no agendamento ------------*/
+
+.btn-Patient {
+    background-color: #A2DBFE;
+    border-radius: 10px;
+    color: black;
+    font-family: "Open Sans", sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    width: 100%;
+    height: 30px;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    text-align: left;
+}
+
+.btn-Patient:active {
+    background-color: #4689C8;
+}
+
+.btn-Patient:hover {
+    background-color: #58ACFA;
+}
+
+@media (min-width: 321px) and (max-width:768px) {
+    a>.btn-Patient {
+        padding: 5px;
+        text-align: center;
+        height: 27px;
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 320px) {
+    a>.btn-Patient {
+        padding: 5px;
+        font-size: 14px;
+        text-align: center;
+        height: 27px;
+    }
+}
+
 /*COMEÇA O DE JOÃO AQUI */
+
 /*------------ Agendamentos ------------*/
 
 .box-scheduling {
@@ -691,27 +744,18 @@ input[type=number] {
     width: 100%;
 }
 
-/*------------ Botão para o paciente, presente no agendamento ------------*/
-
-.btn-Patient {
-    background-color: #A2DBFE;
-    border-radius: 10px;
-    color: black;
-    font-family: "Open Sans", sans-serif;
-    font-weight: bold;
-    font-size: 16px;
-    width: 100%;
-    height: 30px;
-    margin-bottom: 10px;
-    padding: 5px 10px;
+@media (min-width: 761px) and (max-width:768px) {
+    #scheduling .btn-white {
+        width: 40%;
+        margin-left: 60%;
+    }
 }
 
-.btn-Patient:active {
-    background-color: #4689C8;
-}
-
-.btn-Patient:hover {
-    background-color: #58ACFA;
+@media (max-width: 760px) {
+    #scheduling .btn-white {
+        width: 90%;
+        margin: 0 5%;
+    }
 }
 
 /*----- Botão de opção de sexo -----*/
@@ -722,7 +766,6 @@ input[type=number] {
     border: 2px solid #02A7F0;
     padding: 7px 0;
     border-radius: 10px 0 0 10px;
-
 }
 
 .border-f {
@@ -732,14 +775,17 @@ input[type=number] {
     padding: 7px 0;
     border-radius: 0 10px 10px 0;
 }
-@media (max-width: 990px){ /*Botões de Sexo perdem a borda reta caso não apareçam um do lado do outro mais*/
-    .border-f{
+
+@media (max-width: 990px) {
+    /*Botões de Sexo perdem a borda reta caso não apareçam um do lado do outro mais*/
+    .border-f {
         border-radius: 10px;
     }
-    .border-m{
+    .border-m {
         border-radius: 10px;
     }
 }
+
 .border-left:hover, .border-right:hover {
     background-color: #8ED1F0;
     border-color: #58ACFA;
@@ -762,6 +808,7 @@ input[type=number] {
 }
 
 /*----------------------------plantonista -------------------*/
+
 #on-duty .title {
     color: #0D6EFD;
     font-family: "Open Sans", sans-serif;
@@ -770,18 +817,19 @@ input[type=number] {
     margin-bottom: 10px;
     padding: 5px 10px;
 }
-@media (max-width: 724px){
-    
-    #on-duty .title{
+
+@media (max-width: 724px) {
+    #on-duty .title {
         font-size: 1.2rem;
     }
-    #on-duty p{
+    #on-duty p {
         font-size: 0.8rem;
     }
-    #on-duty .box-blue{
+    #on-duty .box-blue {
         width: 100%;
     }
 }
+
 #on-duty .box-blue, #on-duty .box-button {
     height: 40px;
     padding-top: 10px;
@@ -832,7 +880,7 @@ input[type=number] {
     padding: 20px 10px;
     margin-bottom: 1rem;
     position: relative;
-    text-align:center;
+    text-align: center;
 }
 
 .msg-sucess {
@@ -844,18 +892,23 @@ input[type=number] {
 }
 
 .radial-no-edit {
-    background-color: #A2DBFE; /* Não selecionado */
-}
-.radial-edit{
-    background-color: white; /* Selecionado */
+    background-color: #A2DBFE;
+    /* Não selecionado */
 }
 
-.normal-label{ /* Label dentro de input do tipo Radio */
+.radial-edit {
+    background-color: white;
+    /* Selecionado */
+}
+
+.normal-label {
+    /* Label dentro de input do tipo Radio */
     margin: 0;
     font-weight: normal;
 }
 
 /*---------------------Listagem de medicamentos ---------------------------*/
+
 #medicament-list .box-white {
     background-color: #ffff;
     border-radius: 20px;
@@ -868,7 +921,8 @@ input[type=number] {
 }
 
 /*----------------------------Alterar senha ---------------------------------*/
-.set-password{
+
+.set-password {
     align-self: center;
     align-items: center;
     background-color: white;
@@ -878,28 +932,43 @@ input[type=number] {
     padding-bottom: 10px;
 }
 
-.password-title{
+.password-title {
     background-color: #0D6EFD;
     border-radius: 0 30px 0 0;
-    color:white;
+    color: white;
     font-weight: bold;
     padding: 15px;
 }
-@media (max-width: 430px){
-    .password-title{
+
+@media (max-width: 430px) {
+    .password-title {
         font-size: 1rem;
     }
-    .input-full-width{
+    .input-full-width {
         width: max-content;
     }
 }
 
-.input-full-width{
+.input-full-width {
     width: 100%;
 }
 
-.no-overflow-text{
+.no-overflow-text {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+@media (min-width: 426px) and (max-width:768px) {
+    #historic .btn-blue {
+        width: 30%;
+        margin-left: 70%;
+    }
+}
+
+@media (max-width: 425px) {
+    #historic .btn-blue {
+        width: 90%;
+        margin: 0 5%;
+    }
 }

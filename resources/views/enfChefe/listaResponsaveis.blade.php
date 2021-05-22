@@ -36,22 +36,22 @@
             <!---------------------Agendamento Realizado--------------------->
             <div class="box-scheduling">
                     <div class="row">
-                        <div class="col-lg-2 text-center">
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-2 text-center">
                             <div class="box-gray">
                                 22:30h
                              </div>
                         </div>
-                        <div class="col-lg-2 text-center">
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-2 text-center">
                             <div class="box-gray">
                                 20/04/2021
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
                             <div class="box-white">
                             Dipirona
                              </div>
                         </div>
-                        <div class="col-lg-2">
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-2">
                             <div class="box-white">
                                 0.35 ml
                             </div>
@@ -59,13 +59,13 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-lg-2">
+                        <div class="col-md-4 col-lg-2 col-xl-2">
                             <p>Paciente</p>
                         </div>
-                        <div class="col-lg-7">
-                            <a href="{{ route('prontuario') }}" target="_parent"><button class="btn-Patient text-left">Samara Anjos de Oliveira</button></a>
+                        <div class="col-md-9 col-lg-7 col-xl-7">
+                            <a href="{{ route('prontuario') }}" target="_parent"><button class="btn-Patient">Samara Anjos de Oliveira</button></a>
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-md-3 col-lg-3 col-xl-3">
                             <div class="box-blue">
                                 Leito: AB04
                             </div>
@@ -73,10 +73,10 @@
                     </div>
                    
                     <div class="row">
-                        <div class="col-lg-2">
+                        <div class="col-md-2 col-lg-2 col-xl-2">
                             <p>Responsável</p>
                         </div>
-                        <div class="col-lg-7">
+                        <div class="col-md-10 col-lg-7 col-xl-7">
                             <div class="box-gray">
                                 José Oliveira Silva
                             </div>
