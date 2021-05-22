@@ -36,28 +36,28 @@ class HomeController extends Controller
                 if($request->senha == 12345){
                     return redirect('/primeiroAcesso')->with('cpf', $request->cpf);
                 }
-                header("Location: /menu");
+                header("Location: /menuAdm");
                 exit();
             }else if($atribuicao == "Enfermeiro Chefe"){
                 $_SESSION['enfermeiroChefe'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
                 if($request->senha == 12345){
                     return redirect('/primeiroAcesso')->with('cpf', $request->cpf);
                 }
-                header("Location: /menuEnfermeiroChefe");
+                header("Location: /menu");
                 exit();
             }else if($atribuicao == "Enfermeiro"){
                 $_SESSION['enfermeiro'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
                 if($request->senha == 12345){
                     return redirect('/primeiroAcesso')->with('cpf', $request->cpf);
                 }
-                header("Location: /menuEnfermeiro");
+                header("Location: /menu");
                 exit();
             }else if($atribuicao == "Estagiario"){
                 $_SESSION['estagiario'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
                 if($request->senha == 12345){
                     return redirect('/primeiroAcesso')->with('cpf', $request->cpf);
                 }
-                header("Location: /menuEstagiario");
+                header("Location: /menu");
                 exit();
             }else{
                 return redirect() -> back() ->with('msg-error','Funcionario sem cargo, algo esta errado!!!');
@@ -68,7 +68,10 @@ class HomeController extends Controller
 
     }
 
-
+    public function menu(){
+        VerificaLoginController::verificarLogin();
+        return view('/menu');
+    }
 
     public function logout(){
         session_start();
@@ -83,7 +86,7 @@ class HomeController extends Controller
 
     public function primeiroAcesso(Request $request){
         include('conexao.php');
-        session_start();
+        //session_start();
 
         $senhaDefinida = $request->senha;
         $senhaConfirmacao = $request->confirmacao;
@@ -97,7 +100,7 @@ class HomeController extends Controller
             $busca = mysqli_query($conn,$select);
 
             //se existe o cpf no banco de dados
-            $update = "UPDATE usuarios SET Senha = '$senhaConfirmacao' WHERE CPF = '$cpf'";     //atualiza no banco de dados
+            $update = "UPDATE usuarios SET Senha = $senhaConfirmacao WHERE CPF = $cpf";     //atualiza no banco de dados
             mysqli_query($conn,$update);
 
             return redirect()->route('index')->with('msg-sucess','Senha cadastrada com sucesso!!');
@@ -109,10 +112,9 @@ class HomeController extends Controller
 
     }
 
-
-    public function menu(){
+    /*public function menu(){
         return view('admin.menu');
-    }
+    }*/
 
     public function editPerfil(){
         VerificaLoginController::verificarLogin();

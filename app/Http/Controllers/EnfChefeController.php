@@ -10,10 +10,10 @@ use mysqli;
 
 class EnfChefeController extends Controller
 {
-    public function menu(){
+   /* public function menu(){
         VerificaLoginController::verificarLogin();
         return view('/enfChefe/menu');
-    }
+    }*/
     
     public function cadastroPlantonista(){
         include("db.php");
@@ -313,51 +313,6 @@ class EnfChefeController extends Controller
         }
         
     }
-
-   /* public function prontuario(){
-        VerificaLoginController::verificarLogin();
-        include("db.php");
-        if(isset($_SESSION['enfermeiroChefe'])){
-            $sql = "SELECT * FROM permissao_cargo where permissao_id = '18'";
-            $query = mysqli_query($connect,$sql);
-            while($sql = mysqli_fetch_array($query)){
-                if($sql['cargo_id'] == '2'){
-                    $resultado = $sql['ativo'];
-                }
-            }
-            if($resultado == "1"){
-                return view('/enfChefe/prontuario');
-            }else{
-                return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
-            }
-        }else if(isset($_SESSION['enfermeiro'])){
-            $sql = "SELECT * FROM permissao_cargo where permissao_id = '18'";
-            $query = mysqli_query($connect,$sql);
-            while($sql = mysqli_fetch_array($query)){
-                if($sql['cargo_id'] == '3'){
-                    $resultado = $sql['ativo'];
-                }
-            }
-            if($resultado == "1"){
-                return view('/enfChefe/prontuario');
-            }else{
-                return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
-            }
-        }else if(isset($_SESSION['estagiario'])){
-            $sql = "SELECT * FROM permissao_cargo where permissao_id = '18'";
-            $query = mysqli_query($connect,$sql);
-            while($sql = mysqli_fetch_array($query)){
-                if($sql['cargo_id'] == '4'){
-                    $resultado = $sql['ativo'];
-                }
-            }
-            if($resultado == "1"){
-                return view('/enfChefe/prontuario');
-            }else{
-                return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
-            }
-        }
-    }*/
 
     public function cadastroLeito(){
         VerificaLoginController::verificarLogin();
