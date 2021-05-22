@@ -28,15 +28,17 @@
             <h1>CADASTRO DE AGENDAMENTO</h1>
             <div class="box">
                 <!--Buscar paciente-->
-                <div class="content-center">
-                    <h3>BUSCAR PACIENTE</h3>
-                    <form class="search-bar">
-                        <input name="cpf_user" id="cpf_user" type="text" placeholder="Informe o CPF" required
-                            maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
-                        <button type="submit" id="busca_user">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </form>
+                <div id="search">
+                    <div class="content-center">
+                        <h3>BUSCAR PACIENTE</h3>
+                        <form class="search-bar">
+                            <input name="cpf_user" id="cpf_user" type="text" placeholder="Informe o CPF" required
+                                maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
+                            <button type="submit" id="busca_user">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
+                    </div>
                 </div>
                 <div class="hide" id="user_Data">
                     <!--Infomações do Paciente-->

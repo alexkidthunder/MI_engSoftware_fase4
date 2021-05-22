@@ -12,7 +12,7 @@
 
     <!-- Favicon -->
     <link href="{{ asset('img/favicon.png') }}" rel="icon">
-    
+
     <title>Listagem Plantonista</title>
 
 </head>
@@ -21,51 +21,46 @@
     <!----------Hearder------------>
     @include('layouts.navbar')
     <!----------End Hearder-------->
-        <div id="screen-icon"> <!-- Icone de Download Em Telas -->
-            <form class="download-icon">
-                <button>
-                    <i class="fas fa-download"></i>
-                </button>
-            </form>
-        </div>
+    <div id="screen-icon">
+        <!-- Icone de Download Em Telas -->
+        <form class="download-icon">
+            <button>
+                <i class="fas fa-download"></i>
+            </button>
+        </form>
+    </div>
 
     <section>
         <div class="container-1" id="on-duty">
             <h1>LISTAGEM DE PLANTONISTA</h1>
-
             <div class="box-on-duty">
-                <div class="row">
-                    <div class="col">
-                        <!--------- Cabeçario - Nome --------->
-                        <div class="row no-gutters title">
-                            <div class="col">
-                                NOME
-                            </div>
+                <!--------- Cabeçario --------->
+                <div class="title">
+                    <div class="row">
+                        <div class="col-6 col-sm-6 col-md-8 col-lg-8">
+                            NOME
                         </div>
-                        <!--------- Nome do Plantonista --------->
-                        <div class="row no-gutters box-blue">
-                            <div class="col">
-                                <p><nobr>Rafaela Soares da Silva</nobr></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <!--------- Cabeçario - Cargo --------->
-                        <div class="row no-gutters title">
-                            <div class="col">
-                                CARGO
-                            </div>
-                        </div>
-                        <!--------- Cargo do Plantonista --------->
-                        <div class="row no-gutters box-blue">
-                            <div class="col">
-                                <p><nobr>Enfermeiro Chefe</nobr></p>
-                            </div>
+                        <div class="col-6 col-sm-6 col-md-4 col-lg-4">
+                            CARGO
                         </div>
                     </div>
                 </div>
+                <!--------- Plantonista --------->
+                <!---APENAS ISSO QUE SE REPETE BACK, O CABEÇARIO N -->
+                <div class="box-blue">
+                    <div class="row">
+                        <div class="col-6 col-sm-6 col-md-8 col-lg-8 text-left">
+                            add o nome do plantonista
+                        </div>
+                        <div class="col-6 col-sm-6 col-md-4 col-lg-4 text-left">
+                            add o cargo do plantonista
+                        </div>
+                    </div>
+                </div>
+                <!------- Fim de plantonista ------->
             </div>
         </div>
     </section>
 </body>
+
 </html>

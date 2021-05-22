@@ -35,7 +35,7 @@
         <div class="box-white">
             <!----- Nome do medicamento----->
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                     <label>Nome</label> <br>
                     <div class="box-blue">
                         Anlodipino
@@ -44,21 +44,21 @@
             </div>
             <div class="row">
                 <!----- Data de validade do medicamento----->
-                <div class="col-lg-3">
+                <div class="col-12 col-sm-6 col-md-3 col-lg-3">
                     <label><nobr>Data de validade</nobr></label> <br>
                     <div class="box-gray">
                         01/10/2021
                     </div>
                 </div>
                 <!-----Quantidade do medicamento----->
-                <div class="col-lg-3">
+                <div class="col-12 col-sm-6 col-md-3 col-lg-3">
                     <label><nobr>Em estoque</nobr></label> <br>
                     <div class="box-gray">
                         100
                     </div>
                 </div>
                 <!-----Fabricante do medicamento----->
-                <div class="col-lg-6">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                     <label>Fabricante</label> <br>
                     <div class="box-gray">
                         União MDN

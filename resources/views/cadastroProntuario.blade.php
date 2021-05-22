@@ -24,17 +24,19 @@
             <h1>CADASTRO DE PRONTUARIO</h1>
 
             <!------------- Busca do paciente ------------->
-            <div class="box">
-                <div class="content-center">
-                    <h3>BUSCAR PACIENTE</h3>
-                    <form class="search-bar">
-                        <!--- Campo para a inserção do CPF do paciente --->
-                        <input name="cpf_user" id="cpf_user" type="text" placeholder="Informe o CPF" required
-                            maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
-                        <button type="submit">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </form>
+            <div id="search">
+                <div class="box">
+                    <div class="content-center">
+                        <h3>BUSCAR PACIENTE</h3>
+                        <form class="search-bar">
+                            <!--- Campo para a inserção do CPF do paciente --->
+                            <input name="cpf_user" id="cpf_user" type="text" placeholder="Informe o CPF" required
+                                maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
+                            <button type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
             <!---------- Fim da Busca do paciente ---------->
