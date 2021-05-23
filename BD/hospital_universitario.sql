@@ -103,7 +103,7 @@ CREATE TABLE ocorrencias (
 CREATE TABLE pacientes (
   Nome_Paciente varchar(50) NOT NULL,
   Sexo varchar(20) NOT NULL,
-  Status enum('internado','alta','obito') NOT NULL,  
+  Estado enum('internado','alta','obito') NOT NULL,  
   Data_Nasc date NOT NULL,
   CPF char(14) NOT NULL,
   Tipo_Sang varchar(5) NOT NULL  
