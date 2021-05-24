@@ -51,13 +51,13 @@
         <div class="box-white">
             <div class="row">
                 <!---------- Nome do paciente ------------>
-                <div class="col-lg-10">
+                <div class="col-12 col-sm-12 col-md-10 col-lg-10">
                     <div class="box-blue">
                         Raiane Moreira Santana
                     </div>
                 </div>
                 <!----- Link para o prontuário do paciente ----->
-                <div class="col-lg-2">
+                <div class="col-12 col-sm-12 col-md-2 col-lg-2">
                     <a href="{{ route('prontuario') }}" target="_parent"><button
                             class="btn-blue">Prontuário</button></a>
                 </div>

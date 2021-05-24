@@ -416,7 +416,6 @@
                     <button id="alterar" type="submit" class="container-button btn-white hide">Alterar</button>
                 </div>
             </form>
-            {{-- </div> --}}
         </div>
 </body>
 

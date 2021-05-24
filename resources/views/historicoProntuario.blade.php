@@ -37,21 +37,23 @@
     </div>
     <!--------Fim do botão de donwload-------->
 
-    <div class="container-1">
+    <div class="container-1" id="historic">
         <h1>HISTÓRIO DE PRONTUÁRIOS </h1>
 
         <!------------- Busca do paciente ------------->
-        <div class="box">
-            <div class="content-center">
-                <h3>BUSCAR PACIENTE</h3>
-                <form class="search-bar">
-                    <!--- Campo para a inserção do CPF do paciente --->
-                    <input name="cpf_user" id="cpf_user" type="text" placeholder="Informe o CPF" required maxlength="14"
-                        pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
-                    <button type="submit">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </form>
+        <div id="search">
+            <div class="box">
+                <div class="content-center">
+                    <h3>BUSCAR PACIENTE</h3>
+                    <form class="search-bar">
+                        <!--- Campo para a inserção do CPF do paciente --->
+                        <input name="cpf_user" id="cpf_user" type="text" placeholder="Informe o CPF" required maxlength="14"
+                            pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
+                        <button type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
         <!---------- Fim da Busca do paciente ---------->
@@ -59,49 +61,50 @@
         <!---------- Infomações do Paciente buscado ---------->
         <div class="row">
             <!------ Nome do Paciente ------>
-            <div class="col-lg-8">
+            <div class="col-12 col-sm-12 col-md-8 col-lg-8">
                 <div class="box-blue">
-                    Marcos Oliveira Santana
+                    Ser o número 1 nisto ou na Ser o número 1 nisto ou n
                 </div>
             </div>
             <!------ CPF do Paciente ------>
-            <div class="col-lg-4">
+            <div class="col-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="box-blue">
                     CPF: 011.988.999-00
                 </div>
             </div>
         </div>
         <!------ Fim das infomações do Paciente buscado ------>
-
+        
+        <br> 
         <!---------- Histórico de prontuários ---------->
         <div {{-- class="hide" --}} id="record">
 
             <!------------- Prontuário ------------->
-            <div class="box-scheduling">
+            <div class="box-historic">
                 <div class="row">
                     <!------ Data de internação ------>
-                    <div class="col-lg-3">
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-3">
                         <label>Data de Internação:</label> <br>
                         <div class="box-gray">
                             10/06/2020
                         </div>
                     </div>
                     <!------ Data de saída ------>
-                    <div class="col-lg-3">
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-3">
                         <label>Data de Saída:</label> <br>
                         <div class="box-gray">
                             25/06/2020
                         </div>
                     </div>
                     <!------ Motivo da saída ------>
-                    <div class="col-lg-3">
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                         <label>Motivo:</label> <br>
                         <div class="box-gray">
                             Em alta
                         </div>
                     </div>
                     <!------ Botão para acessar prontuário ------>
-                    <div class="col-lg-3 input-full-width">
+                    <div class="col-12 col-sm-6 col-md-12 col-lg-3 input-full-width">
                         <br>
                         <a href="{{ route('prontuario') }}" target="_parent"><button
                             class="btn-blue">Prontuário</button></a>
