@@ -961,13 +961,12 @@ input[type=number] {
 }
 
 .radial-no-edit {
-    background-color: #A2DBFE;
-    /* Não selecionado */
+    background-color: #A2DBFE; /* Não selecionado */
+    transition: background 1s;
 }
-
-.radial-edit {
-    background-color: white;
-    /* Selecionado */
+.radial-edit{
+    background-color: white; /* Selecionado */
+    transition: background 1s;
 }
 
 .normal-label {
@@ -1040,4 +1039,15 @@ input[type=number] {
         width: 90%;
         margin: 0 5%;
     }
+}
+
+.highlight-change{
+    background-color:#A2DBFE;
+    border-radius: 50px;
+    opacity: 80%;
+    transition: 1s;
+}
+.transition-1s{
+    border-radius: 50px;
+    transition: 1s;
 }
