@@ -845,9 +845,11 @@ input[type=number] {
 
 .radial-no-edit {
     background-color: #A2DBFE; /* Não selecionado */
+    transition: background 1s;
 }
 .radial-edit{
     background-color: white; /* Selecionado */
+    transition: background 1s;
 }
 
 .normal-label{ /* Label dentro de input do tipo Radio */
@@ -902,4 +904,15 @@ input[type=number] {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.highlight-change{
+    background-color:#A2DBFE;
+    border-radius: 50px;
+    opacity: 80%;
+    transition: 1s;
+}
+.transition-1s{
+    border-radius: 50px;
+    transition: 1s;
 }
