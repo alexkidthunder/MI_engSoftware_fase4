@@ -165,6 +165,7 @@ class HomeController extends Controller
             $query = mysqli_query($connect,$sql);
             while($sql = mysqli_fetch_array($query)){
                 $p[$i] = $sql['Nome_Paciente'];
+                $p[$i+1] = $sql['CPF'];
                 $i = $i+2;
             }
             return view('listaPacientes',['p'=>$p]);
@@ -399,7 +400,18 @@ class HomeController extends Controller
                 }
             }
             if($resultado == "1"){
-                return view('listaMedicamento');
+                $i = 0;
+                $m = [];
+                $sql = "SELECT * FROM medicamentos";
+                $query = mysqli_query($connect,$sql);
+                while($sql = mysqli_fetch_array($query)){
+                    $m[$i] = $sql['Nome_Medicam'];
+                    $m[$i+1] = $sql['Data_Validade'];
+                    $m[$i+2] = $sql['Quantidade'];
+                    $m[$i+3] = $sql['Fabricante'];
+                    $i = $i+4;
+                }
+                return view('listaMedicamento',['m' => $m]);
             }else{
                 return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
             }
@@ -412,7 +424,18 @@ class HomeController extends Controller
                 }
             }
             if($resultado == "1"){
-                return view('listaMedicamento');
+                $i = 0;
+                $m = [];
+                $sql = "SELECT * FROM medicamentos";
+                $query = mysqli_query($connect,$sql);
+                while($sql = mysqli_fetch_array($query)){
+                    $m[$i] = $sql['Nome_Medicam'];
+                    $m[$i+1] = $sql['Data_Validade'];
+                    $m[$i+2] = $sql['Quantidade'];
+                    $m[$i+3] = $sql['Fabricante'];
+                    $i = $i+4;
+                }
+                return view('listaMedicamento',['m' => $m]);
             }else{
                 return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
             }
@@ -425,7 +448,18 @@ class HomeController extends Controller
                 }
             }
             if($resultado == "1"){
-                return view('listaMedicamento');
+                $i = 0;
+                $m = [];
+                $sql = "SELECT * FROM medicamentos";
+                $query = mysqli_query($connect,$sql);
+                while($sql = mysqli_fetch_array($query)){
+                    $m[$i] = $sql['Nome_Medicam'];
+                    $m[$i+1] = $sql['Data_Validade'];
+                    $m[$i+2] = $sql['Quantidade'];
+                    $m[$i+3] = $sql['Fabricante'];
+                    $i = $i+4;
+                }
+                return view('listaMedicamento',['m' => $m]);
             }else{
                 return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
             }
