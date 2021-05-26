@@ -9,6 +9,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet">
     <link href="{{ 'css/style.css' }}" rel="stylesheet">
     <link href="{{ 'bootstrap/css/bootstrap.css' }}" rel="stylesheet">
+    <script src="{{ ('js/mascara.min.js')}}"></script>
 
     <!-- Favicon -->
     <link href="{{ asset('img/favicon.png') }}" rel="icon">
@@ -75,8 +76,8 @@
                         <!----- Campo para inserção do CPF ----->
                         <div class="col-lg-4">
                             <label>CPF</label> <br>
-                            <input id="fcpf" name="fcpf" type="text" required maxlength="14"
-                                pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
+                            <input id="fcpf" name="fcpf" type="text" onkeyup="mascara('###.###.###-##',this,event,true)" 
+                            required maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
                         </div>
                         <!----- Campo para inserção do sexo ----->
                         <div class="col-lg-4">
