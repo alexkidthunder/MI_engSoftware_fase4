@@ -45,19 +45,51 @@
                         </div>
                     </div>
                 </div>
+                @if(isset($plantonista["nome0"]))
                 <!--------- Plantonista --------->
                 <!---APENAS ISSO QUE SE REPETE BACK, O CABEÇARIO N -->
                 <div class="box-blue">
                     <div class="row">
                         <div class="col-6 col-sm-6 col-md-8 col-lg-8 text-left">
-                            add o nome do plantonista
+                            {{$plantonista["nome0"]}}
                         </div>
                         <div class="col-6 col-sm-6 col-md-4 col-lg-4 text-left">
-                            add o cargo do plantonista
+                            {{$plantonista["cargo0"]}}
                         </div>
                     </div>
                 </div>
                 <!------- Fim de plantonista ------->
+                @endif
+                @if(isset($plantonista["nome1"]))
+                <!--------- Plantonista --------->
+                <!---APENAS ISSO QUE SE REPETE BACK, O CABEÇARIO N -->
+                <div class="box-blue">
+                    <div class="row">
+                        <div class="col-6 col-sm-6 col-md-8 col-lg-8 text-left">
+                            {{$plantonista["nome1"]}}
+                        </div>
+                        <div class="col-6 col-sm-6 col-md-4 col-lg-4 text-left">
+                            {{$plantonista["cargo1"]}}
+                        </div>
+                    </div>
+                </div>
+                <!------- Fim de plantonista ------->
+                @endif
+                @if(isset($plantonista["nome2"]))
+                <!--------- Plantonista --------->
+                <!---APENAS ISSO QUE SE REPETE BACK, O CABEÇARIO N -->
+                <div class="box-blue">
+                    <div class="row">
+                        <div class="col-6 col-sm-6 col-md-8 col-lg-8 text-left">
+                            {{$plantonista["nome2"]}}
+                        </div>
+                        <div class="col-6 col-sm-6 col-md-4 col-lg-4 text-left">
+                            {{$plantonista["cargo2"]}}
+                        </div>
+                    </div>
+                </div>
+                <!------- Fim de plantonista ------->
+                @endif
             </div>
         </div>
     </section>
