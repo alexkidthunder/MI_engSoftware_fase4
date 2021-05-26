@@ -45,12 +45,11 @@ Route::get('/verificarLoginEst', [ VerificaLoginController::class,'verificarLogi
 Route::get('/verificarLogin', [ VerificaLoginController::class,'verificarLogin'])->name('verificarLogin');
 
 /*------------ Rota para o perfil ------------------------ */
-
 Route::get('/meuPerfil', [HomeController::class,'editPerfil'])->name('editarPerfil');
 
 /*------------ Rotas do administrador ------------------ */
 
-Route::get('/menu', [AdminController::class,'menu'])->name('menu');
+Route::get('/menuAdm', [AdminController::class,'menu'])->name('menuAdm');
 Route::get('/log', [AdminController::class,'log'])->name('log');
 Route::get('/editarAtribuicao', [AdminController::class,'atribuicao'])->name('editarAtribuicao');
 Route::get('/editarPermissao', [AdminController::class,'permissao'])->name('editarPermissao');
@@ -85,7 +84,6 @@ Route::get('/agendamentos',[HomeController::class,'agendamentos'])->name('agenda
 
 /*------------ Rotas do enfermeiro chefe -------------*/
 
-Route::get('/menuEnfermeiroChefe', [EnfChefeController::class,'menu'])->name('menu-ec');
 Route::get('/cadastroPlantonista', [EnfChefeController::class,'cadastroPlantonista'])->name('cadastroPlantonista');
 Route::get('/listagemPlantonistas', [EnfChefeController::class,'listaPlantonistas'])->name('listagemPlantonistas');
 Route::get('/cadastroMedicamento', [EnfChefeController::class,'cadastroMedicamento'])->name('cadastroMedicamento');
@@ -95,13 +93,9 @@ Route::get('/listaResponsaveis',[EnfChefeController::class,'responsaveis'])->nam
 Route::get('/cadastroLeito',[EnfChefeController::class,'cadastroLeito'])->name('cadastroLeito');
 Route::post('/cadastroMedicamento', [EnfChefeController::class,'salvarMedicamento'])->name('salvarMedicamento');
 
-/*------------ Rotas do enfermeiro -------------------*/
+/*------------ Rotas do menu de enfermeiro, estagiário e enfermeiro chefe -------------------*/
 
-Route::get('/menuEnfermeiro', [EnfController::class,'menu'])->name('menu-e');
-
-/*------------ Rotas do estagiário -------------------*/
-
-Route::get('/menuEstagiario', [EstagiarioController::class,'menu'])->name('menu-es');
+Route::get('/menu', [HomeController::class,'menu'])->name('menu');
 
 /*------------ Rotas do medicamento -------------------*/
 

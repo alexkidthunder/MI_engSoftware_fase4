@@ -29,7 +29,7 @@
                 <nav class="nav d-none d-lg-block">
 
                     <ul>
-                        <li class="title-nav"><a href="{{ route('menu') }}">INÍCIO</a></li>
+                        <li class="title-nav"><a href="{{ route('menuAdm') }}">INÍCIO</a></li>
                         <li class="drop-down title-nav"><a>FUNCIONÁRIOS <i class="fas fa-angle-down"></i></a>
                             <ul>
                                 <li><a href="{{ route('cadastrarUsuario') }}">Cadastrar</a></li>

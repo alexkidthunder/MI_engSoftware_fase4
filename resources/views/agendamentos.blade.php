@@ -34,29 +34,29 @@
             <h1>VERIFICAÇÃO DE AGENDAMENTOS</h1>
 
             <!---------------------- Agendamento  ---------------------->
-            <div class="box-scheduling">
+            <div class="box-scheduling" id="scheduling">
                 <!----- Fim das informações do agendamento ----->
                 <div class="row">
-                    <div class="col-lg-2 text-center">
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-2 text-center">
                         <!------ Horário previsto para o agendamento ---->
                         <div class="box-gray">
                             22:30h
                         </div>
                     </div>
                     <!------ Data prevista para o agendamento ---->
-                    <div class="col-lg-2 text-center">
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-2 text-center">
                         <div class="box-gray">
                             13/05/2021
                         </div>
                     </div>
                     <!------ Nome do medicamento ---->
-                    <div class="col-lg-6">
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
                         <div class="box-white">
                             Alodipina
                         </div>
                     </div>
                     <!------ Posologia do medicamento ---->
-                    <div class="col-lg-2">
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-2">
                         <div class="box-white">
                             10 ml
                         </div>
@@ -64,12 +64,12 @@
                 </div>
                 <div class="row">
                     <!------ Nome do paciente ao qual o agendamento pertence ---->
-                    <div class="col-lg-9">
+                    <div class="col-12 col-sm-12 col-md-9 col-lg-9">
                         <a href="{{ route('prontuario') }}" target="_parent"><button
-                                class="btn-Patient text-left">Marcos Antonio de Oliveira</button></a>
+                                class="btn-Patient">Ser o número 1 nisto ou na Ser o número 1 nisto ou n</button></a>
                     </div>
                     <!------ Leito em que o paciente está internado ---->
-                    <div class="col-lg-3">
+                    <div class="col-12 col-sm-12 col-md-3 col-lg-3">
                         <div class="box-blue">
                             Leito: LC005
                         </div>
@@ -82,17 +82,18 @@
                     <!--------------- Preprador da aplicação --------------->
 
                     <!---------- Nome do preparador ---------->
-                    <div class="col-lg-2 hide" name="preparador_div">
+                    <div class="col-12 col-sm-12 col-md-3 col-lg-2 hide" name="preparador_div">
                         <p>Prepador da aplicação:</p>
                     </div>
-                    <div class="col-lg-7 hide" name="preparador_div">
+                    <div class="col-12 col-sm-12 col-md-9 col-lg-7 hide" name="preparador_div">
                         <!--Utilizar Jquery (inner.html)-->
                         <div class="box-gray" id="preparador">
-
                         </div>
                     </div>
                     <!---------- Botao para adicionar preparador ---------->
-                    <div class="col-lg-3" id="add_prep_btn_div">
+                    <div class="col-lg-9">
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-3" id="add_prep_btn_div">
                         <div>
                             <button type="button" class="btn-white" id="add_prep_btn"> Adicionar preparador</button>
                         </div>
@@ -100,7 +101,7 @@
                     <!------------- Fim do preprador da aplicação ------------->
 
                     <!---------- Botao para finalizar aplicação---------->
-                    <div class="col-lg-3 hide" id="end_prep_div">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-3 hide" id="end_prep_div">
                         <div>
                             <button type="button" class="btn-white" id="end_prep_btn"> Finalizar aplicação</button>
                         </div>

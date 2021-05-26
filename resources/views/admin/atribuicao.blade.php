@@ -52,12 +52,14 @@
                             </div>
                         </div>
                     </div>
-                    <form class="search-bar" action="/lupinha" method="GET"> <!--Área onde busca um usuário-->
-                        <input name="cpf_user" id="cpf_user" type="text" placeholder="Informe o CPF" required maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
-                        <button type="submit" id="busca_user">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </form> <!--Fim da área onde se busca um usuário-->
+                    <div id="search">
+                        <form class="search-bar" action="/lupinha" method="GET"> <!--Área onde busca um usuário-->
+                            <input name="cpf_user" id="cpf_user" type="text" placeholder="Informe o CPF" required maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
+                            <button type="submit" id="busca_user">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form> <!--Fim da área onde se busca um usuário-->
+                    </div>
                 </div>
                 <div id="user_Data" >
                      <!--Infomações do funcionário-->
