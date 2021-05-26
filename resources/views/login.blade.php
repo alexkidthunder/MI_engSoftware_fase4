@@ -47,7 +47,7 @@
             <!---------------- Campo para a inserção do CPF --------------->
             <div>
                 <label>CPF</label>
-                <input id="fcpf" name="fcpf" type="text" placeholder= "Digite o CPF" onkeyup="mascara('###.###.###-##',this,event,true)" 
+                <input id="cpf" name="cpf" type="text" placeholder= "Digite seu CPF" onkeyup="mascara('###.###.###-##',this,event,true)" 
                             required maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
             </div>
             <!---------------- Campo para a inserção da senha --------------->

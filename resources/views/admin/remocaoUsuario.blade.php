@@ -30,7 +30,7 @@
                 <div class="content-center"> <!--Área onde se busca um funcionário-->
                     <h3>BUSCAR FUNCIONÁRIO</h3>
                     <form class="search-bar" action="/buscarUsuario" method="GET">
-                    <input id="fcpf" name="fcpf" type="text" placeholder= "Digite o CPF" onkeyup="mascara('###.###.###-##',this,event,true)" 
+                    <input id="cpf_user" name="cpf_user" type="text" placeholder= "Digite o CPF" onkeyup="mascara('###.###.###-##',this,event,true)" 
                             required maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
                         <button type="submit">
                             <i class="fas fa-search"></i>
