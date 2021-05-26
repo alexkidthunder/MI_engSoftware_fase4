@@ -8,6 +8,7 @@
 
     <!-- Favicon -->
     <link href="{{ asset('img/favicon.png') }}" rel="icon">
+    <script src="{{ ('js/mascara.min.js')}}"></script>
 
     <title>Login</title>
 
@@ -46,8 +47,8 @@
             <!---------------- Campo para a inserção do CPF --------------->
             <div>
                 <label>CPF</label>
-                <input type="text" name="cpf" placeholder="Digite seu CPF" required maxlength="14"
-                    pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
+                <input id="cpf" name="cpf" type="text" placeholder= "Digite seu CPF" onkeyup="mascara('###.###.###-##',this,event,true)" 
+                            required maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
             </div>
             <!---------------- Campo para a inserção da senha --------------->
             <div>

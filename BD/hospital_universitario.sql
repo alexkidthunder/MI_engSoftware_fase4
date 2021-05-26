@@ -77,8 +77,8 @@ CREATE TABLE log (
   Id bigint(20) NOT NULL,
   Data_Log date NOT NULL,
   Hora_Agend time NOT NULL,
-  CPF_usuario varchar(255) NOT NULL, /* Chave estrangeira que faz referencia ao Usuário*/
-  Ip varchar(15) NOT NULL
+  Ip varchar(15) NOT NULL,
+  Acao text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Cria tabela de medicamentos*/
@@ -103,7 +103,7 @@ CREATE TABLE ocorrencias (
 CREATE TABLE pacientes (
   Nome_Paciente varchar(50) NOT NULL,
   Sexo varchar(20) NOT NULL,
-  Status enum('internado','alta','obito') NOT NULL,  
+  Estado enum('internado','alta','obito') NOT NULL,  
   Data_Nasc date NOT NULL,
   CPF char(14) NOT NULL,
   Tipo_Sang varchar(5) NOT NULL  
