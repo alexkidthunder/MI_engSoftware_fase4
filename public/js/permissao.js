@@ -60,6 +60,7 @@ selectAtribuicao.addEventListener('change', function () {
  * em um texto e, logo após, apaga a informação da sessionStorage
  */
 document.addEventListener("DOMContentLoaded", function () {
+
     setAtribuicaoText();
     saveStateToSessionStorage();
     num_alt.innerHTML = "Alterações: " + state;
@@ -100,10 +101,9 @@ function compareState(element,name,id){
 
 function addToggleEvent(ListHtmlElement){
     ListHtmlElement.forEach(element =>{
-        console.log(element.checked + " Toggle Event");
-        element.addEventListener('click',function(){
-            console.log(element.checked + " Inside Function");
-            compareState(element,element.getAttribute("name"),element.getAttribute("id"));
+        let input = element.getElementsByTagName('input').item(0);
+        input.addEventListener('click',function(){
+            compareState(input,element.getAttribute("name"),input.getAttribute("name"));
             alterarBtnOnDemand();
         })
     })
@@ -112,21 +112,26 @@ function addToggleEvent(ListHtmlElement){
 /**
  * 
  */
-function saveStateToSessionStorage(){
+function saveStateToSessionStorage(){ // funcionando
     admin_perm.forEach(element => {
-        sessionStorage.setItem("adm-" + element.getAttribute("id"),element.checked);
+        let input = element.getElementsByTagName('input').item(0);
+        sessionStorage.setItem("adm-" + input.getAttribute("name"),input.checked);
     });
     paciente_perm.forEach(element =>{
-        sessionStorage.setItem("paciente-" + element.getAttribute("id"),element.checked);
+        let input = element.getElementsByTagName('input').item(0);
+        sessionStorage.setItem("paciente-" + input.getAttribute("name"),input.checked);
     })
     gerencia_hospitalar_perm.forEach(element =>{
-        sessionStorage.setItem("gerenciamento_hospitalar-"+ element.getAttribute("id"),element.checked);
+        let input = element.getElementsByTagName('input').item(0);
+        sessionStorage.setItem("gerenciamento_hospitalar-"+ input.getAttribute("name"),input.checked);
     })
     gerencia_perm.forEach(element =>{
-        sessionStorage.setItem("gerenciamento-" + element.getAttribute("id"),element.checked);
+        let input = element.getElementsByTagName('input').item(0);
+        sessionStorage.setItem("gerenciamento-" + input.getAttribute("name"),input.checked);
     })
     agendamento_perm.forEach(element =>{
-        sessionStorage.setItem("agendamento-" + element.getAttribute("id"),element.checked);
+        let input = element.getElementsByTagName('input').item(0);
+        sessionStorage.setItem("agendamento-" + input.getAttribute("name"),input.checked);
     })    
 }
 /**
@@ -173,18 +178,18 @@ function replaceCargoText() {
 
 function addTransition(){
     admin_perm.forEach(element =>{
-        element.parentElement.classList.add("transition-1s");
+        element.classList.add("transition-1s");
     })
     paciente_perm.forEach(element =>{
-        element.parentElement.classList.add("transition-1s");
+        element.classList.add("transition-1s");
     })
     gerencia_hospitalar_perm.forEach(element =>{
-        element.parentElement.classList.add("transition-1s");
+        element.classList.add("transition-1s");
     })
     gerencia_perm.forEach(element =>{
-        element.parentElement.classList.add("transition-1s");
+        element.classList.add("transition-1s");
     })
     agendamento_perm.forEach(element =>{
-        element.parentElement.classList.add("transition-1s");
+        element.classList.add("transition-1s");
     })
 }
