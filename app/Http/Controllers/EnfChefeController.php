@@ -189,7 +189,32 @@ class EnfChefeController extends Controller
                 }
             }
             if($resultado == "1"){
-                return view('/enfChefe/listagemPlantonistas');
+                $sql = "SELECT * FROM enfermeiros where Plantao = '1'";
+                $query = mysqli_query($connect,$sql);
+                $i = 0;
+                while($sql = mysqli_fetch_array($query)){
+                    $cpf = $sql['CPF'];
+                    $sql1 = "SELECT * FROM usuarios where CPF = '$cpf'";
+                    $query1 = mysqli_query($connect,$sql1);
+                    while($sql1 = mysqli_fetch_array($query1)){
+                        $plantonista['nome'.$i] = $sql1['Nome'];
+                        $plantonista['cargo'.$i] = $sql1['Atribuicao'];
+                    }
+                    $i++;
+                }
+                $sql = "SELECT * FROM estagiarios where Plantao = '1'";
+                $query = mysqli_query($connect,$sql);
+                while($sql = mysqli_fetch_array($query)){
+                    $cpf = $sql['CPF'];
+                    $sql1 = "SELECT * FROM usuarios where CPF = '$cpf'";
+                    $query1 = mysqli_query($connect,$sql1);
+                    while($sql1 = mysqli_fetch_array($query1)){
+                        $plantonista['nome'.$i] = $sql1['Nome'];
+                        $plantonista['cargo'.$i] = $sql1['Atribuicao'];
+                    }
+                    $i++;
+                }
+                return view('/enfChefe/listagemPlantonistas',['plantonista' => $plantonista]);
             }else{
                 return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
             }
@@ -202,7 +227,32 @@ class EnfChefeController extends Controller
                 }
             }
             if($resultado == "1"){
-                return view('/enfChefe/listagemPlantonistas');
+                $sql = "SELECT * FROM enfermeiros where Plantao = '1'";
+                $query = mysqli_query($connect,$sql);
+                $i = 0;
+                while($sql = mysqli_fetch_array($query)){
+                    $cpf = $sql['CPF'];
+                    $sql1 = "SELECT * FROM usuarios where CPF = '$cpf'";
+                    $query1 = mysqli_query($connect,$sql1);
+                    while($sql1 = mysqli_fetch_array($query1)){
+                        $plantonista['nome'.$i] = $sql1['Nome'];
+                        $plantonista['cargo'.$i] = $sql1['Atribuicao'];
+                    }
+                    $i++;
+                }
+                $sql = "SELECT * FROM estagiarios where Plantao = '1'";
+                $query = mysqli_query($connect,$sql);
+                while($sql = mysqli_fetch_array($query)){
+                    $cpf = $sql['CPF'];
+                    $sql1 = "SELECT * FROM usuarios where CPF = '$cpf'";
+                    $query1 = mysqli_query($connect,$sql1);
+                    while($sql1 = mysqli_fetch_array($query1)){
+                        $plantonista['nome'.$i] = $sql1['Nome'];
+                        $plantonista['cargo'.$i] = $sql1['Atribuicao'];
+                    }
+                    $i++;
+                }
+                return view('/enfChefe/listagemPlantonistas',['plantonista' => $plantonista]);
             }else{
                 return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
             }
@@ -215,7 +265,32 @@ class EnfChefeController extends Controller
                 }
             }
             if($resultado == "1"){
-                return view('/enfChefe/listagemPlantonistas');
+                $sql = "SELECT * FROM enfermeiros where Plantao = '1'";
+                $query = mysqli_query($connect,$sql);
+                $i = 0;
+                while($sql = mysqli_fetch_array($query)){
+                    $cpf = $sql['CPF'];
+                    $sql1 = "SELECT * FROM usuarios where CPF = '$cpf'";
+                    $query1 = mysqli_query($connect,$sql1);
+                    while($sql1 = mysqli_fetch_array($query1)){
+                        $plantonista['nome'.$i] = $sql1['Nome'];
+                        $plantonista['cargo'.$i] = $sql1['Atribuicao'];
+                    }
+                    $i++;
+                }
+                $sql = "SELECT * FROM estagiarios where Plantao = '1'";
+                $query = mysqli_query($connect,$sql);
+                while($sql = mysqli_fetch_array($query)){
+                    $cpf = $sql['CPF'];
+                    $sql1 = "SELECT * FROM usuarios where CPF = '$cpf'";
+                    $query1 = mysqli_query($connect,$sql1);
+                    while($sql1 = mysqli_fetch_array($query1)){
+                        $plantonista['nome'.$i] = $sql1['Nome'];
+                        $plantonista['cargo'.$i] = $sql1['Atribuicao'];
+                    }
+                    $i++;
+                }
+                return view('/enfChefe/listagemPlantonistas',['plantonista' => $plantonista]);
             }else{
                 return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
             }
@@ -268,7 +343,7 @@ class EnfChefeController extends Controller
         }
     }
 
-    public function listaAgendamentos(){
+    public function listaAgendamentos(){ //LISTAGEM DE AGENDAMENTOS E MEDICAMENTOS
         VerificaLoginController::verificarLogin();
         include("db.php");
         if(isset($_SESSION['enfermeiroChefe'])){
@@ -280,7 +355,37 @@ class EnfChefeController extends Controller
                 }
             }
             if($resultado == "1"){
-                return view('/enfChefe/agendamentos');
+                $i = 0;
+                $infos = [];
+                $sql = "SELECT * FROM agendamentos";
+                $query = mysqli_query($connect,$sql);
+                while($sql = mysqli_fetch_array($query)){
+                    $medicamento = $sql['Cod_medicamento'];
+                    $prontuario = $sql['ID_prontuario'];
+                    $infos['hora'.$i] = $sql['Hora_Agend'];
+                    $infos['data'.$i] = $sql['Data_Agend'];
+                    $infos['posologia'.$i] = $sql['Posologia'];
+                    $sql1 = "SELECT * FROM medicamentos WHERE Codigo = '$medicamento'";
+                    $query1 = mysqli_query($connect,$sql1);
+                    while($sql1 = mysqli_fetch_array($query1)){
+                        $infos['medicamento'.$i] = $sql1['Nome_Medicam'];
+                    }
+                    $sql2 = "SELECT * FROM prontuarios WHERE ID = '$prontuario'";
+                    $query2 = mysqli_query($connect,$sql2);
+                    while($sql2 = mysqli_fetch_array($query2)){
+                        $identificaP = $sql2['Cpfpaciente'];
+                        $infos['leito'.$i] = $sql2['Id_leito'];
+                    }
+                    $sql3 = "SELECT * FROM pacientes WHERE CPF = '$identificaP'";
+                    $query3 = mysqli_query($connect,$sql3);
+                    while($sql3 = mysqli_fetch_array($query3)){
+                        $infos['paciente'.$i] = $sql3['Nome_Paciente'];
+                    }
+
+                    $i++;
+                }
+                
+                return view('/enfChefe/agendamentos',['infos' => $infos]);
             }else{
                 return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
             }
@@ -293,7 +398,37 @@ class EnfChefeController extends Controller
                 }
             }
             if($resultado == "1"){
-                return view('/enfChefe/agendamentos');
+                $i = 0;
+                $infos = [];
+                $sql = "SELECT * FROM agendamentos";
+                $query = mysqli_query($connect,$sql);
+                while($sql = mysqli_fetch_array($query)){
+                    $medicamento = $sql['Cod_medicamento'];
+                    $prontuario = $sql['ID_prontuario'];
+                    $infos['hora'.$i] = $sql['Hora_Agend'];
+                    $infos['data'.$i] = $sql['Data_Agend'];
+                    $infos['posologia'.$i] = $sql['Posologia'];
+                    $sql1 = "SELECT * FROM medicamentos WHERE Codigo = '$medicamento'";
+                    $query1 = mysqli_query($connect,$sql1);
+                    while($sql1 = mysqli_fetch_array($query1)){
+                        $infos['medicamento'.$i] = $sql1['Nome_Medicam'];
+                    }
+                    $sql2 = "SELECT * FROM prontuarios WHERE ID = '$prontuario'";
+                    $query2 = mysqli_query($connect,$sql2);
+                    while($sql2 = mysqli_fetch_array($query2)){
+                        $identificaP = $sql2['Cpfpaciente'];
+                        $infos['leito'.$i] = $sql2['Id_leito'];
+                    }
+                    $sql3 = "SELECT * FROM pacientes WHERE CPF = '$identificaP'";
+                    $query3 = mysqli_query($connect,$sql3);
+                    while($sql3 = mysqli_fetch_array($query3)){
+                        $infos['paciente'.$i] = $sql3['Nome_Paciente'];
+                    }
+
+                    $i++;
+                }
+                
+                return view('/enfChefe/agendamentos',['infos' => $infos]);
             }else{
                 return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
             }
@@ -306,7 +441,37 @@ class EnfChefeController extends Controller
                 }
             }
             if($resultado == "1"){
-                return view('/enfChefe/agendamentos');
+                $i = 0;
+                $infos = [];
+                $sql = "SELECT * FROM agendamentos";
+                $query = mysqli_query($connect,$sql);
+                while($sql = mysqli_fetch_array($query)){
+                    $medicamento = $sql['Cod_medicamento'];
+                    $prontuario = $sql['ID_prontuario'];
+                    $infos['hora'.$i] = $sql['Hora_Agend'];
+                    $infos['data'.$i] = $sql['Data_Agend'];
+                    $infos['posologia'.$i] = $sql['Posologia'];
+                    $sql1 = "SELECT * FROM medicamentos WHERE Codigo = '$medicamento'";
+                    $query1 = mysqli_query($connect,$sql1);
+                    while($sql1 = mysqli_fetch_array($query1)){
+                        $infos['medicamento'.$i] = $sql1['Nome_Medicam'];
+                    }
+                    $sql2 = "SELECT * FROM prontuarios WHERE ID = '$prontuario'";
+                    $query2 = mysqli_query($connect,$sql2);
+                    while($sql2 = mysqli_fetch_array($query2)){
+                        $identificaP = $sql2['Cpfpaciente'];
+                        $infos['leito'.$i] = $sql2['Id_leito'];
+                    }
+                    $sql3 = "SELECT * FROM pacientes WHERE CPF = '$identificaP'";
+                    $query3 = mysqli_query($connect,$sql3);
+                    while($sql3 = mysqli_fetch_array($query3)){
+                        $infos['paciente'.$i] = $sql3['Nome_Paciente'];
+                    }
+
+                    $i++;
+                }
+                
+                return view('/enfChefe/agendamentos',['infos' => $infos]);
             }else{
                 return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
             }

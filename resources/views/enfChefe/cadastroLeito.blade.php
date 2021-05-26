@@ -48,25 +48,25 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">Leito</th>
-                                            <th scope="col">Vagas</th>
+                                            <th scope="col">Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td>A55</td>
-                                            <td>2</td>
+                                            <td>Ocupado</td>
                                         </tr>
                                         <tr>
                                             <td>A34</td>
-                                            <td>1</td>
+                                            <td>Ocupado</td>
                                         </tr>
                                         <tr>
                                             <td>B66</td>
-                                            <td>2</td>
+                                            <td>Vazio</td>
                                         </tr>
                                         <tr>
                                             <td>B11</td>
-                                            <td>0</td>
+                                            <td>Ocupado</td>
                                         </tr>
                                     </tbody>
                                 </table>
