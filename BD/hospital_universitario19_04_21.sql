@@ -301,8 +301,8 @@ CREATE TABLE IF NOT EXISTS `log` (
   `Id` bigint(20) NOT NULL,
   `Data_Log` date NOT NULL,
   `Hora_Agend` time NOT NULL,
-  `CPF_usuario` varchar(255) NOT NULL,
   `Ip` varchar(15) NOT NULL,
+  `Acao` text NOT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

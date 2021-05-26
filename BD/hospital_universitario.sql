@@ -77,8 +77,8 @@ CREATE TABLE log (
   Id bigint(20) NOT NULL,
   Data_Log date NOT NULL,
   Hora_Agend time NOT NULL,
-  CPF_usuario varchar(255) NOT NULL, /* Chave estrangeira que faz referencia ao Usuário*/
-  Ip varchar(15) NOT NULL
+  Ip varchar(15) NOT NULL,
+  Acao text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Cria tabela de medicamentos*/
