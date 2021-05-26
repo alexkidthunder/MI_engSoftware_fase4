@@ -45,7 +45,6 @@ Route::get('/verificarLoginEst', [ VerificaLoginController::class,'verificarLogi
 Route::get('/verificarLogin', [ VerificaLoginController::class,'verificarLogin'])->name('verificarLogin');
 
 /*------------ Rota para o perfil ------------------------ */
-
 Route::get('/meuPerfil', [HomeController::class,'editPerfil'])->name('editarPerfil');
 
 /*------------ Rotas do administrador ------------------ */
