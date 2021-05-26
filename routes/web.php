@@ -91,6 +91,8 @@ Route::get('/cadastroAgendamento', [EnfChefeController::class,'cadastroAgendamen
 Route::get('/listaAgendamentos',[EnfChefeController::class,'listaAgendamentos'])->name('listaAgendamentos');
 Route::get('/listaResponsaveis',[EnfChefeController::class,'responsaveis'])->name('responsaveis');
 Route::get('/cadastroLeito',[EnfChefeController::class,'cadastroLeito'])->name('cadastroLeito');
+Route::get('/cadastrarLeito',[EnfChefeController::class,'cadastrarLeito'])->name('cadastrarLeito');
+Route::get('/removerLeito',[EnfChefeController::class,'removerLeito'])->name('removerLeito');
 Route::post('/cadastroMedicamento', [EnfChefeController::class,'salvarMedicamento'])->name('salvarMedicamento');
 
 /*------------ Rotas do menu de enfermeiro, estagiário e enfermeiro chefe -------------------*/
