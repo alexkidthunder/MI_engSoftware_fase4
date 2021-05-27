@@ -284,21 +284,7 @@ class HomeController extends Controller
             }else{
                 return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
             }
-        }else if(isset($_SESSION['estagiario'])){
-            $sql = "SELECT * FROM permissao_cargo where permissao_id = '12'";
-            $query = mysqli_query($connect,$sql);
-            while($sql = mysqli_fetch_array($query)){
-                if($sql['cargo_id'] == '4'){
-                    $resultado = $sql['ativo'];
-                }
-            }
-            if($resultado == "1"){
-                return view('cadastroAgendamentos');
-            }else{
-                return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
-            }
-        }
- 
+        } 
     }
 
     public function cadastroProntuario(){
@@ -330,19 +316,6 @@ class HomeController extends Controller
             $query = mysqli_query($connect,$sql);
             while($sql = mysqli_fetch_array($query)){
                 if($sql['cargo_id'] == '3'){
-                    $resultado = $sql['ativo'];
-                }
-            }
-            if($resultado == "1"){
-                return view('cadastroPaciente');
-            }else{
-                return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
-            }
-        }else if(isset($_SESSION['estagiario'])){
-            $sql = "SELECT * FROM permissao_cargo where permissao_id = '17'";
-            $query = mysqli_query($connect,$sql);
-            while($sql = mysqli_fetch_array($query)){
-                if($sql['cargo_id'] == '4'){
                     $resultado = $sql['ativo'];
                 }
             }
@@ -409,32 +382,7 @@ class HomeController extends Controller
             }else{
                 return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
             }
-        }else if(isset($_SESSION['estagiario'])){
-            $sql = "SELECT * FROM permissao_cargo where permissao_id = '21'";
-            $query = mysqli_query($connect,$sql);
-            while($sql = mysqli_fetch_array($query)){
-                if($sql['cargo_id'] == '4'){
-                    $resultado = $sql['ativo'];
-                }
-            }
-            if($resultado == "1"){
-                $i = 0;
-                $m = [];
-                $sql = "SELECT * FROM medicamentos";
-                $query = mysqli_query($connect,$sql);
-                while($sql = mysqli_fetch_array($query)){
-                    $m[$i] = $sql['Nome_Medicam'];
-                    $m[$i+1] = $sql['Data_Validade'];
-                    $m[$i+2] = $sql['Quantidade'];
-                    $m[$i+3] = $sql['Fabricante'];
-                    $i = $i+4;
-                }
-                return view('listaMedicamento',['m' => $m]);
-            }else{
-                return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
-            }
-        }
-        
+        }        
     }
 
     public function historicoProntuario(){
