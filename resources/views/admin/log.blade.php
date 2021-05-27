@@ -25,7 +25,7 @@
     <section>
         <div class="box">
             <!---Botao de donwload ----->
-            <form class="download-icon">
+            <form class="download-icon" align="right">
                 <button>
                     <i class="fas fa-download"></i>
                 </button>

@@ -31,7 +31,7 @@
         
         <div class="container-1">
     
-            <h1>RESPONSÁVEIS PELA APLICAÇÃO DE MEDICAMENTOS</h1>
+            <h1 class="title-download">RESPONSÁVEIS PELA APLICAÇÃO DE MEDICAMENTOS</h1>
 
             <!---------------------Agendamento Realizado--------------------->
             <div class="box-scheduling" id="scheduling">

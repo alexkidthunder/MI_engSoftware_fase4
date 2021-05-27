@@ -28,7 +28,6 @@ a{
     border-radius: 50px;
 }
 
-
 h2{
     color: black;
     text-align: center;
@@ -111,22 +110,25 @@ input:hover {
     background-image: radial-gradient(circle, #90bdff, #85b6ff, #7ab0ff, #6fa9ff, #64a2ff);
 }
 
-#access-box{
+#access{
+width:40%;
+margin: 0 30%;
+}
+
+#access .access-box{
     background-color: blue;
     border-radius: 0 0 30px 30px;
     padding:15px;
-    width:40%;
-    margin: 0 30%;
     text-align:center;
 }
-#access-box a{
+#access a{
     color:white;
     font-weight: bold;
     font-size: 20px;
     text-decoration: none;
 }
 
-#access-box  a:hover {
+#access a:hover {
     color: #d6eeee;
   }
 
@@ -149,7 +151,7 @@ input:hover {
     .box-login {
         background: #F4F3F9;
         border-radius: 40px 40px 0 0;
-        padding: 40px 40px 70px 40px;
+        padding: 40px 40px 50px 40px;
     }
 
     input {
@@ -168,12 +170,15 @@ input:hover {
     label {
         margin: 10px 0 6px 0;
     }
-    #access-box{
+
+    #access{
+        width:60%;
+        margin: 0 20%;
+    }
+    #access .access-box{
         background-color: blue;
         border-radius: 0 0 30px 30px;
         padding:10px 15px;
-        width:60%;
-        margin: 0 20%;
         text-align:center;
     }
 
@@ -183,8 +188,63 @@ input:hover {
         width:100%;
         height:60%;
     }
-    
+   /* <a href='https://br.freepik.com/vetores/projeto'>Projeto vetor criado por freepik - br.freepik.com</a>*/
     #first-access .box-login {
         background: #F4F3F9;
+    }
+
+    h2{
+        font-size: 22px;
+    }
+    
+    h4{
+        margin-bottom:0;
+        margin-top:0;
+        text-align:center;
+    }
+  }
+
+/*------------------*/
+  @media (min-width:1023px) and (max-width:1024px){
+    #access{
+        width:40%;
+        margin: 0 30%;
+    }   
+    #login{
+        width: 40%;
+        margin:0 30%;
+        padding-top: 150px;
+    }
+    #first-access{
+        width: 40%;
+        margin:0 30%;
+        padding-top: 100px;
+    }
+  }
+
+  @media (min-width:761px) and (max-width:1022px){
+    #access{
+        width:50%;
+        margin: 0 25%;
+    }   
+    #login{
+        width: 50%;
+        margin:0 25%;
+        padding-top: 100px;
+    }
+    #first-access{
+        width: 50%;
+        margin:0 25%;
+        padding-top: 70px;
+    }
+    h4{
+        margin-bottom:0;
+        text-align:center;
+    }
+    #first-access .box-login {
+        padding: 10px 20px;
+    }
+    #first-access h2{
+        font-size: 20px;
     }
   }

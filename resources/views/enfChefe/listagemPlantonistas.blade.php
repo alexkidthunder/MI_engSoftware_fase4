@@ -32,7 +32,7 @@
 
     <section>
         <div class="container-1" id="on-duty">
-            <h1>LISTAGEM DE PLANTONISTA</h1>
+            <h1 class="title-download">LISTAGEM DE PLANTONISTA</h1>
             <div class="box-on-duty">
                 <!--------- Cabeçario --------->
                 <div class="title">
