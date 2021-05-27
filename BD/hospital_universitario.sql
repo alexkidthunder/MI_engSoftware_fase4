@@ -217,6 +217,9 @@ ALTER TABLE leitos
   
 /*Seção para modificação das das tabelas*/  
 
+ALTER TABLE log
+  MODIFY Id bigint(20) NOT NULL AUTO_INCREMENT;
+  
 ALTER TABLE cid
   MODIFY Id bigint(20) NOT NULL AUTO_INCREMENT;
 
