@@ -188,20 +188,7 @@ class HomeController extends Controller
     public function agendamentosRealizados(){
         VerificaLoginController::verificarLogin();
         include("db.php");
-        if(isset($_SESSION['enfermeiroChefe'])){
-            $sql = "SELECT * FROM permissao_cargo where permissao_id = '22'";
-            $query = mysqli_query($connect,$sql);
-            while($sql = mysqli_fetch_array($query)){
-                if($sql['cargo_id'] == '2'){
-                    $resultado = $sql['ativo'];
-                }
-            }
-            if($resultado == "1"){
-                return view('agendamentosRealizados');
-            }else{
-                return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
-            }
-        }else if(isset($_SESSION['enfermeiro'])){
+        if(isset($_SESSION['enfermeiro'])){
             $sql = "SELECT * FROM permissao_cargo where permissao_id = '22'";
             $query = mysqli_query($connect,$sql);
             while($sql = mysqli_fetch_array($query)){
@@ -233,20 +220,7 @@ class HomeController extends Controller
     public function meusAgendamentos(){
         VerificaLoginController::verificarLogin();
         include("db.php");
-        if(isset($_SESSION['enfermeiroChefe'])){
-            $sql = "SELECT * FROM permissao_cargo where permissao_id = '23'";
-            $query = mysqli_query($connect,$sql);
-            while($sql = mysqli_fetch_array($query)){
-                if($sql['cargo_id'] == '2'){
-                    $resultado = $sql['ativo'];
-                }
-            }
-            if($resultado == "1"){
-                return view('meusAgendamentos');
-            }else{
-                return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
-            }
-        }else if(isset($_SESSION['enfermeiro'])){
+        if(isset($_SESSION['enfermeiro'])){
             $sql = "SELECT * FROM permissao_cargo where permissao_id = '23'";
             $query = mysqli_query($connect,$sql);
             while($sql = mysqli_fetch_array($query)){
