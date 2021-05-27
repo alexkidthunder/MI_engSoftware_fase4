@@ -976,11 +976,9 @@ input[type=number] {
 
 .radial-no-edit {
     background-color: #A2DBFE; /* Não selecionado */
-    transition: background 1s;
 }
 .radial-edit{
     background-color: white; /* Selecionado */
-    transition: background 1s;
 }
 
 .normal-label {
