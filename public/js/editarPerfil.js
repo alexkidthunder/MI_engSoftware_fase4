@@ -35,12 +35,12 @@ var SenhaNova = document.getElementById('senha');
 var SenhaNovaConfirmacao = document.getElementById('confirmacao');
 
 /* -- Verifica a atribuição e mostra, ou não, a informação do coren -- */
-if(atribuiInp.value === "Enfermeiro" || atribuiInp.value === "Enfermeiro Chefe"){
+/*if(atribuiInp.value === "Enfermeiro" || atribuiInp.value === "Enfermeiro Chefe"){
     corenDiv.classList.remove('hide');
 }
 else{
     corenDiv.classList.add('hide');
-}
+} */
 
 /* -- Verifica se o sexo já foi escolhido, caso não, mostra os botões para escolher -- */
 if(femInp.checked === false && mascInp.checked === false){
@@ -54,13 +54,13 @@ else{
 editBnt.addEventListener("click",function(){
 
     enable();   // Habilita os inputs e Radios
-    removeNoRadialEdit(); // Retira o estilo que indicava que não poderia editar
-    addRadialEdit(); // Adiciona o estilo que indica que pode editar
-    setSexRequired(); // Coloca o campo do sexo como Obrigatório
+  //  removeNoRadialEdit(); // Retira o estilo que indicava que não poderia editar
+  //  addRadialEdit(); // Adiciona o estilo que indica que pode editar
+  //  setSexRequired(); // Coloca o campo do sexo como Obrigatório
     setPerfilDataRequired(); // Coloca os campos habilitados como Obrigatórios
     toggleHideBtnPerfil(); // Esconde o botão de "Editar Informações" e Mostra os outros botões
-    refreshSex(); // Retira as marcações do sexo
-    checkRadial(); // Verifica se o sexo está marcado, se não estiver, volta ao estado padrão (mostrando os dois)
+  //  refreshSex(); // Retira as marcações do sexo
+  //  checkRadial(); // Verifica se o sexo está marcado, se não estiver, volta ao estado padrão (mostrando os dois)
 
 })
 
@@ -68,9 +68,9 @@ editBnt.addEventListener("click",function(){
 saveBtn.addEventListener("click",function(){
 
     disable(); // Desabilita os inputs e Radios
-    addNoRadialEdit(); // Adiciona o estilo que indica que não poderia editar
-    removeRadialEdit(); // Retira o estilo que indicava que pode editar
-    checkRadial(); // Verifica se o sexo está marcado, se não estiver, volta ao estado padrão (mostrando os dois)
+   // addNoRadialEdit(); // Adiciona o estilo que indica que não poderia editar
+   // removeRadialEdit(); // Retira o estilo que indicava que pode editar
+   // checkRadial(); // Verifica se o sexo está marcado, se não estiver, volta ao estado padrão (mostrando os dois)
     removePerfilDataRequired(); // Coloca os campos disabilitados (inputs) como Não-Obrigatórios
     removeSexRequired();  // Coloca o campo do sexo como Não-Obrigatório
     toggleHideBtnPerfil(); // Mostra o botão de "Editar Informações" e Esconde os outros botões
@@ -233,8 +233,6 @@ function checkRadial(){
  */
 function disable(){
     nomeInp.setAttribute("disabled","");
-    mascInp.setAttribute("disabled","");
-    femInp.setAttribute("disabled","");
     emailInp.setAttribute("disabled","");
 }
 /**
@@ -242,7 +240,5 @@ function disable(){
  */
 function enable(){
     nomeInp.removeAttribute("disabled");
-    mascInp.removeAttribute("disabled");
-    femInp.removeAttribute("disabled");
     emailInp.removeAttribute("disabled");
 }

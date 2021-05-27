@@ -86,30 +86,23 @@ class HomeController extends Controller
 
     public function primeiroAcesso(Request $request){
         include('conexao.php');
-        //session_start();
-
+        $cpf = $request->cpf; 
         $senhaDefinida = $request->senha;
         $senhaConfirmacao = $request->confirmacao;
-        //dd($request->cpf);
+
         //se a nova senha desejada for igual a de confimação
         if ($senhaConfirmacao == $senhaDefinida){
             //$senhaCript = Hash::make($senhaConfimacao);         //cria um hash a partir da nova senha 
-
-            $cpf = $request->cpf;        
-            $select = "SELECT * FROM usuarios where CPF = '$cpf'";
-            $busca = mysqli_query($conn,$select);
-
+            dd($cpf);    
             //se existe o cpf no banco de dados
             $update = "UPDATE usuarios SET Senha = $senhaConfirmacao WHERE CPF = '$cpf' ";     //atualiza no banco de dados
             mysqli_query($conn,$update);
 
             return redirect()->route('index')->with('msg-sucess','Senha cadastrada com sucesso!!');
-
         //se a nova senha desejada for diferente da confirmada
         }else{
-            return redirect()->route('acessarPrimeiroAcesso')->with('msg-error','A senha de confirmação está diferente da nova senha!!');
+            return redirect()->route('acessarPrimeiroAcesso')->with('cpf',$cpf,'msg-error','A senha de confirmação está diferente da nova senha!!',);
        }
-
     }
 
     /*public function menu(){
@@ -195,20 +188,7 @@ class HomeController extends Controller
     public function agendamentosRealizados(){
         VerificaLoginController::verificarLogin();
         include("db.php");
-        if(isset($_SESSION['enfermeiroChefe'])){
-            $sql = "SELECT * FROM permissao_cargo where permissao_id = '22'";
-            $query = mysqli_query($connect,$sql);
-            while($sql = mysqli_fetch_array($query)){
-                if($sql['cargo_id'] == '2'){
-                    $resultado = $sql['ativo'];
-                }
-            }
-            if($resultado == "1"){
-                return view('agendamentosRealizados');
-            }else{
-                return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
-            }
-        }else if(isset($_SESSION['enfermeiro'])){
+        if(isset($_SESSION['enfermeiro'])){
             $sql = "SELECT * FROM permissao_cargo where permissao_id = '22'";
             $query = mysqli_query($connect,$sql);
             while($sql = mysqli_fetch_array($query)){
@@ -240,20 +220,7 @@ class HomeController extends Controller
     public function meusAgendamentos(){
         VerificaLoginController::verificarLogin();
         include("db.php");
-        if(isset($_SESSION['enfermeiroChefe'])){
-            $sql = "SELECT * FROM permissao_cargo where permissao_id = '23'";
-            $query = mysqli_query($connect,$sql);
-            while($sql = mysqli_fetch_array($query)){
-                if($sql['cargo_id'] == '2'){
-                    $resultado = $sql['ativo'];
-                }
-            }
-            if($resultado == "1"){
-                return view('meusAgendamentos');
-            }else{
-                return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
-            }
-        }else if(isset($_SESSION['enfermeiro'])){
+        if(isset($_SESSION['enfermeiro'])){
             $sql = "SELECT * FROM permissao_cargo where permissao_id = '23'";
             $query = mysqli_query($connect,$sql);
             while($sql = mysqli_fetch_array($query)){
@@ -317,25 +284,14 @@ class HomeController extends Controller
             }else{
                 return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
             }
-        }else if(isset($_SESSION['estagiario'])){
-            $sql = "SELECT * FROM permissao_cargo where permissao_id = '12'";
-            $query = mysqli_query($connect,$sql);
-            while($sql = mysqli_fetch_array($query)){
-                if($sql['cargo_id'] == '4'){
-                    $resultado = $sql['ativo'];
-                }
-            }
-            if($resultado == "1"){
-                return view('cadastroAgendamentos');
-            }else{
-                return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
-            }
-        }
- 
+        } 
     }
 
     public function cadastroProntuario(){
         VerificaLoginController::verificarLogin();
+
+
+        
         return view('cadastroProntuario');
     }
 
@@ -360,19 +316,6 @@ class HomeController extends Controller
             $query = mysqli_query($connect,$sql);
             while($sql = mysqli_fetch_array($query)){
                 if($sql['cargo_id'] == '3'){
-                    $resultado = $sql['ativo'];
-                }
-            }
-            if($resultado == "1"){
-                return view('cadastroPaciente');
-            }else{
-                return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
-            }
-        }else if(isset($_SESSION['estagiario'])){
-            $sql = "SELECT * FROM permissao_cargo where permissao_id = '17'";
-            $query = mysqli_query($connect,$sql);
-            while($sql = mysqli_fetch_array($query)){
-                if($sql['cargo_id'] == '4'){
                     $resultado = $sql['ativo'];
                 }
             }
@@ -439,32 +382,7 @@ class HomeController extends Controller
             }else{
                 return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
             }
-        }else if(isset($_SESSION['estagiario'])){
-            $sql = "SELECT * FROM permissao_cargo where permissao_id = '21'";
-            $query = mysqli_query($connect,$sql);
-            while($sql = mysqli_fetch_array($query)){
-                if($sql['cargo_id'] == '4'){
-                    $resultado = $sql['ativo'];
-                }
-            }
-            if($resultado == "1"){
-                $i = 0;
-                $m = [];
-                $sql = "SELECT * FROM medicamentos";
-                $query = mysqli_query($connect,$sql);
-                while($sql = mysqli_fetch_array($query)){
-                    $m[$i] = $sql['Nome_Medicam'];
-                    $m[$i+1] = $sql['Data_Validade'];
-                    $m[$i+2] = $sql['Quantidade'];
-                    $m[$i+3] = $sql['Fabricante'];
-                    $i = $i+4;
-                }
-                return view('listaMedicamento',['m' => $m]);
-            }else{
-                return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
-            }
-        }
-        
+        }        
     }
 
     public function historicoProntuario(){

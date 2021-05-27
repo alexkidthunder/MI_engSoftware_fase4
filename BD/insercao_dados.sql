@@ -219,8 +219,6 @@ INSERT INTO permissao_cargo VALUES
 	(DEFAULT, '19', '2', '1'),
 	(DEFAULT, '20', '2', '1'),
 	(DEFAULT, '21', '2', '1'),
-	(DEFAULT, '22', '2', '1'),
-	(DEFAULT, '23', '2', '1'),
 	(DEFAULT, '24', '2', '1'),
 	(DEFAULT, '25', '2', '1'),
 	(DEFAULT, '26', '2', '1'),

@@ -30,6 +30,9 @@ h1 {
     text-align: center;
 }
 
+.title-download{
+    margin-top: 0;
+}
 /*Subtitulo*/
 
 h2, h3 {
@@ -466,9 +469,9 @@ input[type=number] {
 
 /*------------ Icone de download  ------------*/
 
-.download-icon {
+/*.download-icon {
     float: right;
-}
+}*/
 
 .download-icon button i {
     color: #0D6EFD;
@@ -480,20 +483,31 @@ input[type=number] {
     color: #02A7F0;
 }
 
+#screen-icon{
+    width:100%;
+    margin-top: 100px;
+    margin-bottom: 4%;
+}
 #screen-icon .download-icon {
     margin-top: 10px;
     margin-inline: 30px;
+    margin-left: 85%;
+    margin-right: 5%;
 }
 
 #screen-icon .download-icon button i {
     font-size: 35px;
 }
 
-@media (min-width: 426px) and (max-width:768px) {
-    #screen-icon .download-icon button i {
-        font-size: 30px;
+@media (min-width:1025px) {
+    #screen-icon{
+        margin-bottom: 2%;
+    }
+    #screen-icon .download-icon {
+        margin-left: 90%;
     }
 }
+
 
 @media (max-width: 425px) {
     #screen-icon .download-icon button i {
@@ -962,11 +976,9 @@ input[type=number] {
 
 .radial-no-edit {
     background-color: #A2DBFE; /* Não selecionado */
-    transition: background 1s;
 }
 .radial-edit{
     background-color: white; /* Selecionado */
-    transition: background 1s;
 }
 
 .normal-label {

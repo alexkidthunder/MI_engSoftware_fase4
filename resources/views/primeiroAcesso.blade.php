@@ -15,8 +15,10 @@
 
 <body class="body-login">
     <!----- Caixa para tela de primeiro acesso ----->
-    <div id="access-box">
-        <a href="{{ route('index') }}">Login</a>
+    <div id="access">
+        <div class="access-box">
+            <a href="{{ route('index') }}">Login</a>
+        </div>
     </div>
     <!---------------- fim da Caixa --------------->
 

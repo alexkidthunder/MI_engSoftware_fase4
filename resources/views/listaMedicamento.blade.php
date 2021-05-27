@@ -19,6 +19,7 @@
     <!----------End Hearder-------->
 
     <!----------Botão de donwload------------>
+    <section>
     <div id="screen-icon">
         <form class="download-icon">
             <button>
@@ -26,10 +27,12 @@
             </button>
         </form>
     </div>
+    </section>
     <!--------Fim do botão de donwload-------->
 
     <div class="container-1" id="medicament-list">
-        <h1>MEDICAMENTOS CADASTRADOS</h1>
+
+        <h1 class="title-download">MEDICAMENTOS CADASTRADOS</h1>
 
         <!-------------- Medicamento  -------------->
         @if(isset($m[0]))
