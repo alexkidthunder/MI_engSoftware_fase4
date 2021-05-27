@@ -22,15 +22,41 @@ class AdminController extends Controller
         return view('/admin/menu');
     }
 
-    public function log($acao){   
-        VerificaLoginController::verificarLoginAdmin();
-        $ip = $_SERVER['REMOTE_ADDR'];
-        $data = date('d/m/Y');
-        $horas = date('H:i:s');
-
+    public function log(){ 
+         VerificaLoginController::verificarLoginAdmin();
+        /* 
+        //gerar um log
         
+
+        include("db.php");                          
+        $ip = $_SERVER['REMOTE_ADDR'];              //detecta ip
+        $data = date('d/m/Y');                      //detecta data
+        $horas = time();                            //detecta hora
+
+        //insere no banco de dados
+        $novoLog = "INSERT INTO log (Data_Log, Hora_Agend, Ip, Acao) values ('$data','$horas', '$ip', $acao)";
+        mysqli_query($connect,$novoLog);
+        */
         return view('/admin/log');
+        
     }
+    
+    public function salvarLog(){   
+        //gerar um log
+        VerificaLoginController::verificarLoginAdmin();
+
+        include("db.php");                          
+        $ip = $_SERVER['REMOTE_ADDR'];              //detecta ip
+        $data = date('d/m/Y');                      //detecta data
+        $horas = time();                            //detecta hora
+
+        //insere no banco de dados
+        $novoLog = "INSERT INTO log (Data_Log, Hora_Agend, Ip, Acao) values ('$data','$horas', '$ip', $acao)";
+        mysqli_query($connect,$novoLog);
+        return view('/admin/log');
+
+    }
+
 
     public function atribuicao()
     {   
