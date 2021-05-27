@@ -34,7 +34,7 @@
 
     <div class="container-1" id="patientList">
 
-        <h1>PACIENTES E PRONTUÁRIOS</h1>
+        <h1 class="title-download">PACIENTES E PRONTUÁRIOS</h1>
 
         <!----------Seleção para o tipo de paciente que deseja exibir------------>
         <div class="content-center">

@@ -367,7 +367,7 @@
                         @if (isset($p[21]))
                             <div class="col-lg-13 content-center" name="agendamento">
                                 <input type="checkbox" name="p21" {{ $p[21] }}><br>
-                                <label>Visualização de agendamento realizados pelo usuário</label>
+                                <label>Visualização de agendamento que realizou</label>
                             </div>
                         @endif
                         <!--Fim da permissão-->
@@ -376,7 +376,7 @@
                         @if (isset($p[22]))
                             <div class="col-lg-13 content-center" name="agendamento">
                                 <input type="checkbox" name="p22" {{ $p[22] }}><br>
-                                <label>Visualização de agendamento alocados pelo usuário</label>
+                                <label>Visualização de agendamento alocados para o usuário</label>
                             </div>
                         @endif
                         <!--Fim da permissão-->

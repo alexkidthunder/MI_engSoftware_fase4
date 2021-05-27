@@ -12,6 +12,6 @@ class Log extends Model
     protected $table = "log";    //seta a o nome da tabela 
 
     protected $fillable = [
-        'Id','Data_Log','Hora_Agend	','CPF_usuario','Ip'
+        'Id','Data_Log','Hora_Agend	','Ip','Acao'
     ];
 }

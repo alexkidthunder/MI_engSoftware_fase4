@@ -80,7 +80,7 @@
                                     pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" value="{{$_SESSION['estagiario']}}">
                                 </div>
                                 @endif
-
+                            
                                 <!------------ Sexo do usuário------------>
                                 @if(isset($usuario['sexo']))
                                 <div class="col-lg-4">

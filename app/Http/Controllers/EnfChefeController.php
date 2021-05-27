@@ -491,9 +491,9 @@ class EnfChefeController extends Controller
                 }
             }
             if($resultado == "1"){
-                return view('/enfChefe/cadastroLeito');
+                //return view('/enfChefe/cadastroLeito');
             }else{
-                return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
+                return redirect()->back()->with('msg-error','Você não tem acesso a essa página!!!');
             }
         }else if(isset($_SESSION['enfermeiro'])){
             $sql = "SELECT * FROM permissao_cargo where permissao_id = '29'";
@@ -504,7 +504,7 @@ class EnfChefeController extends Controller
                 }
             }
             if($resultado == "1"){
-                return view('/enfChefe/cadastroLeito');
+                //return view('/enfChefe/cadastroLeito');
             }else{
                 return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
             }
@@ -517,12 +517,58 @@ class EnfChefeController extends Controller
                 }
             }
             if($resultado == "1"){
-                return view('/enfChefe/cadastroLeito');
+                //return view('/enfChefe/cadastroLeito');
             }else{
                 return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
             }
         }
+
+        // buscar leitos para exibir na página
+        if($resultado == "1"){
+           $sql = "SELECT * FROM leitos";
+           $query = mysqli_query($connect, $sql);          
+           $i = 0;
+           while($dado = mysqli_fetch_array($query)){
+                $leitos[$i] = $dado["Identificacao"];
+                if($dado["Ocupado"] == 0){
+                    $statusLeito[$i] = "Vazio";
+                }else{
+                    $statusLeito[$i] = "Ocupado";
+                }
+                
+                $i++;
+           }
+           return view('/enfChefe/cadastroLeito', ['leitos'=> $leitos, 'statusLeito'=>$statusLeito]);
+        }        
+    }
+
+    public function cadastrarLeito(Request $request){
+        include("db.php");
+        $sql = "SELECT * FROM leitos WHERE Identificacao = '$request->Leito'";
+        $query = mysqli_query($connect, $sql);
+        if(mysqli_num_rows($query) == 0){
+            $sql1 = "INSERT INTO leitos (Identificacao,Ocupado) values ('$request->Leito','0')";
+            $query1 = mysqli_query($connect, $sql1);
+        }else{
+            return redirect()->route('cadastroLeito')->with('error','Leito já cadastrado!'); 
+        }
+
+        return view('/enfChefe/cadastroLeito');
+
+    }
+
+    public function removerLeito(Request $request){
+        include("db.php");
+        $sql = "SELECT * FROM leitos WHERE Identificacao = '$request->focorrencia'";
+        $query = mysqli_query($connect, $sql);
+        if(mysqli_num_rows($query) == 1){
+            $sql1 = "DELETE FROM WHERE Identificacao = '$request->focorrencia'";
+            $query1 = mysqli_query($connect, $sql1);
+        }else{
+            return redirect()->route('cadastroLeito')->with('error','Leito não encontrado!'); 
+        }
         
+        return view('/enfChefe/cadastroLeito'); 
     }
 
 }
