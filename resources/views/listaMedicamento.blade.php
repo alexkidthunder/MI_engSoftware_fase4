@@ -15,15 +15,7 @@
 
 <body>
     <!----------Hearder------------>
-    @if(isset($_SESSION['enfermeiro']))
     @include('layouts.navbar')
-    @endif
-    @if(isset($_SESSION['enfermeiroChefe']))
-    @include('layouts.navbar-enfChefe')
-    @endif
-    @if(isset($_SESSION['estagiario']))
-    @include('layouts.navbar')
-    @endif
     <!----------End Hearder-------->
 
     <!----------Botão de donwload------------>
@@ -40,40 +32,42 @@
         <h1>MEDICAMENTOS CADASTRADOS</h1>
 
         <!-------------- Medicamento  -------------->
+        @if(isset($m[0]))
         <div class="box-white">
             <!----- Nome do medicamento----->
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                     <label>Nome</label> <br>
                     <div class="box-blue">
-                        Anlodipino
+                        {{$m[0]}}
                     </div>
                 </div>
             </div>
             <div class="row">
                 <!----- Data de validade do medicamento----->
-                <div class="col-lg-3">
-                    <label>Data de validade</label> <br>
+                <div class="col-12 col-sm-6 col-md-3 col-lg-3">
+                    <label><nobr>Data de validade</nobr></label> <br>
                     <div class="box-gray">
-                        01/10/2021
+                        {{$m[1]}}
                     </div>
                 </div>
                 <!-----Quantidade do medicamento----->
-                <div class="col-lg-3">
-                    <label>Em estoque</label> <br>
+                <div class="col-12 col-sm-6 col-md-3 col-lg-3">
+                    <label><nobr>Em estoque</nobr></label> <br>
                     <div class="box-gray">
-                        100
+                        {{$m[2]}}
                     </div>
                 </div>
                 <!-----Fabricante do medicamento----->
-                <div class="col-lg-6">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                     <label>Fabricante</label> <br>
                     <div class="box-gray">
-                        União MDN
+                        {{$m[3]}}
                     </div>
                 </div>
             </div>
         </div>
+        @endif
         <!-------------- Fim do medicamento  -------------->
     </div>
 </body>

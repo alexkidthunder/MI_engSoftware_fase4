@@ -14,6 +14,7 @@
     <link href="{{ asset('img/favicon.png') }}" rel="icon">
 
     <script src="{{ ('js/cadastroUsuario.js') }}" defer></script>
+    <script src="{{ ('js/mascara.min.js')}}"></script>
 
 
     <title>Cadastro de funcionários</title>
@@ -58,8 +59,8 @@
                         </div>
                         <div class="col-lg-4">
                             <label for="fcpf">CPF</label> <br> <!--Campo onde se digita o CPF do usuário a ser cadastrado-->
-                            <input id="fcpf" name="fcpf" type="text" required maxlength="14"
-                                pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
+                            <input id="fcpf" name="fcpf" type="text" onkeyup="mascara('###.###.###-##',this,event,true)" 
+                            required maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
                         </div>
                         <div class="col-lg-4">
                             <label>Sexo</label> <br>

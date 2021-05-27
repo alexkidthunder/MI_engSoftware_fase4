@@ -19,53 +19,40 @@
 
 <body>
     <!----------Hearder------------>
-    @if(isset($_SESSION['enfermeiro']))
     @include('layouts.navbar')
-    @endif
-    @if(isset($_SESSION['enfermeiroChefe']))
-    @include('layouts.navbar-enfChefe')
-    @endif
-    @if(isset($_SESSION['estagiario']))
-    @include('layouts.navbar')
-    @endif
     <!----------End Hearder-------->
     <section>
         <div class="container-1" id="on-duty">
             <h1>PLANTONISTAS</h1>
 
             <div class="box-on-duty">
-                <!--------- Cabeçario --------->
-                <div class="title">
-                    <div class="row">
-                        <div class="col-lg-6">
+                <div class="row">
+                    <div class="col"> <!--NOME-->
+                        <div class="row no-gutters title"> <!--CABEÇÁRIO NOME-->
                             NOME
                         </div>
-                        <div class="col-lg-3">
+                        <div class="row no-gutters box-blue"> <!--FUNCIONÁRIO NOME-->
+                            <nobr>Rafela Soares da Silva</nobr>
+                        </div>
+                    </div>
+                    <div class="col"> <!--CARGO-->
+                        <div class="row no-gutters title"> <!--CABEÇÁRIO CARGO -->
                             CARGO
                         </div>
-                        <div class="col-lg-3" align="center">
-                            EM PLANTÃO
+                        <div class="row no-gutters box-blue"> <!--FUNCIONÁRIO CARGO -->
+                            <nobr>Enfermeiro Chefe</nobr>
                         </div>
                     </div>
-                </div>
-                <!--------- Plantonista --------->
-
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="box-blue">
-                            Rafela Soares da Silva
+                    <div class="col"> <!--EM PLANTÃO-->
+                        <div class="row no-gutters title"> <!--align="center"-->
+                            <div class="mx-auto">
+                                <nobr>EM PLANTÃO</nobr> <!--CABEÇÁRIO EM PLANTÃO -->
+                            </div>
+                        </div>
+                        <div class="row no-gutters box-button"> <!--FUNCIONÁRIO EM PLANTÃO-->
+                            <input type="checkbox" class="mx-auto">
                         </div>
                     </div>
-                    <div class="col-lg-3">
-                        <div class="box-blue">
-                            Enfermeiro chefe
-                        </div>
-                    </div>
-                    <div class="col-lg-3" align="center">
-                      <div class="box-button">
-                        <input type="checkbox">
-                    </div>
-                  </div>
                 </div>
             </div>
         </div>

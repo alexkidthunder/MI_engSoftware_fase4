@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `agendamentos` (
 --   `ID_prontuario`
 --       `prontuarios` -> `ID`
 --   `CPF_usuario`
---       `responsaveis` -> `CPF`
+--       `usuarios` -> `CPF`
 --   `Cod_medicamento`
 --       `medicamentos` -> `Codigo`
 --
@@ -182,7 +182,7 @@ CREATE TABLE IF NOT EXISTS `enfermeiros` (
 --
 -- RELACIONAMENTOS PARA TABELAS `enfermeiros`:
 --   `CPF`
---       `responsaveis` -> `CPF`
+--       `usuarios` -> `CPF`
 --
 
 --
@@ -217,7 +217,7 @@ CREATE TABLE IF NOT EXISTS `enfermeiros_chefes` (
 --
 -- RELACIONAMENTOS PARA TABELAS `enfermeiros_chefes`:
 --   `CPF`
---       `responsaveis` -> `CPF`
+--       `usuarios` -> `CPF`
 --
 
 --
@@ -244,7 +244,7 @@ CREATE TABLE IF NOT EXISTS `estagiarios` (
 --
 -- RELACIONAMENTOS PARA TABELAS `estagiarios`:
 --   `CPF`
---       `responsaveis` -> `CPF`
+--       `usuarios` -> `CPF`
 --
 
 --
@@ -301,8 +301,8 @@ CREATE TABLE IF NOT EXISTS `log` (
   `Id` bigint(20) NOT NULL,
   `Data_Log` date NOT NULL,
   `Hora_Agend` time NOT NULL,
-  `CPF_usuario` varchar(255) NOT NULL,
   `Ip` varchar(15) NOT NULL,
+  `Acao` text NOT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -351,7 +351,7 @@ CREATE TABLE IF NOT EXISTS `ocorrencias` (
 --   `ID_prontuario`
 --       `prontuarios` -> `ID`
 --   `CPF`
---       `responsaveis` -> `CPF`
+--       `usuarios` -> `CPF`
 --
 
 -- --------------------------------------------------------
@@ -363,7 +363,7 @@ CREATE TABLE IF NOT EXISTS `ocorrencias` (
 CREATE TABLE IF NOT EXISTS `pacientes` (
   `Nome_Paciente` varchar(50) NOT NULL,
   `Sexo` varchar(20) NOT NULL,
-  `Status` enum('internado','alta','obito') NOT NULL,
+  `Estado` enum('internado','alta','obito') NOT NULL,
   `Data_Nasc` date NOT NULL,
   `CPF` char(14) NOT NULL,
   `Tipo_Sang` varchar(5) NOT NULL,
@@ -378,7 +378,7 @@ CREATE TABLE IF NOT EXISTS `pacientes` (
 -- Extraindo dados da tabela `pacientes`
 --
 
-INSERT INTO `pacientes` (`Nome_Paciente`, `Sexo`, `Status`, `Data_Nasc`, `CPF`, `Tipo_Sang`) VALUES
+INSERT INTO `pacientes` (`Nome_Paciente`, `Sexo`, `Estado`, `Data_Nasc`, `CPF`, `Tipo_Sang`) VALUES
 ('Sueli Luna Martins', 'F', 'alta', '1961-12-12', '009.812.684-98', 'A-'),
 ('Olivia Natália Sueli de Paula', 'F', 'alta', '1984-05-05', '012.456.594-80', 'AB-'),
 ('Jennifer Clarice Assunção', 'F', 'alta', '1993-04-09', '029.226.827-06', 'B-'),
@@ -444,7 +444,7 @@ CREATE TABLE IF NOT EXISTS `permissao_cargo` (
   PRIMARY KEY (`id`),
   KEY `permissao_id` (`permissao_id`),
   KEY `cargo_id` (`cargo_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=88 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8mb4;
 
 --
 -- RELACIONAMENTOS PARA TABELAS `permissao_cargo`:
@@ -474,78 +474,57 @@ INSERT INTO `permissao_cargo` (`id`, `permissao_id`, `cargo_id`, `ativo`) VALUES
 (13, 13, 2, 1),
 (14, 14, 2, 1),
 (15, 15, 2, 1),
-(16, 16, 2, 0),
+(16, 16, 2, 1),
 (17, 17, 2, 1),
-(18, 18, 2, 0),
-(19, 19, 2, 0),
-(20, 20, 2, 0),
-(21, 21, 2, 0),
-(22, 22, 2, 0),
+(18, 18, 2, 1),
+(19, 19, 2, 1),
+(20, 20, 2, 1),
+(21, 21, 2, 1),
+(22, 22, 2, 1),
 (23, 23, 2, 1),
-(24, 24, 2, 0),
-(25, 25, 2, 0),
-(26, 26, 2, 0),
-(27, 27, 2, 0),
+(24, 24, 2, 1),
+(25, 25, 2, 1),
+(26, 26, 2, 1),
+(27, 27, 2, 1),
 (28, 28, 2, 1),
 (29, 29, 2, 1),
 (30, 30, 2, 1),
 (31, 31, 2, 1),
 (32, 32, 2, 1),
 (33, 33, 2, 1),
-(34, 7, 3, 1),
-(35, 8, 3, 1),
-(36, 9, 3, 0),
-(37, 10, 3, 0),
-(38, 11, 3, 1),
-(39, 12, 3, 0),
-(40, 13, 3, 0),
-(41, 14, 3, 0),
-(42, 15, 3, 1),
-(43, 16, 3, 0),
-(44, 17, 3, 1),
-(45, 18, 3, 0),
-(46, 19, 3, 1),
-(47, 20, 3, 1),
-(48, 21, 3, 1),
-(49, 22, 3, 1),
-(50, 23, 3, 1),
-(51, 24, 3, 1),
-(52, 25, 3, 1),
-(53, 26, 3, 1),
-(54, 27, 3, 1),
-(55, 28, 3, 0),
-(56, 29, 3, 0),
-(57, 30, 3, 0),
-(58, 31, 3, 0),
-(59, 32, 3, 0),
-(60, 33, 3, 0),
-(61, 7, 4, 1),
-(62, 8, 4, 1),
-(63, 9, 4, 0),
-(64, 10, 4, 0),
-(65, 11, 4, 1),
-(66, 12, 4, 0),
-(67, 13, 4, 0),
-(68, 14, 4, 0),
-(69, 15, 4, 1),
-(70, 16, 4, 1),
-(71, 17, 4, 1),
-(72, 18, 4, 0),
-(73, 19, 4, 0),
-(74, 20, 4, 0),
-(75, 21, 4, 0),
-(76, 22, 4, 0),
-(77, 23, 4, 0),
-(78, 24, 4, 0),
-(79, 25, 4, 0),
-(80, 26, 4, 0),
-(81, 27, 4, 0),
-(82, 28, 4, 0),
-(83, 29, 4, 0),
-(84, 30, 4, 0),
-(85, 31, 4, 0),
-(86, 32, 4, 0),
-(87, 33, 4, 0);
+(34, 34, 2, 1),
+(35, 35, 2, 1),
+(36, 10, 3, 1),
+(37, 11, 3, 1),
+(38, 15, 3, 1),
+(39, 17, 3, 1),
+(40, 18, 3, 1),
+(41, 19, 3, 1),
+(42, 20, 3, 1),
+(43, 21, 3, 1),
+(44, 22, 3, 1),
+(45, 23, 3, 1),
+(46, 24, 3, 1),
+(47, 25, 3, 1),
+(48, 26, 3, 1),
+(49, 27, 3, 1),
+(50, 28, 3, 1),
+(51, 31, 3, 1),
+(52, 32, 3, 1),
+(53, 33, 3, 1),
+(54, 34, 3, 1),
+(55, 15, 4, 1),
+(56, 18, 4, 1),
+(57, 19, 4, 1),
+(58, 20, 4, 1),
+(59, 22, 4, 1),
+(60, 23, 4, 1),
+(61, 24, 4, 1),
+(62, 27, 4, 1),
+(63, 28, 4, 1),
+(64, 31, 4, 1),
+(65, 32, 4, 1),
+(66, 34, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -596,11 +575,13 @@ INSERT INTO `permissoes` (`id`, `nome`) VALUES
 (26, 'Dar baixa no agendamento'),
 (27, 'Visualizar ocorrências do paciente'),
 (28, 'Registro de ocorrências'),
-(29, 'Cadastro do leito'),
+(29, 'Cadastro e alocação do leito'),
 (30, 'Remoção do leito'),
 (31, 'Inserir data de internação do paciente'),
 (32, 'Inserir data de saída do paciente'),
-(33, 'Alocar leito do paciente');
+(33, 'Cadastrar prontuário'),
+(34, 'Visualizar histórico de prontuários'),
+(35, 'Listagem de medicamentos cadastrados');
 
 -- --------------------------------------------------------
 
@@ -631,58 +612,19 @@ CREATE TABLE IF NOT EXISTS `prontuarios` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `responsaveis`
---
-
-CREATE TABLE IF NOT EXISTS `responsaveis` (
-  `CPF` char(14) NOT NULL,
-  PRIMARY KEY (`CPF`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- RELACIONAMENTOS PARA TABELAS `responsaveis`:
---   `CPF`
---       `usuarios` -> `CPF`
---
-
---
--- Extraindo dados da tabela `responsaveis`
---
-
-INSERT INTO `responsaveis` (`CPF`) VALUES
-('046.822.991-40'),
-('072.003.190-74'),
-('127.066.920-65'),
-('136.382.370-10'),
-('202.457.365-11'),
-('213.223.336-53'),
-('250.414.528-74'),
-('252.696.001-73'),
-('475.013.135-62'),
-('558.570.920-86'),
-('607.500.500-55'),
-('645.566.964-96'),
-('657.687.833-85'),
-('658.002.101-02'),
-('841.084.862-77'),
-('868.500.956-17'),
-('873.325.550-42');
-
--- --------------------------------------------------------
-
---
 -- Estrutura da tabela `usuarios`
 --
 
 CREATE TABLE IF NOT EXISTS `usuarios` (
   `CPF` char(14) NOT NULL,
   `Nome` varchar(50) NOT NULL,
-  `Senha` varchar(20) NOT NULL,
+  `Senha` varchar(60) NOT NULL,
   `Email` varchar(50) NOT NULL,
   `Data_Nasc` date NOT NULL,
   `Atribuicao` enum('Administrador','Enfermeiro Chefe','Enfermeiro','Estagiario') NOT NULL,
   `Sexo` enum('M','F') NOT NULL,
   `Ip` varchar(15) NOT NULL,
+  `Ativo` tinyint(1) NOT NULL,
   PRIMARY KEY (`CPF`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -694,27 +636,27 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 -- Extraindo dados da tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`CPF`, `Nome`, `Senha`, `Email`, `Data_Nasc`, `Atribuicao`, `Sexo`, `Ip`) VALUES
-('021.446.717-41', 'João da Silva e Silva', 'silvajao123', 'joaosilva.hp@gmail.com', '1980-12-05', 'Administrador', 'M', '0010101'),
-('046.822.991-40', 'Fernando Miguel Galvão', 'GFdZCYh6Yo', 'fernandomiguelgalvao-92@gmail.com', '1959-04-23', 'Enfermeiro', 'M', '011010001'),
-('072.003.190-74', 'Isaac Márcio Enrico Almada', 'malfada234', 'malfada.enricoIsaac@gmail.com', '1988-07-26', 'Enfermeiro', 'M', '110100101'),
-('127.066.920-65', 'Rafael Yago Rocha', 'goya761s', 'Yagorafael.hp@gmail.com', '1968-09-26', 'Enfermeiro', 'M', '11010010100'),
-('136.382.370-10', 'Diego Luan Cardoso', 'dosos23doso12', 'dieguinho87luan@gmail.com', '1968-02-18', 'Enfermeiro', 'M', '1101010'),
-('174.985.367-13', 'Juscelino Silva dos Santos', 'jusck987', 'santosjuscelino.hp@gmail.com', '1976-01-19', 'Administrador', 'M', '11010110'),
-('175.585.124-92', 'Maria joaquina Drumond', 'maria981', 'mariazinhaquina@gmail.com', '1995-07-12', 'Administrador', 'F', '00100101'),
-('202.457.365-11', 'Vinicius Martins magalhães', 'viniciinEhdeiz10', 'mmvinicius@gmail.com', '1989-09-24', 'Enfermeiro Chefe', 'M', '00110101001'),
-('213.223.336-53', 'Severino Nathan Ferreira', 'frefedo872', 'severinonathanferreira@gmail.com', '1996-02-17', 'Estagiario', 'M', '011111000'),
-('250.414.528-74', 'Alfredo Estrada Félix', 'frefedo872', 'estrada.felixfred@gmail.com', '1979-02-27', 'Enfermeiro', 'M', '110100101'),
-('252.696.001-73', 'Brenda Estefanir souza', '09szai2', 'brendasouza.hp@gmail.com', '1995-07-29', 'Enfermeiro', 'F', '0100110101011'),
-('475.013.135-62', 'Ana Catarina Melo', '09annamello', 'anna.melocatarina@gmail.com', '1986-10-11', 'Enfermeiro Chefe', 'F', '010010110'),
-('558.570.920-86', 'Jaqueline Marina da Cunha', 'cunh87ja212que', 'cunha.jaquemarina@gmail.com', '1987-08-21', 'Enfermeiro', 'F', '0010110101'),
-('607.500.500-55', 'Alfredo Estrada Félix', 'frefedo872', 'suelimirellaaparecidadossantos@gmail.com', '1971-01-21', 'Enfermeiro', 'F', '11001010'),
-('645.566.964-96', 'Nina Gabriela Camila Figueiredo', '7bfc8LG23j', 'inagabrielacamilafigueiredo@gmail.com', '1971-01-21', 'Estagiario', 'F', '010100111'),
-('657.687.833-85', 'Rayssa Larissa da Rosa', 'ro029090710sa', 'rrayssalarissadarosa@gmail.com', '1994-11-14', 'Estagiario', 'F', '00100010'),
-('658.002.101-02', 'Ambrozina pereira amorim', '98378s2', 'amorim.Ambozina@gmail.com', '1974-04-27', 'Enfermeiro Chefe', 'F', '10001010'),
-('841.084.862-77', 'Diego Theo Nathan Vieira', '08F993d2gq', '_diegotheonathanvieira@gmail.com', '1992-02-25', 'Enfermeiro', 'M', '1010010101'),
-('868.500.956-17', 'Marlene Sarah Alana Moura', 'm4a13mp0s8m', 'smmarlenesarahalanamoura@gmail.com', '1992-11-06', 'Estagiario', 'F', '01001010'),
-('873.325.550-42', 'Cauã Mário da Luz', 'luz21s1z', 'cauamariodaluz.81@gmail.com', '1984-07-07', 'Enfermeiro', 'M', '001011011');
+INSERT INTO `usuarios` (`CPF`, `Nome`, `Senha`, `Email`, `Data_Nasc`, `Atribuicao`, `Sexo`, `Ip`, `Ativo`) VALUES
+('021.446.717-41', 'João da Silva e Silva', 'silvajao123', 'joaosilva.hp@gmail.com', '1980-12-05', 'Administrador', 'M', '0010101', 1),
+('046.822.991-40', 'Fernando Miguel Galvão', 'GFdZCYh6Yo', 'fernandomiguelgalvao-92@gmail.com', '1959-04-23', 'Enfermeiro', 'M', '011010001', 1),
+('072.003.190-74', 'Isaac Márcio Enrico Almada', 'malfada234', 'malfada.enricoIsaac@gmail.com', '1988-07-26', 'Enfermeiro', 'M', '110100101', 1),
+('127.066.920-65', 'Rafael Yago Rocha', 'goya761s', 'Yagorafael.hp@gmail.com', '1968-09-26', 'Enfermeiro', 'M', '11010010100', 1),
+('136.382.370-10', 'Diego Luan Cardoso', 'dosos23doso12', 'dieguinho87luan@gmail.com', '1968-02-18', 'Enfermeiro', 'M', '1101010', 1),
+('174.985.367-13', 'Juscelino Silva dos Santos', 'jusck987', 'santosjuscelino.hp@gmail.com', '1976-01-19', 'Administrador', 'M', '11010110', 1),
+('175.585.124-92', 'Maria joaquina Drumond', 'maria981', 'mariazinhaquina@gmail.com', '1995-07-12', 'Administrador', 'F', '00100101', 1),
+('202.457.365-11', 'Vinicius Martins magalhães', 'viniciinEhdeiz10', 'mmvinicius@gmail.com', '1989-09-24', 'Enfermeiro Chefe', 'M', '00110101001', 1),
+('213.223.336-53', 'Severino Nathan Ferreira', 'frefedo872', 'severinonathanferreira@gmail.com', '1996-02-17', 'Estagiario', 'M', '011111000', 1),
+('250.414.528-74', 'Alfredo Estrada Félix', 'frefedo872', 'estrada.felixfred@gmail.com', '1979-02-27', 'Enfermeiro', 'M', '110100101', 1),
+('252.696.001-73', 'Brenda Estefanir souza', '09szai2', 'brendasouza.hp@gmail.com', '1995-07-29', 'Enfermeiro', 'F', '0100110101011', 1),
+('475.013.135-62', 'Ana Catarina Melo', '09annamello', 'anna.melocatarina@gmail.com', '1986-10-11', 'Enfermeiro Chefe', 'F', '010010110', 1),
+('558.570.920-86', 'Jaqueline Marina da Cunha', 'cunh87ja212que', 'cunha.jaquemarina@gmail.com', '1987-08-21', 'Enfermeiro', 'F', '0010110101', 1),
+('607.500.500-55', 'Alfredo Estrada Félix', 'frefedo872', 'suelimirellaaparecidadossantos@gmail.com', '1971-01-21', 'Enfermeiro', 'F', '11001010', 1),
+('645.566.964-96', 'Nina Gabriela Camila Figueiredo', '7bfc8LG23j', 'inagabrielacamilafigueiredo@gmail.com', '1971-01-21', 'Estagiario', 'F', '010100111', 1),
+('657.687.833-85', 'Rayssa Larissa da Rosa', 'ro029090710sa', 'rrayssalarissadarosa@gmail.com', '1994-11-14', 'Estagiario', 'F', '00100010', 1),
+('658.002.101-02', 'Ambrozina pereira amorim', '98378s2', 'amorim.Ambozina@gmail.com', '1974-04-27', 'Enfermeiro Chefe', 'F', '10001010', 1),
+('841.084.862-77', 'Diego Theo Nathan Vieira', '08F993d2gq', '_diegotheonathanvieira@gmail.com', '1992-02-25', 'Enfermeiro', 'M', '1010010101', 1),
+('868.500.956-17', 'Marlene Sarah Alana Moura', 'm4a13mp0s8m', 'smmarlenesarahalanamoura@gmail.com', '1992-11-06', 'Estagiario', 'F', '01001010', 1),
+('873.325.550-42', 'Cauã Mário da Luz', 'luz21s1z', 'cauamariodaluz.81@gmail.com', '1984-07-07', 'Enfermeiro', 'M', '001011011', 1);
 
 --
 -- Restrições para despejos de tabelas
@@ -731,7 +673,7 @@ ALTER TABLE `administradores`
 --
 ALTER TABLE `agendamentos`
   ADD CONSTRAINT `agendamento_ibfk_1` FOREIGN KEY (`ID_prontuario`) REFERENCES `prontuarios` (`ID`),
-  ADD CONSTRAINT `agendamento_ibfk_2` FOREIGN KEY (`CPF_usuario`) REFERENCES `responsaveis` (`CPF`),
+  ADD CONSTRAINT `agendamento_ibfk_2` FOREIGN KEY (`CPF_usuario`) REFERENCES `usuarios` (`CPF`),
   ADD CONSTRAINT `agendamento_ibfk_3` FOREIGN KEY (`Cod_medicamento`) REFERENCES `medicamentos` (`Codigo`);
 
 --
@@ -752,26 +694,26 @@ ALTER TABLE `cid_prontuario`
 -- Limitadores para a tabela `enfermeiros`
 --
 ALTER TABLE `enfermeiros`
-  ADD CONSTRAINT `enfermeiros_ibfk_1` FOREIGN KEY (`CPF`) REFERENCES `responsaveis` (`CPF`) ON DELETE CASCADE;
+  ADD CONSTRAINT `enfermeiros_ibfk_1` FOREIGN KEY (`CPF`) REFERENCES `usuarios` (`CPF`) ON DELETE CASCADE;
 
 --
 -- Limitadores para a tabela `enfermeiros_chefes`
 --
 ALTER TABLE `enfermeiros_chefes`
-  ADD CONSTRAINT `enfermeiros_chefes_ibfk_1` FOREIGN KEY (`CPF`) REFERENCES `responsaveis` (`CPF`) ON DELETE CASCADE;
+  ADD CONSTRAINT `enfermeiros_chefes_ibfk_1` FOREIGN KEY (`CPF`) REFERENCES `usuarios` (`CPF`) ON DELETE CASCADE;
 
 --
 -- Limitadores para a tabela `estagiarios`
 --
 ALTER TABLE `estagiarios`
-  ADD CONSTRAINT `estagiarios_ibfk_1` FOREIGN KEY (`CPF`) REFERENCES `responsaveis` (`CPF`) ON DELETE CASCADE;
+  ADD CONSTRAINT `estagiarios_ibfk_1` FOREIGN KEY (`CPF`) REFERENCES `usuarios` (`CPF`) ON DELETE CASCADE;
 
 --
 -- Limitadores para a tabela `ocorrencias`
 --
 ALTER TABLE `ocorrencias`
   ADD CONSTRAINT `ocorrencia_ibfk_1` FOREIGN KEY (`ID_prontuario`) REFERENCES `prontuarios` (`ID`),
-  ADD CONSTRAINT `ocorrencia_ibfk_2` FOREIGN KEY (`CPF`) REFERENCES `responsaveis` (`CPF`);
+  ADD CONSTRAINT `ocorrencia_ibfk_2` FOREIGN KEY (`CPF`) REFERENCES `usuarios` (`CPF`);
 
 --
 -- Limitadores para a tabela `permissao_cargo`
@@ -787,11 +729,6 @@ ALTER TABLE `prontuarios`
   ADD CONSTRAINT `prontuario_ibfk_1` FOREIGN KEY (`Id_leito`) REFERENCES `leitos` (`Identificacao`),
   ADD CONSTRAINT `prontuario_ibfk_2` FOREIGN KEY (`Cpfpaciente`) REFERENCES `pacientes` (`CPF`);
 
---
--- Limitadores para a tabela `responsaveis`
---
-ALTER TABLE `responsaveis`
-  ADD CONSTRAINT `responsaveis_ibfk_1` FOREIGN KEY (`CPF`) REFERENCES `usuarios` (`CPF`) ON DELETE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

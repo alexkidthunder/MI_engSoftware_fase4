@@ -12,6 +12,7 @@
 
     <!-- Favicons -->
     <link href="{{ asset('img/favicon.png') }}" rel="icon">
+    <script src="{{ ('js/mascara.min.js')}}"></script>
 
     <title>Remoção de funcionário</title>
 </head>
@@ -25,14 +26,17 @@
     <div class="container-1">
         <div class="box">
             <!--Buscar funcionário-->
-            <div class="content-center"> <!--Área onde se busca um funcionário-->
-                <h3>BUSCAR FUNCIONÁRIO</h3>
-                <form class="search-bar" action="/buscarUsuario" method="GET">
-                    <input name="cpf_user" id="cpf_user" type="text" placeholder="Informe o CPF" required maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
-                    <button type="submit">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </form>
+            <div id="search">
+                <div class="content-center"> <!--Área onde se busca um funcionário-->
+                    <h3>BUSCAR FUNCIONÁRIO</h3>
+                    <form class="search-bar" action="/buscarUsuario" method="GET">
+                    <input id="cpf_user" name="cpf_user" type="text" placeholder= "Digite o CPF" onkeyup="mascara('###.###.###-##',this,event,true)" 
+                            required maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
+                        <button type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                </div>
             </div> <!--Fim da área onde se busca um funcionário-->
 
             <!--Infomações do funcionário funcionário-->

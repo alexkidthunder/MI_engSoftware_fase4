@@ -13,6 +13,7 @@
     <!-- Favicon -->
     <link href="{{ asset('img/favicon.png') }}" rel="icon">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{{ ('js/cadastroAgendamento.js') }}" defer></script>
 
     <title>Cadastro Agendamento</title>
@@ -21,30 +22,24 @@
 
 <body>
     <!----------Hearder------------>
-    @if(isset($_SESSION['enfermeiro']))
     @include('layouts.navbar')
-    @endif
-    @if(isset($_SESSION['enfermeiroChefe']))
-    @include('layouts.navbar-enfChefe')
-    @endif
-    @if(isset($_SESSION['estagiario']))
-    @include('layouts.navbar')
-    @endif
     <!----------End Hearder-------->
     <section>
         <div class="container-1">
             <h1>CADASTRO DE AGENDAMENTO</h1>
             <div class="box">
                 <!--Buscar paciente-->
-                <div class="content-center">
-                    <h3>BUSCAR PACIENTE</h3>
-                    <form class="search-bar">
-                        <input name="cpf_user" id="cpf_user" type="text" placeholder="Informe o CPF" required
-                            maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
-                        <button type="submit" id="busca_user">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </form>
+                <div id="search">
+                    <div class="content-center">
+                        <h3>BUSCAR PACIENTE</h3>
+                        <form class="search-bar">
+                            <input name="cpf_user" id="cpf_user" type="text" placeholder="Informe o CPF" required
+                                maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
+                            <button type="submit" id="busca_user">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
+                    </div>
                 </div>
                 <div class="hide" id="user_Data">
                     <!--Infomações do Paciente-->
@@ -76,7 +71,7 @@
                     <!-- Inicio de Cadastro de Agendamento -->
                 </div>
                 <div>
-                    <form class="hide" id="register">
+                    <form id="register"> <!--class="hide"-->
                         <div class="box-medicament">
                             <div class="row">
                                 <div class="col-lg-4">
@@ -104,8 +99,8 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div>
-                                        <label for="medicamento_agendamento">Medicamento</label>
-                                        <input type="text" name="medicamento_agendamento" required>
+                                        <label for="medicamento_agendamento">Medicamento</label> <!--Front precisa de uma lista de todos os medicamentos. Ps: em Json-->
+                                        <input type="text" name="medicamento_agendamento" id="medicamento_agendamento">
                                     </div>
                                 </div>
                             </div>
@@ -126,7 +121,7 @@
                             </div>
                         </div>
                         <div>
-                            <button type="submit" class="btn-blue"> Cadastrar </button>
+                            <button id="submit_agendamento" type="button" class="btn-blue"> Cadastrar </button>
                         </div>
                        
                     </form>

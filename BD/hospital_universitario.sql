@@ -49,20 +49,20 @@ CREATE TABLE cid_prontuario (
 
 /*Cria tabela de enfermeiros*/
 CREATE TABLE enfermeiros (
-  CPF char(14) NOT NULL, /* Chave estrangeira que faz referência ao responsável*/
+  CPF char(14) NOT NULL, /* Chave estrangeira que faz referência ao usuarios*/
   COREN char(12) NOT NULL,
   Plantao tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Cria tabela de enfermeiros  chefes*/
 CREATE TABLE enfermeiros_chefes (
-  CPF char(14) NOT NULL, /* Chave estrangeira que faz referência ao responsável*/
+  CPF char(14) NOT NULL, /* Chave estrangeira que faz referência ao usuarios*/
   COREN char(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Cria tabela de estagiarios*/
 CREATE TABLE estagiarios (
-  CPF char(14) NOT NULL, /* Chave estrangeira que faz referência ao responsável*/
+  CPF char(14) NOT NULL, /* Chave estrangeira que faz referência ao usuarios*/
   Plantao tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -77,8 +77,8 @@ CREATE TABLE log (
   Id bigint(20) NOT NULL,
   Data_Log date NOT NULL,
   Hora_Agend time NOT NULL,
-  CPF_usuario varchar(255) NOT NULL, /* Chave estrangeira que faz referencia ao Usuário*/
-  Ip varchar(15) NOT NULL
+  Ip varchar(15) NOT NULL,
+  Acao text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Cria tabela de medicamentos*/
@@ -96,14 +96,14 @@ CREATE TABLE ocorrencias (
   Data_ocorr date NOT NULL,
   ID_prontuario bigint(20) NOT NULL,
   Descricao text NOT NULL,
-  CPF char(14) NOT NULL /* Chave estrangeira que faz refência ao Responsável*/
+  CPF char(14) NOT NULL /* Chave estrangeira que faz refência ao usuarios*/
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Cria tabela de pacientes*/
 CREATE TABLE pacientes (
   Nome_Paciente varchar(50) NOT NULL,
   Sexo varchar(20) NOT NULL,
-  Status enum('internado','alta','obito') NOT NULL,  
+  Estado enum('internado','alta','obito') NOT NULL,  
   Data_Nasc date NOT NULL,
   CPF char(14) NOT NULL,
   Tipo_Sang varchar(5) NOT NULL  
@@ -135,12 +135,13 @@ CREATE TABLE prontuarios (
 CREATE TABLE usuarios (
   CPF char(14) NOT NULL, /*Chave primaria*/
   Nome varchar(50) NOT NULL,
-  Senha varchar(20) NOT NULL,
+  Senha varchar(60) NOT NULL,
   Email varchar(50) NOT NULL,
   Data_Nasc date NOT NULL,
   Atribuicao enum('Administrador','Enfermeiro Chefe','Enfermeiro','Estagiario') NOT NULL,
   Sexo enum('M','F') NOT NULL,
-  Ip varchar(15) NOT NULL
+  Ip varchar(15) NOT NULL,
+  Ativo tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 

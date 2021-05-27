@@ -36,28 +36,28 @@ class HomeController extends Controller
                 if($request->senha == 12345){
                     return redirect('/primeiroAcesso')->with('cpf', $request->cpf);
                 }
-                header("Location: /menu");
+                header("Location: /menuAdm");
                 exit();
             }else if($atribuicao == "Enfermeiro Chefe"){
                 $_SESSION['enfermeiroChefe'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
                 if($request->senha == 12345){
                     return redirect('/primeiroAcesso')->with('cpf', $request->cpf);
                 }
-                header("Location: /menuEnfermeiroChefe");
+                header("Location: /menu");
                 exit();
             }else if($atribuicao == "Enfermeiro"){
                 $_SESSION['enfermeiro'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
                 if($request->senha == 12345){
                     return redirect('/primeiroAcesso')->with('cpf', $request->cpf);
                 }
-                header("Location: /menuEnfermeiro");
+                header("Location: /menu");
                 exit();
             }else if($atribuicao == "Estagiario"){
                 $_SESSION['estagiario'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
                 if($request->senha == 12345){
                     return redirect('/primeiroAcesso')->with('cpf', $request->cpf);
                 }
-                header("Location: /menuEstagiario");
+                header("Location: /menu");
                 exit();
             }else{
                 return redirect() -> back() ->with('msg-error','Funcionario sem cargo, algo esta errado!!!');
@@ -68,7 +68,10 @@ class HomeController extends Controller
 
     }
 
-
+    public function menu(){
+        VerificaLoginController::verificarLogin();
+        return view('/menu');
+    }
 
     public function logout(){
         session_start();
@@ -102,21 +105,84 @@ class HomeController extends Controller
        }
     }
 
-
-    public function menu(){
+    /*public function menu(){
         return view('admin.menu');
-    }
+    }*/
 
-    public function editPerfil(){
+    public function editPerfil(Request $request){
         VerificaLoginController::verificarLogin();
-        return view('editarPerfil');
+        include("db.php");
+        $usuario = [];
+        $cpf = '';
+        if(isset($_SESSION['enfermeiroChefe'])){
+            $cpf = $_SESSION['enfermeiroChefe'];
+            $sql = "SELECT * FROM enfermeiros_chefes where CPF = '$cpf'";
+            $query = mysqli_query($connect,$sql);
+            while($sql = mysqli_fetch_array($query)){
+                $usuario['coren'] = $sql['COREN'];
+            }
+        }else if(isset($_SESSION['enfermeiro'])){
+            $cpf = $_SESSION['enfermeiro'];
+            $sql = "SELECT * FROM enfermeiros where CPF = '$cpf'";
+            $query = mysqli_query($connect,$sql);
+            while($sql = mysqli_fetch_array($query)){
+                $usuario['coren'] = $sql['COREN'];
+            }
+        }else if(isset($_SESSION['estagiario'])){
+            $cpf = $_SESSION['estagiario'];
+        }else if(isset($_SESSION['administrador'])){
+            $cpf = $_SESSION['administrador'];
+        }else{
+            HomeController::logout();
+        }
+        $sql = "SELECT * FROM usuarios where CPF = '$cpf'";
+        $query = mysqli_query($connect,$sql);
+        while($sql = mysqli_fetch_array($query)){
+            $usuario['nome'] = $sql['Nome'];
+            $usuario['nascimento'] = $sql['Data_Nasc'];
+            $usuario['sexo'] = $sql['Sexo'];
+            $usuario['email'] = $sql['Email'];
+        }
+        return view('editarPerfil', ['usuario' => $usuario]);
     }
     
 
-    public function listaPacientes(){
+    public function listaPacientes(Request $request){
         VerificaLoginController::verificarLogin();
         // Qual a permissão pra isso? 
-        return view('listaPacientes');
+        include("db.php");
+        $i= 0;
+        $p = [];
+        if($request->novaAtribuicao == "internado") {
+            $sql = "SELECT * FROM pacientes WHERE Estado = 'internado'";
+            $query = mysqli_query($connect,$sql);
+            while($sql = mysqli_fetch_array($query)){
+                $p[$i] = $sql['Nome_Paciente'];
+                $p[$i+1] = $sql['CPF'];
+                $i = $i+2;
+            }
+            return view('listaPacientes',['p'=>$p]);
+        }else if($request->novaAtribuicao == "alta") {
+            $sql = "SELECT * FROM pacientes WHERE Estado = 'alta'";
+            $query = mysqli_query($connect,$sql);
+            while($sql = mysqli_fetch_array($query)){
+                $p[$i] = $sql['Nome_Paciente'];
+                $p[$i+1] = $sql['CPF'];
+                $i = $i+2;
+            }
+            return view('listaPacientes',['p'=>$p]);
+        }else if($request->novaAtribuicao == "obito") {
+            $sql = "SELECT * FROM pacientes WHERE Estado = 'obito'";
+            $query = mysqli_query($connect,$sql);
+            while($sql = mysqli_fetch_array($query)){
+                $p[$i] = $sql['Nome_Paciente'];
+                $p[$i+1] = $sql['CPF'];
+                $i = $i+2;
+            }
+            return view('listaPacientes',['p'=>$p]);
+        }else{
+            return view('listaPacientes');
+        }
     }
 
     public function agendamentosRealizados(){
@@ -330,7 +396,18 @@ class HomeController extends Controller
                 }
             }
             if($resultado == "1"){
-                return view('listaMedicamento');
+                $i = 0;
+                $m = [];
+                $sql = "SELECT * FROM medicamentos";
+                $query = mysqli_query($connect,$sql);
+                while($sql = mysqli_fetch_array($query)){
+                    $m[$i] = $sql['Nome_Medicam'];
+                    $m[$i+1] = $sql['Data_Validade'];
+                    $m[$i+2] = $sql['Quantidade'];
+                    $m[$i+3] = $sql['Fabricante'];
+                    $i = $i+4;
+                }
+                return view('listaMedicamento',['m' => $m]);
             }else{
                 return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
             }
@@ -343,7 +420,18 @@ class HomeController extends Controller
                 }
             }
             if($resultado == "1"){
-                return view('listaMedicamento');
+                $i = 0;
+                $m = [];
+                $sql = "SELECT * FROM medicamentos";
+                $query = mysqli_query($connect,$sql);
+                while($sql = mysqli_fetch_array($query)){
+                    $m[$i] = $sql['Nome_Medicam'];
+                    $m[$i+1] = $sql['Data_Validade'];
+                    $m[$i+2] = $sql['Quantidade'];
+                    $m[$i+3] = $sql['Fabricante'];
+                    $i = $i+4;
+                }
+                return view('listaMedicamento',['m' => $m]);
             }else{
                 return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
             }
@@ -356,7 +444,18 @@ class HomeController extends Controller
                 }
             }
             if($resultado == "1"){
-                return view('listaMedicamento');
+                $i = 0;
+                $m = [];
+                $sql = "SELECT * FROM medicamentos";
+                $query = mysqli_query($connect,$sql);
+                while($sql = mysqli_fetch_array($query)){
+                    $m[$i] = $sql['Nome_Medicam'];
+                    $m[$i+1] = $sql['Data_Validade'];
+                    $m[$i+2] = $sql['Quantidade'];
+                    $m[$i+3] = $sql['Fabricante'];
+                    $i = $i+4;
+                }
+                return view('listaMedicamento',['m' => $m]);
             }else{
                 return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
             }
@@ -389,5 +488,50 @@ class HomeController extends Controller
             //se existir o paciente cadastrado
             return redirect()->route('cadastroPaciente')->with('error', "Paciente já existente no banco de dados!!");
         } 
+    }
+
+    public function prontuario(){
+        VerificaLoginController::verificarLogin();
+        include("db.php");
+        if(isset($_SESSION['enfermeiroChefe'])){
+            $sql = "SELECT * FROM permissao_cargo where permissao_id = '18'";
+            $query = mysqli_query($connect,$sql);
+            while($sql = mysqli_fetch_array($query)){
+                if($sql['cargo_id'] == '2'){
+                    $resultado = $sql['ativo'];
+                }
+            }
+            if($resultado == "1"){
+                return view('prontuario');
+            }else{
+                return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
+            }
+        }else if(isset($_SESSION['enfermeiro'])){
+            $sql = "SELECT * FROM permissao_cargo where permissao_id = '18'";
+            $query = mysqli_query($connect,$sql);
+            while($sql = mysqli_fetch_array($query)){
+                if($sql['cargo_id'] == '3'){
+                    $resultado = $sql['ativo'];
+                }
+            }
+            if($resultado == "1"){
+                return view('prontuario');
+            }else{
+                return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
+            }
+        }else if(isset($_SESSION['estagiario'])){
+            $sql = "SELECT * FROM permissao_cargo where permissao_id = '18'";
+            $query = mysqli_query($connect,$sql);
+            while($sql = mysqli_fetch_array($query)){
+                if($sql['cargo_id'] == '4'){
+                    $resultado = $sql['ativo'];
+                }
+            }
+            if($resultado == "1"){
+                return view('prontuario');
+            }else{
+                return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
+            }
+        }
     }
 }

@@ -19,16 +19,9 @@
   </head>
   <body>
     <!----------Hearder------------>
-    @if(isset($_SESSION['enfermeiro']))
     @include('layouts.navbar')
-    @endif
-    @if(isset($_SESSION['enfermeiroChefe']))
-    @include('layouts.navbar-enfChefe')
-    @endif
-    @if(isset($_SESSION['estagiario']))
-    @include('layouts.navbar')
-    @endif
     <!----------End Hearder-------->
+    
         <div id="screen-icon"> <!-- Icone de Download Em Telas -->
             <form class="download-icon">
                 <button>
@@ -36,53 +29,55 @@
                 </button>
             </form>
         </div>
-   
+
         <div class="container-1">
     
             <h1>LISTAGEM DE AGENDAMENTOS E MEDICAMENTOS </h1>
 
             <!---------------------Agendamento--------------------->
-            <div class="box-scheduling">
+            @if($infos["medicamento0"] != null)
+            <div class="box-scheduling" id="scheduling">
                     <div class="row">
                         <!---------------------Hora--------------------->
-                        <div class="col-lg-2 text-center">
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-2 text-center">
                             <div class="box-gray">
-                                22:30h
+                                {{$infos["hora0"]}}
                              </div>
                         </div>
                         <!---------------------Data--------------------->
-                        <div class="col-lg-2 text-center">
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-2 text-center">
                             <div class="box-gray">
-                                20/04/2021
+                                {{$infos["data0"]}}
                             </div>
                         </div>
                         <!---------------------Nome do Medicamento--------------------->
-                        <div class="col-lg-6">
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
                             <div class="box-white">
-                            Dipirona
+                                {{$infos["medicamento0"]}}
                              </div>
                         </div>
                         <!---------------------Posologia--------------------->
-                        <div class="col-lg-2">
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-2">
                             <div class="box-white">
-                                0.35 ml
+                                {{$infos["posologia0"]}}
                             </div>
                         </div>
                     </div>
 
                     <div class="row">
                     <!---------------------Nome da Paciente--------------------->
-                        <div class="col-lg-9">
-                            <a href="{{ route('prontuario') }}" target="_parent"><button class="btn-Patient text-left">Samara Anjos de Oliveira</button></a>
+                        <div class="col-12 col-sm-12 col-md-9 col-lg-9">
+                            <a href="{{ route('prontuario') }}" target="_parent"><button class="btn-Patient">{{$infos["paciente0"]}}</button></a>
                         </div>
                         <!---------------------Leito da Paciente--------------------->
-                        <div class="col-lg-3">
+                        <div class="col-12 col-sm-12 col-md-3 col-lg-3">
                             <div class="box-blue">
-                                Leito: AB04
+                                Leito: {{$infos["leito0"]}}
                             </div>
                         </div>
                     </div>
             </div>
+            @endif
             <!---------------------Fim de agendamento--------------------->
         </div>
   </body>

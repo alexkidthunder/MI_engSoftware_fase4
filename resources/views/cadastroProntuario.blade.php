@@ -16,15 +16,7 @@
 
 <body>
     <!----------Hearder------------>
-    @if(isset($_SESSION['enfermeiro']))
     @include('layouts.navbar')
-    @endif
-    @if(isset($_SESSION['enfermeiroChefe']))
-    @include('layouts.navbar-enfChefe')
-    @endif
-    @if(isset($_SESSION['estagiario']))
-    @include('layouts.navbar')
-    @endif
     <!----------End Hearder-------->
     <section>
 
@@ -32,17 +24,19 @@
             <h1>CADASTRO DE PRONTUARIO</h1>
 
             <!------------- Busca do paciente ------------->
-            <div class="box">
-                <div class="content-center">
-                    <h3>BUSCAR PACIENTE</h3>
-                    <form class="search-bar">
-                        <!--- Campo para a inserção do CPF do paciente --->
-                        <input name="cpf_user" id="cpf_user" type="text" placeholder="Informe o CPF" required
-                            maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
-                        <button type="submit">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </form>
+            <div id="search">
+                <div class="box">
+                    <div class="content-center">
+                        <h3>BUSCAR PACIENTE</h3>
+                        <form class="search-bar">
+                            <!--- Campo para a inserção do CPF do paciente --->
+                            <input name="cpf_user" id="cpf_user" type="text" placeholder="Informe o CPF" required
+                                maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
+                            <button type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
             <!---------- Fim da Busca do paciente ---------->
@@ -76,10 +70,21 @@
                     <div class="row">
                         <!------ Nome do leito de internamento do Paciente ------>
                         <div class="col-lg-4">
-                            <div>
-                                <label name="Leito">Leito:</label>
-                                <input type="text" name="Leito Alocado" requerid>
-                            </div>
+                        <!------ Aqui em baixo o Leito cadastrado no BD, como isso não ta feito, vai um exemplo ------>
+                        <label name="inserir_leito">Selecione o leito</label>
+                        <form>
+                        <select id="LeitoSelect" name="Leito">
+                        <option value="A01">A 01</option>
+                        <option value="A02">A 02</option>
+                        <option value="A03">A 03</option>
+                        <option value="B01">B 01</option>
+                        <option value="B02">B 02</option>
+                        <option value="B03">B 03</option> 
+                        <option value="B04">B 04</option>   
+                        <option value="C01">C 01</option>                    
+                        <option value="C02">C 02</option>
+                        </select>
+                        </form>
                         </div>
                         <!------ Data de internação do Paciente ------>
                         <div class="col-lg-4">
@@ -101,3 +106,4 @@
 </body>
 
 </html>
+

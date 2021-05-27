@@ -16,15 +16,7 @@
 
 <body>
     <!----------Hearder------------>
-    @if(isset($_SESSION['enfermeiro']))
     @include('layouts.navbar')
-    @endif
-    @if(isset($_SESSION['enfermeiroChefe']))
-    @include('layouts.navbar-enfChefe')
-    @endif
-    @if(isset($_SESSION['estagiario']))
-    @include('layouts.navbar')
-    @endif
     <!----------End Hearder-------->
     <section>
 
@@ -33,7 +25,7 @@
             <div class="box">
                 <br>
                 <!---------------------Inicio de cadastro de um novo leito--------------------->
-                <form id="register">
+                <form id="register" method="get" action="/cadastrarLeito">
                     <div class="box-cadastroLeito">
                         <div class="row">
                             <div class="col-lg-4">
@@ -44,11 +36,13 @@
                             </div>
                             <button type="submit" class="btn-blue"> Cadastrar </button>
                         </div>
+
+                        </form>
                         <!---------------------Fim de cadastro de leitos--------------------->
                         <div class="box-scheduling" , id="container-teste4">
                             <form id="register">
                                 <div class="row">
-                            <!---------------------Inicio da Tabela com todos os leitos cadastrados--------------------->
+                                    <!---------------------Inicio da Tabela com todos os leitos cadastrados--------------------->
                                     <h3>Tabela de Leitos</h3>
                                 </div>
 
@@ -56,44 +50,45 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">Leito</th>
-                                            <th scope="col">Vagas</th>
+                                            <th scope="col">Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>A55</td>
-                                            <td>2</td>
-                                        </tr>
-                                        <tr>
-                                            <td>A34</td>
-                                            <td>1</td>
-                                        </tr>
-                                        <tr>
-                                            <td>B66</td>
-                                            <td>2</td>
-                                        </tr>
-                                        <tr>
-                                            <td>B11</td>
-                                            <td>0</td>
-                                        </tr>
+                                       <?php
+
+                                       for($i = 0 ; $i < count($leitos) ; $i++){
+
+                                            ?>
+                                            <tr>
+                                                <td> {{ $leitos[$i] }} </td>
+                                                <td> {{ $statusLeito[$i]}}</td>
+                                            </tr> 
+
+                                        <?php } 
+                                       ?>            
                                     </tbody>
                                 </table>
-                            <!---------------------Fim da Tabela com todos os leitos cadastrados--------------------->
-                                <div class="col-lg-6">
-                                    <label>Remover leito</label> <br> <br>
-                                    <!---------------------Inicio de remover leito--------------------->
-                                    <input id="focorrencia" name="focorrencia" type="text" maxlength="10" required>
-                                    <div>
-                                        <button class="btn-blue"> Deletar </button>
-                                    </div>
-                                </div>
-                                    <!---------------------Fim de remover leito--------------------->
+                                <!---------------------Fim da Tabela com todos os leitos cadastrados--------------------->
+
                             </form>
                         </div>
 
                     </div>
+                
+                <!---------------------Fim da tela de Leitos Cadastrados --------------------->
+                <form method="get" action="removerUsuario">
+                <div class="col-lg-6">
+                    <label>Remover leito</label> <br> <br>
+                    <!---------------------Inicio de remover leito--------------------->
+                    <input id="focorrencia" name="focorrencia" type="text" maxlength="10" required>
+                    <div>
+                        <button class="btn-blue"> Deletar </button>
+                    </div>
+                </div>
                 </form>
-                <!---------------------Fim da tela de cadastro leito--------------------->
+                <!---------------------Fim de remover leito--------------------->
+
+                
             </div>
         </div>
     </section>
