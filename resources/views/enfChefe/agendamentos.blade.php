@@ -22,6 +22,7 @@
     @include('layouts.navbar')
     <!----------End Hearder-------->
     
+    <div class="container">
         <div id="screen-icon"> <!-- Icone de Download Em Telas -->
             <form class="download-icon">
                 <button>
@@ -29,10 +30,11 @@
                 </button>
             </form>
         </div>
+    </div>
 
         <div class="container-1">
     
-            <h1>LISTAGEM DE AGENDAMENTOS E MEDICAMENTOS </h1>
+            <h1 class="title-download">LISTAGEM DE AGENDAMENTOS E MEDICAMENTOS </h1>
 
             <!---------------------Agendamento--------------------->
             @if($infos["medicamento0"] != null)

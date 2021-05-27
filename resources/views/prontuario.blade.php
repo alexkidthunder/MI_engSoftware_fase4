@@ -30,7 +30,8 @@
         </form>
     </div>
       <!----------Criação de Prontuario------------>
-    <h1>PRONTÚARIO</h1>
+    
+      <h1 class="title-download">PRONTÚARIO</h1>
     <section>
         
         <div class="container-1"> 

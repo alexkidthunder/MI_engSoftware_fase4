@@ -38,7 +38,7 @@
     <!--------Fim do botão de donwload-------->
 
     <div class="container-1" id="historic">
-        <h1>HISTÓRIO DE PRONTUÁRIOS </h1>
+        <h1 class="title-download">HISTÓRIO DE PRONTUÁRIOS </h1>
 
         <!------------- Busca do paciente ------------->
         <div id="search">
