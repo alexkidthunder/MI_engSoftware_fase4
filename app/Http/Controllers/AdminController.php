@@ -22,7 +22,26 @@ class AdminController extends Controller
         return view('/admin/menu');
     }
 
-    public function log(){   
+    public function log(){ 
+         VerificaLoginController::verificarLoginAdmin();
+        /* 
+        //gerar um log
+        
+
+        include("db.php");                          
+        $ip = $_SERVER['REMOTE_ADDR'];              //detecta ip
+        $data = date('d/m/Y');                      //detecta data
+        $horas = time();                            //detecta hora
+
+        //insere no banco de dados
+        $novoLog = "INSERT INTO log (Data_Log, Hora_Agend, Ip, Acao) values ('$data','$horas', '$ip', $acao)";
+        mysqli_query($connect,$novoLog);
+        */
+        return view('/admin/log');
+        
+    }
+    
+    public function salvarLog(){   
         //gerar um log
         VerificaLoginController::verificarLoginAdmin();
 
@@ -31,11 +50,13 @@ class AdminController extends Controller
         $data = date('d/m/Y');                      //detecta data
         $horas = time();                            //detecta hora
 
-        //mudar campo de cpf
-        $novoLog = "INSERT INTO log (Data_Log, Hora_Agend, CPF_usuario ,Ip) values ('$data','$horas', 12345, '$ip')";
+        //insere no banco de dados
+        $novoLog = "INSERT INTO log (Data_Log, Hora_Agend, Ip, Acao) values ('$data','$horas', '$ip', $acao)";
         mysqli_query($connect,$novoLog);
         return view('/admin/log');
+
     }
+
 
     public function atribuicao()
     {   
