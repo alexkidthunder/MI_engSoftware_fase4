@@ -83,30 +83,23 @@ class HomeController extends Controller
 
     public function primeiroAcesso(Request $request){
         include('conexao.php');
-        //session_start();
-
+        $cpf = $request->cpf; 
         $senhaDefinida = $request->senha;
         $senhaConfirmacao = $request->confirmacao;
-        //dd($request->cpf);
+
         //se a nova senha desejada for igual a de confimação
         if ($senhaConfirmacao == $senhaDefinida){
             //$senhaCript = Hash::make($senhaConfimacao);         //cria um hash a partir da nova senha 
-
-            $cpf = $request->cpf;        
-            $select = "SELECT * FROM usuarios where CPF = '$cpf'";
-            $busca = mysqli_query($conn,$select);
-
+            dd($cpf);    
             //se existe o cpf no banco de dados
             $update = "UPDATE usuarios SET Senha = $senhaConfirmacao WHERE CPF = '$cpf' ";     //atualiza no banco de dados
             mysqli_query($conn,$update);
 
             return redirect()->route('index')->with('msg-sucess','Senha cadastrada com sucesso!!');
-
         //se a nova senha desejada for diferente da confirmada
         }else{
-            return redirect()->route('acessarPrimeiroAcesso')->with('msg-error','A senha de confirmação está diferente da nova senha!!');
+            return redirect()->route('acessarPrimeiroAcesso')->with('cpf',$cpf,'msg-error','A senha de confirmação está diferente da nova senha!!',);
        }
-
     }
 
 
@@ -270,6 +263,9 @@ class HomeController extends Controller
 
     public function cadastroProntuario(){
         VerificaLoginController::verificarLogin();
+
+
+        
         return view('cadastroProntuario');
     }
 

@@ -22,13 +22,18 @@ class AdminController extends Controller
         return view('/admin/menu');
     }
 
-    public function log($acao){   
+    public function log(){   
+        //gerar um log
         VerificaLoginController::verificarLoginAdmin();
-        $ip = $_SERVER['REMOTE_ADDR'];
-        $data = date('d/m/Y');
-        $horas = date('H:i:s');
 
-        
+        include("db.php");                          
+        $ip = $_SERVER['REMOTE_ADDR'];              //detecta ip
+        $data = date('d/m/Y');                      //detecta data
+        $horas = time();                            //detecta hora
+
+        //mudar campo de cpf
+        $novoLog = "INSERT INTO log (Data_Log, Hora_Agend, CPF_usuario ,Ip) values ('$data','$horas', 12345, '$ip')";
+        mysqli_query($connect,$novoLog);
         return view('/admin/log');
     }
 
