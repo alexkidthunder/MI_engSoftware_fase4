@@ -238,7 +238,7 @@ class HomeController extends Controller
 
     public function cadastroPaciente(){
         VerificaLoginController::verificarLogin();
-        $resultado = VerificaLoginController::verificaPermissao(23);
+        $resultado = VerificaLoginController::verificaPermissao(17);
         if($resultado == "1"){
             return view('cadastroPaciente');
         }else{
