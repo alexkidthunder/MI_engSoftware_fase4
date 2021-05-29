@@ -64,7 +64,7 @@ class EnfChefeController extends Controller
 
     public function cadastroAgendamento(){
         VerificaLoginController::verificarLogin();
-        $resultado = VerificaLoginController::verificaPermissao(23);
+        $resultado = VerificaLoginController::verificaPermissao(12);
         if($resultado == "1"){
             return view('/enfChefe/cadastroAgendamento');
         }else{
