@@ -15,7 +15,7 @@ a{
 }
 
 
-#login{
+#login, #password-login{
     width: 30%;
     margin:0 35%;
     padding-top: 150px;
@@ -90,7 +90,7 @@ input:hover {
     width: 50%;
 }
 
-#login .enter  button:hover {
+#login .enter  button:hover, #password-login button:hover {
     background-image: linear-gradient(to right, rgb(199, 218, 240), rgb(14, 122, 247));
     color: black;
 }
@@ -130,7 +130,22 @@ margin: 0 30%;
 
 #access a:hover {
     color: #d6eeee;
-  }
+}
+
+#container-img{
+    width: 80%;
+    margin:0 10%;
+}
+#container-wave{
+    width: 100%;
+}
+
+#container-img .img-login, #container-wave .img-login{
+    display:none;
+}
+#container-img .img-login img, #container-wave .img-login img{
+    width:100%;
+}
 
   /*---------------------------Login para mobile --------------------------------*/
 
@@ -141,52 +156,62 @@ margin: 0 30%;
         padding: 0;
         margin:0;
     }
-    #login{
-        margin:40% 0 0 0;
+    #login, #password-login{
+        margin:0;
         padding-top:0;
         width:100%;
-        height:60%;
+        height:50%;
     }
 
     .box-login {
         background: #F4F3F9;
         border-radius: 40px 40px 0 0;
-        padding: 40px 40px 50px 40px;
+        padding: 5px 40px 15px 40px;
     }
 
     input {
         border-radius: 20px;
-        height: 25px;
+        height: 15px;
         padding: 10px;
         background:white;
+        margin-bottom:5px;
     }
 
     .enter  >button {
         border-radius: 20px;
         padding: 10px;
         width: 95%;
+        margin:10px 3%;
     }
 
     label {
-        margin: 10px 0 6px 0;
+        margin-top: 10px;
+        font-size:14px;
     }
 
     #access{
-        width:60%;
-        margin: 0 20%;
+        width:70%;
+        margin-left:15%;
+        margin-right:15%;
+        margin-top:-7px;
+        margin-bottom: 5%;
     }
     #access .access-box{
         background-color: blue;
         border-radius: 0 0 30px 30px;
-        padding:10px 15px;
+        padding:5px 10px;
         text-align:center;
     }
 
+    #access a{
+        font-size: 18px;
+    }
+
     #first-access{
-        margin:35% 0 0 0;
+        margin:0 0 0 0;
         padding-top:0;
         width:100%;
-        height:60%;
+        height:40%;
     }
    /* <a href='https://br.freepik.com/vetores/projeto'>Projeto vetor criado por freepik - br.freepik.com</a>*/
     #first-access .box-login {
@@ -194,13 +219,22 @@ margin: 0 30%;
     }
 
     h2{
-        font-size: 22px;
+        font-size: 18px;
+        margin-block-start: 5px;
     }
     
     h4{
         margin-bottom:0;
         margin-top:0;
         text-align:center;
+        font-weight: normal;
+        font-size: 14px;
+    }
+    #container-img .img-login, #container-wave .img-login{
+        display: initial;
+    }
+    .text{
+        font-size:13px;
     }
   }
 
@@ -210,7 +244,7 @@ margin: 0 30%;
         width:40%;
         margin: 0 30%;
     }   
-    #login{
+    #login, #password-login{
         width: 40%;
         margin:0 30%;
         padding-top: 150px;
@@ -227,7 +261,7 @@ margin: 0 30%;
         width:50%;
         margin: 0 25%;
     }   
-    #login{
+    #login, #password-login{
         width: 50%;
         margin:0 25%;
         padding-top: 100px;

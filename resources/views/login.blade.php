@@ -18,7 +18,20 @@
 </head>
 
 <body class="body-login">
-
+    <!--------------- Imagem de onda--------------->
+    <div id="container-wave">
+        <div class="img-login">
+            <img src="{{ asset('img/wave.png') }}"/>
+        </div>
+    </div>
+    <!--------------- fim da Imagem -------------->
+    <!----------- Imagem de enfermeiros ----------->
+    <div id="container-img">
+        <div class="img-login">
+            <img src="{{ asset('img/doctors.png') }}"/>
+        </div>
+    </div>
+    <!--------------- fim da Imagem -------------->
     <form id="login" action="/index/menu" method="post">
         @csrf
         <div class="box-login">
