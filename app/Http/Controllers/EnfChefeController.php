@@ -571,4 +571,37 @@ class EnfChefeController extends Controller
         return view('/enfChefe/cadastroLeito'); 
     }
 
+    Public function verificarPermissao(cargoId, permissaoId){
+
+    Include('db.php');
+    $sql="SELECT *FROM permissao_cargo WHERE permissao_id = permissaoId";
+    $query = mysqli_query($connect,$sql);
+
+    if(cargoId == 2){
+       While($sql=mysql_fetch_array($query){
+       if($sql['Cargo_id']='2'){
+          $resultado= $sql['ativo'];
+        }
+       }
+       $resultado == 1?$saida=2:$saida=0;
+    }
+    else if(cargoId == 3){
+       While($sql=mysql_fetch_array($query){
+            if($sql['Cargo_id']='3'){
+              $resultado= $sql['ativo'];
+            }
+       }
+       $resultado == 1?$saida=3:$saida=0;
+    }
+    else if(cargoId == 4){
+        While($sql=mysql_fetch_array($query){
+            if($sql['Cargo_id']='4'){
+                $resultado= $sql['ativo'];
+            }
+        }
+        $resultado == 1?$saida=4:$saida=0;
+    }
+    return $saida;
+    }
+
 }
