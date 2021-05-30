@@ -93,12 +93,14 @@ class HomeController extends Controller
         //se a nova senha desejada for igual a de confimação
         if ($senhaConfirmacao == $senhaDefinida){
             //$senhaCript = Hash::make($senhaConfimacao);         //cria um hash a partir da nova senha 
-            dd($cpf);    
+            //dd($cpf);    
             //se existe o cpf no banco de dados
             $update = "UPDATE usuarios SET Senha = $senhaConfirmacao WHERE CPF = '$cpf' ";     //atualiza no banco de dados
             mysqli_query($conn,$update);
 
+
             return redirect()->route('index')->with('msg-sucess','Senha cadastrada com sucesso!!');
+            
         //se a nova senha desejada for diferente da confirmada
         }else{
             return redirect()->route('acessarPrimeiroAcesso')->with('cpf',$cpf,'msg-error','A senha de confirmação está diferente da nova senha!!',);

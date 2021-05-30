@@ -14,6 +14,7 @@ use mysqli;
 use PhpParser\Node\Stmt\ElseIf_;
 
 
+
 class AdminController extends Controller
 {
 
@@ -41,19 +42,16 @@ class AdminController extends Controller
         
     }
     
-    public function salvarLog(){   
-        //gerar um log
-        VerificaLoginController::verificarLoginAdmin();
+    public function salvarLog($acao,$ip){   
+        include("db.php"); 
 
-        include("db.php");                          
-        $ip = $_SERVER['REMOTE_ADDR'];              //detecta ip
-        $data = date('d/m/Y');                      //detecta data
-        $horas = time();                            //detecta hora
+        date_default_timezone_set('America/Sao_Paulo');     //padrão de fuso horário    
+        $data = date('Y-m-d');                              //detecta data   
+        $horas = date('H:i');                               //detecta hora 
 
         //insere no banco de dados
-        $novoLog = "INSERT INTO log (Data_Log, Hora_Agend, Ip, Acao) values ('$data','$horas', '$ip', $acao)";
+        $novoLog = "INSERT INTO logs (Data_Log, Hora_Agend, Ip, Acao) values ('$data', '$horas', '$ip', '$acao')";
         mysqli_query($connect,$novoLog);
-        return view('/admin/log');
 
     }
 
@@ -378,8 +376,9 @@ class AdminController extends Controller
 
 
     public function salvarUsuario(Request $request){
-        include("conexao.php");
         session_start();
+        include("conexao.php");
+        
         //validação de erro de entrada
         $validator = Validator::make($request->all(), [     
             'fcpf' => 'required|min:14|max:14',
@@ -392,6 +391,8 @@ class AdminController extends Controller
  
         //busca de cpf no banco  
         $existeCPF = mysqli_query($conn,"SELECT COUNT(*) FROM usuarios WHERE CPF = '$request->fcpf'");
+
+        
 
         if(mysqli_fetch_assoc($existeCPF)['COUNT(*)'] == 0){
             $ip = $request->ip();
@@ -423,8 +424,14 @@ class AdminController extends Controller
                     $novoEst = "INSERT INTO estagiarios (CPF,Plantao) values ('$request->fcpf','false')";
                     mysqli_query($conn,$novoEst);
                 }   
-            }         
+            }  
+            
+            
+            $acao = "Cadastrou usuário $request->fnome";           
+            $this-> salvarLog($acao, $ip);
+            
             return redirect()->route('cadastrarUsuario')->with('success','Usuário cadastrado com sucesso!!');
+
             }
             else{
                 //se o usuário já existir
