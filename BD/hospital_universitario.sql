@@ -36,8 +36,9 @@ CREATE TABLE cargo (
 
 /*Cria tabela da CID*/
 CREATE TABLE cid (
-  Id bigint(20) NOT NULL,
-  CodCID char(6) NOT NULL
+  id bigint(20) NOT NULL,
+  codCid char(50) NOT NULL,
+  descricaoCid text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE cid_prontuario (
@@ -162,7 +163,7 @@ ALTER TABLE cargo
   ADD PRIMARY KEY (id); /*seleciona o id como chave primaria*/
 
 ALTER TABLE cid
-  ADD PRIMARY KEY (Id); /* Seleciona o campo ID como chave primaria*/
+  ADD PRIMARY KEY (id); /* Seleciona o campo ID como chave primaria*/
 
 ALTER TABLE cid_prontuario
   ADD PRIMARY KEY (id),
@@ -221,7 +222,7 @@ ALTER TABLE logs
   MODIFY Id bigint(20) NOT NULL AUTO_INCREMENT;
   
 ALTER TABLE cid
-  MODIFY Id bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY id bigint(20) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE cid_prontuario
   MODIFY id bigint(20) NOT NULL AUTO_INCREMENT;
@@ -250,7 +251,7 @@ ALTER TABLE agendamento_prontuario
   ADD CONSTRAINT agendamento_prontuario_ibfk_2 FOREIGN KEY (Codigo_Agendamento) REFERENCES agendamentos (Codigo);
 
 ALTER TABLE cid_prontuario
-  ADD CONSTRAINT cid_prontuario_ibfk_1 FOREIGN KEY (id_CID) REFERENCES cid (Id) ON DELETE CASCADE,/*Cria chave estrangeira fazendo referencia ao CID*/
+  ADD CONSTRAINT cid_prontuario_ibfk_1 FOREIGN KEY (id_CID) REFERENCES cid (id) ON DELETE CASCADE,/*Cria chave estrangeira fazendo referencia ao CID*/
   ADD CONSTRAINT cid_prontuario_ibfk_2 FOREIGN KEY (id_prontuario) REFERENCES prontuarios (ID);/*Cria chave estrangeira fazendo referencia a prontuario*/
 
 ALTER TABLE enfermeiros
