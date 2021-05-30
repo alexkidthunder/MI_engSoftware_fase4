@@ -168,7 +168,9 @@
                     <!----------Parte onde fica o nome do Aplicador do medicamento e o leito do paciente------------>
                     <div class="row">
                         <div class="col-lg-9">
-                            <button class="btn-Patient text-left">Samara Anjos de Oliveira</button>
+                            <button class="btn-Patient text-left scrolls">
+                                <p style="white-space: nowrap">Samara Anjos de Oliveira</p>
+                            </button>
                         </div>
                         <div class="col-lg-3">
                             <div class="box-blue">
@@ -186,46 +188,47 @@
                         <h3>Tabela de ocorrencias</h3>
                     </div>  
                             <!----------Tabela de ocorrencias para ajudar na visualização do quadro do paciente------------>
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">Data/Hora</th>
-                                <th scope="col">Responsável</th>
-                                <th scope="col">Ocorrencia</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>14/03/21 - 15:03</td>
-                                <td>Julia Maria Souza</td>
-                                <td>Vomitou muito</td>
-                            </tr>
-                            <tr>
-                                <td>14/03/21 - 15:02</td>
-                                <td>Rubens Carvalho</td>
-                                <td>Infarto</td>
-                            </tr>
-                            <tr>
-                                <td>14/03/21 - 15:00</td>
-                                <td>Daniel Masvidal Covas</td>
-                                <td>Pressão alta</td>
-                            </tr>
-                            <tr>
-                                <td>13/03/21 - 12:30</td>
-                                <td>Vinícius Maciel</td>
-                                <td>Fortes dores na lombar</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                        <!----------Onde o enfermeiro ou enfermeiro chefe colocara sua nova ocorrencia------------>
-                        <div class="col-lg-12">
-                            <label>Nova Ocorrencia</label> <br>
-                            <input id="focorrencia" name="focorrencia" type="text" maxlength="100" required>
-                                <div>
-                                <button class="btn-blue"> Adcionar </button>
-                                </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Data/Hora</th>
+                                    <th scope="col">Responsável</th>
+                                    <th scope="col">Ocorrencia</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>14/03/21 - 15:03</td>
+                                    <td>Julia Maria Souza</td>
+                                    <td>Vomitou muito</td>
+                                </tr>
+                                <tr>
+                                    <td>14/03/21 - 15:02</td>
+                                    <td>Rubens Carvalho</td>
+                                    <td>Infarto</td>
+                                </tr>
+                                <tr>
+                                    <td>14/03/21 - 15:00</td>
+                                    <td>Daniel Masvidal Covas</td>
+                                    <td>Pressão alta</td>
+                                </tr>
+                                <tr>
+                                    <td>13/03/21 - 12:30</td>
+                                    <td>Vinícius Maciel</td>
+                                    <td>Fortes dores na lombar</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!----------Onde o enfermeiro ou enfermeiro chefe colocara sua nova ocorrencia------------>
+                    <div class="col-lg-12">
+                        <label>Nova Ocorrencia</label> <br>
+                        <input id="focorrencia" name="focorrencia" type="text" maxlength="100" required>
+                        <div>
+                            <button class="btn-blue"> Adcionar </button>
                         </div>
-                    
+                    </div>      
                 </form>
             </div>
             <!----------Quinta parte do Prontuario, onde fica localizado as CIDs do paciente------------>
