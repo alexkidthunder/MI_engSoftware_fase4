@@ -15,6 +15,20 @@
 </head>
 
 <body class="body-login">
+    <!--------------- Imagem de onda--------------->
+    <div id="container-wave">
+        <div class="img-login">
+            <img src="{{ asset('img/wave.png') }}"/>
+        </div>
+    </div>
+    <!--------------- fim da Imagem -------------->
+    <!----------- Imagem de enfermeiros ----------->
+    <div id="container-img">
+        <div class="img-login">
+            <img src="{{ asset('img/doctors.png') }}"/>
+        </div>
+    </div>
+    <!--------------- fim da Imagem -------------->
     <!----- Caixa para tela de primeiro acesso ----->
     <div id="access">
         <div class="access-box">
@@ -24,7 +38,7 @@
     <!---------------- fim da Caixa --------------->
 
     <!----------- Recuperação da senha do usuário ----------->
-    <form id="login" class="form" action="">
+    <form id="password-login" class="form" action="">
         <div class="box-login">
             <h2>Esqueci a Senha</h2>
             <div>
@@ -34,7 +48,7 @@
             </div>
             <!------- Botão para enviar o link de recuperação ------->
             <div class="enter">
-                <button type="submit">Enviar</button>
+                <button type="submit">ENVIAR</button>
             </div>
         </div>
     </form>
