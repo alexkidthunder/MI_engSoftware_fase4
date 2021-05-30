@@ -1079,13 +1079,13 @@ input[type=number] {
     border-radius: 50px;
     transition: 1s;
 }
-@media (max-width: 1140px){
+@media (max-width: 1140px){ /* João 30/05 */
     #remove-user-btn .btn-blue{
         width: fit-content;
         margin-inline: 10px;
     }
 }
-@media (max-width: 992px){
+@media (max-width: 992px){ /* João 30/05 */
     #delete-user-container .btn-blue{
         width: 60%;
         margin-inline: 10px;
@@ -1094,13 +1094,13 @@ input[type=number] {
     }
 }
 
-.scrolls {
+.scrolls { /* João 30/05 */
     overflow-x: auto;
     overflow-y: hidden;
     text-overflow: normal;
 }
 
-@media (max-width: 460px){
+@media (max-width: 460px){ /* João 30/05 */
     #atribui-select-new select{
         width: 100%;
     }
