@@ -73,7 +73,7 @@ CREATE TABLE leitos (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Cria tabela  log*/
-CREATE TABLE log (
+CREATE TABLE logs (
   Id bigint(20) NOT NULL,
   Data_Log date NOT NULL,
   Hora_Agend time NOT NULL,
@@ -184,7 +184,7 @@ ALTER TABLE enfermeiros_chefes
 ALTER TABLE estagiarios
   ADD PRIMARY KEY (CPF); /* Seleciona o campo CPF como chave primaria*/
 
-ALTER TABLE log
+ALTER TABLE logs
   ADD PRIMARY KEY (Id); /* Seleciona o campo CPF como chave primaria*/
 
 ALTER TABLE medicamentos
@@ -217,7 +217,7 @@ ALTER TABLE leitos
   
 /*Seção para modificação das das tabelas*/  
 
-ALTER TABLE log
+ALTER TABLE logs
   MODIFY Id bigint(20) NOT NULL AUTO_INCREMENT;
   
 ALTER TABLE cid
