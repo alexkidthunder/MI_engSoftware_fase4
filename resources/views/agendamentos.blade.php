@@ -17,7 +17,7 @@
     <link href="{{ asset('img/favicon.png') }}" rel="icon">
 
     <script src="{{ 'js/agendamentos.js' }}" defer></script>
-
+    {{$i = 0}}
     <title>Agendamentos</title>
 
 </head>
@@ -34,32 +34,33 @@
             <h1>VERIFICAÇÃO DE AGENDAMENTOS</h1>
 
             <!---------------------- Agendamento  ---------------------->
-            @if(isset($infos["medicamento0"]))
+            
+            @while(isset($infos["medicamento".$i]))
             <div class="box-scheduling" id="scheduling">
                 <!----- Fim das informações do agendamento ----->
                 <div class="row">
                     <div class="col-6 col-sm-6 col-md-6 col-lg-2 text-center">
                         <!------ Horário previsto para o agendamento ---->
                         <div class="box-gray">
-                            {{$infos["hora0"]}}
+                            {{$infos["hora".$i]}}
                         </div>
                     </div>
                     <!------ Data prevista para o agendamento ---->
                     <div class="col-6 col-sm-6 col-md-6 col-lg-2 text-center">
                         <div class="box-gray">
-                            {{$infos["data0"]}}
+                            {{$infos["data".$i]}}
                         </div>
                     </div>
                     <!------ Nome do medicamento ---->
                     <div class="col-6 col-sm-6 col-md-6 col-lg-6">
                         <div class="box-white">
-                            {{$infos["medicamento0"]}}
+                            {{$infos["medicamento".$i]}}
                         </div>
                     </div>
                     <!------ Posologia do medicamento ---->
                     <div class="col-6 col-sm-6 col-md-6 col-lg-2">
                         <div class="box-white">
-                            {{$infos["posologia0"]}}
+                            {{$infos["posologia".$i]}}
                         </div>
                     </div>
                 </div>
@@ -67,18 +68,17 @@
                     <!------ Nome do paciente ao qual o agendamento pertence ---->
                     <div class="col-12 col-sm-12 col-md-9 col-lg-9">
                         <a href="{{ route('prontuario') }}" target="_parent"><button
-                                class="btn-Patient">{{$infos["paciente0"]}}</button></a>
+                                class="btn-Patient">{{$infos["paciente".$i]}}</button></a>
                     </div>
                     <!------ Leito em que o paciente está internado ---->
                     <div class="col-12 col-sm-12 col-md-3 col-lg-3">
                         <div class="box-blue">
-                            Leito: {{$infos["leito0"]}}
+                            Leito: {{$infos["leito".$i]}}
                         </div>
                     </div>
                 </div>
-                
+           
                 <!---- Fim das informações do agendamento ------>
-
 
                 <div class="row">
                     <!--------------- Preprador da aplicação --------------->
@@ -109,10 +109,11 @@
                         </div>
                     </div>
                 </div>
+                {{$i=$i+1}}
             </div>
+            @endwhile
             <!---------------------- Fim do agendamento ---------------------->
         </div>
-        @endif
     </section>
 </body>
 
