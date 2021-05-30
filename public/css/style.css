@@ -1051,6 +1051,22 @@ input[type=number] {
         width: 90%;
         margin: 0 5%;
     }
+    #psw_info_div .btn-white{ /* João 30/05 */
+        width: 100%;
+    }
+    #psw-field input{ /* João 30/05 */
+        width: 90%;
+    }
+    #cancelar{ /* João 30/05 */
+        width: 90%;
+        height: fit-content;
+        margin-inline: 0 auto;
+    }
+    #alterarSenha{ /* João 30/05 */
+        width: 90%;
+        height: fit-content;
+        margin-inline: 0 auto;
+    }
 }
 
 .highlight-change{
@@ -1062,4 +1078,30 @@ input[type=number] {
 .transition-1s{
     border-radius: 50px;
     transition: 1s;
+}
+@media (max-width: 1140px){
+    #remove-user-btn .btn-blue{
+        width: fit-content;
+        margin-inline: 10px;
+    }
+}
+@media (max-width: 992px){
+    #delete-user-container .btn-blue{
+        width: 60%;
+        margin-inline: 10px;
+        padding: 0;
+        padding-block: 5px;
+    }
+}
+
+.scrolls {
+    overflow-x: auto;
+    overflow-y: hidden;
+    text-overflow: normal;
+}
+
+@media (max-width: 460px){
+    #atribui-select-new select{
+        width: 100%;
+    }
 }

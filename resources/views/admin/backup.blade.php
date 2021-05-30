@@ -71,39 +71,41 @@
         <div class="container-1">
         <!--Area onde de encontra os backups que já foram agendados-->
             <div class="box" id="ListaBackup">
-                <h4>Backups Agendados</h4>
+                <h3>Backups Agendados</h3>
                 <!--Tabela com os backups-->
-                <table class="table table-striped">
-                    <thead>
-                        <tr> <!--Header da tabela--> 
-                            <th scope="col">Automático</th>
-                            <th scope="col">Hora</th>
-                            <th scope="col">Data</th>
-                            <th scope="col">IP</th>
-                            <th scope="col"></th>
-                        </tr>
-                    </thead>
-                    <tbody> 
-                        <!--Backup-->
-                        <tr id="codigoDoBackup">
-                            <td>Não</td>
-                            <td>09:40</td>
-                            <td>24/04/2021</td>
-                            <td>192.222.123.128</td>
-                            <td><input class="btn-blue" type="button" id="removeBackup-codigoDoBackup" value="Remover"></td>
-                        </tr> 
-                        <!--Fim de um Backup-->
-                        <!--Backup-->
-                        <tr id="codigoDoBackup2">
-                            <td>Sim</td>
-                            <td>12:00</td>
-                            <td>--</td>
-                            <td>192.222.123.128</td>
-                            <td><input class="btn-blue" type="button" id="removeBackup-codigoDoBackup2" value="Remover"></td>
-                        </tr>
-                        <!--Fim de um Backup-->
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr> <!--Header da tabela--> 
+                                <th scope="col">Automático</th>
+                                <th scope="col">Hora</th>
+                                <th scope="col">Data</th>
+                                <th scope="col">IP</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody> 
+                            <!--Backup-->
+                            <tr id="codigoDoBackup">
+                                <td>Não</td>
+                                <td>09:40</td>
+                                <td>24/04/2021</td>
+                                <td>192.222.123.128</td>
+                                <td><input class="btn-blue" type="button" id="removeBackup-codigoDoBackup" value="Remover"></td>
+                            </tr> 
+                            <!--Fim de um Backup-->
+                            <!--Backup-->
+                            <tr id="codigoDoBackup2">
+                                <td>Sim</td>
+                                <td>12:00</td>
+                                <td>--</td>
+                                <td>192.222.123.128</td>
+                                <td><input class="btn-blue" type="button" id="removeBackup-codigoDoBackup2" value="Remover"></td>
+                            </tr>
+                            <!--Fim de um Backup-->
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         

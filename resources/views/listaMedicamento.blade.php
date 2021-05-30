@@ -49,14 +49,14 @@
             <div class="row">
                 <!----- Data de validade do medicamento----->
                 <div class="col-12 col-sm-6 col-md-3 col-lg-3">
-                    <label><nobr>Data de validade</nobr></label> <br>
+                    <label style="white-space: nowrap">Data de validade</label> <br>
                     <div class="box-gray">
                         {{$m[1]}}
                     </div>
                 </div>
                 <!-----Quantidade do medicamento----->
                 <div class="col-12 col-sm-6 col-md-3 col-lg-3">
-                    <label><nobr>Em estoque</nobr></label> <br>
+                    <label style="white-space: nowrap">Em estoque</label> <br>
                     <div class="box-gray">
                         {{$m[2]}}
                     </div>
