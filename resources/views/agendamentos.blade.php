@@ -18,7 +18,7 @@
 
     <script src="{{ 'js/agendamentos.js' }}" defer></script>
 
-    <title>Meus agendamentos</title>
+    <title>Agendamentos</title>
 
 </head>
 <!--ENFERMEIRO E ESTAGIARIO -->
@@ -34,31 +34,32 @@
             <h1>VERIFICAÇÃO DE AGENDAMENTOS</h1>
 
             <!---------------------- Agendamento  ---------------------->
+            @if(isset($infos["medicamento0"]))
             <div class="box-scheduling" id="scheduling">
                 <!----- Fim das informações do agendamento ----->
                 <div class="row">
                     <div class="col-6 col-sm-6 col-md-6 col-lg-2 text-center">
                         <!------ Horário previsto para o agendamento ---->
                         <div class="box-gray">
-                            22:30h
+                            {{$infos["hora0"]}}
                         </div>
                     </div>
                     <!------ Data prevista para o agendamento ---->
                     <div class="col-6 col-sm-6 col-md-6 col-lg-2 text-center">
                         <div class="box-gray">
-                            13/05/2021
+                            {{$infos["data0"]}}
                         </div>
                     </div>
                     <!------ Nome do medicamento ---->
                     <div class="col-6 col-sm-6 col-md-6 col-lg-6">
                         <div class="box-white">
-                            Alodipina
+                            {{$infos["medicamento0"]}}
                         </div>
                     </div>
                     <!------ Posologia do medicamento ---->
                     <div class="col-6 col-sm-6 col-md-6 col-lg-2">
                         <div class="box-white">
-                            10 ml
+                            {{$infos["posologia0"]}}
                         </div>
                     </div>
                 </div>
@@ -66,15 +67,16 @@
                     <!------ Nome do paciente ao qual o agendamento pertence ---->
                     <div class="col-12 col-sm-12 col-md-9 col-lg-9">
                         <a href="{{ route('prontuario') }}" target="_parent"><button
-                                class="btn-Patient">Ser o número 1 nisto ou na Ser o número 1 nisto ou n</button></a>
+                                class="btn-Patient">{{$infos["paciente0"]}}</button></a>
                     </div>
                     <!------ Leito em que o paciente está internado ---->
                     <div class="col-12 col-sm-12 col-md-3 col-lg-3">
                         <div class="box-blue">
-                            Leito: LC005
+                            Leito: {{$infos["leito0"]}}
                         </div>
                     </div>
                 </div>
+                
                 <!---- Fim das informações do agendamento ------>
 
 
@@ -103,13 +105,14 @@
                     <!---------- Botao para finalizar aplicação---------->
                     <div class="col-12 col-sm-12 col-md-12 col-lg-3 hide" id="end_prep_div">
                         <div>
-                            <button type="button" class="btn-white" id="end_prep_btn"> Finalizar aplicação</button>
+                            <button href = "/agendamentos" type="submit" class="btn-white" id="end_prep_btn"> Finalizar aplicação</button>
                         </div>
                     </div>
                 </div>
             </div>
             <!---------------------- Fim do agendamento ---------------------->
         </div>
+        @endif
     </section>
 </body>
 

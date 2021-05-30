@@ -115,7 +115,43 @@ class EnfChefeController extends Controller
         include("db.php");
         $resultado = VerificaLoginController::verificaPermissao(16);
         if($resultado == "1"){
-            return view('/enfChefe/listaResponsaveis');
+            $i = 0;
+        $infos = [];
+        $sql = "SELECT * FROM agendamentos";
+        $query = mysqli_query($connect,$sql);
+        while($sql = mysqli_fetch_array($query)){
+            if($sql['CPF_usuario'] != null){
+                $medicamento = $sql['Cod_medicamento'];
+                $prontuario = $sql['ID_prontuario'];
+                $responsavel = $sql['CPF_usuario'];
+                $infos['hora'.$i] = $sql['Hora_Agend'];
+                $infos['data'.$i] = $sql['Data_Agend'];
+                $infos['posologia'.$i] = $sql['Posologia'];
+                $sql1 = "SELECT * FROM medicamentos WHERE Codigo = '$medicamento'";
+                $query1 = mysqli_query($connect,$sql1);
+                while($sql1 = mysqli_fetch_array($query1)){
+                    $infos['medicamento'.$i] = $sql1['Nome_Medicam'];
+                }
+                $sql2 = "SELECT * FROM prontuarios WHERE ID = '$prontuario'";
+                $query2 = mysqli_query($connect,$sql2);
+                while($sql2 = mysqli_fetch_array($query2)){
+                    $identificaP = $sql2['Cpfpaciente'];
+                    $infos['leito'.$i] = $sql2['Id_leito'];
+                }
+                $sql3 = "SELECT * FROM pacientes WHERE CPF = '$identificaP'";
+                $query3 = mysqli_query($connect,$sql3);
+                while($sql3 = mysqli_fetch_array($query3)){
+                    $infos['paciente'.$i] = $sql3['Nome_Paciente'];
+                }
+                $sql4 = "SELECT * FROM usuarios WHERE CPF = '$responsavel'";
+                $query4 = mysqli_query($connect,$sql4);
+                while($sql4 = mysqli_fetch_array($query4)){
+                    $infos['responsavel'.$i] = $sql4['Nome'];
+                }
+                $i++;
+            }
+        }
+            return view('/enfChefe/listaResponsaveis',['infos' => $infos]);
         }else{
             return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
         }
