@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Monolog\Handler\SendGridHandler;
-
+use PhpParser\Node\Stmt\Return_;
 
 class HomeController extends Controller
 {
@@ -141,8 +141,6 @@ class HomeController extends Controller
             $cpf = $_SESSION['estagiario'];
         }else if(isset($_SESSION['administrador'])){
             $cpf = $_SESSION['administrador'];
-        }else{
-            HomeController::logout();
         }
         $sql = "SELECT * FROM usuarios where CPF = '$cpf'";
         $query = mysqli_query($connect,$sql);
@@ -197,8 +195,74 @@ class HomeController extends Controller
     public function agendamentosRealizados(){
         VerificaLoginController::verificarLogin();
         $resultado = VerificaLoginController::verificaPermissao(22);
+        include("db.php");
+        $infos = [];
+        $i = 0;
         if($resultado == "1"){
-            return view('agendamentosRealizados');
+            if(isset($_SESSION['enfermeiro'])){
+                $cpf = $_SESSION['enfermeiro'];
+                $sql = "SELECT * FROM agendamentos WHERE CPF_usuario = '$cpf'";
+                $query = mysqli_query($connect,$sql);
+                while($sql = mysqli_fetch_array($query)){
+                    if($sql['Realizado'] == 1){
+                        $medicamento = $sql['Cod_medicamento'];
+                        $prontuario = $sql['ID_prontuario'];
+                        $infos['hora'.$i] = $sql['Hora_Agend'];
+                        $infos['data'.$i] = $sql['Data_Agend'];
+                        $infos['posologia'.$i] = $sql['Posologia'];
+                        $sql1 = "SELECT * FROM medicamentos WHERE Codigo = '$medicamento'";
+                        $query1 = mysqli_query($connect,$sql1);
+                        while($sql1 = mysqli_fetch_array($query1)){
+                            $infos['medicamento'.$i] = $sql1['Nome_Medicam'];
+                        }
+                        $sql2 = "SELECT * FROM prontuarios WHERE ID = '$prontuario'";
+                        $query2 = mysqli_query($connect,$sql2);
+                        while($sql2 = mysqli_fetch_array($query2)){
+                            $identificaP = $sql2['Cpfpaciente'];
+                            $infos['leito'.$i] = $sql2['Id_leito'];
+                        }
+                        $sql3 = "SELECT * FROM pacientes WHERE CPF = '$identificaP'";
+                        $query3 = mysqli_query($connect,$sql3);
+                        while($sql3 = mysqli_fetch_array($query3)){
+                            $infos['paciente'.$i] = $sql3['Nome_Paciente'];
+                        }
+
+                        $i++;
+                    }
+                }
+            }else if(isset($_SESSION['estagiario'])){
+                $cpf = $_SESSION['estagiario'];
+                $sql = "SELECT * FROM agendamentos WHERE CPF_usuario = '$cpf'";
+                $query = mysqli_query($connect,$sql);
+                while($sql = mysqli_fetch_array($query)){
+                    if($sql['Realizado'] == 1){
+                        $medicamento = $sql['Cod_medicamento'];
+                        $prontuario = $sql['ID_prontuario'];
+                        $infos['hora'.$i] = $sql['Hora_Agend'];
+                        $infos['data'.$i] = $sql['Data_Agend'];
+                        $infos['posologia'.$i] = $sql['Posologia'];
+                        $sql1 = "SELECT * FROM medicamentos WHERE Codigo = '$medicamento'";
+                        $query1 = mysqli_query($connect,$sql1);
+                        while($sql1 = mysqli_fetch_array($query1)){
+                            $infos['medicamento'.$i] = $sql1['Nome_Medicam'];
+                        }
+                        $sql2 = "SELECT * FROM prontuarios WHERE ID = '$prontuario'";
+                        $query2 = mysqli_query($connect,$sql2);
+                        while($sql2 = mysqli_fetch_array($query2)){
+                            $identificaP = $sql2['Cpfpaciente'];
+                            $infos['leito'.$i] = $sql2['Id_leito'];
+                        }
+                        $sql3 = "SELECT * FROM pacientes WHERE CPF = '$identificaP'";
+                        $query3 = mysqli_query($connect,$sql3);
+                        while($sql3 = mysqli_fetch_array($query3)){
+                            $infos['paciente'.$i] = $sql3['Nome_Paciente'];
+                        }
+
+                        $i++;
+                    }
+                }
+            }
+            return view('agendamentosRealizados',['infos' => $infos]);
         }else{
             return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
         }
@@ -207,17 +271,140 @@ class HomeController extends Controller
     public function meusAgendamentos(){
         VerificaLoginController::verificarLogin();
         $resultado = VerificaLoginController::verificaPermissao(23);
-            if($resultado == "1"){
-                return view('meusAgendamentos');
-            }else{
-                return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
+        include("db.php");
+        $infos = [];
+        $i = 0;
+        if($resultado == "1"){
+            if(isset($_SESSION['enfermeiro'])){
+                $cpf = $_SESSION['enfermeiro'];
+                $sql = "SELECT * FROM agendamentos WHERE CPF_usuario = '$cpf'";
+                $query = mysqli_query($connect,$sql);
+                while($sql = mysqli_fetch_array($query)){
+                    $medicamento = $sql['Cod_medicamento'];
+                    $prontuario = $sql['ID_prontuario'];
+                    $infos['hora'.$i] = $sql['Hora_Agend'];
+                    $infos['data'.$i] = $sql['Data_Agend'];
+                    $infos['posologia'.$i] = $sql['Posologia'];
+                    $sql1 = "SELECT * FROM medicamentos WHERE Codigo = '$medicamento'";
+                    $query1 = mysqli_query($connect,$sql1);
+                    while($sql1 = mysqli_fetch_array($query1)){
+                        $infos['medicamento'.$i] = $sql1['Nome_Medicam'];
+                    }
+                    $sql2 = "SELECT * FROM prontuarios WHERE ID = '$prontuario'";
+                    $query2 = mysqli_query($connect,$sql2);
+                    while($sql2 = mysqli_fetch_array($query2)){
+                        $identificaP = $sql2['Cpfpaciente'];
+                        $infos['leito'.$i] = $sql2['Id_leito'];
+                    }
+                    $sql3 = "SELECT * FROM pacientes WHERE CPF = '$identificaP'";
+                    $query3 = mysqli_query($connect,$sql3);
+                    while($sql3 = mysqli_fetch_array($query3)){
+                        $infos['paciente'.$i] = $sql3['Nome_Paciente'];
+                    }
+
+                    $i++;
+                }
+            }else if(isset($_SESSION['estagiario'])){
+                $cpf = $_SESSION['estagiario'];
+                $sql = "SELECT * FROM agendamentos WHERE CPF_usuario = '$cpf'";
+                $query = mysqli_query($connect,$sql);
+                while($sql = mysqli_fetch_array($query)){
+                    $medicamento = $sql['Cod_medicamento'];
+                    $prontuario = $sql['ID_prontuario'];
+                    $infos['hora'.$i] = $sql['Hora_Agend'];
+                    $infos['data'.$i] = $sql['Data_Agend'];
+                    $infos['posologia'.$i] = $sql['Posologia'];
+                    $sql1 = "SELECT * FROM medicamentos WHERE Codigo = '$medicamento'";
+                    $query1 = mysqli_query($connect,$sql1);
+                    while($sql1 = mysqli_fetch_array($query1)){
+                        $infos['medicamento'.$i] = $sql1['Nome_Medicam'];
+                    }
+                    $sql2 = "SELECT * FROM prontuarios WHERE ID = '$prontuario'";
+                    $query2 = mysqli_query($connect,$sql2);
+                    while($sql2 = mysqli_fetch_array($query2)){
+                        $identificaP = $sql2['Cpfpaciente'];
+                        $infos['leito'.$i] = $sql2['Id_leito'];
+                    }
+                    $sql3 = "SELECT * FROM pacientes WHERE CPF = '$identificaP'";
+                    $query3 = mysqli_query($connect,$sql3);
+                    while($sql3 = mysqli_fetch_array($query3)){
+                        $infos['paciente'.$i] = $sql3['Nome_Paciente'];
+                    }
+
+                    $i++;
+                }
             }
+            HomeController::autoCadastroAgendamento($prontuario);
+
+            return view('meusAgendamentos',['infos' => $infos]);
+        }else{
+            return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
         }
+    }
         
     
-    public function agendamentos(){
+    public function agendamentos(Request $request){
         VerificaLoginController::verificarLogin();
-        return view('agendamentos');
+        include("db.php");
+        $i = 0;
+        $infos = [];
+        $sql = "SELECT * FROM agendamentos";
+        $query = mysqli_query($connect,$sql);
+        while($sql = mysqli_fetch_array($query)){
+            if($sql['CPF_usuario'] == null){
+                $medicamento = $sql['Cod_medicamento'];
+                $prontuario = $sql['ID_prontuario'];
+                $infos['hora'.$i] = $sql['Hora_Agend'];
+                $infos['data'.$i] = $sql['Data_Agend'];
+                $infos['posologia'.$i] = $sql['Posologia'];
+                $sql1 = "SELECT * FROM medicamentos WHERE Codigo = '$medicamento'";
+                $query1 = mysqli_query($connect,$sql1);
+                while($sql1 = mysqli_fetch_array($query1)){
+                    $infos['medicamento'.$i] = $sql1['Nome_Medicam'];
+                }
+                $sql2 = "SELECT * FROM prontuarios WHERE ID = '$prontuario'";
+                $query2 = mysqli_query($connect,$sql2);
+                while($sql2 = mysqli_fetch_array($query2)){
+                    $identificaP = $sql2['Cpfpaciente'];
+                    $infos['leito'.$i] = $sql2['Id_leito'];
+                }
+                $sql3 = "SELECT * FROM pacientes WHERE CPF = '$identificaP'";
+                $query3 = mysqli_query($connect,$sql3);
+                while($sql3 = mysqli_fetch_array($query3)){
+                    $infos['paciente'.$i] = $sql3['Nome_Paciente'];
+                }
+                $i++;
+            }
+        }
+        return view('agendamentos',['infos' => $infos]);
+    }
+
+    public static function autoCadastroAgendamento($codigo){
+        session_start();
+        include("db.php");
+        if(isset($_SESSION['enfermeiro'])){
+            $cpf = $_SESSION['enfermeiro'];
+            $update = "UPDATE agendamentos SET CPF_usuario = '$cpf' WHERE Codigo = '$codigo'";
+            mysqli_query($connect,$update);
+            $sql = "SELECT * FROM usuarios where CPF = '$cpf'";
+            $query = mysqli_query($connect,$sql);
+            while($sql = mysqli_fetch_array($query)){
+                $user = $sql["CPF"];
+            }
+            return $user;
+        }else if(isset($_SESSION['estagiario'])){
+            $cpf = $_SESSION['estagiario'];
+            $update = "UPDATE agendamentos SET CPF_usuario = '$cpf' WHERE Codigo = '$codigo'";
+            mysqli_query($connect,$update);
+            $sql = "SELECT * FROM usuarios where CPF = '$cpf'";
+            $query = mysqli_query($connect,$sql);
+            while($sql = mysqli_fetch_array($query)){
+                $user = $sql["CPF"];
+            }
+            return $user;
+        }else{
+            return null;
+        }
     }
 
     public function cadastroAgendamentos(){
