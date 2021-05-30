@@ -37,7 +37,7 @@
             <h1 class="title-download">LISTAGEM DE AGENDAMENTOS E MEDICAMENTOS </h1>
 
             <!---------------------Agendamento--------------------->
-            @if($infos["medicamento0"] != null)
+            @if(isset($infos["medicamento0"]))
             <div class="box-scheduling" id="scheduling">
                     <div class="row">
                         <!---------------------Hora--------------------->
