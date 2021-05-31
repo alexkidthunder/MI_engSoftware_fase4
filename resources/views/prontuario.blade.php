@@ -57,10 +57,18 @@
                             <input id="fcpf" name="fcpf" type="text" required maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" value="055.312.452.12">
                         </div>
                         <div class="col-lg-4">
-                            <div class="sex-form">
-                                <label>Sexo</label> <br>
-                                <input id="MASCULINO" name="fsexo" value="Masculino" type="button">
-                                <input id="FEMININO" name="fsexo" value="Feminino" type="button">
+                            <label>Sexo</label><br>
+                            <div class="row no-gutters">
+                                <div id="fmasc_div" class="col-lg-6 border-m content-center radial-edit">
+                                    <input type="radio" name="fsexo" value="M" id="fmasc">
+                                    <label for="fmasc" class="normal-label">Masculino</label>
+                                    <!--Usar o checked para deixar marcado-->
+                                </div>
+                                <div id="ffem_div" class="col-lg-6 border-f content-center radial-edit">
+                                    <input type="radio" name="fsexo" value="F" id="ffem">
+                                    <label for="ffem" class="normal-label">Feminino</label>
+                                    <!--Usar o checked para deixar marcado-->
+                                </div>
                             </div>
                         </div>
                     </div>
