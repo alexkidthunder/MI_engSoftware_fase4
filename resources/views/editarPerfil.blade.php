@@ -72,7 +72,7 @@
                                 <!------------ Data de nascimento ------------>
                                 @if(isset($usuario['nascimento']))
                                 <div class="col-lg-4">
-                                    <label><nobr>Data de Nascimento</nobr></label> <br>
+                                    <label style="white-space: nowrap">Data de Nascimento</label> <br>
                                     <input disabled id="fnascimento" name="fnascimento" type="date" value="{{$usuario['nascimento']}}">
                                 </div>
                                 @endif
@@ -239,7 +239,7 @@
                         </div>
                         <br>
                         <div>
-                            <div class="row">
+                            <div class="row" id="psw-field-btn">
                                 <!------------ Botão para cancelar ------------>
                                 <div class="col-lg col-md col-sm">
                                     <button id="cancelar" type="button" class="btn-gray">Cancelar</button>

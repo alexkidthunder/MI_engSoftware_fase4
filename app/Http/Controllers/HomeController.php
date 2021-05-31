@@ -101,7 +101,8 @@ class HomeController extends Controller
     }
 
     public function primeiroAcesso(Request $request){
-        include('conexao.php');
+        include('db.php');
+
         $cpf = $request->cpf; 
         $senhaDefinida = $request->senha;
         $senhaConfirmacao = $request->confirmacao;
@@ -110,17 +111,50 @@ class HomeController extends Controller
         if ($senhaConfirmacao == $senhaDefinida){
             //$senhaCript = Hash::make($senhaConfimacao);         //cria um hash a partir da nova senha 
             //dd($cpf);    
-            //se existe o cpf no banco de dados
-            $update = "UPDATE usuarios SET Senha = $senhaConfirmacao WHERE CPF = '$cpf' ";     //atualiza no banco de dados
-            mysqli_query($conn,$update);
 
-
-            return redirect()->route('index')->with('msg-sucess','Senha cadastrada com sucesso!!');
+            //atualiza senha no banco de dados
+            $update = "UPDATE usuarios SET Senha = '$senhaConfirmacao' WHERE CPF = '$cpf'";
+            mysqli_query($connect,$update);
             
+            //Verificando se cpf está cadastrados no banco de dados
+            $result = mysqli_query($connect,"SELECT CPF FROM usuarios WHERE CPF = '$request->cpf'"); 
+            $row = mysqli_num_rows($result); 
+            
+            //resultado da verificação
+            $existeUsuario = "SELECT * FROM usuarios where CPF = '$request->cpf'";
+            $buscar = mysqli_query($connect,$existeUsuario);
+            while($sql = mysqli_fetch_array($buscar)){
+                $atribuicao = $sql["Atribuicao"];
+            }
+
+            //verifica se o usuario existe no sistema. $row = 1 significa que sim
+            if($row == 1){ 
+                session_start();
+                                            //Sequência de condicionais que verifica o cargo para reirecionar para o menu correto 
+                if($atribuicao == "Administrador"){
+                    $_SESSION['administrador'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
+                    header("Location: /menuAdm");
+                    exit();
+                }else if($atribuicao == "Enfermeiro Chefe"){
+                    $_SESSION['enfermeiroChefe'] = $request->cpf; 
+                    header("Location: /menu");
+                    exit();
+                }else if($atribuicao == "Enfermeiro"){
+                    $_SESSION['enfermeiro'] = $request->cpf; 
+                    header("Location: /menu");
+                    exit();
+                }else if($atribuicao == "Estagiario"){
+                    $_SESSION['estagiario'] = $request->cpf; 
+                    header("Location: /menu");
+                    exit();
+                }              
+            } 
+          
         //se a nova senha desejada for diferente da confirmada
         }else{
-            return redirect()->route('acessarPrimeiroAcesso')->with('cpf',$cpf,'msg-error','A senha de confirmação está diferente da nova senha!!',);
-       }
+            return redirect()->route('index')->with('cpf',$cpf,'msg-error','A senha de confirmação está diferente da nova senha!!',);
+        }
+       
     }
 
     /*public function menu(){
@@ -576,6 +610,10 @@ class HomeController extends Controller
             ('$request->fnome', '$request->fsexo', '$request->fnascimento', '$request->fcpf', '$request->fsanguineo')";
             mysqli_query($conn,$novoPac);
             
+            $ip = $request->ip();
+            $acao = "Cadastrou paciente $request->fnome";           
+            $this-> salvarLog($acao, $ip);
+
             return redirect()->route('cadastroPaciente')->with('success', "Paciente cadastrado com sucesso!");
         }else{
             //se existir o paciente cadastrado

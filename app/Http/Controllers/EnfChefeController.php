@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Medicamento;
+use App\Http\Controller\HomeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -48,16 +49,21 @@ class EnfChefeController extends Controller
         if(mysqli_fetch_assoc($existeMed)['COUNT(*)'] == 0){
             //gera um código aleatório
             $cod = rand (00000, 99999);
-            
+
             //cria medicamento e adiciona
             $novoMed = "INSERT INTO medicamentos (Nome_Medicam, Quantidade, Fabricante, Data_Validade, Codigo) values
-            ('$request->fnome', '$request->fquantidade', '$request->ffabricante', '$request->fnascimento', '$cod')";
+            ('$request->fnome', '$request->fquantidade', '$request->ffabricante', '$request->fvalidade', '$cod')";
             mysqli_query($conn,$novoMed);
             
-            return redirect()->route('cadastroMedicamento')->with('success', "Novo medicamento adicionado!");
+            $ip = $request->ip();
+            $acao = "Cadastrou medicamento $request->fnome";           
+            //HomeController::salvarLog($acao, $ip);
+
+            
+            return redirect()->route('cadastroMedicamento')->with('msg-success', "Novo medicamento adicionado!");
         }else{
             //se existir o medicamento cadastrado
-            return redirect()->route('cadastroMedicamento')->with('error', "Medicamento já cadastrado!!");
+            return redirect()->route('cadastroMedicamento')->with('msg-error', "Medicamento já cadastrado!!");
         }
         
     }
@@ -253,37 +259,37 @@ class EnfChefeController extends Controller
         return view('/enfChefe/cadastroLeito'); 
     }
 
-    /*Public function verificarPermissao(cargoId, permissaoId){
 
-    Include('db.php');
-    $sql="SELECT *FROM permissao_cargo WHERE permissao_id = permissaoId";
-    $query = mysqli_query($connect,$sql);
-
-    if(cargoId == 2){
-       While($sql=mysql_fetch_array($query){
-       if($sql['Cargo_id']='2'){
-          $resultado= $sql['ativo'];
-        }
-       }
-       $resultado == 1?$saida=2:$saida=0;
-    }
-    else if(cargoId == 3){
-       While($sql=mysql_fetch_array($query){
-            if($sql['Cargo_id']='3'){
-              $resultado= $sql['ativo'];
-            }
-       }
-       $resultado == 1?$saida=3:$saida=0;
-    }
-    else if(cargoId == 4){
-        While($sql=mysql_fetch_array($query){
-            if($sql['Cargo_id']='4'){
+    public function verificarPermissao($cargoId, $permissaoId){
+        include('db.php');
+        $sql="SELECT *FROM permissao_cargo WHERE permissao_id = permissaoId";
+        $query = mysqli_query($connect,$sql);
+  
+        if($cargoId == 2){
+            while($sql=mysqli_fetch_array($query)){
+            if($sql['Cargo_id']='2'){
                 $resultado= $sql['ativo'];
             }
         }
-        $resultado == 1?$saida=4:$saida=0;
-    }
-    return $saida;
-    }*/
+        $resultado == 1?$saida=2:$saida=0;
+        }
+        else if($cargoId == 3){
+            while($sql=mysqli_fetch_array($query)){
+                if($sql['Cargo_id']='3'){
+                $resultado= $sql['ativo'];
+            }
+        }
+        $resultado == 1?$saida=3:$saida=0;
+        }
+        else if($cargoId == 4){
+            while($sql=mysqli_fetch_array($query)){
+                if($sql['Cargo_id']='4'){
+                    $resultado= $sql['ativo'];
+                }
+            }
+            $resultado == 1?$saida=4:$saida=0;
+        }
+        return $saida;
+        }
 
 }
