@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Medicamento;
-use App\Controller\HomeController;
+use App\Http\Controller\HomeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -49,10 +49,10 @@ class EnfChefeController extends Controller
         if(mysqli_fetch_assoc($existeMed)['COUNT(*)'] == 0){
             //gera um código aleatório
             $cod = rand (00000, 99999);
-            
+
             //cria medicamento e adiciona
             $novoMed = "INSERT INTO medicamentos (Nome_Medicam, Quantidade, Fabricante, Data_Validade, Codigo) values
-            ('$request->fnome', '$request->fquantidade', '$request->ffabricante', '$request->fnascimento', '$cod')";
+            ('$request->fnome', '$request->fquantidade', '$request->ffabricante', '$request->fvalidade', '$cod')";
             mysqli_query($conn,$novoMed);
             
             $ip = $request->ip();
