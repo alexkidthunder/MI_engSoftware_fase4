@@ -13,6 +13,7 @@
     <link href="{{ asset('img/favicon.png') }}" rel="icon">
 
     <script src="{{ ('js/editarAtribuicao.js') }}" defer></script>
+    <script src="{{ ('js/atribuicao.js')}}"></script> <!--Reutilizado-->
 
     <title>Atribuição do usuário</title>
     
@@ -64,20 +65,24 @@
                 <div id="user_Data" >
                      <!--Infomações do funcionário-->
                     @if(isset($user))
-                        <h3>Funcionário</h3> <br>   
-                        <div class="box-gray">
-                            <p>{{$user["Nome"]}}</p>
-                        </div>
+                        <h3>Funcionário</h3> <br>  
+                        <div class="row">
+                            <div class="col">
+                                <div class="box-gray">
+                                    <p>{{$user["Nome"]}}</p>
+                                </div>
+                            </div>
+                        </div>                 
                         <div class="row">
                             <div class="col-lg">
-                                <div class="box-gray">
-                                    <p>CPF: {{$user["CPF"]}}</p>
+                                <div class="box-gray scrolls">
+                                    <p style="white-space: nowrap">CPF: {{$user["CPF"]}}</p>
                                 </div>
                             </div>
                             @if(isset($user2))
                             <div id="corenUser" class="col-lg">
-                                <div class="box-gray">
-                                    <p>COREN: {{$user2["COREN"]}}</p>
+                                <div class="box-gray scrolls">
+                                    <p style="white-space: nowrap">COREN: {{$user2["COREN"]}}</p>
                                 </div>
                             </div>
                             @endif
@@ -94,7 +99,7 @@
                             @csrf
                                 <input type="hidden" name="cpf" value='{{$user["CPF"]}}'><!--Usado para obter o CPF pesquisado pela função de busca-->
                                 <div class="row"> 
-                                    <div class="col-lg-4"> 
+                                    <div class="col-lg-4" id="atribui-select-new"> 
                                         <label for="novaAtribuicao">Nova atribuição</label> <br>
                                         <select id="novaAtribuicao" name="novaAtribuicao"> <!--Select com as opções de atribuição-->
                                             <option name="enfermeiroChefe" value="enfermeiroChefe">Enfermeiro chefe</option>
@@ -108,7 +113,9 @@
                                     </div>
                                     @endif
                                 </div>
-                                <button type="submit" class="container-button btn-white">Alterar</button> <!--Botão para enviar as informações do form de alterar atribuição-->
+                                <div class="container-button" id="change-user-container">
+                                    <button type="submit" class="btn-white">Alterar</button> <!--Botão para enviar as informações do form de alterar atribuição-->
+                                </div>
                             </form> 
                         </div>
                     @endif

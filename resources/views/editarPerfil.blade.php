@@ -47,7 +47,7 @@
                                 <!------------ Data de nascimento ------------>
                                 @if(isset($usuario['nascimento']))
                                 <div class="col-lg-4">
-                                    <label><nobr>Data de Nascimento</nobr></label> <br>
+                                    <label style="white-space: nowrap">Data de Nascimento</label> <br>
                                     <input disabled id="fnascimento" name="fnascimento" type="date" value="{{$usuario['nascimento']}}">
                                 </div>
                                 @endif
@@ -197,23 +197,25 @@
                     <h3 class="password-title text-center">Alterar senha</h3>
                     <br> <br>
                     <form class="content-center">
-                        <!------------ Senha atual ------------>
-                        <div align="center">
-                            <input type="password" id="senha-atual" name="senha-atual"
-                                placeholder="insira a senha atual">
-                        </div>
-                        <!------------ Nova senha ------------>
-                        <div align="center">
-                            <input type="password" id="senha" name="senha" placeholder="insira a nova senha">
-                        </div>
-                        <!------------ Confirmação da nova senha ------------>
-                        <div align="center">
-                            <input type="password" id="confirmacao" name="confirmacao"
-                                placeholder="Confirme a nova senha">
+                        <div id="psw-field">
+                            <!------------ Senha atual ------------>
+                            <div align="center">
+                                <input type="password" id="senha-atual" name="senha-atual"
+                                    placeholder="insira a senha atual">
+                            </div>
+                            <!------------ Nova senha ------------>
+                            <div align="center">
+                                <input type="password" id="senha" name="senha" placeholder="insira a nova senha">
+                            </div>
+                            <!------------ Confirmação da nova senha ------------>
+                            <div align="center">
+                                <input type="password" id="confirmacao" name="confirmacao"
+                                    placeholder="Confirme a nova senha">
+                            </div>
                         </div>
                         <br>
                         <div>
-                            <div class="row">
+                            <div class="row" id="psw-field-btn">
                                 <!------------ Botão para cancelar ------------>
                                 <div class="col-lg col-md col-sm">
                                     <button id="cancelar" type="button" class="btn-gray">Cancelar</button>
