@@ -13,7 +13,8 @@
 
     <!-- Favicon -->
     <link href="{{ asset('img/favicon.png') }}" rel="icon">
-    
+    {{$i = 0}}
+    {{$j = 0}}
     <title>PRONTÚARIO</title>
 </head>
 
@@ -40,89 +41,96 @@
             <div class="box-scheduling", id= "container-teste3">
                 <form id="register">
                     <div class="row">
+                    @if(isset($paciente))
                     <!----------Dados do Paciente------------>
                         <div class="col-lg-12">
                             <label>Nome</label> <br>
-                            <input id="fnome" name="fnome" type="text" maxlength="50" value="Emanoel de Souza" required>
+                            <input id="fnome" name="fnome" type="text" maxlength="50" value="{{$paciente['nome']}}" required>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-4">
                             <label>Data de Nascimento</label> <br>
-                            <input id="fnascimento" name="fnascimento" type="date" required>
+                            <input id="fnascimento" name="fnascimento" type="date" value= "{{$paciente['nascimento']}}" required>
                         </div>
                         <div class="col-lg-4">
                             <label>CPF</label> <br>
-                            <input id="fcpf" name="fcpf" type="text" required maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" value="055.312.452.12">
+                            <input id="fcpf" name="fcpf" type="text" required maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" value="{{$paciente['cpf']}}">
                         </div>
                         <div class="col-lg-4">
                             <div class="sex-form">
                                 <label>Sexo</label> <br>
+                                @if($paciente['sexo'] = 'M')
                                 <input id="MASCULINO" name="fsexo" value="Masculino" type="button">
+                                @else
                                 <input id="FEMININO" name="fsexo" value="Feminino" type="button">
+                                @endif
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-8">
                             <label>Tipo Sanguineo</label> <br>
-                            <input id="fsanguineo" name="fsanguineo" type="text" value="AB-" maxlength="50" required >
+                            <input id="fsanguineo" name="fsanguineo" type="text" value="{{$paciente['sangue']}}" maxlength="50" required >
                         </div>
                         <div class="col-lg-4">
                             <label>Data de Internação</label> <br>
-                            <input id="fdatainternacao" name="fdatainternacao" type="date" required>
+                            <input id="fdatainternacao" name="fdatainternacao" type="date" value= "{{$paciente['internacao']}}" required>
                         </div>
                         <div class="col-lg-4">
                             <label>Leito</label> <br>
-                            <input id="fleito" name="fleito" type="text" maxlength="50" value="A26" required>
+                            <input id="fleito" name="fleito" type="text" maxlength="50" value="{{$paciente['leito']}}" required>
                         </div>
                         <div class="col-lg-4">
                             <label>Status</label> <br>
-                            <input id="fstatus" name="fstatus" type="text" maxlength="50" value = "estavel" required>
+                            <input id="fstatus" name="fstatus" type="text" maxlength="50" value = "{{$paciente['estado']}}" required>
                         </div>
                     </div>
                     
                     <div>
                         <button class="btn-blue"> Editar </button>
                     </div>
+                    @endif
                 </form>
             </div>
                 <!----------Segunda parte de Prontuario, onde vai ter a ala de Agendamentos daquele Prontuario------------>
+                
                 <button class="btn-blue", id="action-btn2">Mostrar Agendamento</button>
                     <div class="box-scheduling" id = "container-teste2">
+                    @while(isset($infosA['hora'.$i]))
                     <div class="container-box">
                         <div class="row">
                             <div class="col-lg-2 text-center">
                                 <div class="box-gray">
-                                    <a>12:23</a>
+                                    <a>{{$infosA['hora'.$i]}}</a>
                                 </div>
                             </div>
                             <div class="col-lg-2 text-center">
                                 <div class="box-gray">
-                                    <a>11/05/21</a>
+                                    <a>{{$infosA['data'.$i]}}</a>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="box-white">
-                                    <a>Bezotassil</a>
+                                    <a>{{$infosA['medicamento'.$i]}}</a>
                                 </div>
                             </div>
                             <div class="col-lg-2">
                                 <div class="box-white">
-                                    <a>Posologia</a>
+                                    <a>{{$infosA['posologia'.$i]}}</a>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-9">
                                 <div class="box-blue">
-                                    <a>Emanoel de Souza</a>
+                                    <a>{{$paciente['nome']}}</a>
                                 </div>
                             </div>
                             <div class="col-lg-3">
                                 <div class="box-blue">
-                                    <a>Leito: Código</a>
+                                    <a>Leito: {{$paciente['leito']}}</a>
                                 </div>
                             </div>
                         </div>
@@ -138,44 +146,49 @@
                                 </div>
                             </div>
                         </div>
+                        {{$i++}}
                     </div>
+                    @endwhile
                 </div>
                 <!----------Terceira parte do Prontuario, onde fica localizada medicações ministradas------------>
                 <button class="btn-blue", id="action-btn">Mostrar Medicações Ministradas</button>
                 <div class="box-scheduling", id = "container-teste">
+                    @while(isset($infosM['hora'.$j]))
                     <div class="row">
                         <div class="col-lg-2 text-center">
                             <div class="box-gray">
-                                22:30h
+                                {{$infosM['hora'.$j]}}
                              </div>
                         </div>
                         <div class="col-lg-2 text-center">
                             <div class="box-gray">
-                                20/04/2021
+                                {{$infosM['data'.$j]}}
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="box-white">
-                            Dipirona
+                            {{$infosM['medicamento'.$j]}}
                              </div>
                         </div>
                         <div class="col-lg-2">
                             <div class="box-white">
-                                0.35 ml
+                            {{$infosM['posologia'.$j]}}
                             </div>
                         </div>
                     </div>
                     <!----------Parte onde fica o nome do Aplicador do medicamento e o leito do paciente------------>
                     <div class="row">
                         <div class="col-lg-9">
-                            <button class="btn-Patient text-left">Samara Anjos de Oliveira</button>
+                            <button class="btn-Patient text-left">{{$infosM['aplicador'.$j]}}</button>
                         </div>
                         <div class="col-lg-3">
                             <div class="box-blue">
-                                Leito: AB04
+                                Leito: {{$paciente['leito']}}
                             </div>
                         </div>
                     </div>
+                    {{$j++}}
+                    @endwhile
                 </div>    
                 <!----------Quarta parte do Prontuario, onde fica localizada as ocorrências------------>
                 <button class="btn-blue", id="action-btn4">Ocorrencias</button>

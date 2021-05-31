@@ -33,7 +33,31 @@
     <!--------Fim do botão de donwload-------->
 
     <div class="container-1" id="patientList">
-
+    <div class="container">
+        <div class="row">
+            <div class="col-lg">
+                @if ($errors->any()) <!--Verificando se existe qualquer erro -->
+                    <div class="msg-error">
+                        <ul>
+                            @foreach ($errors->all() as $error) <!--Percorre todos os erros-->
+                                <li>{{ $error }}</li> <!--Obtem o erro -->
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                @if (session('msg')) <!-- Verifica se a mensagem de erro foi instanciada -->
+                    <div class="msg-sucess">
+                        {{session('msg')}} <!--Obtem mensagem de erro -->
+                    </div>
+                @endif
+                @if (session('msg-error')) <!-- Verifica se a mensagem de erro foi instanciada -->
+                    <div class="msg-error">
+                        {{session('msg-error')}} <!--Obtem mensagem de erro -->
+                    </div>
+                @endif
+            </div>
+        </div>
+    </div>        
         <h1 class="title-download">PACIENTES E PRONTUÁRIOS</h1>
 
         <!----------Seleção para o tipo de paciente que deseja exibir------------>
@@ -59,10 +83,13 @@
                         </div>
                     </div>
                     <!----- Link para o prontuário do paciente ----->
+                    <form action="/prontuario" method="get">
+                    <input type="hidden" name='cpf' value='{{$identicador[$i]}}'>
                     <div class="col-12 col-sm-12 col-md-2 col-lg-2">
-                        <a href="{{ route('prontuario') }}" target="_parent"><button
+                        <button type="submit"
                                 class="btn-blue">Prontuário</button></a>
                     </div>
+                    </form>
                     
                 </div>
                 {{$i++}}

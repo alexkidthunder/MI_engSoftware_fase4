@@ -46,7 +46,8 @@ Route::get('/verificarLogin', [ VerificaLoginController::class,'verificarLogin']
 
 /*------------ Rota para o perfil ------------------------ */
 Route::get('/meuPerfil', [HomeController::class,'editPerfil'])->name('editarPerfil');
-
+Route::post('/alterar',[HomeController::class,'alterarDados']);
+Route::post('/alterarSP',[HomeController::class,'alterarSenhaPerfil']);
 /*------------ Rotas do administrador ------------------ */
 
 Route::get('/menuAdm', [AdminController::class,'menu'])->name('menuAdm');
@@ -63,7 +64,7 @@ Route::post('/alterarAtribuicao',[AdminController::class,'alterarAtribuicao'])->
 
 /*------------ Rota para Busca ------------------------ */
 Route::get('/lupinha', [AdminController::class,'lupinha'])->name('lupinha');
-
+Route::get('/hp', [HomeController::class,'buscaProntuario']);
 /*------------ Rota para Paciente e Prontuário------------------------ */
 
 Route::get('/listaPacientes', [HomeController::class,'listaPacientes'])->name('pacientes');
