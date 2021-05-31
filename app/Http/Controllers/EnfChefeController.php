@@ -157,7 +157,7 @@ class EnfChefeController extends Controller
                 $i++;
             }
         }
-            return view('/enfChefe/listaResponsaveis',['infos' => $infos]);
+            return view('/enfChefe/listaResponsaveis',['infos' => $infos, 'identificaP'=>$identificaP]);
         }else{
             return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
         }
@@ -197,7 +197,7 @@ class EnfChefeController extends Controller
 
                 $i++;
             }
-            return view('/enfChefe/agendamentos',['infos' => $infos]);
+            return view('/enfChefe/agendamentos',['infos' => $infos, 'identificaP'=>$identificaP]);
         }else{
             return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
         }

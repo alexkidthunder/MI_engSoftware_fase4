@@ -21,7 +21,30 @@
     <!----------Hearder------------>
     @include('layouts.navbar')
     <!----------End Hearder-------->
-    
+    <div class="row">
+            <div class="col-lg">
+                @if ($errors->any()) <!--Verificando se existe qualquer erro -->
+                    <div class="msg-error">
+                        <ul>
+                            @foreach ($errors->all() as $error) <!--Percorre todos os erros-->
+                                <li>{{ $error }}</li> <!--Obtem o erro -->
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                @if (session('msg')) <!-- Verifica se a mensagem de erro foi instanciada -->
+                    <div class="msg-sucess">
+                        {{session('msg')}} <!--Obtem mensagem de erro -->
+                    </div>
+                @endif
+                @if (session('msg-error')) <!-- Verifica se a mensagem de erro foi instanciada -->
+                    <div class="msg-error">
+                        {{session('msg-error')}} <!--Obtem mensagem de erro -->
+                    </div>
+                @endif
+            </div>
+        </div>
+    </div>     
     <div class="container">
         <div id="screen-icon"> <!-- Icone de Download Em Telas -->
             <form class="download-icon">
@@ -68,9 +91,12 @@
 
                     <div class="row">
                     <!---------------------Nome da Paciente--------------------->
+                    <form action="/prontuario" method="get">
+                        <input type="hidden" name='cpf' value='{{$identificaP}}'>
                         <div class="col-12 col-sm-12 col-md-9 col-lg-9">
-                            <a href="{{ route('prontuario') }}" target="_parent"><button class="btn-Patient">{{$infos["paciente".$i]}}</button></a>
+                            <button type="submit" class="btn-Patient">{{$infos["paciente".$i]}}</button>
                         </div>
+                    </form>
                         <!---------------------Leito da Paciente--------------------->
                         <div class="col-12 col-sm-12 col-md-3 col-lg-3">
                             <div class="box-blue">
