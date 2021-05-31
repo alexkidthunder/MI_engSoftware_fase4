@@ -13,7 +13,7 @@
 
     <!-- Favicons -->
     <link href="{{ asset('img/favicon.png') }}" rel="icon">
-    
+    {{$i = 0}}
     <title>Listagem de agendamentos</title>
     
   </head>
@@ -37,31 +37,31 @@
             <h1 class="title-download">LISTAGEM DE AGENDAMENTOS E MEDICAMENTOS </h1>
 
             <!---------------------Agendamento--------------------->
-            @if($infos["medicamento0"] != null)
+            @while(isset($infos["medicamento".$i]))
             <div class="box-scheduling" id="scheduling">
                     <div class="row">
                         <!---------------------Hora--------------------->
                         <div class="col-6 col-sm-6 col-md-6 col-lg-2 text-center">
                             <div class="box-gray">
-                                {{$infos["hora0"]}}
+                                {{$infos["hora".$i]}}
                              </div>
                         </div>
                         <!---------------------Data--------------------->
                         <div class="col-6 col-sm-6 col-md-6 col-lg-2 text-center">
                             <div class="box-gray">
-                                {{$infos["data0"]}}
+                                {{$infos["data".$i]}}
                             </div>
                         </div>
                         <!---------------------Nome do Medicamento--------------------->
                         <div class="col-6 col-sm-6 col-md-6 col-lg-6">
                             <div class="box-white">
-                                {{$infos["medicamento0"]}}
+                                {{$infos["medicamento".$i]}}
                              </div>
                         </div>
                         <!---------------------Posologia--------------------->
                         <div class="col-6 col-sm-6 col-md-6 col-lg-2">
                             <div class="box-white">
-                                {{$infos["posologia0"]}}
+                                {{$infos["posologia".$i]}}
                             </div>
                         </div>
                     </div>
@@ -69,17 +69,18 @@
                     <div class="row">
                     <!---------------------Nome da Paciente--------------------->
                         <div class="col-12 col-sm-12 col-md-9 col-lg-9">
-                            <a href="{{ route('prontuario') }}" target="_parent"><button class="btn-Patient">{{$infos["paciente0"]}}</button></a>
+                            <a href="{{ route('prontuario') }}" target="_parent"><button class="btn-Patient">{{$infos["paciente".$i]}}</button></a>
                         </div>
                         <!---------------------Leito da Paciente--------------------->
                         <div class="col-12 col-sm-12 col-md-3 col-lg-3">
                             <div class="box-blue">
-                                Leito: {{$infos["leito0"]}}
+                                Leito: {{$infos["leito".$i]}}
                             </div>
                         </div>
                     </div>
+                    {{$i++}}
             </div>
-            @endif
+            @endwhile
             <!---------------------Fim de agendamento--------------------->
         </div>
   </body>
