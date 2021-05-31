@@ -63,9 +63,12 @@
                         <div class="col-md-4 col-lg-2 col-xl-2">
                             <p>Paciente</p>
                         </div>
-                        <div class="col-md-9 col-lg-7 col-xl-7">
-                            <a href="{{ route('prontuario') }}" target="_parent"><button class="btn-Patient">{{$infos["paciente".$i]}}</button></a>
-                        </div>
+                        <form action="/prontuario" method="get">
+                            <input type="hidden" name='cpf' value='{{$identificaP}}'>
+                            <div class="col-md-9 col-lg-7 col-xl-7">
+                                <button type="submit" class="btn-Patient">{{$infos["paciente".$i]}}</button>
+                            </div>
+                        </form>
                         <div class="col-md-3 col-lg-3 col-xl-3">
                             <div class="box-blue">
                                 Leito: {{$infos["leito".$i]}}

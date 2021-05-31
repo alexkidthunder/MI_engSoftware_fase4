@@ -29,10 +29,35 @@
     <section>
         <div class="container-1" id="perfil">
             <h1>MEU PERFIL</h1>
+            <div class="row">
+            <div class="col-lg">
+                @if ($errors->any()) <!--Verificando se existe qualquer erro -->
+                    <div class="msg-error">
+                        <ul>
+                            @foreach ($errors->all() as $error) <!--Percorre todos os erros-->
+                                <li>{{ $error }}</li> <!--Obtem o erro -->
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                @if (session('msg')) <!-- Verifica se a mensagem de erro foi instanciada -->
+                    <div class="msg-sucess">
+                        {{session('msg')}} <!--Obtem mensagem de erro -->
+                    </div>
+                @endif
+                @if (session('msg-error')) <!-- Verifica se a mensagem de erro foi instanciada -->
+                    <div class="msg-error">
+                        {{session('msg-error')}} <!--Obtem mensagem de erro -->
+                    </div>
+                @endif
+            </div>
+        </div>
+    </div>     
             <!------------ Informações pessoais do usuário ------------>
                 <div class="box" id="perfilArea">
                     <div class="change">
-                        <form id="register" method = "GET" action="/meuPerfil">
+                        <form method="post" action="/alterar" id="register">
+                        @csrf
                             <!------------ Nome do usuário ------------>
                             <div class="row">
                                 @if(isset($usuario['nome']))
@@ -181,7 +206,7 @@
                                 </div>
                                 <!------------ Botão para cancelar ------------>
                                 <div class="col-lg hide" id="confirm_info_div">
-                                    <button type="button" class="btn-blue" name="confirm_info"
+                                    <button type="Submit" class="btn-blue" name="confirm_info"
                                         id="confirm_info">Salvar</button>
                                     <!--Alterar para Submit depois-->
                                 </div>
@@ -196,22 +221,21 @@
                 <div>
                     <h3 class="password-title text-center">Alterar senha</h3>
                     <br> <br>
-                    <form class="content-center">
-                        <div id="psw-field">
-                            <!------------ Senha atual ------------>
-                            <div align="center">
-                                <input type="password" id="senha-atual" name="senha-atual"
-                                    placeholder="insira a senha atual">
-                            </div>
-                            <!------------ Nova senha ------------>
-                            <div align="center">
-                                <input type="password" id="senha" name="senha" placeholder="insira a nova senha">
-                            </div>
-                            <!------------ Confirmação da nova senha ------------>
-                            <div align="center">
-                                <input type="password" id="confirmacao" name="confirmacao"
-                                    placeholder="Confirme a nova senha">
-                            </div>
+                    <form method="post" action="/alterarSP" class="content-center">
+                    @csrf
+                        <!------------ Senha atual ------------>
+                        <div align="center">
+                            <input type="password" id="senha-atual" name="senhaAtual"
+                                placeholder="insira a senha atual">
+                        </div>
+                        <!------------ Nova senha ------------>
+                        <div align="center">
+                            <input type="password" id="senha" name="senha" placeholder="insira a nova senha">
+                        </div>
+                        <!------------ Confirmação da nova senha ------------>
+                        <div align="center">
+                            <input type="password" id="confirmacao" name="confirmacao"
+                                placeholder="Confirme a nova senha">
                         </div>
                         <br>
                         <div>

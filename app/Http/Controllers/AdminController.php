@@ -426,7 +426,7 @@ class AdminController extends Controller
                 }   
             }  
             
-            
+
             $acao = "Cadastrou usuário $request->fnome";           
             $this-> salvarLog($acao, $ip);
             
