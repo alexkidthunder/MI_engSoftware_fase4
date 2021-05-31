@@ -253,7 +253,7 @@ class EnfChefeController extends Controller
         return view('/enfChefe/cadastroLeito'); 
     }
 
-    Public function verificarPermissao(cargoId, permissaoId){
+    /*Public function verificarPermissao(cargoId, permissaoId){
 
     Include('db.php');
     $sql="SELECT *FROM permissao_cargo WHERE permissao_id = permissaoId";
@@ -284,6 +284,6 @@ class EnfChefeController extends Controller
         $resultado == 1?$saida=4:$saida=0;
     }
     return $saida;
-    }
+    }*/
 
 }

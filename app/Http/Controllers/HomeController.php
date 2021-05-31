@@ -15,8 +15,12 @@ class HomeController extends Controller
         if((isset($_SESSION['administrador']) == false) AND (isset($_SESSION['enfermeiroChefe']) == false) 
         AND (isset($_SESSION['enfermeiro']) == false) AND (isset($_SESSION['estagiario']) == false)){
             return view('login');
+        }elseif(isset($_SESSION['administrador'])){
+            header("Location: /menuAdm");
+            exit();
         }else{
-            return redirect()->back();
+            header("Location: /menu");
+            exit();
         }
     }
 
@@ -76,7 +80,12 @@ class HomeController extends Controller
 
     public function menu(){
         VerificaLoginController::verificarLogin();
-        return view('/menu');
+        if(isset($_SESSION['enfermeiro']) or isset($_SESSION['enfermeiroChefe']) or isset($_SESSION['estagiario'])){
+            return view('/menu');
+        }
+        else{
+            return redirect()->back();
+        }
     }
 
     public function logout(){
@@ -165,8 +174,7 @@ class HomeController extends Controller
             $query = mysqli_query($connect,$sql);
             while($sql = mysqli_fetch_array($query)){
                 $p[$i] = $sql['Nome_Paciente'];
-                $p[$i+1] = $sql['CPF'];
-                $i = $i+2;
+                $i = $i+1;
             }
             return view('listaPacientes',['p'=>$p]);
         }else if($request->novaAtribuicao == "alta") {
@@ -174,8 +182,7 @@ class HomeController extends Controller
             $query = mysqli_query($connect,$sql);
             while($sql = mysqli_fetch_array($query)){
                 $p[$i] = $sql['Nome_Paciente'];
-                $p[$i+1] = $sql['CPF'];
-                $i = $i+2;
+                $i = $i+1;
             }
             return view('listaPacientes',['p'=>$p]);
         }else if($request->novaAtribuicao == "obito") {
@@ -183,8 +190,7 @@ class HomeController extends Controller
             $query = mysqli_query($connect,$sql);
             while($sql = mysqli_fetch_array($query)){
                 $p[$i] = $sql['Nome_Paciente'];
-                $p[$i+1] = $sql['CPF'];
-                $i = $i+2;
+                $i = $i+1;
             }
             return view('listaPacientes',['p'=>$p]);
         }else{
@@ -380,7 +386,6 @@ class HomeController extends Controller
     }
 
     public static function autoCadastroAgendamento($codigo){
-        session_start();
         include("db.php");
         if(isset($_SESSION['enfermeiro'])){
             $cpf = $_SESSION['enfermeiro'];
@@ -450,11 +455,11 @@ class HomeController extends Controller
             $sql = "SELECT * FROM medicamentos";
             $query = mysqli_query($connect,$sql);
             while($sql = mysqli_fetch_array($query)){
-                $m[$i] = $sql['Nome_Medicam'];
-                $m[$i+1] = $sql['Data_Validade'];
-                $m[$i+2] = $sql['Quantidade'];
-                $m[$i+3] = $sql['Fabricante'];
-                $i = $i+4;
+                $m["nome".$i] = $sql['Nome_Medicam'];
+                $m["data".$i] = $sql['Data_Validade'];
+                $m["quantidade".$i] = $sql['Quantidade'];
+                $m["fabricante".$i] = $sql['Fabricante'];
+                $i = $i+1;
             }
             return view('listaMedicamento',['m' => $m]);
         }else{

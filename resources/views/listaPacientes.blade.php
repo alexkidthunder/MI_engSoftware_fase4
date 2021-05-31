@@ -12,7 +12,7 @@
 
     <!-- Favicon -->
     <link href="{{ asset('img/favicon.png') }}" rel="icon">
-
+    {{$i = 0}}
     <title>Lista de paciente</title>
 
 </head>
@@ -49,13 +49,13 @@
 
         <!--------------------- Paciente --------------------->
         @if(isset($p))
-            @if(isset($p[0]))
+            @while(isset($p[$i]))
             <div class="box-white">
                 <div class="row">
                     <!---------- Nome do paciente ------------>
                     <div class="col-12 col-sm-12 col-md-10 col-lg-10">
                         <div class="box-blue">
-                        {{$p[0]}}
+                        {{$p[$i]}}
                         </div>
                     </div>
                     <!----- Link para o prontuário do paciente ----->
@@ -63,51 +63,11 @@
                         <a href="{{ route('prontuario') }}" target="_parent"><button
                                 class="btn-blue">Prontuário</button></a>
                     </div>
+                    
                 </div>
+                {{$i++}}
             </div>
-            @endif
-        @endif
-        <!--------------------- Fim do paciente --------------------->
-        <!--------------------- Paciente --------------------->
-        @if(isset($p))
-            @if(isset($p[2]))
-            <div class="box-white">
-                <div class="row">
-                    <!---------- Nome do paciente ------------>
-                    <div class="col-12 col-sm-12 col-md-10 col-lg-10">
-                        <div class="box-blue">
-                        {{$p[2]}}
-                        </div>
-                    </div>
-                    <!----- Link para o prontuário do paciente ----->
-                    <div class="col-12 col-sm-12 col-md-2 col-lg-2">
-                        <a href="{{ route('prontuario') }}" target="_parent"><button
-                                class="btn-blue">Prontuário</button></a>
-                    </div>
-                </div>
-            </div>
-            @endif
-        @endif
-        <!--------------------- Fim do paciente --------------------->
-        <!--------------------- Paciente --------------------->
-        @if(isset($p))
-            @if(isset($p[4]))
-            <div class="box-white">
-                <div class="row">
-                    <!---------- Nome do paciente ------------>
-                    <div class="col-12 col-sm-12 col-md-10 col-lg-10">
-                        <div class="box-blue">
-                        {{$p[4]}}
-                        </div>
-                    </div>
-                    <!----- Link para o prontuário do paciente ----->
-                    <div class="col-12 col-sm-12 col-md-2 col-lg-2">
-                        <a href="{{ route('prontuario') }}" target="_parent"><button
-                                class="btn-blue">Prontuário</button></a>
-                    </div>
-                </div>
-            </div>
-            @endif
+            @endwhile
         @endif
         <!--------------------- Fim do paciente --------------------->
     </div>
