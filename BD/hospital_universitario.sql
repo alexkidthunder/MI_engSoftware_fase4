@@ -86,7 +86,7 @@ CREATE TABLE logs (
 CREATE TABLE medicamentos (
   Nome_Medicam varchar(50) NOT NULL,
   Quantidade int(11) NOT NULL,
-  Fabricante varchar(30) NOT NULL,
+  Fabricante varchar(80) NOT NULL,
   Data_Validade date NOT NULL,
   Codigo bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

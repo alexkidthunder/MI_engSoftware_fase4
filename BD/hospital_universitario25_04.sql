@@ -79,6 +79,13 @@ CREATE TABLE IF NOT EXISTS `agendamentos` (
 --       `medicamentos` -> `Codigo`
 --
 
+INSERT INTO `agendamentos` (`Codigo`, `Posologia`, `Data_Agend`, `Realizado`, `Hora_Agend`, `ID_prontuario`, `CPF_usuario`, `Cod_medicamento`) VALUES
+  (1, 0.355, '2021-05-28', 1, '21:34:10', 4, '072.003.190-74', 1210033020),
+  (2, 0.15, '2021-05-28', 0, '18:34:10', 4, NULL, 1210033020),
+  (3, 0.24, '2021-05-21', 1, '20:00:00', 1, '046.822.991-40', 1210033020),
+  (4, 0.24, '2021-05-21', 1, '17:00:00', 4, '072.003.190-74', 1210033020),
+  (5, 0.54, '2021-05-21', 0, '00:00:12', 1, NULL, 1210033020);
+
 -- --------------------------------------------------------
 
 --
@@ -279,7 +286,7 @@ CREATE TABLE IF NOT EXISTS `leitos` (
 --
 
 INSERT INTO `leitos` (`Ocupado`, `Identificacao`) VALUES
-(0, 'LB001'),
+(1, 'LB001'),
 (0, 'LB002'),
 (0, 'LB003'),
 (0, 'LB004'),
@@ -320,7 +327,7 @@ CREATE TABLE IF NOT EXISTS `logs` (
 CREATE TABLE IF NOT EXISTS `medicamentos` (
   `Nome_Medicam` varchar(50) NOT NULL,
   `Quantidade` int(11) NOT NULL,
-  `Fabricante` varchar(30) NOT NULL,
+  `Fabricante` varchar(80) NOT NULL,
   `Data_Validade` date NOT NULL,
   `Codigo` bigint(20) NOT NULL,
   PRIMARY KEY (`Codigo`)
@@ -329,6 +336,26 @@ CREATE TABLE IF NOT EXISTS `medicamentos` (
 --
 -- RELACIONAMENTOS PARA TABELAS `medicamentos`:
 --
+
+INSERT INTO `medicamentos` (`Nome_Medicam`, `Quantidade`, `Fabricante`, `Data_Validade`, `Codigo`) VALUES
+('Dipirona', 100, 'Medley', '2027-05-12', 1210033020),
+('Atenolol', 100, 'Medley', '2027-05-12', 1210033452),
+('Losartana', 100, 'Medley', '2027-05-12', 4320033452),
+('CEFALOTINA SÓDICA', 70, 'AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA', '2026-05-14', 500100102151411),
+('CEFOTAXIMA SÓDICA', 71, 'AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA', '2026-05-21', 500100305158117),
+('CLORIDRATO DE CIPROFLOXACINO MONOIDRATADO', 50, 'AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA', '2026-04-02', 500100401114419),
+('ATENOLOL', 25, 'AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA', '2025-07-01', 500103201116110),
+('VALSARTANA', 80, 'EUROFARMA LABORATÓRIOS S.A.', '2024-12-12', 508014010101404),
+('DELTAMETRINA', 60, 'INFAN INDUSTRIA QUIMICA FARMACEUTICA NACIONAL S/A', '2025-11-10', 511301501162416),
+('CLORIDRATO DE RANITIDINA', 55, 'SANDOZ DO BRASIL INDÚSTRIA FARMACÊUTICA LTDA', '2023-07-20', 511502602111117),
+('ACETATO DE DEXAMETASONA', 30, 'SANDOZ DO BRASIL INDÚSTRIA FARMACÊUTICA LTDA', '2024-01-21', 511502902164410),
+('PANTOPRAZOL SÓDICO SESQUIHIIDRATADO', 39, 'SANDOZ DO BRASIL INDÚSTRIA FARMACÊUTICA LTDA', '2024-01-20', 511507506119413),
+('DIPIRONA SÓDICA', 150, 'HIPOLABOR FARMACEUTICA LTDA', '2027-02-03', 511607101153116),
+('MIDAZOLAM', 85, 'HIPOLABOR FARMACEUTICA LTDA', '2026-10-11', 511607301152415),
+('PARACETAMOL', 99, 'HIPOLABOR FARMACEUTICA LTDA', '2028-01-10', 511607701134112),
+('SULFATO DE MAGNÉSIO', 70, 'HYPOFARMA - INSTITUTO DE HYPODERMIA E FARMÁCIA LTD', '2027-10-13', 511803201157415),
+('IBUPROFENO', 80, 'MANTECORP INDÚSTRIA QUÍMICA E FARMACÊUTICA S.A.', '2025-05-01', 512400201130326),
+('ALPRAZOLAM', 35, 'MANTECORP INDÚSTRIA QUÍMICA E FARMACÊUTICA S.A.', '2025-05-01', 512400302115411);
 
 -- --------------------------------------------------------
 
@@ -608,6 +635,12 @@ CREATE TABLE IF NOT EXISTS `prontuarios` (
 --       `pacientes` -> `CPF`
 --
 
+INSERT INTO `prontuarios` (`aberto`, `ID`, `Data_Internacao`, `Data_Saida`, `Id_leito`, `Cpfpaciente`) VALUES
+(1, 1, '2021-05-11', '0000-00-00', 'LB001', '065.799.448-03'),
+(0, 2, '2021-05-11', '0000-00-00', 'LB001', '065.799.448-03'),
+(1, 3, '2021-05-11', '2021-05-11', 'LB001', '065.799.448-03'),
+(0, 4, '2021-05-11', '2021-05-02', 'LB001', '065.799.448-03');
+
 -- --------------------------------------------------------
 
 --
@@ -729,7 +762,9 @@ ALTER TABLE `prontuarios`
   ADD CONSTRAINT `prontuario_ibfk_2` FOREIGN KEY (`Cpfpaciente`) REFERENCES `pacientes` (`CPF`);
 
 
-
+--
+-- dados da tabela `cid`
+--
 
 INSERT INTO `cid` (`id`, `codCid`, `descricaoCid`) VALUES
 (1, 'A00.0', 'Cólera devida a Vibrio  01, biótipo '),
