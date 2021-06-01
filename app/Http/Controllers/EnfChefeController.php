@@ -143,6 +143,7 @@ class EnfChefeController extends Controller
                 while($sql2 = mysqli_fetch_array($query2)){
                     $identificaP = $sql2['Cpfpaciente'];
                     $infos['leito'.$i] = $sql2['Id_leito'];
+                    $infos['id'.$i] = $sql2['ID'];
                 }
                 $sql3 = "SELECT * FROM pacientes WHERE CPF = '$identificaP'";
                 $query3 = mysqli_query($connect,$sql3);
@@ -188,6 +189,7 @@ class EnfChefeController extends Controller
                 while($sql2 = mysqli_fetch_array($query2)){
                     $identificaP = $sql2['Cpfpaciente'];
                     $infos['leito'.$i] = $sql2['Id_leito'];
+                    $infos['id'.$i] = $sql2['ID'];
                 }
                 $sql3 = "SELECT * FROM pacientes WHERE CPF = '$identificaP'";
                 $query3 = mysqli_query($connect,$sql3);

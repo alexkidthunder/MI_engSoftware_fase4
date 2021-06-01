@@ -85,6 +85,9 @@
                     <!----- Link para o prontuário do paciente ----->
                     <form action="/prontuario" method="get">
                     <input type="hidden" name='cpf' value='{{$identicador[$i]}}'>
+                    @if(isset($p["id".$i]))
+                    <input type="hidden" name='numero' value='{{$p["id".$i]}}'>
+                    @endif
                     <div class="col-12 col-sm-12 col-md-2 col-lg-2">
                         <button type="submit"
                                 class="btn-blue">Prontuário</button></a>
