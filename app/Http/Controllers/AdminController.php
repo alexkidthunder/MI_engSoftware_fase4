@@ -23,26 +23,23 @@ class AdminController extends Controller
         return view('/admin/menu');
     }
 
-    public function log(){ 
+    public function log(){                                  //função para listar log
          VerificaLoginController::verificarLoginAdmin();
-        /* 
-        //gerar um log
-        
+         include("db.php");
 
-        include("db.php");                          
-        $ip = $_SERVER['REMOTE_ADDR'];              //detecta ip
-        $data = date('d/m/Y');                      //detecta data
-        $horas = time();                            //detecta hora
-
-        //insere no banco de dados
-        $novoLog = "INSERT INTO log (Data_Log, Hora_Agend, Ip, Acao) values ('$data','$horas', '$ip', $acao)";
-        mysqli_query($connect,$novoLog);
-        */
-        return view('/admin/log');
-        
+         // buscar logs para exibir na página
+ 
+            $existeLog = "SELECT * FROM logs";
+            $query = mysqli_query($connect, $existeLog);          
+            $i = 0;
+            while($elemento = mysqli_fetch_array($query)){                                              
+                 $logs[$i] = $elemento; 
+                 $i++;
+            }           
+            return view('/admin/log', ['logs'=> $logs]);
     }
     
-    public function salvarLog($acao,$ip){   
+    public function salvarLog($acao,$ip){                    //função para salvar log
         include("db.php"); 
 
         date_default_timezone_set('America/Sao_Paulo');     //padrão de fuso horário    
