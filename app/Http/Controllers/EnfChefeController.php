@@ -214,16 +214,19 @@ class EnfChefeController extends Controller
            $query = mysqli_query($connect, $sql);          
            $i = 0;
            while($dado = mysqli_fetch_array($query)){
-                $leitos[$i] = $dado["Identificacao"];
-                if($dado["Ocupado"] == 0){
+                $leitos[$i] = $dado;                
+                /*if($dado["Ocupado"] == 0){
                     $statusLeito[$i] = "Vazio";
                 }else{
                     $statusLeito[$i] = "Ocupado";
                 }
                 
+                
+                */
                 $i++;
            }
-           return view('/enfChefe/cadastroLeito', ['leitos'=> $leitos, 'statusLeito'=>$statusLeito]);
+           //dd($leitos);
+           return view('/enfChefe/cadastroLeito', ['leitos'=> $leitos]);
         } 
         else{
             return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
@@ -237,11 +240,10 @@ class EnfChefeController extends Controller
         if(mysqli_num_rows($query) == 0){
             $sql1 = "INSERT INTO leitos (Identificacao,Ocupado) values ('$request->Leito','0')";
             $query1 = mysqli_query($connect, $sql1);
+            return redirect()->route('cadastroLeito')->with('msg-sucess','Leito cadastrado com sucesso!'); 
         }else{
-            return redirect()->route('cadastroLeito')->with('error','Leito já cadastrado!'); 
-        }
-
-        return view('/enfChefe/cadastroLeito');
+            return redirect()->route('cadastroLeito')->with('msg-error','Leito já cadastrado!'); 
+        }        
 
     }
 
@@ -250,13 +252,13 @@ class EnfChefeController extends Controller
         $sql = "SELECT * FROM leitos WHERE Identificacao = '$request->focorrencia'";
         $query = mysqli_query($connect, $sql);
         if(mysqli_num_rows($query) == 1){
-            $sql1 = "DELETE FROM WHERE Identificacao = '$request->focorrencia'";
+            $sql1 = "DELETE FROM leitos WHERE Identificacao = '$request->focorrencia'";
             $query1 = mysqli_query($connect, $sql1);
+            return redirect()->route('cadastroLeito')->with('msg-sucess','Leito removido com sucesso!'); 
         }else{
-            return redirect()->route('cadastroLeito')->with('error','Leito não encontrado!'); 
+            return redirect()->route('cadastroLeito')->with('msg-error','Leito não encontrado!'); 
         }
         
-        return view('/enfChefe/cadastroLeito'); 
     }
 
 
