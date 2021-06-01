@@ -15,6 +15,8 @@
     <link href="{{ asset('img/favicon.png') }}" rel="icon">
     {{$i = 0}}
     {{$j = 0}}
+    {{$k = 0}}
+    {{$l = 0}}
     <title>PRONTÚARIO</title>
 </head>
 
@@ -208,28 +210,16 @@
                                     <th scope="col">Ocorrencia</th>
                                 </tr>
                             </thead>
+                            @while(isset($infosO['ocorrencia'.$k]))
                             <tbody>
                                 <tr>
-                                    <td>14/03/21 - 15:03</td>
-                                    <td>Julia Maria Souza</td>
-                                    <td>Vomitou muito</td>
-                                </tr>
-                                <tr>
-                                    <td>14/03/21 - 15:02</td>
-                                    <td>Rubens Carvalho</td>
-                                    <td>Infarto</td>
-                                </tr>
-                                <tr>
-                                    <td>14/03/21 - 15:00</td>
-                                    <td>Daniel Masvidal Covas</td>
-                                    <td>Pressão alta</td>
-                                </tr>
-                                <tr>
-                                    <td>13/03/21 - 12:30</td>
-                                    <td>Vinícius Maciel</td>
-                                    <td>Fortes dores na lombar</td>
+                                    <td>{{$infosO['data'.$k]}} - {{$infosO['hora'.$k]}}</td>
+                                    <td>{{$infosO['aplicador'.$k]}}</td>
+                                    <td>{{$infosO['ocorrencia'.$k]}}</td>
+                                    <td>{{$k++}}</td>
                                 </tr>
                             </tbody>
+                            @endwhile
                         </table>
                     </div>
                     <!----------Onde o enfermeiro ou enfermeiro chefe colocara sua nova ocorrencia------------>
@@ -258,31 +248,14 @@
                     <h3>CIDs do Paciente</h3>
                         <div class="box-scheduling">
                             <div class="row">
+                                @while(isset($infosC['cid'.$l]))
                                 <div class="col-lg-2 text-center">
                                     <div class="box-gray">
-                                        CID: 223
+                                        CID: {{$infosC['cid'.$l]}}
                                     </div>
+                                    {{$l++}}
                                 </div>
-                                <div class="col-lg-2 text-center">
-                                    <div class="box-gray">
-                                        CID: 112
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 text-center">
-                                    <div class="box-gray">
-                                        CID: 146
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 text-center">
-                                    <div class="box-gray">
-                                        CID: 199
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 text-center">
-                                    <div class="box-gray">
-                                        CID: 126
-                                    </div>
-                                </div>
+                                @endwhile
                             </div>   
                         </div>                 
                 </form>
