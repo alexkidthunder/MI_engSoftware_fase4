@@ -223,16 +223,23 @@ class AdminController extends Controller
         VerificaLoginController::verificarLoginAdmin();
         return view('/admin/backup');
     }
-
+    /**
+     * Função que remove um usuario do sistema
+     */
     public function remocao()
     {  
         
         VerificaLoginController::verificarLoginAdmin();
         include('..\app\Http\Controllers\db.php'); 
+
         if (isset($_GET['cpf'])) {
-            $cpf = $_GET['cpf'];
-            //$atr = $_GET['atr'];    
+            $cpf = $_GET['cpf'];            
+            if(strcmp($_SESSION['administrador'], $cpf) == 0) {
+                return redirect()->back()->with('msg-error', 'Você não pode remover sua própria conta');
+            }
+
             $query ="DELETE FROM usuarios WHERE CPF = '$cpf'";
+            
             $status = mysqli_query($connect, $query);            
                     
             return view('/admin/remocaoUsuario',['status'=>$status]);
@@ -439,7 +446,9 @@ class AdminController extends Controller
             }
       }
      
-
+      /**
+       * Função que busca e retorna um usuario no banco de dados
+       */
     public function busca(Request $request)
     {          
         session_start();
