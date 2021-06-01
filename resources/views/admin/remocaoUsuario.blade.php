@@ -41,6 +41,13 @@
             </div> <!--Fim da área onde se busca um funcionário-->
 
             <!--Infomações do funcionário funcionário-->
+            
+            <!-- Mensagem de erro ao tentar se remover -->
+            @if(session('msg-error'))
+                <div class='msg-error'>  {{ session('msg-error') }}</div>               
+            
+            @endif
+
             @if(isset($user))
             @if(!is_array($user))
             @if($user == 0)
