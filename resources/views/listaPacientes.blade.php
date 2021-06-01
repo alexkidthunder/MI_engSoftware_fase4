@@ -12,7 +12,7 @@
 
     <!-- Favicon -->
     <link href="{{ asset('img/favicon.png') }}" rel="icon">
-
+    {{$i = 0}}
     <title>Lista de paciente</title>
 
 </head>
@@ -33,7 +33,31 @@
     <!--------Fim do botão de donwload-------->
 
     <div class="container-1" id="patientList">
-
+    <div class="container">
+        <div class="row">
+            <div class="col-lg">
+                @if ($errors->any()) <!--Verificando se existe qualquer erro -->
+                    <div class="msg-error">
+                        <ul>
+                            @foreach ($errors->all() as $error) <!--Percorre todos os erros-->
+                                <li>{{ $error }}</li> <!--Obtem o erro -->
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                @if (session('msg')) <!-- Verifica se a mensagem de erro foi instanciada -->
+                    <div class="msg-sucess">
+                        {{session('msg')}} <!--Obtem mensagem de erro -->
+                    </div>
+                @endif
+                @if (session('msg-error')) <!-- Verifica se a mensagem de erro foi instanciada -->
+                    <div class="msg-error">
+                        {{session('msg-error')}} <!--Obtem mensagem de erro -->
+                    </div>
+                @endif
+            </div>
+        </div>
+    </div>        
         <h1 class="title-download">PACIENTES E PRONTUÁRIOS</h1>
 
         <!----------Seleção para o tipo de paciente que deseja exibir------------>
@@ -49,65 +73,31 @@
 
         <!--------------------- Paciente --------------------->
         @if(isset($p))
-            @if(isset($p[0]))
+            @while(isset($p[$i]))
             <div class="box-white">
                 <div class="row">
                     <!---------- Nome do paciente ------------>
                     <div class="col-12 col-sm-12 col-md-10 col-lg-10">
                         <div class="box-blue">
-                        {{$p[0]}}
+                        {{$p[$i]}}
                         </div>
                     </div>
                     <!----- Link para o prontuário do paciente ----->
+                    <form action="/prontuario" method="get">
+                    <input type="hidden" name='cpf' value='{{$identicador[$i]}}'>
+                    @if(isset($p["id".$i]))
+                    <input type="hidden" name='numero' value='{{$p["id".$i]}}'>
+                    @endif
                     <div class="col-12 col-sm-12 col-md-2 col-lg-2">
-                        <a href="{{ route('prontuario') }}" target="_parent"><button
+                        <button type="submit"
                                 class="btn-blue">Prontuário</button></a>
                     </div>
+                    </form>
+                    
                 </div>
+                {{$i++}}
             </div>
-            @endif
-        @endif
-        <!--------------------- Fim do paciente --------------------->
-        <!--------------------- Paciente --------------------->
-        @if(isset($p))
-            @if(isset($p[2]))
-            <div class="box-white">
-                <div class="row">
-                    <!---------- Nome do paciente ------------>
-                    <div class="col-12 col-sm-12 col-md-10 col-lg-10">
-                        <div class="box-blue">
-                        {{$p[2]}}
-                        </div>
-                    </div>
-                    <!----- Link para o prontuário do paciente ----->
-                    <div class="col-12 col-sm-12 col-md-2 col-lg-2">
-                        <a href="{{ route('prontuario') }}" target="_parent"><button
-                                class="btn-blue">Prontuário</button></a>
-                    </div>
-                </div>
-            </div>
-            @endif
-        @endif
-        <!--------------------- Fim do paciente --------------------->
-        <!--------------------- Paciente --------------------->
-        @if(isset($p))
-            @if(isset($p[4]))
-            <div class="box-white">
-                <div class="row">
-                    <!---------- Nome do paciente ------------>
-                    <div class="col-12 col-sm-12 col-md-10 col-lg-10">
-                        <div class="box-blue">
-                        {{$p[4]}}
-                        </div>
-                    </div>
-                    <!----- Link para o prontuário do paciente ----->
-                    <div class="col-12 col-sm-12 col-md-2 col-lg-2">
-                        <a href="{{ route('prontuario') }}" target="_parent"><button
-                                class="btn-blue">Prontuário</button></a>
-                    </div>
-                </div>
-            </div>
-            @endif
+            @endwhile
         @endif
         <!--------------------- Fim do paciente --------------------->
     </div>

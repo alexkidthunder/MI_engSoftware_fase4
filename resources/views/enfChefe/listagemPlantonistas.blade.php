@@ -12,7 +12,7 @@
 
     <!-- Favicon -->
     <link href="{{ asset('img/favicon.png') }}" rel="icon">
-
+    {{$i = 0}}
     <title>Listagem Plantonista</title>
 
 </head>
@@ -34,7 +34,7 @@
         <div class="container-1" id="on-duty">
             <h1 class="title-download">LISTAGEM DE PLANTONISTA</h1>
             <div class="box-on-duty">
-                <!--------- Cabeçario --------->
+                <!--------- Cabeçalho --------->
                 <div class="title">
                     <div class="row">
                         <div class="col-6 col-sm-6 col-md-8 col-lg-8">
@@ -45,51 +45,22 @@
                         </div>
                     </div>
                 </div>
-                @if(isset($plantonista["nome0"]))
+                @while(isset($plantonista["nome".$i]))
                 <!--------- Plantonista --------->
                 <!---APENAS ISSO QUE SE REPETE BACK, O CABEÇARIO N -->
                 <div class="box-blue">
                     <div class="row">
                         <div class="col-6 col-sm-6 col-md-8 col-lg-8 text-left">
-                            {{$plantonista["nome0"]}}
+                            {{$plantonista["nome".$i]}}
                         </div>
                         <div class="col-6 col-sm-6 col-md-4 col-lg-4 text-left">
-                            {{$plantonista["cargo0"]}}
+                            {{$plantonista["cargo".$i]}}
                         </div>
+                        {{$i++}}
                     </div>
                 </div>
                 <!------- Fim de plantonista ------->
-                @endif
-                @if(isset($plantonista["nome1"]))
-                <!--------- Plantonista --------->
-                <!---APENAS ISSO QUE SE REPETE BACK, O CABEÇARIO N -->
-                <div class="box-blue">
-                    <div class="row">
-                        <div class="col-6 col-sm-6 col-md-8 col-lg-8 text-left">
-                            {{$plantonista["nome1"]}}
-                        </div>
-                        <div class="col-6 col-sm-6 col-md-4 col-lg-4 text-left">
-                            {{$plantonista["cargo1"]}}
-                        </div>
-                    </div>
-                </div>
-                <!------- Fim de plantonista ------->
-                @endif
-                @if(isset($plantonista["nome2"]))
-                <!--------- Plantonista --------->
-                <!---APENAS ISSO QUE SE REPETE BACK, O CABEÇARIO N -->
-                <div class="box-blue">
-                    <div class="row">
-                        <div class="col-6 col-sm-6 col-md-8 col-lg-8 text-left">
-                            {{$plantonista["nome2"]}}
-                        </div>
-                        <div class="col-6 col-sm-6 col-md-4 col-lg-4 text-left">
-                            {{$plantonista["cargo2"]}}
-                        </div>
-                    </div>
-                </div>
-                <!------- Fim de plantonista ------->
-                @endif
+                @endwhile
             </div>
         </div>
     </section>

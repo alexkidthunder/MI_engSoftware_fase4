@@ -13,6 +13,7 @@
     <!-- Favicons -->
     <link href="{{ asset('img/favicon.png') }}" rel="icon">
     <script src="{{ ('js/mascara.min.js')}}"></script>
+    <script src="{{ ('js/removerUsuario.js')}}"></script>
 
     <title>Remoção de funcionário</title>
 </head>
@@ -40,6 +41,13 @@
             </div> <!--Fim da área onde se busca um funcionário-->
 
             <!--Infomações do funcionário funcionário-->
+            
+            <!-- Mensagem de erro ao tentar se remover -->
+            @if(session('msg-error'))
+                <div class='msg-error'>  {{ session('msg-error') }}</div>               
+            
+            @endif
+
             @if(isset($user))
             @if(!is_array($user))
             @if($user == 0)
@@ -49,13 +57,17 @@
 
 
             <h3>Funcionário</h3>
-            <div class="box-gray"> <!--Campos de informações sobre o usuário buscado-->
-                {{$user['Nome']}}
-            </div>
             <div class="row">
-                <div class="col-lg-4">
-                    <div class="box-gray">
-                        CPF: {{$user['CPF']}}
+                <div class="col-xl">
+                    <div name="user_field" class="box-gray scrolls"> <!--Campos de informações sobre o usuário buscado-->
+                        <span>{{$user['Nome']}}</span>
+                    </div>
+                </div>
+            </div>  
+            <div class="row">
+                <div class="col-xl-4">
+                    <div name="user_field" class="box-gray scrolls">
+                        <span style="white-space: nowrap">CPF: {{$user['CPF']}}</span>
                     </div>
                 </div>
                 <!-- Se a atribuição for igual a zero é por que ele é do tipo Estagiário ou ADM,
@@ -63,14 +75,14 @@
                 @if($atribuicao == 0)
                 <!-- Não exibe nada, pois não tem coren -->
                 @else
-                <div class="col-lg-4">
-                    <div class="box-gray">
-                        COREN: {{$atribuicao['COREN']}}
+                <div class="col-xl-4">
+                    <div name="user_field" class="box-gray scrolls">
+                        <span style="white-space: nowrap">COREN: {{$atribuicao['COREN']}}</span>
                     </div>
                 </div>
                 @endif
 
-                <div class="col-lg-4">
+                <div class="col-xl-4">
                     <div class="box-gray">
                         {{$user['Atribuicao']}}
                     </div>
@@ -79,7 +91,9 @@
                 <form action="/removerUsuario" method="GET"> <!--Form para deletar o usuário buscado-->
                     <input type="hidden" name="cpf" value="{{$user['CPF']}}">
                     <input type="hidden" name="atr" value="{{$user['Atribuicao']}}">
-                    <button type="submit" class="container-button btn-blue " data-toggle="modal" data-target="#delete"> Remover </button>
+                    <div class="container-button" id="delete-user-container">
+                        <button type="submit" class="btn-blue " data-toggle="modal" data-target="#delete" id="remove-user-btn"> Remover </button>
+                    </div>
                 </form>
                 @endif
                 @endif
@@ -114,8 +128,6 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
 </body>
 </html>

@@ -54,7 +54,7 @@
 
                     <div class="row">
                         <div class="col-lg-4">
-                            <label for="fnascimento">Data de Nascimento</label> <br> <!--Campo onde se digita a data de nascimento do usuário a ser cadastrado-->
+                            <label style="white-space: nowrap" for="fnascimento">Data de Nascimento</label> <br> <!--Campo onde se digita a data de nascimento do usuário a ser cadastrado-->
                             <input id="fnascimento" name="fnascimento" type="date" required>
                         </div>
                         <div class="col-lg-4">
