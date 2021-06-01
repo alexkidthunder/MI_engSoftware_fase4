@@ -94,7 +94,8 @@ CREATE TABLE medicamentos (
 /*Cria tabela de ocorrencias*/
 CREATE TABLE ocorrencias (
   Codigo bigint(20) NOT NULL,
-  Data_ocorr date NOT NULL,
+  Data_ocorr date NOT NULL,  
+  Hora_ocorr time NOT NULL,
   ID_prontuario bigint(20) NOT NULL,
   Descricao text NOT NULL,
   CPF char(14) NOT NULL /* Chave estrangeira que faz refência ao usuarios*/

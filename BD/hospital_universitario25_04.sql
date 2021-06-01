@@ -366,6 +366,7 @@ INSERT INTO `medicamentos` (`Nome_Medicam`, `Quantidade`, `Fabricante`, `Data_Va
 CREATE TABLE IF NOT EXISTS `ocorrencias` (
   `Codigo` bigint(20) NOT NULL,
   `Data_ocorr` date NOT NULL,
+  `Hora_ocorr` time NOT NULL,
   `ID_prontuario` bigint(20) NOT NULL,
   `Descricao` text NOT NULL,
   `CPF` char(14) NOT NULL,
