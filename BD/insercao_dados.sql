@@ -74,7 +74,7 @@ INSERT INTO estagiarios VALUES
 /* Insere na tabela de pacientes*/
 INSERT INTO pacientes VALUES
 	('Rafaela Eloá Raquel Campos','F','alta','2002-08-07','622.748.620-52','A-'),
-	('Amanda Jéssica Caroline de Paula','F','alta','1968-04-06','065.799.448-03','B+'),
+	('Amanda Jéssica Caroline de Paula','F','internado','1968-04-06','065.799.448-03','B+'),
 	('Vera Tânia Bruna da Conceição','F','alta','1953-008-26','341.846.973-64','B+'),
 	('Pedro Henrique Henrique Juan Dias','M','alta','1953-02-05','429.326.274-14','AB-'),
 	('Otávio Theo Elias Moura','M','alta','1968-08-21','167.879.644-12','B-'),
@@ -140,9 +140,16 @@ INSERT INTO leitos VALUES
 
 INSERT INTO prontuarios VALUES
 	(1, 1, '2021-05-11', '0000-00-00', 'LB001', '065.799.448-03'),
-	(0, 2, '2021-05-11', '0000-00-00', 'LB001', '065.799.448-03'),
-	(1, 3, '2021-05-11', '2021-05-11', 'LB001', '065.799.448-03'),
-	(0, 4, '2021-05-11', '2021-05-02', 'LB001', '065.799.448-03');
+	(2, 0, '2021-05-11', '0000-00-00', 'LB001', '065.799.448-03'),
+	(3, 1, '2021-05-11', '2021-05-11', 'LB001', '065.799.448-03'),
+	(4, 0, '2021-05-11', '2021-05-12', 'LB001', '065.799.448-03'),
+	(5, 1, '2021-05-03', '0000-00-00', 'LB002', '921.670.790-95'),
+	(6, 0, '2021-03-16', '2021-03-31', 'LB003', '981.757.680-96'),
+	(7, 1, '2021-04-21', '0000-00-00', 'LB004', '188.647.372-27'),
+	(8, 0, '2021-02-09', '2021-02-12', 'LC001', '448.953.115-03'),
+	(9, 0, '2021-05-29', '2021-05-30', 'LC002', '294.023.462-01'),
+	(10, 1, '2021-05-31', '0000-00-00', 'LC003', '856.213.656-58'),
+	(11, 1, '2021-05-28', '0000-00-00', 'LC004', '649.100.528-36');
 
 INSERT INTO medicamentos VALUES
 	('Dipirona', 100, 'Medley', '2027-05-12', 1210033020),
@@ -162,7 +169,11 @@ INSERT INTO medicamentos VALUES
 	('PARACETAMOL', 99, 'HIPOLABOR FARMACEUTICA LTDA', '2028-01-10', 511607701134112),
 	('SULFATO DE MAGNÉSIO', 70, 'HYPOFARMA - INSTITUTO DE HYPODERMIA E FARMÁCIA LTD', '2027-10-13', 511803201157415),
 	('IBUPROFENO', 80, 'MANTECORP INDÚSTRIA QUÍMICA E FARMACÊUTICA S.A.', '2025-05-01', 512400201130326),
-	('ALPRAZOLAM', 35, 'MANTECORP INDÚSTRIA QUÍMICA E FARMACÊUTICA S.A.', '2025-05-01', 512400302115411);
+	('ALPRAZOLAM', 35, 'MANTECORP INDÚSTRIA QUÍMICA E FARMACÊUTICA S.A.', '2025-05-01', 512400302115411),
+	('SULFATO DE SALBUTAMOL', 60, 'INDÚSTRIA QUÍMICA DO ESTADO DE GOIÁS S/A - IQUEGO', '2023-06-14', 513003501136413),
+	('AMOXICILINA TRIIDRATADA', 200, 'INDÚSTRIA QUÍMICA DO ESTADO DE GOIÁS S/A - IQUEGO', '2024-06-05', 513004101115417),
+	('CEFAZOLINA SÓDICA', 90, 'INSTITUTO BIOCHIMICO INDÚSTRIA FARMACÊUTICA LTDA', '2022-06-16', 513401101154413),
+	('OMEPRAZOL', 155, 'INSTITUTO BIOCHIMICO INDÚSTRIA FARMACÊUTICA LTDA', '2024-02-14', 513402201111412);
 
 /* Insere na tabela de agendamentos*/
 INSERT INTO agendamentos VALUES
@@ -171,6 +182,10 @@ INSERT INTO agendamentos VALUES
 	(3, 0.24, '2021-05-21', 1, '20:00:00', 1, '046.822.991-40', 1210033020),
 	(4, 0.24, '2021-05-21', 1, '17:00:00', 4, '072.003.190-74', 1210033020),
 	(5, 0.54, '2021-05-21', 0, '00:00:12', 1, NULL, 1210033020);
+
+INSERT INTO ocorrencias VALUES
+	(3, '2021-05-31', '10:12:31', 4, 'Paciente Amanda Jéssica Caroline de Paula, CPF:065.799.448-03 foi internada e alocada para o leito LB001, no dia 11 de Maio de 2021 as 10:12 AM, identificada com a CID A03.2', '065.799.448-03'),
+	(4, '2021-05-12', '21:36:47', 4, 'Paciente Amanda Jéssica Caroline de Paula, CPF:065.799.448-03 foi liberada do leito LB001, no dia 12 de Maio de 2021 as 10:12 AM, depois de tomar sua medicação.', '065.799.448-03');
 
 /* Insere na tabela de permissões */
 INSERT INTO permissoes  VALUES
@@ -280,6 +295,10 @@ INSERT INTO permissao_cargo VALUES
   	(DEFAULT, '32', '4', '1'),
  	(DEFAULT, '34', '4', '1');
 
+INSERT INTO agendamento_prontuario VALUES
+	('4', '1'),
+	('1', '3'),
+	('4', '4');
 
 INSERT INTO cid VALUES
 	(DEFAULT,'A00.0', 'Cólera devida a Vibrio  01, biótipo '),

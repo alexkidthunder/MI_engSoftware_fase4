@@ -107,6 +107,10 @@ CREATE TABLE IF NOT EXISTS `agendamento_prontuario` (
 --       `agendamentos` -> `Codigo`
 --
 
+INSERT INTO `agendamento_prontuario` (`ID_prontuario`, `Codigo_Agendamento`) VALUES
+(4, 1),
+(1, 3),
+(4, 4);
 -- --------------------------------------------------------
 
 --
@@ -338,24 +342,28 @@ CREATE TABLE IF NOT EXISTS `medicamentos` (
 --
 
 INSERT INTO `medicamentos` (`Nome_Medicam`, `Quantidade`, `Fabricante`, `Data_Validade`, `Codigo`) VALUES
-('Dipirona', 100, 'Medley', '2027-05-12', 1210033020),
-('Atenolol', 100, 'Medley', '2027-05-12', 1210033452),
-('Losartana', 100, 'Medley', '2027-05-12', 4320033452),
-('CEFALOTINA SÓDICA', 70, 'AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA', '2026-05-14', 500100102151411),
-('CEFOTAXIMA SÓDICA', 71, 'AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA', '2026-05-21', 500100305158117),
-('CLORIDRATO DE CIPROFLOXACINO MONOIDRATADO', 50, 'AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA', '2026-04-02', 500100401114419),
-('ATENOLOL', 25, 'AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA', '2025-07-01', 500103201116110),
-('VALSARTANA', 80, 'EUROFARMA LABORATÓRIOS S.A.', '2024-12-12', 508014010101404),
-('DELTAMETRINA', 60, 'INFAN INDUSTRIA QUIMICA FARMACEUTICA NACIONAL S/A', '2025-11-10', 511301501162416),
-('CLORIDRATO DE RANITIDINA', 55, 'SANDOZ DO BRASIL INDÚSTRIA FARMACÊUTICA LTDA', '2023-07-20', 511502602111117),
-('ACETATO DE DEXAMETASONA', 30, 'SANDOZ DO BRASIL INDÚSTRIA FARMACÊUTICA LTDA', '2024-01-21', 511502902164410),
-('PANTOPRAZOL SÓDICO SESQUIHIIDRATADO', 39, 'SANDOZ DO BRASIL INDÚSTRIA FARMACÊUTICA LTDA', '2024-01-20', 511507506119413),
-('DIPIRONA SÓDICA', 150, 'HIPOLABOR FARMACEUTICA LTDA', '2027-02-03', 511607101153116),
-('MIDAZOLAM', 85, 'HIPOLABOR FARMACEUTICA LTDA', '2026-10-11', 511607301152415),
-('PARACETAMOL', 99, 'HIPOLABOR FARMACEUTICA LTDA', '2028-01-10', 511607701134112),
-('SULFATO DE MAGNÉSIO', 70, 'HYPOFARMA - INSTITUTO DE HYPODERMIA E FARMÁCIA LTD', '2027-10-13', 511803201157415),
-('IBUPROFENO', 80, 'MANTECORP INDÚSTRIA QUÍMICA E FARMACÊUTICA S.A.', '2025-05-01', 512400201130326),
-('ALPRAZOLAM', 35, 'MANTECORP INDÚSTRIA QUÍMICA E FARMACÊUTICA S.A.', '2025-05-01', 512400302115411);
+	('Dipirona', 100, 'Medley', '2027-05-12', 1210033020),
+	('Atenolol', 100, 'Medley', '2027-05-12', 1210033452),
+	('Losartana', 100, 'Medley', '2027-05-12', 4320033452),
+	('CEFALOTINA SÓDICA', 70, 'AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA', '2026-05-14', 500100102151411),
+	('CEFOTAXIMA SÓDICA', 71, 'AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA', '2026-05-21', 500100305158117),
+	('CLORIDRATO DE CIPROFLOXACINO MONOIDRATADO', 50, 'AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA', '2026-04-02', 500100401114419),
+	('ATENOLOL', 25, 'AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA', '2025-07-01', 500103201116110),
+	('VALSARTANA', 80, 'EUROFARMA LABORATÓRIOS S.A.', '2024-12-12', 508014010101404),
+	('DELTAMETRINA', 60, 'INFAN INDUSTRIA QUIMICA FARMACEUTICA NACIONAL S/A', '2025-11-10', 511301501162416),
+	('CLORIDRATO DE RANITIDINA', 55, 'SANDOZ DO BRASIL INDÚSTRIA FARMACÊUTICA LTDA', '2023-07-20', 511502602111117),
+	('ACETATO DE DEXAMETASONA', 30, 'SANDOZ DO BRASIL INDÚSTRIA FARMACÊUTICA LTDA', '2024-01-21', 511502902164410),
+	('PANTOPRAZOL SÓDICO SESQUIHIIDRATADO', 39, 'SANDOZ DO BRASIL INDÚSTRIA FARMACÊUTICA LTDA', '2024-01-20', 511507506119413),
+	('DIPIRONA SÓDICA', 150, 'HIPOLABOR FARMACEUTICA LTDA', '2027-02-03', 511607101153116),
+	('MIDAZOLAM', 85, 'HIPOLABOR FARMACEUTICA LTDA', '2026-10-11', 511607301152415),
+	('PARACETAMOL', 99, 'HIPOLABOR FARMACEUTICA LTDA', '2028-01-10', 511607701134112),
+	('SULFATO DE MAGNÉSIO', 70, 'HYPOFARMA - INSTITUTO DE HYPODERMIA E FARMÁCIA LTD', '2027-10-13', 511803201157415),
+	('IBUPROFENO', 80, 'MANTECORP INDÚSTRIA QUÍMICA E FARMACÊUTICA S.A.', '2025-05-01', 512400201130326),
+	('ALPRAZOLAM', 35, 'MANTECORP INDÚSTRIA QUÍMICA E FARMACÊUTICA S.A.', '2025-05-01', 512400302115411),
+	('SULFATO DE SALBUTAMOL', 60, 'INDÚSTRIA QUÍMICA DO ESTADO DE GOIÁS S/A - IQUEGO', '2023-06-14', 513003501136413),
+	('AMOXICILINA TRIIDRATADA', 200, 'INDÚSTRIA QUÍMICA DO ESTADO DE GOIÁS S/A - IQUEGO', '2024-06-05', 513004101115417),
+	('CEFAZOLINA SÓDICA', 90, 'INSTITUTO BIOCHIMICO INDÚSTRIA FARMACÊUTICA LTDA', '2022-06-16', 513401101154413),
+	('OMEPRAZOL', 155, 'INSTITUTO BIOCHIMICO INDÚSTRIA FARMACÊUTICA LTDA', '2024-02-14', 513402201111412);
 
 -- --------------------------------------------------------
 
@@ -364,7 +372,7 @@ INSERT INTO `medicamentos` (`Nome_Medicam`, `Quantidade`, `Fabricante`, `Data_Va
 --
 
 CREATE TABLE IF NOT EXISTS `ocorrencias` (
-  `Codigo` bigint(20) NOT NULL,
+  `Codigo` bigint(20) NOT NULL AUTO_INCREMENT,
   `Data_ocorr` date NOT NULL,
   `Hora_ocorr` time NOT NULL,
   `ID_prontuario` bigint(20) NOT NULL,
@@ -383,6 +391,9 @@ CREATE TABLE IF NOT EXISTS `ocorrencias` (
 --       `usuarios` -> `CPF`
 --
 
+INSERT INTO `ocorrencias` (`Codigo`, `Data_ocorr`, `Hora_ocorr`, `ID_prontuario`, `Descricao`, `CPF`) VALUES
+(3, '2021-05-31', '10:12:31', 4, 'Paciente Amanda Jéssica Caroline de Paula, CPF:065.799.448-03 foi internada e alocada para o leito LB001, no dia 11 de Maio de 2021 as 10:12 AM, identificada com a CID A03.2', '065.799.448-03'),
+(4, '2021-05-12', '21:36:47', 4, 'Paciente Amanda Jéssica Caroline de Paula, CPF:065.799.448-03 foi liberada do leito LB001, no dia 12 de Maio de 2021 as 10:12 AM, depois de tomar sua medicação.', '065.799.448-03');
 -- --------------------------------------------------------
 
 --
@@ -408,56 +419,56 @@ CREATE TABLE IF NOT EXISTS `pacientes` (
 --
 
 INSERT INTO `pacientes` (`Nome_Paciente`, `Sexo`, `Estado`, `Data_Nasc`, `CPF`, `Tipo_Sang`) VALUES
-('Sueli Luna Martins', 'F', 'alta', '1961-12-12', '009.812.684-98', 'A-'),
-('Olivia Natália Sueli de Paula', 'F', 'alta', '1984-05-05', '012.456.594-80', 'AB-'),
-('Jennifer Clarice Assunção', 'F', 'alta', '1993-04-09', '029.226.827-06', 'B-'),
-('Lorena Lúcia Nascimento', 'F', 'alta', '1943-04-04', '037.734.615-26', 'A-'),
-('Tiago Geraldo Fogaça', 'M', 'alta', '1998-01-04', '065.603.436-00', 'O-'),
-('Amanda Jéssica Caroline de Paula', 'F', 'alta', '1968-04-06', '065.799.448-03', 'B+'),
-('Rosângela Alícia das Neves', 'F', 'alta', '1954-12-24', '068.103.730-04', 'B-'),
-('Pietro Levi Cláudio Costa', 'M', 'alta', '1961-02-26', '107.590.579-66', 'A+'),
-('Brenda Joana Fernanda Novaes', 'F', 'alta', '1998-11-03', '140.949.640-61', 'O-'),
-('Otávio Theo Elias Moura', 'M', 'alta', '1968-08-21', '167.879.644-12', 'B-'),
-('Analu Renata Eliane Aragão', 'F', 'alta', '1996-12-09', '188.647.372-27', 'O+'),
-('Liz Daiane Cavalcanti', 'F', 'alta', '1980-06-19', '195.907.118-12', 'AB-'),
-('Sophia Alícia Campos', 'F', 'alta', '1948-11-01', '201.095.279-09', 'A-'),
-('Caleb Bruno Ferreira', 'M', 'alta', '1949-09-25', '224.447.809-22', 'O-'),
-('Eliane Julia Aragão', 'F', 'alta', '2002-08-14', '263.899.863-00', 'B+'),
-('Stefany Marlene Marina Freitas', 'F', 'alta', '2001-05-07', '269.530.728-49', 'B+'),
-('Andreia Ana Campos', 'F', 'alta', '1983-12-06', '294.023.462-01', 'B+'),
-('Francisca Joana Simone da Luz', 'F', 'alta', '1961-03-27', '325.227.456-62', 'O+'),
-('Vera Tânia Bruna da Conceição', 'F', 'alta', '1953-08-26', '341.846.973-64', 'B+'),
-('Hugo Gael Fernandes', 'M', 'alta', '1944-03-12', '345.048.927-58', 'O-'),
-('Camila Rosângela Aparecida Melo', 'F', 'alta', '1970-04-10', '419.234.708-33', 'O+'),
-('Pedro Henrique Henrique Juan Dias', 'M', 'alta', '1953-02-05', '429.326.274-14', 'AB-'),
-('Teresinha Jaqueline da Cunha', 'F', 'alta', '1979-06-05', '436.232.985-49', 'AB+'),
-('Anderson Manuel da Cunha', 'M', 'alta', '1967-07-16', '448.953.115-03', 'A-'),
-('Ester Maya Alice da Paz', 'F', 'alta', '1971-08-04', '450.331.323-18', 'O+'),
-('Leandro Mário Ferreira', 'M', 'alta', '1975-12-21', '483.410.653-55', 'O-'),
-('Vinicius Mateus Santos', 'M', 'alta', '1955-09-27', '486.038.078-92', 'A+'),
-('Paulo Sebastião Sales', 'M', 'alta', '1982-05-14', '494.194.016-42', 'A-'),
-('Giovana Lorena Pires', 'F', 'alta', '1975-12-03', '501.661.629-90', 'AB-'),
-('Pietra Mariah da Rosa', 'F', 'alta', '1977-05-11', '530.492.786-92', 'A+'),
-('Cauê Ian Victor Lopes', 'M', 'alta', '1955-12-25', '538.758.667-38', 'AB-'),
-('Liz Francisca Fogaça', 'F', 'alta', '1998-10-13', '575.168.453-29', 'O+'),
-('Guilherme Noah Gael Nascimento', 'M', 'alta', '1975-03-24', '578.205.336-41', 'O-'),
-('Francisca Bruna Eduarda Vieira', 'F', 'alta', '1994-06-04', '613.234.078-55', 'B+'),
-('Rafaela Eloá Raquel Campos', 'F', 'alta', '2002-08-07', '622.748.620-52', 'A-'),
-('Levi Leandro Otávio Duarte', 'M', 'alta', '1974-08-11', '626.142.628-70', 'A+'),
-('Esther Benedita Farias', 'F', 'alta', '1948-03-11', '645.173.749-63', 'A-'),
-('Bárbara Antonella Marina Corte Real', 'F', 'alta', '1987-12-03', '649.100.528-36', 'O-'),
-('Tomás Giovanni Nelson Freitas', 'M', 'alta', '1983-05-06', '666.418.353-67', 'AB-'),
-('Carla Isabel Beatriz Fogaça', 'F', 'alta', '1965-12-07', '742.819.788-01', 'AB+'),
-('Valentina Fátima Santos', 'F', 'alta', '2000-01-12', '759.661.020-07', 'O-'),
-('Stella Camila Castro', 'F', 'alta', '1958-02-26', '787.976.063-67', 'A-'),
-('Raimundo Daniel das Neves', 'M', 'alta', '1985-09-04', '799.171.576-03', 'A+'),
-('Victor Renan Assis', 'M', 'alta', '1948-10-03', '800.170.953-10', 'AB+'),
-('Louise Clara Fernanda Teixeira', 'F', 'alta', '1972-10-13', '844.695.514-81', 'O+'),
-('Luiz Calebe Luís Castro', 'M', 'alta', '1988-06-04', '851.618.421-80', 'A+'),
-('Benjamin Bento Rodrigues', 'M', 'alta', '1967-06-21', '856.213.656-58', 'A+'),
-('Isadora Natália da Mata', 'F', 'alta', '1955-11-12', '901.930.181-01', 'AB+'),
-('Analu Aparecida Vanessa Brito', 'F', 'alta', '1963-02-19', '921.670.790-95', 'B+'),
-('Analu Caroline dos Santos', 'F', 'alta', '1989-12-01', '981.757.680-96', 'O-');
+  ('Sueli Luna Martins', 'F', 'alta', '1961-12-12', '009.812.684-98', 'A-'),
+  ('Olivia Natália Sueli de Paula', 'F', 'alta', '1984-05-05', '012.456.594-80', 'AB-'),
+  ('Jennifer Clarice Assunção', 'F', 'alta', '1993-04-09', '029.226.827-06', 'B-'),
+  ('Lorena Lúcia Nascimento', 'F', 'alta', '1943-04-04', '037.734.615-26', 'A-'),
+  ('Tiago Geraldo Fogaça', 'M', 'alta', '1998-01-04', '065.603.436-00', 'O-'),
+  ('Amanda Jéssica Caroline de Paula', 'F', 'internado', '1968-04-06', '065.799.448-03', 'B+'),
+  ('Rosângela Alícia das Neves', 'F', 'alta', '1954-12-24', '068.103.730-04', 'B-'),
+  ('Pietro Levi Cláudio Costa', 'M', 'alta', '1961-02-26', '107.590.579-66', 'A+'),
+  ('Brenda Joana Fernanda Novaes', 'F', 'alta', '1998-11-03', '140.949.640-61', 'O-'),
+  ('Otávio Theo Elias Moura', 'M', 'alta', '1968-08-21', '167.879.644-12', 'B-'),
+  ('Analu Renata Eliane Aragão', 'F', 'internado', '1996-12-09', '188.647.372-27', 'O+'),
+  ('Liz Daiane Cavalcanti', 'F', 'alta', '1980-06-19', '195.907.118-12', 'AB-'),
+  ('Sophia Alícia Campos', 'F', 'alta', '1948-11-01', '201.095.279-09', 'A-'),
+  ('Caleb Bruno Ferreira', 'M', 'alta', '1949-09-25', '224.447.809-22', 'O-'),
+  ('Eliane Julia Aragão', 'F', 'alta', '2002-08-14', '263.899.863-00', 'B+'),
+  ('Stefany Marlene Marina Freitas', 'F', 'alta', '2001-05-07', '269.530.728-49', 'B+'),
+  ('Andreia Ana Campos', 'F', 'internado', '1983-12-06', '294.023.462-01', 'B+'),
+  ('Francisca Joana Simone da Luz', 'F', 'alta', '1961-03-27', '325.227.456-62', 'O+'),
+  ('Vera Tânia Bruna da Conceição', 'F', 'alta', '1953-08-26', '341.846.973-64', 'B+'),
+  ('Hugo Gael Fernandes', 'M', 'alta', '1944-03-12', '345.048.927-58', 'O-'),
+  ('Camila Rosângela Aparecida Melo', 'F', 'alta', '1970-04-10', '419.234.708-33', 'O+'),
+  ('Pedro Henrique Henrique Juan Dias', 'M', 'alta', '1953-02-05', '429.326.274-14', 'AB-'),
+  ('Teresinha Jaqueline da Cunha', 'F', 'alta', '1979-06-05', '436.232.985-49', 'AB+'),
+  ('Anderson Manuel da Cunha', 'M', 'internado', '1967-07-16', '448.953.115-03', 'A-'),
+  ('Ester Maya Alice da Paz', 'F', 'alta', '1971-08-04', '450.331.323-18', 'O+'),
+  ('Leandro Mário Ferreira', 'M', 'alta', '1975-12-21', '483.410.653-55', 'O-'),
+  ('Vinicius Mateus Santos', 'M', 'alta', '1955-09-27', '486.038.078-92', 'A+'),
+  ('Paulo Sebastião Sales', 'M', 'alta', '1982-05-14', '494.194.016-42', 'A-'),
+  ('Giovana Lorena Pires', 'F', 'alta', '1975-12-03', '501.661.629-90', 'AB-'),
+  ('Pietra Mariah da Rosa', 'F', 'alta', '1977-05-11', '530.492.786-92', 'A+'),
+  ('Cauê Ian Victor Lopes', 'M', 'alta', '1955-12-25', '538.758.667-38', 'AB-'),
+  ('Liz Francisca Fogaça', 'F', 'alta', '1998-10-13', '575.168.453-29', 'O+'),
+  ('Guilherme Noah Gael Nascimento', 'M', 'alta', '1975-03-24', '578.205.336-41', 'O-'),
+  ('Francisca Bruna Eduarda Vieira', 'F', 'alta', '1994-06-04', '613.234.078-55', 'B+'),
+  ('Rafaela Eloá Raquel Campos', 'F', 'alta', '2002-08-07', '622.748.620-52', 'A-'),
+  ('Levi Leandro Otávio Duarte', 'M', 'alta', '1974-08-11', '626.142.628-70', 'A+'),
+  ('Esther Benedita Farias', 'F', 'alta', '1948-03-11', '645.173.749-63', 'A-'),
+  ('Bárbara Antonella Marina Corte Real', 'F', 'internado', '1987-12-03', '649.100.528-36', 'O-'),
+  ('Tomás Giovanni Nelson Freitas', 'M', 'alta', '1983-05-06', '666.418.353-67', 'AB-'),
+  ('Carla Isabel Beatriz Fogaça', 'F', 'alta', '1965-12-07', '742.819.788-01', 'AB+'),
+  ('Valentina Fátima Santos', 'F', 'alta', '2000-01-12', '759.661.020-07', 'O-'),
+  ('Stella Camila Castro', 'F', 'alta', '1958-02-26', '787.976.063-67', 'A-'),
+  ('Raimundo Daniel das Neves', 'M', 'alta', '1985-09-04', '799.171.576-03', 'A+'),
+  ('Victor Renan Assis', 'M', 'alta', '1948-10-03', '800.170.953-10', 'AB+'),
+  ('Louise Clara Fernanda Teixeira', 'F', 'alta', '1972-10-13', '844.695.514-81', 'O+'),
+  ('Luiz Calebe Luís Castro', 'M', 'alta', '1988-06-04', '851.618.421-80', 'A+'),
+  ('Benjamin Bento Rodrigues', 'M', 'alta', '1967-06-21', '856.213.656-58', 'A+'),
+  ('Isadora Natália da Mata', 'F', 'alta', '1955-11-12', '901.930.181-01', 'AB+'),
+  ('Analu Aparecida Vanessa Brito', 'F', 'internado', '1963-02-19', '921.670.790-95', 'B+'),
+  ('Analu Caroline dos Santos', 'F', 'internado', '1989-12-01', '981.757.680-96', 'O-');
 
 -- --------------------------------------------------------
 
@@ -617,8 +628,8 @@ INSERT INTO `permissoes` (`id`, `nome`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `prontuarios` (
-  `aberto` tinyint(1) NOT NULL,
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `aberto` tinyint(1) NOT NULL,
   `Data_Internacao` date NOT NULL,
   `Data_Saida` date NOT NULL,
   `Id_leito` varchar(20) NOT NULL,
@@ -636,11 +647,18 @@ CREATE TABLE IF NOT EXISTS `prontuarios` (
 --       `pacientes` -> `CPF`
 --
 
-INSERT INTO `prontuarios` (`aberto`, `ID`, `Data_Internacao`, `Data_Saida`, `Id_leito`, `Cpfpaciente`) VALUES
-(1, 1, '2021-05-11', '0000-00-00', 'LB001', '065.799.448-03'),
-(0, 2, '2021-05-11', '0000-00-00', 'LB001', '065.799.448-03'),
-(1, 3, '2021-05-11', '2021-05-11', 'LB001', '065.799.448-03'),
-(0, 4, '2021-05-11', '2021-05-02', 'LB001', '065.799.448-03');
+INSERT INTO `prontuarios` (`ID`, `aberto`, `Data_Internacao`, `Data_Saida`, `Id_leito`, `Cpfpaciente`) VALUES
+  (1, 1, '2021-05-11', '0000-00-00', 'LB001', '065.799.448-03'),
+  (2, 0, '2021-05-11', '0000-00-00', 'LB001', '065.799.448-03'),
+  (3, 1, '2021-05-11', '2021-05-11', 'LB001', '065.799.448-03'),
+  (4, 0, '2021-05-11', '2021-05-12', 'LB001', '065.799.448-03'),
+  (5, 1, '2021-05-03', '0000-00-00', 'LB002', '921.670.790-95'),
+  (6, 0, '2021-03-16', '2021-03-31', 'LB003', '981.757.680-96'),
+  (7, 1, '2021-04-21', '0000-00-00', 'LB004', '188.647.372-27'),
+  (8, 0, '2021-02-09', '2021-02-12', 'LC001', '448.953.115-03'),
+  (9, 0, '2021-05-29', '2021-05-30', 'LC002', '294.023.462-01'),
+  (10, 1, '2021-05-31', '0000-00-00', 'LC003', '856.213.656-58'),
+  (11, 1, '2021-05-28', '0000-00-00', 'LC004', '649.100.528-36');
 
 -- --------------------------------------------------------
 
@@ -720,7 +738,7 @@ ALTER TABLE `agendamento_prontuario`
 -- Limitadores para a tabela `cid_prontuario`
 --
 ALTER TABLE `cid_prontuario`
-  ADD CONSTRAINT `cid_prontuario_ibfk_1` FOREIGN KEY (`id_CID`) REFERENCES `cid` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `cid_prontuario_ibfk_1` FOREIGN KEY (`id_CID`) REFERENCES `cid` (`id`),
   ADD CONSTRAINT `cid_prontuario_ibfk_2` FOREIGN KEY (`id_prontuario`) REFERENCES `prontuarios` (`ID`);
 
 --
@@ -746,7 +764,7 @@ ALTER TABLE `estagiarios`
 --
 ALTER TABLE `ocorrencias`
   ADD CONSTRAINT `ocorrencia_ibfk_1` FOREIGN KEY (`ID_prontuario`) REFERENCES `prontuarios` (`ID`),
-  ADD CONSTRAINT `ocorrencia_ibfk_2` FOREIGN KEY (`CPF`) REFERENCES `usuarios` (`CPF`);
+  ADD CONSTRAINT `ocorrencia_ibfk_2` FOREIGN KEY (`CPF`) REFERENCES `pacientes` (`CPF`);
 
 --
 -- Limitadores para a tabela `permissao_cargo`
