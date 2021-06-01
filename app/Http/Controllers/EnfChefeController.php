@@ -215,19 +215,15 @@ class EnfChefeController extends Controller
            $sql = "SELECT * FROM leitos";
            $query = mysqli_query($connect, $sql);          
            $i = 0;
-           while($dado = mysqli_fetch_array($query)){
-                $leitos[$i] = $dado;                
-                /*if($dado["Ocupado"] == 0){
-                    $statusLeito[$i] = "Vazio";
+           while($dado = mysqli_fetch_array($query)){                               
+                if($dado["Ocupado"] == 0){
+                    $dado["Ocupado"] = "Vazio";
                 }else{
-                    $statusLeito[$i] = "Ocupado";
-                }
-                
-                
-                */
+                    $dado["Ocupado"] = "Ocupado";
+                }                
+                $leitos[$i] = $dado; 
                 $i++;
-           }
-           //dd($leitos);
+           }           
            return view('/enfChefe/cadastroLeito', ['leitos'=> $leitos]);
         } 
         else{
