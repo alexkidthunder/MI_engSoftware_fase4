@@ -65,12 +65,13 @@ Route::post('/alterarAtribuicao',[AdminController::class,'alterarAtribuicao'])->
 /*------------ Rota para Busca ------------------------ */
 Route::get('/lupinha', [AdminController::class,'lupinha'])->name('lupinha');
 Route::get('/hp', [HomeController::class,'buscaProntuario']);
+
 /*------------ Rota para Paciente e Prontuário------------------------ */
 
 Route::get('/listaPacientes', [HomeController::class,'listaPacientes'])->name('pacientes');
 Route::get('/prontuario',[HomeController::class,'prontuario'])->name('prontuario');
 Route::get('/historicoDeProntuario', [HomeController::class,'historicoProntuario'])->name('historicoProntuario');
-
+Route::get('/buscarPaciente', [HomeController::class,'buscarPaciente'])->name('buscarPaciente');
 /*------------ Rota para cadastro de paciente  e prontuário------------------------ */
 
 Route::get('/cadastroPaciente', [HomeController::class,'cadastroPaciente'])->name('cadastroPaciente');
