@@ -206,7 +206,7 @@ class EnfChefeController extends Controller
               
     }
 
-    public function cadastroLeito(){
+    public function cadastroLeito(){                        //exibe os leitos na página
         VerificaLoginController::verificarLogin();
         include("db.php");
         $resultado = VerificaLoginController::verificaPermissao(29);
@@ -231,14 +231,20 @@ class EnfChefeController extends Controller
         }       
     }
 
-    public function cadastrarLeito(Request $request){
+    public function cadastrarLeito(Request $request){               //cadastro de leito
         include("db.php");
+
+        //busca no banco de dados
         $sql = "SELECT * FROM leitos WHERE Identificacao = '$request->Leito'";
         $query = mysqli_query($connect, $sql);
+
+        //caso não esteja já cadastrado no sistema
         if(mysqli_num_rows($query) == 0){
             $sql1 = "INSERT INTO leitos (Identificacao,Ocupado) values ('$request->Leito','0')";
             $query1 = mysqli_query($connect, $sql1);
             return redirect()->route('cadastroLeito')->with('msg-sucess','Leito cadastrado com sucesso!'); 
+
+        //se já estiver cadastrado    
         }else{
             return redirect()->route('cadastroLeito')->with('msg-error','Leito já cadastrado!'); 
         }        
