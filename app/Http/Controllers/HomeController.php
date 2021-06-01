@@ -789,5 +789,40 @@ class HomeController extends Controller
         }
         return view('historicoProntuario',['prontuario' => $prontuario]);
     }
+
+    /** Função que busca um paciente para o cadastro de prontuário
+     * Também retorna os Leitos disponíveis
+     */
+    public function buscarPaciente(Request $request)
+    {
+        session_start();
+        include("db.php");
+        // ----- BUSCANDO O PACIENTE --- 
+        $sql = "SELECT * FROM pacientes WHERE CPF = '$request->cpf_user'";
+        $query = mysqli_query($connect, $sql);
+        $paciente = mysqli_fetch_array($query);
+        
+       
+        // ----- BUSCANDO OS LEITOS --- 
+        $sql = "SELECT * FROM leitos";
+        $query = mysqli_query($connect, $sql);
+        $i = 0;
+        $leitos = null;
+        while ($dado = mysqli_fetch_array($query)) {
+            if ($dado['Ocupado'] == 0) {
+                $leitos[$i] = $dado;
+            }
+
+            $i++;
+        }
+          // ----- FIM BUSCA DOS LEITOS --- 
+
+        if ($paciente == null) {
+            return redirect()->back()->with('msg-error', 'Paciente não encontrado');
+        } else {
+
+            return view('cadastroProntuario', ['paciente' => $paciente, 'leitos'=>$leitos]);
+        }
+    }
     
 }
