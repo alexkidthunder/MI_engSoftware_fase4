@@ -63,12 +63,7 @@
                     {{$paciente['CPF']}}                     
                     </div>
                 </div>
-                <!------ CID do Paciente ------>
-                <div class="col-lg-4">
-                    <div class="box-gray">
-                        CID: C00
-                    </div>
-                </div>
+                                
             </div>
             <!------ Fim das infomações do Paciente buscado ------>
 
