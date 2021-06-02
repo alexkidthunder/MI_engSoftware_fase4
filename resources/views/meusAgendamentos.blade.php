@@ -94,7 +94,8 @@
                     </div>
                 </div>
             </div>
-
+            <form action="/FMagendamentos" method="post">
+            @csrf
             <div class="row">
                 <div class="col-lg-9">
                 </div>
@@ -104,6 +105,8 @@
                     </div>
                 </div>
             </div>
+            <input type="hidden" name="idA" value="{{$infos['codA'.$i]}}">
+            </form>
             {{$i++}}
         </div>
         @endwhile
