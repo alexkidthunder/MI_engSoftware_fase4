@@ -108,6 +108,7 @@
                     <!------ Botão para acessar prontuário ------>
                     <form action="/prontuario" method="get">
                     <input type="hidden" name='cpf' value='{{$prontuario["cpf".$i]}}'>
+                    <input type="hidden" name='numero' value='{{$prontuario["id".$i]}}'>
                     <div class="col-12 col-sm-6 col-md-12 col-lg-3 input-full-width">
                         <br>
                         <button type="submit" class="btn-blue">Prontuário</button>

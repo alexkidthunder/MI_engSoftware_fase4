@@ -46,7 +46,7 @@ Route::get('/verificarLogin', [ VerificaLoginController::class,'verificarLogin']
 
 /*------------ Rota para o perfil ------------------------ */
 Route::get('/meuPerfil', [HomeController::class,'editPerfil'])->name('editarPerfil');
-Route::post('/alterar',[HomeController::class,'alterarDados']);
+Route::post('/alterarDados',[HomeController::class,'alterarDados']);
 Route::post('/alterarSP',[HomeController::class,'alterarSenhaPerfil']);
 /*------------ Rotas do administrador ------------------ */
 
@@ -65,12 +65,17 @@ Route::post('/alterarAtribuicao',[AdminController::class,'alterarAtribuicao'])->
 /*------------ Rota para Busca ------------------------ */
 Route::get('/lupinha', [AdminController::class,'lupinha'])->name('lupinha');
 Route::get('/hp', [HomeController::class,'buscaProntuario']);
+
 /*------------ Rota para Paciente e Prontuário------------------------ */
 
 Route::get('/listaPacientes', [HomeController::class,'listaPacientes'])->name('pacientes');
 Route::get('/prontuario',[HomeController::class,'prontuario'])->name('prontuario');
 Route::get('/historicoDeProntuario', [HomeController::class,'historicoProntuario'])->name('historicoProntuario');
-
+Route::get('/buscarPaciente', [HomeController::class,'buscarPaciente'])->name('buscarPaciente');
+Route::post('/cadastroCID',[HomeController::class,'cadastrarCidProntuario']);
+Route::post('/cadastroOcorr',[HomeController::class,'adicionarOcorrencias']);
+Route::post('/finalizarProntuario',[HomeController::class,'finalizarProntuario']);
+Route::post('/editarProntuario',[HomeController::class,'editarProntuario']);
 /*------------ Rota para cadastro de paciente  e prontuário------------------------ */
 
 Route::get('/cadastroPaciente', [HomeController::class,'cadastroPaciente'])->name('cadastroPaciente');
@@ -82,7 +87,8 @@ Route::get('/cadastroProntuario', [HomeController::class,'cadastroProntuario'])-
 Route::get('/agendamentosRealizados', [HomeController::class,'agendamentosRealizados'])->name('agendamentosRealizados');
 Route::get('/meusAgendamentos', [HomeController::class,'meusAgendamentos'])->name('meusAgendamentos');
 Route::get('/agendamentos',[HomeController::class,'agendamentos'])->name('agendamentos');
-
+Route::post('/ACagendamentos',[HomeController::class,'autoCadastroAgendamento']);
+Route::post('/FMagendamentos',[HomeController::class,'finalizarMeusAgendamentos']);
 /*------------ Rotas do enfermeiro chefe -------------*/
 
 Route::get('/cadastroPlantonista', [EnfChefeController::class,'cadastroPlantonista'])->name('cadastroPlantonista');

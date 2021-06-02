@@ -56,7 +56,7 @@
             <!------------ Informações pessoais do usuário ------------>
                 <div class="box" id="perfilArea">
                     <div class="change">
-                        <form method="post" action="/alterar" id="register">
+                        <form method="post" action="/alterarDados" id="register">
                         @csrf
                             <!------------ Nome do usuário ------------>
                             <div class="row">

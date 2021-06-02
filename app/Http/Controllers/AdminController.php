@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\DB;
 use mysqli;
 use PhpParser\Node\Stmt\ElseIf_;
 
-
+use function PHPUnit\Framework\isEmpty;
 
 class AdminController extends Controller
 {
@@ -23,26 +23,26 @@ class AdminController extends Controller
         return view('/admin/menu');
     }
 
-    public function log(){ 
+    public function log(){                                  //função para listar log
          VerificaLoginController::verificarLoginAdmin();
-        /* 
-        //gerar um log
-        
+         include("db.php");
+  
+        //busca logs para exibir na página
+        $existeLog = "SELECT * FROM logs";
+        $query = mysqli_query($connect, $existeLog);          
+        $i = 0;
+        $logs = [];
 
-        include("db.php");                          
-        $ip = $_SERVER['REMOTE_ADDR'];              //detecta ip
-        $data = date('d/m/Y');                      //detecta data
-        $horas = time();                            //detecta hora
+        //preenche o array log com o elemento
+        while($elemento = mysqli_fetch_array($query)){                                              
+                $logs[$i] = $elemento; 
+                $i++;
+        }           
 
-        //insere no banco de dados
-        $novoLog = "INSERT INTO log (Data_Log, Hora_Agend, Ip, Acao) values ('$data','$horas', '$ip', $acao)";
-        mysqli_query($connect,$novoLog);
-        */
-        return view('/admin/log');
-        
+        return view('/admin/log', ['logs'=> $logs]);
     }
     
-    public function salvarLog($acao,$ip){   
+    public static function salvarLog($acao,$ip){                    //função para salvar log
         include("db.php"); 
 
         date_default_timezone_set('America/Sao_Paulo');     //padrão de fuso horário    
@@ -61,9 +61,6 @@ class AdminController extends Controller
         VerificaLoginController::verificarLoginAdmin();
         return view('/admin/atribuicao');
     }
-
-
-    
 
 
     public function permissao(Request $request){
@@ -223,16 +220,23 @@ class AdminController extends Controller
         VerificaLoginController::verificarLoginAdmin();
         return view('/admin/backup');
     }
-
+    /**
+     * Função que remove um usuario do sistema
+     */
     public function remocao()
     {  
         
         VerificaLoginController::verificarLoginAdmin();
         include('..\app\Http\Controllers\db.php'); 
+
         if (isset($_GET['cpf'])) {
-            $cpf = $_GET['cpf'];
-            //$atr = $_GET['atr'];    
+            $cpf = $_GET['cpf'];            
+            if(strcmp($_SESSION['administrador'], $cpf) == 0) {
+                return redirect()->back()->with('msg-error', 'Você não pode remover sua própria conta');
+            }
+
             $query ="DELETE FROM usuarios WHERE CPF = '$cpf'";
+            
             $status = mysqli_query($connect, $query);            
                     
             return view('/admin/remocaoUsuario',['status'=>$status]);
@@ -439,7 +443,9 @@ class AdminController extends Controller
             }
       }
      
-
+      /**
+       * Função que busca e retorna um usuario no banco de dados
+       */
     public function busca(Request $request)
     {          
         session_start();

@@ -34,7 +34,7 @@
         <div class="container-1" id="on-duty">
             <h1 class="title-download">LISTAGEM DE PLANTONISTA</h1>
             <div class="box-on-duty">
-                <!--------- Cabeçario --------->
+                <!--------- Cabeçalho --------->
                 <div class="title">
                     <div class="row">
                         <div class="col-6 col-sm-6 col-md-8 col-lg-8">

@@ -143,6 +143,7 @@ class EnfChefeController extends Controller
                 while($sql2 = mysqli_fetch_array($query2)){
                     $identificaP = $sql2['Cpfpaciente'];
                     $infos['leito'.$i] = $sql2['Id_leito'];
+                    $infos['id'.$i] = $sql2['ID'];
                 }
                 $sql3 = "SELECT * FROM pacientes WHERE CPF = '$identificaP'";
                 $query3 = mysqli_query($connect,$sql3);
@@ -188,6 +189,7 @@ class EnfChefeController extends Controller
                 while($sql2 = mysqli_fetch_array($query2)){
                     $identificaP = $sql2['Cpfpaciente'];
                     $infos['leito'.$i] = $sql2['Id_leito'];
+                    $infos['id'.$i] = $sql2['ID'];
                 }
                 $sql3 = "SELECT * FROM pacientes WHERE CPF = '$identificaP'";
                 $query3 = mysqli_query($connect,$sql3);
@@ -204,7 +206,7 @@ class EnfChefeController extends Controller
               
     }
 
-    public function cadastroLeito(){
+    public function cadastroLeito(){                        //exibe os leitos na página
         VerificaLoginController::verificarLogin();
         include("db.php");
         $resultado = VerificaLoginController::verificaPermissao(29);
@@ -213,50 +215,59 @@ class EnfChefeController extends Controller
            $sql = "SELECT * FROM leitos";
            $query = mysqli_query($connect, $sql);          
            $i = 0;
-           while($dado = mysqli_fetch_array($query)){
-                $leitos[$i] = $dado["Identificacao"];
+           while($dado = mysqli_fetch_array($query)){                               
                 if($dado["Ocupado"] == 0){
-                    $statusLeito[$i] = "Vazio";
+                    $dado["Ocupado"] = "Vazio";
                 }else{
-                    $statusLeito[$i] = "Ocupado";
-                }
-                
+                    $dado["Ocupado"] = "Ocupado";
+                }                
+                $leitos[$i] = $dado; 
                 $i++;
-           }
-           return view('/enfChefe/cadastroLeito', ['leitos'=> $leitos, 'statusLeito'=>$statusLeito]);
+           }           
+           return view('/enfChefe/cadastroLeito', ['leitos'=> $leitos]);
         } 
         else{
             return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
         }       
     }
 
-    public function cadastrarLeito(Request $request){
+    public function cadastrarLeito(Request $request){               //cadastro de leito
         include("db.php");
+
+        //busca no banco de dados
         $sql = "SELECT * FROM leitos WHERE Identificacao = '$request->Leito'";
         $query = mysqli_query($connect, $sql);
+
+        //caso não esteja já cadastrado no sistema
         if(mysqli_num_rows($query) == 0){
             $sql1 = "INSERT INTO leitos (Identificacao,Ocupado) values ('$request->Leito','0')";
             $query1 = mysqli_query($connect, $sql1);
-        }else{
-            return redirect()->route('cadastroLeito')->with('error','Leito já cadastrado!'); 
-        }
+            return redirect()->route('cadastroLeito')->with('msg-sucess','Leito cadastrado com sucesso!'); 
 
-        return view('/enfChefe/cadastroLeito');
+        //se já estiver cadastrado    
+        }else{
+            return redirect()->route('cadastroLeito')->with('msg-error','Leito já cadastrado!'); 
+        }        
 
     }
 
     public function removerLeito(Request $request){
         include("db.php");
-        $sql = "SELECT * FROM leitos WHERE Identificacao = '$request->focorrencia'";
-        $query = mysqli_query($connect, $sql);
-        if(mysqli_num_rows($query) == 1){
-            $sql1 = "DELETE FROM WHERE Identificacao = '$request->focorrencia'";
-            $query1 = mysqli_query($connect, $sql1);
+        $perm = VerificaLoginController::verificaPermissao(30);
+        if($perm == "1"){
+            $sql = "SELECT * FROM leitos WHERE Identificacao = '$request->focorrencia'";
+            $query = mysqli_query($connect, $sql);
+            if(mysqli_num_rows($query) == 1){
+                $sql1 = "DELETE FROM leitos WHERE Identificacao = '$request->focorrencia'";
+                $query1 = mysqli_query($connect, $sql1);
+                return redirect()->route('cadastroLeito')->with('msg-sucess','Leito removido com sucesso!'); 
+            }else{
+                return redirect()->route('cadastroLeito')->with('msg-error','Leito não encontrado!'); 
+            }
         }else{
-            return redirect()->route('cadastroLeito')->with('error','Leito não encontrado!'); 
+            return redirect()-back();
         }
         
-        return view('/enfChefe/cadastroLeito'); 
     }
 
 
