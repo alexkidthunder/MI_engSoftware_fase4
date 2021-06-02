@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
     <link href="{{ 'css/style.css' }}" rel="stylesheet">
     <link href="{{ 'bootstrap/css/bootstrap.css' }}" rel="stylesheet">
+    <script src="{{ ('js/mascara.min.js')}}"></script>
 
     <title>Cadastro Prontuario</title>
 
@@ -30,8 +31,8 @@
                         <h3>BUSCAR PACIENTE</h3>
                         <form class="search-bar" action="/buscarPaciente" method="get">
                             <!--- Campo para a inserção do CPF do paciente --->
-                            <input name="cpf_user" id="cpf_user" type="text" placeholder="Informe o CPF" required
-                                maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
+                            <input id="cpf_user" name="cpf_user" type="text" onkeyup="mascara('###.###.###-##',this,event,true)" 
+                            required maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" placeholder="Informe o CPF">
                             <button type="submit">
                                 <i class="fas fa-search"></i>
                             </button>

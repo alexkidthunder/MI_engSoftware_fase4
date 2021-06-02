@@ -363,7 +363,6 @@ class HomeController extends Controller
                         while($sql2 = mysqli_fetch_array($query2)){
                             $identificaP = $sql2['Cpfpaciente'];
                             $infos['leito'.$i] = $sql2['Id_leito'];
-                            $infos['id'.$i] = $sql2['ID'];
                         }
                         $sql3 = "SELECT * FROM pacientes WHERE CPF = '$identificaP'";
                         $query3 = mysqli_query($connect,$sql3);
@@ -395,7 +394,6 @@ class HomeController extends Controller
                         while($sql2 = mysqli_fetch_array($query2)){
                             $identificaP = $sql2['Cpfpaciente'];
                             $infos['leito'.$i] = $sql2['Id_leito'];
-                            $infos['id'.$i] = $sql2['ID'];
                         }
                         $sql3 = "SELECT * FROM pacientes WHERE CPF = '$identificaP'";
                         $query3 = mysqli_query($connect,$sql3);
@@ -419,7 +417,6 @@ class HomeController extends Controller
         include("db.php");
         $infos = [];
         $i = 0;
-        $identificaP = null;
         if($resultado == "1"){
             if(isset($_SESSION['enfermeiro'])){
                 $cpf = $_SESSION['enfermeiro'];
@@ -453,38 +450,37 @@ class HomeController extends Controller
 
                         $i++;
                     }
+
+                    $i++;
                 }
             }else if(isset($_SESSION['estagiario'])){
                 $cpf = $_SESSION['estagiario'];
                 $sql = "SELECT * FROM agendamentos WHERE CPF_usuario = '$cpf'";
                 $query = mysqli_query($connect,$sql);
                 while($sql = mysqli_fetch_array($query)){
-                    if($sql['Realizado'] == 0){
-                        $medicamento = $sql['Cod_medicamento'];
-                        $prontuario = $sql['ID_prontuario'];
-                        $infos['hora'.$i] = $sql['Hora_Agend'];
-                        $infos['data'.$i] = $sql['Data_Agend'];
-                        $infos['posologia'.$i] = $sql['Posologia'];
-                        $sql1 = "SELECT * FROM medicamentos WHERE Codigo = '$medicamento'";
-                        $query1 = mysqli_query($connect,$sql1);
-                        while($sql1 = mysqli_fetch_array($query1)){
-                            $infos['medicamento'.$i] = $sql1['Nome_Medicam'];
-                        }
-                        $sql2 = "SELECT * FROM prontuarios WHERE ID = '$prontuario'";
-                        $query2 = mysqli_query($connect,$sql2);
-                        while($sql2 = mysqli_fetch_array($query2)){
-                            $identificaP = $sql2['Cpfpaciente'];
-                            $infos['leito'.$i] = $sql2['Id_leito'];
-                            $infos['id'.$i] = $sql2['ID'];
-                        }
-                        $sql3 = "SELECT * FROM pacientes WHERE CPF = '$identificaP'";
-                        $query3 = mysqli_query($connect,$sql3);
-                        while($sql3 = mysqli_fetch_array($query3)){
-                            $infos['paciente'.$i] = $sql3['Nome_Paciente'];
-                        }
-
-                        $i++;
+                    $medicamento = $sql['Cod_medicamento'];
+                    $prontuario = $sql['ID_prontuario'];
+                    $infos['hora'.$i] = $sql['Hora_Agend'];
+                    $infos['data'.$i] = $sql['Data_Agend'];
+                    $infos['posologia'.$i] = $sql['Posologia'];
+                    $sql1 = "SELECT * FROM medicamentos WHERE Codigo = '$medicamento'";
+                    $query1 = mysqli_query($connect,$sql1);
+                    while($sql1 = mysqli_fetch_array($query1)){
+                        $infos['medicamento'.$i] = $sql1['Nome_Medicam'];
                     }
+                    $sql2 = "SELECT * FROM prontuarios WHERE ID = '$prontuario'";
+                    $query2 = mysqli_query($connect,$sql2);
+                    while($sql2 = mysqli_fetch_array($query2)){
+                        $identificaP = $sql2['Cpfpaciente'];
+                        $infos['leito'.$i] = $sql2['Id_leito'];
+                    }
+                    $sql3 = "SELECT * FROM pacientes WHERE CPF = '$identificaP'";
+                    $query3 = mysqli_query($connect,$sql3);
+                    while($sql3 = mysqli_fetch_array($query3)){
+                        $infos['paciente'.$i] = $sql3['Nome_Paciente'];
+                    }
+
+                    $i++;
                 }
             }
 
@@ -647,7 +643,7 @@ class HomeController extends Controller
             
             $ip = $request->ip();
             $acao = "Cadastrou paciente $request->fnome";           
-            $this-> salvarLog($acao, $ip);
+            $this->salvarLog($acao, $ip);
 
             return redirect()->route('cadastroPaciente')->with('success', "Paciente cadastrado com sucesso!");
         }else{
@@ -687,13 +683,12 @@ class HomeController extends Controller
                         $paciente['prontuario'] = $sql['ID'];
                     }
 
-
             }
             /*fim dos dados do paciente */
-    
+
             /*inicio dos dados do agendamento */
-            if($request->numero != null){
-                $sql = "SELECT * FROM agendamentos WHERE ID_prontuario = '$request->numero;'";
+            if(isset($id)){
+                $sql = "SELECT * FROM agendamentos WHERE ID_prontuario = '$id'";
                 $query = mysqli_query($connect,$sql);
                 while($sql = mysqli_fetch_array($query)){
                     $medicamento = $sql['Cod_medicamento'];
@@ -727,44 +722,11 @@ class HomeController extends Controller
                     }
                 }
                 /*fim dos dados do agendamento e medicamento */
-
-                /*inicio das ocorrências */
-                $infosO = [];
-                $k = 0;
-                $sql3 = "SELECT * FROM ocorrencias WHERE ID_prontuario = '$request->numero'";
-                $query3 = mysqli_query($connect,$sql3);
-                while($sql3 = mysqli_fetch_array($query3)){
-                    $infosO['data'.$k] = $sql3['Data_ocorr'];
-                    $infosO['ocorrencia'.$k] = $sql3['Descricao'];
-                    $infosO['hora'.$k] = $sql3['Hora'];
-                    $fun = $sql3['CPF'];
-                    $sql4 = "SELECT * FROM usuarios where CPF = '$fun'";
-                    $query4 = mysqli_query($connect,$sql4);
-                    while($sql4 = mysqli_fetch_array($query4)){
-                        $infosO['aplicador'.$k] = $sql4['Nome'];
-                    }
-                    $k++;
-                }
-
-                $infosC = [];
-                $l = 0;
-                $sql4 = "SELECT * FROM cid_prontuario WHERE id_prontuario = '$request->numero'";
-                $query4 = mysqli_query($connect,$sql4);
-                while($sql4 = mysqli_fetch_array($query4)){
-                    $idcid = $sql4['id_CID'];
-                    $sql5 = "SELECT * FROM cid WHERE id = $idcid";
-                    $query5 = mysqli_query($connect,$sql5);
-                    while($sql5 = mysqli_fetch_array($query5)){
-                        $infosC['cid'.$l] = $sql5['codCid'];
-                    }
-                    $l++;
-                }
-
             }else{
                 return redirect()->back()->with('msg-error','Não foi possivel encontrar o prontuario no banco de dados!!!');
             }
             
-            return view('prontuario',['paciente' => $paciente, 'infosA' => $infosA, 'infosM' => $infosM, 'infosO' => $infosO, 'infosC' => $infosC]);
+            return view('prontuario',['paciente' => $paciente, 'infosA' => $infosA, 'infosM' => $infosM]);
         }else{
             return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
         }
@@ -783,7 +745,6 @@ class HomeController extends Controller
             $query1 = mysqli_query($connect,$sql1);
             while($sql1 = mysqli_fetch_array($query1)){
                 if($sql["aberto"]!= 1){
-                    $prontuario["id".$i] = $sql['ID'];
                     $prontuario["nome".$i] = $sql1["Nome_Paciente"]; 
                     $prontuario["estado".$i] = $sql1["Estado"]; 
                     $prontuario["cpf".$i] = $sql["Cpfpaciente"]; 
@@ -958,7 +919,5 @@ class HomeController extends Controller
         }else{
             return redirect() -> back() ->with('msg-error','Este prontuario ja encontrasse fechado');
         }
-    }
-
-    
+    }    
 }

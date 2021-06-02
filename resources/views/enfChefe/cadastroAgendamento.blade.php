@@ -15,7 +15,8 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{{ ('js/cadastroAgendamento.js') }}" defer></script>
-
+    <script src="{{ ('js/mascara.min.js')}}"></script>
+    
     <title>Cadastro Agendamento</title>
 
 </head>
@@ -33,8 +34,8 @@
                     <div class="content-center">
                         <h3>BUSCAR PACIENTE</h3>
                         <form class="search-bar">
-                            <input name="cpf_user" id="cpf_user" type="text" placeholder="Informe o CPF" required
-                                maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
+                        <input id="cpf_user" name="cpf_user" type="text" onkeyup="mascara('###.###.###-##',this,event,true)" 
+                            required maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" placeholder="Informe o CPF">
                             <button type="submit" id="busca_user">
                                 <i class="fas fa-search"></i>
                             </button>
