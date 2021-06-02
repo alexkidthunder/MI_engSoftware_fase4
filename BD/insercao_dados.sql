@@ -184,8 +184,9 @@ INSERT INTO agendamentos VALUES
 	(5, 0.54, '2021-05-21', 0, '00:00:12', 1, NULL, 1210033020);
 
 INSERT INTO ocorrencias VALUES
-	(3, '2021-05-31', '10:12:31', 4, 'Paciente Amanda Jéssica Caroline de Paula, CPF:065.799.448-03 foi internada e alocada para o leito LB001, no dia 11 de Maio de 2021 as 10:12 AM, identificada com a CID A03.2', '065.799.448-03'),
-	(4, '2021-05-12', '21:36:47', 4, 'Paciente Amanda Jéssica Caroline de Paula, CPF:065.799.448-03 foi liberada do leito LB001, no dia 12 de Maio de 2021 as 10:12 AM, depois de tomar sua medicação.', '065.799.448-03');
+  (1, '2021-05-31', '10:12:31', 4, 'Paciente Amanda Jéssica Caroline de Paula, CPF:065.799.448-03 foi internada e alocada para o leito LB001, no dia 11 de Maio de 2021 as 10:12 AM, identificada com a CID A03.2', '072.003.190-74'),
+  (2, '2021-06-01', '21:12:31', 10, 'Teste do administrador, checando o sistema de ocorrencias', NULL),
+  (3, '2021-05-12', '21:36:47', 4, 'Paciente Amanda Jéssica Caroline de Paula, CPF:065.799.448-03 foi liberada do leito LB001, no dia 12 de Maio de 2021 as 10:12 AM, depois de tomar sua medicação.', '072.003.190-74');
 
 /* Insere na tabela de permissões */
 INSERT INTO permissoes  VALUES

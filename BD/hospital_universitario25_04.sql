@@ -377,7 +377,7 @@ CREATE TABLE IF NOT EXISTS `ocorrencias` (
   `Hora_ocorr` time NOT NULL,
   `ID_prontuario` bigint(20) NOT NULL,
   `Descricao` text NOT NULL,
-  `CPF` char(14) NOT NULL,
+  `CPF` char(14),
   PRIMARY KEY (`Codigo`),
   KEY `ID_prontuario` (`ID_prontuario`),
   KEY `CPF` (`CPF`)
@@ -390,10 +390,11 @@ CREATE TABLE IF NOT EXISTS `ocorrencias` (
 --   `CPF`
 --       `usuarios` -> `CPF`
 --
-
 INSERT INTO `ocorrencias` (`Codigo`, `Data_ocorr`, `Hora_ocorr`, `ID_prontuario`, `Descricao`, `CPF`) VALUES
-(3, '2021-05-31', '10:12:31', 4, 'Paciente Amanda Jéssica Caroline de Paula, CPF:065.799.448-03 foi internada e alocada para o leito LB001, no dia 11 de Maio de 2021 as 10:12 AM, identificada com a CID A03.2', '065.799.448-03'),
-(4, '2021-05-12', '21:36:47', 4, 'Paciente Amanda Jéssica Caroline de Paula, CPF:065.799.448-03 foi liberada do leito LB001, no dia 12 de Maio de 2021 as 10:12 AM, depois de tomar sua medicação.', '065.799.448-03');
+  (1, '2021-05-31', '10:12:31', 4, 'Paciente Amanda Jéssica Caroline de Paula, CPF:065.799.448-03 foi internada e alocada para o leito LB001, no dia 11 de Maio de 2021 as 10:12 AM, identificada com a CID A03.2', '072.003.190-74'),
+  (2, '2021-06-01', '21:12:31', 10, 'Teste Adm', NULL),
+  (3, '2021-05-12', '21:36:47', 4, 'Paciente Amanda Jéssica Caroline de Paula, CPF:065.799.448-03 foi liberada do leito LB001, no dia 12 de Maio de 2021 as 10:12 AM, depois de tomar sua medicação.', '072.003.190-74');
+
 -- --------------------------------------------------------
 
 --
@@ -764,7 +765,7 @@ ALTER TABLE `estagiarios`
 --
 ALTER TABLE `ocorrencias`
   ADD CONSTRAINT `ocorrencia_ibfk_1` FOREIGN KEY (`ID_prontuario`) REFERENCES `prontuarios` (`ID`),
-  ADD CONSTRAINT `ocorrencia_ibfk_2` FOREIGN KEY (`CPF`) REFERENCES `pacientes` (`CPF`);
+  ADD CONSTRAINT `ocorrencia_ibfk_2` FOREIGN KEY (`CPF`) REFERENCES `usuarios` (`CPF`);
 
 --
 -- Limitadores para a tabela `permissao_cargo`
