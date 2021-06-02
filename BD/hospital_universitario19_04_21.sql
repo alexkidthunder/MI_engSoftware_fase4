@@ -108,9 +108,14 @@ CREATE TABLE IF NOT EXISTS `agendamento_prontuario` (
 --
 
 INSERT INTO `agendamento_prontuario` (`ID_prontuario`, `Codigo_Agendamento`) VALUES
-(4, 1),
-(1, 3),
-(4, 4);
+	(4, 1),
+	(1, 3),
+	(4, 4),
+	(1, 4),
+	(2, 4),
+	(3, 1),
+	(5, 1),
+	(6, 4);
 -- --------------------------------------------------------
 
 --
@@ -176,6 +181,7 @@ CREATE TABLE IF NOT EXISTS `cid_prontuario` (
 --   `id_prontuario`
 --       `prontuarios` -> `ID`
 --
+
 
 -- --------------------------------------------------------
 
@@ -13227,6 +13233,21 @@ INSERT INTO `cid` (`id`, `codCid`, `descricaoCid`) VALUES
 (12419, 'Z99.3', 'Dependência de cadeira de rodas'),
 (12420, 'Z99.8', 'Dependência de outras máquinas e aparelhos capacitantes'),
 (12421, 'Z99.9', 'Dependência de máquina e aparelho capacitante não especificado');
+
+
+INSERT INTO `cid_prontuario` (`id`, `id_CID`, `id_prontuario`) VALUES
+  (1, 161, 1),
+  (2, 161, 2),
+  (3, 9284, 3),
+  (4, 808, 4),
+  (5, 7, 5),
+  (6, 86, 6),
+  (7, 207, 7),
+  (8, 20, 8),
+  (9, 12286, 9),
+  (10, 405, 10),
+  (11, 184, 11);
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

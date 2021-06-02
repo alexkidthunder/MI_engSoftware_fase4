@@ -306,6 +306,7 @@ INSERT INTO agendamento_prontuario VALUES
 	('5', '1'),
 	('6', '4');
 
+
 INSERT INTO cid VALUES
 	(DEFAULT,'A00.0', 'Cólera devida a Vibrio  01, biótipo '),
 	(DEFAULT,'A00.1', 'Cólera devida a Vibrio  01, biótipo El Tor'),
@@ -12746,3 +12747,16 @@ INSERT INTO cid VALUES
 	(DEFAULT,'Z99.3', 'Dependência de cadeira de rodas'),
 	(DEFAULT,'Z99.8', 'Dependência de outras máquinas e aparelhos capacitantes'),
 	(DEFAULT,'Z99.9', 'Dependência de máquina e aparelho capacitante não especificado');
+
+INSERT INTO cid_prontuario VALUES
+	(1, 161, 1),
+	(2, 161, 2),
+	(3, 9284, 3),
+	(4, 808, 4),
+	(5, 7, 5),
+	(6, 86, 6),
+	(7, 207, 7),
+	(8, 20, 8),
+	(9, 12286, 9),
+	(10, 405, 10),
+	(11, 184, 11);
