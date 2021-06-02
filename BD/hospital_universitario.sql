@@ -128,8 +128,8 @@ CREATE TABLE permissoes (
 
 /*Cria tabela de prontuarios*/
 CREATE TABLE prontuarios (
-  ID bigint(20) NOT NULL,  
-  aberto tinyint(1) NOT NULL,  
+  aberto tinyint(1) NOT NULL, 
+  ID bigint(20) NOT NULL,   
   Data_Internacao date NOT NULL,
   Data_Saida date NOT NULL,
   Id_leito varchar(20) NOT NULL, /*Chave estrangeira que faz referência ao leito*/

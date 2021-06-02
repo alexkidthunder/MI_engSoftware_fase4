@@ -21,10 +21,22 @@ class EnfChefeController extends Controller
         VerificaLoginController::verificarLogin();
         $resultado = VerificaLoginController::verificaPermissao(7);
         if($resultado == "1"){
+
+
+
+            /*
+            //log
+            $ip = $_SERVER["REMOTE_ADDR"];
+            $acao = "Cadastrou plantonista $request->fnome";     //add nome      
+            AdminController::salvarLog($acao, $ip);
+*/
+
+
             return view('/enfChefe/cadastroPlantonista');
         }else{
             return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
         }
+        
        
     }
 
@@ -47,20 +59,22 @@ class EnfChefeController extends Controller
 
         //se não existir o medicamento
         if(mysqli_fetch_assoc($existeMed)['COUNT(*)'] == 0){
+
             //gera um código aleatório
-            $cod = rand (00000, 99999);
+            $cod = rand (00000, 9999999999);
 
             //cria medicamento e adiciona
             $novoMed = "INSERT INTO medicamentos (Nome_Medicam, Quantidade, Fabricante, Data_Validade, Codigo) values
             ('$request->fnome', '$request->fquantidade', '$request->ffabricante', '$request->fvalidade', '$cod')";
             mysqli_query($conn,$novoMed);
             
-            $ip = $request->ip();
+            //log
+            $ip = $_SERVER["REMOTE_ADDR"];
             $acao = "Cadastrou medicamento $request->fnome";           
-            //HomeController::salvarLog($acao, $ip);
+            AdminController::salvarLog($acao, $ip);
 
             
-            return redirect()->route('cadastroMedicamento')->with('msg-success', "Novo medicamento adicionado!");
+            return redirect()->route('cadastroMedicamento')->with('msg-sucess', "Novo medicamento adicionado!");
         }else{
             //se existir o medicamento cadastrado
             return redirect()->route('cadastroMedicamento')->with('msg-error', "Medicamento já cadastrado!!");
@@ -72,6 +86,16 @@ class EnfChefeController extends Controller
         VerificaLoginController::verificarLogin();
         $resultado = VerificaLoginController::verificaPermissao(12);
         if($resultado == "1"){
+
+
+
+            /*
+            //log
+            $ip = $_SERVER["REMOTE_ADDR"];
+            $acao = "Criou um agendamento de medicamento";           
+            AdminController::salvarLog($acao, $ip);
+            */
+
             return view('/enfChefe/cadastroAgendamento');
         }else{
             return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
@@ -164,7 +188,7 @@ class EnfChefeController extends Controller
         }
     }
 
-    public function listaAgendamentos(){ //LISTAGEM DE AGENDAMENTOS E MEDICAMENTOS
+    public function listaAgendamentos(){            //LISTAGEM DE AGENDAMENTOS E MEDICAMENTOS
         VerificaLoginController::verificarLogin();
         include("db.php");
         $resultado = VerificaLoginController::verificaPermissao(15);
@@ -210,11 +234,14 @@ class EnfChefeController extends Controller
         VerificaLoginController::verificarLogin();
         include("db.php");
         $resultado = VerificaLoginController::verificaPermissao(29);
+
         // buscar leitos para exibir na página
         if($resultado == "1"){
            $sql = "SELECT * FROM leitos";
            $query = mysqli_query($connect, $sql);          
            $i = 0;
+
+           //preenche array de leitos
            while($dado = mysqli_fetch_array($query)){                               
                 if($dado["Ocupado"] == 0){
                     $dado["Ocupado"] = "Vazio";
@@ -242,6 +269,12 @@ class EnfChefeController extends Controller
         if(mysqli_num_rows($query) == 0){
             $sql1 = "INSERT INTO leitos (Identificacao,Ocupado) values ('$request->Leito','0')";
             $query1 = mysqli_query($connect, $sql1);
+
+            //log
+            $ip = $_SERVER["REMOTE_ADDR"];
+            $acao = "Cadastrou novo leito";           
+            AdminController::salvarLog($acao, $ip);
+
             return redirect()->route('cadastroLeito')->with('msg-sucess','Leito cadastrado com sucesso!'); 
 
         //se já estiver cadastrado    
@@ -273,6 +306,8 @@ class EnfChefeController extends Controller
 
     public function verificarPermissao($cargoId, $permissaoId){
         include('db.php');
+
+        //busca no banco de dados
         $sql="SELECT *FROM permissao_cargo WHERE permissao_id = permissaoId";
         $query = mysqli_query($connect,$sql);
   
