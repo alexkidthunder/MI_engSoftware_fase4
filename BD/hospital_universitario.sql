@@ -243,7 +243,7 @@ ALTER TABLE prontuarios
 ALTER TABLE ocorrencias
   MODIFY Codigo bigint(20) NOT NULL AUTO_INCREMENT;
 
-ALTER TABLE agendamento
+ALTER TABLE agendamentos
   MODIFY Codigo bigint(20) NOT NULL AUTO_INCREMENT;
 
 /*Seção para definição das chaves estrangeiras*/  
