@@ -49,16 +49,16 @@
                 <form id="register" method="get" action="/cadastrarLeito">
                     <div class="box-cadastroLeito">
                         <div class="row">
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <div>
                                     <label name="Leito">Leito:</label>
                                     <input type="text" name="Leito" requerid>
                                 </div>
+                                <button type="submit" class="btn-blue"> Cadastrar </button>
                             </div>
-                            <button type="submit" class="btn-blue"> Cadastrar </button>
                         </div>
-
                 </form>
+
                 <!---------------------Fim de cadastro de leitos--------------------->
                 <div class="box-scheduling" , id="container-teste4">
                     <form id="register">
@@ -66,32 +66,33 @@
                             <!---------------------Inicio da Tabela com todos os leitos cadastrados--------------------->
                             <h3>Tabela de Leitos</h3>
                         </div>
-
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Leito</th>
-                                    <th scope="col">Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                @if(isset($leitos))
-                                <?php
-                                foreach ($leitos as $value) {
-                                ?>
+                    
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
                                     <tr>
-                                        <td> {{ $value['Identificacao'] }} </td>
-                                        <td> {{ $value['Ocupado']}} </td>
+                                        <th scope="col">Leito</th>
+                                        <th scope="col">Status</th>
                                     </tr>
+                                </thead>
+                                <tbody>
 
-                                <?php } ?>
-                                @endif
+                                    @if(isset($leitos))
+                                    <?php
+                                    foreach ($leitos as $value) {
+                                    ?>
+                                        <tr>
+                                            <td> {{ $value['Identificacao'] }} </td>
+                                            <td> {{ $value['Ocupado']}} </td>
+                                        </tr>
 
-                            </tbody>
-                        </table>
-                        <!---------------------Fim da Tabela com todos os leitos cadastrados--------------------->
+                                    <?php } ?>
+                                    @endif
 
+                                </tbody>
+                            </table>
+                            <!---------------------Fim da Tabela com todos os leitos cadastrados--------------------->
+                        </div>
                     </form>
                 </div>
 

@@ -204,8 +204,9 @@ INSERT INTO agendamentos VALUES
 	(5, 0.54, '2021-05-21', 0, '00:00:12', 1, NULL, 1210033020);
 
 INSERT INTO ocorrencias VALUES
-	(3, '2021-05-31', '10:12:31', 4, 'Paciente Amanda Jéssica Caroline de Paula, CPF:065.799.448-03 foi internada e alocada para o leito LB001, no dia 11 de Maio de 2021 as 10:12 AM, identificada com a CID A03.2', '065.799.448-03'),
-	(4, '2021-05-12', '21:36:47', 4, 'Paciente Amanda Jéssica Caroline de Paula, CPF:065.799.448-03 foi liberada do leito LB001, no dia 12 de Maio de 2021 as 10:12 AM, depois de tomar sua medicação.', '065.799.448-03');
+  (1, '2021-05-31', '10:12:31', 4, 'Paciente Amanda Jéssica Caroline de Paula, CPF:065.799.448-03 foi internada e alocada para o leito LB001, no dia 11 de Maio de 2021 as 10:12 AM, identificada com a CID A03.2', '072.003.190-74'),
+  (2, '2021-06-01', '21:12:31', 10, 'Teste do administrador, checando o sistema de ocorrencias', NULL),
+  (3, '2021-05-12', '21:36:47', 4, 'Paciente Amanda Jéssica Caroline de Paula, CPF:065.799.448-03 foi liberada do leito LB001, no dia 12 de Maio de 2021 as 10:12 AM, depois de tomar sua medicação.', '072.003.190-74');
 
 /* Insere na tabela de permissões */
 INSERT INTO permissoes  VALUES
@@ -318,7 +319,13 @@ INSERT INTO permissao_cargo VALUES
 INSERT INTO agendamento_prontuario VALUES
 	('4', '1'),
 	('1', '3'),
-	('4', '4');
+	('4', '4'),
+	('1', '4'),
+	('2', '4'),
+	('3', '1'),
+	('5', '1'),
+	('6', '4');
+
 
 INSERT INTO cid VALUES
 	(DEFAULT,'A00.0', 'Cólera devida a Vibrio  01, biótipo '),
@@ -12760,3 +12767,16 @@ INSERT INTO cid VALUES
 	(DEFAULT,'Z99.3', 'Dependência de cadeira de rodas'),
 	(DEFAULT,'Z99.8', 'Dependência de outras máquinas e aparelhos capacitantes'),
 	(DEFAULT,'Z99.9', 'Dependência de máquina e aparelho capacitante não especificado');
+
+INSERT INTO cid_prontuario VALUES
+	(1, 161, 1),
+	(2, 161, 2),
+	(3, 9284, 3),
+	(4, 808, 4),
+	(5, 7, 5),
+	(6, 86, 6),
+	(7, 207, 7),
+	(8, 20, 8),
+	(9, 12286, 9),
+	(10, 405, 10),
+	(11, 184, 11);

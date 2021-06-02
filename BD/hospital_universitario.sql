@@ -103,7 +103,7 @@ CREATE TABLE ocorrencias (
   Hora_ocorr time NOT NULL,
   ID_prontuario bigint(20) NOT NULL,
   Descricao text NOT NULL,
-  CPF char(14) NOT NULL /* Chave estrangeira que faz refência ao usuarios*/
+  CPF char(14)  /* Chave estrangeira que faz refência ao usuarios*/
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Cria tabela de pacientes*/
@@ -250,6 +250,9 @@ ALTER TABLE prontuarios
 ALTER TABLE ocorrencias
   MODIFY Codigo bigint(20) NOT NULL AUTO_INCREMENT;
 
+ALTER TABLE agendamentos
+  MODIFY Codigo bigint(20) NOT NULL AUTO_INCREMENT;
+
 /*Seção para definição das chaves estrangeiras*/  
 
 ALTER TABLE administradores
@@ -282,7 +285,7 @@ ALTER TABLE estagiarios
 
 ALTER TABLE ocorrencias
   ADD CONSTRAINT ocorrencia_ibfk_1 FOREIGN KEY (ID_prontuario) REFERENCES prontuarios (ID), /*Cria chave estrangeira fazendo referencia a prontuario*/
-  ADD CONSTRAINT ocorrencia_ibfk_2 FOREIGN KEY (CPF) REFERENCES pacientes (CPF); /*Cria chave estrangeira fazendo referencia a Usuario*/
+  ADD CONSTRAINT ocorrencia_ibfk_2 FOREIGN KEY (CPF) REFERENCES usuarios (CPF); /*Cria chave estrangeira fazendo referencia a Usuario*/
 
 ALTER TABLE permissao_cargo
   ADD CONSTRAINT permissao_cargo_ibfk_1 FOREIGN KEY (cargo_id) REFERENCES cargo (id) ON DELETE CASCADE,/*Cria chave estrangeira fazendo referencia a cargo*/
