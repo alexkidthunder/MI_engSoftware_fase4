@@ -36,10 +36,12 @@ CREATE TABLE cargo (
 
 /*Cria tabela da CID*/
 CREATE TABLE cid (
-  Id bigint(20) NOT NULL,
-  CodCID char(6) NOT NULL
+  id bigint(20) NOT NULL,
+  codCid char(50) NOT NULL,
+  descricaoCid text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+/*Cria tabela da CID relacionada aos prontuários*/
 CREATE TABLE cid_prontuario (
   id bigint(20) NOT NULL,
   id_CID bigint(20) NOT NULL,
@@ -66,14 +68,14 @@ CREATE TABLE estagiarios (
   Plantao tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-/*Cria tabela de prontuarios*/
+/*Cria tabela de Leitos*/
 CREATE TABLE leitos (
   Ocupado tinyint(1) NOT NULL,
   Identificacao varchar(20) NOT NULL    
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-/*Cria tabela  log*/
-CREATE TABLE log (
+/*Cria tabela  logs*/
+CREATE TABLE logs (
   Id bigint(20) NOT NULL,
   Data_Log date NOT NULL,
   Hora_Agend time NOT NULL,
@@ -85,7 +87,7 @@ CREATE TABLE log (
 CREATE TABLE medicamentos (
   Nome_Medicam varchar(50) NOT NULL,
   Quantidade int(11) NOT NULL,
-  Fabricante varchar(30) NOT NULL,
+  Fabricante varchar(80) NOT NULL,
   Data_Validade date NOT NULL,
   Codigo bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -93,10 +95,11 @@ CREATE TABLE medicamentos (
 /*Cria tabela de ocorrencias*/
 CREATE TABLE ocorrencias (
   Codigo bigint(20) NOT NULL,
-  Data_ocorr date NOT NULL,
+  Data_ocorr date NOT NULL,  
+  Hora_ocorr time NOT NULL,
   ID_prontuario bigint(20) NOT NULL,
   Descricao text NOT NULL,
-  CPF char(14) NOT NULL /* Chave estrangeira que faz refência ao usuarios*/
+  CPF char(14)  /* Chave estrangeira que faz refência ao usuarios*/
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Cria tabela de pacientes*/
@@ -109,6 +112,7 @@ CREATE TABLE pacientes (
   Tipo_Sang varchar(5) NOT NULL  
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+/*Cria tabela de permissões relacionada aos cargos*/
 CREATE TABLE permissao_cargo (
   id int(10) NOT NULL,
   permissao_id int(10) NOT NULL,
@@ -116,6 +120,7 @@ CREATE TABLE permissao_cargo (
   ativo int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+/*Cria tabela de permissões*/
 CREATE TABLE permissoes (
   id int(10) NOT NULL,
   nome varchar(50) NOT NULL
@@ -123,8 +128,8 @@ CREATE TABLE permissoes (
 
 /*Cria tabela de prontuarios*/
 CREATE TABLE prontuarios (
-  aberto tinyint(1) NOT NULL,
-  ID bigint(20) NOT NULL,  
+  aberto tinyint(1) NOT NULL, 
+  ID bigint(20) NOT NULL,   
   Data_Internacao date NOT NULL,
   Data_Saida date NOT NULL,
   Id_leito varchar(20) NOT NULL, /*Chave estrangeira que faz referência ao leito*/
@@ -162,7 +167,7 @@ ALTER TABLE cargo
   ADD PRIMARY KEY (id); /*seleciona o id como chave primaria*/
 
 ALTER TABLE cid
-  ADD PRIMARY KEY (Id); /* Seleciona o campo ID como chave primaria*/
+  ADD PRIMARY KEY (id); /* Seleciona o campo ID como chave primaria*/
 
 ALTER TABLE cid_prontuario
   ADD PRIMARY KEY (id),
@@ -184,7 +189,7 @@ ALTER TABLE enfermeiros_chefes
 ALTER TABLE estagiarios
   ADD PRIMARY KEY (CPF); /* Seleciona o campo CPF como chave primaria*/
 
-ALTER TABLE log
+ALTER TABLE logs
   ADD PRIMARY KEY (Id); /* Seleciona o campo CPF como chave primaria*/
 
 ALTER TABLE medicamentos
@@ -217,8 +222,11 @@ ALTER TABLE leitos
   
 /*Seção para modificação das das tabelas*/  
 
-ALTER TABLE cid
+ALTER TABLE logs
   MODIFY Id bigint(20) NOT NULL AUTO_INCREMENT;
+  
+ALTER TABLE cid
+  MODIFY id bigint(20) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE cid_prontuario
   MODIFY id bigint(20) NOT NULL AUTO_INCREMENT;
@@ -231,6 +239,12 @@ ALTER TABLE permissoes /*Faz com que o campo Id tenha auto incremento a partir d
 
 ALTER TABLE prontuarios
   MODIFY COLUMN ID bigint(20) NOT NULL AUTO_INCREMENT; /*Faz com que o campo Id tenha auto incremento*/
+
+ALTER TABLE ocorrencias
+  MODIFY Codigo bigint(20) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE agendamentos
+  MODIFY Codigo bigint(20) NOT NULL AUTO_INCREMENT;
 
 /*Seção para definição das chaves estrangeiras*/  
 
@@ -247,7 +261,7 @@ ALTER TABLE agendamento_prontuario
   ADD CONSTRAINT agendamento_prontuario_ibfk_2 FOREIGN KEY (Codigo_Agendamento) REFERENCES agendamentos (Codigo);
 
 ALTER TABLE cid_prontuario
-  ADD CONSTRAINT cid_prontuario_ibfk_1 FOREIGN KEY (id_CID) REFERENCES cid (Id) ON DELETE CASCADE,/*Cria chave estrangeira fazendo referencia ao CID*/
+  ADD CONSTRAINT cid_prontuario_ibfk_1 FOREIGN KEY (id_CID) REFERENCES cid (id) ON DELETE CASCADE,/*Cria chave estrangeira fazendo referencia ao CID*/
   ADD CONSTRAINT cid_prontuario_ibfk_2 FOREIGN KEY (id_prontuario) REFERENCES prontuarios (ID);/*Cria chave estrangeira fazendo referencia a prontuario*/
 
 ALTER TABLE enfermeiros

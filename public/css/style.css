@@ -30,6 +30,9 @@ h1 {
     text-align: center;
 }
 
+.title-download{
+    margin-top: 0;
+}
 /*Subtitulo*/
 
 h2, h3 {
@@ -466,9 +469,9 @@ input[type=number] {
 
 /*------------ Icone de download  ------------*/
 
-.download-icon {
+/*.download-icon {
     float: right;
-}
+}*/
 
 .download-icon button i {
     color: #0D6EFD;
@@ -480,20 +483,31 @@ input[type=number] {
     color: #02A7F0;
 }
 
+#screen-icon{
+    width:100%;
+    margin-top: 100px;
+    margin-bottom: 4%;
+}
 #screen-icon .download-icon {
     margin-top: 10px;
     margin-inline: 30px;
+    margin-left: 85%;
+    margin-right: 5%;
 }
 
 #screen-icon .download-icon button i {
     font-size: 35px;
 }
 
-@media (min-width: 426px) and (max-width:768px) {
-    #screen-icon .download-icon button i {
-        font-size: 30px;
+@media (min-width:1025px) {
+    #screen-icon{
+        margin-bottom: 2%;
+    }
+    #screen-icon .download-icon {
+        margin-left: 90%;
     }
 }
+
 
 @media (max-width: 425px) {
     #screen-icon .download-icon button i {
@@ -962,11 +976,9 @@ input[type=number] {
 
 .radial-no-edit {
     background-color: #A2DBFE; /* Não selecionado */
-    transition: background 1s;
 }
 .radial-edit{
     background-color: white; /* Selecionado */
-    transition: background 1s;
 }
 
 .normal-label {
@@ -1039,6 +1051,22 @@ input[type=number] {
         width: 90%;
         margin: 0 5%;
     }
+    #psw_info_div .btn-white{ /* João 30/05 */
+        width: 100%;
+    }
+    #psw-field input{ /* João 30/05 */
+        width: 90%;
+    }
+    #cancelar{ /* João 30/05 */
+        width: 90%;
+        height: fit-content;
+        margin-inline: 0 auto;
+    }
+    #alterarSenha{ /* João 30/05 */
+        width: 90%;
+        height: fit-content;
+        margin-inline: 0 auto;
+    }
 }
 
 .highlight-change{
@@ -1050,4 +1078,30 @@ input[type=number] {
 .transition-1s{
     border-radius: 50px;
     transition: 1s;
+}
+@media (max-width: 1140px){ /* João 30/05 */
+    #remove-user-btn .btn-blue{
+        width: fit-content;
+        margin-inline: 10px;
+    }
+}
+@media (max-width: 992px){ /* João 30/05 */
+    #delete-user-container .btn-blue{
+        width: 60%;
+        margin-inline: 10px;
+        padding: 0;
+        padding-block: 5px;
+    }
+}
+
+.scrolls { /* João 30/05 */
+    overflow-x: auto;
+    overflow-y: hidden;
+    text-overflow: normal;
+}
+
+@media (max-width: 460px){ /* João 30/05 */
+    #atribui-select-new select{
+        width: 100%;
+    }
 }

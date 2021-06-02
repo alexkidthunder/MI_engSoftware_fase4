@@ -17,7 +17,7 @@
     <link href="{{ asset('img/favicon.png') }}" rel="icon">
 
     <script src="{{ 'js/historicoProntuario.js' }}" defer></script>
-
+    {{$i = 0}}
     <title>Historico de prontuários</title>
 
 </head>
@@ -38,14 +38,14 @@
     <!--------Fim do botão de donwload-------->
 
     <div class="container-1" id="historic">
-        <h1>HISTÓRIO DE PRONTUÁRIOS </h1>
+        <h1 class="title-download">HISTÓRIO DE PRONTUÁRIOS </h1>
 
         <!------------- Busca do paciente ------------->
         <div id="search">
             <div class="box">
                 <div class="content-center">
                     <h3>BUSCAR PACIENTE</h3>
-                    <form class="search-bar">
+                    <form class="search-bar" method="get" action="/hp">
                         <!--- Campo para a inserção do CPF do paciente --->
                         <input name="cpf_user" id="cpf_user" type="text" placeholder="Informe o CPF" required maxlength="14"
                             pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
@@ -59,17 +59,19 @@
         <!---------- Fim da Busca do paciente ---------->
 
         <!---------- Infomações do Paciente buscado ---------->
+        @if(isset($prontuario))
+        @while(isset($prontuario['nome'.$i]))
         <div class="row">
             <!------ Nome do Paciente ------>
             <div class="col-12 col-sm-12 col-md-8 col-lg-8">
                 <div class="box-blue">
-                    Ser o número 1 nisto ou na Ser o número 1 nisto ou n
+                    {{$prontuario["nome".$i]}}
                 </div>
             </div>
             <!------ CPF do Paciente ------>
             <div class="col-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="box-blue">
-                    CPF: 011.988.999-00
+                    CPF:  {{$prontuario["cpf".$i]}}
                 </div>
             </div>
         </div>
@@ -86,33 +88,38 @@
                     <div class="col-12 col-sm-12 col-md-4 col-lg-3">
                         <label>Data de Internação:</label> <br>
                         <div class="box-gray">
-                            10/06/2020
+                            {{$prontuario["internacao".$i]}}
                         </div>
                     </div>
                     <!------ Data de saída ------>
                     <div class="col-12 col-sm-12 col-md-4 col-lg-3">
                         <label>Data de Saída:</label> <br>
                         <div class="box-gray">
-                            25/06/2020
+                            {{$prontuario["saida".$i]}}
                         </div>
                     </div>
                     <!------ Motivo da saída ------>
                     <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                         <label>Motivo:</label> <br>
                         <div class="box-gray">
-                            Em alta
+                            {{$prontuario["estado".$i]}}
                         </div>
                     </div>
                     <!------ Botão para acessar prontuário ------>
+                    <form action="/prontuario" method="get">
+                    <input type="hidden" name='cpf' value='{{$prontuario["cpf".$i]}}'>
+                    <input type="hidden" name='numero' value='{{$prontuario["id".$i]}}'>
                     <div class="col-12 col-sm-6 col-md-12 col-lg-3 input-full-width">
                         <br>
-                        <a href="{{ route('prontuario') }}" target="_parent"><button
-                            class="btn-blue">Prontuário</button></a>
+                        <button type="submit" class="btn-blue">Prontuário</button>
                     </div>
+                    </form>
                 </div>
+                {{$i++}}
             </div>
             <!------------- fim do prontuário ------------->
-
+        @endwhile
+        @endif
         <!---------- Fim de histórico de prontuários ---------->
     </div>
 </body>

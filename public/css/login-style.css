@@ -14,13 +14,8 @@ a{
     text-decoration: none;
 }
 
-#first-access{
-    width: 30%;
-    margin:0 35%;
-    padding-top: 100px;
-}
 
-#login{
+#login, #password-login{
     width: 30%;
     margin:0 35%;
     padding-top: 150px;
@@ -31,10 +26,6 @@ a{
     background-image: linear-gradient(to top, rgb(160, 228, 240), rgb(9, 120, 247));
     padding: 20px;
     border-radius: 50px;
-}
-
-#first-access .box-login {
-    background-image: radial-gradient(circle, #90bdff, #85b6ff, #7ab0ff, #6fa9ff, #64a2ff);
 }
 
 h2{
@@ -59,6 +50,7 @@ input {
     background:white;
     border: 2px solid #ffff;
     margin-bottom: 10px;
+    font-size:16px
 }
 
 input:focus {
@@ -98,7 +90,7 @@ input:hover {
     width: 50%;
 }
 
-#login .enter  button:hover {
+#login .enter  button:hover, #password-login button:hover {
     background-image: linear-gradient(to right, rgb(199, 218, 240), rgb(14, 122, 247));
     color: black;
 }
@@ -108,22 +100,185 @@ input:hover {
     background-color: rgb(206, 229, 255);
     color: black;
 }
+#first-access{
+    width: 30%;
+    margin:0 35%;
+    padding-top: 100px;
+}
 
-#access-box{
+#first-access .box-login {
+    background-image: radial-gradient(circle, #90bdff, #85b6ff, #7ab0ff, #6fa9ff, #64a2ff);
+}
+
+#access{
+width:40%;
+margin: 0 30%;
+}
+
+#access .access-box{
     background-color: blue;
     border-radius: 0 0 30px 30px;
     padding:15px;
-    width:40%;
-    margin: 0 30%;
     text-align:center;
 }
-#access-box a{
+#access a{
     color:white;
     font-weight: bold;
     font-size: 20px;
     text-decoration: none;
 }
 
-#access-box  a:hover {
+#access a:hover {
     color: #d6eeee;
+}
+
+#container-img{
+    width: 80%;
+    margin:0 10%;
+}
+#container-wave{
+    width: 100%;
+}
+
+#container-img .img-login, #container-wave .img-login{
+    display:none;
+}
+#container-img .img-login img, #container-wave .img-login img{
+    width:100%;
+}
+
+  /*---------------------------Login para mobile --------------------------------*/
+
+  @media (max-width:760px){
+    .body-login {
+        background: #ffff;
+        font-family: "Poppins",sans-serif;
+        padding: 0;
+        margin:0;
+    }
+    #login, #password-login{
+        margin:0;
+        padding-top:0;
+        width:100%;
+        height:50%;
+    }
+
+    .box-login {
+        background: #F4F3F9;
+        border-radius: 40px 40px 0 0;
+        padding: 5px 40px 15px 40px;
+    }
+
+    input {
+        border-radius: 20px;
+        height: 15px;
+        padding: 10px;
+        background:white;
+        margin-bottom:5px;
+    }
+
+    .enter  >button {
+        border-radius: 20px;
+        padding: 10px;
+        width: 95%;
+        margin:10px 3%;
+    }
+
+    label {
+        margin-top: 10px;
+        font-size:14px;
+    }
+
+    #access{
+        width:70%;
+        margin-left:15%;
+        margin-right:15%;
+        margin-top:-7px;
+        margin-bottom: 5%;
+    }
+    #access .access-box{
+        background-color: blue;
+        border-radius: 0 0 30px 30px;
+        padding:5px 10px;
+        text-align:center;
+    }
+
+    #access a{
+        font-size: 18px;
+    }
+
+    #first-access{
+        margin:0 0 0 0;
+        padding-top:0;
+        width:100%;
+        height:40%;
+    }
+   /* <a href='https://br.freepik.com/vetores/projeto'>Projeto vetor criado por freepik - br.freepik.com</a>*/
+    #first-access .box-login {
+        background: #F4F3F9;
+    }
+
+    h2{
+        font-size: 18px;
+        margin-block-start: 5px;
+    }
+    
+    h4{
+        margin-bottom:0;
+        margin-top:0;
+        text-align:center;
+        font-weight: normal;
+        font-size: 14px;
+    }
+    #container-img .img-login, #container-wave .img-login{
+        display: initial;
+    }
+    .text{
+        font-size:13px;
+    }
+  }
+
+/*------------------*/
+  @media (min-width:1023px) and (max-width:1024px){
+    #access{
+        width:40%;
+        margin: 0 30%;
+    }   
+    #login, #password-login{
+        width: 40%;
+        margin:0 30%;
+        padding-top: 150px;
+    }
+    #first-access{
+        width: 40%;
+        margin:0 30%;
+        padding-top: 100px;
+    }
+  }
+
+  @media (min-width:761px) and (max-width:1022px){
+    #access{
+        width:50%;
+        margin: 0 25%;
+    }   
+    #login, #password-login{
+        width: 50%;
+        margin:0 25%;
+        padding-top: 100px;
+    }
+    #first-access{
+        width: 50%;
+        margin:0 25%;
+        padding-top: 70px;
+    }
+    h4{
+        margin-bottom:0;
+        text-align:center;
+    }
+    #first-access .box-login {
+        padding: 10px 20px;
+    }
+    #first-access h2{
+        font-size: 20px;
+    }
   }

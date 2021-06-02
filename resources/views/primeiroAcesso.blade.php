@@ -14,9 +14,25 @@
 </head>
 
 <body class="body-login">
+    <!--------------- Imagem de onda--------------->
+    <div id="container-wave">
+        <div class="img-login">
+            <img src="{{ asset('img/wave.png') }}"/>
+        </div>
+    </div>
+    <!--------------- fim da Imagem -------------->
+    <!----------- Imagem de enfermeiros ----------->
+    <div id="container-img">
+        <div class="img-login">
+            <img src="{{ asset('img/doctors.png') }}"/>
+        </div>
+    </div>
+    <!--------------- fim da Imagem -------------->
     <!----- Caixa para tela de primeiro acesso ----->
-    <div id="access-box">
-        <a href="{{ route('index') }}">Login</a>
+    <div id="access">
+        <div class="access-box">
+            <a href="{{ route('index') }}">Login</a>
+        </div>
     </div>
     <!---------------- fim da Caixa --------------->
 
@@ -45,16 +61,16 @@
                 <!-- Inserção da senha -->
 
                 <label>Senha</label>
-                <input type="password" name="senha" placeholder="Digite sua senha" required>
+                <input type="password" name="senha" placeholder="Digite a nova senha" required>
             </div>
             <div>
                 <!-- Confirmação da senha digitada -->
                 <label>Confirmação</label>
-                <input type="password" name= "confirmacao" placeholder="Digite a mesma senha" required>
+                <input type="password" name= "confirmacao" placeholder="Digite a senha novamente" required>
 
             </div>
             <div class="enter">
-                <button type="submit">Enviar</button>
+                <button type="submit">ENVIAR</button>
             </div>
         </div>
     </form>

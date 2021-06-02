@@ -32,7 +32,7 @@
                             NOME
                         </div>
                         <div class="row no-gutters box-blue"> <!--FUNCIONÁRIO NOME-->
-                            <nobr>Rafela Soares da Silva</nobr>
+                            <span style="white-space: nowrap">Rafela Soares da Silva</span>
                         </div>
                     </div>
                     <div class="col"> <!--CARGO-->
@@ -40,13 +40,13 @@
                             CARGO
                         </div>
                         <div class="row no-gutters box-blue"> <!--FUNCIONÁRIO CARGO -->
-                            <nobr>Enfermeiro Chefe</nobr>
+                            <span style="white-space: nowrap">Enfermeiro Chefe</span>
                         </div>
                     </div>
                     <div class="col"> <!--EM PLANTÃO-->
                         <div class="row no-gutters title"> <!--align="center"-->
                             <div class="mx-auto">
-                                <nobr>EM PLANTÃO</nobr> <!--CABEÇÁRIO EM PLANTÃO -->
+                                <span style="white-space: nowrap">EM PLANTÃO</span> <!--CABEÇÁRIO EM PLANTÃO -->
                             </div>
                         </div>
                         <div class="row no-gutters box-button"> <!--FUNCIONÁRIO EM PLANTÃO-->

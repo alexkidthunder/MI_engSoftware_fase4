@@ -9,9 +9,9 @@ class Log extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $table = "log";    //seta a o nome da tabela 
+    protected $table = "logs";    //seta a o nome da tabela 
 
     protected $fillable = [
-        'Id','Data_Log','Hora_Agend	','CPF_usuario','Ip'
+        'Id','Data_Log','Hora_Agend','Ip','Acao'
     ];
 }

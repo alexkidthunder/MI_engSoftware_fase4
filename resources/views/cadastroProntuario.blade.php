@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
     <link href="{{ 'css/style.css' }}" rel="stylesheet">
     <link href="{{ 'bootstrap/css/bootstrap.css' }}" rel="stylesheet">
+    <script src="{{ ('js/mascara.min.js')}}"></script>
 
     <title>Cadastro Prontuario</title>
 
@@ -28,10 +29,10 @@
                 <div class="box">
                     <div class="content-center">
                         <h3>BUSCAR PACIENTE</h3>
-                        <form class="search-bar">
+                        <form class="search-bar" action="/buscarPaciente" method="get">
                             <!--- Campo para a inserção do CPF do paciente --->
-                            <input name="cpf_user" id="cpf_user" type="text" placeholder="Informe o CPF" required
-                                maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
+                            <input id="cpf_user" name="cpf_user" type="text" onkeyup="mascara('###.###.###-##',this,event,true)" 
+                            required maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" placeholder="Informe o CPF">
                             <button type="submit">
                                 <i class="fas fa-search"></i>
                             </button>
@@ -41,25 +42,28 @@
             </div>
             <!---------- Fim da Busca do paciente ---------->
 
+            <!----------- MENSAGENS DE ERRO ----------------->
+            @if(session('msg-error'))
+                <div class='msg-error'> {{session('msg-error')}}</div>
+            @endif
+
             <!---------- Infomações do Paciente buscado ---------->
+
+           
+            @if(isset($paciente))
             <h3>Paciente</h3><br>
             <!------ Nome do Paciente ------>
-            <div class="box-gray">
-                Marcos Oliveira Santana
+            <div class="box-gray">           
+                {{$paciente['Nome_Paciente']}}               
             </div>
             <div class="row">
                 <!------ CPF do Paciente ------>
                 <div class="col-lg-4">
-                    <div class="box-gray">
-                        CPF: 011.988.999-00
+                    <div class="box-gray">                    
+                    {{$paciente['CPF']}}                     
                     </div>
                 </div>
-                <!------ CID do Paciente ------>
-                <div class="col-lg-4">
-                    <div class="box-gray">
-                        CID: C00
-                    </div>
-                </div>
+                                
             </div>
             <!------ Fim das infomações do Paciente buscado ------>
 
@@ -74,15 +78,11 @@
                         <label name="inserir_leito">Selecione o leito</label>
                         <form>
                         <select id="LeitoSelect" name="Leito">
-                        <option value="A01">A 01</option>
-                        <option value="A02">A 02</option>
-                        <option value="A03">A 03</option>
-                        <option value="B01">B 01</option>
-                        <option value="B02">B 02</option>
-                        <option value="B03">B 03</option> 
-                        <option value="B04">B 04</option>   
-                        <option value="C01">C 01</option>                    
-                        <option value="C02">C 02</option>
+                        @if(isset($leitos))
+                        @foreach($leitos as $leito)
+                        <option value="{{$leito['Identificacao']}}">{{$leito['Identificacao']}}</option>
+                        @endforeach
+                        @endif
                         </select>
                         </form>
                         </div>
@@ -100,6 +100,8 @@
                     </div>
                 </div>
             </form>
+            @endif
+           
             <!---------- Fim do cadastro do prontuário ---------->
         </div>
     </section>
