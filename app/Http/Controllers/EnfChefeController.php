@@ -286,26 +286,19 @@ class EnfChefeController extends Controller
 
     public function removerLeito(Request $request){
         include("db.php");
-
-        //busca no banco de dados
-        $sql = "SELECT * FROM leitos WHERE Identificacao = '$request->focorrencia'";
-        $query = mysqli_query($connect, $sql);
-
-        //se existir o leito
-        if(mysqli_num_rows($query) == 1){
-            $sql1 = "DELETE FROM leitos WHERE Identificacao = '$request->focorrencia'";
-            $query1 = mysqli_query($connect, $sql1);
-
-            //log
-            $ip = $_SERVER["REMOTE_ADDR"];
-            $acao = "Removeu um leito";           
-            AdminController::salvarLog($acao, $ip);
-
-            return redirect()->route('cadastroLeito')->with('msg-sucess','Leito removido com sucesso!'); 
-
-        //se não existir o leito    
+        $perm = VerificaLoginController::verificaPermissao(30);
+        if($perm == "1"){
+            $sql = "SELECT * FROM leitos WHERE Identificacao = '$request->focorrencia'";
+            $query = mysqli_query($connect, $sql);
+            if(mysqli_num_rows($query) == 1){
+                $sql1 = "DELETE FROM leitos WHERE Identificacao = '$request->focorrencia'";
+                $query1 = mysqli_query($connect, $sql1);
+                return redirect()->route('cadastroLeito')->with('msg-sucess','Leito removido com sucesso!'); 
+            }else{
+                return redirect()->route('cadastroLeito')->with('msg-error','Leito não encontrado!'); 
+            }
         }else{
-            return redirect()->route('cadastroLeito')->with('msg-error','Leito não encontrado!'); 
+            return redirect()-back();
         }
         
     }

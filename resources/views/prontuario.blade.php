@@ -36,12 +36,36 @@
     
       <h1 class="title-download">PRONTÚARIO</h1>
     <section>
+    <div class="row">
+            <div class="col-lg">
+                @if ($errors->any()) <!--Verificando se existe qualquer erro -->
+                    <div class="msg-error">
+                        <ul>
+                            @foreach ($errors->all() as $error) <!--Percorre todos os erros-->
+                                <li>{{ $error }}</li> <!--Obtem o erro -->
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                @if (session('msg')) <!-- Verifica se a mensagem de erro foi instanciada -->
+                    <div class="msg-sucess">
+                        {{session('msg')}} <!--Obtem mensagem de erro -->
+                    </div>
+                @endif
+                @if (session('msg-error')) <!-- Verifica se a mensagem de erro foi instanciada -->
+                    <div class="msg-error">
+                        {{session('msg-error')}} <!--Obtem mensagem de erro -->
+                    </div>
+                @endif
+            </div>
+        </div>
         
         <div class="container-1"> 
                <!----------Primeira parte do Prontuario, onde fica localizado os dados do Paciente------------>
         <button class="btn-blue", id="action-btn3">Dados de Paciente</button>
             <div class="box-scheduling", id= "container-teste3">
-                <form id="register">
+                <form action="/editarProntuario" method="POST" id="register">
+                @csrf
                     <div class="row">
                     @if(isset($paciente))
                     <!----------Dados do Paciente------------>
@@ -83,15 +107,16 @@
                         <div class="col-lg-4">
                             <label>Leito</label> <br>
                             <input id="fleito" name="fleito" type="text" maxlength="50" value="{{$paciente['leito']}}" required>
+                            <input type="hidden" name="leito" value="{{$paciente['leito']}}">
                         </div>
                         <div class="col-lg-4">
                             <label>Status</label> <br>
-                            <input id="fstatus" name="fstatus" type="text" maxlength="50" value = "{{$paciente['estado']}}" required>
+                            <input id="fstatus" name="fstatus" type="text" maxlength="50" placeholder="alta, internado ou obito" value = "{{$paciente['estado']}}" required>
                         </div>
                     </div>
-                    
+                    <input type="hidden" name="prontuario" value="{{$paciente['prontuario']}}">
                     <div>
-                        <button class="btn-blue"> Editar </button>
+                        <button type="submit" class="btn-blue"> Editar </button>
                     </div>
                     @endif
                 </form>
@@ -195,7 +220,8 @@
                 <!----------Quarta parte do Prontuario, onde fica localizada as ocorrências------------>
                 <button class="btn-blue", id="action-btn4">Ocorrencias</button>
             <div class="box-scheduling", id= "container-teste4">
-                <form id="register">
+                <form action="/cadastroOcorr" method="POST" id="register">
+                @csrf
                     <div class="row">
                         
                         <h3>Tabela de ocorrencias</h3>
@@ -224,10 +250,11 @@
                     </div>
                     <!----------Onde o enfermeiro ou enfermeiro chefe colocara sua nova ocorrencia------------>
                     <div class="col-lg-12">
+                        <input type="hidden" name="prontuario" value="{{$paciente['prontuario']}}">
                         <label>Nova Ocorrencia</label> <br>
                         <input id="focorrencia" name="focorrencia" type="text" maxlength="100" required>
                         <div>
-                            <button class="btn-blue"> Adcionar </button>
+                            <button type="submit" class="btn-blue"> Adcionar </button>
                         </div>
                     </div>      
                 </form>
@@ -235,13 +262,15 @@
             <!----------Quinta parte do Prontuario, onde fica localizado as CIDs do paciente------------>
             <button class="btn-blue", id="action-btn5">CIDs</button>
             <div class="box-scheduling", id= "container-teste5">
-                <form id="register">
+                <form action="/cadastroCID" method="POST" id="register">
+                @csrf
                     <div class="row">
                         <div class="col-lg-6">
                             <label>Nova CID</label> <br>
-                            <input id="fcid" name="fcid" type="text" maxlength="20" required>
+                            <input type="hidden" name="prontuario" value="{{$paciente['prontuario']}}">
+                            <input id="fcid" name="fcid" type="text" maxlength="20"  placeholder="EX: A00.1" required>
                                 <div>
-                                <button class="btn-blue"> Adcionar </button>
+                                <button  type="submit" class="btn-blue"> Adcionar </button>
                                 </div>
                         </div>
                     </div>  
@@ -263,7 +292,9 @@
             <!----------Ultima parte do Prontuario, onde o responsável podera encerrar o Prontuario------------>
             <button class="btn-blue", id="action-btn6">Encerrar Prontuario</button>
             <div class="box-scheduling", id= "container-teste6">
-                <form id="register">
+                <form action="/finalizarProntuario" method="POST" id="register">
+                @csrf
+                <input type="hidden" name="prontuario" value="{{$paciente['prontuario']}}">
                     <div class="row">
                         <div class="col-lg-4">
                             <label>Data de Saída</label> <br>
