@@ -2993,6 +2993,7 @@
         },
         {
             "name": "symfony/http-foundation",
+<<<<<<< Updated upstream
             "version": "v5.2.8",
             "source": {
                 "type": "git",
@@ -3003,6 +3004,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/http-foundation/zipball/e8fbbab7c4a71592985019477532629cb2e142dc",
                 "reference": "e8fbbab7c4a71592985019477532629cb2e142dc",
+=======
+            "version": "v5.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/http-foundation.git",
+                "reference": "8827b90cf8806e467124ad476acd15216c2fceb6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/8827b90cf8806e467124ad476acd15216c2fceb6",
+                "reference": "8827b90cf8806e467124ad476acd15216c2fceb6",
+>>>>>>> Stashed changes
                 "shasum": ""
             },
             "require": {
@@ -3046,7 +3059,11 @@
             "description": "Defines an object-oriented layer for the HTTP specification",
             "homepage": "https://symfony.com",
             "support": {
+<<<<<<< Updated upstream
                 "source": "https://github.com/symfony/http-foundation/tree/v5.2.8"
+=======
+                "source": "https://github.com/symfony/http-foundation/tree/v5.3.1"
+>>>>>>> Stashed changes
             },
             "funding": [
                 {
@@ -3062,6 +3079,7 @@
                     "type": "tidelift"
                 }
             ],
+<<<<<<< Updated upstream
             "time": "2021-05-07T13:41:16+00:00"
         },
         {
@@ -3076,6 +3094,22 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/http-kernel/zipball/eb540ef6870dbf33c92e372cfb869ebf9649e6cb",
                 "reference": "eb540ef6870dbf33c92e372cfb869ebf9649e6cb",
+=======
+            "time": "2021-06-02T09:32:00+00:00"
+        },
+        {
+            "name": "symfony/http-kernel",
+            "version": "v5.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/http-kernel.git",
+                "reference": "74eb022e3bac36b3d3a897951a98759f2b32b864"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/74eb022e3bac36b3d3a897951a98759f2b32b864",
+                "reference": "74eb022e3bac36b3d3a897951a98759f2b32b864",
+>>>>>>> Stashed changes
                 "shasum": ""
             },
             "require": {
@@ -3158,7 +3192,11 @@
             "description": "Provides a structured process for converting a Request into a Response",
             "homepage": "https://symfony.com",
             "support": {
+<<<<<<< Updated upstream
                 "source": "https://github.com/symfony/http-kernel/tree/v5.2.9"
+=======
+                "source": "https://github.com/symfony/http-kernel/tree/v5.3.1"
+>>>>>>> Stashed changes
             },
             "funding": [
                 {
@@ -3174,7 +3212,11 @@
                     "type": "tidelift"
                 }
             ],
+<<<<<<< Updated upstream
             "time": "2021-05-19T12:23:45+00:00"
+=======
+            "time": "2021-06-02T10:07:12+00:00"
+>>>>>>> Stashed changes
         },
         {
             "name": "symfony/mime",

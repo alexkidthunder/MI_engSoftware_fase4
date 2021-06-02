@@ -542,10 +542,16 @@ class EnfChefeController extends Controller
         }        
     }
 
+<<<<<<< Updated upstream
     public function cadastrarLeito(Request $request){
+=======
+    public function cadastrarLeito(Request $request)
+    {               //cadastro de leito
+>>>>>>> Stashed changes
         include("db.php");
         $sql = "SELECT * FROM leitos WHERE Identificacao = '$request->Leito'";
         $query = mysqli_query($connect, $sql);
+<<<<<<< Updated upstream
         if(mysqli_num_rows($query) == 0){
             $sql1 = "INSERT INTO leitos (Identificacao,Ocupado) values ('$request->Leito','0')";
             $query1 = mysqli_query($connect, $sql1);
@@ -554,11 +560,37 @@ class EnfChefeController extends Controller
         }
 
         return view('/enfChefe/cadastroLeito');
+=======
 
+        //caso não esteja já cadastrado no sistema
+        if (mysqli_num_rows($query) == 0) {
+            $sql1 = "INSERT INTO leitos (Identificacao,Ocupado) values ('$request->Leito','0')";
+            $query1 = mysqli_query($connect, $sql1);
+            if ($query1 == 1) {
+                // cadastrado com sucesso
+                //log
+                $ip = $_SERVER["REMOTE_ADDR"];
+                $acao = "Cadastrou novo leito";
+                AdminController::salvarLog($acao, $ip);
+
+                return redirect()->route('cadastroLeito')->with('msg-sucess', 'Leito cadastrado com sucesso!');
+            } else {
+                // erro no BD
+                return redirect()->route('cadastroLeito')->with('msg-error', 'Ocorreu um erro, tente novamente'); 
+            }
+
+>>>>>>> Stashed changes
+
+            //se já estiver cadastrado    
+        } else {
+            return redirect()->route('cadastroLeito')->with('msg-error', 'Leito já cadastrado!');
+        }
     }
 
-    public function removerLeito(Request $request){
+    public function removerLeito(Request $request)
+    {
         include("db.php");
+<<<<<<< Updated upstream
         $sql = "SELECT * FROM leitos WHERE Identificacao = '$request->focorrencia'";
         $query = mysqli_query($connect, $sql);
         if(mysqli_num_rows($query) == 1){
@@ -571,4 +603,66 @@ class EnfChefeController extends Controller
         return view('/enfChefe/cadastroLeito'); 
     }
 
+=======
+        $perm = VerificaLoginController::verificaPermissao(30);
+        if ($perm == "1") {
+            $sql = "SELECT * FROM leitos WHERE Identificacao = '$request->focorrencia'";
+            $query = mysqli_query($connect, $sql);
+            if (mysqli_num_rows($query) == 1) {
+                $sql1 = "DELETE FROM leitos WHERE Identificacao = '$request->focorrencia'";
+                $query1 = mysqli_query($connect, $sql1);
+                if($query1 == 1 ){
+                    // se sucesso ao deletar
+                    return redirect()->route('cadastroLeito')->with('msg-sucess', 'Leito removido com sucesso!');
+                }else{
+                    // erro no banco de dados
+                    return redirect()->route('cadastroLeito')->with('msg-error', 'Ocorreu um erro, tente novamente');
+                }
+                
+            } else {
+                // se não existir o leito
+                return redirect()->route('cadastroLeito')->with('msg-error', 'Leito não encontrado!');
+            }
+        } else {
+            return redirect()->back();
+        }
+    }
+
+
+
+    public function verificarPermissao($cargoId, $permissaoId){
+        include('db.php');
+
+        //busca no banco de dados
+        $sql="SELECT *FROM permissao_cargo WHERE permissao_id = permissaoId";
+        $query = mysqli_query($connect,$sql);
+  
+        if($cargoId == 2){
+            while($sql=mysqli_fetch_array($query)){
+            if($sql['Cargo_id']='2'){
+                $resultado= $sql['ativo'];
+            }
+        }
+        $resultado == 1?$saida=2:$saida=0;
+        }
+        else if($cargoId == 3){
+            while($sql=mysqli_fetch_array($query)){
+                if($sql['Cargo_id']='3'){
+                $resultado= $sql['ativo'];
+            }
+        }
+        $resultado == 1?$saida=3:$saida=0;
+        }
+        else if($cargoId == 4){
+            while($sql=mysqli_fetch_array($query)){
+                if($sql['Cargo_id']='4'){
+                    $resultado= $sql['ativo'];
+                }
+            }
+            $resultado == 1?$saida=4:$saida=0;
+        }
+        return $saida;
+        }
+
+>>>>>>> Stashed changes
 }
