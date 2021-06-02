@@ -2994,7 +2994,9 @@
         },
         {
             "name": "symfony/http-foundation",
+
             "version": "v5.3.0",
+
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-foundation.git",
@@ -3002,8 +3004,10 @@
             },
             "dist": {
                 "type": "zip",
+
                 "url": "https://api.github.com/repos/symfony/http-foundation/zipball/31f25d99b329a1461f42bcef8505b54926a30be6",
                 "reference": "31f25d99b329a1461f42bcef8505b54926a30be6",
+
                 "shasum": ""
             },
             "require": {
@@ -3047,7 +3051,9 @@
             "description": "Defines an object-oriented layer for the HTTP specification",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/http-foundation/tree/v5.3.0"
+
+                "source": "https://github.com/symfony/http-foundation/tree/v5.3.1"
+
             },
             "funding": [
                 {
@@ -3063,7 +3069,9 @@
                     "type": "tidelift"
                 }
             ],
+
             "time": "2021-05-26T17:43:10+00:00"
+
         },
         {
             "name": "symfony/http-kernel",
@@ -3075,8 +3083,10 @@
             },
             "dist": {
                 "type": "zip",
+
                 "url": "https://api.github.com/repos/symfony/http-kernel/zipball/f8e8f5391b6909e2f0ba8c12220ab7af3050eb4f",
                 "reference": "f8e8f5391b6909e2f0ba8c12220ab7af3050eb4f",
+
                 "shasum": ""
             },
             "require": {
@@ -3159,7 +3169,10 @@
             "description": "Provides a structured process for converting a Request into a Response",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/http-kernel/tree/v5.3.0"
+
+
+                "source": "https://github.com/symfony/http-kernel/tree/v5.3.1"
+
             },
             "funding": [
                 {
@@ -3175,7 +3188,11 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-05-31T10:44:03+00:00"
+
+
+            "time": "2021-06-02T10:07:12+00:00"
+
+
         },
         {
             "name": "symfony/mime",
