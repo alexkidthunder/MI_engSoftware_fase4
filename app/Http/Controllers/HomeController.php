@@ -74,6 +74,7 @@ class HomeController extends Controller
                 }else{
                     return redirect() -> back() ->with('msg-error','Funcionario sem cargo, algo esta errado!!!');
                 }
+
             }else{
                 return redirect() -> back() ->with('msg-error','Conta do funcionario encontrasse desativada');
             }
@@ -96,6 +97,12 @@ class HomeController extends Controller
     public function logout(){
         session_start();
         session_destroy();
+
+        //log
+        $ip = $_SERVER["REMOTE_ADDR"];
+        $acao = "Logout no sistema";           
+        AdminController::salvarLog($acao, $ip);
+
         header("Location: /");
         exit();
     }
@@ -115,12 +122,18 @@ class HomeController extends Controller
         //se a nova senha desejada for igual a de confimação
         if ($senhaConfirmacao == $senhaDefinida){
             //$senhaCript = Hash::make($senhaConfimacao);         //cria um hash a partir da nova senha 
-            //dd($cpf);    
+           // dd($cpf);    
 
             //atualiza senha no banco de dados
             $update = "UPDATE usuarios SET Senha = '$senhaConfirmacao' WHERE CPF = '$cpf'";
             mysqli_query($connect,$update);
             
+            //log
+            $ip = $_SERVER["REMOTE_ADDR"];
+            $acao = "Novo usuário cadastrou senha";           
+            AdminController::salvarLog($acao, $ip);
+
+
             //Verificando se cpf está cadastrados no banco de dados
             $result = mysqli_query($connect,"SELECT CPF FROM usuarios WHERE CPF = '$request->cpf'"); 
             $row = mysqli_num_rows($result); 
@@ -138,18 +151,42 @@ class HomeController extends Controller
                                             //Sequência de condicionais que verifica o cargo para reirecionar para o menu correto 
                 if($atribuicao == "Administrador"){
                     $_SESSION['administrador'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
+                    
+                    //log
+                    $ip = $_SERVER["REMOTE_ADDR"];
+                    $acao = "Administrador logou no sistema";           
+                    AdminController::salvarLog($acao, $ip);
+                    
                     header("Location: /menuAdm");
                     exit();
                 }else if($atribuicao == "Enfermeiro Chefe"){
                     $_SESSION['enfermeiroChefe'] = $request->cpf; 
+
+                    //log
+                    $ip = $_SERVER["REMOTE_ADDR"];
+                    $acao = "Enfermeiro chefe logou no sistema";           
+                    AdminController::salvarLog($acao, $ip);
+
                     header("Location: /menu");
                     exit();
                 }else if($atribuicao == "Enfermeiro"){
                     $_SESSION['enfermeiro'] = $request->cpf; 
+
+                    //log
+                    $ip = $_SERVER["REMOTE_ADDR"];
+                    $acao = "Enfermeiro logou no sistema";           
+                    AdminController::salvarLog($acao, $ip);
+
                     header("Location: /menu");
                     exit();
                 }else if($atribuicao == "Estagiario"){
                     $_SESSION['estagiario'] = $request->cpf; 
+
+                    //log
+                    $ip = $_SERVER["REMOTE_ADDR"];
+                    $acao = "Estagiário logou no sistema";           
+                    AdminController::salvarLog($acao, $ip);
+
                     header("Location: /menu");
                     exit();
                 }              
@@ -157,7 +194,7 @@ class HomeController extends Controller
           
         //se a nova senha desejada for diferente da confirmada
         }else{
-            return redirect()->route('index')->with('cpf',$cpf,'msg-error','A senha de confirmação está diferente da nova senha!!',);
+            return redirect('/primeiroAcesso')->with('cpf', $request->cpf);
         }
        
     }
@@ -198,6 +235,13 @@ class HomeController extends Controller
             $usuario['sexo'] = $sql['Sexo'];
             $usuario['email'] = $sql['Email'];
         }
+
+        //log
+        $ip = $_SERVER["REMOTE_ADDR"];
+        $acao = "Usuário editou perfil";           
+        AdminController::salvarLog($acao, $ip);
+
+
         return view('editarPerfil', ['usuario' => $usuario]);
     }
     
@@ -250,6 +294,12 @@ class HomeController extends Controller
                 mysqli_query($connect,$updateSenha);
             }
         }
+
+        //log
+        $ip = $_SERVER["REMOTE_ADDR"];
+        $acao = "Usuário alterou senha";           
+        AdminController::salvarLog($acao, $ip);
+
         header('Location: /meuPerfil');
         exit();
     }
@@ -643,7 +693,7 @@ class HomeController extends Controller
             
             $ip = $request->ip();
             $acao = "Cadastrou paciente $request->fnome";           
-            $this->salvarLog($acao, $ip);
+            AdminController::salvarLog($acao, $ip);
 
             return redirect()->route('cadastroPaciente')->with('success', "Paciente cadastrado com sucesso!");
         }else{
