@@ -64,6 +64,7 @@
         <div class="content-center">
             <form>
                 <select id="novaAtribuicao" name="novaAtribuicao" onchange="this.form.submit()">
+                    <option value="internado" name="internado"></option>
                     <option value="internado" name="internado">Pacientes internados</option>
                     <option value="alta" name="alta">Pacientes de alta</option>
                     <option value="obito" name="obito">Pacientes em óbito</option>

@@ -247,14 +247,19 @@ class EnfChefeController extends Controller
 
     public function removerLeito(Request $request){
         include("db.php");
-        $sql = "SELECT * FROM leitos WHERE Identificacao = '$request->focorrencia'";
-        $query = mysqli_query($connect, $sql);
-        if(mysqli_num_rows($query) == 1){
-            $sql1 = "DELETE FROM leitos WHERE Identificacao = '$request->focorrencia'";
-            $query1 = mysqli_query($connect, $sql1);
-            return redirect()->route('cadastroLeito')->with('msg-sucess','Leito removido com sucesso!'); 
+        $perm = VerificaLoginController::verificaPermissao(30);
+        if($perm == "1"){
+            $sql = "SELECT * FROM leitos WHERE Identificacao = '$request->focorrencia'";
+            $query = mysqli_query($connect, $sql);
+            if(mysqli_num_rows($query) == 1){
+                $sql1 = "DELETE FROM leitos WHERE Identificacao = '$request->focorrencia'";
+                $query1 = mysqli_query($connect, $sql1);
+                return redirect()->route('cadastroLeito')->with('msg-sucess','Leito removido com sucesso!'); 
+            }else{
+                return redirect()->route('cadastroLeito')->with('msg-error','Leito não encontrado!'); 
+            }
         }else{
-            return redirect()->route('cadastroLeito')->with('msg-error','Leito não encontrado!'); 
+            return redirect()-back();
         }
         
     }

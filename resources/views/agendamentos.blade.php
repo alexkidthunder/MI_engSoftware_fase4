@@ -122,10 +122,16 @@
                     <div class="col-lg-9">
                     </div>
                     <div class="col-12 col-sm-12 col-md-12 col-lg-3" id="add_prep_btn_div">
+                    <input type="hidden" name="codA" value="{{$infos['codA'.$i]}}">
                         <div>
-                            <button type="button" class="btn-white" id="add_prep_btn"> Adicionar preparador</button>
+                            <form action="/ACagendamentos" method="post">
+                            @csrf
+                                <input type="hidden" name="codA" value="{{$infos['codA'.$i]}}">
+                                <button type="submit" class="btn-white" id="add_prep_btn"> Adicionar preparador</button>
+                            </form>
                         </div>
                     </div>
+                    </form>
                     <!------------- Fim do preprador da aplicação ------------->
 
                     <!---------- Botao para finalizar aplicação---------->
