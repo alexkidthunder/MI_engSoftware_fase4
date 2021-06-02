@@ -299,7 +299,12 @@ INSERT INTO permissao_cargo VALUES
 INSERT INTO agendamento_prontuario VALUES
 	('4', '1'),
 	('1', '3'),
-	('4', '4');
+	('4', '4'),
+	('1', '4'),
+	('2', '4'),
+	('3', '1'),
+	('5', '1'),
+	('6', '4');
 
 INSERT INTO cid VALUES
 	(DEFAULT,'A00.0', 'Cólera devida a Vibrio  01, biótipo '),
