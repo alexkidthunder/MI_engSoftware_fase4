@@ -205,9 +205,7 @@
                     </div>
                     <!----------Parte onde fica o nome do Aplicador do medicamento e o leito do paciente------------>
                     <div class="row">
-                        <div class="col-lg-9">
-                            <button class="btn-Patient text-left">{{$infosM['aplicador'.$j]}}</button>
-                        </div>
+
                         <div class="col-lg-3">
                             <div class="box-blue">
                                 Leito: {{$paciente['leito']}}
