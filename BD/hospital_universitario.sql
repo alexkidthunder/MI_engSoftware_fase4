@@ -55,7 +55,7 @@ INSERT INTO `administradores` (`CPF`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `agendamentos` (
-  `Codigo` bigint(20) NOT NULL,
+  `Codigo` bigint(20) NOT NULL AUTO_INCREMENT,
   `Posologia` float NOT NULL,
   `Data_Agend` date NOT NULL,
   `Realizado` tinyint(1) DEFAULT NULL,

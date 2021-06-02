@@ -55,7 +55,7 @@ INSERT INTO `administradores` (`CPF`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `agendamentos` (
-  `Codigo` bigint(20) NOT NULL,
+  `Codigo` bigint(20) NOT NULL AUTO_INCREMENT,
   `Posologia` float NOT NULL,
   `Data_Agend` date NOT NULL,
   `Realizado` tinyint(1) DEFAULT NULL,
@@ -392,7 +392,7 @@ CREATE TABLE IF NOT EXISTS `ocorrencias` (
 --
 INSERT INTO `ocorrencias` (`Codigo`, `Data_ocorr`, `Hora_ocorr`, `ID_prontuario`, `Descricao`, `CPF`) VALUES
   (1, '2021-05-31', '10:12:31', 4, 'Paciente Amanda Jéssica Caroline de Paula, CPF:065.799.448-03 foi internada e alocada para o leito LB001, no dia 11 de Maio de 2021 as 10:12 AM, identificada com a CID A03.2', '072.003.190-74'),
-  (2, '2021-06-01', '21:12:31', 10, 'Teste Adm', NULL),
+  (2, '2021-06-01', '21:12:31', 10, 'Teste do administrador, checando o sistema de ocorrencias', NULL),
   (3, '2021-05-12', '21:36:47', 4, 'Paciente Amanda Jéssica Caroline de Paula, CPF:065.799.448-03 foi liberada do leito LB001, no dia 12 de Maio de 2021 as 10:12 AM, depois de tomar sua medicação.', '072.003.190-74');
 
 -- --------------------------------------------------------
