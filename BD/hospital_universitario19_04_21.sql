@@ -635,8 +635,8 @@ INSERT INTO `permissoes` (`id`, `nome`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `prontuarios` (
-  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
   `aberto` tinyint(1) NOT NULL,
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
   `Data_Internacao` date NOT NULL,
   `Data_Saida` date NOT NULL,
   `Id_leito` varchar(20) NOT NULL,
