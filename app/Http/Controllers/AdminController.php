@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\DB;
 use mysqli;
 use PhpParser\Node\Stmt\ElseIf_;
 
-
+use function PHPUnit\Framework\isEmpty;
 
 class AdminController extends Controller
 {
@@ -26,20 +26,23 @@ class AdminController extends Controller
     public function log(){                                  //função para listar log
          VerificaLoginController::verificarLoginAdmin();
          include("db.php");
+  
+        //busca logs para exibir na página
+        $existeLog = "SELECT * FROM logs";
+        $query = mysqli_query($connect, $existeLog);          
+        $i = 0;
+        $logs = [];
 
-         // buscar logs para exibir na página
- 
-            $existeLog = "SELECT * FROM logs";
-            $query = mysqli_query($connect, $existeLog);          
-            $i = 0;
-            while($elemento = mysqli_fetch_array($query)){                                              
-                 $logs[$i] = $elemento; 
-                 $i++;
-            }           
-            return view('/admin/log', ['logs'=> $logs]);
+        //preenche o array log com o elemento
+        while($elemento = mysqli_fetch_array($query)){                                              
+                $logs[$i] = $elemento; 
+                $i++;
+        }           
+
+        return view('/admin/log', ['logs'=> $logs]);
     }
     
-    public function salvarLog($acao,$ip){                    //função para salvar log
+    public static function salvarLog($acao,$ip){                    //função para salvar log
         include("db.php"); 
 
         date_default_timezone_set('America/Sao_Paulo');     //padrão de fuso horário    
@@ -58,9 +61,6 @@ class AdminController extends Controller
         VerificaLoginController::verificarLoginAdmin();
         return view('/admin/atribuicao');
     }
-
-
-    
 
 
     public function permissao(Request $request){
