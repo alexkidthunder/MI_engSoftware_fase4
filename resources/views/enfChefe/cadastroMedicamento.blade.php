@@ -21,19 +21,22 @@
     @include('layouts.navbar')
     <!----------End Hearder-------->
     
-    @if(Session::has('error'))
-    <div class="msg-error" role="alert">
-            {{Session::get('error')}}
-    </div>
-    @endif  
 
-    @if(Session::has('success'))
-    <div class="msg-sucess" role="alert">
-            {{Session::get('success')}}
-    </div>
-    @endif
     <!---------------------Inicio do cadastro de medicamentos--------------------->
     <h1>CADASTRO DE MEDICAMENTOS</h1>
+
+        @if(Session::has('error'))
+        <div class="msg-error" role="alert">
+                {{Session::get('error')}}
+        </div>
+        @endif  
+
+        @if(Session::has('success'))
+        <div class="msg-sucess">
+                {{Session::get('success')}}
+        </div>
+        @endif
+
     <section>
         <div class="container-1">
             <div class="box">
