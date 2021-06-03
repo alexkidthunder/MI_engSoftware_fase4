@@ -52,10 +52,10 @@ class EnfChefeController extends Controller
     }
 
     public function salvarMedicamento(Request $request){
-         include('conexao.php');
+         include('db.php');
          session_start();
         //buscar medicamento
-        $existeMed = mysqli_query($conn,"SELECT COUNT(*) FROM medicamentos WHERE Nome_Medicam = '$request->fnome'");
+        $existeMed = mysqli_query($connect,"SELECT COUNT(*) FROM medicamentos WHERE Nome_Medicam = '$request->fnome'");
 
         //se não existir o medicamento
         if(mysqli_fetch_assoc($existeMed)['COUNT(*)'] == 0){
@@ -66,7 +66,7 @@ class EnfChefeController extends Controller
             //cria medicamento e adiciona
             $novoMed = "INSERT INTO medicamentos (Nome_Medicam, Quantidade, Fabricante, Data_Validade, Codigo) values
             ('$request->fnome', '$request->fquantidade', '$request->ffabricante', '$request->fvalidade', '$cod')";
-            mysqli_query($conn,$novoMed);
+            mysqli_query($connect,$novoMed);
             
             //log
             $ip = $_SERVER["REMOTE_ADDR"];
@@ -74,10 +74,10 @@ class EnfChefeController extends Controller
             AdminController::salvarLog($acao, $ip);
 
             
-            return redirect()->route('cadastroMedicamento')->with('msg-sucess', "Novo medicamento adicionado!");
+            return redirect()->route('cadastroMedicamento')->with('success', "Novo medicamento adicionado!");
         }else{
             //se existir o medicamento cadastrado
-            return redirect()->route('cadastroMedicamento')->with('msg-error', "Medicamento já cadastrado!!");
+            return redirect()->route('cadastroMedicamento')->with('error', "Medicamento já cadastrado!!");
         }
         
     }
