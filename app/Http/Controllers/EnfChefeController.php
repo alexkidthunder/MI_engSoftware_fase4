@@ -52,10 +52,10 @@ class EnfChefeController extends Controller
     }
 
     public function salvarMedicamento(Request $request){
-         include('conexao.php');
+         include('db.php');
          session_start();
         //buscar medicamento
-        $existeMed = mysqli_query($conn,"SELECT COUNT(*) FROM medicamentos WHERE Nome_Medicam = '$request->fnome'");
+        $existeMed = mysqli_query($connect,"SELECT COUNT(*) FROM medicamentos WHERE Nome_Medicam = '$request->fnome'");
 
         //se não existir o medicamento
         if(mysqli_fetch_assoc($existeMed)['COUNT(*)'] == 0){
@@ -66,7 +66,7 @@ class EnfChefeController extends Controller
             //cria medicamento e adiciona
             $novoMed = "INSERT INTO medicamentos (Nome_Medicam, Quantidade, Fabricante, Data_Validade, Codigo) values
             ('$request->fnome', '$request->fquantidade', '$request->ffabricante', '$request->fvalidade', '$cod')";
-            mysqli_query($conn,$novoMed);
+            mysqli_query($connect,$novoMed);
             
             //log
             $ip = $_SERVER["REMOTE_ADDR"];
@@ -74,10 +74,10 @@ class EnfChefeController extends Controller
             AdminController::salvarLog($acao, $ip);
 
             
-            return redirect()->route('cadastroMedicamento')->with('msg-sucess', "Novo medicamento adicionado!");
+            return redirect()->route('cadastroMedicamento')->with('success', "Novo medicamento adicionado!");
         }else{
             //se existir o medicamento cadastrado
-            return redirect()->route('cadastroMedicamento')->with('msg-error', "Medicamento já cadastrado!!");
+            return redirect()->route('cadastroMedicamento')->with('error', "Medicamento já cadastrado!!");
         }
         
     }
@@ -258,7 +258,9 @@ class EnfChefeController extends Controller
         }       
     }
 
+
     public function cadastrarLeito(Request $request){               //cadastro de leito
+
         include("db.php");
 
         //busca no banco de dados
@@ -266,43 +268,55 @@ class EnfChefeController extends Controller
         $query = mysqli_query($connect, $sql);
 
         //caso não esteja já cadastrado no sistema
-        if(mysqli_num_rows($query) == 0){
+        if (mysqli_num_rows($query) == 0) {
             $sql1 = "INSERT INTO leitos (Identificacao,Ocupado) values ('$request->Leito','0')";
             $query1 = mysqli_query($connect, $sql1);
+            if ($query1 == 1) {
+                // cadastrado com sucesso
+                //log
+                $ip = $_SERVER["REMOTE_ADDR"];
+                $acao = "Cadastrou novo leito";
+                AdminController::salvarLog($acao, $ip);
 
-            //log
-            $ip = $_SERVER["REMOTE_ADDR"];
-            $acao = "Cadastrou novo leito";           
-            AdminController::salvarLog($acao, $ip);
+                return redirect()->route('cadastroLeito')->with('msg-sucess', 'Leito cadastrado com sucesso!');
+            } else {
+                // erro no BD
+                return redirect()->route('cadastroLeito')->with('msg-error', 'Ocorreu um erro, tente novamente'); 
+            }
 
-            return redirect()->route('cadastroLeito')->with('msg-sucess','Leito cadastrado com sucesso!'); 
-
-        //se já estiver cadastrado    
-        }else{
-            return redirect()->route('cadastroLeito')->with('msg-error','Leito já cadastrado!'); 
-        }        
-
+            //se já estiver cadastrado    
+        } else {
+            return redirect()->route('cadastroLeito')->with('msg-error', 'Leito já cadastrado!');
+        }
     }
 
-    public function removerLeito(Request $request){
+    public function removerLeito(Request $request)
+    {
         include("db.php");
+
         $perm = VerificaLoginController::verificaPermissao(30);
-        if($perm == "1"){
+        if ($perm == "1") {
             $sql = "SELECT * FROM leitos WHERE Identificacao = '$request->focorrencia'";
             $query = mysqli_query($connect, $sql);
-            if(mysqli_num_rows($query) == 1){
+            if (mysqli_num_rows($query) == 1) {
                 $sql1 = "DELETE FROM leitos WHERE Identificacao = '$request->focorrencia'";
                 $query1 = mysqli_query($connect, $sql1);
-                return redirect()->route('cadastroLeito')->with('msg-sucess','Leito removido com sucesso!'); 
-            }else{
-                return redirect()->route('cadastroLeito')->with('msg-error','Leito não encontrado!'); 
+                if($query1 == 1 ){
+                    // se sucesso ao deletar
+                    return redirect()->route('cadastroLeito')->with('msg-sucess', 'Leito removido com sucesso!');
+                }else{
+                    // erro no banco de dados
+                    return redirect()->route('cadastroLeito')->with('msg-error', 'Ocorreu um erro, tente novamente');
+                }
+                
+            } else {
+                // se não existir o leito
+                return redirect()->route('cadastroLeito')->with('msg-error', 'Leito não encontrado!');
             }
-        }else{
-            return redirect()-back();
+        } else {
+            return redirect()->back();
         }
-        
     }
-
 
     public function verificarPermissao($cargoId, $permissaoId){
         include('db.php');

@@ -102,7 +102,6 @@
                     </div>
                 </form>
             @endif
-
             <!---------- Fim do cadastro do prontuário ---------->
         </div>
     </section>
