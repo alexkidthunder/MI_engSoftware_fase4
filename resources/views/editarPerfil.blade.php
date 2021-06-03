@@ -19,7 +19,7 @@
 
 <body>
     <!----------Hearder------------>
-    @if(isset($_SESSION['administrador']))
+    @if (isset($_SESSION['administrador']))
         @include('layouts.navbar-adm')
     @else
         @include('layouts.navbar')
@@ -30,87 +30,95 @@
         <div class="container-1" id="perfil">
             <h1>MEU PERFIL</h1>
             <div class="row">
-            <div class="col-lg">
-                @if ($errors->any()) <!--Verificando se existe qualquer erro -->
-                    <div class="msg-error">
-                        <ul>
-                            @foreach ($errors->all() as $error) <!--Percorre todos os erros-->
-                                <li>{{ $error }}</li> <!--Obtem o erro -->
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-                @if (session('msg')) <!-- Verifica se a mensagem de erro foi instanciada -->
-                    <div class="msg-sucess">
-                        {{session('msg')}} <!--Obtem mensagem de erro -->
-                    </div>
-                @endif
-                @if (session('msg-error')) <!-- Verifica se a mensagem de erro foi instanciada -->
-                    <div class="msg-error">
-                        {{session('msg-error')}} <!--Obtem mensagem de erro -->
-                    </div>
-                @endif
+                <div class="col-lg">
+                    @if ($errors->any())
+                        <!--Verificando se existe qualquer erro -->
+                        <div class="msg-error">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <!--Percorre todos os erros-->
+                                    <li>{{ $error }}</li>
+                                    <!--Obtem o erro -->
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    @if (session('msg'))
+                        <!-- Verifica se a mensagem de erro foi instanciada -->
+                        <div class="msg-sucess">
+                            {{ session('msg') }}
+                            <!--Obtem mensagem de erro -->
+                        </div>
+                    @endif
+                    @if (session('msg-error'))
+                        <!-- Verifica se a mensagem de erro foi instanciada -->
+                        <div class="msg-error">
+                            {{ session('msg-error') }}
+                            <!--Obtem mensagem de erro -->
+                        </div>
+                    @endif
+                </div>
             </div>
-        </div>
-    </div>     
-            <!------------ Informações pessoais do usuário ------------>
-                <div class="box" id="perfilArea">
-                    <div class="change">
-                        <form method="post" action="/alterarDados" id="register">
-                        @csrf
-                            <!------------ Nome do usuário ------------>
-                            <div class="row">
-                                @if(isset($usuario['nome']))
-                                <div class="col-lg-12">
-                                    <label>Nome</label> <br>
-                                    <input disabled id="fnome" name="fnome" type="text" maxlength="50" value="{{$usuario['nome']}}">
-                                </div>
-                                @endif
+        <!------------ Informações pessoais do usuário ------------>
+        <div class="box" id="perfilArea">
+            <div class="change">
+                <form method="post" action="/alterarDados" id="register">
+                    @csrf
+                    <!------------ Nome do usuário ------------>
+                    <div class="row">
+                        @if (isset($usuario['nome']))
+                            <div class="col-lg-12">
+                                <label>Nome</label> <br>
+                                <input disabled id="fnome" name="fnome" type="text" maxlength="50"
+                                    value="{{ $usuario['nome'] }}">
                             </div>
-                            
-                            <div class="row">
-                                <!------------ Data de nascimento ------------>
-                                @if(isset($usuario['nascimento']))
-                                <div class="col-lg-4">
-                                    <label style="white-space: nowrap">Data de Nascimento</label> <br>
-                                    <input disabled id="fnascimento" name="fnascimento" type="date" value="{{$usuario['nascimento']}}">
-                                </div>
-                                @endif
-                                <!------------ CPF do usuário ------------>
-                                @if(isset($_SESSION['administrador']))
-                                <div class="col-lg-4">
-                                    <label>CPF</label> <br>
-                                    <input disabled id="fcpf" name="fcpf" type="text" maxlength="14"
-                                    pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" value="{{$_SESSION['administrador']}}">
-                                </div>
-                                @endif
-                                @if(isset($_SESSION['enfermeiroChefe']))
-                                <div class="col-lg-4">
-                                    <label>CPF</label> <br>
-                                    <input disabled id="fcpf" name="fcpf" type="text" maxlength="14"
-                                    pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" value="{{$_SESSION['enfermeiroChefe']}}">
-                                </div>
-                                @endif
-                                @if(isset($_SESSION['enfermeiro']))
-                                <div class="col-lg-4">
-                                    <label>CPF</label> <br>
-                                    <input disabled id="fcpf" name="fcpf" type="text" maxlength="14"
-                                    pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" value="{{$_SESSION['enfermeiro']}}">
-                                </div>
-                                @endif
-                                @if(isset($_SESSION['estagiario']))
-                                <div class="col-lg-4">
-                                    <label>CPF</label> <br>
-                                    <input disabled id="fcpf" name="fcpf" type="text" maxlength="14"
-                                    pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" value="{{$_SESSION['estagiario']}}">
-                                </div>
-                                @endif
-                            
-                                <!------------ Sexo do usuário------------>
-                                @if(isset($usuario['sexo']))
-                                <div class="col-lg-4">
-                                    <label>Sexo</label> <br>
-                                    @if($usuario['sexo'] == "M")
+                        @endif
+                    </div>
+
+                    <div class="row">
+                        <!------------ Data de nascimento ------------>
+                        @if (isset($usuario['nascimento']))
+                            <div class="col-lg-4">
+                                <label style="white-space: nowrap">Data de Nascimento</label> <br>
+                                <input disabled id="fnascimento" name="fnascimento" type="date"
+                                    value="{{ $usuario['nascimento'] }}">
+                            </div>
+                        @endif
+                        <!------------ CPF do usuário ------------>
+                        @if (isset($_SESSION['administrador']))
+                            <div class="col-lg-4">
+                                <label>CPF</label> <br>
+                                <input disabled id="fcpf" name="fcpf" type="text" maxlength="14"
+                                    pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" value="{{ $_SESSION['administrador'] }}">
+                            </div>
+                        @endif
+                        @if (isset($_SESSION['enfermeiroChefe']))
+                            <div class="col-lg-4">
+                                <label>CPF</label> <br>
+                                <input disabled id="fcpf" name="fcpf" type="text" maxlength="14"
+                                    pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" value="{{ $_SESSION['enfermeiroChefe'] }}">
+                            </div>
+                        @endif
+                        @if (isset($_SESSION['enfermeiro']))
+                            <div class="col-lg-4">
+                                <label>CPF</label> <br>
+                                <input disabled id="fcpf" name="fcpf" type="text" maxlength="14"
+                                    pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" value="{{ $_SESSION['enfermeiro'] }}">
+                            </div>
+                        @endif
+                        @if (isset($_SESSION['estagiario']))
+                            <div class="col-lg-4">
+                                <label>CPF</label> <br>
+                                <input disabled id="fcpf" name="fcpf" type="text" maxlength="14"
+                                    pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" value="{{ $_SESSION['estagiario'] }}">
+                            </div>
+                        @endif
+
+                        <!------------ Sexo do usuário------------>
+                        @if (isset($usuario['sexo']))
+                            <div class="col-lg-4">
+                                <label>Sexo</label> <br>
+                                @if ($usuario['sexo'] == 'M')
                                     <div class="row no-gutters">
                                         <div id="fmasc_div" class="col-lg-6 border-m content-center radial-no-edit">
                                             <input type="radio" name="fsexo" value="M" id="fmasc" checked disabled>
@@ -123,7 +131,7 @@
                                             <!--Usar o checked para deixar marcado-->
                                         </div>
                                     </div>
-                                    @elseif($usuario['sexo'] == "F")
+                                @elseif($usuario['sexo'] == "F")
                                     <div class="row no-gutters">
                                         <div id="fmasc_div" class="col-lg-6 border-m content-center radial-no-edit">
                                             <input type="radio" name="fsexo" value="M" id="fmasc" disabled>
@@ -131,129 +139,129 @@
                                             <!--Usar o checked para deixar marcado-->
                                         </div>
                                         <div id="ffem_div" class="col-lg-6 border-f content-center radial-no-edit">
-                                            <input type="radio" name="fsexo" value="F" id="ffem"  checked disabled>
+                                            <input type="radio" name="fsexo" value="F" id="ffem" checked disabled>
                                             <label for="ffem" class="normal-label">Feminino</label>
                                             <!--Usar o checked para deixar marcado-->
                                         </div>
                                     </div>
-                                    @endif
-                                    
-                                </div>
                                 @endif
-                            </div>
 
-                            <div class="row">
-                                <!------------ E-mail do usuário------------>
-                                @if(isset($usuario['email']))
-                                <div class="col-lg-8">
-                                    <label>E-mail</label> <br>
-                                    <input disabled id="femail" name="femail" type="email" maxlength="50" value="{{$usuario['email']}}">
-                                </div>
-                                @endif
-                                <!------------ Atribuição do usuário------------>
-                                @if(isset($_SESSION['enfermeiro']))
-                                <div class="col-lg-4" id="atribuiDiv">
-                                    <label for="fatribui">Atribuição</label>
-                                    <input disabled id="fatribui" name="fatribui" type="text" value="Enfermeiro">
-                                    <!--Alterar o Value de acordo com a atribuição-->
-                                </div>
-                                @endif
-                                @if(isset($_SESSION['enfermeiroChefe']))
-                                <div class="col-lg-4" id="atribuiDiv">
-                                    <label for="fatribui">Atribuição</label>
-                                    <input disabled id="fatribui" name="fatribui" type="text" value="Enfermeiro Chefe">
-                                    <!--Alterar o Value de acordo com a atribuição-->
-                                </div>
-                                @endif
-                                @if(isset($_SESSION['estagiario']))
-                                <div class="col-lg-4" id="atribuiDiv">
-                                    <label for="fatribui">Atribuição</label>
-                                    <input disabled id="fatribui" name="fatribui" type="text" value="Estagiario">
-                                    <!--Alterar o Value de acordo com a atribuição-->
-                                </div>
-                                @endif
-                                @if(isset($_SESSION['administrador']))
-                                <div class="col-lg-4" id="atribuiDiv">
-                                    <label for="fatribui">Atribuição</label>
-                                    <input disabled id="fatribui" name="fatribui" type="text" value="Administrador">
-                                    <!--Alterar o Value de acordo com a atribuição-->
-                                </div>
-                                @endif
                             </div>
-                            <div class="row">
-                                <!------------ Coren se usuário for enfermeiro ou enfermeiro chefe ------------>
-                                @if(isset($usuario['coren']))
-                                <div class="col-lg-4" id="corenDiv">
-                                    <!--Mostrar isso somente se for Enfermeiro/Chefe-->
-                                    <label for="fcoren">Coren</label>
-                                    <input disabled id="fcoren" name="fcoren" type="text" value="{{$usuario['coren']}}"
-                                        maxlength="9">
-                                </div>
-                                @endif
-                                <!------------ Botão para alterar a senha ------------>
-                                <div class="col-lg-4" id="edit_div">
-                                    <br>
-                                    <div id="psw_info_div">
-                                        <button type="button" class="btn-white" name="psw_info" id="psw_info">Alterar senha</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div id="edit_div" class="row">
-                                <!------------ Botão para editar as infomações ------------>
-                                <div class="col-lg" id="edit_info_div">
-                                    <button type="button" class="btn-blue" name="edit_info" id="edit_info">Editar informações</button>
-                                </div>
-                                <!------------ Botão para cancelar ------------>
-                                <div class="col-lg hide" id="confirm_info_div">
-                                    <button type="Submit" class="btn-blue" name="confirm_info"
-                                        id="confirm_info">Salvar</button>
-                                    <!--Alterar para Submit depois-->
-                                </div>
-                            </div>
-                        </form>
+                        @endif
                     </div>
-                </div>
-            <!------------ Fim das informações pessoais do usuário ------------>
 
-            <!------------ Alteração de senha ------------>
-            <div class="set-password hide" id="pswArea">
-                <div>
-                    <h3 class="password-title text-center">Alterar senha</h3>
-                    <br> <br>
-                    <form method="post" action="/alterarSP" class="content-center">
-                    @csrf
-                        <!------------ Senha atual ------------>
-                        <div align="center">
-                            <input type="password" id="senha-atual" name="senhaAtual"
-                                placeholder="insira a senha atual">
-                        </div>
-                        <!------------ Nova senha ------------>
-                        <div align="center">
-                            <input type="password" id="senha" name="senha" placeholder="insira a nova senha">
-                        </div>
-                        <!------------ Confirmação da nova senha ------------>
-                        <div align="center">
-                            <input type="password" id="confirmacao" name="confirmacao"
-                                placeholder="Confirme a nova senha">
-                        </div>
-                        <br>
-                        <div>
-                            <div class="row" id="psw-field-btn">
-                                <!------------ Botão para cancelar ------------>
-                                <div class="col-lg col-md col-sm">
-                                    <button id="cancelar" type="button" class="btn-gray">Cancelar</button>
-                                </div>
-                                <!------------ Botão para alterar a senha ------------>
-                                <div class="col-lg col-md col-sm">
-                                    <button id="alterarSenha" type="submit" class="btn-blue">Alterar senha</button>
-                                </div>
+                    <div class="row">
+                        <!------------ E-mail do usuário------------>
+                        @if (isset($usuario['email']))
+                            <div class="col-lg-8">
+                                <label>E-mail</label> <br>
+                                <input disabled id="femail" name="femail" type="email" maxlength="50"
+                                    value="{{ $usuario['email'] }}">
+                            </div>
+                        @endif
+                        <!------------ Atribuição do usuário------------>
+                        @if (isset($_SESSION['enfermeiro']))
+                            <div class="col-lg-4" id="atribuiDiv">
+                                <label for="fatribui">Atribuição</label>
+                                <input disabled id="fatribui" name="fatribui" type="text" value="Enfermeiro">
+                                <!--Alterar o Value de acordo com a atribuição-->
+                            </div>
+                        @endif
+                        @if (isset($_SESSION['enfermeiroChefe']))
+                            <div class="col-lg-4" id="atribuiDiv">
+                                <label for="fatribui">Atribuição</label>
+                                <input disabled id="fatribui" name="fatribui" type="text" value="Enfermeiro Chefe">
+                                <!--Alterar o Value de acordo com a atribuição-->
+                            </div>
+                        @endif
+                        @if (isset($_SESSION['estagiario']))
+                            <div class="col-lg-4" id="atribuiDiv">
+                                <label for="fatribui">Atribuição</label>
+                                <input disabled id="fatribui" name="fatribui" type="text" value="Estagiario">
+                                <!--Alterar o Value de acordo com a atribuição-->
+                            </div>
+                        @endif
+                        @if (isset($_SESSION['administrador']))
+                            <div class="col-lg-4" id="atribuiDiv">
+                                <label for="fatribui">Atribuição</label>
+                                <input disabled id="fatribui" name="fatribui" type="text" value="Administrador">
+                                <!--Alterar o Value de acordo com a atribuição-->
+                            </div>
+                        @endif
+                    </div>
+                    <div class="row">
+                        <!------------ Coren se usuário for enfermeiro ou enfermeiro chefe ------------>
+                        @if (isset($usuario['coren']))
+                            <div class="col-lg-4" id="corenDiv">
+                                <!--Mostrar isso somente se for Enfermeiro/Chefe-->
+                                <label for="fcoren">Coren</label>
+                                <input disabled id="fcoren" name="fcoren" type="text" value="{{ $usuario['coren'] }}"
+                                    maxlength="9">
+                            </div>
+                        @endif
+                        <!------------ Botão para alterar a senha ------------>
+                        <div class="col-lg-4" id="edit_div">
+                            <br>
+                            <div id="psw_info_div">
+                                <button type="button" class="btn-white" name="psw_info" id="psw_info">Alterar
+                                    senha</button>
                             </div>
                         </div>
-                    </form>
-                </div>
+                    </div>
+
+                    <div id="edit_div" class="row">
+                        <!------------ Botão para editar as infomações ------------>
+                        <div class="col-lg" id="edit_info_div">
+                            <button type="button" class="btn-blue" name="edit_info" id="edit_info">Editar
+                                informações</button>
+                        </div>
+                        <!------------ Botão para cancelar ------------>
+                        <div class="col-lg hide" id="confirm_info_div">
+                            <button type="Submit" class="btn-blue" name="confirm_info" id="confirm_info">Salvar</button>
+                            <!--Alterar para Submit depois-->
+                        </div>
+                    </div>
+                </form>
             </div>
-            <!------------ Fim da alteração de senha ------------>
+        </div>
+        <!------------ Fim das informações pessoais do usuário ------------>
+
+        <!------------ Alteração de senha ------------>
+        <div class="set-password hide" id="pswArea">
+            <div>
+                <h3 class="password-title text-center">Alterar senha</h3>
+                <br> <br>
+                <form method="post" action="/alterarSP" class="content-center">
+                    @csrf
+                    <!------------ Senha atual ------------>
+                    <div align="center">
+                        <input type="password" id="senha-atual" name="senhaAtual" placeholder="insira a senha atual">
+                    </div>
+                    <!------------ Nova senha ------------>
+                    <div align="center">
+                        <input type="password" id="senha" name="senha" placeholder="insira a nova senha">
+                    </div>
+                    <!------------ Confirmação da nova senha ------------>
+                    <div align="center">
+                        <input type="password" id="confirmacao" name="confirmacao" placeholder="Confirme a nova senha">
+                    </div>
+                    <br>
+                    <div>
+                        <div class="row" id="psw-field-btn">
+                            <!------------ Botão para cancelar ------------>
+                            <div class="col-lg col-md col-sm">
+                                <button id="cancelar" type="button" class="btn-gray">Cancelar</button>
+                            </div>
+                            <!------------ Botão para alterar a senha ------------>
+                            <div class="col-lg col-md col-sm">
+                                <button id="alterarSenha" type="submit" class="btn-blue">Alterar senha</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!------------ Fim da alteração de senha ------------>
         </div>
     </section>
 </body>
