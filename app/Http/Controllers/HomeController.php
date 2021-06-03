@@ -717,10 +717,10 @@ class HomeController extends Controller
 
     public function salvarPaciente(Request $request){
         session_start();
-        include('conexao.php');
+        include('db.php');
 
         //buscar paciente
-        $existePac = mysqli_query($conn,"SELECT COUNT(*) FROM pacientes WHERE CPF = '$request->fcpf'");
+        $existePac = mysqli_query($connect,"SELECT COUNT(*) FROM pacientes WHERE CPF = '$request->fcpf'");
 
         //se não existir o paciente
         if(mysqli_fetch_assoc($existePac)['COUNT(*)'] == 0){
@@ -728,7 +728,7 @@ class HomeController extends Controller
             //cria paciente e adiciona
             $novoPac = "INSERT INTO pacientes (Nome_Paciente, Sexo, Data_Nasc, CPF, Tipo_Sang) values
             ('$request->fnome', '$request->fsexo', '$request->fnascimento', '$request->fcpf', '$request->fsanguineo')";
-            mysqli_query($conn,$novoPac);
+            mysqli_query($connect,$novoPac);
             
             $ip = $request->ip();
             $acao = "Cadastrou paciente $request->fnome";           
