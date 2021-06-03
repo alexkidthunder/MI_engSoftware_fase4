@@ -73,7 +73,7 @@
                     <div class="box-cadastroLeito">
                         <div class="row">
                             <!------ Nome do leito de internamento do Paciente ------>
-                            <div class="col-lg-4">
+                            <div class="col-md-6 col-lg-4">
                                 <!------ Aqui em baixo o Leito cadastrado no BD, como isso não ta feito, vai um exemplo ------>
                                 <label name="inserir_leito">Selecione o leito</label>
                                 <form>
@@ -88,7 +88,7 @@
                                 </form>
                             </div>
                             <!------ Data de internação do Paciente ------>
-                            <div class="col-lg-4">
+                            <div class="col-md-6 col-lg-4">
                                 <div>
                                     <label name="data_internacao">Data de Internação</label>
                                     <input type="date" name="data_internacao" requerid>

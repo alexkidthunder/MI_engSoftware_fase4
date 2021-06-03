@@ -51,9 +51,10 @@
             @if(isset($user))
             @if(!is_array($user))
             @if($user == 0)
-            <div class='msg-error'> O usuário não foi encontrado</div>
+            <div class='msg-error'> O funcionário não foi encontrado. Verifique se o CPF informado está correto. </div>
             @endif
             @else
+            <!--Fim da mensagem de erro --->
 
 
             <h3>Funcionário</h3>
@@ -65,7 +66,7 @@
                 </div>
             </div>  
             <div class="row">
-                <div class="col-xl-4">
+                <div class="col-md-6 col-xl-4">
                     <div name="user_field" class="box-gray scrolls">
                         <span style="white-space: nowrap">CPF: {{$user['CPF']}}</span>
                     </div>
@@ -75,14 +76,14 @@
                 @if($atribuicao == 0)
                 <!-- Não exibe nada, pois não tem coren -->
                 @else
-                <div class="col-xl-4">
+                <div class="col-md-6 col-xl-4">
                     <div name="user_field" class="box-gray scrolls">
                         <span style="white-space: nowrap">COREN: {{$atribuicao['COREN']}}</span>
                     </div>
                 </div>
                 @endif
 
-                <div class="col-xl-4">
+                <div class="col-md-6 col-xl-4">
                     <div class="box-gray">
                         {{$user['Atribuicao']}}
                     </div>

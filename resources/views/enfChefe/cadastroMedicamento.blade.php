@@ -59,12 +59,12 @@
 
                     <div class="row">
                     <!---------------------Inserção da data de validade do medicamento--------------------->
-                        <div class="col-lg-4">
+                        <div class="col-md-6 col-lg-4">
                             <label>Data de Validade</label> <br>
                             <input id="fvalidade" name="fvalidade" type="date" required>
                         </div>
                         <!---------------------Inserção da quantidadedo medicamento--------------------->
-                        <div class="col-lg-4">
+                        <div class="col-md-6 col-lg-4">
                             <label>Quantidade</label> <br>
                             <input id="fquantidade" name="fquantidade" type="text" required maxlength="40" required>
                         </div>
