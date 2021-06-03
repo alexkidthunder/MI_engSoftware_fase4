@@ -22,26 +22,26 @@
     @include('layouts.navbar')
     <!----------End Hearder-------->
 
-    <!----------- Mensagem de erro ------------->
-    @if (Session::has('error'))
-        <div class="msg-error" role="alert">
-            {{ Session::get('error') }}
-        </div>
-    @endif
-    <!--------- Fim da mensagem de erro --------->
-
-    <!---------- Mensagem de confirmação ---------->
-    @if (Session::has('success'))
-        <div class="msg-sucess" role="alert">
-            {{ Session::get('success') }}
-        </div>
-    @endif
-    <!------ Fim da mensagem de confirmação ------->
-
     <section>
         <div class="container-1">
             <h1>CADASTRO DE PACIENTE</h1>
 
+                <!----------- Mensagem de erro ------------->
+                @if (Session::has('error'))
+                    <div class="msg-error" role="alert">
+                        {{ Session::get('error') }}
+                    </div>
+                @endif
+                <!--------- Fim da mensagem de erro --------->
+
+                <!---------- Mensagem de confirmação ---------->
+                @if (Session::has('success'))
+                    <div class="msg-sucess" role="alert">
+                        {{ Session::get('success') }}
+                    </div>
+                @endif
+                <!------ Fim da mensagem de confirmação ------->
+                
             <div class="box">
                 <!---------------- Cadastro do paciente ---------------->
                 <form id="register" action="{{ route('salvarPaciente') }}" method="POST">

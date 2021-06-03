@@ -26,7 +26,7 @@ class AdminController extends Controller
     public function log(){                                  //função para listar log
          VerificaLoginController::verificarLoginAdmin();
          include("db.php");
-  
+
         //busca logs para exibir na página
         $existeLog = "SELECT * FROM logs";
         $query = mysqli_query($connect, $existeLog);          
@@ -237,7 +237,11 @@ class AdminController extends Controller
 
             $query ="DELETE FROM usuarios WHERE CPF = '$cpf'";
             
-            $status = mysqli_query($connect, $query);            
+            $status = mysqli_query($connect, $query);  
+            
+            $ip = $_SERVER["REMOTE_ADDR"];
+            $acao = "Removeu usuario";           
+            AdminController::salvarLog($acao, $ip);
                     
             return view('/admin/remocaoUsuario',['status'=>$status]);
         } else {
@@ -338,28 +342,30 @@ class AdminController extends Controller
 
     public function lupinha(Request $request){
         session_start();
-        include("db.php"); // inclusão do banco de dados
-        $user = null; // garantia de existência da variavel
+        include("db.php");                              // inclusão do banco de dados
+        $user = null;                                   // garantia de existência da variavel
+
         // busca do usuario no banco de dados
         $sql = "SELECT * FROM usuarios where CPF = '$request->cpf_user'";
         $query = mysqli_query($connect,$sql);
-        while($sql = mysqli_fetch_array($query)){ //percorrendo array de usuarios com determinado cpf
-            $user = $sql; //retorno do usuario
+        while($sql = mysqli_fetch_array($query)){       //percorrendo array de usuarios com determinado cpf
+            $user = $sql;                               //retorno do usuario
         }
+
         /*garantido que usuario foi pego na busca*/
         if($user != null){
             if($user["Atribuicao"] == "Enfermeiro Chefe"){
                 $sql2 = "SELECT * FROM enfermeiros_chefes where CPF = '$request->cpf_user'";
                 $query2 = mysqli_query($connect,$sql2);
                 while($sql2 = mysqli_fetch_array($query2)){ //percorrendo array de usuarios com determinado cpf
-                    $user2 = $sql2; //retorno do usuario
+                    $user2 = $sql2;                         //retorno do usuario
                     return view('/admin/atribuicao', ['user' => $user],['user2' => $user2]); // se encontrou retorna usuario para view 
                 }
             }elseif($user["Atribuicao"] == "Enfermeiro"){
                 $sql2 = "SELECT * FROM enfermeiros where CPF = '$request->cpf_user'";
                 $query2 = mysqli_query($connect,$sql2);
                 while($sql2 = mysqli_fetch_array($query2)){ //percorrendo array de usuarios com determinado cpf
-                    $user2 = $sql2; //retorno do usuario
+                    $user2 = $sql2;                         //retorno do usuario
                     return view('/admin/atribuicao', ['user' => $user], ['user2' => $user2]); // se encontrou retorna usuario para view 
                 }
             }else{
@@ -381,7 +387,7 @@ class AdminController extends Controller
 
     public function salvarUsuario(Request $request){
         session_start();
-        include("conexao.php");
+        include("db.php");
         
         //validação de erro de entrada
         $validator = Validator::make($request->all(), [     
@@ -394,7 +400,7 @@ class AdminController extends Controller
         }    
  
         //busca de cpf no banco  
-        $existeCPF = mysqli_query($conn,"SELECT COUNT(*) FROM usuarios WHERE CPF = '$request->fcpf'");
+        $existeCPF = mysqli_query($connect,"SELECT COUNT(*) FROM usuarios WHERE CPF = '$request->fcpf'");
 
         
 
@@ -404,29 +410,29 @@ class AdminController extends Controller
             //insere na trabela usuário
             $novoUsuario = "INSERT INTO usuarios (CPF, Nome, Senha, Email, Data_Nasc, Atribuicao, Sexo, Ip) values ('$request->fcpf', 
             '$request->fnome', 12345, '$request->femail', '$request->fnascimento', '$request->fatribui','$request->fsexo','$ip')";
-            mysqli_query($conn,$novoUsuario);
+            mysqli_query($connect,$novoUsuario);
             
            
             //insere na tabela de administrador
             if ($request->fatribui == 'Administrador'){             
                 $novoAdm = "INSERT INTO administradores (CPF) values ('$request->fcpf')";
-                mysqli_query($conn,$novoAdm);
+                mysqli_query($connect,$novoAdm);
 
             }else{  
                 //insere na tabela de enfermeiro chefe
                 if ($request->fatribui == 'Enfermeiro Chefe') {
                     $novoEnfChefe = "INSERT INTO enfermeiros_chefes (CPF,COREN) values ('$request->fcpf','$request->fcoren')";
-                    mysqli_query($conn,$novoEnfChefe);
+                    mysqli_query($connect,$novoEnfChefe);
                 }
                 //insere na tabela de enfermeiro
                 else if ($request->fatribui == 'Enfermeiro') {
                     $novoEnf = "INSERT INTO enfermeiros (CPF,COREN,Plantao) values ('$request->fcpf', '$request->fcoren','false')";
-                    mysqli_query($conn,$novoEnf);
+                    mysqli_query($connect,$novoEnf);
                 }
                 //insere na tabela de estagiario
                 else if ($request->fatribui == 'Estagiário') {
                     $novoEst = "INSERT INTO estagiarios (CPF,Plantao) values ('$request->fcpf','false')";
-                    mysqli_query($conn,$novoEst);
+                    mysqli_query($connect,$novoEst);
                 }   
             }  
             
