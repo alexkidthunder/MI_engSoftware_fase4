@@ -18,14 +18,14 @@
     <!--------------- Imagem de onda--------------->
     <div id="container-wave">
         <div class="img-login">
-            <img src="{{ asset('img/wave.png') }}"/>
+            <img src="{{ asset('img/wave.png') }}" />
         </div>
     </div>
     <!--------------- fim da Imagem -------------->
     <!----------- Imagem de enfermeiros ----------->
     <div id="container-img">
         <div class="img-login">
-            <img src="{{ asset('img/doctors.png') }}"/>
+            <img src="{{ asset('img/doctors.png') }}" />
         </div>
     </div>
     <!--------------- fim da Imagem -------------->

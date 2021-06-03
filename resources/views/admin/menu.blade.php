@@ -19,6 +19,7 @@
     <!----------Hearder------------>
     @include('layouts.navbar-menu')
     <!----------End Hearder-------->
+    
         <div class="container-2"> <!--Menu do Administrador-->
             <div class="row">
                 <div class="col-xl-3 col-lg-3 col-md-6"> <!--Botão para cadastro de funcionários-->
