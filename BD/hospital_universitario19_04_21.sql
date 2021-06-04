@@ -12964,9 +12964,11 @@ CREATE TABLE IF NOT EXISTS `ocorrencias` (
 --
 
 INSERT INTO `ocorrencias` (`Codigo`, `Data_ocorr`, `Hora_ocorr`, `ID_prontuario`, `Descricao`, `CPF`) VALUES
-  (1, '2021-05-31', '10:12:31', 4, 'Paciente Amanda Jéssica Caroline de Paula, CPF:065.799.448-03 foi internada e alocada para o leito LB001, no dia 11 de Maio de 2021 as 10:12 AM, identificada com a CID A03.2', '072.003.190-74'),
-  (2, '2021-06-01', '21:12:31', 10, 'Teste do administrador, checando o sistema de ocorrencias', NULL),
-  (3, '2021-05-12', '21:36:47', 4, 'Paciente Amanda Jéssica Caroline de Paula, CPF:065.799.448-03 foi liberada do leito LB001, no dia 12 de Maio de 2021 as 10:12 AM, depois de tomar sua medicação.', '072.003.190-74');
+	(1, '2021-05-11', '10:12:31', 1, 'Paciente Amanda Jéssica Caroline de Paula, CPF:065.799.448-03 foi internada e alocada para o leito LB001, no dia 11 de Maio de 2021 as 10:12 AM, identificada com a CID A03.2', '072.003.190-74'),
+	(2, '2020-01-21', '11:19:16', 2, 'Paciente Amanda Jéssica Caroline de Paula, de CPF: 065.799.448-03 tomou sua medicação e deve ficar um tempo em observação.', '868.500.956-17'),
+	(3, '2020-01-22', '21:36:47', 3, 'Paciente Amanda Jéssica Caroline de Paula, CPF:065.799.448-03 foi liberada do leito LB001, no dia 22 de Janeiro de 2020 as 21:36, depois de tomar sua medicação.', '072.003.190-74'),
+	(4, '2021-02-28', '22:52:26', 46, 'Paciente Olivia Natália Sueli de Paula, de CPF 012.456.594-80 foi liberada depois de tomar sua medicação e ficar um tempo em observação.', '558.570.920-86'),
+	(5, '2020-08-11', '20:32:26', 41, 'Paciente Valentina Fátima Santos, de CPF 759.661.020-07 foi liberada depois de tomar sua medicação e não tempo nenhuma aversão ao medicamento.\r\n\r\n', '607.500.500-55');
 
 -- --------------------------------------------------------
 
@@ -13240,8 +13242,8 @@ CREATE TABLE IF NOT EXISTS `prontuarios` (
 INSERT INTO `prontuarios` (`aberto`, `ID`, `Data_Internacao`, `Data_Saida`, `Id_leito`, `Cpfpaciente`) VALUES
   (1, 1, '2021-05-11', '0000-00-00', 'LD003', '065.799.448-03'),
   (0, 2, '2020-05-11', '2020-05-30', 'LB001', '065.799.448-03'),
-  (0, 3, '2019-02-11', '2019-03-04', 'LB001', '065.799.448-03'),
-  (0, 4, '2020-01-11', '2020-01-22', 'LB001', '065.799.448-03'),
+  (0, 3, '2020-01-11', '2020-01-22', 'LB001', '065.799.448-03'),  
+  (0, 4, '2019-02-11', '2019-03-04', 'LB001', '065.799.448-03'),
   (0, 5, '2005-06-21', '2005-07-09', 'LB001', '622.748.620-52'),
   (0, 6, '2010-01-18', '2010-01-31', 'LB001', '622.748.620-52'),
   (0, 7, '2010-02-06', '2010-03-24', 'LB001', '622.748.620-52'),
