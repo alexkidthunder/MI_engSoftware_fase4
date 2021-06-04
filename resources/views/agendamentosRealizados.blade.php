@@ -16,9 +16,9 @@
 
     <!-- Favicon -->
     <link href="{{ asset('img/favicon.png') }}" rel="icon">
-    {{$i = 0}}
+    {{ $i = 0 }}
     <title>Agendamentos realizados</title>
-    
+
 </head>
 
 <body>
@@ -31,54 +31,60 @@
         <h1>AGENDAMENTOS E MEDICAMENTOS REALIZADOS</h1>
         <div class="row">
             <div class="col-lg">
-                @if ($errors->any()) <!--Verificando se existe qualquer erro -->
+                @if ($errors->any())
+                    <!--Verificando se existe qualquer erro -->
                     <div class="msg-error">
                         <ul>
-                            @foreach ($errors->all() as $error) <!--Percorre todos os erros-->
-                                <li>{{ $error }}</li> <!--Obtem o erro -->
+                            @foreach ($errors->all() as $error)
+                                <!--Percorre todos os erros-->
+                                <li>{{ $error }}</li>
+                                <!--Obtem o erro -->
                             @endforeach
                         </ul>
                     </div>
                 @endif
-                @if (session('msg')) <!-- Verifica se a mensagem de erro foi instanciada -->
+                @if (session('msg'))
+                    <!-- Verifica se a mensagem de erro foi instanciada -->
                     <div class="msg-sucess">
-                        {{session('msg')}} <!--Obtem mensagem de erro -->
+                        {{ session('msg') }}
+                        <!--Obtem mensagem de erro -->
                     </div>
                 @endif
-                @if (session('msg-error')) <!-- Verifica se a mensagem de erro foi instanciada -->
+                @if (session('msg-error'))
+                    <!-- Verifica se a mensagem de erro foi instanciada -->
                     <div class="msg-error">
-                        {{session('msg-error')}} <!--Obtem mensagem de erro -->
+                        {{ session('msg-error') }}
+                        <!--Obtem mensagem de erro -->
                     </div>
                 @endif
             </div>
         </div>
-    </div>     
-        <!---------------------Agendamento Realizado --------------------->
-        @while(isset($infos["medicamento".$i]))
+    <!---------------------Agendamento Realizado --------------------->
+    @while (isset($infos['medicamento' . $i]))
         <div class="box-scheduling" id="scheduling">
             <div class="row">
                 <!------ Horário da aplicação ---->
                 <div class="col-6 col-sm-6 col-md-6 col-lg-2 text-center">
                     <div class="box-gray">
-                        {{$infos["hora".$i]}}
+                        {{ $infos['hora' . $i] }}
                     </div>
                 </div>
                 <!------ Data de aplicação ---->
                 <div class="col-6 col-sm-6 col-md-6 col-lg-2 text-center">
                     <div class="box-gray">
-                        {{$infos["data".$i]}}
+                        {{ $infos['data' . $i] }}
                     </div>
                 </div>
                 <!------ Nome do medicamento ---->
                 <div class="col-6 col-sm-6 col-md-6 col-lg-6">
                     <div class="box-white">
-                        {{$infos["medicamento".$i]}}
+                        {{ $infos['medicamento' . $i] }}
                     </div>
                 </div>
                 <!------ Posologia do medicamento ---->
                 <div class="col-6 col-sm-6 col-md-6 col-lg-2">
                     <div class="box-white">
-                        {{$infos["posologia".$i]}}
+                        {{ $infos['posologia' . $i] }}
                     </div>
                 </div>
             </div>
@@ -86,23 +92,23 @@
             <div class="row">
                 <!------ Nome do paciente ao qual o agendamento pertence ---->
                 <form action="/prontuario" method="get">
-                    <input type="hidden" name='cpf' value='{{$identificaP}}'>
-                    <input type="hidden" name='numero' value='{{$infos["id".$i]}}'>
+                    <input type="hidden" name='cpf' value='{{ $identificaP }}'>
+                    <input type="hidden" name='numero' value='{{ $infos['id' . $i] }}'>
                     <div class="col-12 col-sm-12 col-md-9 col-lg-9">
-                        <button class="btn-Patient">{{$infos["paciente".$i]}}</button>
+                        <button class="btn-Patient">{{ $infos['paciente' . $i] }}</button>
                     </div>
                 </form>
                 <!------ Leito em que o paciente está internado ---->
                 <div class="col-12 col-sm-12 col-md-3 col-lg-3">
                     <div class="box-blue">
-                        Leito: {{$infos["leito".$i]}}
+                        Leito: {{ $infos['leito' . $i] }}
                     </div>
                 </div>
             </div>
-            {{$i=$i+1}}
+            {{ $i = $i + 1 }}
         </div>
-        @endwhile
-        <!---------------------Fim de agendamento realizado --------------------->
+    @endwhile
+    <!---------------------Fim de agendamento realizado --------------------->
 
     </div>
 </body>

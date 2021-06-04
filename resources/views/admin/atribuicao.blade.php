@@ -22,6 +22,7 @@
     <!----------Hearder------------>
     @include('layouts.navbar-adm')
     <!----------End Hearder-------->
+    
     <h1>ALTERAR ATRIBUIÇÃO</h1>
         <div class="container-1">
             <div class="box">
