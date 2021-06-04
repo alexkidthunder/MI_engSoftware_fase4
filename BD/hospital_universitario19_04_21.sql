@@ -88,35 +88,6 @@ INSERT INTO `agendamentos` (`Codigo`, `Posologia`, `Data_Agend`, `Realizado`, `H
 
 -- --------------------------------------------------------
 
---
--- Estrutura da tabela `agendamento_prontuario`
---
-
-CREATE TABLE IF NOT EXISTS `agendamento_prontuario` (
-  `ID_prontuario` bigint(20) DEFAULT NULL,
-  `Codigo_Agendamento` bigint(20) NOT NULL,
-  KEY `ID_prontuario` (`ID_prontuario`),
-  KEY `Codigo_Agendamento` (`Codigo_Agendamento`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- RELACIONAMENTOS PARA TABELAS `agendamento_prontuario`:
---   `ID_prontuario`
---       `prontuarios` -> `ID`
---   `Codigo_Agendamento`
---       `agendamentos` -> `Codigo`
---
-
-INSERT INTO `agendamento_prontuario` (`ID_prontuario`, `Codigo_Agendamento`) VALUES
-	(4, 1),
-	(1, 3),
-	(4, 4),
-	(1, 4),
-	(2, 4),
-	(3, 1),
-	(5, 1),
-	(6, 4);
--- --------------------------------------------------------
 
 --
 -- Estrutura da tabela `cargo`
@@ -733,13 +704,6 @@ ALTER TABLE `agendamentos`
   ADD CONSTRAINT `agendamento_ibfk_1` FOREIGN KEY (`ID_prontuario`) REFERENCES `prontuarios` (`ID`),
   ADD CONSTRAINT `agendamento_ibfk_2` FOREIGN KEY (`CPF_usuario`) REFERENCES `usuarios` (`CPF`),
   ADD CONSTRAINT `agendamento_ibfk_3` FOREIGN KEY (`Cod_medicamento`) REFERENCES `medicamentos` (`Codigo`);
-
---
--- Limitadores para a tabela `agendamento_prontuario`
---
-ALTER TABLE `agendamento_prontuario`
-  ADD CONSTRAINT `agendamento_prontuario_ibfk_1` FOREIGN KEY (`ID_prontuario`) REFERENCES `prontuarios` (`ID`),
-  ADD CONSTRAINT `agendamento_prontuario_ibfk_2` FOREIGN KEY (`Codigo_Agendamento`) REFERENCES `agendamentos` (`Codigo`);
 
 --
 -- Limitadores para a tabela `cid_prontuario`
