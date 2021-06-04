@@ -251,7 +251,7 @@ ALTER TABLE administradores
 
 ALTER TABLE agendamentos
   ADD CONSTRAINT agendamento_ibfk_1 FOREIGN KEY (ID_prontuario) REFERENCES prontuarios (ID), /*Cria chave estrangeira fazendo referencia a prontuario*/
-  ADD CONSTRAINT agendamento_ibfk_2 FOREIGN KEY (CPF_usuario) REFERENCES usuarios (CPF), /*Cria chave estrangeira fazendo referencia a usuarios*/
+  ADD CONSTRAINT agendamento_ibfk_2 FOREIGN KEY (CPF_usuario) REFERENCES usuarios (CPF), /*Cria chave estrangeira fazendo referencia a usuários*/
   ADD CONSTRAINT agendamento_ibfk_3 FOREIGN KEY (Cod_medicamento) REFERENCES medicamentos (Codigo); /*Cria chave estrangeira fazendo referencia a medicamento*/
 
 ALTER TABLE agendamento_prontuario
