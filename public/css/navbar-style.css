@@ -43,6 +43,21 @@
     color: #0D6EFD;
 }
 
+.menu-items{
+    color:#0D6EFD;
+    font-size:30px;
+    cursor:pointer;
+    display: none;
+}
+
+.menu-items:hover{
+    color: #02A7F0;
+}
+
+#check-options{
+    display:none;
+}
+
 .nav{
     justify-content:flex-end; 
 }
@@ -52,6 +67,7 @@
     padding: 0;
     list-style: none;
 }
+
 .nav > ul{
     display: flex;
 }
@@ -89,6 +105,13 @@
     margin-top: -5px;
 }
 
+.nav .drop-down ul li{
+    font-size: 16px;
+    font-family: "Open Sans",sans-serif;
+    font-weight: 550;
+    color: rgba(48, 47, 47, 0);
+}
+
 .nav .drop-down:hover > ul{
     visibility: visible;
     top:100%;
@@ -97,13 +120,84 @@
 .nav a:hover, .nav .active > a, .nav li:hover > a {
     color: #0D6EFD;
 }
+
 .nav .drop-down a:hover, .nav .drop-down ul a:hover, .nav .drop-down ul .active > a, .nav .drop-down ul li:hover > a {
     color: #0D6EFD;
 }
 
-.nav .drop-down ul li{
-    font-size: 16px;
-    font-family: "Open Sans",sans-serif;
-    font-weight: 550;
-    color: rgba(48, 47, 47, 0);
+/*--------------------------------------------------------------
+Navbar para mobile
+--------------------------------------------------------------*/
+@media (max-width: 952px){
+    #header{
+        height: 60px;
+        box-shadow: 4px 4px 4px #AAAAAA;
+    }
+    #header .user i {
+        padding-top: 10px;
+        padding-left: 0px;
+        font-size: 35px;
+
+    }
+    #header h2 {
+        color: #0D6EFD;
+        display: block;
+        padding-top: 10px;
+    }
+    .menu-items{
+        display: block;
+    }
+    .nav ul{
+        position:fixed;
+        width:80%;
+        height: 80%;
+        background: #ffff;
+        top:60px;
+        left: -100%;
+        border-radius: 10px;
+        transition: all .1s;
+        box-shadow: 2px 2px 2px #e4e2e2;
+    }
+    .nav .title-nav{
+        font-size:16px;
+    }
+    .nav > ul{
+        display: block;
+    }
+    .nav >ul >li {
+        margin-top:20px;
+        width: 100%;
+        padding-left: 15px;
+        padding-top: 0;
+    }
+    .nav > ul > li a{
+        padding: 0;
+    }
+    #header .logout-icon i {
+        padding-top:0;
+        font-size:30px;
+    }
+    .nav .drop-down ul {
+        display: block;
+        position: absolute;
+        left: 15px;
+        visibility: hidden;
+        background-color: transparent;
+        border-radius: 0;
+        box-shadow: none;
+        border: none;
+        margin-top: 0;
+    }
+    
+    .nav .drop-down ul li{
+        font-size: 17px;
+        padding: 10px 0;
+
+    }
+    .nav .drop-down:hover > ul{
+        visibility: visible;
+        position: relative;
+        top:100%;
+    }
+
 }

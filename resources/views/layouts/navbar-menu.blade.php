@@ -15,7 +15,7 @@
 
         <!-------- Nome do funcionário e acesso ao perfil -------->
         <div class="d-flex align-items-center justify-content-between">
-            <div class="d-flex">
+            <div class="d-flex ml-3">
                 <a href="{{ route('editarPerfil') }} " class="user"> <i class="fas fa-user"></i></a>
                 <div class="col-lg-3">
                      @if(isset($_SESSION['administrador']))
@@ -36,7 +36,7 @@
 
             <!-------- Botão de logout -------->
             <div class="d-flex align-items-center pr-5">
-                <nav class="nav d-none d-lg-block">
+                <nav class="nav d-lg-block">
                     <li><a href="/logout" class="logout-icon"> <i class="fas fa-sign-out-alt"></i></a>
                     </li>
                     </ul>

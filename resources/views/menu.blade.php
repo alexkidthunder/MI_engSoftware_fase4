@@ -23,7 +23,7 @@
             <div class="row">
                 <!-- ============================ ENFERMEIRO CHEFE E ENFERMEIRO =========================-->
                 @if(isset($_SESSION['estagiario'])==false) 
-                <div class="col-sm-6 col-md-4 col-lg-3"> <!--Botão para cadastro de paciente-->
+                <div class="col-6 col-md-4 col-lg-3"> <!--Botão para cadastro de paciente-->
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <i class="fas fa-user-injured"></i>
@@ -33,7 +33,7 @@
                             href="{{ route('cadastroPaciente') }}">Cadastrar paciente</a></h4>
                     </div>
                 </div> <!--Fim do Botão-->
-                <div class="col-sm-6 col-md-4 col-lg-3"> <!--Botão para cadastrar prontuário-->
+                <div class="col-6 col-md-4 col-lg-3"> <!--Botão para cadastrar prontuário-->
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <i class="fas fa-clipboard-list"></i>
@@ -48,7 +48,7 @@
 
                 <!-- ============================ COMUNS AOS TRÊS =========================-->
 
-                <div class="col-sm-6 col-md-4 col-lg-3"> <!--Botão para ver pacientes e prontuários-->
+                <div class="col-6 col-md-4 col-lg-3"> <!--Botão para ver pacientes e prontuários-->
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <i class="fas fa-user-injured"></i>
@@ -58,7 +58,7 @@
                             href="{{ route('pacientes') }}">Pacientes e prontuários</a></h4>
                     </div>
                 </div> <!--Fim do Botão-->
-                <div class="col-sm-6 col-md-4 col-lg-3"> <!----------Card responsável pelo Histórico de Prontuário------------>
+                <div class="col-6 col-md-4 col-lg-3"> <!----------Card responsável pelo Histórico de Prontuário------------>
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <i class="fas fa-book-medical"></i>
@@ -72,7 +72,7 @@
                 <!-- ========================== APENAS ENFERMEIRO CHEFE ==================-->
                 @if(isset($_SESSION['enfermeiroChefe'])) 
                 <!----------Card responsável por cadastrar os agendamentos----------->
-                <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <i class="fas fa-calendar-plus"></i>
@@ -82,7 +82,7 @@
                     </div>
                 </div> 
                 <!----------Card responsável por cadastrar os plantonistas------------>
-                <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <i class="fas fa-user-nurse"></i>
@@ -93,7 +93,7 @@
                     </div>
                 </div> 
                 <!----------Card responsável por cadastrar os medicamentos------------>
-                <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <i class="fas fa-capsules"></i>
@@ -103,7 +103,7 @@
                     </div>
                 </div> 
                 <!----------Card responsável pelo Cadastro e Exclusão de Leito------------>
-                <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <i class="fas fa-procedures"></i>
@@ -113,7 +113,7 @@
                     </div>
                 </div>
                 <!----------Card responsável por listar todos os agendamentos------------>
-                <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <div><i class="fas fa-clipboard"></i></div>
@@ -123,7 +123,7 @@
                     </div>
                 </div> 
                 <!----------Card responsável por mostrar os Planotnistas------------>
-                <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <i class="fas fa-user-nurse"></i>
@@ -133,7 +133,7 @@
                     </div>
                 </div> 
                 <!----------Card responsável para a listagem de medicamentos do sistema----------->
-                <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <i class="fas fa-briefcase-medical"></i>
@@ -143,7 +143,7 @@
                     </div>
                 </div> 
                 <!----------Card responsável por mostrar os responsáveis pelas aplicações de medicamentos------------>
-                <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <i class="fas fa-syringe"></i>
@@ -158,7 +158,7 @@
                 <!-- ====================== APENAS ENFERMEIRO E ESTAGIARIO ===================-->
                 @if(isset($_SESSION['enfermeiroChefe'])==false) 
                 <!--Botão para visualizar agendamentos realizados-->
-                <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <i class="fas fa-clipboard-check"></i>
@@ -169,7 +169,7 @@
                 </div> <!--Fim do Botão-->
 
                 <!--Botão para visualizar agendamentos-->
-                <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <div><i class="fas fa-notes-medical"></i></div>
@@ -180,7 +180,7 @@
                 </div> <!--Fim do Botão-->
 
                 <!--Botão para visualizar agendamentos que está alocado-->
-                <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <i class="fas fa-user-nurse"></i>

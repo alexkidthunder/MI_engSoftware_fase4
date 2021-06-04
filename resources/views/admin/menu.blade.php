@@ -22,7 +22,7 @@
 
         <div class="container-2"> <!--Menu do Administrador-->
             <div class="row">
-                <div class="col-sm-6 col-md-4 col-lg-3"> <!--Botão para cadastro de funcionários-->
+                <div class="col-6 col-md-4 col-lg-3"> <!--Botão para cadastro de funcionários-->
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <i class="fas fa-user-plus"></i>
@@ -31,7 +31,7 @@
                             href="{{ route('cadastrarUsuario') }}">Cadastro de funcionários</a></h4>
                     </div>
                 </div> <!--Fim do Botão-->
-                <div class="col-sm-6 col-md-4 col-lg-3"> <!--Botão para remoção de funcionários-->
+                <div class="col-6 col-md-4 col-lg-3"> <!--Botão para remoção de funcionários-->
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <i class="fas fa-user-minus"></i>
@@ -40,7 +40,7 @@
                             href="{{ route('removerUsuario') }}">Remoção de funcionários</a></h4>
                     </div>
                 </div> <!--Fim do Botão-->
-                <div class="col-sm-6 col-md-4 col-lg-3"> <!--Botão para Log do Sistema-->
+                <div class="col-6 col-md-4 col-lg-3"> <!--Botão para Log do Sistema-->
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <i class="fas fa-cogs"></i>
@@ -50,7 +50,7 @@
                     </div>
                 </div> <!--Fim do Botão-->
 
-                <div class="col-sm-6 col-md-4 col-lg-3"> <!--Botão para Alterar Permissão funcionários-->
+                <div class="col-6 col-md-4 col-lg-3"> <!--Botão para Alterar Permissão funcionários-->
                     <div class="card-menu text-center card-options"> 
                         <div class="card-options-icon options-icon">
                             <i class="fas fa-user-cog"></i>
@@ -60,7 +60,7 @@
                     </div>
                 </div> <!--Fim do Botão-->
 
-                <div class="col-sm-6 col-md-4 col-lg-3"> <!--Botão para Alterar Atribuição de funcionário-->
+                <div class="col-6 col-md-4 col-lg-3"> <!--Botão para Alterar Atribuição de funcionário-->
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <i class="fas fa-user-edit"></i>
@@ -70,7 +70,7 @@
                     </div>
                 </div> <!--Fim do Botão-->
 
-                <div class="col-sm-6 col-md-4 col-lg-3"> <!--Botão para backup do sistema-->
+                <div class="col-6 col-md-4 col-lg-3"> <!--Botão para backup do sistema-->
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <i class="fas fa-database"></i>
@@ -79,7 +79,7 @@
                             href="{{ route('backup') }}">Backup do sistema</a></h4>
                     </div>
                 </div> <!--Fim do Botão-->
-                <div class="col-sm-6 col-md-4 col-lg-3"> <!--Botão para relatórios gerenciais-->
+                <div class="col-6 col-md-4 col-lg-3"> <!--Botão para relatórios gerenciais-->
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
                             <i class="fas fa-file-alt"></i>
