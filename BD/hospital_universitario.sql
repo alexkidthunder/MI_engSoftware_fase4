@@ -48,11 +48,6 @@ CREATE TABLE cid_prontuario (
   id_prontuario bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-/*Cria tabela de Responsavel*/
-CREATE TABLE responsaveis(
-	CPF char(14) NOT NULL /* Chave estrangeira que faz referência ao usuarios*/
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 /*Cria tabela de enfermeiros*/
 CREATE TABLE enfermeiros (
   CPF char(14) NOT NULL, /* Chave estrangeira que faz referência ao usuarios*/
@@ -178,10 +173,6 @@ ALTER TABLE cid_prontuario
   ADD KEY id_CID (id_CID),
   ADD KEY id_prontuario (id_prontuario);
 
-ALTER TABLE responsaveis
-  ADD PRIMARY KEY CPF (CPF), /* Seleciona o campo CPF como chave primaria*/
-  ADD UNIQUE KEY CPF (CPF);
-
 ALTER TABLE usuarios
   ADD PRIMARY KEY CPF (CPF); /* Seleciona o campo CPF como chave primaria*/
   
@@ -260,7 +251,7 @@ ALTER TABLE administradores
 
 ALTER TABLE agendamentos
   ADD CONSTRAINT agendamento_ibfk_1 FOREIGN KEY (ID_prontuario) REFERENCES prontuarios (ID), /*Cria chave estrangeira fazendo referencia a prontuario*/
-  ADD CONSTRAINT agendamento_ibfk_2 FOREIGN KEY (CPF_usuario) REFERENCES responsaveis (CPF), /*Cria chave estrangeira fazendo referencia a responsaveis*/
+  ADD CONSTRAINT agendamento_ibfk_2 FOREIGN KEY (CPF_usuario) REFERENCES usuarios (CPF), /*Cria chave estrangeira fazendo referencia a usuarios*/
   ADD CONSTRAINT agendamento_ibfk_3 FOREIGN KEY (Cod_medicamento) REFERENCES medicamentos (Codigo); /*Cria chave estrangeira fazendo referencia a medicamento*/
 
 ALTER TABLE agendamento_prontuario
@@ -270,9 +261,6 @@ ALTER TABLE agendamento_prontuario
 ALTER TABLE cid_prontuario
   ADD CONSTRAINT cid_prontuario_ibfk_1 FOREIGN KEY (id_CID) REFERENCES cid (id) ON DELETE CASCADE,/*Cria chave estrangeira fazendo referencia ao CID*/
   ADD CONSTRAINT cid_prontuario_ibfk_2 FOREIGN KEY (id_prontuario) REFERENCES prontuarios (ID);/*Cria chave estrangeira fazendo referencia a prontuario*/
-
-ALTER TABLE responsaveis
-  ADD CONSTRAINT responsaveis_ibfk_1 FOREIGN KEY (CPF) REFERENCES usuarios (CPF)ON DELETE CASCADE;/*Cria chave estrangeira fazendo referencia a Usuario*/
 
 ALTER TABLE enfermeiros
   ADD CONSTRAINT enfermeiros_ibfk_1 FOREIGN KEY (CPF) REFERENCES usuarios (CPF)ON DELETE CASCADE;/*Cria chave estrangeira fazendo referencia a Usuario*/
