@@ -51,7 +51,7 @@ h4 {
 @media (min-width: 426px) and (max-width:768px) {
     h1 {
         font-size: 26px;
-        margin-top: 120px;
+        margin-top: 110px;
         margin-bottom: 40px;
     }
     h2 {
@@ -69,7 +69,7 @@ h4 {
 @media (max-width: 425px) {
     h1 {
         font-size: 22px;
-        margin-top: 130px;
+        margin-top: 100px;
         margin-bottom: 35px;
     }
     h2 {
@@ -488,6 +488,7 @@ input[type=number] {
     margin-top: 100px;
     margin-bottom: 4%;
 }
+
 #screen-icon .download-icon {
     margin-top: 10px;
     margin-inline: 30px;
@@ -508,13 +509,20 @@ input[type=number] {
     }
 }
 
-
 @media (max-width: 425px) {
     #screen-icon .download-icon button i {
         font-size: 25px;
     }
+    #screen-icon{
+        margin-top: 50px;
+    }
 }
 
+@media (min-width:426px) and (max-width:952px){
+    #screen-icon{
+        margin-top: 70px;
+    }
+}
 /*------------ Menu  ------------*/
 
 .body-menu {
@@ -581,7 +589,7 @@ input[type=number] {
     font-size: 25px;
 }
 
-@media (min-width: 426px) and (max-width:768px) {
+@media (min-width: 426px) and (max-width:852px) {
     .card-options {
         margin: 0 5px 20px 5px;
     }

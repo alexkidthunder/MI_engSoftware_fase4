@@ -21,7 +21,7 @@
     <!--------------- Imagem de onda--------------->
     <div id="container-wave">
         <div class="img-login">
-            <img src="{{ asset('img/wave.png') }}"/>
+            <img src="{{ asset('img/onda.png') }}"/>
         </div>
     </div>
     <!--------------- fim da Imagem -------------->
@@ -57,6 +57,8 @@
                     </div>
                 </div>
             </div>
+            <!---------------- Fim da mensagens de erro --------------->
+
             <!---------------- Campo para a inserção do CPF --------------->
             <div>
                 <label>CPF</label>

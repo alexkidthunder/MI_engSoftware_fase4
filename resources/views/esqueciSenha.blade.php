@@ -15,10 +15,9 @@
 </head>
 
 <body class="body-login">
-    <!--------------- Imagem de onda--------------->
     <div id="container-wave">
         <div class="img-login">
-            <img src="{{ asset('img/wave.png') }}" />
+            <img src="{{ asset('img/onda.png') }}" />
         </div>
     </div>
     <!--------------- fim da Imagem -------------->
