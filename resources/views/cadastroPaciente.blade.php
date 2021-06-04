@@ -48,7 +48,7 @@
                     @csrf
                     <div class="row">
                         <!----- Campo para inserção do nome ----->
-                        <div class="col-lg-9">
+                        <div class="col-md-12 col-lg-9">
                             <label>Nome</label> <br>
                             <input id="fnome" name="fnome" type="text" maxlength="50" required>
                         </div>
@@ -69,12 +69,12 @@
                     </div>
                     <div class="row">
                         <!----- Campo para inserção da data de nascimento ----->
-                        <div class="col-lg-4">
+                        <div class="col-md-6 col-lg-4">
                             <label>Data de Nascimento</label> <br>
                             <input id="fnascimento" name="fnascimento" type="date" required>
                         </div>
                         <!----- Campo para inserção do CPF ----->
-                        <div class="col-lg-4">
+                        <div class=" col-md-6 col-lg-4">
                             <label>CPF</label> <br>
                             <input id="fcpf" name="fcpf" type="text" onkeyup="mascara('###.###.###-##',this,event,true)" 
                             required maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">

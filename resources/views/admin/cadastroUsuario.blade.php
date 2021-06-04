@@ -52,11 +52,11 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-lg-4">
+                        <div class="col-md-6 col-lg-4">
                             <label style="white-space: nowrap" for="fnascimento">Data de Nascimento</label> <br> <!--Campo onde se digita a data de nascimento do usuário a ser cadastrado-->
                             <input id="fnascimento" name="fnascimento" type="date" required>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-md-6 col-lg-4">
                             <label for="fcpf">CPF</label> <br> <!--Campo onde se digita o CPF do usuário a ser cadastrado-->
                             <input id="fcpf" name="fcpf" type="text" onkeyup="mascara('###.###.###-##',this,event,true)" 
                             required maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">

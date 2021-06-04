@@ -75,22 +75,22 @@
                     <form id="register"> <!--class="hide"-->
                         <div class="box-medicament">
                             <div class="row">
-                                <div class="col-lg-4">
+                                <div class="col-md-6 col-lg-4">
                                  <!----------Inserção de Horario do Agendamento------------>
                                     <div>
                                         <label for="horario_agendamento">Horario</label>
                                         <input type="time" name="horario_agendamento" required>
                                     </div>
                                 </div>
-                                <div class="col-lg-4">
                                 <!----------Inserção da Data do Agendamento------------>
+                                <div class="col-md-6 col-lg-4">
                                     <div>
                                         <label for="data_agendamento">Data</label>
                                         <input type="date" name="data_agendamento" required>
                                     </div>
                                 </div>
-                                <div class="col-lg-4">
                                 <!----------Inserção da dosagem de medicamento aplicada naquele agendamento------------>
+                                <div class="col-lg-4">
                                     <div>
                                         <label for="posologia_agendamento">Posologia</label>
                                         <input type="number" name="posologia_agendamento" required>
