@@ -144,7 +144,7 @@ CREATE TABLE IF NOT EXISTS `backups_agendados` (
   `Data_backup` date NOT NULL,
   `Hora_backup` datetime NOT NULL,
   `ip` varchar(15) NOT NULL,
-  `Automatico` int(1) NOT NULL,
+  `Automatico` int(1) DEFAULT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
