@@ -220,10 +220,10 @@ class EnfChefeController extends Controller
                 while($sql3 = mysqli_fetch_array($query3)){
                     $infos['paciente'.$i] = $sql3['Nome_Paciente'];
                 }
-
+                $infos['identificaP'.$i] = $identificaP;
                 $i++;
             }
-            return view('/enfChefe/agendamentos',['infos' => $infos, 'identificaP'=>$identificaP]);
+            return view('/enfChefe/agendamentos',['infos' => $infos]);
         }else{
             return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
         }
