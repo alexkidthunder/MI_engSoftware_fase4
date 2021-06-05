@@ -61,7 +61,8 @@ Route::post('/cadastrarUsuario',[AdminController::class,'salvarUsuario'])->name(
 Route::get('/removerUsuario', [AdminController::class,'remocao'])->name('removerUsuario');
 Route::get('/buscarUsuario', [AdminController::class,'busca'])->name('buscarUsuario');
 Route::post('/alterarAtribuicao',[AdminController::class,'alterarAtribuicao'])->name('alterarAtribuicao'); // rota para alterar atribuição
-
+Route::post('/agendarBd', [AdminController::class,'cadastrarBD']);
+Route::get('/RagendarBd', [AdminController::class,'removerAgendamentoBackup']);
 /*------------ Rota para Busca ------------------------ */
 Route::get('/lupinha', [AdminController::class,'lupinha'])->name('lupinha');
 Route::get('/hp', [HomeController::class,'buscaProntuario']);

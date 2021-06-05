@@ -217,8 +217,21 @@ class AdminController extends Controller
 
     public function backup()
     {
+        include("db.php");
         VerificaLoginController::verificarLoginAdmin();
-        return view('/admin/backup');
+        $info = [];
+        $i = 0;
+        $sql = "SELECT * FROM backups_agendados";
+        $query = mysqli_query($connect,$sql);
+         while($sql = mysqli_fetch_array($query)){
+            $info["id".$i] = $sql['ID'];
+            $info["data".$i] = $sql['Data_backup'];
+            $info["hora".$i] = $sql['Hora_backup'];
+            $info["ip".$i] = $sql['ip'];
+            $info["auto".$i] = $sql['Automatico'];
+            $i++;
+        }
+        return view('/admin/backup' ,['info' => $info]);
     }
     /**
      * Função que remove um usuario do sistema
@@ -615,5 +628,47 @@ class AdminController extends Controller
             return redirect()->back()->with('msg-error', "ouve um erro ao tentar exportar a base de dados");
         }
 
+    }
+
+    public function cadastrarBD(Request $request){
+        include("db.php");
+        $checkbox = $request->alwaysCheck;
+        $client  = @$_SERVER['HTTP_CLIENT_IP'];
+        $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
+        $remote  = $_SERVER['REMOTE_ADDR'];
+        $hora = $request->fhorario;
+        $cod = 0;
+        $sql = "SELECT * FROM backups_agendados";
+        $query = mysqli_query($connect,$sql);
+         while($sql = mysqli_fetch_array($query)){
+            if($sql['ID']!= null){
+                $cod = $sql['ID'];
+            }
+        }
+        $cod++;
+        if(filter_var($client, FILTER_VALIDATE_IP)){
+            $ip = $client;
+        }
+        elseif(filter_var($forward, FILTER_VALIDATE_IP)){
+            $ip = $forward;
+        }else{
+            $ip = $remote;
+        }
+        if($checkbox == "on"){
+            $insert = "INSERT INTO backups_agendados (ID,Data_backup,Hora_backup,ip,Automatico) VALUES ('$cod','null','$hora','$ip','1')";
+            mysqli_query($connect,$insert);
+        }else{
+            $data = $request->date;
+            $insert = "INSERT INTO backups_agendados (ID,Data_backup,Hora_backup,ip,Automatico) VALUES ('$cod','$data','$hora','$ip','0')";
+            mysqli_query($connect,$insert);
+        }
+        return redirect()->back();
+    }
+
+    public function removerAgendamentoBackup(Request $request){
+        include("db.php");
+        $sql =  "DELETE FROM backups_agendados WHERE ID = '$request->removerAB'";
+        mysqli_query($connect,$sql);
+        return redirect()->back();
     }
 }
