@@ -26,7 +26,7 @@ CREATE TABLE agendamentos (
 CREATE TABLE backups_agendados (
   ID bigint(20) NOT NULL AUTO_INCREMENT,
   Data_backup date NOT NULL,
-  Hora_backup datetime NOT NULL,
+  Hora_backup time NOT NULL,
   ip varchar(15) NOT NULL,
   Automatico int(1) DEFAULT NULL,
   PRIMARY KEY (ID)
