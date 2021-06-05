@@ -13063,7 +13063,7 @@ CREATE TABLE IF NOT EXISTS `permissao_cargo` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `permissao_id` int(10) NOT NULL,
   `cargo_id` int(10) NOT NULL,
-  `ativo` int(1) NOT NULL,
+  `ativo` int(1),
   PRIMARY KEY (`id`),
   KEY `permissao_id` (`permissao_id`),
   KEY `cargo_id` (`cargo_id`)

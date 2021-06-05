@@ -123,7 +123,7 @@ CREATE TABLE permissao_cargo (
   id int(10) NOT NULL,
   permissao_id int(10) NOT NULL,
   cargo_id int(10) NOT NULL,
-  ativo int(1) NOT NULL
+  ativo int(1)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Cria tabela de permissões*/
