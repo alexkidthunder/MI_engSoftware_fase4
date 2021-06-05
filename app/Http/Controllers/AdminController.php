@@ -77,7 +77,7 @@ class AdminController extends Controller
                
               
                 
-                for ($i = 1; $i <= 33; $i++) {          
+                for ($i = 1; $i <= 35; $i++) {          
                 $sql = "SELECT * FROM permissao_cargo where permissao_id = $i";
                 $query = mysqli_query($connect, $sql);   
                     while($sql = $query->fetch_array()){
@@ -100,7 +100,7 @@ class AdminController extends Controller
                
               
                 
-                for ($i = 1; $i <= 33; $i++) {          
+                for ($i = 1; $i <= 35; $i++) {          
                 $sql = "SELECT * FROM permissao_cargo where permissao_id = $i";
                 $query = mysqli_query($connect, $sql);   
                     while($sql = $query->fetch_array()){
@@ -123,7 +123,7 @@ class AdminController extends Controller
                
               
                 
-                for ($i = 1; $i <= 33; $i++) {          
+                for ($i = 1; $i <= 35; $i++) {          
                 $sql = "SELECT * FROM permissao_cargo where permissao_id = $i";
                 $query = mysqli_query($connect, $sql);   
                     while($sql = $query->fetch_array()){
@@ -140,7 +140,7 @@ class AdminController extends Controller
                 $sql = "";
                 $query = null;
                              
-                for ($i = 1; $i <= 33; $i++) {          
+                for ($i = 1; $i <= 35; $i++) {          
                 $sql = "SELECT * FROM permissao_cargo where permissao_id = $i";
                 $query = mysqli_query($connect, $sql);   
                     while($sql = $query->fetch_array()){
@@ -170,7 +170,7 @@ class AdminController extends Controller
         include("db.php");
         if ($atribuicao != "admin") {
             if ($atribuicao == 'enfermeiroChefe') {
-                for ($i = 7; $i <= 33; $i++) {
+                for ($i = 7; $i <= 35; $i++) {
                     if (isset($_GET['p'.$i])) {
                         $update = "UPDATE permissao_cargo set ativo = '1' where id = $i";
                         mysqli_query($connect, $update);
@@ -183,8 +183,8 @@ class AdminController extends Controller
             }
 
             else if ($atribuicao == 'enfermeiro') {
-                for ($i = 34; $i < 60; $i++) {
-                    if (isset($_GET['p'.($i-27)])) {
+                for ($i = 36; $i < 65; $i++) {
+                    if (isset($_GET['p'.($i-29)])) {
                         $update = "UPDATE permissao_cargo set ativo = '1' where id = $i";
                         mysqli_query($connect, $update);
                     } else {
@@ -194,8 +194,8 @@ class AdminController extends Controller
                 }
                 return redirect()->back()->with('msg',"Permissões alteradas!!!!");
             } else if ($atribuicao == 'estagiario') {
-                for ($i = 61; $i < 87; $i++) {
-                    if (isset($_GET['p'.($i-54)])) {
+                for ($i = 65; $i < 94; $i++) {
+                    if (isset($_GET['p'.($i-58)])) {
                         $update = "UPDATE permissao_cargo set ativo = '1' where id = $i";
                         mysqli_query($connect, $update);
 
@@ -217,8 +217,21 @@ class AdminController extends Controller
 
     public function backup()
     {
+        include("db.php");
         VerificaLoginController::verificarLoginAdmin();
-        return view('/admin/backup');
+        $info = [];
+        $i = 0;
+        $sql = "SELECT * FROM backups_agendados";
+        $query = mysqli_query($connect,$sql);
+         while($sql = mysqli_fetch_array($query)){
+            $info["id".$i] = $sql['ID'];
+            $info["data".$i] = $sql['Data_backup'];
+            $info["hora".$i] = $sql['Hora_backup'];
+            $info["ip".$i] = $sql['ip'];
+            $info["auto".$i] = $sql['Automatico'];
+            $i++;
+        }
+        return view('/admin/backup' ,['info' => $info]);
     }
     /**
      * Função que remove um usuario do sistema
@@ -479,5 +492,183 @@ class AdminController extends Controller
         }
         return view('/admin/remocaoUsuario', ['user' => $user, 'atribuicao'=> $atribuicao]);
         
+    }
+
+    public static function salvarDB(){
+        include("db.php");
+        $tabelas = [];
+        $sql = "SHOW TABLES";
+        $query = mysqli_query($connect,$sql);
+        while($row = mysqli_fetch_row($query)){      
+            $tabelas[] = $row[0];                           
+        }
+        $contador = 0;
+        $resultado = "";
+        $resultado1 = "";
+        foreach(array_reverse($tabelas) as $iterador){
+            $sql1 = "SHOW CREATE TABLE " . $iterador;
+            $query1 = mysqli_query($connect,$sql1);
+            $row = mysqli_fetch_row($query1);
+            $vetor[$contador] = $row[1];
+            $contador++;
+        }
+        $VetorReal[0] = $vetor[0];
+        $VetorReal[1] = $vetor[9];
+        $VetorReal[2] = $vetor[10];
+        $VetorReal[3] = $vetor[11];
+        $VetorReal[4] = $vetor[17];
+        $VetorReal[5] = $vetor[4];
+        $VetorReal[6] = $vetor[8];
+        $VetorReal[7] = $vetor[6];
+        $VetorReal[8] = $vetor[7];
+        $VetorReal[9] = $vetor[13];
+        $VetorReal[10] = $vetor[14];
+        $VetorReal[11] = $vetor[2];
+        $VetorReal[12] = $vetor[3];
+        $VetorReal[13] = $vetor[1];
+        $VetorReal[14] = $vetor[5];
+        $VetorReal[15] = $vetor[12];
+        $VetorReal[16] = $vetor[15];
+        $VetorReal[17] = $vetor[16];
+        $contador = 0;
+        foreach(array_reverse($tabelas) as $iterador){
+            $resultado .= "\n\n" . $VetorReal[$contador] . ";\n\n";
+            $contador++;
+        }
+
+        foreach(array_reverse($tabelas) as $iterador1){
+            $sql = "SELECT * FROM ".$iterador1;
+            $query = mysqli_query($connect,$sql);
+            $colunas1 = mysqli_num_fields($query);
+
+
+            for($i = 0; $i < $colunas1; $i++){
+                while($row1 = mysqli_fetch_row($query)){
+                    $resultado1 .= 'INSERT INTO ' . $iterador1 . ' VALUES(';
+
+                    for($j = 0; $j < $colunas1; $j++){
+                        $row1[$j] = addslashes(($row1[$j]));
+                        $row1[$j] = str_replace("\n", "\\n", $row1[$j]);
+                        
+                        if(isset($row1[$j])){
+                            if(!empty($row1[$j])){
+                                $resultado1 .= '"' . $row1[$j].'"';
+                            }else{
+                                $resultado1 .= '0';
+                            }
+                        }else{
+                            $resultado1 .= '0';
+                        }
+
+                        if($j < ($colunas1 - 1)){
+                            $resultado1 .=',';
+                        }
+                    }
+                    $resultado1 .= ");\n";
+                }
+            }
+            $resultado1 .= "\n\n";
+            
+        }
+        $vetor = explode("\n\n",$resultado1);
+        $VetorR = [];
+        $VetorR[0] = $vetor[0];
+        $VetorR[1] = $vetor[9];
+        $VetorR[2] = $vetor[10];
+        $VetorR[3] = $vetor[11];
+        $VetorR[4] = $vetor[17];
+        $VetorR[5] = $vetor[4];
+        $VetorR[6] = $vetor[8];
+        $VetorR[7] = $vetor[6];
+        $VetorR[8] = $vetor[7];
+        $VetorR[9] = $vetor[13];
+        $VetorR[10] = $vetor[14];
+        $VetorR[11] = $vetor[2];
+        $VetorR[12] = $vetor[3];
+        $VetorR[13] = $vetor[1];
+        $VetorR[14] = $vetor[5];
+        $VetorR[15] = $vetor[12];
+        $VetorR[16] = $vetor[15];
+        $VetorR[17] = $vetor[16];
+        $contador = 0;
+        foreach(array_reverse($tabelas) as $iterador){
+
+            $resultado .= $VetorR[$contador]."\n\n";
+            $contador++;
+            
+        }
+        $diretorio = '../BD/';
+        if(!is_dir($diretorio)){
+            mkdir($diretorio,0777,true);
+            chmod($diretorio, 0777);
+        }
+
+        $data = date('Y-m-d-h-i-s');
+        $arquivoN = $diretorio."hospita_universitario_backup_".$data;
+
+        $arquivo = fopen($arquivoN.'.sql', 'w+');
+        fwrite($arquivo,$resultado);
+        fclose($arquivo);
+
+        $baixar = $arquivoN.".sql";
+
+        if(file_exists(($baixar))){
+            header("Pragma: public");
+	        header("Expires: 0");
+	        header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+	        header("Cache-Control: private", false);
+	        header("Content-Type: application/force-download");
+	        header("Content-Disposition: attachment; filename=\"" . basename($baixar) . "\";");
+	        header("Content-Transfer-Encoding: binary");
+	        header("Content-Length: " . filesize($baixar));
+	        readfile($baixar);
+
+            return redirect()->back()->with('msg', "Backup realizado");
+        }else{
+            return redirect()->back()->with('msg-error', "ouve um erro ao tentar exportar a base de dados");
+        }
+
+    }
+
+    public function cadastrarBD(Request $request){
+        include("db.php");
+        $checkbox = $request->alwaysCheck;
+        $client  = @$_SERVER['HTTP_CLIENT_IP'];
+        $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
+        $remote  = $_SERVER['REMOTE_ADDR'];
+        $hora = $request->fhorario;
+        $cod = 0;
+        $sql = "SELECT * FROM backups_agendados";
+        $query = mysqli_query($connect,$sql);
+         while($sql = mysqli_fetch_array($query)){
+            if($sql['ID']!= null){
+                $cod = $sql['ID'];
+            }
+        }
+        $cod++;
+        if(filter_var($client, FILTER_VALIDATE_IP)){
+            $ip = $client;
+        }
+        elseif(filter_var($forward, FILTER_VALIDATE_IP)){
+            $ip = $forward;
+        }else{
+            $ip = $remote;
+        }
+        if($checkbox == "on"){
+            $insert = "INSERT INTO backups_agendados (ID,Data_backup,Hora_backup,ip,Automatico) VALUES ('$cod','null','$hora','$ip','1')";
+            mysqli_query($connect,$insert);
+        }else{
+            $data = $request->date;
+            $insert = "INSERT INTO backups_agendados (ID,Data_backup,Hora_backup,ip,Automatico) VALUES ('$cod','$data','$hora','$ip','0')";
+            mysqli_query($connect,$insert);
+        }
+        return redirect()->back();
+    }
+
+    public function removerAgendamentoBackup(Request $request){
+        include("db.php");
+        $sql =  "DELETE FROM backups_agendados WHERE ID = '$request->removerAB'";
+        mysqli_query($connect,$sql);
+        return redirect()->back();
     }
 }

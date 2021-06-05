@@ -24,7 +24,7 @@
 
     <!----------Botão de donwload------------>
     <div id="screen-icon">
-        <form class="download-icon">
+        <form method="get" action="/baixarArquivos" class="download-icon">
             <button>
                 <i class="fas fa-download"></i>
             </button>

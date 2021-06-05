@@ -47,6 +47,7 @@ class VerificaLoginController extends Controller
 
     public static function verificaPermissao($numeroP){
         include("db.php");
+        $resultado = "";
         if(isset($_SESSION['enfermeiroChefe'])){
             $sql = "SELECT * FROM permissao_cargo where permissao_id = '$numeroP'";
             $query = mysqli_query($connect,$sql);

@@ -14,34 +14,34 @@
     <header id="header" class="fixed-top">
         <div class="container-fluid">
 
-        <!-------- Nome do funcionário e acesso ao perfil -------->
-        <div class="d-flex align-items-center justify-content-between">
-            <div class="d-flex">
-                <a href="{{ route('editarPerfil') }} " class="user"> <i class="fas fa-user"></i></a>
-                <div class="col-lg-3">
-                    @if(isset($_SESSION['enfermeiro']))
-                    <h2><a href="{{ route('editarPerfil') }}">{{$_SESSION['enfermeiro']}}</a></h2>
-                    @endif
-                    @if(isset($_SESSION['estagiario']))
-                    <h2><a href="{{ route('editarPerfil') }}">{{$_SESSION['estagiario']}}</a></h2>
-                    @endif
-                    @if(isset($_SESSION['enfermeiroChefe']))
-                    <h2><a href="{{ route('editarPerfil') }}">{{$_SESSION['enfermeiroChefe']}}</a></h2>
-                    @endif
+            <!-------- Nome do funcionário e acesso ao perfil -------->
+            <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex">
+                    <a href="{{ route('editarPerfil') }} " class="user"> <i class="fas fa-user"></i></a>
+                    <div class="col-lg-3">
+                        @if (isset($_SESSION['enfermeiro']))
+                            <h2><a href="{{ route('editarPerfil') }}">{{ $_SESSION['enfermeiro'] }}</a></h2>
+                        @endif
+                        @if (isset($_SESSION['estagiario']))
+                            <h2><a href="{{ route('editarPerfil') }}">{{ $_SESSION['estagiario'] }}</a></h2>
+                        @endif
+                        @if (isset($_SESSION['enfermeiroChefe']))
+                            <h2><a href="{{ route('editarPerfil') }}">{{ $_SESSION['enfermeiroChefe'] }}</a></h2>
+                        @endif
+                    </div>
                 </div>
-            </div>
-
-            <div class="d-flex align-items-center pr-5">
-                <nav class="nav d-none d-lg-block">
+                <nav class="nav d-lg-block">
+                    <input type="checkbox" id="check-options">
+                    <label for="check-options" class="menu-items"><i class="fas fa-bars"></i></label>
                     <ul>
                         <li class="title-nav"><a href="{{ route('menu') }}">INÍCIO</a></li>
-                       
+
                         <li class="drop-down title-nav"><a>PACIENTES <i class="fas fa-angle-down"></i></a>
                             <ul>
                                 <!-- Apenas enfermeiro e enfermeiro chefe-->
-                                @if(isset($_SESSION['estagiario'])==false) 
-                                <li><a href="{{ route('cadastroPaciente') }}">Cadastro de pacientes</a></li>
-                                <li><a href="{{ route('cadastroProntuario') }}">Cadastro de prontuário</a></li>
+                                @if (isset($_SESSION['estagiario']) == false)
+                                    <li><a href="{{ route('cadastroPaciente') }}">Cadastro de pacientes</a></li>
+                                    <li><a href="{{ route('cadastroProntuario') }}">Cadastro de prontuário</a></li>
                                 @endif
                                 <!-- Comum a enfermeiro, estagiário e enfermeiro chefe -->
                                 <li><a href="{{ route('pacientes') }}">Pacientes e prontuários</a></li>
@@ -49,37 +49,40 @@
                             </ul>
                         </li>
 
-                        
+
                         <li class="drop-down title-nav"><a>AGENDAMENTOS E<br> MEDICAMENTOS <i
                                     class="fas fa-angle-down"></i></a>
                             <ul>
                                 <!-- Comum a enfermeiro e estagiário -->
-                                @if(isset($_SESSION['enfermeiroChefe'])==false) 
-                                <li><a href="{{ route('agendamentos') }}">Verificação de agendamentos</a></li>
-                                <li><a href="{{ route('meusAgendamentos') }}">Meus agendamentos</a></li>
-                                <li><a href="{{ route('agendamentosRealizados') }}">Meus agendamentos realizados</a>
-                                </li>
+                                @if (isset($_SESSION['enfermeiroChefe']) == false)
+                                    <li><a href="{{ route('agendamentos') }}">Verificação de agendamentos</a></li>
+                                    <li><a href="{{ route('meusAgendamentos') }}">Meus agendamentos</a></li>
+                                    <li><a href="{{ route('agendamentosRealizados') }}">Meus agendamentos
+                                            realizados</a>
+                                    </li>
                                 @endif
                                 <!-- Enfermeiro chefe-->
-                                @if(isset($_SESSION['enfermeiroChefe'])) 
-                                <li><a href="{{ route('cadastroAgendamento') }}">Cadastro de agendamentos</a></li>
-                                <li><a href="{{ route('listaAgendamentos') }}">Listagem de agendamentos</a></li>
-                                <li><a href="{{ route('cadastroMedicamento') }}">Cadastro de medicamentos</a></li>
-                                <li><a href="{{ route('listaMedicamento') }}">Medicamentos cadastados</a></li>
-                                <li><a href="{{ route('responsaveis') }}">Responsáveis por aplicação</a></li>
+                                @if (isset($_SESSION['enfermeiroChefe']))
+                                    <li><a href="{{ route('cadastroAgendamento') }}">Cadastro de agendamentos</a>
+                                    </li>
+                                    <li><a href="{{ route('listaAgendamentos') }}">Listagem de agendamentos</a></li>
+                                    <li><a href="{{ route('cadastroMedicamento') }}">Cadastro de medicamentos</a>
+                                    </li>
+                                    <li><a href="{{ route('listaMedicamento') }}">Medicamentos cadastados</a></li>
+                                    <li><a href="{{ route('responsaveis') }}">Responsáveis por aplicação</a></li>
                                 @endif
                             </ul>
                         </li>
 
-                        @if(isset($_SESSION['enfermeiroChefe'])) 
+                        @if (isset($_SESSION['enfermeiroChefe']))
                             <li class="drop-down title-nav"><a>LEITOS <i class="fas fa-angle-down"></i></a>
                                 <ul>
                                     <li><a href="{{ route('cadastroLeito') }}">Cadastro e remoção de leito</a>
                                     </li>
                                 </ul>
                             </li>
-    
-    
+
+
                             <li class="drop-down title-nav"><a>PLANTONISTAS <i class="fas fa-angle-down"></i></a>
                                 <ul>
                                     <li><a href="{{ route('cadastroPlantonista') }}">Cadastro de plantonista</a>
@@ -90,12 +93,10 @@
                             </li>
                         @endif
                         <!-------- Botão de logout -------->
-                        <li><a href="/logout" class="logout-icon"> <i
-                                    class="fas fa-sign-out-alt"></i></a></li>
+                        <li><a href="/logout" class="logout-icon"> <i class="fas fa-sign-out-alt"></i></a></li>
                     </ul>
                 </nav>
             </div>
-        </div>
         </div>
     </header>
 </body>
