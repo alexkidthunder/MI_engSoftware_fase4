@@ -6,13 +6,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Monolog\Handler\SendGridHandler;
 use PhpParser\Node\Stmt\Return_;
-<<<<<<< Updated upstream
 use Dompdf\Dompdf;
 use Dompdf\Options;
-
-=======
 use Mpdf\Mpdf;
->>>>>>> Stashed changes
 
 class HomeController extends Controller
 {
@@ -1082,7 +1078,6 @@ class HomeController extends Controller
         }else{
             return redirect() -> back() ->with('msg-error','Este prontuario ja encontrasse fechado');
         }
-<<<<<<< Updated upstream
     }
     
     public function baixarArquivos(Request $request){   
@@ -1196,11 +1191,9 @@ class HomeController extends Controller
             )
         );
         return redirect()->back();
-=======
     } 
     
     public function test(){ 
         $mpdf = new Mpdf();
->>>>>>> Stashed changes
     }
 }
