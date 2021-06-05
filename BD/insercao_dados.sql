@@ -567,4 +567,4 @@ INSERT INTO permissao_cargo VALUES
   	(DEFAULT, '32', '4', '1'),
   	(DEFAULT, '33', '4', '0'),
 	(DEFAULT, '34', '4', '1'),
-	(DEFAULT, '35', '4', '0'),
+	(DEFAULT, '35', '4', '0');
