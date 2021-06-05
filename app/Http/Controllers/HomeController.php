@@ -1039,46 +1039,7 @@ class HomeController extends Controller
         }
     }
 
-    public function editarProntuario(Request $request){
-        session_start();
-        include("db.php");
-        $ocupado = null;
-        $aberto = HomeController::estadoPronturio($request->prontuario);
-        if($aberto == '1'){
-            /*Inicio dos dados do paciente */
-            $update1 = "UPDATE pacientes SET Estado = '$request->fstatus' where CPF='$request->fcpf'";
-            mysqli_query($connect,$update1);
 
-            //log
-            $ip = $_SERVER["REMOTE_ADDR"];
-            $acao = "Editou prontuário nº $request->prontuario";           
-            AdminController::salvarLog($acao, $ip);
-
-
-            $sql = "SELECT * FROM leitos WHERE Identificacao = '$request->fleito'";
-            $query = mysqli_query($connect,$sql);
-            while($sql = mysqli_fetch_array($query)){
-                $ocupado = $sql['Ocupado'];
-            }
-            if($ocupado == 0){
-                $update1 = "UPDATE leitos SET Ocupado = '0' where Identicacao='$request->leito'";
-                mysqli_query($connect,$update1);
-                $update2 = "UPDATE leitos SET Ocupado = '1' where Identicacao='$request->fleito'";
-                mysqli_query($connect,$update2);
-                $update2 = "UPDATE prontuarios SET Id_leito = '$request->fleito' where ID='$request->prontuario'";
-                mysqli_query($connect,$update2);
-                $update1 = "UPDATE leitos SET Ocupado = '0' where Identicacao='$request->fleito'";
-                mysqli_query($connect,$update1);
-                return redirect() -> back() ->with('msg','Dados do prontuario foram atualizados!!!');
-            }else if($ocupado == 1){
-                return redirect() -> back() ->with('msg-error','Um dos seus dados não pode ser alterado. Motivo: Leito informado encontrasse ocupado');
-            }else{
-                return redirect() -> back() ->with('msg-error','Um dos seus dados não pode ser alterado. Motivo: Leito informado não existe');
-            }
-        }else{
-            return redirect() -> back() ->with('msg-error','Este prontuario ja encontrasse fechado');
-        }
-    }
     
     public function baixarArquivos(Request $request){ 
         session_start();
@@ -1168,8 +1129,4 @@ class HomeController extends Controller
     </body>' );
         $mpdf->Output();
     } 
-    
-    public function test(){ 
-        $mpdf = new Mpdf();
-    }
 }
