@@ -303,6 +303,9 @@
                         <div>
                             <button class="btn-blue"> Finalizar </button>
                         </div>
+                        <div> 
+                            
+                        </div>
                                      
                 </form>
             </div>
