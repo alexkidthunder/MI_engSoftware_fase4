@@ -110,3 +110,6 @@ Route::get('/menu', [HomeController::class,'menu'])->name('menu');
 
 Route::get('/listaMedicamento', [HomeController::class,'listaMedicamento'])->name('listaMedicamento');
 
+/*------------ Rotas para downloads-------------------*/
+
+Route::get('/baixarArquivos', [HomeController::class,'baixarArquivos']);
