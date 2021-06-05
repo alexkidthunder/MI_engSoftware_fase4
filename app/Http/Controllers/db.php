@@ -1,4 +1,12 @@
 <?php
-    $connect = mysqli_connect(env('DB_HOST', 'null'),env('DB_USERNAME', 'null'),env('DB_PASSWORD', 'null')) or die("Falha ao conectar o servidor"); /*conectar ao servidor */
-    $db = mysqli_select_db($connect,env('DB_DATABASE', 'null')) or die("Falha ao selecionar o banco de dados"); /* Selecionando o banco de dados */
+$host = env('DB_HOST', 'null');
+$port= env('DB_PORT', 'null');
+$dbname= env('DB_DATABASE', 'null');
+$user= env('DB_USERNAME', 'null');
+$password= env('DB_PASSWORD', 'null');
+
+$connection_string = "host=$host port=$port dbname=$dbname user=$user password=$password";
+
+$db = pg_connect($connection_string) or die("Falha ao conectar o servidor"); /*conectar ao servidor */
 ?>
+
