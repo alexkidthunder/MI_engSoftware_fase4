@@ -32,7 +32,7 @@ class HomeController extends Controller
             'cpf' => 'required',
             'senha' => 'required'
         ]);
-        $result = mysqli_query($connect,"SELECT CPF FROM usuarios WHERE CPF = '$request->cpf' AND Senha = '$request->senha'"); /*Verificando se cpf e senha estão cadastrados no banco de dados*/ 
+        $result = mysqli_query($connect,"SELECT CPF FROM usuarios WHERE CPF = '$request->cpf' AND Senha = '$request->senha' or die(mysqli_error($connect))"); /*Verificando se cpf e senha estão cadastrados no banco de dados*/ 
         $row = mysqli_num_rows($result); /*resultado da verificalçao*/
         /*While percorrendo vetor gerado pela query */
         $sql = "SELECT * FROM usuarios where CPF = '$request->cpf'";
