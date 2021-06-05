@@ -3,13 +3,12 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 04-Jun-2021 às 10:07
+-- Tempo de geração: 04-Jun-2021 às 23:54
 -- Versão do servidor: 10.4.18-MariaDB
 -- versão do PHP: 8.0.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -27,8 +26,8 @@ USE `hospital_universitario`;
 --
 -- Estrutura da tabela `administradores`
 --
--- Criação: 04-Jun-2021 às 11:40
--- Última actualização: 04-Jun-2021 às 11:40
+-- Criação: 05-Jun-2021 às 00:34
+-- Última actualização: 05-Jun-2021 às 00:34
 --
 
 CREATE TABLE IF NOT EXISTS `administradores` (
@@ -56,8 +55,8 @@ INSERT INTO `administradores` (`CPF`) VALUES
 --
 -- Estrutura da tabela `agendamentos`
 --
--- Criação: 04-Jun-2021 às 11:40
--- Última actualização: 04-Jun-2021 às 11:40
+-- Criação: 05-Jun-2021 às 00:34
+-- Última actualização: 05-Jun-2021 às 00:34
 --
 
 CREATE TABLE IF NOT EXISTS `agendamentos` (
@@ -136,13 +135,13 @@ INSERT INTO `agendamentos` (`Codigo`, `Posologia`, `Data_Agend`, `Realizado`, `H
 --
 -- Estrutura da tabela `backups_agendados`
 --
--- Criação: 04-Jun-2021 às 11:40
+-- Criação: 05-Jun-2021 às 00:34
 --
 
 CREATE TABLE IF NOT EXISTS `backups_agendados` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
   `Data_backup` date NOT NULL,
-  `Hora_backup` datetime NOT NULL,
+  `Hora_backup` time NOT NULL,
   `ip` varchar(15) NOT NULL,
   `Automatico` int(1) DEFAULT NULL,
   PRIMARY KEY (`ID`)
@@ -157,8 +156,8 @@ CREATE TABLE IF NOT EXISTS `backups_agendados` (
 --
 -- Estrutura da tabela `cargo`
 --
--- Criação: 04-Jun-2021 às 11:40
--- Última actualização: 04-Jun-2021 às 11:40
+-- Criação: 05-Jun-2021 às 00:34
+-- Última actualização: 05-Jun-2021 às 00:34
 --
 
 CREATE TABLE IF NOT EXISTS `cargo` (
@@ -186,8 +185,8 @@ INSERT INTO `cargo` (`id`, `nome`) VALUES
 --
 -- Estrutura da tabela `cid`
 --
--- Criação: 04-Jun-2021 às 11:40
--- Última actualização: 04-Jun-2021 às 11:40
+-- Criação: 05-Jun-2021 às 00:34
+-- Última actualização: 05-Jun-2021 às 00:38
 --
 
 CREATE TABLE IF NOT EXISTS `cid` (
@@ -12652,8 +12651,8 @@ INSERT INTO `cid` (`id`, `codCid`, `descricaoCid`) VALUES
 --
 -- Estrutura da tabela `cid_prontuario`
 --
--- Criação: 04-Jun-2021 às 11:40
--- Última actualização: 04-Jun-2021 às 11:40
+-- Criação: 05-Jun-2021 às 00:34
+-- Última actualização: 05-Jun-2021 às 00:38
 --
 
 CREATE TABLE IF NOT EXISTS `cid_prontuario` (
@@ -12695,8 +12694,8 @@ INSERT INTO `cid_prontuario` (`id`, `id_CID`, `id_prontuario`) VALUES
 --
 -- Estrutura da tabela `enfermeiros`
 --
--- Criação: 04-Jun-2021 às 11:40
--- Última actualização: 04-Jun-2021 às 11:40
+-- Criação: 05-Jun-2021 às 00:34
+-- Última actualização: 05-Jun-2021 às 00:34
 --
 
 CREATE TABLE IF NOT EXISTS `enfermeiros` (
@@ -12734,8 +12733,8 @@ INSERT INTO `enfermeiros` (`CPF`, `COREN`, `Plantao`) VALUES
 --
 -- Estrutura da tabela `enfermeiros_chefes`
 --
--- Criação: 04-Jun-2021 às 11:40
--- Última actualização: 04-Jun-2021 às 11:40
+-- Criação: 05-Jun-2021 às 00:34
+-- Última actualização: 05-Jun-2021 às 00:34
 --
 
 CREATE TABLE IF NOT EXISTS `enfermeiros_chefes` (
@@ -12765,8 +12764,8 @@ INSERT INTO `enfermeiros_chefes` (`CPF`, `COREN`) VALUES
 --
 -- Estrutura da tabela `estagiarios`
 --
--- Criação: 04-Jun-2021 às 11:40
--- Última actualização: 04-Jun-2021 às 11:40
+-- Criação: 05-Jun-2021 às 00:34
+-- Última actualização: 05-Jun-2021 às 00:34
 --
 
 CREATE TABLE IF NOT EXISTS `estagiarios` (
@@ -12796,8 +12795,8 @@ INSERT INTO `estagiarios` (`CPF`, `Plantao`) VALUES
 --
 -- Estrutura da tabela `leitos`
 --
--- Criação: 04-Jun-2021 às 11:40
--- Última actualização: 04-Jun-2021 às 11:40
+-- Criação: 05-Jun-2021 às 00:34
+-- Última actualização: 05-Jun-2021 às 02:32
 --
 
 CREATE TABLE IF NOT EXISTS `leitos` (
@@ -12815,6 +12814,7 @@ CREATE TABLE IF NOT EXISTS `leitos` (
 --
 
 INSERT INTO `leitos` (`Ocupado`, `Identificacao`) VALUES
+  (0, 'l2d2'),
   (0, 'LA001'),
   (0, 'LA002'),
   (0, 'LA003'),
@@ -12849,7 +12849,8 @@ INSERT INTO `leitos` (`Ocupado`, `Identificacao`) VALUES
 --
 -- Estrutura da tabela `logs`
 --
--- Criação: 04-Jun-2021 às 11:40
+-- Criação: 05-Jun-2021 às 00:34
+-- Última actualização: 05-Jun-2021 às 02:33
 --
 
 CREATE TABLE IF NOT EXISTS `logs` (
@@ -12859,7 +12860,7 @@ CREATE TABLE IF NOT EXISTS `logs` (
   `Ip` varchar(15) NOT NULL,
   `Acao` text NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 --
 -- RELACIONAMENTOS PARA TABELAS `logs`:
@@ -12870,8 +12871,8 @@ CREATE TABLE IF NOT EXISTS `logs` (
 --
 -- Estrutura da tabela `medicamentos`
 --
--- Criação: 04-Jun-2021 às 11:40
--- Última actualização: 04-Jun-2021 às 11:40
+-- Criação: 05-Jun-2021 às 00:34
+-- Última actualização: 05-Jun-2021 às 00:34
 --
 
 CREATE TABLE IF NOT EXISTS `medicamentos` (
@@ -12935,8 +12936,8 @@ INSERT INTO `medicamentos` (`Nome_Medicam`, `Quantidade`, `Fabricante`, `Data_Va
 --
 -- Estrutura da tabela `ocorrencias`
 --
--- Criação: 04-Jun-2021 às 11:40
--- Última actualização: 04-Jun-2021 às 11:40
+-- Criação: 05-Jun-2021 às 00:34
+-- Última actualização: 05-Jun-2021 às 00:34
 --
 
 CREATE TABLE IF NOT EXISTS `ocorrencias` (
@@ -12949,7 +12950,7 @@ CREATE TABLE IF NOT EXISTS `ocorrencias` (
   PRIMARY KEY (`Codigo`),
   KEY `ID_prontuario` (`ID_prontuario`),
   KEY `CPF` (`CPF`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
 --
 -- RELACIONAMENTOS PARA TABELAS `ocorrencias`:
@@ -12964,19 +12965,19 @@ CREATE TABLE IF NOT EXISTS `ocorrencias` (
 --
 
 INSERT INTO `ocorrencias` (`Codigo`, `Data_ocorr`, `Hora_ocorr`, `ID_prontuario`, `Descricao`, `CPF`) VALUES
-	(1, '2021-05-11', '10:12:31', 1, 'Paciente Amanda Jéssica Caroline de Paula, CPF:065.799.448-03 foi internada e alocada para o leito LB001, no dia 11 de Maio de 2021 as 10:12 AM, identificada com a CID A03.2', '072.003.190-74'),
-	(2, '2020-01-21', '11:19:16', 2, 'Paciente Amanda Jéssica Caroline de Paula, de CPF: 065.799.448-03 tomou sua medicação e deve ficar um tempo em observação.', '868.500.956-17'),
-	(3, '2020-01-22', '21:36:47', 3, 'Paciente Amanda Jéssica Caroline de Paula, CPF:065.799.448-03 foi liberada do leito LB001, no dia 22 de Janeiro de 2020 as 21:36, depois de tomar sua medicação.', '072.003.190-74'),
-	(4, '2021-02-28', '22:52:26', 46, 'Paciente Olivia Natália Sueli de Paula, de CPF 012.456.594-80 foi liberada depois de tomar sua medicação e ficar um tempo em observação.', '558.570.920-86'),
-	(5, '2020-08-11', '20:32:26', 41, 'Paciente Valentina Fátima Santos, de CPF 759.661.020-07 foi liberada depois de tomar sua medicação e não tempo nenhuma aversão ao medicamento.\r\n\r\n', '607.500.500-55');
+  (1, '2021-05-11', '10:12:31', 1, 'Paciente Amanda Jéssica Caroline de Paula, CPF:065.799.448-03 foi internada e alocada para o leito LB001, no dia 11 de Maio de 2021 as 10:12 AM, identificada com a CID A03.2', '072.003.190-74'),
+  (2, '2020-01-21', '11:19:16', 2, 'Paciente Amanda Jéssica Caroline de Paula, de CPF: 065.799.448-03 tomou sua medicação e deve ficar um tempo em observação.', '868.500.956-17'),
+  (3, '2020-01-22', '21:36:47', 3, 'Paciente Amanda Jéssica Caroline de Paula, CPF:065.799.448-03 foi liberada do leito LB001, no dia 22 de Janeiro de 2020 as 21:36, depois de tomar sua medicação.', '072.003.190-74'),
+  (4, '2021-02-28', '22:52:26', 46, 'Paciente Olivia Natália Sueli de Paula, de CPF 012.456.594-80 foi liberada depois de tomar sua medicação e ficar um tempo em observação.', '558.570.920-86'),
+  (5, '2020-08-11', '20:32:26', 41, 'Paciente Valentina Fátima Santos, de CPF 759.661.020-07 foi liberada depois de tomar sua medicação e não tempo nenhuma aversão ao medicamento.\r\n\r\n', '607.500.500-55');
 
 -- --------------------------------------------------------
 
 --
 -- Estrutura da tabela `pacientes`
 --
--- Criação: 04-Jun-2021 às 11:40
--- Última actualização: 04-Jun-2021 às 11:40
+-- Criação: 05-Jun-2021 às 00:34
+-- Última actualização: 05-Jun-2021 às 00:34
 --
 
 CREATE TABLE IF NOT EXISTS `pacientes` (
@@ -13054,8 +13055,8 @@ INSERT INTO `pacientes` (`Nome_Paciente`, `Sexo`, `Estado`, `Data_Nasc`, `CPF`, 
 --
 -- Estrutura da tabela `permissao_cargo`
 --
--- Criação: 04-Jun-2021 às 11:40
--- Última actualização: 04-Jun-2021 às 11:40
+-- Criação: 05-Jun-2021 às 00:34
+-- Última actualização: 05-Jun-2021 às 02:38
 --
 
 CREATE TABLE IF NOT EXISTS `permissao_cargo` (
@@ -13066,7 +13067,7 @@ CREATE TABLE IF NOT EXISTS `permissao_cargo` (
   PRIMARY KEY (`id`),
   KEY `permissao_id` (`permissao_id`),
   KEY `cargo_id` (`cargo_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=utf8mb4;
 
 --
 -- RELACIONAMENTOS PARA TABELAS `permissao_cargo`:
@@ -13102,57 +13103,86 @@ INSERT INTO `permissao_cargo` (`id`, `permissao_id`, `cargo_id`, `ativo`) VALUES
   (19, 19, 2, 1),
   (20, 20, 2, 1),
   (21, 21, 2, 1),
-  (22, 24, 2, 1),
-  (23, 25, 2, 1),
-  (24, 26, 2, 1),
-  (25, 27, 2, 1),
-  (26, 28, 2, 1),
-  (27, 29, 2, 1),
-  (28, 30, 2, 1),
-  (29, 31, 2, 1),
-  (30, 32, 2, 1),
-  (31, 33, 2, 1),
-  (32, 34, 2, 1),
-  (33, 35, 2, 1),
-  (34, 10, 3, 1),
-  (35, 11, 3, 1),
-  (36, 15, 3, 1),
-  (37, 17, 3, 1),
-  (38, 18, 3, 1),
-  (39, 19, 3, 1),
-  (40, 20, 3, 1),
-  (41, 21, 3, 1),
-  (42, 22, 3, 1),
-  (43, 23, 3, 1),
-  (44, 24, 3, 1),
-  (45, 25, 3, 1),
-  (46, 26, 3, 1),
-  (47, 27, 3, 1),
-  (48, 28, 3, 1),
-  (49, 31, 3, 1),
-  (50, 32, 3, 1),
-  (51, 33, 3, 1),
-  (52, 34, 3, 1),
-  (53, 15, 4, 1),
-  (54, 18, 4, 1),
-  (55, 19, 4, 1),
-  (56, 20, 4, 1),
-  (57, 22, 4, 1),
-  (58, 23, 4, 1),
-  (59, 24, 4, 1),
-  (60, 27, 4, 1),
-  (61, 28, 4, 1),
-  (62, 31, 4, 1),
-  (63, 32, 4, 1),
-  (64, 34, 4, 1);
+  (22, 22, 2, 0),
+  (23, 23, 2, 0),
+  (24, 24, 2, 1),
+  (25, 25, 2, 1),
+  (26, 26, 2, 1),
+  (27, 27, 2, 1),
+  (28, 28, 2, 1),
+  (29, 29, 2, 1),
+  (30, 30, 2, 1),
+  (31, 31, 2, 1),
+  (32, 32, 2, 1),
+  (33, 33, 2, 1),
+  (34, 34, 2, 0),
+  (35, 35, 2, 1),
+  (36, 7, 3, 1),
+  (37, 8, 3, 0),
+  (38, 9, 3, 0),
+  (39, 10, 3, 1),
+  (40, 11, 3, 1),
+  (41, 12, 3, 1),
+  (42, 13, 3, 1),
+  (43, 14, 3, 1),
+  (44, 15, 3, 1),
+  (45, 16, 3, 0),
+  (46, 17, 3, 1),
+  (47, 18, 3, 1),
+  (48, 19, 3, 1),
+  (49, 20, 3, 1),
+  (50, 21, 3, 1),
+  (51, 22, 3, 0),
+  (52, 23, 3, 1),
+  (53, 24, 3, 1),
+  (54, 25, 3, 1),
+  (55, 26, 3, 1),
+  (56, 27, 3, 1),
+  (57, 28, 3, 0),
+  (58, 29, 3, 1),
+  (59, 30, 3, 0),
+  (60, 31, 3, 1),
+  (61, 32, 3, 0),
+  (62, 33, 3, 0),
+  (63, 34, 3, 0),
+  (64, 35, 3, 0),
+  (65, 7, 4, 0),
+  (66, 8, 4, 0),
+  (67, 9, 4, 0),
+  (68, 10, 4, 0),
+  (69, 11, 4, 1),
+  (70, 12, 4, 0),
+  (71, 13, 4, 0),
+  (72, 14, 4, 1),
+  (73, 15, 4, 1),
+  (74, 16, 4, 1),
+  (75, 17, 4, 0),
+  (76, 18, 4, 1),
+  (77, 19, 4, 1),
+  (78, 20, 4, 1),
+  (79, 21, 4, 0),
+  (80, 22, 4, 0),
+  (81, 23, 4, 1),
+  (82, 24, 4, 0),
+  (83, 25, 4, 0),
+  (84, 26, 4, 0),
+  (85, 27, 4, 1),
+  (86, 28, 4, 1),
+  (87, 29, 4, 0),
+  (88, 30, 4, 0),
+  (89, 31, 4, 1),
+  (90, 32, 4, 1),
+  (91, 33, 4, 0),
+  (92, 34, 4, 1),
+  (93, 35, 4, 0);
 
 -- --------------------------------------------------------
 
 --
 -- Estrutura da tabela `permissoes`
 --
--- Criação: 04-Jun-2021 às 11:40
--- Última actualização: 04-Jun-2021 às 11:40
+-- Criação: 05-Jun-2021 às 00:34
+-- Última actualização: 05-Jun-2021 às 00:34
 --
 
 CREATE TABLE IF NOT EXISTS `permissoes` (
@@ -13211,8 +13241,8 @@ INSERT INTO `permissoes` (`id`, `nome`) VALUES
 --
 -- Estrutura da tabela `prontuarios`
 --
--- Criação: 04-Jun-2021 às 11:40
--- Última actualização: 04-Jun-2021 às 11:40
+-- Criação: 05-Jun-2021 às 00:34
+-- Última actualização: 05-Jun-2021 às 00:34
 --
 
 CREATE TABLE IF NOT EXISTS `prontuarios` (
@@ -13242,7 +13272,7 @@ CREATE TABLE IF NOT EXISTS `prontuarios` (
 INSERT INTO `prontuarios` (`aberto`, `ID`, `Data_Internacao`, `Data_Saida`, `Id_leito`, `Cpfpaciente`) VALUES
   (1, 1, '2021-05-11', '0000-00-00', 'LD003', '065.799.448-03'),
   (0, 2, '2020-05-11', '2020-05-30', 'LB001', '065.799.448-03'),
-  (0, 3, '2020-01-11', '2020-01-22', 'LB001', '065.799.448-03'),  
+  (0, 3, '2020-01-11', '2020-01-22', 'LB001', '065.799.448-03'),
   (0, 4, '2019-02-11', '2019-03-04', 'LB001', '065.799.448-03'),
   (0, 5, '2005-06-21', '2005-07-09', 'LB001', '622.748.620-52'),
   (0, 6, '2010-01-18', '2010-01-31', 'LB001', '622.748.620-52'),
@@ -13388,8 +13418,8 @@ INSERT INTO `prontuarios` (`aberto`, `ID`, `Data_Internacao`, `Data_Saida`, `Id_
 --
 -- Estrutura da tabela `usuarios`
 --
--- Criação: 04-Jun-2021 às 11:40
--- Última actualização: 04-Jun-2021 às 11:40
+-- Criação: 05-Jun-2021 às 00:34
+-- Última actualização: 05-Jun-2021 às 00:34
 --
 
 CREATE TABLE IF NOT EXISTS `usuarios` (

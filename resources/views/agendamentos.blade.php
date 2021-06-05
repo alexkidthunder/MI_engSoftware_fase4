@@ -95,8 +95,8 @@
                     <div class="row">
                         <!------ Nome do paciente ao qual o agendamento pertence ---->
                         <form action="/prontuario" method="get">
-                            <input type="hidden" name='cpf' value='{{ $identificaP }}'>
-                            <input type="hidden" name='numero' value='{{ $infos['id' . $i] }}'>
+                            <input type="hidden" name='cpf' value="{{$infos['identificaP'.$i]}}">
+                            <input type="hidden" name='numero' value="{{ $infos['id' . $i] }}">
                             <div class="col-12 col-sm-12 col-md-9 col-lg-9">
                                 <button type="submit" class="btn-Patient">{{ $infos['paciente' . $i] }}</button>
                             </div>
