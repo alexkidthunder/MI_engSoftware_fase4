@@ -1,12 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use Monolog\Handler\SendGridHandler;
-use PhpParser\Node\Stmt\Return_;
 
 class HomeController extends Controller
 {
@@ -177,9 +172,10 @@ class HomeController extends Controller
             //verifica se o usuario existe no sistema. $row = 1 significa que sim
             if($row == 1){ 
                 session_start();
-                                            //Sequência de condicionais que verifica o cargo para reirecionar para o menu correto 
+                //Sequência de condicionais que verifica o cargo para reirecionar para o menu correto 
                 if($atribuicao == "Administrador"){
-                    $_SESSION['administrador'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
+                    // inicia uma sessão de nome usuario com o cpf recuperado
+                    $_SESSION['administrador'] = $request->cpf; 
                     
                     //log
                     $ip = $_SERVER["REMOTE_ADDR"];
@@ -414,6 +410,12 @@ class HomeController extends Controller
                     }
                     $i = $i+1;
                 }
+
+                //log
+                $ip = $_SERVER["REMOTE_ADDR"];
+                $acao = "Visualizou lista de pacientes";           
+                AdminController::salvarLog($acao, $ip);
+                
                 return view('listaPacientes',['p'=>$p,'identicador'=>$identicador]);
             }else{
                 return view('listaPacientes');
@@ -493,6 +495,12 @@ class HomeController extends Controller
                     }
                 }
             }
+
+            //log
+            $ip = $_SERVER["REMOTE_ADDR"];
+            $acao = "Visualizou lista de agendamentos realizados";           
+            AdminController::salvarLog($acao, $ip);
+
             return view('agendamentosRealizados',['infos' => $infos, 'identificaP'=>$identificaP]);
         }else{
             return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
@@ -573,6 +581,11 @@ class HomeController extends Controller
                 }
             }
 
+            //log
+            $ip = $_SERVER["REMOTE_ADDR"];
+            $acao = "Visualizou lista de meus agendamentos";           
+            AdminController::salvarLog($acao, $ip);
+
             return view('meusAgendamentos',['infos' => $infos, 'identificaP'=>$identificaP]);
         }else{
             return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
@@ -584,6 +597,12 @@ class HomeController extends Controller
         session_start();
         $sql = "UPDATE agendamentos SET Realizado = '1' WHERE Codigo = '$request->idA'";
         mysqli_query($connect,$sql);
+
+        //log
+        $ip = $_SERVER["REMOTE_ADDR"];
+        $acao = "Finalizou um agendamento de medicamento";           
+        AdminController::salvarLog($acao, $ip);
+
         return redirect()->back();
     }
         
@@ -626,6 +645,12 @@ class HomeController extends Controller
                     $i++;
                 }
             }
+
+            //log
+            $ip = $_SERVER["REMOTE_ADDR"];
+            $acao = "Visualizou lista de agendamentos";           
+            AdminController::salvarLog($acao, $ip);
+
             return view('agendamentos',['infos' => $infos,'identificaP'=>$identificaP]);
         }else{
             return redirect()->back();
@@ -641,6 +666,12 @@ class HomeController extends Controller
             if($cpf!=null){
                 $update = "UPDATE agendamentos SET CPF_usuario = '$cpf' WHERE Codigo = '$request->codA'";
                 mysqli_query($connect,$update);
+
+                //log
+                $ip = $_SERVER["REMOTE_ADDR"];
+                $acao = "Auto cadastrou como aplicador de um agendamento";           
+                AdminController::salvarLog($acao, $ip);
+
                 return redirect()->back()->with('msg','Você se adicionou como aplicador do agendamento');
             }
         }else{
@@ -648,6 +679,8 @@ class HomeController extends Controller
         }
     }
 
+
+    //função para permissão de cadastro de agendamentos
     public function cadastroAgendamentos(){
         VerificaLoginController::verificarLogin();
         $resultado = VerificaLoginController::verificaPermissao(12);
@@ -658,6 +691,8 @@ class HomeController extends Controller
         } 
     }
 
+
+    //função para permissão de cadastro de prontuário
     public function cadastroProntuario(){
         VerificaLoginController::verificarLogin();
         $perm = VerificaLoginController::verificaPermissao(33);
@@ -668,6 +703,8 @@ class HomeController extends Controller
         }
     }
 
+
+    //função para permissão de cadastro de paciente
     public function cadastroPaciente(){
         VerificaLoginController::verificarLogin();
         $resultado = VerificaLoginController::verificaPermissao(17);
@@ -679,10 +716,17 @@ class HomeController extends Controller
 
     }
 
+
+    //função de esqueci a senha
     public function esqueciSenha(){
+
+
+
         return view('esqueciSenha');
     }
     
+
+    //função de listagem de medicamentos
     public function listaMedicamento(){
         VerificaLoginController::verificarLogin();
         include("db.php");
@@ -699,12 +743,19 @@ class HomeController extends Controller
                 $m["fabricante".$i] = $sql['Fabricante'];
                 $i = $i+1;
             }
+
+            //log
+            $ip = $_SERVER["REMOTE_ADDR"];
+            $acao = "Visualizou lista de medicamentos";           
+            AdminController::salvarLog($acao, $ip);
+
             return view('listaMedicamento',['m' => $m]);
         }else{
             return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
         }
     }
 
+    //função de permissão de histórico de prontuário
     public function historicoProntuario(){
         VerificaLoginController::verificarLogin();
         $perm = VerificaLoginController::verificaPermissao(18);
@@ -715,6 +766,7 @@ class HomeController extends Controller
         }
     }
 
+    //função de salvar paciente no banco de dados
     public function salvarPaciente(Request $request){
         session_start();
         include('db.php');
@@ -741,6 +793,7 @@ class HomeController extends Controller
         } 
     }
 
+    //função de permissão de acesso ao prontuário
     public function prontuario(Request $request){
         include("db.php");
         VerificaLoginController::verificarLogin();
@@ -811,6 +864,12 @@ class HomeController extends Controller
                     }
                 }
                 /*fim dos dados do agendamento e medicamento */
+
+            //log
+            $ip = $_SERVER["REMOTE_ADDR"];
+            $acao = "Visualizou prontuário de paciente";           
+            AdminController::salvarLog($acao, $ip);
+
             }else{
                 return redirect()->back()->with('msg-error','Não foi possivel encontrar o prontuario no banco de dados!!!');
             }
@@ -844,12 +903,16 @@ class HomeController extends Controller
                 }
             }
         }
+
+        //log
+        $ip = $_SERVER["REMOTE_ADDR"];
+        $acao = "Buscou prontuário do paciente";           
+        AdminController::salvarLog($acao, $ip);
+
         return view('historicoProntuario',['prontuario' => $prontuario]);
     }
 
-    /** Função que busca um paciente para o cadastro de prontuário
-     * Também retorna os Leitos disponíveis
-     */
+    //Função que busca um paciente para o cadastro de prontuário e também retorna os leitos disponíveis
     public function buscarPaciente(Request $request)
     {
         session_start();
@@ -910,6 +973,12 @@ class HomeController extends Controller
             if($cid != null and $aberto == '1'){
                 $insert = "INSERT INTO cid_prontuario (id_CID,id_prontuario) VALUES ('$cid','$request->prontuario')";
                 mysqli_query($connect,$insert);
+
+                //log
+                $ip = $_SERVER["REMOTE_ADDR"];
+                $acao = "Cadastrou CID $cid ao prontuário nº $request->prontuario";           
+                AdminController::salvarLog($acao, $ip);
+
                 return redirect() -> back() ->with('msg','CID adicionada ao prontuario com sucesso!!!!');
             }else if($aberto == '0' or $aberto == null){
                 return redirect() -> back() ->with('msg-error','Não pode mais haver cadastro de cids nesse prontuario pos ele se enconta fechado');
@@ -940,6 +1009,7 @@ class HomeController extends Controller
         include("db.php");
         $cod = 0;
         $aberto = HomeController::estadoPronturio($request->prontuario);
+        date_default_timezone_set('America/Sao_Paulo');
         $data = date('Y-m-d');
         $hora = date('H:i:s');
         $nome = null;
@@ -958,11 +1028,17 @@ class HomeController extends Controller
             $cod++;
             $insert = "INSERT INTO ocorrencias (Codigo,Data_ocorr,ID_prontuario,Descricao,CPF,Hora) VALUES ('$cod','$data','$request->prontuario','$request->focorrencia','$cpf','$hora')";
             mysqli_query($connect,$insert);
-            return redirect() -> back() ->with('msg','Ocorrência adicionada ao prontuario com sucesso!!!!');
+
+            //log
+            $ip = $_SERVER["REMOTE_ADDR"];
+            $acao = "Adicionou ocorrência ao prontuário nº $request->prontuario";           
+            AdminController::salvarLog($acao, $ip);
+
+            return redirect() -> back() ->with('msg','Ocorrência adicionada ao prontuário com sucesso!!!!');
         }else if($nome == null){
             return redirect() -> back()->with('msg-error','Seu cpf não foi encontrado na base de dados. Ocorrência não cadastrada');
         }else{
-            return redirect() -> back() ->with('msg-error','Prontuario encontrasse fechado');
+            return redirect() -> back() ->with('msg-error','Prontuário encontra-se fechado');
         }
     }
     
@@ -973,6 +1049,12 @@ class HomeController extends Controller
         if($aberto == '1'){
             $update = "UPDATE prontuarios SET aberto = '0', Data_Saida = '$request->fsaida' WHERE ID = '$request->prontuario'";
             mysqli_query($connect,$update);
+
+            //log
+            $ip = $_SERVER["REMOTE_ADDR"];
+            $acao = "Finalizou prontuário nº $request->prontuario";           
+            AdminController::salvarLog($acao, $ip);
+
             return redirect() -> back() ->with('msg','Este prontuario foi fechado');
         }else{
             return redirect() -> back() ->with('msg-error','Este prontuario ja encontrasse fechado');
@@ -988,6 +1070,13 @@ class HomeController extends Controller
             /*Inicio dos dados do paciente */
             $update1 = "UPDATE pacientes SET Estado = '$request->fstatus' where CPF='$request->fcpf'";
             mysqli_query($connect,$update1);
+
+            //log
+            $ip = $_SERVER["REMOTE_ADDR"];
+            $acao = "Editou prontuário nº $request->prontuario";           
+            AdminController::salvarLog($acao, $ip);
+
+
             $sql = "SELECT * FROM leitos WHERE Identificacao = '$request->fleito'";
             $query = mysqli_query($connect,$sql);
             while($sql = mysqli_fetch_array($query)){
