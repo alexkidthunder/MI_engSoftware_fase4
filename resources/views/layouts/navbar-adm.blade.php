@@ -53,6 +53,14 @@
         </div>
     </header>
 
+    <script src="jquery.min.js"></script>
+    <script>
+        $('.nav').on('click','li', function(){
+            $('.nav .active').removeClass('active');
+            $(this).addClass('active');
+        });
+    </script>
+
 </body>
 
 </html>
