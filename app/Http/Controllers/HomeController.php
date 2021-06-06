@@ -12,6 +12,8 @@ use Mpdf\Mpdf;
 
 class HomeController extends Controller
 {
+
+    //função de página inicial
     public function index(){
         session_start();
         if((isset($_SESSION['administrador']) == false) AND (isset($_SESSION['enfermeiroChefe']) == false) 
@@ -26,6 +28,8 @@ class HomeController extends Controller
         }
     }
 
+
+    //função de login
     public function login(Request $request){
         include("db.php");
         $request -> validate([
@@ -33,7 +37,7 @@ class HomeController extends Controller
             'senha' => 'required'
         ]);
         $result = mysqli_query($connect,"SELECT CPF FROM usuarios WHERE CPF = '$request->cpf' AND Senha = '$request->senha'"); /*Verificando se cpf e senha estão cadastrados no banco de dados*/ 
-        $row = mysqli_num_rows($result); /*resultado da verificalçao*/
+        $row = mysqli_num_rows($result); /*resultado da verificação*/
         /*While percorrendo vetor gerado pela query */
         $sql = "SELECT * FROM usuarios where CPF = '$request->cpf'";
         $query = mysqli_query($connect,$sql);
@@ -115,6 +119,8 @@ class HomeController extends Controller
 
     }
 
+
+    //função de menu, exceto do adm
     public function menu(){
         VerificaLoginController::verificarLogin();
         if(isset($_SESSION['enfermeiro']) or isset($_SESSION['enfermeiroChefe']) or isset($_SESSION['estagiario'])){
@@ -125,6 +131,8 @@ class HomeController extends Controller
         }
     }
 
+
+    //função de logout
     public function logout(){
         session_start();
         session_destroy();
@@ -138,12 +146,13 @@ class HomeController extends Controller
         exit();
     }
     
-     
+
+    //função de chamada de view de primeiro acesso  
     public function acessarPrimeiroAcesso(){
         return view('primeiroAcesso');
     }
 
-    public function primeiroAcesso(Request $request){
+    public function primeiroAcesso(Request $request){       //função de processar o primeiro acesso 
         include('db.php');
 
         $cpf = $request->cpf; 
@@ -235,6 +244,8 @@ class HomeController extends Controller
         return view('admin.menu');
     }*/
 
+
+    //função de editar perfil
     public function editPerfil(Request $request){
         VerificaLoginController::verificarLogin();
         include("db.php");
@@ -277,6 +288,8 @@ class HomeController extends Controller
         return view('editarPerfil', ['usuario' => $usuario]);
     }
     
+
+    //função de alterar senha 
     public function alterarSenhaPerfil(Request $request){
         session_start();
         include("db.php");
@@ -336,6 +349,8 @@ class HomeController extends Controller
         exit();
     }
 
+
+    //função de alterar dados 
     public function alterarDados(Request $request){
         session_start();
         include("db.php");
@@ -349,6 +364,8 @@ class HomeController extends Controller
 
     }
 
+
+    //função de listar pacientes 
     public function listaPacientes(Request $request){
         VerificaLoginController::verificarLogin();
         // Qual a permissão pra isso? 
@@ -432,6 +449,8 @@ class HomeController extends Controller
         }
     }
 
+
+    //função de agendamentos realizados
     public function agendamentosRealizados(){
         VerificaLoginController::verificarLogin();
         $resultado = VerificaLoginController::verificaPermissao(22);
@@ -483,6 +502,8 @@ class HomeController extends Controller
         }
     }
 
+
+    //função de visualizar meus agendamentos
     public function meusAgendamentos(){
         VerificaLoginController::verificarLogin();
         $resultado = VerificaLoginController::verificaPermissao(23);
@@ -537,6 +558,8 @@ class HomeController extends Controller
         }
     }
 
+
+    //função de finalizar meus agendamentos
     public function finalizarMeusAgendamentos(Request $request){
         include("db.php");
         session_start();
@@ -551,7 +574,8 @@ class HomeController extends Controller
         return redirect()->back();
     }
         
-    
+
+    //função de ver agendamentos
     public function agendamentos(Request $request){
         VerificaLoginController::verificarLogin();
         include("db.php");
@@ -605,6 +629,8 @@ class HomeController extends Controller
         }
     }
 
+
+    //função auto cadastro em agendamentos
     public function autoCadastroAgendamento(Request $request){
         include("db.php");
         session_start();
@@ -703,6 +729,7 @@ class HomeController extends Controller
         }
     }
 
+
     //função de permissão de histórico de prontuário
     public function historicoProntuario(){
         VerificaLoginController::verificarLogin();
@@ -713,6 +740,7 @@ class HomeController extends Controller
             return redirect()->back();
         }
     }
+
 
     //função de salvar paciente no banco de dados
     public function salvarPaciente(Request $request){
@@ -740,6 +768,7 @@ class HomeController extends Controller
             return redirect()->route('cadastroPaciente')->with('error', "Paciente já existente no banco de dados!!");
         } 
     }
+
 
     //função de permissão de acesso ao prontuário
     public function prontuario(Request $request){
@@ -857,6 +886,8 @@ class HomeController extends Controller
         }
     }
 
+
+    //função de buscar prontuário
     public function buscaProntuario(Request $request){
         session_start();
         include("db.php");                  // inclusão do banco de dados
@@ -889,6 +920,7 @@ class HomeController extends Controller
 
         return view('historicoProntuario',['prontuario' => $prontuario]);
     }
+
 
     //Função que busca um paciente para o cadastro de prontuário e também retorna os leitos disponíveis
     public function buscarPaciente(Request $request)
@@ -923,6 +955,7 @@ class HomeController extends Controller
         }
     }
 
+    //função de mudar estado de prontuário
     public static function estadoPronturio($codigo){
         include("db.php");
         $aberto = null;
@@ -936,6 +969,8 @@ class HomeController extends Controller
         return $aberto;
     }
 
+
+    //função de cadastrar cid em prontuário
     public function cadastrarCidProntuario(Request $request){
         session_start();
         include("db.php");
@@ -968,6 +1003,8 @@ class HomeController extends Controller
         }
     }
 
+
+    //função de obter cpf
     public static function obterCpf(){
         $cpf = null;
         if(isset($_SESSION['administrador'])){
@@ -982,6 +1019,8 @@ class HomeController extends Controller
         return $cpf;
     }
 
+
+    //função de adicionar ocorrencias em prontuário
     public function adicionarOcorrencias(Request $request){
         session_start();
         include("db.php");
@@ -1020,6 +1059,7 @@ class HomeController extends Controller
         }
     }
     
+    //função de finalizar prontuário
     public function finalizarProntuario(Request $request){
         session_start();
         include("db.php");
@@ -1040,7 +1080,7 @@ class HomeController extends Controller
     }
 
 
-    
+    //função de baixar arquivos
     public function baixarArquivos(Request $request){ 
         session_start();
         include("db.php");
