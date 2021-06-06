@@ -108,7 +108,6 @@ INSERT INTO pacientes VALUES
 	('Stella Camila Castro','F','alta','1958-02-26', '787.976.063-67', 'A-'),
 	('Liz Daiane Cavalcanti','F','alta','1980-06-19', '195.907.118-12', 'AB-'),
 	('Tiago Geraldo Fogaça','M','alta','1998-01-04', '065.603.436-00', 'O-'),
-
 	('Caleb Bruno Ferreira','M','internado','1949-09-25', '224.447.809-22', 'O-'),
 	('Paulo Sebastião Sales','M','internado','1982-05-14', '494.194.016-42', 'A-'),
 	('Victor Renan Assis','M','alta','1948-10-03', '800.170.953-10', 'AB+'),
@@ -123,7 +122,13 @@ INSERT INTO pacientes VALUES
 	('Sophia Alícia Campos','F','internado','1948-11-01', '201.095.279-09', 'A-'),
 	('Benjamin Bento Rodrigues','M','internado','1967-06-21', '856.213.656-58', 'A+'),
 	('Jennifer Clarice Assunção','F','internado','1993-04-09', '029.226.827-06', 'B-'),
-	('Giovana Lorena Pires','F','internado','1975-12-03', '501.661.629-90', 'AB-');
+	('Giovana Lorena Pires','F','internado','1975-12-03', '501.661.629-90', 'AB-'),
+
+	('Julho Florence Alves','M','obito','1980-02-04', '201.441.679-22', 'A-'),
+	('Julho Algustino Silva','M','obito','1990-01-24', '107.341.659-12', 'A+'),
+	('Giovane Damasco Touro','F','obito','1979-11-07', '481.561.521-91', 'O+'),
+	('Julia Lama Sousa','F','obito','1978-12-17', '491.591.529-81', 'AB'),
+	('Giovano Jorge Cerqueira','M','obito','1985-12-03', '401.561.328-95', 'O-');
 
 INSERT INTO leitos VALUES
 	('1','LB001'),

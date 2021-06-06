@@ -13059,7 +13059,12 @@ INSERT INTO `pacientes` (`Nome_Paciente`, `Sexo`, `Estado`, `Data_Nasc`, `CPF`, 
   ('Benjamin Bento Rodrigues', 'M', 'internado', '1967-06-21', '856.213.656-58', 'A+'),
   ('Isadora Natália da Mata', 'F', 'internado', '1955-11-12', '901.930.181-01', 'AB+'),
   ('Analu Aparecida Vanessa Brito', 'F', 'alta', '1963-02-19', '921.670.790-95', 'B+'),
-  ('Analu Caroline dos Santos', 'F', 'alta', '1989-12-01', '981.757.680-96', 'O-');
+  ('Analu Caroline dos Santos', 'F', 'alta', '1989-12-01', '981.757.680-96', 'O-'),
+  ('Julho Florence Alves','M','obito','1980-02-04', '201.441.679-22', 'A-'),
+	('Julho Algustino Silva','M','obito','1990-01-24', '107.341.659-12', 'A+'),
+	('Giovane Damasco Touro','F','obito','1979-11-07', '481.561.521-91', 'O+'),
+	('Julia Lama Sousa','F','obito','1978-12-17', '491.591.529-81', 'AB'),
+	('Giovano Jorge Cerqueira','M','obito','1985-12-03', '401.561.328-95', 'O-');
 
 -- --------------------------------------------------------
 
