@@ -47,6 +47,10 @@
             @if (session('msg-error'))
                 <div class='msg-error'> {{ session('msg-error') }}</div>
             @endif
+            <!----------- MENSAGENS DE SUCESSO----------------->
+            @if (session('msg-sucess'))
+                <div class='msg-sucess'> {{ session('msg-sucess') }}</div>
+            @endif
 
             <!---------- Infomações do Paciente buscado ---------->
             @if (isset($paciente))
@@ -69,7 +73,8 @@
 
                 <br>
                 <!---------- Cadastro do prontuário ---------->
-                <form id="register">
+                <form id="register" action="/cadastrarProntuario" method="get">                   
+                    <input name="CPF_Paciente" type="hidden" value="{{$paciente['CPF']}}">
                     <div class="box-cadastroLeito">
                         <div class="row">
                             <!------ Nome do leito de internamento do Paciente ------>
