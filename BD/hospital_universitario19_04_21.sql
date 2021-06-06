@@ -13088,6 +13088,7 @@ INSERT INTO `permissao_cargo` (`id`, `permissao_id`, `cargo_id`, `ativo`) VALUES
   (4, 4, 1, 1),
   (5, 5, 1, 1),
   (6, 6, 1, 1),
+  
   (7, 7, 2, 1),
   (8, 8, 2, 1),
   (9, 9, 2, 1),
@@ -13117,6 +13118,7 @@ INSERT INTO `permissao_cargo` (`id`, `permissao_id`, `cargo_id`, `ativo`) VALUES
   (33, 33, 2, 1),
   (34, 34, 2, 0),
   (35, 35, 2, 1),
+
   (36, 7, 3, 1),
   (37, 8, 3, 0),
   (38, 9, 3, 0),
@@ -13146,6 +13148,7 @@ INSERT INTO `permissao_cargo` (`id`, `permissao_id`, `cargo_id`, `ativo`) VALUES
   (62, 33, 3, 0),
   (63, 34, 3, 0),
   (64, 35, 3, 0),
+  
   (65, 7, 4, 0),
   (66, 8, 4, 0),
   (67, 9, 4, 0),
