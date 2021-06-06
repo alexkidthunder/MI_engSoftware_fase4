@@ -301,7 +301,8 @@
                     <!----------Com a finalização do Prontuario o responsável irá arquivar o mesmo, tornando assim ineditável.------------>
                         <div>
                             <button class="btn-blue"> Finalizar </button>
-                        </div>                                     
+                        </div>    
+                                                         
                 </form>
             </div>
         </div>
