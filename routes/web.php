@@ -82,7 +82,7 @@ Route::post('/editarProntuario',[HomeController::class,'editarProntuario']); // 
 Route::get('/cadastroPaciente', [HomeController::class,'cadastroPaciente'])->name('cadastroPaciente');
 Route::post('/cadastroPaciente', [HomeController::class,'salvarPaciente'])->name('salvarPaciente');
 Route::get('/cadastroProntuario', [HomeController::class,'cadastroProntuario'])->name('cadastroProntuario');
-
+Route::get('/cadastrarProntuario', [HomeController::class,'cadastrarProntuario'])->name('cadastrarProntuario');
 /*------------ Rota para agendamentos ------------------------ */
 
 Route::get('/agendamentosRealizados', [HomeController::class,'agendamentosRealizados'])->name('agendamentosRealizados');
