@@ -469,10 +469,6 @@ input[type=number] {
 
 /*------------ Icone de download  ------------*/
 
-/*.download-icon {
-    float: right;
-}*/
-
 .download-icon button i {
     color: #0D6EFD;
     cursor: pointer;
@@ -510,7 +506,7 @@ input[type=number] {
 }
 
 @media (max-width: 425px) {
-    #screen-icon .download-icon button i {
+    #screen-icon .download-icon button i, .download-icon button i {
         font-size: 25px;
     }
     #screen-icon{
@@ -662,7 +658,7 @@ input[type=number] {
     box-shadow: 5px 5px 5px#DBDADA;
     height: 60px;
     margin-bottom: 25px;
-    -webkit-box-shadow: 3px 3px 8px #C8C8C8;
+    -webkit-box-shadow: 3px 3px 8px hsl(0, 0%, 78%);
     -moz-box-shadow: 3px 3px 8px #C8C8C8;
     padding: 15px 30px;
     width: 100%;
