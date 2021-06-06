@@ -52,7 +52,7 @@
             "dont-discover": []
         }
     },
-    "config": {        
+    "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
         "sort-packages": true
