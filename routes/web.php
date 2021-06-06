@@ -76,7 +76,7 @@ Route::get('/buscarPaciente', [HomeController::class,'buscarPaciente'])->name('b
 Route::post('/cadastroCID',[HomeController::class,'cadastrarCidProntuario']);
 Route::post('/cadastroOcorr',[HomeController::class,'adicionarOcorrencias']);
 Route::post('/finalizarProntuario',[HomeController::class,'finalizarProntuario']);
-Route::post('/editarProntuario',[HomeController::class,'editarProntuario']);
+Route::post('/editarProntuario',[HomeController::class,'editarProntuario']); // Não está sendo mais utilizada
 /*------------ Rota para cadastro de paciente  e prontuário------------------------ */
 
 Route::get('/cadastroPaciente', [HomeController::class,'cadastroPaciente'])->name('cadastroPaciente');

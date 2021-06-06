@@ -60,54 +60,56 @@
             <h1 class="title-download">LISTAGEM DE AGENDAMENTOS E MEDICAMENTOS </h1>
 
             <!---------------------Agendamento--------------------->
-            @while(isset($infos["medicamento".$i]))
+            @for($i = 0;$i < count($infos)/8;$i++)
+            @if(isset($infos))
             <div class="box-scheduling" id="scheduling">
                     <div class="row">
                         <!---------------------Hora--------------------->
-                        <div class="col-6 col-sm-6 col-md-6 col-lg-2 text-center">
+                        <div class="col-sm-12 col-md-8 col-lg-8 text-center">
                             <div class="box-gray">
                                 {{$infos["hora".$i]}}
                              </div>
                         </div>
                         <!---------------------Data--------------------->
-                        <div class="col-6 col-sm-6 col-md-6 col-lg-2 text-center">
+                        <div class="col-sm-12 col-md-4 col-lg-4 text-center">
                             <div class="box-gray">
                                 {{$infos["data".$i]}}
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
                         <!---------------------Nome do Medicamento--------------------->
-                        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                            <div class="box-white">
+                        <div class="col-sm-12 col-md-8 col-lg-8 text-center">
+                            <div class="box-white scrolls">
                                 {{$infos["medicamento".$i]}}
                              </div>
                         </div>
                         <!---------------------Posologia--------------------->
-                        <div class="col-6 col-sm-6 col-md-6 col-lg-2">
+                        <div class="col-sm-12 col-md-4 col-lg-4 text-center">
                             <div class="box-white">
-                                {{$infos["posologia".$i]}}
+                                {{$infos["posologia".$i]}} ml
                             </div>
                         </div>
                     </div>
-
-                    <div class="row">
                     <!---------------------Nome da Paciente--------------------->
                     <form action="/prontuario" method="get">
-                        <input type="hidden" name='cpf' value="{{$infos['identificaP'.$i]}}">
-                        <input type="hidden" name='numero' value='{{$infos["id".$i]}}'>
-                        <div class="col-12 col-sm-12 col-md-9 col-lg-9">
-                            <button type="submit" class="btn-Patient">{{$infos["paciente".$i]}}</button>
-                        </div>
-                    </form>
-                        <!---------------------Leito da Paciente--------------------->
-                        <div class="col-12 col-sm-12 col-md-3 col-lg-3">
-                            <div class="box-blue">
-                                Leito: {{$infos["leito".$i]}}
+                        <div class="row">
+                            <input type="hidden" name='cpf' value="{{$infos['identificaP'.$i]}}">
+                            <input type="hidden" name='numero' value='{{$infos["id".$i]}}'>
+                            <div class="col-sm-12 col-md-8 col-lg-8">
+                                <button type="submit" class="btn-Patient scrolls text-center">{{$infos["paciente".$i]}}</button>
+                            </div>
+                            <!---------------------Leito da Paciente--------------------->
+                            <div class="col-sm-12 col-md-4 col-lg-4 text-center">
+                                <div class="box-blue scrolls">
+                                    Leito: {{$infos["leito".$i]}}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    {{$i++}}
+                    </form>
             </div>
-            @endwhile
+            @endif
+            @endfor
             <!---------------------Fim de agendamento--------------------->
         </div>
   </body>

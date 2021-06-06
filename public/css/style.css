@@ -782,7 +782,7 @@ input[type=number] {
     #scheduling .box-blue, #scheduling .box-white {
         width: 100%;
     }
-    #scheduling  .box-gray {
+    #scheduling  .box-gray { /* Verificar! desconfigurando algumas páginas! */
         width:fit-content;
     }
     #scheduling .btn-white {
@@ -1103,6 +1103,7 @@ input[type=number] {
 }
 
 .scrolls { /* João 30/05 */
+    white-space: nowrap;
     overflow-x: auto;
     overflow-y: hidden;
     text-overflow: normal;

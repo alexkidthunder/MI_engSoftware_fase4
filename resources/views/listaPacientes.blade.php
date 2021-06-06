@@ -12,6 +12,9 @@
 
     <!-- Favicon -->
     <link href="{{ asset('img/favicon.png') }}" rel="icon">
+
+    <script src="{{ 'js/listaPaciente.js' }}" defer></script>
+
     {{$i = 0}}
     <title>Lista de paciente</title>
 
@@ -64,7 +67,6 @@
         <div class="content-center">
             <form>
                 <select id="novaAtribuicao" name="novaAtribuicao" onchange="this.form.submit()">
-                    <option value="internado" name="internado"></option>
                     <option value="internado" name="internado">Pacientes internados</option>
                     <option value="alta" name="alta">Pacientes de alta</option>
                     <option value="obito" name="obito">Pacientes em óbito</option>
@@ -74,11 +76,12 @@
 
         <!--------------------- Paciente --------------------->
         @if(isset($p))
-            @while(isset($p[$i]))
+            @for($i = 0;$i <= (count($p)/2)-1; $i++)
+            @if(isset($p[$i]))
             <div class="box-white">
                 <div class="row">
                     <!---------- Nome do paciente ------------>
-                    <div class="col-12 col-sm-12 col-md-10 col-lg-10">
+                    <div class="col-8 col-sm-8 col-md-8 col-lg-8">
                         <div class="box-blue">
                         {{$p[$i]}}
                         </div>
@@ -89,16 +92,15 @@
                     @if(isset($p["id".$i]))
                     <input type="hidden" name='numero' value='{{$p["id".$i]}}'>
                     @endif
-                    <div class="col-12 col-sm-12 col-md-2 col-lg-2">
+                    <div class="col-4 col-sm-4 col-md-4 col-lg-4">
                         <button type="submit"
                                 class="btn-blue">Prontuário</button></a>
                     </div>
-                    </form>
-                    
+                    </form> 
                 </div>
-                {{$i++}}
             </div>
-            @endwhile
+            @endif
+            @endfor
         @endif
         <!--------------------- Fim do paciente --------------------->
     </div>
