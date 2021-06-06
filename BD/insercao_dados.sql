@@ -123,7 +123,6 @@ INSERT INTO pacientes VALUES
 	('Benjamin Bento Rodrigues','M','internado','1967-06-21', '856.213.656-58', 'A+'),
 	('Jennifer Clarice Assunção','F','internado','1993-04-09', '029.226.827-06', 'B-'),
 	('Giovana Lorena Pires','F','internado','1975-12-03', '501.661.629-90', 'AB-'),
-
 	('Julho Florence Alves','M','obito','1980-02-04', '201.441.679-22', 'A-'),
 	('Julho Algustino Silva','M','obito','1990-01-24', '107.341.659-12', 'A+'),
 	('Giovane Damasco Touro','F','obito','1979-11-07', '481.561.521-91', 'O+'),
