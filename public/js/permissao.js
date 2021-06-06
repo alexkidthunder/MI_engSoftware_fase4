@@ -4,11 +4,15 @@
  * */
 var selectAtribuicao = document.getElementById('atribuicao');
 
+if(sessionStorage.getItem("Atribuicao") != null){
+    selectAtribuicao.value = sessionStorage.getItem("Atribuicao");
+    console.log("Entrou aqui Sim");
+}
+else{
+    selectAtribuicao.value = "";
+}
 
-/**
- * Faz o select não ter nada selecionado
- */
-selectAtribuicao.value = "";
+
 
 /**
  * Area de texto onde indicamos qual permissão está sendo vista
@@ -144,7 +148,7 @@ function setAtribuicaoText(){
     text = text.toUpperCase();
     h3NomePermissao.innerHTML = "PERMISSÕES DO " + text;
     replaceCargoText();
-    sessionStorage.removeItem("Atribuicao");
+    //sessionStorage.removeItem("Atribuicao");
 }
 
 /**
@@ -162,7 +166,6 @@ function replaceCargoText() {
     }
     else if (sessionStorage.getItem("Atribuicao") === "enfermeiroChefe") {
         h3NomePermissao.innerHTML = h3NomePermissao.innerHTML.replace('ENFERMEIROCHEFE', "ENFERMEIRO CHEFE");
-
     }
     else if (sessionStorage.getItem("Atribuicao") === "estagiario") {
         h3NomePermissao.innerHTML = h3NomePermissao.innerHTML.replace('ESTAGIARIO', 'ESTAGIÁRIO');

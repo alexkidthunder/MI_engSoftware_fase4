@@ -60,7 +60,8 @@
 
         <!---------- Infomações do Paciente buscado ---------->
         @if(isset($prontuario))
-        @while(isset($prontuario['nome'.$i]))
+        @for($i = 0;$i <= (count($prontuario)/7);$i++)
+        @if(isset($prontuario["nome".$i]))
         <div class="row">
             <!------ Nome do Paciente ------>
             <div class="col-12 col-sm-12 col-md-8 col-lg-8">
@@ -115,10 +116,10 @@
                     </div>
                     </form>
                 </div>
-                {{$i++}}
             </div>
             <!------------- fim do prontuário ------------->
-        @endwhile
+        @endif
+        @endfor
         @endif
         <!---------- Fim de histórico de prontuários ---------->
     </div>

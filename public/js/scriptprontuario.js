@@ -89,3 +89,34 @@ button6.addEventListener("click", function() {
         esconde.classList.add('hide');
     }
 });
+
+
+var Campo_Status = document.getElementById("fstatus");
+var Select_Status_Saida = document.getElementById("status_saida");
+
+document.addEventListener('DOMContentLoaded',function(){
+    if(Campo_Status.value === "internado"){
+        var Status = CreateOption();
+        Select_Status_Saida.appendChild(Status[0]);
+        Select_Status_Saida.appendChild(Status[1]);
+    }
+    else{
+        button6.classList.add('hide');
+        container6.classList.add('hide');
+    }
+})
+
+
+function CreateOption(){
+    var Alta = document.createElement('option');
+    var AltaText = document.createTextNode('Alta');
+    Alta.appendChild(AltaText);
+    Alta.setAttribute("value","alta");
+
+    var Obito = document.createElement('option');
+    var ObitoText = document.createTextNode('Óbito');
+    Obito.appendChild(ObitoText);
+    Obito.setAttribute("value","obito");
+    a = [Alta,Obito];
+    return a;
+}
