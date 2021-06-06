@@ -886,6 +886,50 @@ class HomeController extends Controller
         }
     }
 
+    public function cadastrarProntuario(Request $request){
+        include("db.php");
+        $sql = "SELECT * FROM leitos where Identificacao = '$request->Leito'";
+        $query = mysqli_query($connect, $sql);
+        $temp = mysqli_fetch_array($query);  
+             
+        //caso o Leito não esteja mais disponível
+        if($temp['Ocupado'] == 1){
+            return redirect()->back()->with('msg-error', 'O Leito não está mais disónível, tente novamente.');
+        }
+        // caso o Leito esteja disponível
+
+        // verificar se o Paciente já pertence a um prontuário aberto
+        $sql3 = "SELECT * FROM prontuarios WHERE Cpfpaciente = '$request->CPF_Paciente'";
+        $query3 = mysqli_query($connect, $sql3);
+       
+        while( $dado = mysqli_fetch_array($query3)){
+            
+            if($dado['aberto'] == 1){
+                return redirect()->back()->with('msg-error', 'O paciente já possuí um prontuário em aberto no sistema'); 
+            }
+            
+        }
+
+        
+        // ocupar o leito
+       $sql1 = "UPDATE leitos SET Ocupado = '1' WHERE Identificacao = '$request->Leito'";
+       $query1 = mysqli_query($connect, $sql1);
+
+       //cadastrar o prontuário
+       $sql2 = "INSERT INTO prontuarios (aberto, Data_Internacao, Id_leito, Cpfpaciente) VALUES
+                        ('1', '$request->data_internacao', '$request->Leito', '$request->CPF_Paciente')";
+       $query2 = mysqli_query($connect, $sql2);
+       if($query2 == 1){
+           // se cadastrou com sucesso
+           return redirect()->route('cadastroProntuario')->with('msg-sucess', 'Prontuário cadastrado com sucesso');
+       }else{
+           //caso não cadastre erro no bd
+           return redirect()->back()->with('msg-error', 'Ocorreu um erro com o Banco de Dados tente novamente');
+       }
+      
+
+    }
+
 
     //função de buscar prontuário
     public function buscaProntuario(Request $request){

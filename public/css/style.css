@@ -154,7 +154,7 @@ button:focus, select:focus, input[type="radio"]:focus {
     outline: 0;
 }
 
-textarea:focus, input:focus {
+textarea:focus, input:focus, select:focus {
     border-radius: 10px;
     border: 2px solid #0D6EFD;
     outline: 0;
@@ -295,11 +295,9 @@ label {
     margin-right: 10%;
     margin-left: 10%;
     width: 80%;
-    /*padding-right: 15px;
-    padding-left: 15px;*/
 }
 
-@media (min-width: 321px) and (max-width:768px) {
+@media (min-width: 321px) and (max-width:958px) {
     .container-1 {
         width: 80%;
         margin-left: 10%;
@@ -469,10 +467,6 @@ input[type=number] {
 
 /*------------ Icone de download  ------------*/
 
-/*.download-icon {
-    float: right;
-}*/
-
 .download-icon button i {
     color: #0D6EFD;
     cursor: pointer;
@@ -510,7 +504,7 @@ input[type=number] {
 }
 
 @media (max-width: 425px) {
-    #screen-icon .download-icon button i {
+    #screen-icon .download-icon button i, .download-icon button i {
         font-size: 25px;
     }
     #screen-icon{
@@ -662,7 +656,7 @@ input[type=number] {
     box-shadow: 5px 5px 5px#DBDADA;
     height: 60px;
     margin-bottom: 25px;
-    -webkit-box-shadow: 3px 3px 8px #C8C8C8;
+    -webkit-box-shadow: 3px 3px 8px hsl(0, 0%, 78%);
     -moz-box-shadow: 3px 3px 8px #C8C8C8;
     padding: 15px 30px;
     width: 100%;
@@ -699,7 +693,7 @@ input[type=number] {
     }
 }
 
-@media (max-width:760px) {
+@media (max-width:950px) {
     #patientList .btn-blue {
         width: 90%;
         margin: 0 5%;
@@ -734,7 +728,7 @@ input[type=number] {
     background-color: #58ACFA;
 }
 
-@media (min-width: 321px) and (max-width:768px) {
+@media (min-width: 321px) and (max-width:950px) {
     a>.btn-Patient {
         padding: 5px;
         text-align: center;
@@ -791,7 +785,7 @@ input[type=number] {
     }
 }
 
-@media (min-width: 761px) and (max-width:768px) {
+@media (min-width: 761px) and (max-width:950px) {
     #scheduling .btn-white {
         width: 32%;
         margin-left: 68%;
@@ -854,11 +848,9 @@ input[type=number] {
 
 @media (max-width: 990px) {
     /*Botões de Sexo perdem a borda reta caso não apareçam um do lado do outro mais*/
-    .border-f {
-        border-radius: 10px;
-    }
-    .border-m {
-        border-radius: 10px;
+    .border-f, .border-m {
+        display:block;
+        align-items:left;
     }
 }
 

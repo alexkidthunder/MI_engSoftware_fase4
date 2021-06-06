@@ -36,31 +36,31 @@
     <!--------Fim do botão de donwload-------->
 
     <div class="container-1" id="patientList">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg">
-                @if ($errors->any()) <!--Verificando se existe qualquer erro -->
-                    <div class="msg-error">
-                        <ul>
-                            @foreach ($errors->all() as $error) <!--Percorre todos os erros-->
-                                <li>{{ $error }}</li> <!--Obtem o erro -->
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-                @if (session('msg')) <!-- Verifica se a mensagem de erro foi instanciada -->
-                    <div class="msg-sucess">
-                        {{session('msg')}} <!--Obtem mensagem de erro -->
-                    </div>
-                @endif
-                @if (session('msg-error')) <!-- Verifica se a mensagem de erro foi instanciada -->
-                    <div class="msg-error">
-                        {{session('msg-error')}} <!--Obtem mensagem de erro -->
-                    </div>
-                @endif
+        <div class="container">
+            <div class="row">
+                <div class="col-lg">
+                    @if ($errors->any()) <!--Verificando se existe qualquer erro -->
+                        <div class="msg-error">
+                            <ul>
+                                @foreach ($errors->all() as $error) <!--Percorre todos os erros-->
+                                    <li>{{ $error }}</li> <!--Obtem o erro -->
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    @if (session('msg')) <!-- Verifica se a mensagem de erro foi instanciada -->
+                        <div class="msg-sucess">
+                            {{session('msg')}} <!--Obtem mensagem de erro -->
+                        </div>
+                    @endif
+                    @if (session('msg-error')) <!-- Verifica se a mensagem de erro foi instanciada -->
+                        <div class="msg-error">
+                            {{session('msg-error')}} <!--Obtem mensagem de erro -->
+                        </div>
+                    @endif
+                </div>
             </div>
-        </div>
-    </div>        
+        </div>        
         <h1 class="title-download">PACIENTES E PRONTUÁRIOS</h1>
 
         <!----------Seleção para o tipo de paciente que deseja exibir------------>
@@ -81,21 +81,19 @@
             <div class="box-white">
                 <div class="row">
                     <!---------- Nome do paciente ------------>
-                    <div class="col-8 col-sm-8 col-md-8 col-lg-8">
+                    <div class="col-12 col-sm-12 col-md-10 col-lg-10">
                         <div class="box-blue">
-                        {{$p[$i]}}
+                            {{$p[$i]}}
                         </div>
                     </div>
                     <!----- Link para o prontuário do paciente ----->
-                    <form action="/prontuario" method="get">
-                    <input type="hidden" name='cpf' value='{{$identicador[$i]}}'>
-                    @if(isset($p["id".$i]))
-                    <input type="hidden" name='numero' value='{{$p["id".$i]}}'>
-                    @endif
-                    <div class="col-4 col-sm-4 col-md-4 col-lg-4">
-                        <button type="submit"
-                                class="btn-blue">Prontuário</button></a>
-                    </div>
+
+                    <form class="col-12 col-sm-12 col-md-2 col-lg-2" action="/prontuario" method="get">
+                        <input type="hidden" name='cpf' value='{{$identicador[$i]}}'>
+                        @if(isset($p["id".$i]))
+                        <input type="hidden" name='numero' value='{{$p["id".$i]}}'>
+                        @endif
+                        <button type="submit" class="btn-blue">Prontuário</button>
                     </form> 
                 </div>
             </div>

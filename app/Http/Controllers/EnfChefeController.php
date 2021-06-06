@@ -21,7 +21,12 @@ class EnfChefeController extends Controller
         VerificaLoginController::verificarLogin();
         $resultado = VerificaLoginController::verificaPermissao(7);
         if($resultado == "1"){
-
+            
+            // recebendo os plantonistas           
+            $sql = "SELECT * FROM enfermeiros";
+            $query1 = mysqli_query($connect, $sql);
+            $sql1 = "SELECT * FROM estagiarios";            
+            $query2 = mysqli_query($connect, $sql1);
 
 
             /*
