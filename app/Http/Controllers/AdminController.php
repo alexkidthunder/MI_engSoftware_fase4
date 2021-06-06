@@ -62,7 +62,7 @@ class AdminController extends Controller
     }
 
 
-    //função para permissão
+    //função marcar as para permissões na tela
     public function permissao(Request $request){
         VerificaLoginController::verificarLoginAdmin();
 
@@ -84,6 +84,7 @@ class AdminController extends Controller
                         
                     }
                 }
+
                 return view('/admin/permissao',['p'=>$p]);
 
             }
@@ -101,6 +102,7 @@ class AdminController extends Controller
                         
                     }
                 }
+
                 return view('/admin/permissao',['p'=>$p]);
 
             }
@@ -118,6 +120,7 @@ class AdminController extends Controller
                         
                     }
                 }
+
                 return view('/admin/permissao',['p'=>$p]);
 
             }
@@ -135,6 +138,7 @@ class AdminController extends Controller
                         
                     }
                 }
+
                 return view('/admin/permissao',['p'=>$p]);
             }
              else {
@@ -161,6 +165,12 @@ class AdminController extends Controller
                         mysqli_query($connect, $update);
                     }
                 }
+
+                //log
+                $ip = $_SERVER["REMOTE_ADDR"];
+                $acao = "Alterou permissões do enfermeiro chefe";           
+                AdminController::salvarLog($acao, $ip);
+
                 return redirect()->back()->with('msg',"Permissões alteradas!!!!");
             }
 
@@ -174,6 +184,12 @@ class AdminController extends Controller
                         mysqli_query($connect, $update);
                     }
                 }
+
+                //log
+                $ip = $_SERVER["REMOTE_ADDR"];
+                $acao = "Alterou permissões do enfermeiro";           
+                AdminController::salvarLog($acao, $ip);
+
                 return redirect()->back()->with('msg',"Permissões alteradas!!!!");
             } else if ($atribuicao == 'estagiario') {
                 for ($i = 65; $i < 94; $i++) {
@@ -186,6 +202,12 @@ class AdminController extends Controller
                         mysqli_query($connect, $update);
                     }
                 }
+
+                //log
+                $ip = $_SERVER["REMOTE_ADDR"];
+                $acao = "Alterou permissões do estagiário";           
+                AdminController::salvarLog($acao, $ip);
+
                 return redirect()->back()->with('msg',"Permissões alteradas!!!!");
             }
         }
@@ -235,7 +257,7 @@ class AdminController extends Controller
             $status = mysqli_query($connect, $query);  
             
             $ip = $_SERVER["REMOTE_ADDR"];
-            $acao = "Removeu usuario";           
+            $acao = "Removeu usuario do sistema";           
             AdminController::salvarLog($acao, $ip);
                     
             return view('/admin/remocaoUsuario',['status'=>$status]);
@@ -294,7 +316,13 @@ class AdminController extends Controller
                     $update = "UPDATE usuarios SET Atribuicao = 'Enfermeiro' WHERE CPF='$cpf'";
                     mysqli_query($connect,$update); // atualiza a atribuicao no BD
                     $insert = "INSERT INTO enfermeiros (CPF,COREN,Plantao) VALUES ('$cpf','$coren','false')";
-                    mysqli_query($connect,$insert); // Adicioa usuario a novo cargo
+                    mysqli_query($connect,$insert); // Adiciona usuario a novo cargo
+
+                    //log
+                    $ip = $_SERVER["REMOTE_ADDR"];
+                    $acao = "Alterou cargo do enfermeiro para enfermeiro";           
+                    AdminController::salvarLog($acao, $ip);
+
                     return redirect() -> back() ->with('msg','Cargo alterado com sucesso!!!!'); //Redireciona para pagina anterior e mostra mensagem de erro
                 }else{
                     return redirect() -> back() ->with('msg-error','Cargo selecionado invalido'); //Redireciona para pagina anterior e mostra mensagem de erro
@@ -309,6 +337,12 @@ class AdminController extends Controller
                     mysqli_query($connect,$update); // atualiza a atribuicao no BD
                     $insert = "INSERT INTO enfermeiros_chefes (CPF,COREN) VALUES ('$cpf','$coren')";
                     mysqli_query($connect,$insert);// Adicioa usuario a novo cargo
+
+                    //log
+                    $ip = $_SERVER["REMOTE_ADDR"];
+                    $acao = "Alterou cargo de enfermeiro para enfermeiro chefe";           
+                    AdminController::salvarLog($acao, $ip);
+
                     return redirect() -> back() ->with('msg','Cargo alterado com sucesso!!!!'); //Redireciona para pagina anterior e mostra mensagem de erro
                 }else{
                     return redirect() -> back() ->with('msg-error','Cargo selecionado invalido'); //Redireciona para pagina anterior e mostra mensagem de erro
@@ -322,6 +356,12 @@ class AdminController extends Controller
                     mysqli_query($connect,$update); // atualiza a atribuicao no BD
                     $insert = "INSERT INTO enfermeiros (CPF,COREN,Plantao) VALUES ('$cpf','$request->fcoren','false')";
                     mysqli_query($connect,$insert);// Adicioa usuario a novo cargo
+
+                    //log
+                    $ip = $_SERVER["REMOTE_ADDR"];
+                    $acao = "Alterou cargo de estagiário para enfermeiro";           
+                    AdminController::salvarLog($acao, $ip);
+
                     return redirect() -> back() ->with('msg','Cargo alterado com sucesso!!!!'); //Redireciona para pagina anterior e mostra mensagem de erro
                 }else if($request->novaAtribuicao == "Enfermeiro Chefe"){
                     $delete = "DELETE FROM estagiarios WHERE CPF='$cpf'";
@@ -330,6 +370,13 @@ class AdminController extends Controller
                     mysqli_query($connect,$update); // atualiza a atribuicao no BD
                     $insert = "INSERT INTO enfermeiros_chefes (CPF,COREN) VALUES ('$cpf','$request->fcoren')";
                     mysqli_query($connect,$insert);// Adicioa usuario a novo cargo
+
+
+                    //log
+                    $ip = $_SERVER["REMOTE_ADDR"];
+                    $acao = "Alterou cargo de estagiário para enfermeiro chefe";           
+                    AdminController::salvarLog($acao, $ip);
+
                     return redirect() -> back() ->with('msg','Cargo alterado com sucesso!!!!'); //Redireciona para pagina anterior e mostra mensagem de erro
                 }else{
                     return redirect() -> back() ->with('msg-error','Cargo selecionado invalido'); //Redireciona para pagina anterior e mostra mensagem de erro
@@ -484,7 +531,7 @@ class AdminController extends Controller
         
     }
 
-    //função de salvar banco de dados
+    //função de salvar backup do banco de dados
     public static function salvarDB(){
         include("db.php");
         $tabelas = [];
@@ -614,15 +661,20 @@ class AdminController extends Controller
 	        header("Content-Length: " . filesize($baixar));
 	        readfile($baixar);
 
+            //log
+            $ip = $_SERVER["REMOTE_ADDR"];
+            $acao = "Realizou um backup";           
+            AdminController::salvarLog($acao, $ip);
+
             return redirect()->back()->with('msg', "Backup realizado");
         }else{
-            return redirect()->back()->with('msg-error', "ouve um erro ao tentar exportar a base de dados");
+            return redirect()->back()->with('msg-error', "Houve um erro ao tentar exportar a base de dados!!");
         }
 
     }
 
 
-    //função de cadastro de banco de dados
+    //função de cadastro de backup
     public function cadastrarBD(Request $request){
         include("db.php");
         $checkbox = $request->alwaysCheck;
@@ -650,10 +702,21 @@ class AdminController extends Controller
         if($checkbox == "on"){
             $insert = "INSERT INTO backups_agendados (ID,Data_backup,Hora_backup,ip,Automatico) VALUES ('$cod','null','$hora','$ip','1')";
             mysqli_query($connect,$insert);
+
+            //log
+            $ip = $_SERVER["REMOTE_ADDR"];
+            $acao = "Agendou um backup automático nº $cod";           
+            AdminController::salvarLog($acao, $ip);
+
         }else{
             $data = $request->date;
             $insert = "INSERT INTO backups_agendados (ID,Data_backup,Hora_backup,ip,Automatico) VALUES ('$cod','$data','$hora','$ip','0')";
             mysqli_query($connect,$insert);
+
+            //log
+            $ip = $_SERVER["REMOTE_ADDR"];
+            $acao = "Agendou um backup não automático nº $cod";           
+            AdminController::salvarLog($acao, $ip);
         }
         return redirect()->back();
     }
@@ -664,6 +727,12 @@ class AdminController extends Controller
         include("db.php");
         $sql =  "DELETE FROM backups_agendados WHERE ID = '$request->removerAB'";
         mysqli_query($connect,$sql);
+
+        //log
+        $ip = $_SERVER["REMOTE_ADDR"];
+        $acao = "Removeu um backup agendamento";           
+        AdminController::salvarLog($acao, $ip);
+
         return redirect()->back();
     }
 }
