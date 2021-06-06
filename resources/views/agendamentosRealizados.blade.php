@@ -60,54 +60,57 @@
             </div>
         </div>
     <!---------------------Agendamento Realizado --------------------->
-    @while (isset($infos['medicamento' . $i]))
+    @for($i = 0;$i < count($infos)/8;$i++)
+    @if(@isset($infos))
         <div class="box-scheduling" id="scheduling">
             <div class="row">
-                <!------ Horário da aplicação ---->
-                <div class="col-6 col-sm-6 col-md-6 col-lg-2 text-center">
+                <!---------------------Hora--------------------->
+                <div class="col-sm-12 col-md-8 col-lg-8 text-center">
                     <div class="box-gray">
-                        {{ $infos['hora' . $i] }}
-                    </div>
+                        {{$infos["hora".$i]}}
+                     </div>
                 </div>
-                <!------ Data de aplicação ---->
-                <div class="col-6 col-sm-6 col-md-6 col-lg-2 text-center">
+                <!---------------------Data--------------------->
+                <div class="col-sm-12 col-md-4 col-lg-4 text-center">
                     <div class="box-gray">
-                        {{ $infos['data' . $i] }}
-                    </div>
-                </div>
-                <!------ Nome do medicamento ---->
-                <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                    <div class="box-white">
-                        {{ $infos['medicamento' . $i] }}
-                    </div>
-                </div>
-                <!------ Posologia do medicamento ---->
-                <div class="col-6 col-sm-6 col-md-6 col-lg-2">
-                    <div class="box-white">
-                        {{ $infos['posologia' . $i] }}
+                        {{$infos["data".$i]}}
                     </div>
                 </div>
             </div>
-
             <div class="row">
-                <!------ Nome do paciente ao qual o agendamento pertence ---->
-                <form action="/prontuario" method="get">
-                    <input type="hidden" name='cpf' value='{{ $identificaP }}'>
-                    <input type="hidden" name='numero' value='{{ $infos['id' . $i] }}'>
-                    <div class="col-12 col-sm-12 col-md-9 col-lg-9">
-                        <button class="btn-Patient">{{ $infos['paciente' . $i] }}</button>
-                    </div>
-                </form>
-                <!------ Leito em que o paciente está internado ---->
-                <div class="col-12 col-sm-12 col-md-3 col-lg-3">
-                    <div class="box-blue">
-                        Leito: {{ $infos['leito' . $i] }}
+                <!---------------------Nome do Medicamento--------------------->
+                <div class="col-sm-12 col-md-8 col-lg-8 text-center">
+                    <div class="box-white scrolls">
+                        {{$infos["medicamento".$i]}}
+                     </div>
+                </div>
+                <!---------------------Posologia--------------------->
+                <div class="col-sm-12 col-md-4 col-lg-4 text-center">
+                    <div class="box-white">
+                        {{$infos["posologia".$i]}} ml
                     </div>
                 </div>
-            </div>
-            {{ $i = $i + 1 }}
+            </div> 
+
+            <!------ Nome do paciente ao qual o agendamento pertence ---->
+            <form action="/prontuario" method="get">
+                <div class="row">
+                    <input type="hidden" name='cpf' value="{{$infos['identificaP'.$i]}}">
+                    <input type="hidden" name='numero' value='{{$infos["id".$i]}}'>
+                    <div class="col-sm-12 col-md-8 col-lg-8">
+                        <button type="submit" class="btn-Patient scrolls text-center">{{$infos["paciente".$i]}}</button>
+                    </div>
+                    <!---------------------Leito da Paciente--------------------->
+                    <div class="col-sm-12 col-md-4 col-lg-4 text-center">
+                        <div class="box-blue scrolls">
+                            Leito: {{$infos["leito".$i]}}
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
-    @endwhile
+    @endif
+    @endfor
     <!---------------------Fim de agendamento realizado --------------------->
 
     </div>

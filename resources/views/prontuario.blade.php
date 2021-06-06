@@ -64,33 +64,32 @@
                <!----------Primeira parte do Prontuario, onde fica localizado os dados do Paciente------------>
         <button class="btn-blue", id="action-btn3">Dados de Paciente</button>
             <div class="box-scheduling", id= "container-teste3">
-                <form action="/editarProntuario" method="POST" id="register">
-                @csrf
+                <div id="register">
                     <div class="row">
                     @if(isset($paciente))
                     <!----------Dados do Paciente------------>
                         <div class="col-lg-12">
                             <label>Nome</label> <br>
-                            <input id="fnome" name="fnome" type="text" maxlength="50" value="{{$paciente['nome']}}" required>
+                            <input disabled id="fnome" name="fnome" type="text" maxlength="50" value="{{$paciente['nome']}}" required>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-4">
                             <label>Data de Nascimento</label> <br>
-                            <input id="fnascimento" name="fnascimento" type="date" value= "{{$paciente['nascimento']}}" required>
+                            <input disabled id="fnascimento" name="fnascimento" type="date" value= "{{$paciente['nascimento']}}" required>
                         </div>
                         <div class="col-lg-4">
                             <label>CPF</label> <br>
-                            <input id="fcpf" name="fcpf" type="text" required maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" value="{{$paciente['cpf']}}">
+                            <input disabled id="fcpf" name="fcpf" type="text" required maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" value="{{$paciente['cpf']}}">
                         </div>
                         <div class="col-lg-4">
                             <div class="sex-form">
                                 <label>Sexo</label> <br>
                                 @if($paciente['sexo'] = 'M')
-                                <input id="MASCULINO" name="fsexo" value="Masculino" type="button">
+                                <input class="radial-no-edit" id="MASCULINO" name="fsexo" value="Masculino" type="button">
                                 @else
-                                <input id="FEMININO" name="fsexo" value="Feminino" type="button">
+                                <input class="radial-no-edit" id="FEMININO" name="fsexo" value="Feminino" type="button">
                                 @endif
                             </div>
                         </div>
@@ -98,28 +97,23 @@
                     <div class="row">
                         <div class="col-lg-8">
                             <label>Tipo Sanguineo</label> <br>
-                            <input id="fsanguineo" name="fsanguineo" type="text" value="{{$paciente['sangue']}}" maxlength="50" required >
+                            <input disabled id="fsanguineo" name="fsanguineo" type="text" value="{{$paciente['sangue']}}" maxlength="50" required >
                         </div>
                         <div class="col-lg-4">
                             <label>Data de Internação</label> <br>
-                            <input id="fdatainternacao" name="fdatainternacao" type="date" value= "{{$paciente['internacao']}}" required>
+                            <input disabled id="fdatainternacao" name="fdatainternacao" type="date" value= "{{$paciente['internacao']}}" required>
                         </div>
                         <div class="col-lg-4">
                             <label>Leito</label> <br>
-                            <input id="fleito" name="fleito" type="text" maxlength="50" value="{{$paciente['leito']}}" required>
-                            <input type="hidden" name="leito" value="{{$paciente['leito']}}">
+                            <input disabled id="fleito" name="fleito" type="text" maxlength="50" value="{{$paciente['leito']}}" required>
                         </div>
                         <div class="col-lg-4">
                             <label>Status</label> <br>
-                            <input id="fstatus" name="fstatus" type="text" maxlength="50" placeholder="alta, internado ou obito" value = "{{$paciente['estado']}}" required>
+                            <input disabled id="fstatus" name="fstatus" id="fstatus" type="text" maxlength="50" placeholder="alta, internado ou obito" value = "{{$paciente['estado']}}" required>
                         </div>
                     </div>
-                    <input type="hidden" name="prontuario" value="{{$paciente['prontuario']}}">
-                    <div>
-                        <button type="submit" class="btn-blue"> Editar </button>
-                    </div>
                     @endif
-                </form>
+                </div>
             </div>
                 <!----------Segunda parte de Prontuario, onde vai ter a ala de Agendamentos daquele Prontuario------------>
                 
@@ -297,13 +291,18 @@
                         <div class="col-lg-4">
                             <label>Data de Saída</label> <br>
                             <input id="fsaida" name="fsaida" type="date" required>
-                        </div>   
+                        </div>
+                        <div class="col-lg-4">
+                            <label for="status_saida">Status para Fechamento</label> <br>
+                            <select required name="status_saida" id="status_saida">
+                            </select>
+                        </div>
                     </div>  
                     <!----------Com a finalização do Prontuario o responsável irá arquivar o mesmo, tornando assim ineditável.------------>
                         <div>
                             <button class="btn-blue"> Finalizar </button>
-                        </div>
-                                     
+                        </div> 
+                        
                 </form>
             </div>
         </div>

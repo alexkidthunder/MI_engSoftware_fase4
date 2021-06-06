@@ -22,11 +22,17 @@ CREATE TABLE agendamentos (
   Cod_medicamento bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4; /* InnoDB é a engine usada para criação do BD*/
 
-/*Cria tabela do relacionamento agendamento<->prontuario*/
-CREATE TABLE agendamento_prontuario (
-  ID_prontuario bigint(20) DEFAULT NULL, /* Chave estrangeira que faz referencia ao prontuario*/
-  Codigo_Agendamento bigint(20) NOT NULL /* Chave estrangeira que faz referencia ao agendamento*/
+
+CREATE TABLE backups_agendados (
+  ID bigint(20) NOT NULL AUTO_INCREMENT,
+  Data_backup date NOT NULL,
+  Hora_backup time NOT NULL,
+  ip varchar(15) NOT NULL,
+  Automatico int(1) DEFAULT NULL,
+  PRIMARY KEY (ID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
 
 /*Cria tabela de cargo*/
 CREATE TABLE cargo (
@@ -70,7 +76,7 @@ CREATE TABLE estagiarios (
 
 /*Cria tabela de Leitos*/
 CREATE TABLE leitos (
-  Ocupado tinyint(1) NOT NULL,
+  Ocupado tinyint(1) DEFAULT NULL,
   Identificacao varchar(20) NOT NULL    
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -117,7 +123,7 @@ CREATE TABLE permissao_cargo (
   id int(10) NOT NULL,
   permissao_id int(10) NOT NULL,
   cargo_id int(10) NOT NULL,
-  ativo int(1) NOT NULL
+  ativo int(1)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Cria tabela de permissões*/
@@ -128,7 +134,7 @@ CREATE TABLE permissoes (
 
 /*Cria tabela de prontuarios*/
 CREATE TABLE prontuarios (
-  aberto tinyint(1) NOT NULL, 
+  aberto tinyint(1) DEFAULT NULL, 
   ID bigint(20) NOT NULL,   
   Data_Internacao date NOT NULL,
   Data_Saida date NOT NULL,
@@ -146,7 +152,7 @@ CREATE TABLE usuarios (
   Atribuicao enum('Administrador','Enfermeiro Chefe','Enfermeiro','Estagiario') NOT NULL,
   Sexo enum('M','F') NOT NULL,
   Ip varchar(15) NOT NULL,
-  Ativo tinyint(1) NOT NULL
+  Ativo tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
@@ -158,10 +164,6 @@ ALTER TABLE agendamentos
   ADD KEY ID_prontuario (ID_prontuario), /* Seleciona o campo ID_prontuario como uma chave*/
   ADD KEY CPF_usuario (CPF_usuario),	
   ADD KEY Cod_medicamento (Cod_medicamento);
-
-ALTER TABLE agendamento_prontuario
-  ADD KEY ID_prontuario (ID_prontuario), /* Seleciona o campo Id_prontuario como uma chave*/
-  ADD KEY Codigo_Agendamento (Codigo_Agendamento); /* Seleciona o campo Codigo_agendamento como uma chave*/
 
 ALTER TABLE cargo
   ADD PRIMARY KEY (id); /*seleciona o id como chave primaria*/
@@ -255,10 +257,6 @@ ALTER TABLE agendamentos
   ADD CONSTRAINT agendamento_ibfk_1 FOREIGN KEY (ID_prontuario) REFERENCES prontuarios (ID), /*Cria chave estrangeira fazendo referencia a prontuario*/
   ADD CONSTRAINT agendamento_ibfk_2 FOREIGN KEY (CPF_usuario) REFERENCES usuarios (CPF), /*Cria chave estrangeira fazendo referencia a usuários*/
   ADD CONSTRAINT agendamento_ibfk_3 FOREIGN KEY (Cod_medicamento) REFERENCES medicamentos (Codigo); /*Cria chave estrangeira fazendo referencia a medicamento*/
-
-ALTER TABLE agendamento_prontuario
-  ADD CONSTRAINT agendamento_prontuario_ibfk_1 FOREIGN KEY (ID_prontuario) REFERENCES prontuarios (ID), /*Cria chave estrangeira fazendo referencia a prontuario*/
-  ADD CONSTRAINT agendamento_prontuario_ibfk_2 FOREIGN KEY (Codigo_Agendamento) REFERENCES agendamentos (Codigo);
 
 ALTER TABLE cid_prontuario
   ADD CONSTRAINT cid_prontuario_ibfk_1 FOREIGN KEY (id_CID) REFERENCES cid (id) ON DELETE CASCADE,/*Cria chave estrangeira fazendo referencia ao CID*/

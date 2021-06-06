@@ -1,15 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Monolog\Handler\SendGridHandler;
 use PhpParser\Node\Stmt\Return_;
+use Dompdf\Dompdf;
+use Dompdf\Options;
+use Mpdf\Mpdf;
 
 class HomeController extends Controller
 {
+
+    //função de página inicial
     public function index(){
         session_start();
         if((isset($_SESSION['administrador']) == false) AND (isset($_SESSION['enfermeiroChefe']) == false) 
@@ -24,6 +28,8 @@ class HomeController extends Controller
         }
     }
 
+
+    //função de login
     public function login(Request $request){
         include("db.php");
         $request -> validate([
@@ -31,7 +37,7 @@ class HomeController extends Controller
             'senha' => 'required'
         ]);
         $result = mysqli_query($connect,"SELECT CPF FROM usuarios WHERE CPF = '$request->cpf' AND Senha = '$request->senha'"); /*Verificando se cpf e senha estão cadastrados no banco de dados*/ 
-        $row = mysqli_num_rows($result); /*resultado da verificalçao*/
+        $row = mysqli_num_rows($result); /*resultado da verificação*/
         /*While percorrendo vetor gerado pela query */
         $sql = "SELECT * FROM usuarios where CPF = '$request->cpf'";
         $query = mysqli_query($connect,$sql);
@@ -113,6 +119,8 @@ class HomeController extends Controller
 
     }
 
+
+    //função de menu, exceto do adm
     public function menu(){
         VerificaLoginController::verificarLogin();
         if(isset($_SESSION['enfermeiro']) or isset($_SESSION['enfermeiroChefe']) or isset($_SESSION['estagiario'])){
@@ -123,6 +131,8 @@ class HomeController extends Controller
         }
     }
 
+
+    //função de logout
     public function logout(){
         session_start();
         session_destroy();
@@ -136,12 +146,13 @@ class HomeController extends Controller
         exit();
     }
     
-     
+
+    //função de chamada de view de primeiro acesso  
     public function acessarPrimeiroAcesso(){
         return view('primeiroAcesso');
     }
 
-    public function primeiroAcesso(Request $request){
+    public function primeiroAcesso(Request $request){       //função de processar o primeiro acesso 
         include('db.php');
 
         $cpf = $request->cpf; 
@@ -177,9 +188,10 @@ class HomeController extends Controller
             //verifica se o usuario existe no sistema. $row = 1 significa que sim
             if($row == 1){ 
                 session_start();
-                                            //Sequência de condicionais que verifica o cargo para reirecionar para o menu correto 
+                //Sequência de condicionais que verifica o cargo para reirecionar para o menu correto 
                 if($atribuicao == "Administrador"){
-                    $_SESSION['administrador'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
+                    // inicia uma sessão de nome usuario com o cpf recuperado
+                    $_SESSION['administrador'] = $request->cpf; 
                     
                     //log
                     $ip = $_SERVER["REMOTE_ADDR"];
@@ -232,6 +244,8 @@ class HomeController extends Controller
         return view('admin.menu');
     }*/
 
+
+    //função de editar perfil
     public function editPerfil(Request $request){
         VerificaLoginController::verificarLogin();
         include("db.php");
@@ -274,6 +288,8 @@ class HomeController extends Controller
         return view('editarPerfil', ['usuario' => $usuario]);
     }
     
+
+    //função de alterar senha 
     public function alterarSenhaPerfil(Request $request){
         session_start();
         include("db.php");
@@ -333,6 +349,8 @@ class HomeController extends Controller
         exit();
     }
 
+
+    //função de alterar dados 
     public function alterarDados(Request $request){
         session_start();
         include("db.php");
@@ -346,6 +364,8 @@ class HomeController extends Controller
 
     }
 
+
+    //função de listar pacientes 
     public function listaPacientes(Request $request){
         VerificaLoginController::verificarLogin();
         // Qual a permissão pra isso? 
@@ -414,6 +434,12 @@ class HomeController extends Controller
                     }
                     $i = $i+1;
                 }
+
+                //log
+                $ip = $_SERVER["REMOTE_ADDR"];
+                $acao = "Visualizou lista de pacientes";           
+                AdminController::salvarLog($acao, $ip);
+                
                 return view('listaPacientes',['p'=>$p,'identicador'=>$identicador]);
             }else{
                 return view('listaPacientes');
@@ -423,135 +449,27 @@ class HomeController extends Controller
         }
     }
 
+
+    //função de agendamentos realizados
     public function agendamentosRealizados(){
         VerificaLoginController::verificarLogin();
         $resultado = VerificaLoginController::verificaPermissao(22);
         include("db.php");
         $infos = [];
+        $identificaP = null;
         $i = 0;
         if($resultado == "1"){
-            if(isset($_SESSION['enfermeiro'])){
-                $cpf = $_SESSION['enfermeiro'];
-                $sql = "SELECT * FROM agendamentos WHERE CPF_usuario = '$cpf'";
-                $query = mysqli_query($connect,$sql);
-                while($sql = mysqli_fetch_array($query)){
-                    if($sql['Realizado'] == 1){
-                        $medicamento = $sql['Cod_medicamento'];
-                        $prontuario = $sql['ID_prontuario'];
-                        $infos['hora'.$i] = $sql['Hora_Agend'];
-                        $infos['data'.$i] = $sql['Data_Agend'];
-                        $infos['posologia'.$i] = $sql['Posologia'];
-                        $sql1 = "SELECT * FROM medicamentos WHERE Codigo = '$medicamento'";
-                        $query1 = mysqli_query($connect,$sql1);
-                        while($sql1 = mysqli_fetch_array($query1)){
-                            $infos['medicamento'.$i] = $sql1['Nome_Medicam'];
-                        }
-                        $sql2 = "SELECT * FROM prontuarios WHERE ID = '$prontuario'";
-                        $query2 = mysqli_query($connect,$sql2);
-                        while($sql2 = mysqli_fetch_array($query2)){
-                            $identificaP = $sql2['Cpfpaciente'];
-                            $infos['leito'.$i] = $sql2['Id_leito'];
-                        }
-                        $sql3 = "SELECT * FROM pacientes WHERE CPF = '$identificaP'";
-                        $query3 = mysqli_query($connect,$sql3);
-                        while($sql3 = mysqli_fetch_array($query3)){
-                            $infos['paciente'.$i] = $sql3['Nome_Paciente'];
-                        }
-
-                        $i++;
-                    }
-                }
-            }else if(isset($_SESSION['estagiario'])){
-                $cpf = $_SESSION['estagiario'];
-                $sql = "SELECT * FROM agendamentos WHERE CPF_usuario = '$cpf'";
-                $query = mysqli_query($connect,$sql);
-                while($sql = mysqli_fetch_array($query)){
-                    if($sql['Realizado'] == 1){
-                        $medicamento = $sql['Cod_medicamento'];
-                        $prontuario = $sql['ID_prontuario'];
-                        $infos['hora'.$i] = $sql['Hora_Agend'];
-                        $infos['data'.$i] = $sql['Data_Agend'];
-                        $infos['posologia'.$i] = $sql['Posologia'];
-                        $sql1 = "SELECT * FROM medicamentos WHERE Codigo = '$medicamento'";
-                        $query1 = mysqli_query($connect,$sql1);
-                        while($sql1 = mysqli_fetch_array($query1)){
-                            $infos['medicamento'.$i] = $sql1['Nome_Medicam'];
-                        }
-                        $sql2 = "SELECT * FROM prontuarios WHERE ID = '$prontuario'";
-                        $query2 = mysqli_query($connect,$sql2);
-                        while($sql2 = mysqli_fetch_array($query2)){
-                            $identificaP = $sql2['Cpfpaciente'];
-                            $infos['leito'.$i] = $sql2['Id_leito'];
-                        }
-                        $sql3 = "SELECT * FROM pacientes WHERE CPF = '$identificaP'";
-                        $query3 = mysqli_query($connect,$sql3);
-                        while($sql3 = mysqli_fetch_array($query3)){
-                            $infos['paciente'.$i] = $sql3['Nome_Paciente'];
-                        }
-
-                        $i++;
-                    }
-                }
-            }
-            return view('agendamentosRealizados',['infos' => $infos, 'identificaP'=>$identificaP]);
-        }else{
-            return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
-        }
-    }
-
-    public function meusAgendamentos(){
-        VerificaLoginController::verificarLogin();
-        $resultado = VerificaLoginController::verificaPermissao(23);
-        include("db.php");
-        $infos = [];
-        $i = 0;
-        $identificaP = [];
-        if($resultado == "1"){
-            if(isset($_SESSION['enfermeiro'])){
-                $cpf = $_SESSION['enfermeiro'];
-                $sql = "SELECT * FROM agendamentos WHERE CPF_usuario = '$cpf'";
-                $query = mysqli_query($connect,$sql);
-                while($sql = mysqli_fetch_array($query)){
-                    if($sql['Realizado'] == 0){
-                        $medicamento = $sql['Cod_medicamento'];
-                        $prontuario = $sql['ID_prontuario'];
-                        $infos['codA'.$i] = $sql['Codigo'];
-                        $infos['hora'.$i] = $sql['Hora_Agend'];
-                        $infos['data'.$i] = $sql['Data_Agend'];
-                        $infos['posologia'.$i] = $sql['Posologia'];
-                        $sql1 = "SELECT * FROM medicamentos WHERE Codigo = '$medicamento'";
-                        $query1 = mysqli_query($connect,$sql1);
-                        while($sql1 = mysqli_fetch_array($query1)){
-                            $infos['medicamento'.$i] = $sql1['Nome_Medicam'];
-                        }
-                        $sql2 = "SELECT * FROM prontuarios WHERE ID = '$prontuario'";
-                        $query2 = mysqli_query($connect,$sql2);
-                        while($sql2 = mysqli_fetch_array($query2)){
-                            $identificaP = $sql2['Cpfpaciente'];
-                            $infos['leito'.$i] = $sql2['Id_leito'];
-                            $infos['id'.$i] = $sql2['ID'];
-                        }
-                        $sql3 = "SELECT * FROM pacientes WHERE CPF = '$identificaP'";
-                        $query3 = mysqli_query($connect,$sql3);
-                        while($sql3 = mysqli_fetch_array($query3)){
-                            $infos['paciente'.$i] = $sql3['Nome_Paciente'];
-                        }
-
-                        $i++;
-                    }
-
-                    $i++;
-                }
-            }else if(isset($_SESSION['estagiario'])){
-                $cpf = $_SESSION['estagiario'];
-                $sql = "SELECT * FROM agendamentos WHERE CPF_usuario = '$cpf'";
-                $query = mysqli_query($connect,$sql);
-                while($sql = mysqli_fetch_array($query)){
+            $cpf = HomeController::obterCpf();
+            $sql = "SELECT * FROM agendamentos WHERE CPF_usuario = '$cpf'";
+            $query = mysqli_query($connect,$sql);
+            while($sql = mysqli_fetch_array($query)){
+                if($sql['Realizado'] == 1){
                     $medicamento = $sql['Cod_medicamento'];
                     $prontuario = $sql['ID_prontuario'];
                     $infos['hora'.$i] = $sql['Hora_Agend'];
                     $infos['data'.$i] = $sql['Data_Agend'];
                     $infos['posologia'.$i] = $sql['Posologia'];
+                    $infos['id'.$i] = $sql['Codigo'];
                     $sql1 = "SELECT * FROM medicamentos WHERE Codigo = '$medicamento'";
                     $query1 = mysqli_query($connect,$sql1);
                     while($sql1 = mysqli_fetch_array($query1)){
@@ -568,26 +486,96 @@ class HomeController extends Controller
                     while($sql3 = mysqli_fetch_array($query3)){
                         $infos['paciente'.$i] = $sql3['Nome_Paciente'];
                     }
-
-                    $i++;
+                    $infos['identificaP'.$i] = $identificaP;
+                     $i++;
                 }
             }
 
-            return view('meusAgendamentos',['infos' => $infos, 'identificaP'=>$identificaP]);
+            //log
+            $ip = $_SERVER["REMOTE_ADDR"];
+            $acao = "Visualizou lista de agendamentos realizados";           
+            AdminController::salvarLog($acao, $ip);
+     
+            return view('agendamentosRealizados',['infos' => $infos]);
         }else{
             return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
         }
     }
 
+
+    //função de visualizar meus agendamentos
+    public function meusAgendamentos(){
+        VerificaLoginController::verificarLogin();
+        $resultado = VerificaLoginController::verificaPermissao(23);
+        include("db.php");
+        $infos = [];
+        $i = 0;
+        $identificaP = null;
+        if($resultado == "1"){
+            $cpf = HomeController::obterCpf();
+            $sql = "SELECT * FROM agendamentos WHERE CPF_usuario = '$cpf'";
+            $query = mysqli_query($connect,$sql);
+            while($sql = mysqli_fetch_array($query)){
+                if($sql['Realizado'] == 0){
+                    $medicamento = $sql['Cod_medicamento'];
+                    $prontuario = $sql['ID_prontuario'];
+                    $infos['codA'.$i] = $sql['Codigo'];
+                    $infos['hora'.$i] = $sql['Hora_Agend'];
+                    $infos['data'.$i] = $sql['Data_Agend'];
+                    $infos['posologia'.$i] = $sql['Posologia'];
+                    $sql1 = "SELECT * FROM medicamentos WHERE Codigo = '$medicamento'";
+                    $query1 = mysqli_query($connect,$sql1);
+                    while($sql1 = mysqli_fetch_array($query1)){
+                        $infos['medicamento'.$i] = $sql1['Nome_Medicam'];
+                    }
+                    $sql2 = "SELECT * FROM prontuarios WHERE ID = '$prontuario'";
+                    $query2 = mysqli_query($connect,$sql2);
+                    while($sql2 = mysqli_fetch_array($query2)){
+                        $identificaP = $sql2['Cpfpaciente'];
+                        $infos['leito'.$i] = $sql2['Id_leito'];
+                        $infos['id'.$i] = $sql2['ID'];
+                    }
+                    $sql3 = "SELECT * FROM pacientes WHERE CPF = '$identificaP'";
+                    $query3 = mysqli_query($connect,$sql3);
+                    while($sql3 = mysqli_fetch_array($query3)){
+                        $infos['paciente'.$i] = $sql3['Nome_Paciente'];
+                    }
+                    $infos['identificaP'.$i] = $identificaP;
+                    $i++;
+                }
+            }
+
+
+            //log
+            $ip = $_SERVER["REMOTE_ADDR"];
+            $acao = "Visualizou lista de meus agendamentos";           
+            AdminController::salvarLog($acao, $ip);
+
+            return view('meusAgendamentos',['infos' => $infos]);
+
+        }else{
+            return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
+        }
+    }
+
+
+    //função de finalizar meus agendamentos
     public function finalizarMeusAgendamentos(Request $request){
         include("db.php");
         session_start();
         $sql = "UPDATE agendamentos SET Realizado = '1' WHERE Codigo = '$request->idA'";
         mysqli_query($connect,$sql);
+
+        //log
+        $ip = $_SERVER["REMOTE_ADDR"];
+        $acao = "Finalizou um agendamento de medicamento";           
+        AdminController::salvarLog($acao, $ip);
+
         return redirect()->back();
     }
         
-    
+
+    //função de ver agendamentos
     public function agendamentos(Request $request){
         VerificaLoginController::verificarLogin();
         include("db.php");
@@ -623,15 +611,26 @@ class HomeController extends Controller
                     while($sql3 = mysqli_fetch_array($query3)){
                         $infos['paciente'.$i] = $sql3['Nome_Paciente'];
                     }
+                    $infos['identificaP'.$i] = $identificaP;
                     $i++;
                 }
             }
-            return view('agendamentos',['infos' => $infos,'identificaP'=>$identificaP]);
+
+
+            //log
+            $ip = $_SERVER["REMOTE_ADDR"];
+            $acao = "Visualizou lista de agendamentos";           
+            AdminController::salvarLog($acao, $ip);
+
+            return view('agendamentos',['infos' => $infos]);
+
         }else{
             return redirect()->back();
         }
     }
 
+
+    //função auto cadastro em agendamentos
     public function autoCadastroAgendamento(Request $request){
         include("db.php");
         session_start();
@@ -641,6 +640,12 @@ class HomeController extends Controller
             if($cpf!=null){
                 $update = "UPDATE agendamentos SET CPF_usuario = '$cpf' WHERE Codigo = '$request->codA'";
                 mysqli_query($connect,$update);
+
+                //log
+                $ip = $_SERVER["REMOTE_ADDR"];
+                $acao = "Auto cadastrou como aplicador de um agendamento";           
+                AdminController::salvarLog($acao, $ip);
+
                 return redirect()->back()->with('msg','Você se adicionou como aplicador do agendamento');
             }
         }else{
@@ -648,6 +653,8 @@ class HomeController extends Controller
         }
     }
 
+
+    //função para permissão de cadastro de agendamentos
     public function cadastroAgendamentos(){
         VerificaLoginController::verificarLogin();
         $resultado = VerificaLoginController::verificaPermissao(12);
@@ -658,6 +665,8 @@ class HomeController extends Controller
         } 
     }
 
+
+    //função para permissão de cadastro de prontuário
     public function cadastroProntuario(){
         VerificaLoginController::verificarLogin();
         $perm = VerificaLoginController::verificaPermissao(33);
@@ -668,6 +677,8 @@ class HomeController extends Controller
         }
     }
 
+
+    //função para permissão de cadastro de paciente
     public function cadastroPaciente(){
         VerificaLoginController::verificarLogin();
         $resultado = VerificaLoginController::verificaPermissao(17);
@@ -679,10 +690,17 @@ class HomeController extends Controller
 
     }
 
+
+    //função de esqueci a senha
     public function esqueciSenha(){
+
+
+
         return view('esqueciSenha');
     }
     
+
+    //função de listagem de medicamentos
     public function listaMedicamento(){
         VerificaLoginController::verificarLogin();
         include("db.php");
@@ -699,12 +717,20 @@ class HomeController extends Controller
                 $m["fabricante".$i] = $sql['Fabricante'];
                 $i = $i+1;
             }
+
+            //log
+            $ip = $_SERVER["REMOTE_ADDR"];
+            $acao = "Visualizou lista de medicamentos";           
+            AdminController::salvarLog($acao, $ip);
+
             return view('listaMedicamento',['m' => $m]);
         }else{
             return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
         }
     }
 
+
+    //função de permissão de histórico de prontuário
     public function historicoProntuario(){
         VerificaLoginController::verificarLogin();
         $perm = VerificaLoginController::verificaPermissao(18);
@@ -715,6 +741,8 @@ class HomeController extends Controller
         }
     }
 
+
+    //função de salvar paciente no banco de dados
     public function salvarPaciente(Request $request){
         session_start();
         include('db.php');
@@ -741,6 +769,8 @@ class HomeController extends Controller
         } 
     }
 
+
+    //função de permissão de acesso ao prontuário
     public function prontuario(Request $request){
         include("db.php");
         VerificaLoginController::verificarLogin();
@@ -763,15 +793,13 @@ class HomeController extends Controller
                 $paciente['estado'] = $sql['Estado'];
                 $paciente['cpf'] = $cpf;
             }
-            $sql = "SELECT * FROM prontuarios where Cpfpaciente ='$cpf'";
+            $sql = "SELECT * FROM prontuarios where ID ='$request->numero'";
             $query = mysqli_query($connect,$sql);
             while($sql = mysqli_fetch_array($query)){
-                    if($sql['ID'] == $request->numero){
-                        $paciente['internacao'] = $sql['Data_Internacao'];
-                        $paciente['leito'] = $sql['Id_leito'];
-                        $paciente['prontuario'] = $sql['ID'];
-                    }
-
+                $paciente['internacao'] = $sql['Data_Internacao'];
+                $paciente['leito'] = $sql['Id_leito'];
+                $paciente['prontuario'] = $sql['ID'];
+                $id = $paciente['prontuario'];
             }
             /*fim dos dados do paciente */
 
@@ -811,16 +839,55 @@ class HomeController extends Controller
                     }
                 }
                 /*fim dos dados do agendamento e medicamento */
+
+            //log
+            $ip = $_SERVER["REMOTE_ADDR"];
+            $acao = "Visualizou prontuário de paciente";           
+            AdminController::salvarLog($acao, $ip);
+
+                /*inicio das ocorrências */
+                $infosO = [];
+                $k = 0;
+                $sql3 = "SELECT * FROM ocorrencias WHERE ID_prontuario = '$request->numero'";
+                $query3 = mysqli_query($connect,$sql3);
+                while($sql3 = mysqli_fetch_array($query3)){
+                    $infosO['data'.$k] = $sql3['Data_ocorr'];
+                    $infosO['ocorrencia'.$k] = $sql3['Descricao'];
+                    $infosO['hora'.$k] = $sql3['Hora_ocorr'];
+                    $fun = $sql3['CPF'];
+                    $sql4 = "SELECT * FROM usuarios where CPF = '$fun'";
+                    $query4 = mysqli_query($connect,$sql4);
+                    while($sql4 = mysqli_fetch_array($query4)){
+                        $infosO['aplicador'.$k] = $sql4['Nome'];
+                    }
+                    $k++;
+                }
+
+                $infosC = [];
+                $l = 0;
+                $sql4 = "SELECT * FROM cid_prontuario WHERE id_prontuario = '$request->numero'";
+                $query4 = mysqli_query($connect,$sql4);
+                while($sql4 = mysqli_fetch_array($query4)){
+                    $idcid = $sql4['id_CID'];
+                    $sql5 = "SELECT * FROM cid WHERE id = $idcid";
+                    $query5 = mysqli_query($connect,$sql5);
+                    while($sql5 = mysqli_fetch_array($query5)){
+                        $infosC['cid'.$l] = $sql5['codCid'];
+                    }
+                    $l++;
+                }
             }else{
                 return redirect()->back()->with('msg-error','Não foi possivel encontrar o prontuario no banco de dados!!!');
             }
             
-            return view('prontuario',['paciente' => $paciente, 'infosA' => $infosA, 'infosM' => $infosM]);
+            return view('prontuario',['paciente' => $paciente, 'infosA' => $infosA, 'infosM' => $infosM, 'infosO' => $infosO, 'infosC' => $infosC]);
         }else{
             return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
         }
     }
 
+
+    //função de buscar prontuário
     public function buscaProntuario(Request $request){
         session_start();
         include("db.php");                  // inclusão do banco de dados
@@ -835,6 +902,7 @@ class HomeController extends Controller
             $query1 = mysqli_query($connect,$sql1);
             while($sql1 = mysqli_fetch_array($query1)){
                 if($sql["aberto"]!= 1){
+                    $prontuario["id".$i] = $sql['ID'];
                     $prontuario["nome".$i] = $sql1["Nome_Paciente"]; 
                     $prontuario["estado".$i] = $sql1["Estado"]; 
                     $prontuario["cpf".$i] = $sql["Cpfpaciente"]; 
@@ -844,12 +912,17 @@ class HomeController extends Controller
                 }
             }
         }
+
+        //log
+        $ip = $_SERVER["REMOTE_ADDR"];
+        $acao = "Buscou prontuário do paciente";           
+        AdminController::salvarLog($acao, $ip);
+
         return view('historicoProntuario',['prontuario' => $prontuario]);
     }
 
-    /** Função que busca um paciente para o cadastro de prontuário
-     * Também retorna os Leitos disponíveis
-     */
+
+    //Função que busca um paciente para o cadastro de prontuário e também retorna os leitos disponíveis
     public function buscarPaciente(Request $request)
     {
         session_start();
@@ -882,6 +955,7 @@ class HomeController extends Controller
         }
     }
 
+    //função de mudar estado de prontuário
     public static function estadoPronturio($codigo){
         include("db.php");
         $aberto = null;
@@ -895,6 +969,8 @@ class HomeController extends Controller
         return $aberto;
     }
 
+
+    //função de cadastrar cid em prontuário
     public function cadastrarCidProntuario(Request $request){
         session_start();
         include("db.php");
@@ -910,6 +986,12 @@ class HomeController extends Controller
             if($cid != null and $aberto == '1'){
                 $insert = "INSERT INTO cid_prontuario (id_CID,id_prontuario) VALUES ('$cid','$request->prontuario')";
                 mysqli_query($connect,$insert);
+
+                //log
+                $ip = $_SERVER["REMOTE_ADDR"];
+                $acao = "Cadastrou CID $cid ao prontuário nº $request->prontuario";           
+                AdminController::salvarLog($acao, $ip);
+
                 return redirect() -> back() ->with('msg','CID adicionada ao prontuario com sucesso!!!!');
             }else if($aberto == '0' or $aberto == null){
                 return redirect() -> back() ->with('msg-error','Não pode mais haver cadastro de cids nesse prontuario pos ele se enconta fechado');
@@ -921,6 +1003,8 @@ class HomeController extends Controller
         }
     }
 
+
+    //função de obter cpf
     public static function obterCpf(){
         $cpf = null;
         if(isset($_SESSION['administrador'])){
@@ -935,12 +1019,15 @@ class HomeController extends Controller
         return $cpf;
     }
 
+
+    //função de adicionar ocorrencias em prontuário
     public function adicionarOcorrencias(Request $request){
         session_start();
         include("db.php");
         $cod = 0;
         $aberto = HomeController::estadoPronturio($request->prontuario);
-        $data = date('Y-m-d');
+        date_default_timezone_set('America/Sao_Paulo');
+        $data = date('d-m-Y');
         $hora = date('H:i:s');
         $nome = null;
         $cpf = HomeController::obterCpf();
@@ -956,16 +1043,23 @@ class HomeController extends Controller
                 $cod = $sql['Codigo'];
             }
             $cod++;
-            $insert = "INSERT INTO ocorrencias (Codigo,Data_ocorr,ID_prontuario,Descricao,CPF,Hora) VALUES ('$cod','$data','$request->prontuario','$request->focorrencia','$cpf','$hora')";
+            $insert = "INSERT INTO ocorrencias (Codigo,Data_ocorr,Hora_ocorr,ID_prontuario,Descricao,CPF) VALUES ('$cod','$data','$hora','$request->prontuario','$request->focorrencia','$cpf')";
             mysqli_query($connect,$insert);
-            return redirect() -> back() ->with('msg','Ocorrência adicionada ao prontuario com sucesso!!!!');
+
+            //log
+            $ip = $_SERVER["REMOTE_ADDR"];
+            $acao = "Adicionou ocorrência ao prontuário nº $request->prontuario";           
+            AdminController::salvarLog($acao, $ip);
+
+            return redirect() -> back() ->with('msg','Ocorrência adicionada ao prontuário com sucesso!!!!');
         }else if($nome == null){
             return redirect() -> back()->with('msg-error','Seu cpf não foi encontrado na base de dados. Ocorrência não cadastrada');
         }else{
-            return redirect() -> back() ->with('msg-error','Prontuario encontrasse fechado');
+            return redirect() -> back() ->with('msg-error','Prontuário encontra-se fechado');
         }
     }
     
+    //função de finalizar prontuário
     public function finalizarProntuario(Request $request){
         session_start();
         include("db.php");
@@ -973,43 +1067,106 @@ class HomeController extends Controller
         if($aberto == '1'){
             $update = "UPDATE prontuarios SET aberto = '0', Data_Saida = '$request->fsaida' WHERE ID = '$request->prontuario'";
             mysqli_query($connect,$update);
+
+            //log
+            $ip = $_SERVER["REMOTE_ADDR"];
+            $acao = "Finalizou prontuário nº $request->prontuario";           
+            AdminController::salvarLog($acao, $ip);
+
             return redirect() -> back() ->with('msg','Este prontuario foi fechado');
         }else{
             return redirect() -> back() ->with('msg-error','Este prontuario ja encontrasse fechado');
         }
     }
 
-    public function editarProntuario(Request $request){
+
+    //função de baixar arquivos
+    public function baixarArquivos(Request $request){ 
         session_start();
         include("db.php");
-        $ocupado = null;
-        $aberto = HomeController::estadoPronturio($request->prontuario);
-        if($aberto == '1'){
-            /*Inicio dos dados do paciente */
-            $update1 = "UPDATE pacientes SET Estado = '$request->fstatus' where CPF='$request->fcpf'";
-            mysqli_query($connect,$update1);
-            $sql = "SELECT * FROM leitos WHERE Identificacao = '$request->fleito'";
-            $query = mysqli_query($connect,$sql);
-            while($sql = mysqli_fetch_array($query)){
-                $ocupado = $sql['Ocupado'];
-            }
-            if($ocupado == 0){
-                $update1 = "UPDATE leitos SET Ocupado = '0' where Identicacao='$request->leito'";
-                mysqli_query($connect,$update1);
-                $update2 = "UPDATE leitos SET Ocupado = '1' where Identicacao='$request->fleito'";
-                mysqli_query($connect,$update2);
-                $update2 = "UPDATE prontuarios SET Id_leito = '$request->fleito' where ID='$request->prontuario'";
-                mysqli_query($connect,$update2);
-                $update1 = "UPDATE leitos SET Ocupado = '0' where Identicacao='$request->fleito'";
-                mysqli_query($connect,$update1);
-                return redirect() -> back() ->with('msg','Dados do prontuario foram atualizados!!!');
-            }else if($ocupado == 1){
-                return redirect() -> back() ->with('msg-error','Um dos seus dados não pode ser alterado. Motivo: Leito informado encontrasse ocupado');
-            }else{
-                return redirect() -> back() ->with('msg-error','Um dos seus dados não pode ser alterado. Motivo: Leito informado não existe');
-            }
-        }else{
-            return redirect() -> back() ->with('msg-error','Este prontuario ja encontrasse fechado');
-        }
-    }    
+        $cpf = HomeController::obterCpf();
+
+        $testa = "SELECT * from usuarios where CPF = '$cpf'";
+        $test = mysqli_query($connect,$testa);
+        while($testa = mysqli_fetch_array($test)){
+            $nome = $testa['Nome'];
+        };
+        date_default_timezone_set('America/Sao_Paulo');
+        $data_a = date('d-m-y - h:i:s');
+        $mpdf =  new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'Legal']);
+        //$mpdf->WriteHTML($css,\Mpdf\HTMLParserMode::HEADER_CSS);
+        $mpdf->WriteHTML('<body>
+        <header class="container-personal-data">
+            <div class="container-header">
+                <h2><span>Nome Hospital  </span><span>'.$nome. '</span><span>'.$data_a.'</span></h2> <!--Nome do nosso Hospital-->
+            </div>
+        </header>
+        <hr>
+        <section>
+            <div class="container-header"> 
+                <h1>Pacientes e Prontuários</h1> <!--De onde saiu a lista-->
+            </div>
+            <hr>
+            <div class="container-listagem">
+                <div>
+                    <h2>Listagem 1 Exemplo</h2> <!--Nome da Listagem--> <!--Se precisar ser mais específico-->
+                </div>
+                <div class="container-item-list"> <!--Tudo que contem em um item da lista e seus campos--> <!--Isso que deve ser posto dentro de um while/for/do while-->
+                    <div class="Overflow-hidden"> <!--Caso Precise adicionar mais um campo a essa listagem, criar uma div nova, como essa-->
+                        <p>Maria de Fátima Cerqueira Santana Silva              Internada</p>
+                    </div>
+                </div>
+                <div class="container-item-list"> <!--Tudo que contem em um item da lista e seus campos--> <!--Isso que deve ser posto dentro de um while/for/do while-->
+                    <div class="Overflow-hidden"> <!--Caso Precise adicionar mais um campo a essa listagem, criar uma div nova, como essa-->
+                        <p>Pedro Paulo Matos</p>
+                    </div>
+                    <div> <!--Campo de Status (Opcional, poderia ser outro campo aqui)-->
+                        <p>Óbito</p>
+                    </div>
+                </div>
+                <div class="container-item-list"> <!--Tudo que contem em um item da lista e seus campos--> <!--Isso que deve ser posto dentro de um while/for/do while-->
+                    <div class="Overflow-hidden"> <!--Caso Precise adicionar mais um campo a essa listagem, criar uma div nova, como essa-->
+                        <p>Fernando Alex Costa Moreira</p>
+                    </div>
+                    <div> <!--Campo de Status (Opcional, poderia ser outro campo aqui)-->
+                        <p>Liberado</p>
+                    </div>
+                </div>
+            </div>
+            <div class="container-listagem">
+                <div>
+                    <h2>Listagem 2 Exemplo</h2> <!--Nome da Listagem--> <!--Se precisar ser mais específico-->
+                </div>
+                <div class="container-item-list"> <!--Tudo que contem em um item da lista e seus campos--> <!--Isso que deve ser posto dentro de um while/for/do while-->
+                    <div class="Overflow-hidden"> <!--Caso Precise adicionar mais um campo a essa listagem, criar uma div nova, como essa-->
+                        <p>Maria de Fátima Cerqueira Santana Silva</p>
+                    </div>
+                    <div> <!--Campo de Status (Opcional, poderia ser outro campo aqui)-->
+                        <p>Internada</p>
+                    </div>
+                </div>
+                <div class="container-item-list"> <!--Tudo que contem em um item da lista e seus campos--> <!--Isso que deve ser posto dentro de um while/for/do while-->
+                    <div class="Overflow-hidden"> <!--Caso Precise adicionar mais um campo a essa listagem, criar uma div nova, como essa-->
+                        <p>Pedro Paulo Matos</p>
+                    </div>
+                    <div> <!--Campo de Status (Opcional, poderia ser outro campo aqui)-->
+                        <p>Óbito</p>
+                    </div>
+                </div>
+                <div class="container-item-list"> <!--Tudo que contem em um item da lista e seus campos--> <!--Isso que deve ser posto dentro de um while/for/do while-->
+                    <div class="Overflow-hidden"> <!--Caso Precise adicionar mais um campo a essa listagem, criar uma div nova, como essa-->
+                        <p>Fernando Alex Costa Moreira</p>
+                    </div>
+                    <div> <!--Campo de Status (Opcional, poderia ser outro campo aqui)-->
+                        <p>Liberado</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer style="position: absolute; bottom: 0;">
+            <p id="Copyright">Informações para o Footer da página</p> <!--Caso queira deixar alguma informação no Footer-->
+        </footer>
+    </body>' );
+        $mpdf->Output();
+    } 
 }

@@ -61,7 +61,8 @@ Route::post('/cadastrarUsuario',[AdminController::class,'salvarUsuario'])->name(
 Route::get('/removerUsuario', [AdminController::class,'remocao'])->name('removerUsuario');
 Route::get('/buscarUsuario', [AdminController::class,'busca'])->name('buscarUsuario');
 Route::post('/alterarAtribuicao',[AdminController::class,'alterarAtribuicao'])->name('alterarAtribuicao'); // rota para alterar atribuição
-
+Route::post('/agendarBd', [AdminController::class,'cadastrarBD']);
+Route::get('/RagendarBd', [AdminController::class,'removerAgendamentoBackup']);
 /*------------ Rota para Busca ------------------------ */
 Route::get('/lupinha', [AdminController::class,'lupinha'])->name('lupinha');
 Route::get('/hp', [HomeController::class,'buscaProntuario']);
@@ -75,7 +76,7 @@ Route::get('/buscarPaciente', [HomeController::class,'buscarPaciente'])->name('b
 Route::post('/cadastroCID',[HomeController::class,'cadastrarCidProntuario']);
 Route::post('/cadastroOcorr',[HomeController::class,'adicionarOcorrencias']);
 Route::post('/finalizarProntuario',[HomeController::class,'finalizarProntuario']);
-Route::post('/editarProntuario',[HomeController::class,'editarProntuario']);
+Route::post('/editarProntuario',[HomeController::class,'editarProntuario']); // Não está sendo mais utilizada
 /*------------ Rota para cadastro de paciente  e prontuário------------------------ */
 
 Route::get('/cadastroPaciente', [HomeController::class,'cadastroPaciente'])->name('cadastroPaciente');
@@ -110,3 +111,6 @@ Route::get('/menu', [HomeController::class,'menu'])->name('menu');
 
 Route::get('/listaMedicamento', [HomeController::class,'listaMedicamento'])->name('listaMedicamento');
 
+/*------------ Rotas para downloads-------------------*/
+
+Route::get('/baixarArquivos', [HomeController::class,'baixarArquivos']);

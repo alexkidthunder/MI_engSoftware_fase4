@@ -13,7 +13,7 @@
     <link href="{{ asset('img/favicon.png') }}" rel="icon">
 
     <script src="{{ 'js/backup.js' }}" defer></script>
-
+    {{$i = 0}}
     <title>BACKUP</title>
 </head>
 
@@ -47,7 +47,8 @@
                         </div>
                         <br>
                         <br>
-                        <form>
+                        <form method="post" action="/agendarBd">
+                        @csrf
                             <div class="row align-items-center">
                                 <div class="col-lg-4">
                                     <!--Botão para marcar caso o agendamento seja de um backup automático-->
@@ -89,30 +90,32 @@
                                 <th scope="col">Hora</th>
                                 <th scope="col">Data</th>
                                 <th scope="col">IP</th>
+                                <th scope="col">ID</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <!--Backup-->
+                            @for($i = count($info)/5 - 1; $i >= 0;$i--)
+                                <!--Backup-->
                             <tr id="codigoDoBackup">
-                                <td>Não</td>
-                                <td>09:40</td>
-                                <td>24/04/2021</td>
-                                <td>192.222.123.128</td>
-                                <td><input class="btn-blue" type="button" id="removeBackup-codigoDoBackup"
-                                        value="Remover"></td>
-                            </tr>
-                            <!--Fim de um Backup-->
-                            <!--Backup-->
-                            <tr id="codigoDoBackup2">
+                                @if($info["auto".$i] == 1)
                                 <td>Sim</td>
-                                <td>12:00</td>
-                                <td>--</td>
-                                <td>192.222.123.128</td>
-                                <td><input class="btn-blue" type="button" id="removeBackup-codigoDoBackup2"
-                                        value="Remover"></td>
+                                @else
+                                <td>Não</td>
+                                @endif
+                                <td>{{$info["hora".$i]}}</td>
+                                <td>{{$info["data".$i]}}</td>
+                                <td>{{$info["ip".$i]}}</td>
+                                <td>{{$info["id".$i]}}</td>
+                                <td>
+                                <form action="RagendarBd" method="get">
+                                <button class="btn-blue" type="submit" id="removeBackup-codigoDoBackup"
+                                    name="removerAB" value='{{$info["id".$i]}}'>Remover</button>
+                                </form>    
+                                </td>
                             </tr>
                             <!--Fim de um Backup-->
+                            @endfor
                         </tbody>
                     </table>
                 </div>

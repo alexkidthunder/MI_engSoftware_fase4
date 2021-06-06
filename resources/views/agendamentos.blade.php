@@ -16,8 +16,6 @@
     <!-- Favicon -->
     <link href="{{ asset('img/favicon.png') }}" rel="icon">
 
-    <script src="{{ 'js/agendamentos.js' }}" defer></script>
-    {{ $i = 0 }}
     <title>Agendamentos</title>
 
 </head>
@@ -62,95 +60,73 @@
                 </div>
             </div>
             <!---------------------- Agendamento  ---------------------->
-
-            @while (isset($infos['medicamento' . $i]))
+            @for($i = 0;$i < count($infos)/9;$i++)
                 <div class="box-scheduling" id="scheduling">
                     <!----- Fim das informações do agendamento ----->
                     <div class="row">
-                        <div class="col-6 col-sm-6 col-md-6 col-lg-2 text-center">
-                            <!------ Horário previsto para o agendamento ---->
+                        <!---------------------Hora--------------------->
+                        <div class="col-sm-12 col-md-8 col-lg-8 text-center">
                             <div class="box-gray">
-                                {{ $infos['hora' . $i] }}
-                            </div>
+                                {{$infos["hora".$i]}}
+                             </div>
                         </div>
-                        <!------ Data prevista para o agendamento ---->
-                        <div class="col-6 col-sm-6 col-md-6 col-lg-2 text-center">
+                        <!---------------------Data--------------------->
+                        <div class="col-sm-12 col-md-4 col-lg-4 text-center">
                             <div class="box-gray">
-                                {{ $infos['data' . $i] }}
-                            </div>
-                        </div>
-                        <!------ Nome do medicamento ---->
-                        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                            <div class="box-white">
-                                {{ $infos['medicamento' . $i] }}
-                            </div>
-                        </div>
-                        <!------ Posologia do medicamento ---->
-                        <div class="col-6 col-sm-6 col-md-6 col-lg-2">
-                            <div class="box-white">
-                                {{ $infos['posologia' . $i] }}
+                                {{$infos["data".$i]}}
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <!------ Nome do paciente ao qual o agendamento pertence ---->
-                        <form action="/prontuario" method="get">
-                            <input type="hidden" name='cpf' value='{{ $identificaP }}'>
-                            <input type="hidden" name='numero' value='{{ $infos['id' . $i] }}'>
-                            <div class="col-12 col-sm-12 col-md-9 col-lg-9">
-                                <button type="submit" class="btn-Patient">{{ $infos['paciente' . $i] }}</button>
-                            </div>
-                        </form>
-                        <!------ Leito em que o paciente está internado ---->
-                        <div class="col-12 col-sm-12 col-md-3 col-lg-3">
-                            <div class="box-blue">
-                                Leito: {{ $infos['leito' . $i] }}
+                        <!---------------------Nome do Medicamento--------------------->
+                        <div class="col-sm-12 col-md-8 col-lg-8 text-center">
+                            <div class="box-white scrolls">
+                                {{$infos["medicamento".$i]}}
+                             </div>
+                        </div>
+                        <!---------------------Posologia--------------------->
+                        <div class="col-sm-12 col-md-4 col-lg-4 text-center">
+                            <div class="box-white">
+                                {{$infos["posologia".$i]}} ml
                             </div>
                         </div>
-                    </div>
+                    </div>  
+                        <!------ Nome do paciente ao qual o agendamento pertence ---->
+                        <form action="/prontuario" method="get">
+                            <div class="row">
+                                <input type="hidden" name='cpf' value="{{$infos['identificaP'.$i]}}">
+                                <input type="hidden" name='numero' value='{{$infos["id".$i]}}'>
+                                <div class="col-sm-12 col-md-8 col-lg-8">
+                                    <button type="submit" class="btn-Patient scrolls text-center">{{$infos["paciente".$i]}}</button>
+                                </div>
+                                <!---------------------Leito da Paciente--------------------->
+                                <div class="col-sm-12 col-md-4 col-lg-4 text-center">
+                                    <div class="box-blue scrolls">
+                                        Leito: {{$infos["leito".$i]}}
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
 
                     <!---- Fim das informações do agendamento ------>
 
-                    <div class="row">
-                        <!--------------- Preprador da aplicação --------------->
-
-                        <!---------- Nome do preparador ---------->
-                        <div class="col-12 col-sm-12 col-md-3 col-lg-2 hide" name="preparador_div">
-                            <p>Prepador da aplicação:</p>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-9 col-lg-7 hide" name="preparador_div">
-                            <!--Utilizar Jquery (inner.html)-->
-                            <div class="box-gray" id="preparador">
-                            </div>
-                        </div>
-                        <!---------- Botao para adicionar preparador ---------->
+                    <div class="row">                  
+                        <!---------- Botao para finalizar aplicação---------->
                         <div class="col-lg-9">
                         </div>
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-3" id="add_prep_btn_div">
-                            <input type="hidden" name="codA" value="{{ $infos['codA' . $i] }}">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-3" name="end_prep_btn_div">
                             <div>
                                 <form action="/ACagendamentos" method="post">
-                                    @csrf
-                                    <input type="hidden" name="codA" value="{{ $infos['codA' . $i] }}">
-                                    <button type="submit" class="btn-white" id="add_prep_btn"> Adicionar
-                                        preparador</button>
+                                @csrf
+                                <input type="hidden" name="codA" value="{{ $infos['codA' . $i] }}">
+                                <button href="/agendamentos" type="submit" class="btn-white" name="end_prep_btn">
+                                    Ser Aplicador</button>
                                 </form>
                             </div>
                         </div>
-                        </form>
-                        <!------------- Fim do preprador da aplicação ------------->
-
-                        <!---------- Botao para finalizar aplicação---------->
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-3 hide" id="end_prep_div">
-                            <div>
-                                <button href="/agendamentos" type="submit" class="btn-white" id="end_prep_btn">
-                                    Finalizar aplicação</button>
-                            </div>
-                        </div>
                     </div>
-                    {{ $i = $i + 1 }}
                 </div>
-            @endwhile
+            @endfor
             <!---------------------- Fim do agendamento ---------------------->
         </div>
     </section>
