@@ -3390,11 +3390,7 @@
                     "type": "tidelift"
                 }
             ],
-<<<<<<< Updated upstream
-            "time": "2021-06-02T09:32:00+00:00"
-=======
             "time": "2021-05-26T17:43:10+00:00"
->>>>>>> Stashed changes
         },
         {
             "name": "symfony/http-kernel",
@@ -3406,13 +3402,8 @@
             },
             "dist": {
                 "type": "zip",
-<<<<<<< Updated upstream
-                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/74eb022e3bac36b3d3a897951a98759f2b32b864",
-                "reference": "74eb022e3bac36b3d3a897951a98759f2b32b864",
-=======
                 "url": "https://api.github.com/repos/symfony/http-kernel/zipball/f8e8f5391b6909e2f0ba8c12220ab7af3050eb4f",
                 "reference": "f8e8f5391b6909e2f0ba8c12220ab7af3050eb4f",
->>>>>>> Stashed changes
                 "shasum": ""
             },
             "require": {
