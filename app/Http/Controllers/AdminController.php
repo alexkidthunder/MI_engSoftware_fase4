@@ -1,16 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Administrador;
-use App\Models\Enfermeiro_chefe;
-use App\Models\Estagiario;
-use App\Models\Usuario;
-use App\Models\Enfermeiro;
 use Illuminate\Http\Request;
 //use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\DB;
-use mysqli;
 use PhpParser\Node\Stmt\ElseIf_;
 
 use function PHPUnit\Framework\isEmpty;
@@ -18,12 +11,15 @@ use function PHPUnit\Framework\isEmpty;
 class AdminController extends Controller
 {
 
+    //função de chamada de menu de adm
     public function menu(){
         VerificaLoginController::verificarLoginAdmin();
         return view('/admin/menu');
     }
 
-    public function log(){                                  //função para listar log
+
+    //função para listar log
+    public function log(){                                  
          VerificaLoginController::verificarLoginAdmin();
          include("db.php");
 
@@ -42,7 +38,9 @@ class AdminController extends Controller
         return view('/admin/log', ['logs'=> $logs]);
     }
     
-    public static function salvarLog($acao,$ip){                    //função para salvar log
+
+    //função para salvar log
+    public static function salvarLog($acao,$ip){                    
         include("db.php"); 
 
         date_default_timezone_set('America/Sao_Paulo');     //padrão de fuso horário    
@@ -56,6 +54,7 @@ class AdminController extends Controller
     }
 
 
+    //função para chamada de view de atribuição
     public function atribuicao()
     {   
         VerificaLoginController::verificarLoginAdmin();
@@ -63,6 +62,7 @@ class AdminController extends Controller
     }
 
 
+    //função para permissão
     public function permissao(Request $request){
         VerificaLoginController::verificarLoginAdmin();
 
@@ -74,9 +74,6 @@ class AdminController extends Controller
                 $sql = "";
                 $query = null;
                              
-               
-              
-                
                 for ($i = 1; $i <= 35; $i++) {          
                 $sql = "SELECT * FROM permissao_cargo where permissao_id = $i";
                 $query = mysqli_query($connect, $sql);   
@@ -90,15 +87,9 @@ class AdminController extends Controller
                 return view('/admin/permissao',['p'=>$p]);
 
             }
-
             else if($atribuicao == 'enfermeiroChefe') {
-
-
                 $sql = "";
-                $query = null;
-                             
-               
-              
+                $query = null;                                    
                 
                 for ($i = 1; $i <= 35; $i++) {          
                 $sql = "SELECT * FROM permissao_cargo where permissao_id = $i";
@@ -113,16 +104,10 @@ class AdminController extends Controller
                 return view('/admin/permissao',['p'=>$p]);
 
             }
-
-
-            
             else if($atribuicao == 'enfermeiro'){
                 $sql = "";
                 $query = null;
-                             
-               
-              
-                
+                              
                 for ($i = 1; $i <= 35; $i++) {          
                 $sql = "SELECT * FROM permissao_cargo where permissao_id = $i";
                 $query = mysqli_query($connect, $sql);   
@@ -151,16 +136,13 @@ class AdminController extends Controller
                     }
                 }
                 return view('/admin/permissao',['p'=>$p]);
-
             }
              else {
-
                 return view('/admin/permissao');
             }
-
     }
 
-
+    //função para alterar permissão
     public function alterarPermissao(Request $request)
     {
         session_start();
@@ -215,6 +197,7 @@ class AdminController extends Controller
     }
 
 
+    //função para backup
     public function backup()
     {
         include("db.php");
@@ -233,12 +216,11 @@ class AdminController extends Controller
         }
         return view('/admin/backup' ,['info' => $info]);
     }
-    /**
-     * Função que remove um usuario do sistema
-     */
+
+
+    // Função que remove um usuario do sistema
     public function remocao()
-    {  
-        
+    {        
         VerificaLoginController::verificarLoginAdmin();
         include('..\app\Http\Controllers\db.php'); 
 
@@ -263,18 +245,24 @@ class AdminController extends Controller
       
     }
     
+
+    //função para alterar atribuição
     public function alterarAtribuicao(Request $request){
         session_start();
-        include("db.php"); // Importando BD
+        include("db.php");                      // Importando BD
         $request -> validate([
-            'novaAtribuicao' => 'required' // Verificação de preenchimento de campo 
+            'novaAtribuicao' => 'required'      // Verificação de preenchimento de campo 
         ]);
-        $cpf = $request->cpf;  // Obtenndo CPF
-        /*--------Query para obter usuario com o CPF */
+        $cpf = $request->cpf;                   // Obtendo CPF
+
+        //Query para obter usuario com o CPF
         $sql = "SELECT * FROM usuarios where CPF='$cpf'";
         $query = mysqli_query($connect,$sql);
-        while($sql = mysqli_fetch_array($query)){ //Percorrendo array com todos os usuarios com determinado cpf
-            $atribuicao = $sql["Atribuicao"]; // Obtem array de uma posição
+
+
+        //Percorrendo array com todos os usuarios com determinado cpf
+        while($sql = mysqli_fetch_array($query)){ 
+            $atribuicao = $sql["Atribuicao"];     // Obtem array de uma posição
             if($atribuicao != "Estagiario"){
                 if($atribuicao == "Enfermeiro"){
                     $sql2 = "SELECT * FROM enfermeiros where CPF='$cpf'";
@@ -296,8 +284,8 @@ class AdminController extends Controller
                 $coren = null;
             }
         }
-        // Encontra a qual tabela o usuario pertence desde que não seja administrador
 
+        // Encontra a qual tabela o usuario pertence desde que não seja administrador
         if($atribuicao != "Administrador"){
             if ($atribuicao == 'Enfermeiro Chefe') {
                 if($request->novaAtribuicao == "Enfermeiro"){
@@ -353,6 +341,7 @@ class AdminController extends Controller
 
     }
 
+    //função de busca
     public function lupinha(Request $request){
         session_start();
         include("db.php");                              // inclusão do banco de dados
@@ -391,13 +380,15 @@ class AdminController extends Controller
         }
     }
         
-    public function cadastro()              //função para chamar a função salvar usuário pela view
+
+    //função para chamar a função salvar usuário pela view
+    public function cadastro()              
     {
         VerificaLoginController::verificarLoginAdmin();
         return view('/admin/cadastroUsuario');
     }
 
-
+    //função para salvar usuário
     public function salvarUsuario(Request $request){
         session_start();
         include("db.php");
@@ -462,9 +453,8 @@ class AdminController extends Controller
             }
       }
      
-      /**
-       * Função que busca e retorna um usuario no banco de dados
-       */
+
+    //Função que busca e retorna um usuario no banco de dados
     public function busca(Request $request)
     {          
         session_start();
@@ -494,6 +484,7 @@ class AdminController extends Controller
         
     }
 
+    //função de salvar banco de dados
     public static function salvarDB(){
         include("db.php");
         $tabelas = [];
@@ -630,6 +621,8 @@ class AdminController extends Controller
 
     }
 
+
+    //função de cadastro de banco de dados
     public function cadastrarBD(Request $request){
         include("db.php");
         $checkbox = $request->alwaysCheck;
@@ -665,6 +658,8 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
+
+    //função para remover agendamento de backup
     public function removerAgendamentoBackup(Request $request){
         include("db.php");
         $sql =  "DELETE FROM backups_agendados WHERE ID = '$request->removerAB'";
