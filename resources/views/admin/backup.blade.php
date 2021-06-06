@@ -90,13 +90,13 @@
                                 <th scope="col">Hora</th>
                                 <th scope="col">Data</th>
                                 <th scope="col">IP</th>
-                                <th scope="col"></th>
                                 <th scope="col">ID</th>
+                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @while(isset($info["id".$i]))
-                            <!--Backup-->
+                            @for($i = count($info)/5 - 1; $i >= 0;$i--)
+                                <!--Backup-->
                             <tr id="codigoDoBackup">
                                 @if($info["auto".$i] == 1)
                                 <td>Sim</td>
@@ -106,16 +106,16 @@
                                 <td>{{$info["hora".$i]}}</td>
                                 <td>{{$info["data".$i]}}</td>
                                 <td>{{$info["ip".$i]}}</td>
+                                <td>{{$info["id".$i]}}</td>
                                 <td>
                                 <form action="RagendarBd" method="get">
                                 <button class="btn-blue" type="submit" id="removeBackup-codigoDoBackup"
                                     name="removerAB" value='{{$info["id".$i]}}'>Remover</button>
                                 </form>    
                                 </td>
-                                <td>{{$i++}}</td>
                             </tr>
                             <!--Fim de um Backup-->
-                            @endwhile
+                            @endfor
                         </tbody>
                     </table>
                 </div>

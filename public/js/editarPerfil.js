@@ -67,7 +67,7 @@ editBnt.addEventListener("click",function(){
 /* -- ao clicar no botão "Salvar" -- */
 saveBtn.addEventListener("click",function(){
 
-    disable(); // Desabilita os inputs e Radios
+    //  disable(); // Desabilita os inputs e Radios
    // addNoRadialEdit(); // Adiciona o estilo que indica que não poderia editar
    // removeRadialEdit(); // Retira o estilo que indicava que pode editar
    // checkRadial(); // Verifica se o sexo está marcado, se não estiver, volta ao estado padrão (mostrando os dois)
@@ -90,7 +90,7 @@ pswBtn.addEventListener("click",function(){
 
 cancelarBtn.addEventListener("click",function(){
 
-    disable();
+   // disable();
     addNoRadialEdit();
     removeRadialEdit();
     pflArea.classList.remove('hide');
@@ -229,7 +229,7 @@ function checkRadial(){
     }
 }
 /**
- * Disabilita a edição dos dados do perfil
+ * Disabilita a edição dos dados do perfil - Dar Erro
  */
 function disable(){
     nomeInp.setAttribute("disabled","");

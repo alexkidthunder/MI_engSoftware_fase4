@@ -8,7 +8,7 @@ use Monolog\Handler\SendGridHandler;
 use PhpParser\Node\Stmt\Return_;
 use Dompdf\Dompdf;
 use Dompdf\Options;
-
+use Mpdf\Mpdf;
 
 class HomeController extends Controller
 {
@@ -1039,157 +1039,94 @@ class HomeController extends Controller
         }
     }
 
-    public function editarProntuario(Request $request){
+
+    
+    public function baixarArquivos(Request $request){ 
         session_start();
         include("db.php");
-        $ocupado = null;
-        $aberto = HomeController::estadoPronturio($request->prontuario);
-        if($aberto == '1'){
-            /*Inicio dos dados do paciente */
-            $update1 = "UPDATE pacientes SET Estado = '$request->fstatus' where CPF='$request->fcpf'";
-            mysqli_query($connect,$update1);
+        $cpf = HomeController::obterCpf();
 
-            //log
-            $ip = $_SERVER["REMOTE_ADDR"];
-            $acao = "Editou prontuário nº $request->prontuario";           
-            AdminController::salvarLog($acao, $ip);
-
-
-            $sql = "SELECT * FROM leitos WHERE Identificacao = '$request->fleito'";
-            $query = mysqli_query($connect,$sql);
-            while($sql = mysqli_fetch_array($query)){
-                $ocupado = $sql['Ocupado'];
-            }
-            if($ocupado == 0){
-                $update1 = "UPDATE leitos SET Ocupado = '0' where Identicacao='$request->leito'";
-                mysqli_query($connect,$update1);
-                $update2 = "UPDATE leitos SET Ocupado = '1' where Identicacao='$request->fleito'";
-                mysqli_query($connect,$update2);
-                $update2 = "UPDATE prontuarios SET Id_leito = '$request->fleito' where ID='$request->prontuario'";
-                mysqli_query($connect,$update2);
-                $update1 = "UPDATE leitos SET Ocupado = '0' where Identicacao='$request->fleito'";
-                mysqli_query($connect,$update1);
-                return redirect() -> back() ->with('msg','Dados do prontuario foram atualizados!!!');
-            }else if($ocupado == 1){
-                return redirect() -> back() ->with('msg-error','Um dos seus dados não pode ser alterado. Motivo: Leito informado encontrasse ocupado');
-            }else{
-                return redirect() -> back() ->with('msg-error','Um dos seus dados não pode ser alterado. Motivo: Leito informado não existe');
-            }
-        }else{
-            return redirect() -> back() ->with('msg-error','Este prontuario ja encontrasse fechado');
-        }
-    }
-    
-    public function baixarArquivos(Request $request){   
-        //Criando a Instancia
-        $dompdf = new Dompdf();
-        $dompdf->set_paper('A4', 'landscape');
-        // Carrega seu HTML
-        $texto = "";
-        $textoA = "";
-        $css = file_get_contents("../public/css/download-style.css");
-        $html = file_get_contents("../resources/views/download/listagem_pdf.php");
-        $vetor = explode('<br>',$request->dados);
-        for($i = 0 ;$i < count($vetor);$i++){
-            if(strlen($vetor[$i])>5){
-                $textoA = $texto;
-                $texto =  "Nome: ".$vetor[$i].'<br>'.$textoA;
-            }
-        }
-        //Renderizar o html
-        $dompdf->load_html(
-        '
-            <body>
-                <header class="container-personal-data">
-                    <div>
-                        <h2>Nome Hospital</h2> <!--Nome do nosso Hospital-->
+        $testa = "SELECT * from usuarios where CPF = '$cpf'";
+        $test = mysqli_query($connect,$testa);
+        while($testa = mysqli_fetch_array($test)){
+            $nome = $testa['Nome'];
+        };
+        date_default_timezone_set('America/Sao_Paulo');
+        $data_a = date('d-m-y - h:i:s');
+        $mpdf =  new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'Legal']);
+        //$mpdf->WriteHTML($css,\Mpdf\HTMLParserMode::HEADER_CSS);
+        $mpdf->WriteHTML('<body>
+        <header class="container-personal-data">
+            <div class="container-header">
+                <h2><span>Nome Hospital  </span><span>'.$nome. '</span><span>'.$data_a.'</span></h2> <!--Nome do nosso Hospital-->
+            </div>
+        </header>
+        <hr>
+        <section>
+            <div class="container-header"> 
+                <h1>Pacientes e Prontuários</h1> <!--De onde saiu a lista-->
+            </div>
+            <hr>
+            <div class="container-listagem">
+                <div>
+                    <h2>Listagem 1 Exemplo</h2> <!--Nome da Listagem--> <!--Se precisar ser mais específico-->
+                </div>
+                <div class="container-item-list"> <!--Tudo que contem em um item da lista e seus campos--> <!--Isso que deve ser posto dentro de um while/for/do while-->
+                    <div class="Overflow-hidden"> <!--Caso Precise adicionar mais um campo a essa listagem, criar uma div nova, como essa-->
+                        <p>Maria de Fátima Cerqueira Santana Silva              Internada</p>
                     </div>
-                    <div>
-                        <h2>Nome / CPF</h2> <!--Nome e CPF de quem requisitou o download-->
+                </div>
+                <div class="container-item-list"> <!--Tudo que contem em um item da lista e seus campos--> <!--Isso que deve ser posto dentro de um while/for/do while-->
+                    <div class="Overflow-hidden"> <!--Caso Precise adicionar mais um campo a essa listagem, criar uma div nova, como essa-->
+                        <p>Pedro Paulo Matos</p>
                     </div>
-                    <div>
-                        <h2>00:00 - 00/00/00</h2> <!--Data e Hora em que foi feito o download-->
+                    <div> <!--Campo de Status (Opcional, poderia ser outro campo aqui)-->
+                        <p>Óbito</p>
                     </div>
-                </header>
-                <hr>
-                <section>
-                    <div class="container-header"> 
-                        <h1>Pacientes e Prontuários</h1> <!--De onde saiu a lista-->
+                </div>
+                <div class="container-item-list"> <!--Tudo que contem em um item da lista e seus campos--> <!--Isso que deve ser posto dentro de um while/for/do while-->
+                    <div class="Overflow-hidden"> <!--Caso Precise adicionar mais um campo a essa listagem, criar uma div nova, como essa-->
+                        <p>Fernando Alex Costa Moreira</p>
                     </div>
-                    <hr>
-                    <div class="container-listagem">
-                        <div>
-                            <h2>Listagem 1 Exemplo</h2> <!--Nome da Listagem--> <!--Se precisar ser mais específico-->
-                        </div>
-                        <div class="container-item-list"> <!--Tudo que contem em um item da lista e seus campos--> <!--Isso que deve ser posto dentro de um while/for/do while-->
-                            <div class="Overflow-hidden"> <!--Caso Precise adicionar mais um campo a essa listagem, criar uma div nova, como essa-->
-                                <p>Maria de Fátima Cerqueira Santana Silva</p>
-                            </div>
-                            <div> <!--Campo de Status (Opcional, poderia ser outro campo aqui)-->
-                                <p>Internada</p>
-                            </div>
-                        </div>
-                        <div class="container-item-list"> <!--Tudo que contem em um item da lista e seus campos--> <!--Isso que deve ser posto dentro de um while/for/do while-->
-                            <div class="Overflow-hidden"> <!--Caso Precise adicionar mais um campo a essa listagem, criar uma div nova, como essa-->
-                                <p>Pedro Paulo Matos</p>
-                            </div>
-                            <div> <!--Campo de Status (Opcional, poderia ser outro campo aqui)-->
-                                <p>Óbito</p>
-                            </div>
-                        </div>
-                        <div class="container-item-list"> <!--Tudo que contem em um item da lista e seus campos--> <!--Isso que deve ser posto dentro de um while/for/do while-->
-                            <div class="Overflow-hidden"> <!--Caso Precise adicionar mais um campo a essa listagem, criar uma div nova, como essa-->
-                                <p>Fernando Alex Costa Moreira</p>
-                            </div>
-                            <div> <!--Campo de Status (Opcional, poderia ser outro campo aqui)-->
-                                <p>Liberado</p>
-                            </div>
-                        </div>
+                    <div> <!--Campo de Status (Opcional, poderia ser outro campo aqui)-->
+                        <p>Liberado</p>
                     </div>
-                    <div class="container-listagem">
-                        <div>
-                            <h2>Listagem 2 Exemplo</h2> <!--Nome da Listagem--> <!--Se precisar ser mais específico-->
-                        </div>
-                        <div class="container-item-list"> <!--Tudo que contem em um item da lista e seus campos--> <!--Isso que deve ser posto dentro de um while/for/do while-->
-                            <div class="Overflow-hidden"> <!--Caso Precise adicionar mais um campo a essa listagem, criar uma div nova, como essa-->
-                                <p>Maria de Fátima Cerqueira Santana Silva</p>
-                            </div>
-                            <div> <!--Campo de Status (Opcional, poderia ser outro campo aqui)-->
-                                <p>Internada</p>
-                            </div>
-                        </div>
-                        <div class="container-item-list"> <!--Tudo que contem em um item da lista e seus campos--> <!--Isso que deve ser posto dentro de um while/for/do while-->
-                            <div class="Overflow-hidden"> <!--Caso Precise adicionar mais um campo a essa listagem, criar uma div nova, como essa-->
-                                <p>Pedro Paulo Matos</p>
-                            </div>
-                            <div> <!--Campo de Status (Opcional, poderia ser outro campo aqui)-->
-                                <p>Óbito</p>
-                            </div>
-                        </div>
-                        <div class="container-item-list"> <!--Tudo que contem em um item da lista e seus campos--> <!--Isso que deve ser posto dentro de um while/for/do while-->
-                            <div class="Overflow-hidden"> <!--Caso Precise adicionar mais um campo a essa listagem, criar uma div nova, como essa-->
-                                <p>Fernando Alex Costa Moreira</p>
-                            </div>
-                            <div> <!--Campo de Status (Opcional, poderia ser outro campo aqui)-->
-                                <p>Liberado</p>
-                            </div>
-                        </div>
+                </div>
+            </div>
+            <div class="container-listagem">
+                <div>
+                    <h2>Listagem 2 Exemplo</h2> <!--Nome da Listagem--> <!--Se precisar ser mais específico-->
+                </div>
+                <div class="container-item-list"> <!--Tudo que contem em um item da lista e seus campos--> <!--Isso que deve ser posto dentro de um while/for/do while-->
+                    <div class="Overflow-hidden"> <!--Caso Precise adicionar mais um campo a essa listagem, criar uma div nova, como essa-->
+                        <p>Maria de Fátima Cerqueira Santana Silva</p>
                     </div>
-                </section>
-                <footer style="position: absolute; bottom: 0;">
-                    <p id="Copyright">Informações para o Footer da página</p> <!--Caso queira deixar alguma informação no Footer-->
-                </footer>
-            </body>'  
-        
-        );
-        $dompdf->render();
-        //Exibibir a página
-        $dompdf->stream(
-            "TESTE.pdf", 
-            array(
-                "Attachment" => true //TRUE para realizar o download 
-            )
-        );
-        return redirect()->back();
-    }
+                    <div> <!--Campo de Status (Opcional, poderia ser outro campo aqui)-->
+                        <p>Internada</p>
+                    </div>
+                </div>
+                <div class="container-item-list"> <!--Tudo que contem em um item da lista e seus campos--> <!--Isso que deve ser posto dentro de um while/for/do while-->
+                    <div class="Overflow-hidden"> <!--Caso Precise adicionar mais um campo a essa listagem, criar uma div nova, como essa-->
+                        <p>Pedro Paulo Matos</p>
+                    </div>
+                    <div> <!--Campo de Status (Opcional, poderia ser outro campo aqui)-->
+                        <p>Óbito</p>
+                    </div>
+                </div>
+                <div class="container-item-list"> <!--Tudo que contem em um item da lista e seus campos--> <!--Isso que deve ser posto dentro de um while/for/do while-->
+                    <div class="Overflow-hidden"> <!--Caso Precise adicionar mais um campo a essa listagem, criar uma div nova, como essa-->
+                        <p>Fernando Alex Costa Moreira</p>
+                    </div>
+                    <div> <!--Campo de Status (Opcional, poderia ser outro campo aqui)-->
+                        <p>Liberado</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer style="position: absolute; bottom: 0;">
+            <p id="Copyright">Informações para o Footer da página</p> <!--Caso queira deixar alguma informação no Footer-->
+        </footer>
+    </body>' );
+        $mpdf->Output();
+    } 
 }
