@@ -735,4 +735,9 @@ class AdminController extends Controller
 
         return redirect()->back();
     }
+
+    public function relatorioGerencial()              //função para chamar a função salvar usuário pela view
+    {
+        return view('/admin/relatorioGerencial');
+    }
 }
