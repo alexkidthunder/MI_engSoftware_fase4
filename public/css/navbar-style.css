@@ -117,7 +117,7 @@
     top:100%;
 }
 
-.nav a:hover, .nav .active > a, .nav li:hover > a {
+.nav a:hover, .nav .active >a, .nav li:hover > a {
     color: #0D6EFD;
 }
 

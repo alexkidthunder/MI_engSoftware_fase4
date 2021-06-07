@@ -85,7 +85,7 @@
                             <i class="fas fa-file-alt"></i>
                         </div>
                         <h4 class="card-options_title"><a
-                            href="#">Relatórios gerenciais</a></h4>
+                            href="{{ route('relatorioGerencial') }}">Relatórios gerenciais</a></h4>
                     </div>
                 </div> <!--Fim do Botão-->
             </div>

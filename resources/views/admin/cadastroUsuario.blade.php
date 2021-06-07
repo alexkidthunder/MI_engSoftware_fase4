@@ -64,10 +64,10 @@
                         <div class="col-lg-4">
                             <label>Sexo</label> <br>
                             <div class="row no-gutters"> <!--Campo onde é selecionado qual o sexo do usuário a ser cadastrado-->
-                                <div class="col-lg border-m content-center">
+                                <div class="col-6 col-md-3 col-lg border-m content-center">
                                     <input type="radio" name="fsexo" value="M" id="fmasc">Masculino</input>
                                 </div>
-                                <div class="col-lg border-f content-center">
+                                <div class="col-6 col-md-3 col-lg border-f content-center">
                                     <input type="radio" name="fsexo" value="F" id="ffem">Feminino</input>
                                 </div>
                             </div>

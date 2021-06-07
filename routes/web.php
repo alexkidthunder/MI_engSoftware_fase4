@@ -63,6 +63,9 @@ Route::get('/buscarUsuario', [AdminController::class,'busca'])->name('buscarUsua
 Route::post('/alterarAtribuicao',[AdminController::class,'alterarAtribuicao'])->name('alterarAtribuicao'); // rota para alterar atribuição
 Route::post('/agendarBd', [AdminController::class,'cadastrarBD']);
 Route::get('/RagendarBd', [AdminController::class,'removerAgendamentoBackup']);
+
+Route::get('/relatorioGerencial', [AdminController::class,'relatorioGerencial'])->name('relatorioGerencial');
+
 /*------------ Rota para Busca ------------------------ */
 Route::get('/lupinha', [AdminController::class,'lupinha'])->name('lupinha');
 Route::get('/hp', [HomeController::class,'buscaProntuario']);
@@ -82,7 +85,7 @@ Route::post('/editarProntuario',[HomeController::class,'editarProntuario']); // 
 Route::get('/cadastroPaciente', [HomeController::class,'cadastroPaciente'])->name('cadastroPaciente');
 Route::post('/cadastroPaciente', [HomeController::class,'salvarPaciente'])->name('salvarPaciente');
 Route::get('/cadastroProntuario', [HomeController::class,'cadastroProntuario'])->name('cadastroProntuario');
-
+Route::get('/cadastrarProntuario', [HomeController::class,'cadastrarProntuario'])->name('cadastrarProntuario');
 /*------------ Rota para agendamentos ------------------------ */
 
 Route::get('/agendamentosRealizados', [HomeController::class,'agendamentosRealizados'])->name('agendamentosRealizados');

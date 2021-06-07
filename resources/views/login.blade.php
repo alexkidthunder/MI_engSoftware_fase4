@@ -21,7 +21,7 @@
     <!--------------- Imagem de onda--------------->
     <div id="container-wave">
         <div class="img-login">
-            <img src="{{ asset('img/onda.png') }}"/>
+            <img src="{{ asset('img/wave.png') }}"/>
         </div>
     </div>
     <!--------------- fim da Imagem -------------->
@@ -32,6 +32,7 @@
         </div>
     </div>
     <!--------------- fim da Imagem -------------->
+
     <form id="login" action="/index/menu" method="post">
         @csrf
         <div class="box-login">

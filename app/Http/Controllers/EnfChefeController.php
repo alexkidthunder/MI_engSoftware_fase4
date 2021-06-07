@@ -21,7 +21,12 @@ class EnfChefeController extends Controller
         VerificaLoginController::verificarLogin();
         $resultado = VerificaLoginController::verificaPermissao(7);
         if($resultado == "1"){
-
+            
+            // recebendo os plantonistas           
+            $sql = "SELECT * FROM enfermeiros";
+            $query1 = mysqli_query($connect, $sql);
+            $sql1 = "SELECT * FROM estagiarios";            
+            $query2 = mysqli_query($connect, $sql1);
 
 
             /*
@@ -292,9 +297,10 @@ class EnfChefeController extends Controller
 
     public function removerLeito(Request $request)
     {
+        session_start();
         include("db.php");
 
-        $perm = VerificaLoginController::verificaPermissao(30);
+        $perm = VerificaLoginController::verificaPermissao(30);        
         if ($perm == "1") {
             $sql = "SELECT * FROM leitos WHERE Identificacao = '$request->focorrencia'";
             $query = mysqli_query($connect, $sql);
