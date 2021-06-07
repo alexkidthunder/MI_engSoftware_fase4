@@ -297,9 +297,10 @@ class EnfChefeController extends Controller
 
     public function removerLeito(Request $request)
     {
+        session_start();
         include("db.php");
 
-        $perm = VerificaLoginController::verificaPermissao(30);
+        $perm = VerificaLoginController::verificaPermissao(30);        
         if ($perm == "1") {
             $sql = "SELECT * FROM leitos WHERE Identificacao = '$request->focorrencia'";
             $query = mysqli_query($connect, $sql);
