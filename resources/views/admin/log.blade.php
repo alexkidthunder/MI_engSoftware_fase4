@@ -13,7 +13,7 @@
     <link href="{{ asset('img/favicon.png') }}" rel="icon">
 
     <script src="{{ ('js/log.js') }}" defer></script>
-    
+
     <title>Log do sistema</title>
 </head>
 
@@ -25,12 +25,34 @@
     <h1>LOG DO ADMINISTRADOR</h1>
     <section>
         <div class="box">
+            <label id="pagina_label" style="display:flex; float: left;">Pagina </label>
             <!---Botao de donwload ----->
             <form class="download-icon" align="right">
                 <button>
                     <i class="fas fa-download"></i>
                 </button>
             </form>
+            
+            <!--Escolher o numero de Logs por pagina-->
+            <div>
+                <label for="n_log">Numero de Logs</label>
+                <select name="n_log" id="n_log">
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    <option value="250">250</option>
+                    <option value="500">500</option>
+                </select>
+            </div>
+            <div style="display:flex; float:left;">
+                <a id="show_size">Temos x Logs</a>
+            </div>
+            <div id="log_controller" name="log_controller" style="display:flex; float:right;">
+                <ul class="horizontal-list" id="list-page">
+                </ul>
+            </div>
             <!--Tabela com os Logs do Sistema-->
             <div class="table-responsive scrolls">
                 <table class="table table-striped table-hover">
@@ -58,6 +80,7 @@
                 </table>
             </div>    
         </div>
+        <input type="hidden" id="tamanho_log" value={{count($logs)}}>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous">

@@ -1114,3 +1114,31 @@ input[type=number] {
         width: 100%;
     }
 }
+
+.horizontal-list{
+    margin-inline: 10px;
+    display:flex
+    
+}
+.list-log-page{
+    background-color: #02A7F0;
+    border-radius: 100px;
+    margin-inline: 5px;
+    padding: 5px;
+    align-self: flex-end;
+    display: inline-block;
+    zoom:1;
+    *display:inline;
+    text-align: center;
+    width: fit-content;
+}
+
+.list-log-page:hover{
+    background-color:#6bc4ec;
+    cursor:pointer;
+}
+
+#log_controler .btn-white{
+    width: fit-content;
+    padding-inline: 10px;
+}
