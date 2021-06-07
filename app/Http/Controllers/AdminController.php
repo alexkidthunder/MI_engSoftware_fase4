@@ -243,8 +243,9 @@ class AdminController extends Controller
     // Função que remove um usuario do sistema
     public function remocao()
     {        
+        include("db.php");
+        
         VerificaLoginController::verificarLoginAdmin();
-        include('..\app\Http\Controllers\db.php'); 
 
         if (isset($_GET['cpf'])) {
             $cpf = $_GET['cpf'];            
