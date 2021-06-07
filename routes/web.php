@@ -63,6 +63,7 @@ Route::get('/buscarUsuario', [AdminController::class,'busca'])->name('buscarUsua
 Route::post('/alterarAtribuicao',[AdminController::class,'alterarAtribuicao'])->name('alterarAtribuicao'); // rota para alterar atribuição
 Route::post('/agendarBd', [AdminController::class,'cadastrarBD']);
 Route::get('/RagendarBd', [AdminController::class,'removerAgendamentoBackup']);
+
 Route::get('/relatorioGerencial', [AdminController::class,'relatorioGerencial']);
 
 /*------------ Rota para Busca ------------------------ */
