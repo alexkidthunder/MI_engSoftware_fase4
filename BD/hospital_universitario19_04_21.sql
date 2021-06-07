@@ -13485,7 +13485,7 @@ INSERT INTO `usuarios` (`CPF`, `Nome`, `Senha`, `Email`, `Data_Nasc`, `Atribuica
   ('873.325.550-42', 'Cauã Mário da Luz', 'luz21s1z', 'cauamariodaluz.81@gmail.com', '1984-07-07', 'Enfermeiro', 'M', '001011011', 1);
 
 --
--- Restrições para despejos de tabelas
+-- Restrições para despejos d tabelas
 --
 
 --
