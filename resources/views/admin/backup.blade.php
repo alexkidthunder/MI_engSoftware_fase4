@@ -30,7 +30,9 @@
                 <div class="row item-center">
                     <div class="col-lg">
                         <!--Botão onde, quando clicado, o backup deve ser feito na hora-->
-                        <input class="btn-white" type="button" name="realBack" id="realBack" value="Realizar Backup">
+                        <form action="/baixarBd" method="get">
+                            <input class="btn-white" type="submit" name="realBack" id="realBack" value="Realizar Backup">
+                        </form>
                     </div>
                     <div class="col-lg">
                         <!--Botão onde, quando clicado, o backup deve ser agendado-->

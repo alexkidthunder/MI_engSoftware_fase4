@@ -24,7 +24,14 @@
 
     <h1>RELATORIO GERENCIAL</h1>
         <section> 
+        
             <div class="container-2">
+            <!---Botao de donwload ----->
+        <form method="get" action="/baixarArquivos" class="download-icon" align="right">
+                <button>
+                    <i class="fas fa-download"></i>
+                </button>
+            </form>
                 <div class="row">
                     <div class="col-xl-3 col-lg-3 col-md-6">
                         <div class="card-menu text-center card-options">
