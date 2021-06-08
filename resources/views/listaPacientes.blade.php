@@ -31,10 +31,6 @@
             <button>
                 <i class="fas fa-download"></i>
             </button>
-            @if(isset($p[0]))
-            <input type="hidden" name="listagem" value="{{implode('|',$p)}}">
-            <input type="hidden" name="tela" value="lp">
-            @endif
         </form>
     </div>
     <!--------Fim do botão de donwload-------->

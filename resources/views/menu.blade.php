@@ -18,11 +18,11 @@
     <!----------Hearder------------>
     @include('layouts.navbar-menu')
     <!----------End Hearder-------->
-    @if(isset($resultado))
+
         <div class="container-2">
             <div class="row">
                 <!-- ============================ ENFERMEIRO CHEFE E ENFERMEIRO =========================-->
-                @if($resultado[17] == 1)
+                @if(isset($_SESSION['estagiario'])==false) 
                 <div class="col-6 col-md-4 col-lg-3"> <!--Botão para cadastro de paciente-->
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
@@ -33,8 +33,6 @@
                             href="{{ route('cadastroPaciente') }}">Cadastrar paciente</a></h4>
                     </div>
                 </div> <!--Fim do Botão-->
-                @endif
-                @if($resultado[33]==1)
                 <div class="col-6 col-md-4 col-lg-3"> <!--Botão para cadastrar prontuário-->
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
@@ -46,11 +44,10 @@
                     </div>
                 </div>  <!--Fim do Botão-->
                 @endif
-
                 <!-- ================================FIM=========================-->
 
                 <!-- ============================ COMUNS AOS TRÊS =========================-->
-                @if($resultado[18]==1)
+
                 <div class="col-6 col-md-4 col-lg-3"> <!--Botão para ver pacientes e prontuários-->
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
@@ -61,8 +58,6 @@
                             href="{{ route('pacientes') }}">Pacientes e prontuários</a></h4>
                     </div>
                 </div> <!--Fim do Botão-->
-                @endif
-                @if($resultado[34]==1)
                 <div class="col-6 col-md-4 col-lg-3"> <!----------Card responsável pelo Histórico de Prontuário------------>
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
@@ -72,11 +67,10 @@
                             href="{{ route('historicoProntuario') }}">Histórico de prontuário</a></h4>
                     </div>
                 </div><!--Fim do Botão-->
-                @endif
                 <!-- ============================ FIM =========================-->
 
                 <!-- ========================== APENAS ENFERMEIRO CHEFE ==================-->
-                @if($resultado[12]==1)
+                @if(isset($_SESSION['enfermeiroChefe'])) 
                 <!----------Card responsável por cadastrar os agendamentos----------->
                 <div class="col-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
@@ -87,9 +81,7 @@
                             href="{{ route('cadastroAgendamento') }}">Cadastrar agendamentos</a></h4>
                     </div>
                 </div> 
-                @endif
                 <!----------Card responsável por cadastrar os plantonistas------------>
-                @if($resultado[7]==1)
                 <div class="col-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
@@ -100,9 +92,7 @@
                             href="{{ route('cadastroPlantonista') }}">Cadastrar plantonistas</a></h4>
                     </div>
                 </div> 
-                @endif
                 <!----------Card responsável por cadastrar os medicamentos------------>
-                @if($resultado[9]==1)
                 <div class="col-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
@@ -112,9 +102,7 @@
                             href="{{ route('cadastroMedicamento') }}">Cadastrar medicamentos</a></h4>
                     </div>
                 </div> 
-                @endif
                 <!----------Card responsável pelo Cadastro e Exclusão de Leito------------>
-                @if($resultado[29]==1)
                 <div class="col-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
@@ -124,10 +112,7 @@
                             href="{{ route('cadastroLeito') }}">Cadastrar e Remover leito</a></h4>
                     </div>
                 </div>
-                @endif
                 <!----------Card responsável por listar todos os agendamentos------------>
-                @if(isset($_SESSION["enfermeiroChefe"]))
-                @if($resultado[15] == 1)
                 <div class="col-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
@@ -136,11 +121,8 @@
                         <h4 class="card-options_title"><a
                             href="{{ route('listaAgendamentos') }}">Listagem de agendamentos</a></h4>
                     </div>
-                </div>
-                @endif 
-                @endif
+                </div> 
                 <!----------Card responsável por mostrar os Planotnistas------------>
-                @if($resultado[14]==1)
                 <div class="col-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
@@ -150,9 +132,7 @@
                             href="{{ route('listagemPlantonistas') }}">Plantonistas</a></h4>
                     </div>
                 </div> 
-                @endif
                 <!----------Card responsável para a listagem de medicamentos do sistema----------->
-                @if($resultado[35]==1)
                 <div class="col-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
@@ -162,9 +142,7 @@
                             href="{{ route('listaMedicamento') }}">Medicamentos cadastrados</a></h4>
                     </div>
                 </div> 
-                @endif
                 <!----------Card responsável por mostrar os responsáveis pelas aplicações de medicamentos------------>
-                @if($resultado[16]==1)
                 <div class="col-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
@@ -178,8 +156,8 @@
                 <!--============================= FIM ======================================-->
 
                 <!-- ====================== APENAS ENFERMEIRO E ESTAGIARIO ===================-->
+                @if(isset($_SESSION['enfermeiroChefe'])==false) 
                 <!--Botão para visualizar agendamentos realizados-->
-                @if($resultado[22]==1)
                 <div class="col-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
@@ -189,10 +167,8 @@
                             href="{{ route('agendamentosRealizados') }}">Agendamentos realizados</a></h4>
                     </div>
                 </div> <!--Fim do Botão-->
-                @endif
 
                 <!--Botão para visualizar agendamentos-->
-                @if($resultado[15]==1)
                 <div class="col-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
@@ -202,10 +178,8 @@
                             href="{{ route('agendamentos') }}">Agendamentos</a></h4>
                     </div>
                 </div> <!--Fim do Botão-->
-                @endif
 
                 <!--Botão para visualizar agendamentos que está alocado-->
-                @if($resultado[23]==1)
                 <div class="col-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
@@ -217,11 +191,9 @@
                     </div>
                 </div>
                 @endif
-
                 <!-- ============================ FIM =========================-->
 
             </div>  
         </div>
-    @endif
   </body>
   </html>

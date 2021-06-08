@@ -29,14 +29,10 @@
 
     <!----------Botão de donwload------------>
     <div id="screen-icon">
-        <form method="get" action="/baixarArquivos" class="download-icon">
+        <form class="download-icon">
             <button>
                 <i class="fas fa-download"></i>
             </button>
-            @if(isset($prontuario))
-            <input type="hidden" name="listagem" value="{{implode('|',$prontuario)}}">
-            <input type="hidden" name="tela" value="hp">
-            @endif
         </form>
     </div>
     <!--------Fim do botão de donwload-------->

@@ -1,8 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\Administrador;
 use Illuminate\Http\Request;
 //use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -47,7 +45,7 @@ class AdminController extends Controller
 
         date_default_timezone_set('America/Sao_Paulo');     //padrão de fuso horário    
         $data = date('Y-m-d');                              //detecta data   
-        $horas = date('H:i:s');                               //detecta hora 
+        $horas = date('H:i');                               //detecta hora 
 
         //insere no banco de dados
         $novoLog = "INSERT INTO logs (Data_Log, Hora_Agend, Ip, Acao) values ('$data', '$horas', '$ip', '$acao')";
@@ -245,9 +243,8 @@ class AdminController extends Controller
     // Função que remove um usuario do sistema
     public function remocao()
     {        
-        include("db.php");
-        
         VerificaLoginController::verificarLoginAdmin();
+        include('..\app\Http\Controllers\db.php'); 
 
         if (isset($_GET['cpf'])) {
             $cpf = $_GET['cpf'];            
@@ -737,29 +734,5 @@ class AdminController extends Controller
         AdminController::salvarLog($acao, $ip);
 
         return redirect()->back();
-    }
-
-    public function relatorioGerencial()              //função para chamar a função salvar usuário pela view
-    {
-        return view('/admin/relatorioGerencial');
-    }
-
-    public function realizarBackup(){
-        AdminController::salvarDB();
-    }
-
-    public static function realizarBackupAgendado(){
-        include("db.php");
-        $dataAtual = date('Y-m-d');
-        $horaAtual = date('H:i:s');
-        $sql = "SELECT * FROM backups_agendados";
-        $query = mysqli_query($connect,$sql);
-         while($sql = mysqli_fetch_array($query)){
-            $data = $sql['Data_backup'];
-            $hora = $sql['Hora_backup'];
-            if($dataAtual == $data AND $horaAtual == $hora){
-                AdminController::salvarDB();
-            }
-        }
     }
 }
