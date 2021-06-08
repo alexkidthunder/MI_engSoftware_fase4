@@ -12,6 +12,6 @@ class Paciente extends Model
     protected $table = "pacientes";    //seta a o nome da tabela 
 
     protected $fillable = [
-        'Nome_Paciente', 'Sexo', 'Data_Nasc', 'CPF', 'Tipo_Sang'
+        'Nome_Paciente','Sexo','Data_Nasc','CPF','Tipo_Sang'
     ];
 }

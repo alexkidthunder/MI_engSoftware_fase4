@@ -12,6 +12,6 @@ class Medicamento extends Model
     protected $table = "medicamentos";    //seta a o nome da tabela 
 
     protected $fillable = [
-        'Nome_Medicam', 'Quantidade', 'Fabricante', 'Data_Validade', 'Codigo'
+        'Nome_Medicam','Quantidade','Fabricante','Data_Validade','Codigo'
     ];
 }
