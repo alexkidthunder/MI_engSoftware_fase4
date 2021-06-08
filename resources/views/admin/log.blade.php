@@ -27,7 +27,7 @@
         <div class="box">
             <label id="pagina_label" style="display:flex; float: left;">Pagina </label>
             <!---Botao de donwload ----->
-            <form class="download-icon" align="right">
+            <form method="get" action="/baixarArquivos" class="download-icon" align="right">
                 <button>
                     <i class="fas fa-download"></i>
                 </button>

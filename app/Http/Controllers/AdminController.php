@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Administrador;
 use Illuminate\Http\Request;
 //use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -740,5 +742,24 @@ class AdminController extends Controller
     public function relatorioGerencial()              //função para chamar a função salvar usuário pela view
     {
         return view('/admin/relatorioGerencial');
+    }
+
+    public function realizarBackup(){
+        AdminController::salvarDB();
+    }
+
+    public static function realizarBackupAgendado(){
+        include("db.php");
+        $dataAtual = date('Y-m-d');
+        $horaAtual = date('H:i:s');
+        $sql = "SELECT * FROM backups_agendados";
+        $query = mysqli_query($connect,$sql);
+         while($sql = mysqli_fetch_array($query)){
+            $data = $sql['Data_backup'];
+            $hora = $sql['Hora_backup'];
+            if($dataAtual == $data AND $horaAtual == $hora){
+                AdminController::salvarDB();
+            }
+        }
     }
 }

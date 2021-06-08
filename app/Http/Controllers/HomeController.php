@@ -8,6 +8,7 @@ use Monolog\Handler\SendGridHandler;
 use PhpParser\Node\Stmt\Return_;
 use Dompdf\Dompdf;
 use Dompdf\Options;
+use Hamcrest\Core\IsSame;
 use Mpdf\Mpdf;
 
 class HomeController extends Controller
@@ -123,8 +124,22 @@ class HomeController extends Controller
     //função de menu, exceto do adm
     public function menu(){
         VerificaLoginController::verificarLogin();
+        $resultado =[];
+        if (isset($_SESSION['enfermeiroChefe'])) {
+            for ($i = 7;$i <= 35;$i++) {
+                $resultado[$i] = VerificaLoginController::verificaPermissao($i);
+            }
+        }else if(isset($_SESSION['enfermeiro'])){
+            for ($i = 36;$i < 65;$i++) {
+                $resultado[$i] = VerificaLoginController::verificaPermissao($i-28);
+            }
+        }else if(isset($_SESSION['estagiario'])) {
+            for ($i = 65;$i < 94;$i++) {
+                $resultado[$i] = VerificaLoginController::verificaPermissao($i-58);
+            }
+        }
         if(isset($_SESSION['enfermeiro']) or isset($_SESSION['enfermeiroChefe']) or isset($_SESSION['estagiario'])){
-            return view('/menu');
+            return view('/menu',['resultado'=>$resultado]);
         }
         else{
             return redirect()->back();
@@ -580,7 +595,7 @@ class HomeController extends Controller
         VerificaLoginController::verificarLogin();
         include("db.php");
         $identificaP = null;
-        $perm = VerificaLoginController::verificaPermissao(18);
+        $perm = VerificaLoginController::verificaPermissao(15);
         if($perm == "1"){
             $i = 0;
             $infos = [];
@@ -704,7 +719,7 @@ class HomeController extends Controller
     public function listaMedicamento(){
         VerificaLoginController::verificarLogin();
         include("db.php");
-        $resultado = VerificaLoginController::verificaPermissao(21);
+        $resultado = VerificaLoginController::verificaPermissao(35);
         if($resultado == "1"){
             $i = 0;
             $m = [];
@@ -733,7 +748,7 @@ class HomeController extends Controller
     //função de permissão de histórico de prontuário
     public function historicoProntuario(){
         VerificaLoginController::verificarLogin();
-        $perm = VerificaLoginController::verificaPermissao(18);
+        $perm = VerificaLoginController::verificaPermissao(34);
         if($perm == "1"){
             return view('historicoProntuario');
         }else{
@@ -888,44 +903,47 @@ class HomeController extends Controller
 
     public function cadastrarProntuario(Request $request){
         include("db.php");
-        $sql = "SELECT * FROM leitos where Identificacao = '$request->Leito'";
-        $query = mysqli_query($connect, $sql);
-        $temp = mysqli_fetch_array($query);  
+        $resultado = VerificaLoginController::verificaPermissao(33);
+        if ($resultado == 1) {
+            $sql = "SELECT * FROM leitos where Identificacao = '$request->Leito'";
+            $query = mysqli_query($connect, $sql);
+            $temp = mysqli_fetch_array($query);
              
-        //caso o Leito não esteja mais disponível
-        if($temp['Ocupado'] == 1){
-            return redirect()->back()->with('msg-error', 'O Leito não está mais disónível, tente novamente.');
-        }
-        // caso o Leito esteja disponível
-
-        // verificar se o Paciente já pertence a um prontuário aberto
-        $sql3 = "SELECT * FROM prontuarios WHERE Cpfpaciente = '$request->CPF_Paciente'";
-        $query3 = mysqli_query($connect, $sql3);
-       
-        while( $dado = mysqli_fetch_array($query3)){
-            
-            if($dado['aberto'] == 1){
-                return redirect()->back()->with('msg-error', 'O paciente já possuí um prontuário em aberto no sistema'); 
+            //caso o Leito não esteja mais disponível
+            if ($temp['Ocupado'] == 1) {
+                return redirect()->back()->with('msg-error', 'O Leito não está mais disónível, tente novamente.');
             }
-            
-        }
+            // caso o Leito esteja disponível
+
+            // verificar se o Paciente já pertence a um prontuário aberto
+            $sql3 = "SELECT * FROM prontuarios WHERE Cpfpaciente = '$request->CPF_Paciente'";
+            $query3 = mysqli_query($connect, $sql3);
+       
+            while ($dado = mysqli_fetch_array($query3)) {
+                if ($dado['aberto'] == 1) {
+                    return redirect()->back()->with('msg-error', 'O paciente já possuí um prontuário em aberto no sistema');
+                }
+            }
 
         
-        // ocupar o leito
-       $sql1 = "UPDATE leitos SET Ocupado = '1' WHERE Identificacao = '$request->Leito'";
-       $query1 = mysqli_query($connect, $sql1);
+            // ocupar o leito
+            $sql1 = "UPDATE leitos SET Ocupado = '1' WHERE Identificacao = '$request->Leito'";
+            $query1 = mysqli_query($connect, $sql1);
 
-       //cadastrar o prontuário
-       $sql2 = "INSERT INTO prontuarios (aberto, Data_Internacao, Id_leito, Cpfpaciente) VALUES
+            //cadastrar o prontuário
+            $sql2 = "INSERT INTO prontuarios (aberto, Data_Internacao, Id_leito, Cpfpaciente) VALUES
                         ('1', '$request->data_internacao', '$request->Leito', '$request->CPF_Paciente')";
-       $query2 = mysqli_query($connect, $sql2);
-       if($query2 == 1){
-           // se cadastrou com sucesso
-           return redirect()->route('cadastroProntuario')->with('msg-sucess', 'Prontuário cadastrado com sucesso');
-       }else{
-           //caso não cadastre erro no bd
-           return redirect()->back()->with('msg-error', 'Ocorreu um erro com o Banco de Dados tente novamente');
-       }
+            $query2 = mysqli_query($connect, $sql2);
+            if ($query2 == 1) {
+                // se cadastrou com sucesso
+                return redirect()->route('cadastroProntuario')->with('msg-sucess', 'Prontuário cadastrado com sucesso');
+            } else {
+                //caso não cadastre erro no bd
+                return redirect()->back()->with('msg-error', 'Ocorreu um erro com o Banco de Dados tente novamente');
+            }
+        }else{
+            return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
+        }
       
 
     }
@@ -1028,15 +1046,23 @@ class HomeController extends Controller
             }
             $aberto = HomeController::estadoPronturio($request->prontuario);
             if($cid != null and $aberto == '1'){
-                $insert = "INSERT INTO cid_prontuario (id_CID,id_prontuario) VALUES ('$cid','$request->prontuario')";
-                mysqli_query($connect,$insert);
+                $sql1 = "SELECT * FROM cid_prontuario WHERE id_CID = '$cid' AND id_prontuario = '$request->prontuario'";
+                $query1 = mysqli_query($connect,$sql1);
+                while($sql1 = mysqli_fetch_array($query1)){
+                    $igual = $sql1['id'];
+                }
+                if(isset($igual)){
+                    return redirect() -> back() ->with('msg-error','Esta CID já se encontra cadastrada no prontuario!!!!');
+                }else{
+                    $insert = "INSERT INTO cid_prontuario (id_CID,id_prontuario) VALUES ('$cid','$request->prontuario')";
+                    mysqli_query($connect,$insert);
+                    //log
+                    $ip = $_SERVER["REMOTE_ADDR"];
+                    $acao = "Cadastrou CID $cid ao prontuário nº $request->prontuario";           
+                    AdminController::salvarLog($acao, $ip);
 
-                //log
-                $ip = $_SERVER["REMOTE_ADDR"];
-                $acao = "Cadastrou CID $cid ao prontuário nº $request->prontuario";           
-                AdminController::salvarLog($acao, $ip);
-
-                return redirect() -> back() ->with('msg','CID adicionada ao prontuario com sucesso!!!!');
+                    return redirect() -> back() ->with('msg','CID adicionada ao prontuario com sucesso!!!!');
+                }
             }else if($aberto == '0' or $aberto == null){
                 return redirect() -> back() ->with('msg-error','Não pode mais haver cadastro de cids nesse prontuario pos ele se enconta fechado');
             }else{
@@ -1068,38 +1094,43 @@ class HomeController extends Controller
     public function adicionarOcorrencias(Request $request){
         session_start();
         include("db.php");
-        $cod = 0;
-        $aberto = HomeController::estadoPronturio($request->prontuario);
-        date_default_timezone_set('America/Sao_Paulo');
-        $data = date('d-m-Y');
-        $hora = date('H:i:s');
-        $nome = null;
-        $cpf = HomeController::obterCpf();
-        $sql = "SELECT * FROM usuarios WHERE CPF = '$cpf'";
-        $query = mysqli_query($connect,$sql);
-        while($sql = mysqli_fetch_array($query)){
-            $nome = $sql['Nome'];
-        }
-        if($aberto == '1' and $nome!=null){
-            $sql = "SELECT * FROM ocorrencias";
-            $query = mysqli_query($connect,$sql);
-            while($sql = mysqli_fetch_array($query)){
-                $cod = $sql['Codigo'];
+        $resultado = VerificaLoginController::verificaPermissao(28);
+        if ($resultado == 1) {
+            $cod = 0;
+            $aberto = HomeController::estadoPronturio($request->prontuario);
+            date_default_timezone_set('America/Sao_Paulo');
+            $data = date('d-m-Y');
+            $hora = date('H:i:s');
+            $nome = null;
+            $cpf = HomeController::obterCpf();
+            $sql = "SELECT * FROM usuarios WHERE CPF = '$cpf'";
+            $query = mysqli_query($connect, $sql);
+            while ($sql = mysqli_fetch_array($query)) {
+                $nome = $sql['Nome'];
             }
-            $cod++;
-            $insert = "INSERT INTO ocorrencias (Codigo,Data_ocorr,Hora_ocorr,ID_prontuario,Descricao,CPF) VALUES ('$cod','$data','$hora','$request->prontuario','$request->focorrencia','$cpf')";
-            mysqli_query($connect,$insert);
+            if ($aberto == '1' and $nome!=null) {
+                $sql = "SELECT * FROM ocorrencias";
+                $query = mysqli_query($connect, $sql);
+                while ($sql = mysqli_fetch_array($query)) {
+                    $cod = $sql['Codigo'];
+                }
+                $cod++;
+                $insert = "INSERT INTO ocorrencias (Codigo,Data_ocorr,Hora_ocorr,ID_prontuario,Descricao,CPF) VALUES ('$cod','$data','$hora','$request->prontuario','$request->focorrencia','$cpf')";
+                mysqli_query($connect, $insert);
 
-            //log
-            $ip = $_SERVER["REMOTE_ADDR"];
-            $acao = "Adicionou ocorrência ao prontuário nº $request->prontuario";           
-            AdminController::salvarLog($acao, $ip);
+                //log
+                $ip = $_SERVER["REMOTE_ADDR"];
+                $acao = "Adicionou ocorrência ao prontuário nº $request->prontuario";
+                AdminController::salvarLog($acao, $ip);
 
-            return redirect() -> back() ->with('msg','Ocorrência adicionada ao prontuário com sucesso!!!!');
-        }else if($nome == null){
-            return redirect() -> back()->with('msg-error','Seu cpf não foi encontrado na base de dados. Ocorrência não cadastrada');
+                return redirect() -> back() ->with('msg', 'Ocorrência adicionada ao prontuário com sucesso!!!!');
+            } elseif ($nome == null) {
+                return redirect() -> back()->with('msg-error', 'Seu cpf não foi encontrado na base de dados. Ocorrência não cadastrada');
+            } else {
+                return redirect() -> back() ->with('msg-error', 'Prontuário encontra-se fechado');
+            }
         }else{
-            return redirect() -> back() ->with('msg-error','Prontuário encontra-se fechado');
+            return redirect() -> back() ->with('msg-error', 'Você não possui permissão para realizar essa ação');
         }
     }
     
@@ -1107,11 +1138,21 @@ class HomeController extends Controller
     public function finalizarProntuario(Request $request){
         session_start();
         include("db.php");
+        
         $aberto = HomeController::estadoPronturio($request->prontuario);
         if($aberto == '1'){
             $update = "UPDATE prontuarios SET aberto = '0', Data_Saida = '$request->fsaida' WHERE ID = '$request->prontuario'";
             mysqli_query($connect,$update);
-
+            $sql = "SELECT * FROM prontuarios WHERE ID = '$request->prontuario'";
+            $query =  mysqli_query($connect,$sql);
+            while($sql = mysqli_fetch_array($query)){
+                $leito = $sql['Id_leito'];
+                $cpf = $sql['Cpfpaciente'];
+            }
+            $update = "UPDATE leitos SET Ocupado = '0'  WHERE Identificacao = '$leito'";
+            mysqli_query($connect,$update);
+            $update = "UPDATE pacientes SET Estado = '$request->status_saida'  WHERE CPF = '$cpf'";
+            mysqli_query($connect,$update);
             //log
             $ip = $_SERVER["REMOTE_ADDR"];
             $acao = "Finalizou prontuário nº $request->prontuario";           
@@ -1129,7 +1170,7 @@ class HomeController extends Controller
         session_start();
         include("db.php");
         $cpf = HomeController::obterCpf();
-
+        $vetor = explode('|',$request->listagem);
         $testa = "SELECT * from usuarios where CPF = '$cpf'";
         $test = mysqli_query($connect,$testa);
         while($testa = mysqli_fetch_array($test)){
@@ -1139,10 +1180,51 @@ class HomeController extends Controller
         $data_a = date('d-m-y - h:i:s');
         $mpdf =  new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'Legal']);
         //$mpdf->WriteHTML($css,\Mpdf\HTMLParserMode::HEADER_CSS);
-        $mpdf->WriteHTML('<body>
+        if(isset($_SESSION['administrador'])){
+            $log = [];
+            dd($vetor);
+            for($i =  0; $i <= count($vetor)-4;$i++){
+                if($i%4 ==0){
+                    $log[$i/4] ='Data: '.$vetor[$i]. ' '. '/ Hora: '.$vetor[$i+1].' '.'/ Ação: '.$vetor[$i+2].' '. '/ IP: '.$vetor[$i+3];
+                }
+            }
+                $lista = implode('<br><br>',$log);
+            $mpdf->WriteHTML('<!--Tabela com os Logs do Sistema-->
+            <div class="table-responsive scrolls">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr> <!--Header da Tabela-->
+                            <th scope="col">Data</th>
+                            <th scope="col">Hora</th>
+                            <th scope="col">Ação</th>
+                            <th scope="col">IP</th>
+                        </tr>
+                    </thead>
+                    <tbody id="Log_table">
+                        @if(isset($logs))
+    
+                            @foreach (array_reverse($logs) as $value)
+                                <tr>
+                                    <td>'. $lista.' </td>
+                                </tr>
+                            @endforeach
+                        @endif
+                    </tbody>
+                </table>
+            </div>    ');
+        }else{
+            if($request->tela == 'lp'){
+                $lp = [];
+                for($i =  0; $i <= count($vetor)-2;$i++){
+                    if($i % 2 == 0){
+                        $lp[$i/2] = ($i/2).'- '.$vetor[$i];
+                    }
+                }
+                $lista = implode('<br><br>',$lp);
+                $mpdf->WriteHTML('<body>
         <header class="container-personal-data">
             <div class="container-header">
-                <h2><span>Nome Hospital  </span><span>'.$nome. '</span><span>'.$data_a.'</span></h2> <!--Nome do nosso Hospital-->
+                <h2><span>Nome Hospital'.' '. '/  </span><span>'.$nome. '</span><span> /'.$data_a.'</span></h2> <!--Nome do nosso Hospital-->
             </div>
         </header>
         <hr>
@@ -1152,65 +1234,95 @@ class HomeController extends Controller
             </div>
             <hr>
             <div class="container-listagem">
-                <div>
-                    <h2>Listagem 1 Exemplo</h2> <!--Nome da Listagem--> <!--Se precisar ser mais específico-->
-                </div>
-                <div class="container-item-list"> <!--Tudo que contem em um item da lista e seus campos--> <!--Isso que deve ser posto dentro de um while/for/do while-->
-                    <div class="Overflow-hidden"> <!--Caso Precise adicionar mais um campo a essa listagem, criar uma div nova, como essa-->
-                        <p>Maria de Fátima Cerqueira Santana Silva              Internada</p>
+                    <div class="container-item-list"> <!--Tudo que contem em um item da lista e seus campos--> <!--Isso que deve ser posto dentro de um while/for/do while-->
+                        <div class="Overflow-hidden"> <!--Caso Precise adicionar mais um campo a essa listagem, criar uma div nova, como essa-->
+                            <p>'.$lista.'</p>
+                        </div>
                     </div>
-                </div>
-                <div class="container-item-list"> <!--Tudo que contem em um item da lista e seus campos--> <!--Isso que deve ser posto dentro de um while/for/do while-->
-                    <div class="Overflow-hidden"> <!--Caso Precise adicionar mais um campo a essa listagem, criar uma div nova, como essa-->
-                        <p>Pedro Paulo Matos</p>
-                    </div>
-                    <div> <!--Campo de Status (Opcional, poderia ser outro campo aqui)-->
-                        <p>Óbito</p>
-                    </div>
-                </div>
-                <div class="container-item-list"> <!--Tudo que contem em um item da lista e seus campos--> <!--Isso que deve ser posto dentro de um while/for/do while-->
-                    <div class="Overflow-hidden"> <!--Caso Precise adicionar mais um campo a essa listagem, criar uma div nova, como essa-->
-                        <p>Fernando Alex Costa Moreira</p>
-                    </div>
-                    <div> <!--Campo de Status (Opcional, poderia ser outro campo aqui)-->
-                        <p>Liberado</p>
-                    </div>
-                </div>
+               
             </div>
-            <div class="container-listagem">
-                <div>
-                    <h2>Listagem 2 Exemplo</h2> <!--Nome da Listagem--> <!--Se precisar ser mais específico-->
-                </div>
-                <div class="container-item-list"> <!--Tudo que contem em um item da lista e seus campos--> <!--Isso que deve ser posto dentro de um while/for/do while-->
-                    <div class="Overflow-hidden"> <!--Caso Precise adicionar mais um campo a essa listagem, criar uma div nova, como essa-->
-                        <p>Maria de Fátima Cerqueira Santana Silva</p>
-                    </div>
-                    <div> <!--Campo de Status (Opcional, poderia ser outro campo aqui)-->
-                        <p>Internada</p>
-                    </div>
-                </div>
-                <div class="container-item-list"> <!--Tudo que contem em um item da lista e seus campos--> <!--Isso que deve ser posto dentro de um while/for/do while-->
-                    <div class="Overflow-hidden"> <!--Caso Precise adicionar mais um campo a essa listagem, criar uma div nova, como essa-->
-                        <p>Pedro Paulo Matos</p>
-                    </div>
-                    <div> <!--Campo de Status (Opcional, poderia ser outro campo aqui)-->
-                        <p>Óbito</p>
-                    </div>
-                </div>
-                <div class="container-item-list"> <!--Tudo que contem em um item da lista e seus campos--> <!--Isso que deve ser posto dentro de um while/for/do while-->
-                    <div class="Overflow-hidden"> <!--Caso Precise adicionar mais um campo a essa listagem, criar uma div nova, como essa-->
-                        <p>Fernando Alex Costa Moreira</p>
-                    </div>
-                    <div> <!--Campo de Status (Opcional, poderia ser outro campo aqui)-->
-                        <p>Liberado</p>
-                    </div>
-                </div>
-            </div>
+        
         </section>
         <footer style="position: absolute; bottom: 0;">
             <p id="Copyright">Informações para o Footer da página</p> <!--Caso queira deixar alguma informação no Footer-->
         </footer>
     </body>' );
+            }else if($request->tela == 'lm'){
+                $lm = [];
+                for($i =  0; $i <= count($vetor)-4;$i++){
+                    if($i%4 ==0){
+                        $lm[$i/4] = ($i/4).'- '.$vetor[$i]. ' '. '/ Validade: '.$vetor[$i+1].' '.'/ Em estoque: '.$vetor[$i+2].' '. '/ Fabricante: '.$vetor[$i+3];
+                    }
+                }
+                $lista = implode('<br><br>',$lm);
+                $mpdf->WriteHTML('<body>
+        <header class="container-personal-data">
+            <div class="container-header">
+            <h2><span>Nome Hospital'.' '. '/  </span><span>'.$nome. '</span><span> /'.$data_a.'</span></h2> <!--Nome do nosso Hospital-->
+            </div>
+        </header>
+        <hr>
+        <section>
+            <div class="container-header"> 
+                <h1>Estoque de agendamentos</h1> <!--De onde saiu a lista-->
+            </div>
+            <hr>
+            <div class="container-listagem">
+                    <div class="container-item-list"> <!--Tudo que contem em um item da lista e seus campos--> <!--Isso que deve ser posto dentro de um while/for/do while-->
+                        <div class="Overflow-hidden"> <!--Caso Precise adicionar mais um campo a essa listagem, criar uma div nova, como essa-->
+                            <p>'.$lista.'</p>
+                        </div>
+                    </div>
+               
+            </div>
+        
+        </section>
+        <footer style="position: absolute; bottom: 0;">
+            <p id="Copyright">Informações para o Footer da página</p> <!--Caso queira deixar alguma informação no Footer-->
+        </footer>
+    </body>' );
+        }else if($request->tela == 'hp'){
+            $hp = [];
+            for($i =  0; $i <= count($vetor)-6;$i++){
+                if($i%6 == 0){
+                    $hp[$i/6] = 'Id prontuario- '.$vetor[$i]. ' '. '/ Data de internação: '.$vetor[$i+4].' '. '/ Data de Saida: '.$vetor[$i+5];
+                }
+            }
+            $lista = implode('<br><br>',$hp);
+            $mpdf->WriteHTML('<body>
+    <header class="container-personal-data">
+        <div class="container-header">
+        <h2><span>Nome Hospital'.' '. '/  </span><span>'.$nome. '</span><span> /'.$data_a.'</span></h2> <!--Nome do nosso Hospital-->
+        </div>
+    </header>
+    <hr>
+    <section>
+        <div class="container-header"> 
+            <h1>Historico de prontuarios</h1> <!--De onde saiu a lista-->
+        </div>
+        <hr>
+        <div class="container-listagem">
+        <div>
+            <h2>Paciente: '.$vetor[1].' </h2> 
+            <h3>CPF:'.$vetor[3].'</h3> 
+            <h4>Estado atual:   '.$vetor[2].'</h4> 
+        </div>
+                <div class="container-item-list"> <!--Tudo que contem em um item da lista e seus campos--> <!--Isso que deve ser posto dentro de um while/for/do while-->
+                    <div class="Overflow-hidden"> <!--Caso Precise adicionar mais um campo a essa listagem, criar uma div nova, como essa-->
+                        <p>'.$lista.'</p>
+                    </div>
+                </div>
+           
+        </div>
+    
+    </section>
+    <footer style="position: absolute; bottom: 0;">
+        <p id="Copyright">Informações para o Footer da página</p> <!--Caso queira deixar alguma informação no Footer-->
+    </footer>
+</body>' );
+    }
+
+        }
         $mpdf->Output();
     } 
 }
