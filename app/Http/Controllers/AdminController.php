@@ -462,8 +462,8 @@ class AdminController extends Controller
             $ip = $request->ip();
 
             //insere na trabela usuário
-            $novoUsuario = "INSERT INTO usuarios (CPF, Nome, Senha, Email, Data_Nasc, Atribuicao, Sexo, Ip) values ('$request->fcpf', 
-            '$request->fnome', 12345, '$request->femail', '$request->fnascimento', '$request->fatribui','$request->fsexo','$ip')";
+            $novoUsuario = "INSERT INTO usuarios (CPF, Nome, Senha, Email, Data_Nasc, Atribuicao, Sexo, Ip, Ativo) values ('$request->fcpf', 
+            '$request->fnome', 12345, '$request->femail', '$request->fnascimento', '$request->fatribui','$request->fsexo','$ip',1)";
             mysqli_query($connect,$novoUsuario);
             
            
