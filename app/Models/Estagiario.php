@@ -12,6 +12,6 @@ class Estagiario extends Model
     protected $table = "estagiarios";    //seta a o nome da tabela 
 
     protected $fillable = [
-        'CPF','Plantao'
+        'CPF', 'Plantao'
     ];
 }

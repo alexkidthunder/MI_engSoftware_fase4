@@ -12,6 +12,6 @@ class Enfermeiro_chefe extends Model
     protected $table = "enfermeiros_chefes";    //seta a o nome da tabela 
 
     protected $fillable = [
-        'CPF','COREN'
+        'CPF', 'COREN'
     ];
 }
