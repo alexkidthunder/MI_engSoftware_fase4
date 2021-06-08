@@ -721,7 +721,6 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-
     //função para remover agendamento de backup
     public function removerAgendamentoBackup(Request $request){
         include("db.php");
