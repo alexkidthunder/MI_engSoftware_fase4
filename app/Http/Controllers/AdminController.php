@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Administrador;
 use Illuminate\Http\Request;
 //use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -243,8 +245,9 @@ class AdminController extends Controller
     // Função que remove um usuario do sistema
     public function remocao()
     {        
+        include("db.php");
+        
         VerificaLoginController::verificarLoginAdmin();
-        include('..\app\Http\Controllers\db.php'); 
 
         if (isset($_GET['cpf'])) {
             $cpf = $_GET['cpf'];            
@@ -459,8 +462,8 @@ class AdminController extends Controller
             $ip = $request->ip();
 
             //insere na trabela usuário
-            $novoUsuario = "INSERT INTO usuarios (CPF, Nome, Senha, Email, Data_Nasc, Atribuicao, Sexo, Ip) values ('$request->fcpf', 
-            '$request->fnome', 12345, '$request->femail', '$request->fnascimento', '$request->fatribui','$request->fsexo','$ip')";
+            $novoUsuario = "INSERT INTO usuarios (CPF, Nome, Senha, Email, Data_Nasc, Atribuicao, Sexo, Ip, Ativo) values ('$request->fcpf', 
+            '$request->fnome', 12345, '$request->femail', '$request->fnascimento', '$request->fatribui','$request->fsexo','$ip',1)";
             mysqli_query($connect,$novoUsuario);
             
            
@@ -739,5 +742,24 @@ class AdminController extends Controller
     public function relatorioGerencial()              //função para chamar a função salvar usuário pela view
     {
         return view('/admin/relatorioGerencial');
+    }
+
+    public function realizarBackup(){
+        AdminController::salvarDB();
+    }
+
+    public static function realizarBackupAgendado(){
+        include("db.php");
+        $dataAtual = date('Y-m-d');
+        $horaAtual = date('H:i:s');
+        $sql = "SELECT * FROM backups_agendados";
+        $query = mysqli_query($connect,$sql);
+         while($sql = mysqli_fetch_array($query)){
+            $data = $sql['Data_backup'];
+            $hora = $sql['Hora_backup'];
+            if($dataAtual == $data AND $horaAtual == $hora){
+                AdminController::salvarDB();
+            }
+        }
     }
 }
