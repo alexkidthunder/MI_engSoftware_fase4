@@ -107,14 +107,14 @@ class HomeController extends Controller
                     exit();
 
                 }else{
-                    return redirect() -> back() ->with('msg-error','Funcionario sem cargo, algo esta errado!!!');
+                    return redirect() -> back() ->with('msg-error','Funcionário sem cargo, algo está errado!!!');
                 }
 
             }else{
-                return redirect() -> back() ->with('msg-error','Conta do funcionario encontrasse desativada');
+                return redirect() -> back() ->with('msg-error','Conta do funcionário encontra-se desativada');
             }
         }else{ // caso em que o $row = 0
-            return redirect() -> back() ->with('msg-error','Acesso negado para essas credenciais');
+            return redirect() -> back() ->with('msg-error','Acesso negado para essas credenciais!');
         }
 
     }
@@ -161,8 +161,11 @@ class HomeController extends Controller
 
         //se a nova senha desejada for igual a de confimação
         if ($senhaConfirmacao == $senhaDefinida){
-            //$senhaCript = Hash::make($senhaConfimacao);         //cria um hash a partir da nova senha 
-           // dd($cpf);    
+           //$senhaCript = md5($senhaConfirmacao);         //cria um hash a partir da nova senha 
+           //dd($senhaCript);    
+
+           //$buscaSenha = "SELECT * FROM usuarios where CPF = '$request->cpf' AND Senha = '$senhaCript";
+          // $senhaDescript = AES_DECRYPT() 
 
             //atualiza senha no banco de dados
             $update = "UPDATE usuarios SET Senha = '$senhaConfirmacao' WHERE CPF = '$cpf'";
