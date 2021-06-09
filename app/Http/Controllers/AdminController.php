@@ -717,8 +717,7 @@ class AdminController extends Controller
     public function relatorioGerencial()              //função para chamar a função salvar usuário pela view
     {
         include("db.php");
-        VerificaLoginController::verificarLoginAdmin();
-        $inf = [];
+        VerificaLoginController::verificarLoginAdmin();        
         
         //Calculo da quantidade de pacientes
         $sql = "SELECT COUNT(*) FROM pacientes WHERE Estado = 'internado'";
@@ -730,8 +729,13 @@ class AdminController extends Controller
         $query = mysqli_query($connect, $sql);
         $func = mysqli_fetch_assoc($query);
 
-        //CID mais frequente
 
+        //CID mais frequente
+        $sql = "SELECT codCid FROM cid INNER JOIN cid_prontuario 
+                ON cid.id=cid_prontuario.id_CID GROUP BY codCid 
+                ORDER BY count(codCid) desc, codCid desc LIMIT 1";
+        $query = mysqli_query($connect, $sql);
+        $cid = mysqli_fetch_assoc($query);
 
         //Taxa de óbito
                         //Quantidade total de pacientes
@@ -754,6 +758,11 @@ class AdminController extends Controller
 
 
         //Medicamento mais usado
+        $sql = "SELECT Nome_Medicam FROM medicamentos INNER JOIN agendamentos ON 
+                medicamentos.Codigo=agendamentos.Cod_medicamento GROUP BY Nome_Medicam 
+                ORDER BY count(Nome_Medicam) desc, Nome_Medicam desc LIMIT 1";
+        $query = mysqli_query($connect, $sql);
+        $medic = mysqli_fetch_assoc($query);
 
 
         //Quantidade de Leitos Cadastrados
@@ -786,11 +795,12 @@ class AdminController extends Controller
         $query = mysqli_query($connect, $sql);
         $adMin = mysqli_fetch_assoc($query);
 
-        $inf = [$paci, $func, $taxa, $media, $leito, $leitOcu, $EnfCh, $Enf, $Est, $adMin];
+        //$inf = [];
+        //$inf = [$paci, $func, $cid, $taxa, $media, $medic, $leito, $leitOcu, $EnfCh, $Enf, $Est, $adMin];
         //dd($inf);
 
-        return view('/admin/relatorioGerencial', ['paci' => $paci, 'func' => $func, 'taxa' => $taxa, 'media' => $media, 
-        'leito' => $leito,'leitOcu' => $leitOcu,'EnfCh' => $EnfCh,'Enf' => $Enf,'Est' => $Est,'adMin' => $adMin, ]);
+        return view('/admin/relatorioGerencial', ['paci' => $paci, 'func' => $func,'cid' => $cid, 'taxa' => $taxa, 'media' => $media, 
+        'medic' =>$medic,'leito' => $leito,'leitOcu' => $leitOcu,'EnfCh' => $EnfCh,'Enf' => $Enf,'Est' => $Est,'adMin' => $adMin, ]);
     }
 
     public function realizarBackup()

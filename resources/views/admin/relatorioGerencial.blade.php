@@ -56,7 +56,7 @@
                         <div class="card-menu text-center card-options">
                             <div class="card-options-icon options-icon">
                             <h2 class="card-options_title"><b
-                                >A22</b></h2>
+                                >{{$cid["codCid"]}}</b></h2>
                             </div>
                             <h4 class="card-options_title"><a
                                 >CID mais frequente</a></h4>
@@ -88,7 +88,7 @@
                         <div class="card-menu text-center card-options">
                             <div class="card-options-icon options-icon">
                             <h4 class="card-options_title"><b
-                                >Dipirona</b></h4>
+                                >{{$medic["Nome_Medicam"]}}</b></h4>
                             </div>
                             <h4 class="card-options_title"><a
                                 >Medicamento mais usado</a></h4>
