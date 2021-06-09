@@ -730,12 +730,14 @@ class AdminController extends Controller
         $query = mysqli_query($connect, $sql);
         $func = mysqli_fetch_assoc($query);
 
-
         //CID mais frequente
         $sql = "SELECT codCid FROM cid INNER JOIN cid_prontuario 
                 ON cid.id=cid_prontuario.id_CID GROUP BY codCid 
                 ORDER BY count(codCid) desc, codCid desc LIMIT 1";
-        $query = mysqli_query($connect, $sql);
+        $query = mysqli_query($connect, $sql);        
+        if ($query == FALSE) {
+            $cid = ["codCid" => "0"];
+        } else
         $cid = mysqli_fetch_assoc($query);
 
         //Taxa de óbito
@@ -763,6 +765,10 @@ class AdminController extends Controller
                 medicamentos.Codigo=agendamentos.Cod_medicamento GROUP BY Nome_Medicam 
                 ORDER BY count(Nome_Medicam) desc, Nome_Medicam desc LIMIT 1";
         $query = mysqli_query($connect, $sql);
+        
+        if ($query == FALSE) {
+            $medic = ["Nome_Medicam" => "Vazio"];
+        } else
         $medic = mysqli_fetch_assoc($query);
 
 
