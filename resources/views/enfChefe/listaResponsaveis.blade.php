@@ -59,23 +59,23 @@
                         </div>
                     </div>
 
+                    <form action="/prontuario" method="get">
                     <div class="row">
                         <div class="col-md-4 col-lg-2 col-xl-2">
                             <p>Paciente</p>
                         </div>
-                        <form action="/prontuario" method="get">
                             <input type="hidden" name='cpf' value='{{$identificaP}}'>
                             <input type="hidden" name='numero' value='{{$infos["id".$i]}}'>
                             <div class="col-md-9 col-lg-7 col-xl-7">
                                 <button type="submit" class="btn-Patient">{{$infos["paciente".$i]}}</button>
                             </div>
-                        </form>
                         <div class="col-md-3 col-lg-3 col-xl-3">
                             <div class="box-blue">
                                 Leito: {{$infos["leito".$i]}}
                             </div>
                         </div>
                     </div>
+                </form>
                    
                     <div class="row">
                         <div class="col-md-2 col-lg-2 col-xl-2">
