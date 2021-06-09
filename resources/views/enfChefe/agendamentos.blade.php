@@ -44,17 +44,19 @@
                 @endif
             </div>
         </div>
-    </div>     
-    <div id="screen-icon"> <!-- Icone de Download Em Telas -->
-        <form method="get" action="/baixarArquivos" class="download-icon">
-            <button>
-                <i class="fas fa-download"></i>
-            </button>
-            @if(isset($infos["hora0"]))
-            <input type="hidden" name="listagem" value="{{implode('|',$infos)}}">
-            <input type="hidden" name="tela" value="la">
-            @endif
-        </form>
+    </div>  
+    <div class="container">
+        <div id="screen-icon"> <!-- Icone de Download Em Telas -->
+            <form method="get" action="/baixarArquivos" class="download-icon">
+                <button>
+                    <i class="fas fa-download"></i>
+                </button>
+                @if(isset($infos["hora0"]))
+                <input type="hidden" name="listagem" value="{{implode('|',$infos)}}">
+                <input type="hidden" name="tela" value="la">
+                @endif
+            </form>
+        </div>
     </div>
 
         <div class="container-1">
