@@ -46,7 +46,7 @@
                         <div class="card-menu text-center card-options">
                             <div class="card-options-icon options-icon">
                             <h2 class="card-options_title"><b
-                                >24</b></h2>
+                                >{{$func["COUNT(*)"]}}</b></h2>
                             </div>
                             <h4 class="card-options_title"><a
                                 >Funcionários Cadastrados</a></h4>
@@ -66,7 +66,7 @@
                         <div class="card-menu text-center card-options">
                             <div class="card-options-icon options-icon">
                             <h2 class="card-options_title"><b
-                                >24%</b></h2>
+                                >{{$taxa}} %</b></h2>
                             </div>
                             <h4 class="card-options_title"><a
                                 >Taxa de óbito</a></h4>
@@ -78,7 +78,7 @@
                         <div class="card-menu text-center card-options">
                             <div class="card-options-icon options-icon">
                             <h2 class="card-options_title"><b
-                                >43.2</b></h2>
+                                >{{$media}}</b></h2>
                             </div>
                             <h4 class="card-options_title"><a
                                 >Idade Media entre Pacientes</a></h4>
@@ -98,7 +98,7 @@
                         <div class="card-menu text-center card-options">
                             <div class="card-options-icon options-icon">
                             <h2 class="card-options_title"><b
-                                >22</b></h2>
+                                >{{$leito["COUNT(*)"]}}</b></h2>
                             </div>
                             <h4 class="card-options_title"><a
                                 >Quantidade de Leitos Cadastrados</a></h4>
@@ -108,7 +108,7 @@
                         <div class="card-menu text-center card-options">
                             <div class="card-options-icon options-icon">
                             <h2 class="card-options_title"><b
-                                >11</b></h2>
+                                >{{$leitOcu["COUNT(*)"]}}</b></h2>
                             </div>
                             <h4 class="card-options_title"><a
                                 >Quantidade de Leitos Ocupados</a></h4>
@@ -119,7 +119,7 @@
                     <div class="col-xl-3 col-lg-3 col-md-6">
                         <div class="card-menu text-center card-options">
                             <div class="card-options-icon options-icon">
-                                    <h2 class="card-options_title"><b>4</b></h2>
+                                    <h2 class="card-options_title"><b>{{$EnfCh["COUNT(*)"]}}</b></h2>
                                 <h4 class="card-options_title"><a
                                     >Enfermeiros Chefes Ativos</a></h4>
                             </div>       
@@ -129,7 +129,7 @@
                         <div class="card-menu text-center card-options">
                             <div class="card-options-icon options-icon">
                             <h2 class="card-options_title"><b
-                                >11</b></h2>
+                                >{{$Enf["COUNT(*)"]}}</b></h2>
                             </div>
                             <h4 class="card-options_title"><a
                                 >Enfermeiros Ativos</a></h4>
@@ -139,7 +139,7 @@
                         <div class="card-menu text-center card-options">
                             <div class="card-options-icon options-icon">
                             <h2 class="card-options_title"><b
-                                >13</b></h2>
+                                >{{$Est["COUNT(*)"]}}</b></h2>
                             </div>
                             <h4 class="card-options_title"><a
                                 >Estagiarios Ativos</a></h4>
@@ -149,7 +149,7 @@
                         <div class="card-menu text-center card-options">
                             <div class="card-options-icon options-icon">
                             <h2 class="card-options_title"><b
-                                >2</b></h2>
+                                >{{$adMin["COUNT(*)"]}}</b></h2>
                             </div>
                             <h4 class="card-options_title"><a
                                 >Administradores Cadastrados</a></h4>

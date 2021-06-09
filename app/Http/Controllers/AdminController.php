@@ -718,6 +718,7 @@ class AdminController extends Controller
     {
         include("db.php");
         VerificaLoginController::verificarLoginAdmin();
+        $inf = [];
         
         //Calculo da quantidade de pacientes
         $sql = "SELECT COUNT(*) FROM pacientes WHERE Estado = 'internado'";
@@ -786,8 +787,10 @@ class AdminController extends Controller
         $adMin = mysqli_fetch_assoc($query);
 
         $inf = [$paci, $func, $taxa, $media, $leito, $leitOcu, $EnfCh, $Enf, $Est, $adMin];
+        //dd($inf);
 
-        return view('/admin/relatorioGerencial', ['paci' => $inf]);
+        return view('/admin/relatorioGerencial', ['paci' => $paci, 'func' => $func, 'taxa' => $taxa, 'media' => $media, 
+        'leito' => $leito,'leitOcu' => $leitOcu,'EnfCh' => $EnfCh,'Enf' => $Enf,'Est' => $Est,'adMin' => $adMin, ]);
     }
 
     public function realizarBackup()
