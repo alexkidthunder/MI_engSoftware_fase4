@@ -714,7 +714,8 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    public function relatorioGerencial()              //função para chamar a função salvar usuário pela view
+    //função para pegar as informações do Relatório Gerencial
+    public function relatorioGerencial()      
     {
         include("db.php");
         VerificaLoginController::verificarLoginAdmin();        
@@ -795,12 +796,11 @@ class AdminController extends Controller
         $query = mysqli_query($connect, $sql);
         $adMin = mysqli_fetch_assoc($query);
 
-        //$inf = [];
-        //$inf = [$paci, $func, $cid, $taxa, $media, $medic, $leito, $leitOcu, $EnfCh, $Enf, $Est, $adMin];
+        $inf = ['paci' => $paci, 'func' => $func,'cid' => $cid, 'taxa' => $taxa, 'media' => $media, 
+        'medic' =>$medic,'leito' => $leito,'leitOcu' => $leitOcu,'EnfCh' => $EnfCh,'Enf' => $Enf,'Est' => $Est,'adMin' => $adMin, ];
         //dd($inf);
 
-        return view('/admin/relatorioGerencial', ['paci' => $paci, 'func' => $func,'cid' => $cid, 'taxa' => $taxa, 'media' => $media, 
-        'medic' =>$medic,'leito' => $leito,'leitOcu' => $leitOcu,'EnfCh' => $EnfCh,'Enf' => $Enf,'Est' => $Est,'adMin' => $adMin, ]);
+        return view('/admin/relatorioGerencial', $inf);
     }
 
     public function realizarBackup()
