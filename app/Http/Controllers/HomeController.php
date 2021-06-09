@@ -1174,158 +1174,242 @@ class HomeController extends Controller
         include("db.php");
         $cpf = HomeController::obterCpf();
         $vetor = explode('|',$request->listagem);
-        $testa = "SELECT * from usuarios where CPF = '$cpf'";
-        $test = mysqli_query($connect,$testa);
-        while($testa = mysqli_fetch_array($test)){
-            $nome = $testa['Nome'];
+        $lista = '';
+        $sql = "SELECT * from usuarios where CPF = '$cpf'";
+        $query = mysqli_query($connect,$sql);
+        while($sql = mysqli_fetch_array($query)){
+            $nome = $sql['Nome'];
         };
+        $css = file_get_contents("../public/css/download-style.css");
+        $mpdf =  new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'Legal']);
         date_default_timezone_set('America/Sao_Paulo');
         $data_a = date('d-m-y - h:i:s');
-        $mpdf =  new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'Legal']);
         //$mpdf->WriteHTML($css,\Mpdf\HTMLParserMode::HEADER_CSS);
         if(isset($_SESSION['administrador'])){
-            $log = [];
-            dd($vetor);
-            for($i =  0; $i <= count($vetor)-4;$i++){
-                if($i%4 ==0){
-                    $log[$i/4] ='Data: '.$vetor[$i]. ' '. '/ Hora: '.$vetor[$i+1].' '.'/ Ação: '.$vetor[$i+2].' '. '/ IP: '.$vetor[$i+3];
-                }
-            }
-                $lista = implode('<br><br>',$log);
-            $mpdf->WriteHTML('<!--Tabela com os Logs do Sistema-->
-            <div class="table-responsive scrolls">
-                <table class="table table-striped table-hover">
-                    <thead>
-                        <tr> <!--Header da Tabela-->
-                            <th scope="col">Data</th>
-                            <th scope="col">Hora</th>
-                            <th scope="col">Ação</th>
-                            <th scope="col">IP</th>
-                        </tr>
-                    </thead>
-                    <tbody id="Log_table">
-                        @if(isset($logs))
-    
-                            @foreach (array_reverse($logs) as $value)
-                                <tr>
-                                    <td>'. $lista.' </td>
-                                </tr>
-                            @endforeach
-                        @endif
-                    </tbody>
-                </table>
-            </div>    ');
+            dd("Temos que achar um jeito de transformar matriz em string pra passar pelo input:hidden na pagina do log");
         }else{
             if($request->tela == 'lp'){
-                $lp = [];
-                for($i =  0; $i <= count($vetor)-2;$i++){
+                $sql = "SELECT *  from pacientes where Nome_Paciente = '$request->numero'";
+                $query = mysqli_query($connect,$sql);
+                while($sql = mysqli_fetch_array($query)){
+                    $estado = $sql['Estado'];
+                };
+                for($i = 0; $i < count($vetor);$i++){
                     if($i % 2 == 0){
-                        $lp[$i/2] = ($i/2).'- '.$vetor[$i];
+                        $lista =  $lista.'<tr><td>'.$vetor[$i].'</td><td>'.$estado.'</td></tr>';
                     }
                 }
-                $lista = implode('<br><br>',$lp);
-                $mpdf->WriteHTML('<body>
-        <header class="container-personal-data">
-            <div class="container-header">
-                <h2><span>Nome Hospital'.' '. '/  </span><span>'.$nome. '</span><span> /'.$data_a.'</span></h2> <!--Nome do nosso Hospital-->
-            </div>
-        </header>
-        <hr>
-        <section>
-            <div class="container-header"> 
-                <h1>Pacientes e Prontuários</h1> <!--De onde saiu a lista-->
-            </div>
-            <hr>
-            <div class="container-listagem">
-                    <div class="container-item-list"> <!--Tudo que contem em um item da lista e seus campos--> <!--Isso que deve ser posto dentro de um while/for/do while-->
-                        <div class="Overflow-hidden"> <!--Caso Precise adicionar mais um campo a essa listagem, criar uma div nova, como essa-->
-                            <p>'.$lista.'</p>
-                        </div>
-                    </div>
-               
-            </div>
-        
-        </section>
-        <footer style="position: absolute; bottom: 0;">
-            <p id="Copyright">Informações para o Footer da página</p> <!--Caso queira deixar alguma informação no Footer-->
-        </footer>
-    </body>' );
+                $mpdf->WriteHTML('<!doctype html>
+                <html lang="en">
+                <style>'.$css.'</style>
+                    <body>
+                        <header class="container-personal-data">
+                            <div>
+                                <h2>Nome Hospital</h2> <!--Nome do nosso Hospital-->
+                            </div>
+                            <div>
+                                <h2>'.$nome.' / '.$cpf.'</h2> <!--Nome e CPF de quem requisitou o download-->
+                            </div>
+                            <div>
+                                <h2>'.$data_a.'</h2> <!--Data e Hora em que foi feito o download-->
+                            </div>
+                        </header>
+                        <hr>
+                        <section>
+                            <div class="container-header"> 
+                                <h1>Pacientes e Prontuários</h1> <!--De onde saiu a lista-->
+                            </div>
+                            <hr>
+                            <div class="container-listagem">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Nome</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>'.$lista.'
+                                       
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                        <footer style="position: absolute; bottom: 0;">
+                            <p id="Copyright">Informações para o Footer da página</p> <!--Caso queira deixar alguma informação no Footer-->
+                        </footer>
+                    </body>');
             }else if($request->tela == 'lm'){
-                $lm = [];
-                for($i =  0; $i <= count($vetor)-4;$i++){
+                for($i =  0; $i <= count($vetor)-1;$i++){
                     if($i%4 ==0){
-                        $lm[$i/4] = ($i/4).'- '.$vetor[$i]. ' '. '/ Validade: '.$vetor[$i+1].' '.'/ Em estoque: '.$vetor[$i+2].' '. '/ Fabricante: '.$vetor[$i+3];
+                        $lista =$lista.
+                        '<tr>
+                        <td>'.$vetor[$i].'</td>
+                        <td>'.$vetor[$i+3].'</td>
+                        <td>'.$vetor[$i+1].'</td>
+                        <td>'.$vetor[$i+2].'</td>
+                        </tr>';
                     }
                 }
-                $lista = implode('<br><br>',$lm);
-                $mpdf->WriteHTML('<body>
-        <header class="container-personal-data">
-            <div class="container-header">
-            <h2><span>Nome Hospital'.' '. '/  </span><span>'.$nome. '</span><span> /'.$data_a.'</span></h2> <!--Nome do nosso Hospital-->
-            </div>
-        </header>
-        <hr>
-        <section>
-            <div class="container-header"> 
-                <h1>Estoque de agendamentos</h1> <!--De onde saiu a lista-->
-            </div>
-            <hr>
-            <div class="container-listagem">
-                    <div class="container-item-list"> <!--Tudo que contem em um item da lista e seus campos--> <!--Isso que deve ser posto dentro de um while/for/do while-->
-                        <div class="Overflow-hidden"> <!--Caso Precise adicionar mais um campo a essa listagem, criar uma div nova, como essa-->
-                            <p>'.$lista.'</p>
-                        </div>
-                    </div>
-               
-            </div>
-        
-        </section>
-        <footer style="position: absolute; bottom: 0;">
-            <p id="Copyright">Informações para o Footer da página</p> <!--Caso queira deixar alguma informação no Footer-->
-        </footer>
-    </body>' );
-        }else if($request->tela == 'hp'){
-            $hp = [];
-            for($i =  0; $i <= count($vetor)-6;$i++){
-                if($i%6 == 0){
-                    $hp[$i/6] = 'Id prontuario- '.$vetor[$i]. ' '. '/ Data de internação: '.$vetor[$i+4].' '. '/ Data de Saida: '.$vetor[$i+5];
+                $mpdf->WriteHTML('<!doctype html>
+                <html lang="en">
+                <style>'.$css.'</style>
+                    <body>
+                        <header class="container-personal-data">
+                            <div>
+                                <h2>Nome Hospital</h2> <!--Nome do nosso Hospital-->
+                            </div>
+                            <div>
+                                <h2>'.$nome.' / '.$cpf.'</h2> <!--Nome e CPF de quem requisitou o download-->
+                            </div>
+                            <div>
+                                <h2>'.$data_a.'</h2> <!--Data e Hora em que foi feito o download-->
+                            </div>
+                        </header>
+                        <hr>
+                        <section>
+                            <div class="container-header"> 
+                            <section>
+                                <h1>Medicamentos</h1> <!--De onde saiu a lista-->
+                            </div>
+                            <hr>
+                            <div class="container-listagem">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Nome Medicamento</th>
+                                            <th>Nome do Fabricante</th>
+                                            <th>Data de Validade</th>
+                                            <th>Quantidade</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        '.$lista.'
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                        <footer style="position: absolute; bottom: 0;">
+                            <p id="Copyright">Informações para o Footer da página</p> <!--Caso queira deixar alguma informação no Footer-->
+                        </footer>
+                    </body>');
+            }else if($request->tela == 'lr'){
+                for($i =  0; $i <= count($vetor)-1;$i++){
+                    if($i%8 ==0){
+                        $lista =$lista.
+                        '<tr> <!--Cada Responsável-->
+                        <td>'.$vetor[$i+7].'</td>
+                        <td>'.$vetor[$i+4].'</td>
+                        <td>'.$vetor[$i].' - '.$vetor[$i+1].'</td>
+                        <td>'.$vetor[$i+6].'</td>
+                        <td>'.$vetor[$i+3].'</td>
+                        <td>'.$vetor[$i+2].'</td>
+                        </tr>';
+                    }
                 }
+                
+                $mpdf->WriteHTML('<!doctype html>
+                <html lang="en">
+                <style>'.$css.'</style>
+                    <body>
+                        <header class="container-personal-data">
+                            <div>
+                                <h2>Nome Hospital</h2> <!--Nome do nosso Hospital-->
+                            </div>
+                            <div>
+                                <h2>'.$nome.' / '.$cpf.'</h2> <!--Nome e CPF de quem requisitou o download-->
+                            </div>
+                            <div>
+                                <h2>'.$data_a.'</h2> <!--Data e Hora em que foi feito o download-->
+                            </div>
+                        </header>
+                        <hr>
+                        <section>
+                            <div class="container-header"> 
+                                <h1>Responsáveis</h1> <!--De onde saiu a lista-->
+                            </div>
+                            <hr>
+                            <div class="container-listagem">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Nome do Responsável</th>
+                                            <th>Leito</th>
+                                            <th>Hora - Data</th>
+                                            <th>Nome do Paciente</th>
+                                            <th>Remedio</th>
+                                            <th>Quantidade Remedio</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    '.$lista.'
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                        <footer style="position: absolute; bottom: 0;">
+                            <p id="Copyright">Informações para o Footer da página</p> <!--Caso queira deixar alguma informação no Footer-->
+                        </footer>
+                    </body>');
+            }else if($request->tela == 'la'){
+                for($i =  0; $i <= count($vetor)-1;$i++){
+                    if($i%8 ==0){
+                        $lista =$lista.
+                        '<tr> <!--Cada Agendamento-->
+                            <td>'.$vetor[$i+4].'</td>
+                            <td>'.$vetor[$i].' - '.$vetor[$i+1].'</td>
+                            <td>'.$vetor[$i+6].'</td>
+                            <td>'.$vetor[$i+3].'</td>
+                            <td>'.$vetor[$i+2].'</td>
+                        </tr>';
+                    }
+                }
+                
+                $mpdf->WriteHTML('<!doctype html>
+                <html lang="en">
+                <style>'.$css.'</style>
+                    <body>
+                        <header class="container-personal-data">
+                            <div>
+                                <h2>Nome Hospital</h2> <!--Nome do nosso Hospital-->
+                            </div>
+                            <div>
+                                <h2>'.$nome.' / '.$cpf.'</h2> <!--Nome e CPF de quem requisitou o download-->
+                            </div>
+                            <div>
+                                <h2>'.$data_a.'</h2> <!--Data e Hora em que foi feito o download-->
+                            </div>
+                        </header>
+                        <hr>
+                        <section>
+                            <div class="container-header"> 
+                                <h1>Agendamentos</h1> <!--De onde saiu a lista-->
+                            </div>
+                            <hr>
+                            <div class="container-listagem">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Leito</th>
+                                            <th>Hora - Data</th>
+                                            <th>Nome do Paciente</th>
+                                            <th>Remedio</th>
+                                            <th>Quantidade Remedio</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        '.$lista.'
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                        <footer style="position: absolute; bottom: 0;">
+                            <p id="Copyright">Informações para o Footer da página</p> <!--Caso queira deixar alguma informação no Footer-->
+                        </footer>
+                    </body>');
             }
-            $lista = implode('<br><br>',$hp);
-            $mpdf->WriteHTML('<body>
-    <header class="container-personal-data">
-        <div class="container-header">
-        <h2><span>Nome Hospital'.' '. '/  </span><span>'.$nome. '</span><span> /'.$data_a.'</span></h2> <!--Nome do nosso Hospital-->
-        </div>
-    </header>
-    <hr>
-    <section>
-        <div class="container-header"> 
-            <h1>Historico de prontuarios</h1> <!--De onde saiu a lista-->
-        </div>
-        <hr>
-        <div class="container-listagem">
-        <div>
-            <h2>Paciente: '.$vetor[1].' </h2> 
-            <h3>CPF:'.$vetor[3].'</h3> 
-            <h4>Estado atual:   '.$vetor[2].'</h4> 
-        </div>
-                <div class="container-item-list"> <!--Tudo que contem em um item da lista e seus campos--> <!--Isso que deve ser posto dentro de um while/for/do while-->
-                    <div class="Overflow-hidden"> <!--Caso Precise adicionar mais um campo a essa listagem, criar uma div nova, como essa-->
-                        <p>'.$lista.'</p>
-                    </div>
-                </div>
-           
-        </div>
-    
-    </section>
-    <footer style="position: absolute; bottom: 0;">
-        <p id="Copyright">Informações para o Footer da página</p> <!--Caso queira deixar alguma informação no Footer-->
-    </footer>
-</body>' );
-    }
-
         }
         $mpdf->Output();
     } 
+
+    
 }

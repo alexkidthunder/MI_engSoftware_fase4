@@ -31,6 +31,9 @@
                 <button>
                     <i class="fas fa-download"></i>
                 </button>
+                @if(isset($logs))
+                    <input type="hidden" name="listagem" value="">
+                @endif
             </form>
             
             <!--Escolher o numero de Logs por pagina-->

@@ -34,6 +34,7 @@
             @if(isset($p[0]))
             <input type="hidden" name="listagem" value="{{implode('|',$p)}}">
             <input type="hidden" name="tela" value="lp">
+            <input type="hidden" name='numero' value='{{$p[0]}}'>
             @endif
         </form>
     </div>
@@ -80,7 +81,7 @@
 
         <!--------------------- Paciente --------------------->
         @if(isset($p))
-            @for($i = 0;$i <= (count($p)/2)-1; $i++)
+            @for($i = 0;$i <= count($p); $i++)
             @if(isset($p[$i]))
             <div class="box-white">
                 <div class="row">
