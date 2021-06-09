@@ -22,7 +22,7 @@
         <div class="container-2">
             <div class="row">
                 <!-- ============================ ENFERMEIRO CHEFE E ENFERMEIRO =========================-->
-                @if($resultado[17] == 1)
+                @if($resultado[17]==1)
                 <div class="col-6 col-md-4 col-lg-3"> <!--Botão para cadastro de paciente-->
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
