@@ -36,7 +36,7 @@
                     <div class="col-xl-3 col-lg-3 col-md-6">
                         <div class="card-menu text-center card-options">
                             <div class="card-options-icon options-icon">
-                                    <h2 class="card-options_title"><b>122</b></h2>
+                                    <h2 class="card-options_title"><b>{{$paci["COUNT(*)"]}}</b></h2>
                                 <h4 class="card-options_title"><a
                                     >Pacientes Internados</a></h4>
                             </div>       
