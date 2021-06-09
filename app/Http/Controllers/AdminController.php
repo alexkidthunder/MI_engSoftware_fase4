@@ -734,10 +734,11 @@ class AdminController extends Controller
         $sql = "SELECT codCid FROM cid INNER JOIN cid_prontuario 
                 ON cid.id=cid_prontuario.id_CID GROUP BY codCid 
                 ORDER BY count(codCid) desc, codCid desc LIMIT 1";
-        $query = mysqli_query($connect, $sql);        
-        if ($query == FALSE or mysqli_fetch_assoc($query) == NULL) {
-            $cid = ["codCid" => "0"];            
-        } else
+        $query = mysqli_query($connect, $sql);  
+        //dd( mysqli_fetch_assoc($query));   
+        if ($query == FALSE) {
+            $cid = ["codCid" => "0"];   
+        }         
         $cid = mysqli_fetch_assoc($query);
 
         //Taxa de óbito
@@ -750,6 +751,9 @@ class AdminController extends Controller
         $sql = "SELECT COUNT(*) FROM pacientes WHERE Estado = 'obito'";
         $query = mysqli_query($connect, $sql);
         $PaciO = mysqli_fetch_assoc($query);
+        if ($query == false ) {
+            $paciV = ["COUNT(*)" => "1"];
+        }
                         //Calculo da porcentagem
         $taxa = number_format($PaciO["COUNT(*)"] / $paciV["COUNT(*)"] * 100, 2);       
 
@@ -763,11 +767,11 @@ class AdminController extends Controller
         $sql = "SELECT Nome_Medicam FROM medicamentos INNER JOIN agendamentos ON 
                 medicamentos.Codigo=agendamentos.Cod_medicamento GROUP BY Nome_Medicam 
                 ORDER BY count(Nome_Medicam) desc, Nome_Medicam desc LIMIT 1";
-        $query = mysqli_query($connect, $sql);
-        if ($query == FALSE or mysqli_fetch_assoc($query) == NULL) {
+        $query = mysqli_query($connect, $sql);   
+        if ($query == FALSE ) {
             $medic = ["Nome_Medicam" => "Vazio"];
-        } else
-        $medic = mysqli_fetch_assoc($query);
+        } 
+        $medic = mysqli_fetch_assoc($query);                
 
         //Quantidade de Leitos Cadastrados
         $sql = "SELECT COUNT(*) FROM leitos ";
