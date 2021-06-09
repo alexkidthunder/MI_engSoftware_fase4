@@ -735,8 +735,8 @@ class AdminController extends Controller
                 ON cid.id=cid_prontuario.id_CID GROUP BY codCid 
                 ORDER BY count(codCid) desc, codCid desc LIMIT 1";
         $query = mysqli_query($connect, $sql);        
-        if ($query == FALSE) {
-            $cid = ["codCid" => "0"];
+        if ($query == FALSE or mysqli_fetch_assoc($query) == NULL) {
+            $cid = ["codCid" => "0"];            
         } else
         $cid = mysqli_fetch_assoc($query);
 
@@ -757,20 +757,17 @@ class AdminController extends Controller
         $sql = "SELECT avg(FLOOR(DATEDIFF(NOW(), c.Data_Nasc) / 365)) AS idade FROM pacientes c";
         $query = mysqli_query($connect, $sql);
         $data = mysqli_fetch_assoc($query);
-        $media = number_format($data["idade"],);       
-
+        $media = number_format($data["idade"],);
 
         //Medicamento mais usado
         $sql = "SELECT Nome_Medicam FROM medicamentos INNER JOIN agendamentos ON 
                 medicamentos.Codigo=agendamentos.Cod_medicamento GROUP BY Nome_Medicam 
                 ORDER BY count(Nome_Medicam) desc, Nome_Medicam desc LIMIT 1";
         $query = mysqli_query($connect, $sql);
-        
-        if ($query == FALSE) {
+        if ($query == FALSE or mysqli_fetch_assoc($query) == NULL) {
             $medic = ["Nome_Medicam" => "Vazio"];
         } else
         $medic = mysqli_fetch_assoc($query);
-
 
         //Quantidade de Leitos Cadastrados
         $sql = "SELECT COUNT(*) FROM leitos ";
