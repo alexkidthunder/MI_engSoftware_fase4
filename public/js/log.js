@@ -53,7 +53,6 @@ function ClearTable(Array){
     var MaxSize = parseInt(sessionStorage.getItem("Size"));
     for(i = MaxSize-1; 0 <= i; i--){
         if(i>=fim || i < inicio){
-            console.log("Removeu");
             Array[i].remove();
         }
     }
@@ -82,7 +81,6 @@ function setNumberPage(){
     var pages = calcPages(input_with_size.value,increment);
     var paginaAtual= parseInt(sessionStorage.getItem("index_pag"));
     page_div.innerHTML = "Pagina " + paginaAtual + "/" + pages;
-    console.log(pages);
     for(i = 1; i <= pages;i++){
 
         if(paginaAtual >= 4){
