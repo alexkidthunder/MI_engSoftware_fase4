@@ -95,6 +95,7 @@ Route::post('/FMagendamentos',[HomeController::class,'finalizarMeusAgendamentos'
 /*------------ Rotas do enfermeiro chefe -------------*/
 
 Route::get('/cadastroPlantonista', [EnfChefeController::class,'cadastroPlantonista'])->name('cadastroPlantonista');
+Route::get('/cadastrarPlantonistas', [EnfChefeController::class,'cadastrarPlantonistas'])->name('cadastrarPlantonistas');
 Route::get('/listagemPlantonistas', [EnfChefeController::class,'listaPlantonistas'])->name('listagemPlantonistas');
 Route::get('/cadastroMedicamento', [EnfChefeController::class,'cadastroMedicamento'])->name('cadastroMedicamento');
 Route::get('/cadastroAgendamento', [EnfChefeController::class,'cadastroAgendamento'])->name('cadastroAgendamento');
