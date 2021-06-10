@@ -25,23 +25,39 @@
         <div class="container-1" id="on-duty">
             <h1>PLANTONISTAS</h1>
 
+            <!----------- MENSAGENS DE ERRO ----------------->
+            @if (session('msg-error'))
+                <div class='msg-error'> {{ session('msg-error') }}</div>
+            @endif
+            <!----------- MENSAGENS DE SUCESSO----------------->
+            @if (session('msg-sucess'))
+                <div class='msg-sucess'> {{ session('msg-sucess') }}</div>
+            @endif
+
+            @if(isset($plantonistas))
+            <form action="/cadastrarPlantonistas" method="get">
             <div class="box-on-duty">
+                
                 <div class="row">
                     <div class="col"> <!--NOME-->
                         <div class="row no-gutters title"> <!--CABEÇÁRIO NOME-->
                             NOME
                         </div>
+                        @foreach($plantonistas as $plantonista)
                         <div class="row no-gutters box-blue"> <!--FUNCIONÁRIO NOME-->
-                            <span style="white-space: nowrap">Rafela Soares da Silva</span>
+                            <span style="white-space: nowrap">{{$plantonista['Nome']}}</span>
                         </div>
+                        @endforeach
                     </div>
                     <div class="col"> <!--CARGO-->
                         <div class="row no-gutters title"> <!--CABEÇÁRIO CARGO -->
                             CARGO
                         </div>
+                        @foreach($plantonistas as $plantonista)
                         <div class="row no-gutters box-blue"> <!--FUNCIONÁRIO CARGO -->
-                            <span style="white-space: nowrap">Enfermeiro Chefe</span>
+                            <span style="white-space: nowrap">{{$plantonista['Cargo']}}</span>
                         </div>
+                        @endforeach
                     </div>
                     <div class="col"> <!--EM PLANTÃO-->
                         <div class="row no-gutters title"> <!--align="center"-->
@@ -49,12 +65,29 @@
                                 <span style="white-space: nowrap">EM PLANTÃO</span> <!--CABEÇÁRIO EM PLANTÃO -->
                             </div>
                         </div>
+                        @foreach($plantonistas as $plantonista)
                         <div class="row no-gutters box-button"> <!--FUNCIONÁRIO EM PLANTÃO-->
-                            <input type="checkbox" class="mx-auto">
+                            <input type="checkbox" class="mx-auto" name="{{$plantonista['CPF']}}" id="{{$plantonista['CPF']}}" {{ $plantonista['Plantao'] }}  >
+                            <!-- {{$plantonista['CPF']}} -->
                         </div>
+                        
+                        @endforeach
                     </div>
                 </div>
+                @endif
+
+                 <div> 
+                 <h4 id="num_alteracao">Alterações</h4>
+                 
+                 <button id="alterar" type="submit"                                                 >Alterar</button> 
+                                                  <!--  class="container-button btn-white hide" -->
+                </div> 
+               
             </div>
+          
+            </form>
+
+            
         </div>
     </section>
 </body>

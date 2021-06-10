@@ -16,6 +16,9 @@ class EnfChefeController extends Controller
         return view('/enfChefe/menu');
     }*/
     
+    /**
+     * Função que Lista os Plantonistas e opções de manipular os checkbox 
+     */
     public function cadastroPlantonista(){
         include("db.php");
         VerificaLoginController::verificarLogin();
@@ -26,8 +29,37 @@ class EnfChefeController extends Controller
             $sql = "SELECT * FROM enfermeiros";
             $query1 = mysqli_query($connect, $sql);
             $sql1 = "SELECT * FROM estagiarios";            
-            $query2 = mysqli_query($connect, $sql1);
+            $query2 = mysqli_query($connect, $sql1);            
+            $i = 0;
+            $plantonistas = null;
 
+            //atualizando plantões dos enfermeiros
+            while($dado = mysqli_fetch_array($query1)){
+                
+                    $dado['Plantao'] == 0? $dado['Plantao'] = 'unchecked' : $dado['Plantao'] = 'checked';
+                    $cpfAux = $dado['CPF'];                    
+                    $queryAux = mysqli_query($connect, "SELECT * FROM usuarios WHERE CPF = '$cpfAux'" );                    
+                    $usuario = mysqli_fetch_array($queryAux);                    
+                    $dado['Nome'] = $usuario['Nome'];                    
+                    $dado['Cargo'] = "Enfermeiro";
+                    $plantonistas[$i] = $dado;
+                    $i++;
+                
+            }
+              //atualizando plantões dos estagiários
+            while($dado = mysqli_fetch_array($query2)){
+                
+                $dado['Plantao'] == 0? $dado['Plantao'] = 'unchecked' : $dado['Plantao'] = 'checked';
+                $cpfAux = $dado['CPF'];
+                $queryAux = mysqli_query($connect, "SELECT * FROM usuarios WHERE CPF = '$cpfAux'");               
+                $usuario = mysqli_fetch_array($queryAux);
+                $dado['Nome'] = $usuario['Nome'];
+                $dado['Cargo'] = "Estagiário";
+               
+                $plantonistas[$i] = $dado;
+                $i++;
+            
+            }       
 
             /*
             //log
@@ -37,12 +69,58 @@ class EnfChefeController extends Controller
 */
 
 
-            return view('/enfChefe/cadastroPlantonista');
+            return view('/enfChefe/cadastroPlantonista', ['plantonistas'=>$plantonistas]);
         }else{
             return redirect()->back()->with('msg-error','Você não tem acesso a essa pagina!!!');
         }
         
        
+    }
+
+
+    /**
+     * Função que atualiza o status dos plantonistas
+     */
+    public function cadastrarPlantonistas(Request $request){
+        include("db.php");
+        //Buscar os plantonistas do banco
+        $sql = "SELECT * FROM enfermeiros";
+        $query1 = mysqli_query($connect, $sql);
+        $sql1 = "SELECT * FROM estagiarios";            
+        $query2 = mysqli_query($connect, $sql1);
+        // Plantonistas on vindo da view
+        $plantonistas = $request->all();   
+       
+        //setando os enfermeiros
+        while($dado = mysqli_fetch_array($query1)){
+            $cpfPlantonista = $dado['CPF'];
+            $cpfView = str_replace('.', '_', $cpfPlantonista);
+            //dd(isset($plantonistas[$cpfView])); 
+            if(isset($plantonistas[$cpfView])){            
+                
+                $update ="UPDATE enfermeiros set Plantao = '1' where CPF = '$cpfPlantonista'";
+                mysqli_query($connect, $update);
+            }else{                
+                $update2 ="UPDATE enfermeiros set Plantao = '0' where CPF = '$cpfPlantonista'";
+                mysqli_query($connect, $update2);
+            }
+        }
+        // setando os estagiários
+        while($dado = mysqli_fetch_array($query2)){
+            $cpfPlantonista = $dado['CPF'];
+            $cpfView = str_replace('.', '_', $cpfPlantonista);
+            if(isset($plantonistas[$cpfView])){                                 
+                $update ="UPDATE estagiarios set Plantao = '1' where CPF = '$cpfPlantonista'";
+                mysqli_query($connect, $update);
+            }else{;
+                $update2 ="UPDATE estagiarios set Plantao = '0' where CPF = '$cpfPlantonista'";
+                mysqli_query($connect, $update2);
+            }
+        }
+
+        return redirect()->route('cadastroPlantonista')->with('msg-sucess', "Plantões Alterados com sucesso");
+        
+        
     }
 
     public function cadastroMedicamento(){          //função para chamar a função salvar medicamento pela view
