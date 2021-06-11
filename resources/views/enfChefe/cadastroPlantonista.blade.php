@@ -22,8 +22,8 @@
     @include('layouts.navbar')
     <!----------End Hearder-------->
     <section>
-        <div class="container-1" id="on-duty">
-            <h1>PLANTONISTAS</h1>
+        <div class="container-2" id="on-duty">
+            <h1>CADASTRO DE PLANTONISTAS</h1>
 
             <!----------- MENSAGENS DE ERRO ----------------->
             @if (session('msg-error'))
@@ -37,57 +37,50 @@
             @if(isset($plantonistas))
             <form action="/cadastrarPlantonistas" method="get">
             <div class="box-on-duty">
-                
-                <div class="row">
-                    <div class="col"> <!--NOME-->
-                        <div class="row no-gutters title"> <!--CABEÇÁRIO NOME-->
+                <!--------- Cabeçalho --------->
+                <div class="title">
+                    <div class="row">
+                        <div class="col-5 col-sm-5 col-md-6 col-lg-6">
                             NOME
                         </div>
-                        @foreach($plantonistas as $plantonista)
-                        <div class="row no-gutters box-blue"> <!--FUNCIONÁRIO NOME-->
-                            <span style="white-space: nowrap">{{$plantonista['Nome']}}</span>
-                        </div>
-                        @endforeach
-                    </div>
-                    <div class="col"> <!--CARGO-->
-                        <div class="row no-gutters title"> <!--CABEÇÁRIO CARGO -->
+                        <div class="col-3 col-sm-3 col-md-4 col-lg-4">
                             CARGO
                         </div>
-                        @foreach($plantonistas as $plantonista)
-                        <div class="row no-gutters box-blue"> <!--FUNCIONÁRIO CARGO -->
-                            <span style="white-space: nowrap">{{$plantonista['Cargo']}}</span>
+                        <div class="col-4 col-sm-4 col-md-2 col-lg-2 text-center">
+                            EM PLANTÃO
                         </div>
-                        @endforeach
-                    </div>
-                    <div class="col"> <!--EM PLANTÃO-->
-                        <div class="row no-gutters title"> <!--align="center"-->
-                            <div class="mx-auto">
-                                <span style="white-space: nowrap">EM PLANTÃO</span> <!--CABEÇÁRIO EM PLANTÃO -->
-                            </div>
-                        </div>
-                        @foreach($plantonistas as $plantonista)
-                        <div class="row no-gutters box-button"> <!--FUNCIONÁRIO EM PLANTÃO-->
-                            <input type="checkbox" class="mx-auto" name="{{$plantonista['CPF']}}" id="{{$plantonista['CPF']}}" {{ $plantonista['Plantao'] }}  >
-                            <!-- {{$plantonista['CPF']}} -->
-                        </div>
-                        
-                        @endforeach
                     </div>
                 </div>
-                @endif
+                <!--------fim do cabeçalho--------->
 
-                 <div> 
-                 <h4 id="num_alteracao">Alterações</h4>
-                 
-                 <button id="alterar" type="submit"                                                 >Alterar</button> 
-                                                  <!--  class="container-button btn-white hide" -->
+                <!----------Plantonistas---------->
+                @foreach($plantonistas as $plantonista)
+                <div class="box-blue">
+                    <div class="row">
+                        <!--NOME DO FUNCIONÁRIO-->
+                        <div class="col-5 col-sm-5 col-md-6 col-lg-6 text-left">
+                                {{$plantonista['Nome']}}
+                        </div>
+                        <!--CARGO DO FUNCIONÁRIO-->
+                        <div class="col-3 col-sm-3 col-md-4 col-lg-4 text-left">
+                                {{$plantonista['Cargo']}}
+                        </div>
+                        <!--EM PLANTÃO-->
+                        <div class="col-4 col-sm-4 col-md-2 col-lg-2" align="center">
+                                <input type="checkbox" name="{{$plantonista['CPF']}}" id="{{$plantonista['CPF']}}" {{ $plantonista['Plantao'] }}  >
+                                <!-- {{$plantonista['CPF']}} -->
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+                <!----------fim de Plantonistas---------->
+                <div class="container-button"> 
+                    <button class="btn-white" id="alterar" type="submit">Alterar</button>
                 </div> 
                
             </div>
-          
             </form>
-
-            
+            @endif
         </div>
     </section>
 </body>

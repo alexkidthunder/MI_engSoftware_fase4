@@ -47,7 +47,6 @@
                 </div>
                 @while(isset($plantonista["nome".$i]))
                 <!--------- Plantonista --------->
-                <!---APENAS ISSO QUE SE REPETE BACK, O CABEÇARIO N -->
                 <div class="box-blue">
                     <div class="row">
                         <div class="col-6 col-sm-6 col-md-8 col-lg-8 text-left">
