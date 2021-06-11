@@ -730,12 +730,15 @@ class AdminController extends Controller
         $query = mysqli_query($connect, $sql);
         $func = mysqli_fetch_assoc($query);
 
-
         //CID mais frequente
         $sql = "SELECT codCid FROM cid INNER JOIN cid_prontuario 
                 ON cid.id=cid_prontuario.id_CID GROUP BY codCid 
                 ORDER BY count(codCid) desc, codCid desc LIMIT 1";
-        $query = mysqli_query($connect, $sql);
+        $query = mysqli_query($connect, $sql);  
+        //dd( mysqli_fetch_assoc($query));   
+        if ($query == FALSE) {
+            $cid = ["codCid" => "0"];   
+        }         
         $cid = mysqli_fetch_assoc($query);
 
         //Taxa de óbito
@@ -748,6 +751,9 @@ class AdminController extends Controller
         $sql = "SELECT COUNT(*) FROM pacientes WHERE Estado = 'obito'";
         $query = mysqli_query($connect, $sql);
         $PaciO = mysqli_fetch_assoc($query);
+        if ($query == false ) {
+            $paciV = ["COUNT(*)" => "1"];
+        }
                         //Calculo da porcentagem
         $taxa = number_format($PaciO["COUNT(*)"] / $paciV["COUNT(*)"] * 100, 2);       
 
@@ -755,16 +761,17 @@ class AdminController extends Controller
         $sql = "SELECT avg(FLOOR(DATEDIFF(NOW(), c.Data_Nasc) / 365)) AS idade FROM pacientes c";
         $query = mysqli_query($connect, $sql);
         $data = mysqli_fetch_assoc($query);
-        $media = number_format($data["idade"],);       
-
+        $media = number_format($data["idade"],);
 
         //Medicamento mais usado
         $sql = "SELECT Nome_Medicam FROM medicamentos INNER JOIN agendamentos ON 
                 medicamentos.Codigo=agendamentos.Cod_medicamento GROUP BY Nome_Medicam 
                 ORDER BY count(Nome_Medicam) desc, Nome_Medicam desc LIMIT 1";
-        $query = mysqli_query($connect, $sql);
-        $medic = mysqli_fetch_assoc($query);
-
+        $query = mysqli_query($connect, $sql);   
+        if ($query == FALSE ) {
+            $medic = ["Nome_Medicam" => "Vazio"];
+        } 
+        $medic = mysqli_fetch_assoc($query);                
 
         //Quantidade de Leitos Cadastrados
         $sql = "SELECT COUNT(*) FROM leitos ";
