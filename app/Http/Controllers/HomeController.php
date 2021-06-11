@@ -905,6 +905,7 @@ class HomeController extends Controller
     }
 
     public function cadastrarProntuario(Request $request){
+        session_start();
         include("db.php");
         $resultado = VerificaLoginController::verificaPermissao(33);
         if ($resultado == 1) {
