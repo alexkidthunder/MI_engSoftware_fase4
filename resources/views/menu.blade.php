@@ -22,7 +22,9 @@
         <div class="container-2">
             <div class="row">
                 <!-- ============================ ENFERMEIRO CHEFE E ENFERMEIRO =========================-->
-                @if($resultado[17] == 1)
+                @for($i = 17; $i <=75; $i = $i+29)
+                @if(isset($resultado[$i]))
+                @if($resultado[$i] == 1)
                 <div class="col-6 col-md-4 col-lg-3"> <!--Botão para cadastro de paciente-->
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
@@ -34,7 +36,12 @@
                     </div>
                 </div> <!--Fim do Botão-->
                 @endif
-                @if($resultado[33]==1)
+                @endif
+                @endfor
+        
+                @for($i = 33; $i <=91; $i = $i+29)
+                @if(isset($resultado[$i]))
+                @if($resultado[$i] == 1)
                 <div class="col-6 col-md-4 col-lg-3"> <!--Botão para cadastrar prontuário-->
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
@@ -46,11 +53,15 @@
                     </div>
                 </div>  <!--Fim do Botão-->
                 @endif
-
+                @endif
+                @endfor
+        
                 <!-- ================================FIM=========================-->
 
                 <!-- ============================ COMUNS AOS TRÊS =========================-->
-                @if($resultado[18]==1)
+                @for($i = 18; $i <=76; $i = $i+29)
+                @if(isset($resultado[$i]))
+                @if($resultado[$i] == 1)
                 <div class="col-6 col-md-4 col-lg-3"> <!--Botão para ver pacientes e prontuários-->
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
@@ -62,7 +73,12 @@
                     </div>
                 </div> <!--Fim do Botão-->
                 @endif
-                @if($resultado[34]==1)
+                @endif
+                @endfor
+        
+                @for($i = 34; $i <=92; $i = $i+29)
+                @if(isset($resultado[$i]))
+                @if($resultado[$i] == 1)
                 <div class="col-6 col-md-4 col-lg-3"> <!----------Card responsável pelo Histórico de Prontuário------------>
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
@@ -73,10 +89,15 @@
                     </div>
                 </div><!--Fim do Botão-->
                 @endif
+                @endif
+                @endfor
+        
                 <!-- ============================ FIM =========================-->
 
                 <!-- ========================== APENAS ENFERMEIRO CHEFE ==================-->
-                @if($resultado[12]==1)
+                @for($i = 12; $i <=70; $i = $i+29)
+                @if(isset($resultado[$i]))
+                @if($resultado[$i] == 1)
                 <!----------Card responsável por cadastrar os agendamentos----------->
                 <div class="col-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
@@ -88,8 +109,13 @@
                     </div>
                 </div> 
                 @endif
+                @endif
+                @endfor
+        
                 <!----------Card responsável por cadastrar os plantonistas------------>
-                @if($resultado[7]==1)
+                @for($i = 7; $i <=65; $i = $i+29)
+                @if(isset($resultado[$i]))
+                @if($resultado[$i] == 1)
                 <div class="col-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
@@ -101,8 +127,13 @@
                     </div>
                 </div> 
                 @endif
+                @endif
+                @endfor
+        
                 <!----------Card responsável por cadastrar os medicamentos------------>
-                @if($resultado[9]==1)
+                @for($i = 9; $i <=67; $i = $i+29)
+                @if(isset($resultado[$i]))
+                @if($resultado[$i] == 1)
                 <div class="col-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
@@ -113,8 +144,13 @@
                     </div>
                 </div> 
                 @endif
+                @endif
+                @endfor
+        
                 <!----------Card responsável pelo Cadastro e Exclusão de Leito------------>
-                @if($resultado[29]==1)
+                @for($i = 29; $i <=87; $i = $i+29)
+                @if(isset($resultado[$i]))
+                @if($resultado[$i] == 1)
                 <div class="col-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
@@ -125,6 +161,8 @@
                     </div>
                 </div>
                 @endif
+                @endif
+                @endfor
                 <!----------Card responsável por listar todos os agendamentos------------>
                 @if(isset($_SESSION["enfermeiroChefe"]))
                 @if($resultado[15] == 1)
@@ -140,7 +178,9 @@
                 @endif 
                 @endif
                 <!----------Card responsável por mostrar os Planotnistas------------>
-                @if($resultado[14]==1)
+                @for($i = 14; $i <=72; $i = $i+29)
+                @if(isset($resultado[$i]))
+                @if($resultado[$i] == 1)
                 <div class="col-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
@@ -151,8 +191,13 @@
                     </div>
                 </div> 
                 @endif
+                @endif
+                @endfor
+
                 <!----------Card responsável para a listagem de medicamentos do sistema----------->
-                @if($resultado[35]==1)
+                @for($i = 35; $i <=93; $i = $i+29)
+                @if(isset($resultado[$i]))
+                @if($resultado[$i] == 1)
                 <div class="col-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
@@ -163,8 +208,13 @@
                     </div>
                 </div> 
                 @endif
+                @endif
+                @endfor
+                
                 <!----------Card responsável por mostrar os responsáveis pelas aplicações de medicamentos------------>
-                @if($resultado[16]==1)
+                @for($i = 16; $i <=74; $i = $i+29)
+                @if(isset($resultado[$i]))
+                @if($resultado[$i] == 1)
                 <div class="col-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
@@ -175,11 +225,16 @@
                     </div>
                 </div> 
                 @endif
+                @endif
+                @endfor
+                
                 <!--============================= FIM ======================================-->
 
                 <!-- ====================== APENAS ENFERMEIRO E ESTAGIARIO ===================-->
                 <!--Botão para visualizar agendamentos realizados-->
-                @if($resultado[22]==1)
+                @for($i = 22; $i <=80; $i = $i+29)
+                @if(isset($resultado[$i]))
+                @if($resultado[$i] == 1)
                 <div class="col-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
@@ -190,9 +245,13 @@
                     </div>
                 </div> <!--Fim do Botão-->
                 @endif
-
+                @endif
+                @endfor
+                
                 <!--Botão para visualizar agendamentos-->
-                @if($resultado[15]==1)
+                @for($i = 15; $i <=73; $i = $i+29)
+                @if(isset($resultado[$i]))
+                @if($resultado[$i] == 1)
                 <div class="col-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
@@ -203,9 +262,13 @@
                     </div>
                 </div> <!--Fim do Botão-->
                 @endif
-
+                @endif
+                @endfor
+                
                 <!--Botão para visualizar agendamentos que está alocado-->
-                @if($resultado[23]==1)
+                @for($i = 23; $i <=81; $i = $i+29)
+                @if(isset($resultado[$i]))
+                @if($resultado[$i] == 1)
                 <div class="col-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
@@ -217,6 +280,8 @@
                     </div>
                 </div>
                 @endif
+                @endif
+                @endfor
 
                 <!-- ============================ FIM =========================-->
 
