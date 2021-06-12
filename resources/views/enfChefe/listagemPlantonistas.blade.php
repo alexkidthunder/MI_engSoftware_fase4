@@ -45,22 +45,23 @@
                         </div>
                     </div>
                 </div>
-                @while(isset($plantonista["nome".$i]))
-                <!--------- Plantonista --------->
-                <!---APENAS ISSO QUE SE REPETE BACK, O CABEÇARIO N -->
-                <div class="box-blue">
-                    <div class="row">
-                        <div class="col-6 col-sm-6 col-md-8 col-lg-8 text-left">
-                            {{$plantonista["nome".$i]}}
+                @for($i = 0; $i <= count($plantonista); $i++)
+                    @if(isset($plantonista["nome".$i]))
+                    <!--------- Plantonista --------->
+                    <!---APENAS ISSO QUE SE REPETE BACK, O CABEÇARIO N -->
+                    <div class="box-blue">
+                        <div class="row">
+                            <div class="col-6 col-sm-6 col-md-8 col-lg-8 text-left">
+                                {{$plantonista["nome".$i]}}
+                            </div>
+                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 text-left">
+                                {{$plantonista["cargo".$i]}}
+                            </div>
                         </div>
-                        <div class="col-6 col-sm-6 col-md-4 col-lg-4 text-left">
-                            {{$plantonista["cargo".$i]}}
-                        </div>
-                        {{$i++}}
                     </div>
-                </div>
+                    @endif
                 <!------- Fim de plantonista ------->
-                @endwhile
+                @endfor
             </div>
         </div>
     </section>

@@ -40,9 +40,32 @@
         </form>
     </div>
     <!--------Fim do botão de donwload-------->
-
+    <div class="row">
+        <div class="col-lg">
+            @if ($errors->any()) <!--Verificando se existe qualquer erro -->
+                <div class="msg-error">
+                    <ul>
+                        @foreach ($errors->all() as $error) <!--Percorre todos os erros-->
+                            <li>{{ $error }}</li> <!--Obtem o erro -->
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            @if (session('msg')) <!-- Verifica se a mensagem de erro foi instanciada -->
+                <div class="msg-sucess">
+                    {{session('msg')}} <!--Obtem mensagem de erro -->
+                </div>
+            @endif
+            @if (session('msg-error')) <!-- Verifica se a mensagem de erro foi instanciada -->
+            <div class="msg-error">
+                {{session('msg-error')}} <!--Obtem mensagem de erro -->
+            </div>
+            @endif
+        </div>
+    </div>
+    
     <div class="container-1" id="historic">
-        <h1 class="title-download">HISTÓRIO DE PRONTUÁRIOS </h1>
+        <h1 class="title-download">HISTÓRICO DE PRONTUÁRIOS </h1>
 
         <!------------- Busca do paciente ------------->
         <div id="search">

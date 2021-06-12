@@ -37,28 +37,28 @@
       <h1 class="title-download">PRONTÚARIO</h1>
     <section>
     <div class="row">
-            <div class="col-lg">
-                @if ($errors->any()) <!--Verificando se existe qualquer erro -->
-                    <div class="msg-error">
-                        <ul>
-                            @foreach ($errors->all() as $error) <!--Percorre todos os erros-->
-                                <li>{{ $error }}</li> <!--Obtem o erro -->
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-                @if (session('msg')) <!-- Verifica se a mensagem de erro foi instanciada -->
-                    <div class="msg-sucess">
-                        {{session('msg')}} <!--Obtem mensagem de erro -->
-                    </div>
-                @endif
-                @if (session('msg-error')) <!-- Verifica se a mensagem de erro foi instanciada -->
-                    <div class="msg-error">
-                        {{session('msg-error')}} <!--Obtem mensagem de erro -->
-                    </div>
-                @endif
+        <div class="col-lg">
+            @if ($errors->any()) <!--Verificando se existe qualquer erro -->
+                <div class="msg-error">
+                    <ul>
+                        @foreach ($errors->all() as $error) <!--Percorre todos os erros-->
+                            <li>{{ $error }}</li> <!--Obtem o erro -->
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            @if (session('msg')) <!-- Verifica se a mensagem de erro foi instanciada -->
+                <div class="msg-sucess">
+                    {{session('msg')}} <!--Obtem mensagem de erro -->
+                </div>
+            @endif
+            @if (session('msg-error')) <!-- Verifica se a mensagem de erro foi instanciada -->
+            <div class="msg-error">
+                {{session('msg-error')}} <!--Obtem mensagem de erro -->
             </div>
+            @endif
         </div>
+    </div>
         
         <div class="container-1"> 
                <!----------Primeira parte do Prontuario, onde fica localizado os dados do Paciente------------>
@@ -119,7 +119,8 @@
                 
                 <button class="btn-blue", id="action-btn2">Mostrar Agendamento</button>
                     <div class="box-scheduling" id = "container-teste2">
-                    @while(isset($infosA['hora'.$i]))
+                    @for($i = 0;$i <= count($infosA); $i++)
+                    @if(isset($infosA['hora'.$i]))
                     <div class="container-box">
                         <div class="row">
                             <div class="col-lg-2 text-center">
@@ -133,21 +134,23 @@
                                 </div>
                             </div>
                             <div class="col-lg-6">
-                                <div class="box-white">
+                                <div class="box-white scrolls">
                                     <a>{{$infosA['medicamento'.$i]}}</a>
                                 </div>
                             </div>
                             <div class="col-lg-2">
                                 <div class="box-white">
-                                    <a>{{$infosA['posologia'.$i]}}</a>
+                                    <a>{{$infosA['posologia'.$i]}} ml</a>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-9">
-                                <div class="box-blue">
-                                    <a>{{$paciente['nome']}}</a>
+                            @if(isset($infosA['aplicador'.$i]))
+                                <div class="box-blue"> 
+                                    <a>Aplicador: {{$infosA['aplicador'.$i]}}</a> 
                                 </div>
+                            @endif
                             </div>
                             <div class="col-lg-3">
                                 <div class="box-blue">
@@ -156,25 +159,22 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-9"> <!--isso aqui fica hidden--->
-                                <div class="box-blue"> 
-                                    <a>Luiz Marcelo da Silva</a> 
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div>
-                                    <input type="button" id="add_prep" value="Adicionar">
-                                </div>
-                            </div>
+                        @if(!isset($infosA['aplicador'.$i]))
+                            <form method="POST" action="/ACagendamentos">
+                                <input type="hidden" name="codA" value="{{$agendamentos}}"> 
+                                <button type="submit" class="btn-white">Ser Aplicador</button>
+                            </form>
+                        @endif
                         </div>
-                        {{$i++}}
                     </div>
-                    @endwhile
+                    @endif
+                    @endfor
                 </div>
                 <!----------Terceira parte do Prontuario, onde fica localizada medicações ministradas------------>
                 <button class="btn-blue", id="action-btn">Mostrar Medicações Ministradas</button>
                 <div class="box-scheduling", id = "container-teste">
-                    @while(isset($infosM['hora'.$j]))
+                    @for($i = 0;$i <= count($infosM);$i++)
+                    @if(isset($infosM['hora'.$j]))
                     <div class="row">
                         <div class="col-lg-2 text-center">
                             <div class="box-gray">
@@ -206,8 +206,8 @@
                             </div>
                         </div>
                     </div>
-                    {{$j++}}
-                    @endwhile
+                    @endif
+                    @endfor
                 </div>    
                 <!----------Quarta parte do Prontuario, onde fica localizada as ocorrências------------>
                 <button class="btn-blue", id="action-btn4">Ocorrencias</button>
@@ -228,16 +228,17 @@
                                     <th scope="col">Ocorrencia</th>
                                 </tr>
                             </thead>
-                            @while(isset($infosO['ocorrencia'.$k]))
+                            @for($k = 0; $k <= count($infosO); $k++)
+                            @if(isset($infosO['ocorrencia'.$k]))
                             <tbody>
                                 <tr>
                                     <td>{{$infosO['data'.$k]}} - {{$infosO['hora'.$k]}}</td>
                                     <td>{{$infosO['aplicador'.$k]}}</td>
                                     <td>{{$infosO['ocorrencia'.$k]}}</td>
-                                    <td>{{$k++}}</td>
                                 </tr>
                             </tbody>
-                            @endwhile
+                            @endif
+                            @endfor
                         </table>
                     </div>
                     <!----------Onde o enfermeiro ou enfermeiro chefe colocara sua nova ocorrencia------------>
@@ -246,7 +247,7 @@
                         <label>Nova Ocorrencia</label> <br>
                         <input id="focorrencia" name="focorrencia" type="text" maxlength="100" required>
                         <div>
-                            <button type="submit" class="btn-blue"> Adcionar </button>
+                            <button type="submit" class="btn-blue"> Adicionar </button>
                         </div>
                     </div>      
                 </form>
@@ -262,7 +263,7 @@
                             <input type="hidden" name="prontuario" value="{{$paciente['prontuario']}}">
                             <input id="fcid" name="fcid" type="text" maxlength="20"  placeholder="EX: A00.1" required>
                                 <div>
-                                <button  type="submit" class="btn-blue"> Adcionar </button>
+                                <button  type="submit" class="btn-blue"> Adicionar </button>
                                 </div>
                         </div>
                     </div>  
