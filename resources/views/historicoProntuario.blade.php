@@ -87,8 +87,6 @@
 
         <!---------- Infomações do Paciente buscado ---------->
         @if(isset($prontuario))
-        @for($i = 0;$i <= (count($prontuario)/7);$i++)
-        @if(isset($prontuario["nome".$i]))
         <div class="row">
             <!------ Nome do Paciente ------>
             <div class="col-12 col-sm-12 col-md-8 col-lg-8">
@@ -104,10 +102,11 @@
             </div>
         </div>
         <!------ Fim das infomações do Paciente buscado ------>
-        
+        @for($i = 0;$i <= (count($prontuario)/7);$i++)
+        @if(isset($prontuario["nome".$i]))
         <br> 
         <!---------- Histórico de prontuários ---------->
-        <div {{-- class="hide" --}} id="record">
+        <div id="record">
 
             <!------------- Prontuário ------------->
             <div class="box-historic">

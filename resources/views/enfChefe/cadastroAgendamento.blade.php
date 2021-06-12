@@ -14,9 +14,9 @@
     <link href="{{ asset('img/favicon.png') }}" rel="icon">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="{{ ('js/cadastroAgendamento.js') }}" defer></script>
-    <script src="{{ ('js/mascara.min.js')}}"></script>
-    
+    <script src="{{ 'js/cadastroAgendamento.js' }}" defer></script>
+    <script src="{{ 'js/mascara.min.js' }}"></script>
+
     <title>Cadastro Agendamento</title>
 
 </head>
@@ -29,21 +29,24 @@
         <div class="container-1">
             <h1>CADASTRO DE AGENDAMENTO</h1>
             <div class="box">
-                <!--Buscar paciente-->
+                <!------------- Busca do paciente ------------->
                 <div id="search">
                     <div class="content-center">
                         <h3>BUSCAR PACIENTE</h3>
                         <form class="search-bar">
-                        <input id="cpf_user" name="cpf_user" type="text" onkeyup="mascara('###.###.###-##',this,event,true)" 
-                            required maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" placeholder="Informe o CPF">
+                            <input id="cpf_user" name="cpf_user" type="text"
+                                onkeyup="mascara('###.###.###-##',this,event,true)" required maxlength="14"
+                                pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" placeholder="Informe o CPF">
                             <button type="submit" id="busca_user">
                                 <i class="fas fa-search"></i>
                             </button>
                         </form>
                     </div>
                 </div>
+                <!------------- fim da Busca do paciente ------------->
+
+                <!---------------------Infomações do Paciente---------------->
                 <div class="hide" id="user_Data">
-                    <!--Infomações do Paciente-->
                     <h3>Paciente</h3><br>
                     <div class="box-gray">
                         Marcos Oliveira Santana
@@ -69,62 +72,54 @@
                     <div id="btn_register_medicine" class="content-center">
                         <button type="button" class="btn-blue"> Cadastrar Agendamento </button>
                     </div>
-                    <!-- Inicio de Cadastro de Agendamento -->
                 </div>
+                <!---------- Inicio de Cadastro de Agendamento ---------->
                 <div>
-                    <form id="register"> <!--class="hide"-->
+                    <form id="register">
+                        <!--class="hide"-->
                         <div class="box-medicament">
                             <div class="row">
                                 <div class="col-md-6 col-lg-4">
-                                 <!----------Inserção de Horario do Agendamento------------>
-                                    <div>
-                                        <label for="horario_agendamento">Horario</label>
-                                        <input type="time" name="horario_agendamento" required>
-                                    </div>
+                                    <!----------Inserção de Horario do Agendamento------------>
+                                    <label for="horario_agendamento">Horario</label>
+                                    <input type="time" name="horario_agendamento" required>
                                 </div>
                                 <!----------Inserção da Data do Agendamento------------>
                                 <div class="col-md-6 col-lg-4">
-                                    <div>
-                                        <label for="data_agendamento">Data</label>
-                                        <input type="date" name="data_agendamento" required>
-                                    </div>
+                                    <label for="data_agendamento">Data</label>
+                                    <input type="date" name="data_agendamento" required>
                                 </div>
                                 <!----------Inserção da dosagem de medicamento aplicada naquele agendamento------------>
                                 <div class="col-lg-4">
-                                    <div>
-                                        <label for="posologia_agendamento">Posologia</label>
-                                        <input type="number" name="posologia_agendamento" required>
-                                    </div>
+                                    <label for="posologia_agendamento">Posologia</label>
+                                    <input type="number" name="posologia_agendamento" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div>
-                                        <label for="medicamento_agendamento">Medicamento</label> <!--Front precisa de uma lista de todos os medicamentos. Ps: em Json-->
-                                        <input type="text" name="medicamento_agendamento" id="medicamento_agendamento">
-                                    </div>
+                                    <label for="medicamento_agendamento">Medicamento</label>
+                                    <!--Front precisa de uma lista de todos os medicamentos. Ps: em Json-->
+                                    <input type="text" name="medicamento_agendamento" id="medicamento_agendamento">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-8">
-                                    <div> <!-----FICA HIDDEN ATÉ QUE SEJA CLICADO NO BOTÃO DE ALOCAR APLICADOR ----->
                                     <!----------Inicio de alocação de aplicador------------>
-                                        <label for="aplicador_agendamento">Aplicador</label>
-                                        <input id="aloc_inp" type="text" name="aplicador_agendamento"
-                                            placeholder="nome do aplicador" disabled>
-                                    </div>
+                                    <label for="aplicador_agendamento">Aplicador</label>
+                                    <input id="aloc_inp" type="text" name="aplicador_agendamento"
+                                        placeholder="nome do aplicador" disabled>
                                 </div>
                                 <div class="col-lg-4">
                                     <br>
                                     <button id="aloc_btn" type="button" class="btn-white"> Alocar aplicador </button>
                                 </div>
-                                 <!----------Fim de alocação de aplicador------------>
+                                <!----------Fim de alocação de aplicador------------>
                             </div>
                         </div>
                         <div>
                             <button id="submit_agendamento" type="button" class="btn-blue"> Cadastrar </button>
                         </div>
-                       
+
                     </form>
                     <!----------Fim de cadastro de agendamento------------>
                 </div>
@@ -132,4 +127,5 @@
         </div>
     </section>
 </body>
+
 </html>

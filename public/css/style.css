@@ -908,6 +908,12 @@ input[type=number] {
     width: 25px;
 }
 
+#on-duty .container-button{
+    align-items: center;
+    margin-left: 90%;
+    margin-top: 15px;
+}
+
 .box-on-duty, .box-medicament, .box-backup{
     background-color: #ffff;
     border: 1.5px solid #58ACFA;
@@ -929,7 +935,25 @@ input[type=number] {
         padding: 10px 5px;
     }
 }
+@media (max-width:958px){
+    #on-duty input[type="checkbox"] {
+        height: 15px;
+        width: 15px;
+        margin-bottom: 0;
+        box-sizing:initial!important
+    }
+    #on-duty .btn-white{
+        width:100%;
+        text-align: center;
+    }
 
+    #on-duty .container-button{
+        width:30%;
+        margin-left: 70%;
+        margin-top: 15px;
+    }
+    
+}
 
 /*---------- Confirmação de ação e erros ------------------ */
 
