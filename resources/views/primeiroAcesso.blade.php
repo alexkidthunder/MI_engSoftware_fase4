@@ -17,14 +17,14 @@
     <!--------------- Imagem de onda--------------->
     <div id="container-wave">
         <div class="img-login">
-            <img src="{{ asset('img/wave.png') }}"/>
+            <img src="{{ asset('img/wave.png') }}" />
         </div>
     </div>
     <!--------------- fim da Imagem -------------->
     <!----------- Imagem de enfermeiros ----------->
     <div id="container-img">
         <div class="img-login">
-            <img src="{{ asset('img/doctors.png') }}"/>
+            <img src="{{ asset('img/doctors.png') }}" />
         </div>
     </div>
     <!--------------- fim da Imagem -------------->
@@ -36,37 +36,36 @@
     </div>
     <!---------------- fim da Caixa --------------->
 
-    
-    @if(Session::has('error'))
-    <div class="msg-error" role="alert">
-            {{Session::get('error')}}
-    </div>
-    @endif  
-
-    @if(Session::has('success'))
-    <div class="msg-sucess">
-            {{Session::get('success')}}
-    </div>
-    @endif      
+    <!-----------Mensagem de erro----------->
+    @if (Session::has('error'))
+        <div class="msg-error" role="alert">
+            {{ Session::get('error') }}
+        </div>
+    @endif
+    <!-----------Mensagem de sucesso----------->
+    @if (Session::has('success'))
+        <div class="msg-sucess">
+            {{ Session::get('success') }}
+        </div>
+    @endif
 
     <!--Página de meu primeiro acesso -->
-    <form id="first-access"  class = "form" action="{{ route('primeiroAcesso') }}" method="POST">
+    <form id="first-access" class="form" action="{{ route('primeiroAcesso') }}" method="POST">
         @csrf
         <div class="box-login">
-            <input type="hidden" name="cpf" value="{{Session::get('cpf')}}">
+            <input type="hidden" name="cpf" value="{{ Session::get('cpf') }}">
 
             <h2>Primeiro acesso</h2>
             <h4>Defina sua senha abaixo:</h4>
             <div>
-                <!-- Inserção da senha -->
-
+                <!------- Inserção da senha ------>
                 <label>Senha</label>
                 <input type="password" name="senha" placeholder="Digite a nova senha" required>
             </div>
             <div>
-                <!-- Confirmação da senha digitada -->
+                <!-------Confirmação da senha digitada ------->
                 <label>Confirmação</label>
-                <input type="password" name= "confirmacao" placeholder="Digite a senha novamente" required>
+                <input type="password" name="confirmacao" placeholder="Digite a senha novamente" required>
 
             </div>
             <div class="enter">

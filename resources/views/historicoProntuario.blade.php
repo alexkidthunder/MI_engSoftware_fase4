@@ -83,7 +83,7 @@
         @if(isset($prontuario["nome".$i]))
         <br> 
         <!---------- Histórico de prontuários ---------->
-        <div {{-- class="hide" --}} id="record">
+        <div id="record">
 
             <!------------- Prontuário ------------->
             <div class="box-historic">
