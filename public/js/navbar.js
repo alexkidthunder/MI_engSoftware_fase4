@@ -5,3 +5,8 @@ for(i = 0; i < nav_item.length;i++){
         sessionStorage.clear();
     });
 }
+checkbox = document.getElementById("check-options");
+
+checkbox.addEventListener("click",function(){
+    checkbox.classList.add('hide');
+})

@@ -38,7 +38,8 @@
             <h1 class="title-download">RESPONSÁVEIS PELA APLICAÇÃO DE MEDICAMENTOS</h1>
 
             <!---------------------Agendamento Realizado--------------------->
-            @while(isset($infos["responsavel".$i]))
+            @for($i = 0; $i <= count($infos); $i++)
+            @if(isset($infos["medicamento".$i]))
             <div class="box-scheduling" id="scheduling">
                     <div class="row">
                         <div class="col-6 col-sm-6 col-md-6 col-lg-2 text-center">
@@ -52,13 +53,13 @@
                             </div>
                         </div>
                         <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                            <div class="box-white">
+                            <div class="box-white scrolls">
                                 {{$infos["medicamento".$i]}}
                              </div>
                         </div>
                         <div class="col-6 col-sm-6 col-md-6 col-lg-2">
                             <div class="box-white">
-                                {{$infos["posologia".$i]}}
+                                {{$infos["posologia".$i]}} ml
                             </div>
                         </div>
                     </div>
@@ -91,9 +92,9 @@
                             </div>
                         </div>
                     </div>
-                    {{$i++}}
             </div>
-            @endwhile
+            @endif
+            @endfor
             <!---------------------Fim de agendamento--------------------->
            
         </div>
