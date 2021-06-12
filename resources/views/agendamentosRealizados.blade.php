@@ -29,6 +29,8 @@
     <div class="container-1">
 
         <h1>AGENDAMENTOS E MEDICAMENTOS REALIZADOS</h1>
+
+        <!---------------------Mensagens de erro--------------------->
         <div class="row">
             <div class="col-lg">
                 @if ($errors->any())
@@ -59,6 +61,8 @@
                 @endif
             </div>
         </div>
+    <!---------------------Fim da mensagem de erro --------------------->
+    
     <!---------------------Agendamento Realizado --------------------->
     @for($i = 0;$i < count($infos)/8;$i++)
     @if(@isset($infos))

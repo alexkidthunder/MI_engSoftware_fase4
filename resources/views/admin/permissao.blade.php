@@ -46,6 +46,7 @@
                 @csrf
                 <h3 id="Nome_Permissao" class="content-center"> </h3> <br>
                 <!-- ========== Linha 1 (REFERENTE AO ADM) ========== -->
+                <!---------------------Mensagens de erro--------------->
                 <div class="container">
                     <div class="row">
                         <div class="col-lg">
@@ -66,6 +67,8 @@
                         </div>
                     </div>
                 </div>
+                <!---------------------fim de mensagens de erro---------------->
+                
                 @if (isset($p))
                     <div class="row">
                         <!--Inicio da permissão-->

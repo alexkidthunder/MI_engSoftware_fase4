@@ -19,29 +19,26 @@
     @include('layouts.navbar')
     <!----------End Hearder-------->
     <section>
-
         <div class="container-1">
             <h1>CADASTRO E REMOÇÃO DE LEITO</h1>
-              
-              <!-- MENSAGENS DO SISTEMA-->
-            
+
+            <!---------------------Mensagens do sistema--------------------->
             @if (session('msg-sucess'))
-            <!-- Verifica se a mensagem de erro foi instanciada -->
-            <div class="msg-sucess">
-                {{session('msg-sucess')}}
-                <!--Obtem mensagem de erro -->
-            </div>
+                <!-- Verifica se a mensagem de erro foi instanciada -->
+                <div class="msg-sucess">
+                    {{ session('msg-sucess') }}
+                    <!--Obtem mensagem de erro -->
+                </div>
             @endif
 
             @if (session('msg-error'))
-            <!-- Verifica se a mensagem de erro foi instanciada -->
-            <div class="msg-error">
-                {{session('msg-error')}}
-                <!--Obtem mensagem de erro -->
-            </div>
+                <!-- Verifica se a mensagem de erro foi instanciada -->
+                <div class="msg-error">
+                    {{ session('msg-error') }}
+                    <!--Obtem mensagem de erro -->
+                </div>
             @endif
-
-            <!-- FIM MENSAGENS DO SISTEMA-->
+            <!---------------------fim de Mensagens do sistema--------------------->
 
             <div class="box">
                 <br>
@@ -63,10 +60,10 @@
                 <div class="box-scheduling" , id="container-teste4">
                     <form id="register">
                         <div class="row">
-                            <!---------------------Inicio da Tabela com todos os leitos cadastrados--------------------->
+                            <!--------Inicio da Tabela com todos os leitos cadastrados-------->
                             <h3>Tabela de Leitos</h3>
                         </div>
-                    
+
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <thead>
@@ -77,16 +74,14 @@
                                 </thead>
                                 <tbody>
 
-                                    @if(isset($leitos))
-                                    <?php
-                                    foreach ($leitos as $value) {
-                                    ?>
+                                    @if (isset($leitos))
+                                        <?php foreach ($leitos as $value) { ?>
                                         <tr>
                                             <td> {{ $value['Identificacao'] }} </td>
-                                            <td> {{ $value['Ocupado']}} </td>
+                                            <td> {{ $value['Ocupado'] }} </td>
                                         </tr>
 
-                                    <?php } ?>
+                                        <?php } ?>
                                     @endif
 
                                 </tbody>
@@ -110,11 +105,7 @@
                 </div>
             </form>
             <!---------------------Fim de remover leito--------------------->
-
-
         </div>
-        </div>
-
-
     </section>
 </body>
+</html>
