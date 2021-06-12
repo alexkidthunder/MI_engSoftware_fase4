@@ -26,13 +26,13 @@
     <!----------End Hearder-------->
 
     <h1>CADASTRO DE FUNCIONÁRIO</h1>
-
+        <!-------Mensagem de erro------->
         @if(Session::has('error'))
         <div class="msg-error" role="alert">
                 {{Session::get('error')}}
         </div>
         @endif  
-
+        <!-------Mensagem de sucesso------->
         @if(Session::has('success'))
         <div class="msg-sucess">
                 {{Session::get('success')}}

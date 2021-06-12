@@ -41,6 +41,7 @@
     <!--------Fim do botão de donwload-------->
 
     <div class="container-1" id="patientList">
+        <!---------------------Mensagens de erro--------------------->
         <div class="container">
             <div class="row">
                 <div class="col-lg">
@@ -66,6 +67,8 @@
                 </div>
             </div>
         </div>        
+        <!---------------------Fim da mensagem de erro--------------------->
+        
         <h1 class="title-download">PACIENTES E PRONTUÁRIOS</h1>
 
         <!----------Seleção para o tipo de paciente que deseja exibir------------>
