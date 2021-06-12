@@ -195,7 +195,7 @@
                 <!----------Terceira parte do Prontuario, onde fica localizada medicações ministradas------------>
                 <button class="btn-blue", id="action-btn">Mostrar Medicações Ministradas</button>
                 <div class="box-scheduling", id = "container-teste">
-                    @for($i = 0;$i <= count($infosM);$i++)
+                    @for($j = 0;$j <= count($infosM);$j++)
                     @if(isset($infosM['hora'.$j]))
                     <div class="row">
                         <div class="col-lg-2 text-center">
