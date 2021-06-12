@@ -176,6 +176,98 @@ class EnfChefeController extends Controller
         }
     }
 
+    /**
+     * Método que busca um paciente para o cadastro de agendamento
+     */
+    public function buscarPacienteAg(Request $request){
+        include("db.php");
+        // pacientes e prontuários
+        $sql = "SELECT * FROM prontuarios WHERE Cpfpaciente = '$request->cpf_user'";
+        $sql1 = "SELECT * FROM pacientes WHERE CPF = '$request->cpf_user'";
+        $query = mysqli_query($connect, $sql); //prontuarios
+        $query1 = mysqli_query($connect, $sql1); // pacientes     
+       
+        
+          // verifica se o paciente existe     
+        if(mysqli_num_rows($query1) > 0 ){  
+            $paciente2 = mysqli_fetch_array($query1); 
+        }else{
+            return redirect()->back()->with('msg-error', 'Paciente não encontrado');
+        }              
+
+
+        // VERIFICAR SE EXISTE UM PRONTUÁRIO ABERTO PARA O PACIENTE
+        while($dado = mysqli_fetch_array($query)){
+            
+            if($dado['aberto'] == 1 ){ // caso tenha prontuários em aberto
+                // PREPARAR DADOS DO PACIENTE PARA A VIEW
+                $dado['Nome_Paciente'] = $paciente2['Nome_Paciente'];
+                $paciente = $dado; 
+                // FIM DADOS DO PACIENTE
+
+        // COMO O PACIENTE EXISTE, AGORA PREPARA OS PLANTONISTAS PARA SER ENVIADS JUNTOS AO PACIENTE PARA A VIEW
+               $sql2 = "SELECT * FROM enfermeiros WHERE Plantao = '1'";
+               $sql21 = "SELECT * FROM estagiarios WHERE Plantao = '1'";
+               //WHERE Plantao = '1'";       
+               $sql3 = "SELECT * FROM usuarios WHERE Atribuicao = 'Enfermeiro' OR 'Estagiario'";
+               
+               $query2 = mysqli_query($connect, $sql2);
+               $query21 = mysqli_query($connect, $sql21);
+               $query3 = mysqli_query($connect, $sql3);
+               $i = 0;
+               
+               // SELECIONANDO PLANTONISTAS COM ESTADO: EM PLANTÃO = 1
+               while($dado = mysqli_fetch_array($query2)){                              
+                    $plantonistas[$i] = $dado;
+                    $i++;                   
+               }
+
+               while($dado = mysqli_fetch_array($query21)){                              
+                $plantonistas[$i] = $dado;
+                $i++;                   
+              }
+
+               
+
+               $i = 0;       
+               //agrupando usuários
+               while($aux =  mysqli_fetch_array($query3) ){
+                   $usuarios[$i] = $aux;
+                   $i++;
+               }
+       
+               // passando o nome dos usuarios para Plantonistas
+               $i = 0;
+                foreach($plantonistas as $plantonista){
+
+                   foreach($usuarios as $usuario){ 
+                       if(strcmp($plantonista['CPF'], $usuario['CPF'] ) == 0 ){ // se o cpf bater pega o nome                        
+                        $plantonista['Nome_Plantonista'] = $usuario['Nome'];
+                        $plantonistas[$i] = $plantonista;
+                        $i++;                        
+                       }
+                   }
+
+               }
+               //FIM AGRUPAMENTOS DOS PLANTONISTAS
+              
+               
+        return view('/enfChefe/cadastroAgendamento',['paciente' => $paciente, 'plantonistas'=>$plantonistas]);
+            }
+
+        }
+
+        return redirect()->back()->with('msg-error', 'Não existe prontuário em aberto para esse paciente!');          
+    }
+
+
+    /**
+     * Método que CADASTRA um agendamento
+     */
+    public function cadastrarAgendamento(Request $request){
+        dd($request->all());
+    }
+
     public function listaPlantonistas() //listagem dos plantonistas ativos
     {
         VerificaLoginController::verificarLogin();
