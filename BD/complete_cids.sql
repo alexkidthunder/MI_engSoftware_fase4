@@ -1,3 +1,4 @@
+use hospital_universitario;
 /* Insere na tabela de CIDs*/
 /* Quase todas as CIDs conhecidas*/
 
