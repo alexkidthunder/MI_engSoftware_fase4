@@ -60,13 +60,15 @@ class HomeController extends Controller
        //verifica se o usuario existe no sistema. $row = 1 significa que sim
         if($row == 1){ 
 
-            /*While percorrendo vetor gerado pela query em busca do status ativo e sua atribuição*/
+            //Percorre vetor gerado pela query em busca do status ativo e sua atribuição
             $sql = "SELECT * FROM usuarios where CPF = '$request->cpf'";
             $query = mysqli_query($connect,$sql);
             while($sql = mysqli_fetch_array($query)){
                 $atribuicao = $sql["Atribuicao"];
                 $ativo = $sql['Ativo'];
             }
+
+            
             if(Hash::check($request->senha,$senhaEncontrada)){
 
                 session_start();
@@ -129,8 +131,7 @@ class HomeController extends Controller
                 return redirect() -> back() ->with('msg-error','Senha errada!!');
             }
             
-        }else{ // caso em que o $row = 0 
-            //USUÁRIO NAO EXISTE
+        }else{ // caso em que o $row = 0, usuário não existe 
             return redirect() -> back() ->with('msg-error','Usuário não existe!');
         }
 
