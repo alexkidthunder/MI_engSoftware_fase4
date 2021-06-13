@@ -157,21 +157,25 @@
                 @if(isset($infosA['hora'.$i]))
                     <div class="container-box">
                         <div class="row">
+                        <!---------------------Hora--------------------->
                             <div class="col-6 col-sm-12 col-md-6 col-lg-2 text-center">
                                 <div class="box-gray">
                                     <a>{{ $infosA['hora' . $i] }}</a>
                                 </div>
                             </div>
+                            <!---------------------Data--------------------->
                             <div class="col-6 col-sm-12 col-md-6 col-lg-2 text-center">
                                 <div class="box-gray">
                                     <a>{{ $infosA['data' . $i] }}</a>
                                 </div>
                             </div>
+                             <!---------------------Nome do Medicamento--------------------->
                             <div class="col-12 col-sm-12 col-md-6 col-lg-5 text-center">
                                 <div class="box-white scrolls">
                                     <a>{{$infosA['medicamento'.$i]}}</a>
                                 </div>
                             </div>
+                            <!---------------------Posologia--------------------->
                             <div class="col-12 col-sm-12 col-md-6 col-lg-3 text-center">
                                 <div class="box-white">
                                     <a>{{$infosA['posologia'.$i]}} ml</a>
@@ -179,6 +183,7 @@
                             </div>
                         </div>
                         <div class="row">
+                         <!----------Aplicador do medicamento----------->
                             <div class="col-lg-9">
                             @if(isset($infosA['aplicador'.$i]))
                                 <div class="box-blue"> 
@@ -186,6 +191,7 @@
                                 </div>
                             @endif
                             </div>
+                            <!---------------------Leito do Paciente--------------------->
                             <div class="col-lg-3">
                                 <div class="box-blue">
                                     <a>Leito: {{ $paciente['leito'] }}</a>
@@ -209,25 +215,29 @@
                 <!----------------Medicações ministradas----------------->
                 <button class="btn-blue", id="action-btn">Medicações ministradas</button>
                  <h2 class="text-center">Medicações ministradas</h2><br>
-                    @for($i = 0;$i <= count($infosM);$i++)
+                    @for($j = 0;$j <= count($infosM);$j++)
                     @if(isset($infosM['hora'.$j]))
                         <div class="box-scheduling" id = "container-teste">
                             <div class="row">
+                            <!---------------------Hora--------------------->
                                 <div class="col-6 col-sm-12 col-md-6 col-lg-2 text-center">
                                     <div class="box-gray">
                                         {{ $infosM['hora' . $j] }}
                                     </div>
                                 </div>
+                                <!---------------------Data--------------------->
                                 <div class="col-6 col-sm-12 col-md-6 col-lg-2 text-center">
                                     <div class="box-gray">
                                         {{ $infosM['data' . $j] }}
                                     </div>
                                 </div>
+                                 <!---------------------Nome do Medicamento--------------------->
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-5 text-center">
                                     <div class="box-white scrolls">
                                         {{ $infosM['medicamento' . $j] }}
                                     </div>
                                 </div>
+                                <!---------------------Posologia--------------------->
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-3 text-center">
                                     <div class="box-white">
                                         {{ $infosM['posologia' . $j] }}

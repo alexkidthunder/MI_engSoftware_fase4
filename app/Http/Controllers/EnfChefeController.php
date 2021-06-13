@@ -176,12 +176,105 @@ class EnfChefeController extends Controller
         }
     }
 
-    public function listaPlantonistas()
+    /**
+     * Método que busca um paciente para o cadastro de agendamento
+     */
+    public function buscarPacienteAg(Request $request){
+        include("db.php");
+        // pacientes e prontuários
+        $sql = "SELECT * FROM prontuarios WHERE Cpfpaciente = '$request->cpf_user'";
+        $sql1 = "SELECT * FROM pacientes WHERE CPF = '$request->cpf_user'";
+        $query = mysqli_query($connect, $sql); //prontuarios
+        $query1 = mysqli_query($connect, $sql1); // pacientes     
+       
+        
+          // verifica se o paciente existe     
+        if(mysqli_num_rows($query1) > 0 ){  
+            $paciente2 = mysqli_fetch_array($query1); 
+        }else{
+            return redirect()->back()->with('msg-error', 'Paciente não encontrado');
+        }              
+
+
+        // VERIFICAR SE EXISTE UM PRONTUÁRIO ABERTO PARA O PACIENTE
+        while($dado = mysqli_fetch_array($query)){
+            
+            if($dado['aberto'] == 1 ){ // caso tenha prontuários em aberto
+                // PREPARAR DADOS DO PACIENTE PARA A VIEW
+                $dado['Nome_Paciente'] = $paciente2['Nome_Paciente'];
+                $paciente = $dado; 
+                // FIM DADOS DO PACIENTE
+
+        // COMO O PACIENTE EXISTE, AGORA PREPARA OS PLANTONISTAS PARA SER ENVIADS JUNTOS AO PACIENTE PARA A VIEW
+               $sql2 = "SELECT * FROM enfermeiros WHERE Plantao = '1'";
+               $sql21 = "SELECT * FROM estagiarios WHERE Plantao = '1'";
+               //WHERE Plantao = '1'";       
+               $sql3 = "SELECT * FROM usuarios WHERE Atribuicao = 'Enfermeiro' OR 'Estagiario'";
+               
+               $query2 = mysqli_query($connect, $sql2);
+               $query21 = mysqli_query($connect, $sql21);
+               $query3 = mysqli_query($connect, $sql3);
+               $i = 0;
+               
+               // SELECIONANDO PLANTONISTAS COM ESTADO: EM PLANTÃO = 1
+               while($dado = mysqli_fetch_array($query2)){                              
+                    $plantonistas[$i] = $dado;
+                    $i++;                   
+               }
+
+               while($dado = mysqli_fetch_array($query21)){                              
+                $plantonistas[$i] = $dado;
+                $i++;                   
+              }
+
+               
+
+               $i = 0;       
+               //agrupando usuários
+               while($aux =  mysqli_fetch_array($query3) ){
+                   $usuarios[$i] = $aux;
+                   $i++;
+               }
+       
+               // passando o nome dos usuarios para Plantonistas
+               $i = 0;
+                foreach($plantonistas as $plantonista){
+
+                   foreach($usuarios as $usuario){ 
+                       if(strcmp($plantonista['CPF'], $usuario['CPF'] ) == 0 ){ // se o cpf bater pega o nome                        
+                        $plantonista['Nome_Plantonista'] = $usuario['Nome'];
+                        $plantonistas[$i] = $plantonista;
+                        $i++;                        
+                       }
+                   }
+
+               }
+               //FIM AGRUPAMENTOS DOS PLANTONISTAS
+              
+               
+        return view('/enfChefe/cadastroAgendamento',['paciente' => $paciente, 'plantonistas'=>$plantonistas]);
+            }
+
+        }
+
+        return redirect()->back()->with('msg-error', 'Não existe prontuário em aberto para esse paciente!');          
+    }
+
+
+    /**
+     * Método que CADASTRA um agendamento
+     */
+    public function cadastrarAgendamento(Request $request){
+        dd($request->all());
+    }
+
+    public function listaPlantonistas() //listagem dos plantonistas ativos
     {
         VerificaLoginController::verificarLogin();
-        $resultado = VerificaLoginController::verificaPermissao(14);
+        $resultado = VerificaLoginController::verificaPermissao(14); // checando se enfermeiro chefe tem permissão de acesso
         include("db.php");
-        if ($resultado == "1") {
+        if ($resultado == "1") { //se sim procura por todos os enfermeiros e estagiario de planta(Coluna Plantao = 1)
+            //primeira busca e adicção de enfermeiro ao vetor de plantonistas
             $sql = "SELECT * FROM enfermeiros where Plantao = '1'";
             $query = mysqli_query($connect, $sql);
             $i = 0;
@@ -195,6 +288,7 @@ class EnfChefeController extends Controller
                 }
                 $i++;
             }
+            //Depois estagiario 
             $sql = "SELECT * FROM estagiarios where Plantao = '1'";
             $query = mysqli_query($connect, $sql);
             while ($sql = mysqli_fetch_array($query)) {
@@ -207,27 +301,88 @@ class EnfChefeController extends Controller
                 }
                 $i++;
             }
-            return view('/enfChefe/listagemPlantonistas', ['plantonista' => $plantonista]);
+            return view('/enfChefe/listagemPlantonistas', ['plantonista' => $plantonista]); // retorna vetor com nome e cargo dos platonistas para view 
         } else {
-            return redirect()->back()->with('msg-error', 'Você não tem acesso a essa pagina!!!');
+            return redirect()->back()->with('msg-error', 'Você não tem acesso a essa pagina!!!'); // se não tiver acesso volta para pagina anterior
         }
     }
 
-    public function responsaveis()
+    public function responsaveis() // listagem de responsaveis pela aplicação do medicamento
     {
-        VerificaLoginController::verificarLogin();
+        VerificaLoginController::verificarLogin(); // verifica se usuario esta logado 
         include("db.php");
-        $resultado = VerificaLoginController::verificaPermissao(16);
+        $resultado = VerificaLoginController::verificaPermissao(16);  // verifica se usuario tem permissão 
+        if ($resultado == "1") {
+            $i = 0;
+            $infos = [];
+            $sql = "SELECT * FROM agendamentos";
+            $query = mysqli_query($connect, $sql); // se sim obtem os dados dos agendamentos do baco 
+            $verificaN = mysqli_num_rows($query); 
+            if ($verificaN > 0) { // verifica se encontrou algum 
+                while ($sql = mysqli_fetch_array($query)) {
+                    if ($sql['CPF_usuario'] != null) { // verifica se tem alguem responsavel pelo agendamento 
+                        //Pegando dados necessarios 
+                        $medicamento = $sql['Cod_medicamento'];
+                        $prontuario = $sql['ID_prontuario'];
+                        $responsavel = $sql['CPF_usuario'];
+                        $infos['hora' . $i] = $sql['Hora_Agend'];
+                        $infos['data' . $i] = $sql['Data_Agend'];
+                        $infos['posologia' . $i] = $sql['Posologia'];
+                        //usando codigo do medicamento nos agendmentos para obter o nome do mesmo 
+                        $sql1 = "SELECT * FROM medicamentos WHERE Codigo = '$medicamento'";
+                        $query1 = mysqli_query($connect, $sql1);
+                        while ($sql1 = mysqli_fetch_array($query1)) {
+                            $infos['medicamento' . $i] = $sql1['Nome_Medicam'];
+                        }
+                        // usando id do prontuario dos agendamento para obter leito e o cpf do paciente para qual o agendamento foi indicado
+                        $sql2 = "SELECT * FROM prontuarios WHERE ID = '$prontuario'";
+                        $query2 = mysqli_query($connect, $sql2);
+                        while ($sql2 = mysqli_fetch_array($query2)) {
+                            $identificaP = $sql2['Cpfpaciente'];
+                            $infos['leito' . $i] = $sql2['Id_leito'];
+                            $infos['id' . $i] = $sql2['ID'];
+                        }
+                        //Usando cpf do paciente para obter nome do mesmo
+                        $sql3 = "SELECT * FROM pacientes WHERE CPF = '$identificaP'";
+                        $query3 = mysqli_query($connect, $sql3);
+                        while ($sql3 = mysqli_fetch_array($query3)) {
+                            $infos['paciente' . $i] = $sql3['Nome_Paciente'];
+                        }
+                        // usando cpf do responsavel para obter nome do mesmo
+                        $sql4 = "SELECT * FROM usuarios WHERE CPF = '$responsavel'";
+                        $query4 = mysqli_query($connect, $sql4);
+                        while ($sql4 = mysqli_fetch_array($query4)) {
+                            $infos['responsavel' . $i] = $sql4['Nome'];
+                        }
+                        $i++;
+                    }
+                }
+                return view('/enfChefe/listaResponsaveis', ['infos' => $infos, 'identificaP' => $identificaP]); // retorna vetor com dados necessarios e o cpf do paciente para view respectivamente
+            }else {
+                return redirect()->back()->with('msg-error', 'Nenhuma informação encontrada na base de dados!!!'); // msg caso não exista dados cadastrados
+            }
+        } else {
+            return redirect()->back()->with('msg-error', 'Você não tem acesso a essa pagina!!!'); // msg caso você não tnha permissão 
+        }
+    }
+
+    public function listaAgendamentos()
+    {            //LISTAGEM DE AGENDAMENTOS E MEDICAMENTOS
+        VerificaLoginController::verificarLogin(); // verifica se ta logado 
+        include("db.php");
+        $resultado = VerificaLoginController::verificaPermissao(15); // verifica se tem permissão 
         if ($resultado == "1") {
             $i = 0;
             $infos = [];
             $sql = "SELECT * FROM agendamentos";
             $query = mysqli_query($connect, $sql);
-            while ($sql = mysqli_fetch_array($query)) {
-                if ($sql['CPF_usuario'] != null) {
+            $verificaN = mysqli_num_rows($query);
+            //Obtem todos os agendamentos do banco 
+            if ($verificaN > 0) { // verifica se existiam cadastrados 
+                while ($sql = mysqli_fetch_array($query)) {
+                    //obtem informações necessarias percorrendo as tabelas
                     $medicamento = $sql['Cod_medicamento'];
                     $prontuario = $sql['ID_prontuario'];
-                    $responsavel = $sql['CPF_usuario'];
                     $infos['hora' . $i] = $sql['Hora_Agend'];
                     $infos['data' . $i] = $sql['Data_Agend'];
                     $infos['posologia' . $i] = $sql['Posologia'];
@@ -248,59 +403,15 @@ class EnfChefeController extends Controller
                     while ($sql3 = mysqli_fetch_array($query3)) {
                         $infos['paciente' . $i] = $sql3['Nome_Paciente'];
                     }
-                    $sql4 = "SELECT * FROM usuarios WHERE CPF = '$responsavel'";
-                    $query4 = mysqli_query($connect, $sql4);
-                    while ($sql4 = mysqli_fetch_array($query4)) {
-                        $infos['responsavel' . $i] = $sql4['Nome'];
-                    }
+                    $infos['identificaP' . $i] = $identificaP;
                     $i++;
                 }
+                return view('/enfChefe/agendamentos', ['infos' => $infos]); //retorna dados para view 
+            }else {
+                return redirect()->back()->with('msg-error', 'Nenhuma informação encontrada na base de dados!!!'); // caso não exista nada cadastrado
             }
-            return view('/enfChefe/listaResponsaveis', ['infos' => $infos, 'identificaP' => $identificaP]);
         } else {
-            return redirect()->back()->with('msg-error', 'Você não tem acesso a essa pagina!!!');
-        }
-    }
-
-    public function listaAgendamentos()
-    {            //LISTAGEM DE AGENDAMENTOS E MEDICAMENTOS
-        VerificaLoginController::verificarLogin();
-        include("db.php");
-        $resultado = VerificaLoginController::verificaPermissao(15);
-        if ($resultado == "1") {
-            $i = 0;
-            $infos = [];
-            $sql = "SELECT * FROM agendamentos";
-            $query = mysqli_query($connect, $sql);
-            while ($sql = mysqli_fetch_array($query)) {
-                $medicamento = $sql['Cod_medicamento'];
-                $prontuario = $sql['ID_prontuario'];
-                $infos['hora' . $i] = $sql['Hora_Agend'];
-                $infos['data' . $i] = $sql['Data_Agend'];
-                $infos['posologia' . $i] = $sql['Posologia'];
-                $sql1 = "SELECT * FROM medicamentos WHERE Codigo = '$medicamento'";
-                $query1 = mysqli_query($connect, $sql1);
-                while ($sql1 = mysqli_fetch_array($query1)) {
-                    $infos['medicamento' . $i] = $sql1['Nome_Medicam'];
-                }
-                $sql2 = "SELECT * FROM prontuarios WHERE ID = '$prontuario'";
-                $query2 = mysqli_query($connect, $sql2);
-                while ($sql2 = mysqli_fetch_array($query2)) {
-                    $identificaP = $sql2['Cpfpaciente'];
-                    $infos['leito' . $i] = $sql2['Id_leito'];
-                    $infos['id' . $i] = $sql2['ID'];
-                }
-                $sql3 = "SELECT * FROM pacientes WHERE CPF = '$identificaP'";
-                $query3 = mysqli_query($connect, $sql3);
-                while ($sql3 = mysqli_fetch_array($query3)) {
-                    $infos['paciente' . $i] = $sql3['Nome_Paciente'];
-                }
-                $infos['identificaP' . $i] = $identificaP;
-                $i++;
-            }
-            return view('/enfChefe/agendamentos', ['infos' => $infos]);
-        } else {
-            return redirect()->back()->with('msg-error', 'Você não tem acesso a essa pagina!!!');
+            return redirect()->back()->with('msg-error', 'Você não tem acesso a essa pagina!!!'); // caso não tenha permissão
         }
     }
 

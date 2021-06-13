@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 class VerificaLoginController extends Controller
 {
-    public static function verificarLogin(){
+    public static function verificarLogin(){ // verifica se tem alguem logado se não redireciona para login
         session_start();  
         if((isset($_SESSION['administrador']) == false) AND (isset($_SESSION['enfermeiroChefe']) == false) 
         AND (isset($_SESSION['enfermeiro']) == false) AND (isset($_SESSION['estagiario']) == false)){
@@ -13,7 +13,7 @@ class VerificaLoginController extends Controller
         }
     }
 
-    public static function verificarLoginAdmin(){
+    public static function verificarLoginAdmin(){ // verifica se tem adinistrador logado se não redireciona para login
         session_start();  
         if(isset($_SESSION['administrador']) == false){
             header("Location: /");
@@ -21,7 +21,7 @@ class VerificaLoginController extends Controller
         }
     }
 
-    public static function verificarLoginEnfC(){
+    public static function verificarLoginEnfC(){ // verifica se tem enfermeiro chefe logado se não redireciona para login
         session_start();  
         if(isset($_SESSION['enfermeiroChefe']) == false){
             header("Location: /");
@@ -29,7 +29,7 @@ class VerificaLoginController extends Controller
         }
     }
 
-    public static function verificarLoginEnf(){
+    public static function verificarLoginEnf(){ // verifica se tem enfermeiro logado se não redireciona para login
         session_start();  
         if(isset($_SESSION['enfermeiro']) == false){
             header("Location: /");
@@ -37,7 +37,7 @@ class VerificaLoginController extends Controller
         }
     }
 
-    public static function verificarLoginEst(){
+    public static function verificarLoginEst(){ // verifica se tem estagiario logado se não redireciona para login
         session_start();  
         if(isset($_SESSION['estagiario']) == false){
             header("Location: /");
@@ -45,7 +45,7 @@ class VerificaLoginController extends Controller
         }
     }
 
-    public static function verificaPermissao($numeroP){
+    public static function verificaPermissao($numeroP){ // função que verifica permissão com determinado ID cargo por cargo de 
         include("db.php");
         $resultado = "";
         if(isset($_SESSION['enfermeiroChefe'])){
@@ -74,7 +74,7 @@ class VerificaLoginController extends Controller
                 }
             }   
         }
-        return $resultado;
+        return $resultado; // Retorna 1 ou 0(Verdadeiro ou falso respectivamente)
     }
 
     
