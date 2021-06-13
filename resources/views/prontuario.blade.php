@@ -92,19 +92,19 @@
 
                     <div class="row">
                      <!---------data de nascimento----------->
-                        <div class="col-lg-4">
+                        <div class="col-md-4 col-lg-4">
                             <label>Data de Nascimento</label> <br>
                             <input disabled id="fnascimento" name="fnascimento" type="date"
                                 value="{{ $paciente['nascimento'] }}" required>
                         </div>
                          <!----------CPF----------->
-                        <div class="col-lg-4">
+                        <div class="col-md-4 col-lg-4">
                             <label>CPF</label> <br>
                             <input disabled id="fcpf" name="fcpf" type="text" required maxlength="14"
                                 pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" value="{{ $paciente['cpf'] }}">
                         </div>
                          <!----------sEXO----------->
-                        <div class="col-lg-4">
+                        <div class="col-md-4 col-lg-4">
                             <div class="sex-form">
                                 <label>Sexo</label> <br>
                                 @if ($paciente['sexo'] = 'M')
@@ -119,25 +119,25 @@
                     </div>
                     <div class="row">
                      <!----------Tipo Sanguineo----------->
-                        <div class="col-lg-8">
+                        <div class="col-md-4 col-lg-4">
                             <label>Tipo Sanguineo</label> <br>
                             <input disabled id="fsanguineo" name="fsanguineo" type="text"
                                 value="{{ $paciente['sangue'] }}" maxlength="50" required>
                         </div>
                          <!----------data de internação----------->
-                        <div class="col-lg-4">
+                        <div class="col-md-4 col-lg-4">
                             <label>Data de Internação</label> <br>
                             <input disabled id="fdatainternacao" name="fdatainternacao" type="date"
                                 value="{{ $paciente['internacao'] }}" required>
                         </div>
                          <!----------Leito----------->
-                        <div class="col-lg-4">
+                        <div class="col-6 col-sm-6 col-md-4 col-lg-4">
                             <label>Leito</label> <br>
                             <input disabled id="fleito" name="fleito" type="text" maxlength="50"
                                 value="{{ $paciente['leito'] }}" required>
                         </div>
                          <!----------Status----------->
-                        <div class="col-lg-4">
+                        <div class="col-6 col-sm-6 col-md-4 col-lg-4">
                             <label>Status</label> <br>
                             <input disabled id="fstatus" name="fstatus" id="fstatus" type="text" maxlength="50"
                                 placeholder="alta, internado ou obito" value="{{ $paciente['estado'] }}" required>
