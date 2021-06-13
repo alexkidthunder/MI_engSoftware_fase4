@@ -33,7 +33,7 @@
                 <div id="search">
                     <div class="content-center">
                         <h3>BUSCAR PACIENTE</h3>
-                        <form class="search-bar">
+                        <form class="search-bar" action="buscarPacienteAg" method="get">
                             <input id="cpf_user" name="cpf_user" type="text"
                                 onkeyup="mascara('###.###.###-##',this,event,true)" required maxlength="14"
                                 pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" placeholder="Informe o CPF">
@@ -45,39 +45,43 @@
                 </div>
                 <!------------- fim da Busca do paciente ------------->
 
+                <!----------- MENSAGENS DE ERRO ----------------->
+                @if (session('msg-error'))
+                    <div class='msg-error'> {{ session('msg-error') }}</div>
+                @endif
+                        <!----------- MENSAGENS DE SUCESSO----------------->
+                @if (session('msg-sucess'))
+                    <div class='msg-sucess'> {{ session('msg-sucess') }}</div>
+                @endif
+                <!----------- FIM MENSAGENS DE ERRO ----------------->
+
                 <!---------------------Infomações do Paciente---------------->
-                <div class="hide" id="user_Data">
+                <!-- <div class="hide" id="user_Data"> -->
+                    @if(isset($paciente))
                     <h3>Paciente</h3><br>
                     <div class="box-gray">
-                        Marcos Oliveira Santana
+                        {{$paciente['Nome_Paciente']}}
                     </div>
                     <div class="row">
                         <div class="col-lg-4">
                             <div class="box-gray">
-                                CPF: 011.988.999-00
+                                {{$paciente['Cpfpaciente']}}
                             </div>
-                        </div>
+                        </div>                       
                         <div class="col-lg-4">
                             <div class="box-gray">
-                                CID: 0123456 BA
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="box-gray">
-                                Leito: XXX
+                                Leito: {{$paciente['Id_leito']}}
                             </div>
                         </div>
                     </div>
                     <br>
-                    <div id="btn_register_medicine" class="content-center">
-                        <button type="button" class="btn-blue"> Cadastrar Agendamento </button>
-                    </div>
-                </div>
+               <!-- </div> -->
                 <!---------- Inicio de Cadastro de Agendamento ---------->
                 <div>
-                    <form id="register">
+                <form id="register" action="cadastrarAgendamento" method="get"> 
                         <!--class="hide"-->
                         <div class="box-medicament">
+                        <input type="hidden" value="{{$paciente['Cpfpaciente']}}">
                             <div class="row">
                                 <div class="col-md-6 col-lg-4">
                                     <!----------Inserção de Horario do Agendamento------------>
@@ -107,22 +111,31 @@
                                     <!----------Inicio de alocação de aplicador------------>
                                     <label for="aplicador_agendamento">Aplicador</label>
                                     <input id="aloc_inp" type="text" name="aplicador_agendamento"
-                                        placeholder="nome do aplicador" disabled>
+                                        placeholder="nome do aplicador" list="listaPlantonistas">
+
+                                        <datalist id="listaPlantonistas">
+                                            @if(isset($plantonistas))
+                                            @foreach($plantonistas as $plantonista)
+                                            <option>{{$plantonista['Nome_Plantonista']}} </option>                                 
+                                            @endforeach
+                                            @endif
+                                        </datalist>
                                 </div>
-                                <div class="col-lg-4">
+                               <!-- <div class="col-lg-4">
                                     <br>
                                     <button id="aloc_btn" type="button" class="btn-white"> Alocar aplicador </button>
-                                </div>
+                                </div> -->
                                 <!----------Fim de alocação de aplicador------------>
                             </div>
                         </div>
                         <div>
-                            <button id="submit_agendamento" type="button" class="btn-blue"> Cadastrar </button>
+                            <button id="submit_agendamento" type="submit" class="btn-blue"> Cadastrar </button>
                         </div>
 
                     </form>
                     <!----------Fim de cadastro de agendamento------------>
                 </div>
+                @endif
             </div>
         </div>
     </section>
