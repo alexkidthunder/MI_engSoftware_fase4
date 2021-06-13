@@ -209,7 +209,7 @@
                 <!----------------Medicações ministradas----------------->
                 <button class="btn-blue", id="action-btn">Medicações ministradas</button>
                  <h2 class="text-center">Medicações ministradas</h2><br>
-                    @for($i = 0;$i <= count($infosM);$i++)
+                    @for($j = 0;$j <= count($infosM);$j++)
                     @if(isset($infosM['hora'.$j]))
                         <div class="box-scheduling" id = "container-teste">
                             <div class="row">
