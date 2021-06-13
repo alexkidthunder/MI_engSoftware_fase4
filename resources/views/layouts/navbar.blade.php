@@ -32,10 +32,12 @@
                         @endif
                     </div>
                 </div>
-                <nav class="nav d-lg-block">
-                    <input type="checkbox" id="check-options">
-                    <label for="check-options" class="menu-items"><i class="fas fa-bars"></i></label>
-                    <ul>
+                
+                <!---------------- Opções do menu ---------------->
+                <nav class="nav d-lg-block" id="nav">
+                    <button class="menu-items" id="check-options" ><i class="fas fa-bars"></i></button>
+
+                    <ul id="menu">
                         <li class="title-nav"><a name="nav-item" href="{{ route('menu') }}">INÍCIO</a></li>
 
                         <li class="drop-down title-nav"><a>PACIENTES <i class="fas fa-angle-down"></i></a>

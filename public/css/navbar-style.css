@@ -48,6 +48,11 @@
     font-size:30px;
     cursor:pointer;
     display: none;
+    background-color: transparent;
+}
+
+.menu-items:visited{
+    color: #0A4CAF;
 }
 
 .menu-items:hover{
@@ -144,16 +149,13 @@ Navbar para mobile
         display: block;
         padding-top: 10px;
     }
-    .menu-items{
-        display: block;
-    }
     .nav ul{
         position:fixed;
-        width:80%;
-        height: 80%;
+        width:300px;;
+        height: 70%;
         background: #ffff;
         top:60px;
-        left: -100%;
+        left: 0;
         border-radius: 10px;
         transition: all .1s;
         box-shadow: 2px 2px 2px #e4e2e2;
@@ -198,6 +200,16 @@ Navbar para mobile
         visibility: visible;
         position: relative;
         top:100%;
+    }
+
+    #check-options{
+        display:block;
+    }
+    #menu{
+        display:none;
+    }
+    #nav.active #menu{
+        display:block;
     }
 
 }
