@@ -849,7 +849,8 @@ class HomeController extends Controller
         include("db.php");
         VerificaLoginController::verificarLogin();
         $resultado = VerificaLoginController::verificaPermissao(19);
-        $paciente=[];
+        $paciente=[];        
+        $agendamentos = [];
         $infosA = [];
         $infosM = [];
         $i = 0;
