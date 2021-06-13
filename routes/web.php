@@ -103,6 +103,8 @@ Route::get('/cadastrarPlantonistas', [EnfChefeController::class, 'cadastrarPlant
 Route::get('/listagemPlantonistas', [EnfChefeController::class, 'listaPlantonistas'])->name('listagemPlantonistas');
 Route::get('/cadastroMedicamento', [EnfChefeController::class, 'cadastroMedicamento'])->name('cadastroMedicamento');
 Route::get('/cadastroAgendamento', [EnfChefeController::class, 'cadastroAgendamento'])->name('cadastroAgendamento');
+Route::get('/buscarPacienteAg', [EnfChefeController::class,'buscarPacienteAg'])->name('buscarPacienteAg');
+Route::get('/cadastrarAgendamento', [EnfChefeController::class,'cadastrarAgendamento'])->name('cadastrarAgendamento');
 Route::get('/listaAgendamentos', [EnfChefeController::class, 'listaAgendamentos'])->name('listaAgendamentos');
 Route::get('/listaResponsaveis', [EnfChefeController::class, 'responsaveis'])->name('responsaveis');
 Route::get('/cadastroLeito', [EnfChefeController::class, 'cadastroLeito'])->name('cadastroLeito');
