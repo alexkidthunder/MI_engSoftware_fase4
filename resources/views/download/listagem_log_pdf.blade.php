@@ -7,7 +7,6 @@
         <link href="{{ asset('img/favicon.png') }}" rel="icon">
         <title>PDF_Download</title>
         <link href="{{ 'css/download-style.css' }}" rel="stylesheet">
-        <link href="/public/css/download-style.css" rel="stylesheet">
         
     </head>
     <body>
@@ -25,28 +24,25 @@
         <hr>
         <section>
             <div class="container-header"> 
-                <h1>Historico de Prontuário</h1> <!--De onde saiu a lista-->
+                <h1>Logs</h1> <!--De onde saiu a lista-->
             </div>
             <hr>
-            <div>
-                <p><span>Nome Paciente</span> - <span>CPF Paciente</span></p>
-            </div>
             <div class="container-listagem">
                 <table>
                     <thead>
                         <tr>
-                            <th>#</th> <!--Numero do Prontuário-->
-                            <th>Data de Internação</th>
-                            <th>Data de Saída</th>
-                            <th>Motivo</th>
+                            <th>Data</th>
+                            <th>Hora do Log</th>
+                            <th>IP</th>
+                            <th>Ação</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr> <!--Cada Prontuário-->
-                            <td>Número do Prontuário</td> <!--Numero do Prontuário-->
-                            <td>Data de Internação</td> <!--Data de Internação-->
-                            <td>Data de Saída</td> <!--Data de Saída-->
-                            <td>Motivo</td> <!--Motivo-->
+                        <tr> <!--Cada Log-->
+                            <td>Data</td>
+                            <td>Hora do Log</td>
+                            <td>IP</td>
+                            <td>Ação</td>
                         </tr>
                     </tbody>
                 </table>
