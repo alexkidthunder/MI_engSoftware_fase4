@@ -56,7 +56,7 @@ button3.addEventListener("click", function() {
         esconde.classList.add('hide');
     }
 });
-z
+
 button4.addEventListener("click", function() {
 
     esconde = document.getElementById("container-teste4");

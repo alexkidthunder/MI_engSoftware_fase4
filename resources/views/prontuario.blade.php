@@ -78,7 +78,6 @@
             <!---------------Dados do Paciente---------------->
             <button class="btn-blue" , id="action-btn3">Dados de Paciente</button>
             <div class="box-scheduling" , id="container-teste3">
-
                 <div id="register">
                     <div class="row">
                         @if (isset($paciente))
@@ -150,14 +149,17 @@
 
              <!----------Agendamentos de medicamentos------------>
                 
-            <button class="btn-blue", id="action-btn2">Agendamentos</button>
-             <h2 class="text-center">Agendamentos</h2><br>
-                <div class="box-scheduling" id = "container-teste2">
+            <button class="btn-blue" id="action-btn2">Agendamentos</button>
+            <div>
+
+            </div>
+            <div class="box-scheduling" id = "container-teste2">
+                <h2 class="text-center">Agendamentos</h2><br>
                 @for($i = 0;$i <= count($infosA); $i++)
                 @if(isset($infosA['hora'.$i]))
                     <div class="container-box">
                         <div class="row">
-                        <!---------------------Hora--------------------->
+                            <!---------------------Hora--------------------->
                             <div class="col-6 col-sm-12 col-md-6 col-lg-2 text-center">
                                 <div class="box-gray">
                                     <a>{{ $infosA['hora' . $i] }}</a>
@@ -169,7 +171,7 @@
                                     <a>{{ $infosA['data' . $i] }}</a>
                                 </div>
                             </div>
-                             <!---------------------Nome do Medicamento--------------------->
+                            <!---------------------Nome do Medicamento--------------------->
                             <div class="col-12 col-sm-12 col-md-6 col-lg-5 text-center">
                                 <div class="box-white scrolls">
                                     <a>{{$infosA['medicamento'.$i]}}</a>
@@ -183,7 +185,7 @@
                             </div>
                         </div>
                         <div class="row">
-                         <!----------Aplicador do medicamento----------->
+                            <!----------Aplicador do medicamento----------->
                             <div class="col-lg-9">
                             @if(isset($infosA['aplicador'.$i]))
                                 <div class="box-blue"> 
@@ -207,17 +209,17 @@
                         @endif
                         </div>
                     </div>
-                    @endif
-                    @endfor
-                </div>
+                @endif
+                @endfor
+            </div>
                  <!----------fim de Agendamentos de medicamentos------------>
 
                 <!----------------Medicações ministradas----------------->
                 <button class="btn-blue", id="action-btn">Medicações ministradas</button>
-                 <h2 class="text-center">Medicações ministradas</h2><br>
-                    @for($j = 0;$j <= count($infosM);$j++)
-                    @if(isset($infosM['hora'.$j]))
-                        <div class="box-scheduling" id = "container-teste">
+                    <div class="box-scheduling" id = "container-teste">
+                        <h2 class="text-center">Medicações ministradas</h2><br>
+                        @for($j = 0;$j <= count($infosM);$j++)
+                        @if(isset($infosM['hora'.$j]))
                             <div class="row">
                             <!---------------------Hora--------------------->
                                 <div class="col-6 col-sm-12 col-md-6 col-lg-2 text-center">
@@ -244,7 +246,7 @@
                                     </div>
                                 </div>
                             </div>
-                        <!----------Aplicador do medicamento----------->
+                            <!----------Aplicador do medicamento----------->
                             <div class="row">
                                 <div class="col-md-2 col-lg-2 col-xl-2">
                                     <p>Aplicador</p>
@@ -255,56 +257,62 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @endif
-                    @endfor
+                        @endif
+                        @endfor
+                    </div>
                 <!----------------fim de medicações ministradas----------------->
 
                 <!------------------Ocorrências--------------->
-                <button class="btn-blue", id="action-btn4">Ocorrências</button>
-                 <h2 class="text-center">Ocorrencias</h2><br>
-                <div class="box-scheduling", id= "container-teste4">
+                <button class="btn-blue" id="action-btn4">Ocorrências</button>
+                <div class="box-scheduling" id="container-teste4">
+                    <h2 class="text-center">Ocorrencias</h2><br>
                     <form action="/cadastroOcorr" method="POST" id="register">
-                    @csrf
-                    <!----------Tabela de ocorrencias------------>
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Data/Hora</th>
-                                    <th scope="col">Responsável</th>
-                                    <th scope="col">Ocorrencia</th>
-                                </tr>
-                            </thead>
-                            @for($k = 0; $k <= count($infosO); $k++)
-                            @if(isset($infosO['ocorrencia'.$k]))
-                            <tbody>
-                                <tr>
-                                    <td>{{$infosO['data'.$k]}} - {{$infosO['hora'.$k]}}</td>
-                                    <td>{{$infosO['aplicador'.$k]}}</td>
-                                    <td>{{$infosO['ocorrencia'.$k]}}</td>
-                                </tr>
-                            </tbody>
-                            @endif
-                            @endfor
-                        </table>
-                    </div>
-                    <!----------Registro de nova ocorrencia------------>
-                    <div class="col-lg-12">
-                        <input type="hidden" name="prontuario" value="{{ $paciente['prontuario'] }}">
-                        <label>Nova Ocorrencia</label> <br>
-                        <input id="focorrencia" name="focorrencia" type="text" maxlength="100" required>
-                        <div>
-                            <button type="submit" class="btn-blue"> Adicionar </button>
+                        @csrf
+                        <!----------Tabela de ocorrencias------------>
+                        @if(isset($infosO))
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Data</th>
+                                        <th scope="col">Hora</th> 
+                                        <th scope="col">Responsável</th>
+                                        <th scope="col">Ocorrencia</th>
+                                    </tr>
+                                </thead>
+                                @for($k = 0; $k <= count($infosO); $k++)
+                                @if(isset($infosO['ocorrencia'.$k]))
+                                <tbody>
+                                    <tr>
+                                        <td>{{$infosO['data'.$k]}}</td>
+                                        <td>{{$infosO['hora'.$k]}}</td>
+                                        <td>{{$infosO['aplicador'.$k]}}</td>
+                                        <td>{{$infosO['ocorrencia'.$k]}}</td>
+                                    </tr>
+                                </tbody>
+                                @endif
+                                @endfor
+                            </table>
                         </div>
-                    </div>
-                </form>
-            </div>
+                        @endif
+                        <!----------Registro de nova ocorrencia------------>
+                        <div class="col-lg-12">
+                            <input type="hidden" name="prontuario" value="{{ $paciente['prontuario'] }}">
+                            <label>Nova Ocorrencia</label> <br>
+                            <input id="focorrencia" name="focorrencia" type="text" maxlength="100" required>
+                            <div>
+                                <button type="submit" class="btn-blue"> Adicionar </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             <!------------------fim de ocorrências--------------->
 
             <!----------------CIDs do paciente---------------->
             <button class="btn-blue" , id="action-btn5">CIDs</button>
+            
             <div class="box-scheduling" , id="container-teste5">
+                <h2 class="text-center">CIDs</h2><br>
                 <form action="/cadastroCID" method="POST" id="register">
                     @csrf
                     <div class="row">
@@ -320,12 +328,13 @@
                     @while (isset($infosC['cid' . $l]))
                         <h3>CIDs do Paciente</h3>
                         <div class="box-scheduling">
-                        <div class="row">
-                            <div class="col-lg-2 text-center">
-                                <div class="box-gray">
-                                    CID: {{ $infosC['cid' . $l] }}
+                            <div class="row">
+                                <div class="col-lg-2 text-center">
+                                    <div class="box-gray">
+                                        CID: {{ $infosC['cid' . $l] }}
+                                    </div>
+                                    {{ $l++ }}
                                 </div>
-                                {{ $l++ }}
                             </div>
                         </div>
                     @endwhile
@@ -334,6 +343,7 @@
             <!----------------fim de CIDs do paciente---------------->
 
             <!-------------Encerramento do Prontuario-------------->
+            @if($paciente['estado'] == 'internado')
             <button class="btn-blue" , id="action-btn6">Encerrar Prontuario</button>
             <h2 class="text-center">Encerrar prontuário</h2><br>
             <div class="box-scheduling" id="container-teste6">
@@ -358,6 +368,7 @@
 
                 </form>
             </div>
+            @endif
             <!-------------fim de encerramento do Prontuario-------------->
         </div>
     </section>
