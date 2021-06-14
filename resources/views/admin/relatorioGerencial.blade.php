@@ -26,11 +26,15 @@
         <div class="container-2">
             <h1>RELATORIO GERENCIAL</h1>
             <!---Botao de donwload ----->
-            <form method="get" action="/baixarArquivos" class="download-icon" align="right">
-                <button>
-                    <i class="fas fa-download"></i>
-                </button>
-            </form>
+            <div id="screen-icon">
+                <form method="get" action="/baixarArquivos" class="download-icon">
+                    <button>
+                        <i class="fas fa-download"></i>
+                    </button>
+                        <input type="hidden" name="listagem" value="{{$paci['COUNT(*)'].'|'.$func['COUNT(*)'].'|'.$cid['codCid'].'|'.$taxa.'|'.$media.'|'.$medic['Nome_Medicam'].'|'.$leito['COUNT(*)'].'|'.$leitOcu['COUNT(*)'].'|'.$EnfCh['COUNT(*)'].'|'.$Enf['COUNT(*)'].'|'.$Est['COUNT(*)'].'|'.$adMin['COUNT(*)'] }}">
+                        <input type="hidden" name="tela" value="rg">
+                </form>
+            </div>
             <!-- Fim do botão de donwload-->
             <div class="row">
                 <!------- dado sobre pacientes--------->

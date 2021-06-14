@@ -80,6 +80,8 @@
                 <div>
                 <form id="register" action="cadastrarAgendamento" method="get"> 
                         <!--class="hide"-->
+                        <input type="hidden" name="Cpf_Paciente" value=" {{ $paciente['Cpfpaciente'] }}">
+                        
                         <div class="box-medicament">
                         <input type="hidden" value="{{$paciente['Cpfpaciente']}}">
                             <div class="row">
@@ -103,7 +105,15 @@
                                 <div class="col-lg-12">
                                     <label for="medicamento_agendamento">Medicamento</label>
                                     <!--Front precisa de uma lista de todos os medicamentos. Ps: em Json-->
-                                    <input type="text" name="medicamento_agendamento" id="medicamento_agendamento">
+                                    <input type="text" name="medicamento_agendamento" id="medicamento_agendamento" list="listaMedicamentos">
+                                    <!-- Auto Complete Lista de medicamentos  -->
+                                    <datalist id="listaMedicamentos">
+                                            @if(isset($medicamentos))
+                                            @foreach($medicamentos as $medicamento)
+                                            <option>{{$medicamento['Nome_Medicam']}} </option>                                 
+                                            @endforeach
+                                            @endif
+                                        </datalist>                                
                                 </div>
                             </div>
                             <div class="row">
@@ -112,7 +122,7 @@
                                     <label for="aplicador_agendamento">Aplicador</label>
                                     <input id="aloc_inp" type="text" name="aplicador_agendamento"
                                         placeholder="nome do aplicador" list="listaPlantonistas">
-
+                                         <!-- Auto Complete Lista de plantonistas  -->
                                         <datalist id="listaPlantonistas">
                                             @if(isset($plantonistas))
                                             @foreach($plantonistas as $plantonista)
