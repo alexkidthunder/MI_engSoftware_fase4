@@ -9,11 +9,13 @@
     <link href="{{ ('css/style.css') }}" rel="stylesheet"> 
     <link href="{{ ('bootstrap/css/bootstrap.css') }}" rel="stylesheet"> 
     
+    
     <!-- Favicons -->
     <link href="{{ asset('img/favicon.png') }}" rel="icon">
 
     <script src="{{ ('js/editarAtribuicao.js') }}" defer></script>
     <script src="{{ ('js/atribuicao.js')}}"></script> <!--Reutilizado-->
+    <script src="{{ ('js/mascara.min.js')}}"></script>
 
     <title>Atribuição do usuário</title>
     
@@ -56,7 +58,7 @@
                     </div>
                     <div id="search">
                         <form class="search-bar" action="/lupinha" method="GET"> <!--Área onde busca um usuário-->
-                            <input name="cpf_user" id="cpf_user" type="text" placeholder="Informe o CPF" required maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
+                            <input name="cpf_user" id="cpf_user" type="text" onkeyup="mascara('###.###.###-##',this,event,true)" placeholder="Informe o CPF" required maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
                             <button type="submit" id="busca_user">
                                 <i class="fas fa-search"></i>
                             </button>
