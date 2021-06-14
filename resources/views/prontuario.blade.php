@@ -1,3 +1,6 @@
+
+
+
 <!doctype html>
 <html lang="en">
 
@@ -35,12 +38,10 @@
     </div>
     <!----------Criação de Prontuario------------>
 
-    <h1 class="title-download">PRONTÚARIO</h1>
     <section>
 
         <!---------------------Mensagens de erro--------------------->
-        <div class="row">
-            <div class="col-lg">
+        <div>
                 @if ($errors->any())
                     <!--Verificando se existe qualquer erro -->
                     <div class="msg-error">
@@ -67,20 +68,21 @@
                         <!--Obtem mensagem de erro -->
                     </div>
                 @endif
-            </div>
         </div>
         
         <!---------------------fim de Mensagens de erro--------------------->
 
         <div class="container-1">
-            <!----------Primeira parte do Prontuario, onde fica localizado os dados do Paciente------------>
+            <h1 class="title-download">PRONTÚARIO</h1>
+
+            <!---------------Dados do Paciente---------------->
             <button class="btn-blue" , id="action-btn3">Dados de Paciente</button>
             <div class="box-scheduling" , id="container-teste3">
 
                 <div id="register">
                     <div class="row">
                         @if (isset($paciente))
-                            <!----------Dados do Paciente------------>
+                            <!----------Nome----------->
                             <div class="col-lg-12">
                                 <label>Nome</label> <br>
                                 <input disabled id="fnome" name="fnome" type="text" maxlength="50"
@@ -89,17 +91,20 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-lg-4">
+                     <!---------data de nascimento----------->
+                        <div class="col-md-4 col-lg-4">
                             <label>Data de Nascimento</label> <br>
                             <input disabled id="fnascimento" name="fnascimento" type="date"
                                 value="{{ $paciente['nascimento'] }}" required>
                         </div>
-                        <div class="col-lg-4">
+                         <!----------CPF----------->
+                        <div class="col-md-4 col-lg-4">
                             <label>CPF</label> <br>
                             <input disabled id="fcpf" name="fcpf" type="text" required maxlength="14"
                                 pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" value="{{ $paciente['cpf'] }}">
                         </div>
-                        <div class="col-lg-4">
+                         <!----------sEXO----------->
+                        <div class="col-md-4 col-lg-4">
                             <div class="sex-form">
                                 <label>Sexo</label> <br>
                                 @if ($paciente['sexo'] = 'M')
@@ -113,22 +118,26 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-8">
+                     <!----------Tipo Sanguineo----------->
+                        <div class="col-md-4 col-lg-4">
                             <label>Tipo Sanguineo</label> <br>
                             <input disabled id="fsanguineo" name="fsanguineo" type="text"
                                 value="{{ $paciente['sangue'] }}" maxlength="50" required>
                         </div>
-                        <div class="col-lg-4">
+                         <!----------data de internação----------->
+                        <div class="col-md-4 col-lg-4">
                             <label>Data de Internação</label> <br>
                             <input disabled id="fdatainternacao" name="fdatainternacao" type="date"
                                 value="{{ $paciente['internacao'] }}" required>
                         </div>
-                        <div class="col-lg-4">
+                         <!----------Leito----------->
+                        <div class="col-6 col-sm-6 col-md-4 col-lg-4">
                             <label>Leito</label> <br>
                             <input disabled id="fleito" name="fleito" type="text" maxlength="50"
                                 value="{{ $paciente['leito'] }}" required>
                         </div>
-                        <div class="col-lg-4">
+                         <!----------Status----------->
+                        <div class="col-6 col-sm-6 col-md-4 col-lg-4">
                             <label>Status</label> <br>
                             <input disabled id="fstatus" name="fstatus" id="fstatus" type="text" maxlength="50"
                                 placeholder="alta, internado ou obito" value="{{ $paciente['estado'] }}" required>
@@ -137,36 +146,44 @@
                     @endif
                 </div>
             </div>
-                <!----------Segunda parte de Prontuario, onde vai ter a ala de Agendamentos daquele Prontuario------------>
+            <!---------------fim de dados do Paciente---------------->
+
+             <!----------Agendamentos de medicamentos------------>
                 
-                <button class="btn-blue", id="action-btn2">Mostrar Agendamento</button>
-                    <div class="box-scheduling" id = "container-teste2">
-                    @for($i = 0;$i <= count($infosA); $i++)
-                    @if(isset($infosA['hora'.$i]))
+            <button class="btn-blue", id="action-btn2">Agendamentos</button>
+             <h2 class="text-center">Agendamentos</h2><br>
+                <div class="box-scheduling" id = "container-teste2">
+                @for($i = 0;$i <= count($infosA); $i++)
+                @if(isset($infosA['hora'.$i]))
                     <div class="container-box">
                         <div class="row">
-                            <div class="col-lg-2 text-center">
+                        <!---------------------Hora--------------------->
+                            <div class="col-6 col-sm-12 col-md-6 col-lg-2 text-center">
                                 <div class="box-gray">
                                     <a>{{ $infosA['hora' . $i] }}</a>
                                 </div>
                             </div>
-                            <div class="col-lg-2 text-center">
+                            <!---------------------Data--------------------->
+                            <div class="col-6 col-sm-12 col-md-6 col-lg-2 text-center">
                                 <div class="box-gray">
                                     <a>{{ $infosA['data' . $i] }}</a>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
+                             <!---------------------Nome do Medicamento--------------------->
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-5 text-center">
                                 <div class="box-white scrolls">
                                     <a>{{$infosA['medicamento'.$i]}}</a>
                                 </div>
                             </div>
-                            <div class="col-lg-2">
+                            <!---------------------Posologia--------------------->
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 text-center">
                                 <div class="box-white">
                                     <a>{{$infosA['posologia'.$i]}} ml</a>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
+                         <!----------Aplicador do medicamento----------->
                             <div class="col-lg-9">
                             @if(isset($infosA['aplicador'.$i]))
                                 <div class="box-blue"> 
@@ -174,6 +191,7 @@
                                 </div>
                             @endif
                             </div>
+                            <!---------------------Leito do Paciente--------------------->
                             <div class="col-lg-3">
                                 <div class="box-blue">
                                     <a>Leito: {{ $paciente['leito'] }}</a>
@@ -184,7 +202,7 @@
                         @if(!isset($infosA['aplicador'.$i]))
                             <form method="POST" action="/ACagendamentos">
                                 <input type="hidden" name="codA" value="{{$agendamentos}}"> 
-                                <button type="submit" class="btn-white">Ser Aplicador</button>
+                                <button type="submit" class="btn-white">Ser aplicador</button>
                             </form>
                         @endif
                         </div>
@@ -192,56 +210,63 @@
                     @endif
                     @endfor
                 </div>
-                <!----------Terceira parte do Prontuario, onde fica localizada medicações ministradas------------>
-                <button class="btn-blue", id="action-btn">Mostrar Medicações Ministradas</button>
-                <div class="box-scheduling", id = "container-teste">
-                    @for($i = 0;$i <= count($infosM);$i++)
+                 <!----------fim de Agendamentos de medicamentos------------>
+
+                <!----------------Medicações ministradas----------------->
+                <button class="btn-blue", id="action-btn">Medicações ministradas</button>
+                 <h2 class="text-center">Medicações ministradas</h2><br>
+                    @for($j = 0;$j <= count($infosM);$j++)
                     @if(isset($infosM['hora'.$j]))
-                    <div class="row">
-                        <div class="col-lg-2 text-center">
-                            <div class="box-gray">
-                                {{ $infosM['hora' . $j] }}
+                        <div class="box-scheduling" id = "container-teste">
+                            <div class="row">
+                            <!---------------------Hora--------------------->
+                                <div class="col-6 col-sm-12 col-md-6 col-lg-2 text-center">
+                                    <div class="box-gray">
+                                        {{ $infosM['hora' . $j] }}
+                                    </div>
+                                </div>
+                                <!---------------------Data--------------------->
+                                <div class="col-6 col-sm-12 col-md-6 col-lg-2 text-center">
+                                    <div class="box-gray">
+                                        {{ $infosM['data' . $j] }}
+                                    </div>
+                                </div>
+                                 <!---------------------Nome do Medicamento--------------------->
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-5 text-center">
+                                    <div class="box-white scrolls">
+                                        {{ $infosM['medicamento' . $j] }}
+                                    </div>
+                                </div>
+                                <!---------------------Posologia--------------------->
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-3 text-center">
+                                    <div class="box-white">
+                                        {{ $infosM['posologia' . $j] }}
+                                    </div>
+                                </div>
+                            </div>
+                        <!----------Aplicador do medicamento----------->
+                            <div class="row">
+                                <div class="col-md-2 col-lg-2 col-xl-2">
+                                    <p>Aplicador</p>
+                                </div>
+                                <div class="col-md-10 col-lg-7 col-xl-7">
+                                    <div class="box-gray">
+                                        {{$infosM['aplicador'.$j]}}
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-lg-2 text-center">
-                            <div class="box-gray">
-                                {{ $infosM['data' . $j] }}
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="box-white">
-                                {{ $infosM['medicamento' . $j] }}
-                            </div>
-                        </div>
-                        <div class="col-lg-2">
-                            <div class="box-white">
-                                {{ $infosM['posologia' . $j] }}
-                            </div>
-                        </div>
-                    </div>
-                    <!----------Parte onde fica o nome do Aplicador do medicamento e o leito do paciente------------>
-                    <div class="row">
-
-                        <div class="col-lg-3">
-                            <div class="box-blue">
-                                Leito: {{ $paciente['leito'] }}
-                            </div>
-                        </div>
-                    </div>
-
                     @endif
                     @endfor
-                </div>    
-                <!----------Quarta parte do Prontuario, onde fica localizada as ocorrências------------>
-                <button class="btn-blue", id="action-btn4">Ocorrencias</button>
-            <div class="box-scheduling", id= "container-teste4">
-                <form action="/cadastroOcorr" method="POST" id="register">
-                    @csrf
-                    <div class="row">
+                <!----------------fim de medicações ministradas----------------->
 
-                        <h3>Tabela de ocorrencias</h3>
-                    </div>
-                    <!----------Tabela de ocorrencias para ajudar na visualização do quadro do paciente------------>
+                <!------------------Ocorrências--------------->
+                <button class="btn-blue", id="action-btn4">Ocorrências</button>
+                 <h2 class="text-center">Ocorrencias</h2><br>
+                <div class="box-scheduling", id= "container-teste4">
+                    <form action="/cadastroOcorr" method="POST" id="register">
+                    @csrf
+                    <!----------Tabela de ocorrencias------------>
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>
@@ -264,7 +289,7 @@
                             @endfor
                         </table>
                     </div>
-                    <!----------Onde o enfermeiro ou enfermeiro chefe colocara sua nova ocorrencia------------>
+                    <!----------Registro de nova ocorrencia------------>
                     <div class="col-lg-12">
                         <input type="hidden" name="prontuario" value="{{ $paciente['prontuario'] }}">
                         <label>Nova Ocorrencia</label> <br>
@@ -275,7 +300,9 @@
                     </div>
                 </form>
             </div>
-            <!----------Quinta parte do Prontuario, onde fica localizado as CIDs do paciente------------>
+            <!------------------fim de ocorrências--------------->
+
+            <!----------------CIDs do paciente---------------->
             <button class="btn-blue" , id="action-btn5">CIDs</button>
             <div class="box-scheduling" , id="container-teste5">
                 <form action="/cadastroCID" method="POST" id="register">
@@ -290,24 +317,26 @@
                             </div>
                         </div>
                     </div>
-                    <h3>CIDs do Paciente</h3>
-                    <div class="box-scheduling">
+                    @while (isset($infosC['cid' . $l]))
+                        <h3>CIDs do Paciente</h3>
+                        <div class="box-scheduling">
                         <div class="row">
-                            @while (isset($infosC['cid' . $l]))
-                                <div class="col-lg-2 text-center">
-                                    <div class="box-gray">
-                                        CID: {{ $infosC['cid' . $l] }}
-                                    </div>
-                                    {{ $l++ }}
+                            <div class="col-lg-2 text-center">
+                                <div class="box-gray">
+                                    CID: {{ $infosC['cid' . $l] }}
                                 </div>
-                            @endwhile
+                                {{ $l++ }}
+                            </div>
                         </div>
-                    </div>
+                    @endwhile
                 </form>
             </div>
-            <!----------Ultima parte do Prontuario, onde o responsável podera encerrar o Prontuario------------>
+            <!----------------fim de CIDs do paciente---------------->
+
+            <!-------------Encerramento do Prontuario-------------->
             <button class="btn-blue" , id="action-btn6">Encerrar Prontuario</button>
-            <div class="box-scheduling" , id="container-teste6">
+            <h2 class="text-center">Encerrar prontuário</h2><br>
+            <div class="box-scheduling" id="container-teste6">
                 <form action="/finalizarProntuario" method="POST" id="register">
                     @csrf
                     <input type="hidden" name="prontuario" value="{{ $paciente['prontuario'] }}">
@@ -329,6 +358,7 @@
 
                 </form>
             </div>
+            <!-------------fim de encerramento do Prontuario-------------->
         </div>
     </section>
 </body>

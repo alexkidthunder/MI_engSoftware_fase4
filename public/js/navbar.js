@@ -1,12 +1,8 @@
-nav_item = document.getElementsByName('nav-item');
+menu_options = document.getElementById('check-options');
 
-for(i = 0; i < nav_item.length;i++){
-    nav_item[i].addEventListener('click',function(){
-        sessionStorage.clear();
-    });
-}
-checkbox = document.getElementById("check-options");
+nav = document.getElementById('nav');
 
-checkbox.addEventListener("click",function(){
-    checkbox.classList.add('hide');
+menu_options.addEventListener('click',function(){
+    nav.classList.toggle('active');
 })
+
