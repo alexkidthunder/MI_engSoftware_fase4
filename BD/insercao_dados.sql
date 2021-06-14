@@ -5,29 +5,31 @@ use hospital_universitario;
 /*select Count(*) from pacientes;*/
 
 insert into usuarios values
-	('021.446.717-41','João da Silva e Silva','silvajao123','joaosilva.hp@gmail.com','1980-12-05','Administrador','M','0010101','1'),
-    ('175.585.124-92','Maria joaquina Drumond','maria981','mariazinhaquina@gmail.com','1995-07-12','Administrador','F','00100101','1'),
-    ('174.985.367-13','Juscelino Silva dos Santos','jusck987','santosjuscelino.hp@gmail.com','1976-01-19','Administrador','M','11010110','1'),
-    
-    ('202.457.365-11','Vinicius Martins magalhães','viniciinEhdeiz10','mmvinicius@gmail.com','1989-09-24','Enfermeiro Chefe','M','00110101001','1'),
-    ('658.002.101-02','Ambrozina pereira amorim','98378s2','amorim.Ambozina@gmail.com','1974-04-27','Enfermeiro Chefe','F','10001010','1'),
-    ('475.013.135-62','Ana Catarina Melo','09annamello','anna.melocatarina@gmail.com','1986-10-11','Enfermeiro Chefe','F','010010110','1'),
-    
-    ('252.696.001-73','Brenda Estefanir souza','09szai2','brendasouza.hp@gmail.com','1995-07-29','Enfermeiro','F','0100110101011','1'),
-    ('250.414.528-74','Alfredo Estrada Félix','frefedo872','estrada.felixfred@gmail.com','1979-02-27','Enfermeiro','M','110100101','1'),
-    ('127.066.920-65','Rafael Yago Rocha','goya761s','Yagorafael.hp@gmail.com','1968-09-26','Enfermeiro','M','11010010100','1'),
-    ('558.570.920-86','Jaqueline Marina da Cunha','cunh87ja212que','cunha.jaquemarina@gmail.com','1987-08-21','Enfermeiro','F','0010110101','1'),
-    ('136.382.370-10','Diego Luan Cardoso','dosos23doso12','dieguinho87luan@gmail.com','1968-02-18','Enfermeiro','M','1101010','1'),
-    ('072.003.190-74','Isaac Márcio Enrico Almada','malfada234','malfada.enricoIsaac@gmail.com','1988-07-26','Enfermeiro','M','110100101','1'),
-    ('873.325.550-42','Cauã Mário da Luz','luz21s1z','cauamariodaluz.81@gmail.com','1984-07-07','Enfermeiro','M','001011011','1'),
-    ('607.500.500-55','Alfredo Estrada Félix','frefedo872','suelimirellaaparecidadossantos@gmail.com','1971-01-21','Enfermeiro','F','11001010','1'),
-    ('841.084.862-77','Diego Theo Nathan Vieira','08F993d2gq','_diegotheonathanvieira@gmail.com','1992-02-25','Enfermeiro','M','1010010101','1'),
-    ('046.822.991-40','Fernando Miguel Galvão','GFdZCYh6Yo','fernandomiguelgalvao-92@gmail.com','1959-04-23','Enfermeiro','M','011010001','1'),
-    
-    ('657.687.833-85','Rayssa Larissa da Rosa','ro029090710sa','rrayssalarissadarosa@gmail.com','1994-11-14','Estagiario','F','00100010','1'),
-    ('868.500.956-17','Marlene Sarah Alana Moura','m4a13mp0s8m','smmarlenesarahalanamoura@gmail.com','1992-11-06','Estagiario','F','01001010','1'),
-    ('645.566.964-96','Nina Gabriela Camila Figueiredo','7bfc8LG23j','inagabrielacamilafigueiredo@gmail.com','1971-01-21','Estagiario','F','010100111','1'),
-    ('213.223.336-53','Severino Nathan Ferreira','frefedo872','severinonathanferreira@gmail.com','1996-02-17','Estagiario','M','011111000','1');
+	('021.446.717-41', 'João da Silva e Silva', '$2y$10$7jWU2w3ajIPD5AWU4waoI.lAVWl6kRLyq5r8AxzmfcTPO8aKKW8AK', 'joaosilva.hp@gmail.com', '1980-12-05', 'Administrador', 'M', '0010101', 1),
+	('174.985.367-13', 'Juscelino Silva dos Santos', '$2y$10$BalMabIIQvI24RxDR1WWlumoorsZHfAQCoiK4lt697CUIR8kkPg9a', 'santosjuscelino.hp@gmail.com', '1976-01-19', 'Administrador', 'M', '11010110', 1),
+	('175.585.124-92', 'Maria joaquina Drumond', '$2y$10$833Prl7EMsN8LJ4qgtBh5egUKcN97Pg38aLL414CM.eEdft3as5zK', 'mariazinhaquina@gmail.com', '1995-07-12', 'Administrador', 'F', '00100101', 1),
+	
+	('202.457.365-11', 'Vinicius Martins magalhães', '$2y$10$m13rSbDG8pumBifJAuLZF.1payfEJBSjSkBkiHxYdcpXPc/ZQ0WHi', 'mmvinicius@gmail.com', '1989-09-24', 'Enfermeiro Chefe', 'M', '00110101001', 1),
+	('658.002.101-02', 'Ambrozina pereira amorim', '$2y$10$cQo4T3yyEnZqiHGHUqGfOusxbYhnf6IlT0rV4egtjD.v3QOBFTAWy', 'amorim.Ambozina@gmail.com', '1974-04-27', 'Enfermeiro Chefe', 'F', '10001010', 1),
+	('475.013.135-62', 'Ana Catarina Melo', '$2y$10$dtKg3N94yiKc7jMBvUamXum0LFVa5xlzCfT.dVgZozKEjZLiFntCm', 'anna.melocatarina@gmail.com', '1986-10-11', 'Enfermeiro Chefe', 'F', '010010110', 1),
+	
+	('046.822.991-40', 'Fernando Miguel Galvão', '$2y$10$9FsmLSiyhp0xAPLWD7RiZurInmcIj1qQGldVtgKJiP.4YWaYpHf52', 'fernandomiguelgalvao-92@gmail.com', '1959-04-23', 'Enfermeiro', 'M', '011010001', 1),
+	('072.003.190-74', 'Isaac Márcio Enrico Almada', '$2y$10$SrJHuxfHw3IDg3UcY5WVVOPG.ZyxXySNjV.hzq3F43JknRApuDOxy', 'malfada.enricoIsaac@gmail.com', '1988-07-26', 'Enfermeiro', 'M', '110100101', 1),
+	('127.066.920-65', 'Rafael Yago Rocha', '$2y$10$.BFJ5l8fQCR3clgk2n6N6OnubnB9Pwjzq5mlhxWNRsxZEyV6dD5qm', 'Yagorafael.hp@gmail.com', '1968-09-26', 'Enfermeiro', 'M', '11010010100', 1),
+	('136.382.370-10', 'Diego Luan Cardoso', '$2y$10$uYc0tNJkj37Ym6H3lhDxYun5ioRSeSC1Obu0tiK3zt2TaFx.DXo/.', 'dieguinho87luan@gmail.com', '1968-02-18', 'Enfermeiro', 'M', '1101010', 1),
+	('873.325.550-42', 'Cauã Mário da Luz', '$2y$10$MhfrDoHO1bSX5TsHJcbUtOvdvv1Gx7CnGT5fgywgqc8dPprnBlnra', 'cauamariodaluz.81@gmail.com', '1984-07-07', 'Enfermeiro', 'M', '001011011', 1),
+	('250.414.528-74', 'Alfredo Estrada Félix', '$2y$10$cl2nLZJ2nHvpevacee/ECOizvpoRO3S.4RFkh5ybhu8EK1CiKx8mO', 'estrada.felixfred@gmail.com', '1979-02-27', 'Enfermeiro', 'M', '110100101', 1),
+	('252.696.001-73', 'Brenda Estefanir souza', '$2y$10$Iefi01NgzHu8ho8JQS6FMOkcwbNFMDqs6ioIdrIejml6Ls8FnJvIS', 'brendasouza.hp@gmail.com', '1995-07-29', 'Enfermeiro', 'F', '0100110101011', 1),
+	('841.084.862-77', 'Diego Theo Nathan Vieira', '$2y$10$nyOf77xJhEoO70igqRqQwO3q0W0IMojblRKd7VgLf5B33zT8BKLgS', '_diegotheonathanvieira@gmail.com', '1992-02-25', 'Enfermeiro', 'M', '1010010101', 1),
+	('558.570.920-86', 'Jaqueline Marina da Cunha', '$2y$10$zg9Vw01B7MbJt1CAXLKSDegalLV/LQQ8iI8nYu5AKmo8xW9vDQqxm', 'cunha.jaquemarina@gmail.com', '1987-08-21', 'Enfermeiro', 'F', '0010110101', 1),
+	('607.500.500-55', 'Alfredo Estrada Félix', '$2y$10$Wu/px0e4vm4Spgl5MZNSUez5.GAiij1Bwwi1ad.0q795GsD0XxBW2', 'suelimirellaaparecidadossantos@gmail.com', '1971-01-21', 'Enfermeiro', 'F', '11001010', 1),
+	
+	('657.687.833-85', 'Rayssa Larissa da Rosa', '$2y$10$DjAbHQlHcmPAiprncqRuAedBVqjYv4afl0gOZJNC/4RoruAkE1Tsm', 'rrayssalarissadarosa@gmail.com', '1994-11-14', 'Estagiario', 'F', '00100010', 1),
+	('868.500.956-17', 'Marlene Sarah Alana Moura', '$2y$10$/MmXXJJqWGpt.JnNLwIa2.N.AKT1mdmoG4QZrA/B4viXtHuOW8ibW', 'smmarlenesarahalanamoura@gmail.com', '1992-11-06', 'Estagiario', 'F', '01001010', 1),
+	('645.566.964-96', 'Nina Gabriela Camila Figueiredo', '$2y$10$Onr6Wp/qTFzffQSjEXtwY.6MIwNS97OvqvaPaB4ALl9oXMob/5iY6', 'inagabrielacamilafigueiredo@gmail.com', '1971-01-21', 'Estagiario', 'F', '010100111', 1),
+	('213.223.336-53', 'Severino Nathan Ferreira', '$2y$10$rRw3K2MDhRtuKzZCQD1hM.jOVwuTxWQP6McGSuX39hxeBCjGOg.ne', 'severinonathanferreira@gmail.com', '1996-02-17', 'Estagiario', 'M', '011111000', 1);
+	
+	
     
 
 /*Insere na tabela de administradores*/

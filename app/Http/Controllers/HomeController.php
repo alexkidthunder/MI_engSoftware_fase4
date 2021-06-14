@@ -1474,41 +1474,50 @@ class HomeController extends Controller
                         </tr>';
                     }
                 }
+                
+                $mpdf->WriteHTML('<!doctype html>
+                <html lang="en">
+                <style>'.$css.'</style>
+                    <body>
+                        <header class="container-personal-data">
+                            <div>
+                                <h2>Nome Hospital</h2> <!--Nome do nosso Hospital-->
+                            </div>
+                            <div>
+                                <h2>'.$nome.' / '.$cpf.'</h2> <!--Nome e CPF de quem requisitou o download-->
+                            </div>
+                            <div>
+                                <h2>'.$data_a.'</h2> <!--Data e Hora em que foi feito o download-->
+                            </div>
+                        </header>
+                        <hr>
+                        <section>
+                            <div class="container-header"> 
+                                <h1>Agendamentos</h1> <!--De onde saiu a lista-->
+                            </div>
+                            <hr>
+                            <div class="container-listagem">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Leito</th>
+                                            <th>Hora - Data</th>
+                                            <th>Nome do Paciente</th>
+                                            <th>Remedio</th>
+                                            <th>Quantidade Remedio</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        '.$lista.'
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                        <footer style="position: absolute; bottom: 0;">
+                            <p id="Copyright">Informações para o Footer da página</p> <!--Caso queira deixar alguma informação no Footer-->
+                        </footer>
+                    </body>');
             }
-            $lista = implode('<br><br>',$hp);
-            $mpdf->WriteHTML('<body>
-    <header class="container-personal-data">
-        <div class="container-header">
-        <h2><span>Nome Hospital'.' '. '/  </span><span>'.$nome. '</span><span> /'.$data_a.'</span></h2> <!--Nome do nosso Hospital-->
-        </div>
-    </header>
-    <hr>
-    <section>
-        <div class="container-header"> 
-            <h1>Historico de prontuarios</h1> <!--De onde saiu a lista-->
-        </div>
-        <hr>
-        <div class="container-listagem">
-        <div>
-            <h2>Paciente: '.$vetor[1].' </h2> 
-            <h3>CPF:'.$vetor[3].'</h3> 
-            <h4>Estado atual:   '.$vetor[2].'</h4> 
-        </div>
-                <div class="container-item-list"> <!--Tudo que contem em um item da lista e seus campos--> <!--Isso que deve ser posto dentro de um while/for/do while-->
-                    <div class="Overflow-hidden"> <!--Caso Precise adicionar mais um campo a essa listagem, criar uma div nova, como essa-->
-                        <p>'.$lista.'</p>
-                    </div>
-                </div>
-           
-        </div>
-    
-    </section>
-    <footer style="position: absolute; bottom: 0;">
-        <p id="Copyright">Informações para o Footer da página</p> <!--Caso queira deixar alguma informação no Footer-->
-    </footer>
-</body>' );
-    }
-
         }
         $mpdf->Output(); // função que redireciona para o arquivo pdf para baixa-lo
     }
