@@ -84,7 +84,7 @@
                             </div>
                             <div class="col-9">
                                 <div class="card-options_title">
-                                    <h3><b>{{-- {{$cid["codCid"]}} --}}</b></h3>
+                                    <h3><b>{{$cid["codCid"]}}</b></h3>
                                     <h4><a>CID mais frequente</a></h4>
                                 </div>
                             </div>

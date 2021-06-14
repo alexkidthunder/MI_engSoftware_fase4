@@ -39,13 +39,14 @@
         <h1 class="title-download">MEDICAMENTOS CADASTRADOS</h1>
 
         <!-------------- Medicamento  -------------->
-        @while(isset($m["nome".$i]))
+        @for($i = 0;$i <= count($m); $i++)
+        @if(isset($m["nome".$i]))
         <div class="box-white">
             <!----- Nome do medicamento----->
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                     <label>Nome</label> <br>
-                    <div class="box-blue">
+                    <div class="box-blue scrolls">
                         {{$m["nome".$i]}}
                     </div>
                 </div>
@@ -68,14 +69,14 @@
                 <!-----Fabricante do medicamento----->
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                     <label>Fabricante</label> <br>
-                    <div class="box-gray">
+                    <div class="box-gray scrolls">
                         {{$m["fabricante".$i]}}
                     </div>
                 </div>
             </div>
-            {{$i = $i +1}}
         </div>
-        @endwhile
+        @endif
+        @endfor
         <!-------------- Fim do medicamento  -------------->
     </div>
 </body>

@@ -24,6 +24,8 @@
 
     <div class="container-1">
         <h1>MEUS AGENDAMENTOS ALOCADOS</h1>
+
+        <!---------------------Mensagens de erro--------------------->
         <div class="row">
             <div class="col-lg">
                 @if ($errors->any()) <!--Verificando se existe qualquer erro -->
@@ -47,6 +49,7 @@
                 @endif
             </div>
         </div>
+        <!---------------------fim de Mensagens de erro--------------------->
          
         <!---------------------Agendamento --------------------->
         @for($i = 0;$i < count($infos)/9;$i++)
@@ -95,6 +98,7 @@
             </form>
             <form action="/FMagendamentos" method="post">
             @csrf
+            <!---------------------Botão finalizar aplicação--------------------->
             <div class="row">
                 <div class="col-lg-9">
                 </div>

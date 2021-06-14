@@ -26,10 +26,12 @@
                         @endif
                     </div>
                 </div>
-                <nav class="nav d-lg-block">
-                    <input type="checkbox" id="check-options">
-                    <label for="check-options" class="menu-items"><i class="fas fa-bars"></i></label>
-                    <ul>
+
+                 <!---------------- Opções do menu ---------------->
+                <nav class="nav d-lg-block" id="nav">
+                    <button class="menu-items" id="check-options" ><i class="fas fa-bars"></i></button>
+                  
+                    <ul id="menu">
                         <li class="title-nav"><a name="nav-item" href="{{ route('menuAdm') }}">INÍCIO</a></li>
                         <li class="drop-down title-nav"><a>FUNCIONÁRIOS <i class="fas fa-angle-down"></i></a>
                             <ul>
@@ -44,9 +46,9 @@
 
                         <li class="title-nav"><a name="nav-item" href="{{ route('backup') }}">BACKUP</a></li>
 
-                        <li class="title-nav"><a name="nav-item" href="#">RELATÓRIOS GERENCIAIS</a></li>
+                        <li class="title-nav"><a name="nav-item" href="{{route('relatorioGerencial')}}">RELATÓRIO GERENCIAL</a></li>
 
-                        <!-------- Botão de logout -------->
+                        <!------------ Botão de logout ------------->
                         <li><a name="nav-item" href="/logout" class="logout-icon"><i class="fas fa-sign-out-alt"></i></a></li>
 
                     </ul>
@@ -54,14 +56,6 @@
             </div>
         </div>
     </header>
-
-    <script src="jquery.min.js"></script>
-    <script>
-        $('.nav').on('click','li', function(){
-            $('.nav .active').removeClass('active');
-            $(this).addClass('active');
-        });
-    </script>
 
 </body>
 

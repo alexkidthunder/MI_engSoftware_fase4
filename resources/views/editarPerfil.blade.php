@@ -29,6 +29,8 @@
     <section>
         <div class="container-1" id="perfil">
             <h1>MEU PERFIL</h1>
+
+            <!---------------------Mensagens de erro--------------------->
             <div class="row">
                 <div class="col-lg">
                     @if ($errors->any()) <!--Verificando se existe qualquer erro -->
@@ -52,6 +54,7 @@
                     @endif
                 </div>
             </div>
+            <!---------------------fim de mensagens de erro--------------------->
              
             <!------------ Informações pessoais do usuário ------------>
             <div class="box" id="perfilArea">
