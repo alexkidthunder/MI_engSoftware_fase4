@@ -858,7 +858,8 @@ class AdminController extends Controller
         session_start();
         include("bd.php");
         //obtem data e hora atual 
-        $data = date('H-m-i');
+        date_default_timezone_set('America/Sao_Paulo');
+        $data = date('H:i:s');
         $data = date('Y-m-d');
         $cpf = HomeController::ObterCpf();
         $sql = "SELECT * FROM agendamentos WHERE CPF_usuario = '$cpf'"; // verifica se o usuario logado tem agendamento 
