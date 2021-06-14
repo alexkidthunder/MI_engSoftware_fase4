@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 04-Jun-2021 às 23:54
+-- Tempo de geração: 13-Jun-2021 às 21:38
 -- Versão do servidor: 10.4.18-MariaDB
 -- versão do PHP: 8.0.3
 
@@ -26,8 +26,8 @@ USE `hospital_universitario`;
 --
 -- Estrutura da tabela `administradores`
 --
--- Criação: 05-Jun-2021 às 00:34
--- Última actualização: 05-Jun-2021 às 00:34
+-- Criação: 14-Jun-2021 às 00:20
+-- Última actualização: 14-Jun-2021 às 00:20
 --
 
 CREATE TABLE IF NOT EXISTS `administradores` (
@@ -55,8 +55,8 @@ INSERT INTO `administradores` (`CPF`) VALUES
 --
 -- Estrutura da tabela `agendamentos`
 --
--- Criação: 05-Jun-2021 às 00:34
--- Última actualização: 05-Jun-2021 às 00:34
+-- Criação: 14-Jun-2021 às 00:20
+-- Última actualização: 14-Jun-2021 às 00:20
 --
 
 CREATE TABLE IF NOT EXISTS `agendamentos` (
@@ -135,7 +135,8 @@ INSERT INTO `agendamentos` (`Codigo`, `Posologia`, `Data_Agend`, `Realizado`, `H
 --
 -- Estrutura da tabela `backups_agendados`
 --
--- Criação: 05-Jun-2021 às 00:34
+-- Criação: 14-Jun-2021 às 00:20
+-- Última actualização: 14-Jun-2021 às 00:20
 --
 
 CREATE TABLE IF NOT EXISTS `backups_agendados` (
@@ -163,8 +164,8 @@ INSERT INTO `backups_agendados` (`ID`, `Data_backup`, `Hora_backup`, `ip`, `Auto
 --
 -- Estrutura da tabela `cargo`
 --
--- Criação: 05-Jun-2021 às 00:34
--- Última actualização: 05-Jun-2021 às 00:34
+-- Criação: 14-Jun-2021 às 00:20
+-- Última actualização: 14-Jun-2021 às 00:20
 --
 
 CREATE TABLE IF NOT EXISTS `cargo` (
@@ -192,8 +193,8 @@ INSERT INTO `cargo` (`id`, `nome`) VALUES
 --
 -- Estrutura da tabela `cid`
 --
--- Criação: 05-Jun-2021 às 00:34
--- Última actualização: 05-Jun-2021 às 00:38
+-- Criação: 14-Jun-2021 às 00:20
+-- Última actualização: 14-Jun-2021 às 00:21
 --
 
 CREATE TABLE IF NOT EXISTS `cid` (
@@ -12658,8 +12659,8 @@ INSERT INTO `cid` (`id`, `codCid`, `descricaoCid`) VALUES
 --
 -- Estrutura da tabela `cid_prontuario`
 --
--- Criação: 05-Jun-2021 às 00:34
--- Última actualização: 05-Jun-2021 às 00:38
+-- Criação: 14-Jun-2021 às 00:20
+-- Última actualização: 14-Jun-2021 às 00:21
 --
 
 CREATE TABLE IF NOT EXISTS `cid_prontuario` (
@@ -12701,8 +12702,8 @@ INSERT INTO `cid_prontuario` (`id`, `id_CID`, `id_prontuario`) VALUES
 --
 -- Estrutura da tabela `enfermeiros`
 --
--- Criação: 05-Jun-2021 às 00:34
--- Última actualização: 05-Jun-2021 às 00:34
+-- Criação: 14-Jun-2021 às 00:20
+-- Última actualização: 14-Jun-2021 às 00:20
 --
 
 CREATE TABLE IF NOT EXISTS `enfermeiros` (
@@ -12740,8 +12741,8 @@ INSERT INTO `enfermeiros` (`CPF`, `COREN`, `Plantao`) VALUES
 --
 -- Estrutura da tabela `enfermeiros_chefes`
 --
--- Criação: 05-Jun-2021 às 00:34
--- Última actualização: 05-Jun-2021 às 00:34
+-- Criação: 14-Jun-2021 às 00:20
+-- Última actualização: 14-Jun-2021 às 00:20
 --
 
 CREATE TABLE IF NOT EXISTS `enfermeiros_chefes` (
@@ -12771,8 +12772,8 @@ INSERT INTO `enfermeiros_chefes` (`CPF`, `COREN`) VALUES
 --
 -- Estrutura da tabela `estagiarios`
 --
--- Criação: 05-Jun-2021 às 00:34
--- Última actualização: 05-Jun-2021 às 00:34
+-- Criação: 14-Jun-2021 às 00:20
+-- Última actualização: 14-Jun-2021 às 00:20
 --
 
 CREATE TABLE IF NOT EXISTS `estagiarios` (
@@ -12802,8 +12803,8 @@ INSERT INTO `estagiarios` (`CPF`, `Plantao`) VALUES
 --
 -- Estrutura da tabela `leitos`
 --
--- Criação: 05-Jun-2021 às 00:34
--- Última actualização: 05-Jun-2021 às 02:32
+-- Criação: 14-Jun-2021 às 00:20
+-- Última actualização: 14-Jun-2021 às 00:20
 --
 
 CREATE TABLE IF NOT EXISTS `leitos` (
@@ -12855,8 +12856,8 @@ INSERT INTO `leitos` (`Ocupado`, `Identificacao`) VALUES
 --
 -- Estrutura da tabela `logs`
 --
--- Criação: 05-Jun-2021 às 00:34
--- Última actualização: 05-Jun-2021 às 02:33
+-- Criação: 14-Jun-2021 às 00:20
+-- Última actualização: 14-Jun-2021 às 00:35
 --
 
 CREATE TABLE IF NOT EXISTS `logs` (
@@ -12866,7 +12867,7 @@ CREATE TABLE IF NOT EXISTS `logs` (
   `Ip` varchar(15) NOT NULL,
   `Acao` text NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- RELACIONAMENTOS PARA TABELAS `logs`:
@@ -12877,8 +12878,8 @@ CREATE TABLE IF NOT EXISTS `logs` (
 --
 -- Estrutura da tabela `medicamentos`
 --
--- Criação: 05-Jun-2021 às 00:34
--- Última actualização: 05-Jun-2021 às 00:34
+-- Criação: 14-Jun-2021 às 00:20
+-- Última actualização: 14-Jun-2021 às 00:20
 --
 
 CREATE TABLE IF NOT EXISTS `medicamentos` (
@@ -12899,62 +12900,61 @@ CREATE TABLE IF NOT EXISTS `medicamentos` (
 --
 
 INSERT INTO `medicamentos` (`Nome_Medicam`, `Quantidade`, `Fabricante`, `Data_Validade`, `Codigo`) VALUES
-	('Dipirona', 100, 'Medley', '2027-05-12', 1210033020),
-	('Atenolol', 100, 'Medley', '2027-05-12', 1210033452),
-	('Losartana', 100, 'Medley', '2027-05-12', 4320033452),
-	('CEFALOTINA SÓDICA', 70, 'AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA', '2026-05-14', 500100102151411),
-	('CEFOTAXIMA SÓDICA', 71, 'AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA', '2026-05-21', 500100305158117),
-	('CLORIDRATO DE CIPROFLOXACINO MONOIDRATADO', 50, 'AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA', '2026-04-02', 500100401114419),
-	('ATENOLOL', 25, 'AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA', '2025-07-01', 500103201116110),
-	('VALSARTANA', 80, 'EUROFARMA LABORATÓRIOS S.A.', '2024-12-12', 508014010101404),
-	('DELTAMETRINA', 60, 'INFAN INDUSTRIA QUIMICA FARMACEUTICA NACIONAL S/A', '2025-11-10', 511301501162416),
-	('CLORIDRATO DE RANITIDINA', 55, 'SANDOZ DO BRASIL INDÚSTRIA FARMACÊUTICA LTDA', '2023-07-20', 511502602111117),
-	('ACETATO DE DEXAMETASONA', 30, 'SANDOZ DO BRASIL INDÚSTRIA FARMACÊUTICA LTDA', '2024-01-21', 511502902164410),
-	('PANTOPRAZOL SÓDICO SESQUIHIIDRATADO', 39, 'SANDOZ DO BRASIL INDÚSTRIA FARMACÊUTICA LTDA', '2024-01-20', 511507506119413),
-	('DIPIRONA SÓDICA', 150, 'HIPOLABOR FARMACEUTICA LTDA', '2027-02-03', 511607101153116),
-	('MIDAZOLAM', 85, 'HIPOLABOR FARMACEUTICA LTDA', '2026-10-11', 511607301152415),
-	('PARACETAMOL', 99, 'HIPOLABOR FARMACEUTICA LTDA', '2028-01-10', 511607701134112),
-	('SULFATO DE MAGNÉSIO', 70, 'HYPOFARMA - INSTITUTO DE HYPODERMIA E FARMÁCIA LTD', '2027-10-13', 511803201157415),
-	('IBUPROFENO', 80, 'MANTECORP INDÚSTRIA QUÍMICA E FARMACÊUTICA S.A.', '2025-05-01', 512400201130326),
-	('ALPRAZOLAM', 35, 'MANTECORP INDÚSTRIA QUÍMICA E FARMACÊUTICA S.A.', '2025-05-01', 512400302115411),
-	('SULFATO DE SALBUTAMOL', 60, 'INDÚSTRIA QUÍMICA DO ESTADO DE GOIÁS S/A - IQUEGO', '2023-06-14', 513003501136413),
-	('AMOXICILINA TRIIDRATADA', 200, 'INDÚSTRIA QUÍMICA DO ESTADO DE GOIÁS S/A - IQUEGO', '2024-06-05', 513004101115417),
-	('CEFAZOLINA SÓDICA', 90, 'INSTITUTO BIOCHIMICO INDÚSTRIA FARMACÊUTICA LTDA', '2022-06-16', 513401101154413),
-	('OMEPRAZOL', 155, 'INSTITUTO BIOCHIMICO INDÚSTRIA FARMACÊUTICA LTDA', '2024-02-14', 513402201111412),
-	('CETOCONAZOL', 125, 'NATIVITA IND. COM. LTDA.', '2023-06-14', 542012090002204),
-	('DROSPIRENONA', 220, 'ALTHAIA S.A. INDÚSTRIA FARMACÊUTICA', '2022-05-11', 542112060000106),
-	('ATORVASTATINA CÁLCICA', 550, 'SUPERA FARMA LABORATÓRIOS S.A', '2028-06-11', 542614040002004),
-	('CLORIDRATO DE DONEPEZILA', 450, 'SUPERA FARMA LABORATÓRIOS S.A', '2025-06-25', 542614060002404),
-	('IRBESARTANA', 130, 'SUPERA FARMA LABORATÓRIOS S.A', '2026-06-04', 542614060002604),
-	('HIDROCLOROTIAZIDA', 300, 'SUPERA FARMA LABORATÓRIOS S.A', '2024-06-12', 542614060002804),
-	('MESILATO DE ERIBULINA', 200, 'EISAI LABORATÓRIOS LTDA', '2024-06-12', 542714020000002),
-	('ACETATO DE CLORMADINONA', 250, 'GRÜNENTHAL DO BRASIL FARMACÊUTICA LTDA.', '2026-06-11', 542813120000018),
-	('LIDOCAÍNA', 300, 'GRÜNENTHAL DO BRASIL FARMACÊUTICA LTDA.', '2024-06-07', 542814070000102),
-	('LIDOCAÍNA', 120, 'GRÜNENTHAL DO BRASIL FARMACÊUTICA LTDA.', '2023-06-07', 542814070000502),
-	('FATOR VIII DE COAGULAÇÃO', 55, 'EMPRESA BRASILEIRA DE HEMODERIVADOS E BIOTECNOLOGIA', '2024-06-12', 542914010000304),
-	('CLORIDRATO DE FLUOXETINA', 200, 'BLISFARMA INDÚSTRIA FARMACÊUTICA LTDA', '2024-06-25', 543114040000306),
-	('VALSARTANA', 50, 'MOMENTA FARMACÊUTICA LTDA.', '2023-06-07', 543514060000204),
-	('OLMESARTANA MEDOXOMILA', 60, 'MOMENTA FARMACÊUTICA LTDA.', '2022-06-15', 543514060000804),
-	('BERACTANTO', 50, 'ABBVIE FARMACÊUTICA LTDA.', '2022-06-16', 543714090000117),
-	('IODIXANOL', 65, 'GE HEALTHCARE DO BRASIL COMÉRCIO E SERVIÇOS PARA EQUIPAMENTOS MEDICO-HOSPITALARES LTDA', '2023-06-16', 541612090001004),
-	('PIPERACILINA', 150, 'AGILA ESPECIALIDADES FARMACÊUTICAS LTDA', '2023-07-15', 541512050002513),
-	('AMPICILINA SÓDICA', 250, 'AGILA ESPECIALIDADES FARMACÊUTICAS LTDA', '2023-05-19', 541512030002316),
-	('OXACILINA SÓDICA', 250, 'AGILA ESPECIALIDADES FARMACÊUTICAS LTDA', '2023-10-10', 541512030002116),
-	('CEFUROXIMA SÓDICA', 300, 'AGILA ESPECIALIDADES FARMACÊUTICAS LTDA', '2023-09-09', 541512030001104),
-	('CEFTAZIDIMA SODICA', 100, 'AGILA ESPECIALIDADES FARMACÊUTICAS LTDA', '2023-06-29', 541512030000714),
-	('CLORIDRATO DE VERAPAMIL', 500, 'ARISTON INDÚSTRIAS QUÍMICAS E FARMACÊUTICAS LTDA', '2024-05-20', 541313070015114),
-	('PENICILINA BENZÍLICA POTÁSSICO', 150, 'AGILA ESPECIALIDADES FARMACÊUTICAS LTDA', '2023-02-19', 541512030000014),
-	('CEFTRIAXONA DISSÓDICA HEMIEPTAIDRATADA', 220, 'AGILA ESPECIALIDADES FARMACÊUTICAS LTDA', '2023-03-19', 541512030001214),
-	('IOEXOL', 95, 'GE HEALTHCARE DO BRASIL COMÉRCIO E SERVIÇOS PARA EQUIPAMENTOS MEDICO-HOSPITALARES LTDA', '2023-06-16', 541612040000603);
-
+  ('Dipirona', 100, 'Medley', '2027-05-12', 1210033020),
+  ('Atenolol', 100, 'Medley', '2027-05-12', 1210033452),
+  ('Losartana', 100, 'Medley', '2027-05-12', 4320033452),
+  ('CEFALOTINA SÓDICA', 70, 'AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA', '2026-05-14', 500100102151411),
+  ('CEFOTAXIMA SÓDICA', 71, 'AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA', '2026-05-21', 500100305158117),
+  ('CLORIDRATO DE CIPROFLOXACINO MONOIDRATADO', 50, 'AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA', '2026-04-02', 500100401114419),
+  ('ATENOLOL', 25, 'AUROBINDO PHARMA INDÚSTRIA FARMACÊUTICA LIMITADA', '2025-07-01', 500103201116110),
+  ('VALSARTANA', 80, 'EUROFARMA LABORATÓRIOS S.A.', '2024-12-12', 508014010101404),
+  ('DELTAMETRINA', 60, 'INFAN INDUSTRIA QUIMICA FARMACEUTICA NACIONAL S/A', '2025-11-10', 511301501162416),
+  ('CLORIDRATO DE RANITIDINA', 55, 'SANDOZ DO BRASIL INDÚSTRIA FARMACÊUTICA LTDA', '2023-07-20', 511502602111117),
+  ('ACETATO DE DEXAMETASONA', 30, 'SANDOZ DO BRASIL INDÚSTRIA FARMACÊUTICA LTDA', '2024-01-21', 511502902164410),
+  ('PANTOPRAZOL SÓDICO SESQUIHIIDRATADO', 39, 'SANDOZ DO BRASIL INDÚSTRIA FARMACÊUTICA LTDA', '2024-01-20', 511507506119413),
+  ('DIPIRONA SÓDICA', 150, 'HIPOLABOR FARMACEUTICA LTDA', '2027-02-03', 511607101153116),
+  ('MIDAZOLAM', 85, 'HIPOLABOR FARMACEUTICA LTDA', '2026-10-11', 511607301152415),
+  ('PARACETAMOL', 99, 'HIPOLABOR FARMACEUTICA LTDA', '2028-01-10', 511607701134112),
+  ('SULFATO DE MAGNÉSIO', 70, 'HYPOFARMA - INSTITUTO DE HYPODERMIA E FARMÁCIA LTD', '2027-10-13', 511803201157415),
+  ('IBUPROFENO', 80, 'MANTECORP INDÚSTRIA QUÍMICA E FARMACÊUTICA S.A.', '2025-05-01', 512400201130326),
+  ('ALPRAZOLAM', 35, 'MANTECORP INDÚSTRIA QUÍMICA E FARMACÊUTICA S.A.', '2025-05-01', 512400302115411),
+  ('SULFATO DE SALBUTAMOL', 60, 'INDÚSTRIA QUÍMICA DO ESTADO DE GOIÁS S/A - IQUEGO', '2023-06-14', 513003501136413),
+  ('AMOXICILINA TRIIDRATADA', 200, 'INDÚSTRIA QUÍMICA DO ESTADO DE GOIÁS S/A - IQUEGO', '2024-06-05', 513004101115417),
+  ('CEFAZOLINA SÓDICA', 90, 'INSTITUTO BIOCHIMICO INDÚSTRIA FARMACÊUTICA LTDA', '2022-06-16', 513401101154413),
+  ('OMEPRAZOL', 155, 'INSTITUTO BIOCHIMICO INDÚSTRIA FARMACÊUTICA LTDA', '2024-02-14', 513402201111412),
+  ('CLORIDRATO DE VERAPAMIL', 500, 'ARISTON INDÚSTRIAS QUÍMICAS E FARMACÊUTICAS LTDA', '2024-05-20', 541313070015114),
+  ('PENICILINA BENZÍLICA POTÁSSICO', 150, 'AGILA ESPECIALIDADES FARMACÊUTICAS LTDA', '2023-02-19', 541512030000014),
+  ('CEFTAZIDIMA SODICA', 100, 'AGILA ESPECIALIDADES FARMACÊUTICAS LTDA', '2023-06-29', 541512030000714),
+  ('CEFUROXIMA SÓDICA', 300, 'AGILA ESPECIALIDADES FARMACÊUTICAS LTDA', '2023-09-09', 541512030001104),
+  ('CEFTRIAXONA DISSÓDICA HEMIEPTAIDRATADA', 220, 'AGILA ESPECIALIDADES FARMACÊUTICAS LTDA', '2023-03-19', 541512030001214),
+  ('OXACILINA SÓDICA', 250, 'AGILA ESPECIALIDADES FARMACÊUTICAS LTDA', '2023-10-10', 541512030002116),
+  ('AMPICILINA SÓDICA', 250, 'AGILA ESPECIALIDADES FARMACÊUTICAS LTDA', '2023-05-19', 541512030002316),
+  ('PIPERACILINA', 150, 'AGILA ESPECIALIDADES FARMACÊUTICAS LTDA', '2023-07-15', 541512050002513),
+  ('IOEXOL', 95, 'GE HEALTHCARE DO BRASIL COMÉRCIO E SERVIÇOS PARA EQUIPAMENTOS MEDICO-HOSPITALARE', '2023-06-16', 541612040000603),
+  ('IODIXANOL', 65, 'GE HEALTHCARE DO BRASIL COMÉRCIO E SERVIÇOS PARA EQUIPAMENTOS MEDICO-HOSPITALARE', '2023-06-16', 541612090001004),
+  ('CETOCONAZOL', 125, 'NATIVITA IND. COM. LTDA.', '2023-06-14', 542012090002204),
+  ('DROSPIRENONA', 220, 'ALTHAIA S.A. INDÚSTRIA FARMACÊUTICA', '2022-05-11', 542112060000106),
+  ('ATORVASTATINA CÁLCICA', 550, 'SUPERA FARMA LABORATÓRIOS S.A', '2028-06-11', 542614040002004),
+  ('CLORIDRATO DE DONEPEZILA', 450, 'SUPERA FARMA LABORATÓRIOS S.A', '2025-06-25', 542614060002404),
+  ('IRBESARTANA', 130, 'SUPERA FARMA LABORATÓRIOS S.A', '2026-06-04', 542614060002604),
+  ('HIDROCLOROTIAZIDA', 300, 'SUPERA FARMA LABORATÓRIOS S.A', '2024-06-12', 542614060002804),
+  ('MESILATO DE ERIBULINA', 200, 'EISAI LABORATÓRIOS LTDA', '2024-06-12', 542714020000002),
+  ('ACETATO DE CLORMADINONA', 250, 'GRÜNENTHAL DO BRASIL FARMACÊUTICA LTDA.', '2026-06-11', 542813120000018),
+  ('LIDOCAÍNA', 300, 'GRÜNENTHAL DO BRASIL FARMACÊUTICA LTDA.', '2024-06-07', 542814070000102),
+  ('LIDOCAÍNA', 120, 'GRÜNENTHAL DO BRASIL FARMACÊUTICA LTDA.', '2023-06-07', 542814070000502),
+  ('FATOR VIII DE COAGULAÇÃO', 55, 'EMPRESA BRASILEIRA DE HEMODERIVADOS E BIOTECNOLOGIA', '2024-06-12', 542914010000304),
+  ('CLORIDRATO DE FLUOXETINA', 200, 'BLISFARMA INDÚSTRIA FARMACÊUTICA LTDA', '2024-06-25', 543114040000306),
+  ('VALSARTANA', 50, 'MOMENTA FARMACÊUTICA LTDA.', '2023-06-07', 543514060000204),
+  ('OLMESARTANA MEDOXOMILA', 60, 'MOMENTA FARMACÊUTICA LTDA.', '2022-06-15', 543514060000804),
+  ('BERACTANTO', 50, 'ABBVIE FARMACÊUTICA LTDA.', '2022-06-16', 543714090000117);
 
 -- --------------------------------------------------------
 
 --
 -- Estrutura da tabela `ocorrencias`
 --
--- Criação: 05-Jun-2021 às 00:34
--- Última actualização: 05-Jun-2021 às 00:34
+-- Criação: 14-Jun-2021 às 00:20
+-- Última actualização: 14-Jun-2021 às 00:20
 --
 
 CREATE TABLE IF NOT EXISTS `ocorrencias` (
@@ -12993,8 +12993,8 @@ INSERT INTO `ocorrencias` (`Codigo`, `Data_ocorr`, `Hora_ocorr`, `ID_prontuario`
 --
 -- Estrutura da tabela `pacientes`
 --
--- Criação: 05-Jun-2021 às 00:34
--- Última actualização: 05-Jun-2021 às 00:34
+-- Criação: 14-Jun-2021 às 00:20
+-- Última actualização: 14-Jun-2021 às 00:20
 --
 
 CREATE TABLE IF NOT EXISTS `pacientes` (
@@ -13023,12 +13023,14 @@ INSERT INTO `pacientes` (`Nome_Paciente`, `Sexo`, `Estado`, `Data_Nasc`, `CPF`, 
   ('Tiago Geraldo Fogaça', 'M', 'alta', '1998-01-04', '065.603.436-00', 'O-'),
   ('Amanda Jéssica Caroline de Paula', 'F', 'internado', '1968-04-06', '065.799.448-03', 'B+'),
   ('Rosângela Alícia das Neves', 'F', 'alta', '1954-12-24', '068.103.730-04', 'B-'),
+  ('Julho Algustino Silva', 'M', 'obito', '1990-01-24', '107.341.659-12', 'A+'),
   ('Pietro Levi Cláudio Costa', 'M', 'alta', '1961-02-26', '107.590.579-66', 'A+'),
   ('Brenda Joana Fernanda Novaes', 'F', 'alta', '1998-11-03', '140.949.640-61', 'O-'),
   ('Otávio Theo Elias Moura', 'M', 'alta', '1968-08-21', '167.879.644-12', 'B-'),
   ('Analu Renata Eliane Aragão', 'F', 'alta', '1996-12-09', '188.647.372-27', 'O+'),
   ('Liz Daiane Cavalcanti', 'F', 'alta', '1980-06-19', '195.907.118-12', 'AB-'),
   ('Sophia Alícia Campos', 'F', 'internado', '1948-11-01', '201.095.279-09', 'A-'),
+  ('Julho Florence Alves', 'M', 'obito', '1980-02-04', '201.441.679-22', 'A-'),
   ('Caleb Bruno Ferreira', 'M', 'internado', '1949-09-25', '224.447.809-22', 'O-'),
   ('Eliane Julia Aragão', 'F', 'internado', '2002-08-14', '263.899.863-00', 'B+'),
   ('Stefany Marlene Marina Freitas', 'F', 'alta', '2001-05-07', '269.530.728-49', 'B+'),
@@ -13036,13 +13038,16 @@ INSERT INTO `pacientes` (`Nome_Paciente`, `Sexo`, `Estado`, `Data_Nasc`, `CPF`, 
   ('Francisca Joana Simone da Luz', 'F', 'alta', '1961-03-27', '325.227.456-62', 'O+'),
   ('Vera Tânia Bruna da Conceição', 'F', 'alta', '1953-08-26', '341.846.973-64', 'B+'),
   ('Hugo Gael Fernandes', 'M', 'internado', '1944-03-12', '345.048.927-58', 'O-'),
+  ('Giovano Jorge Cerqueira', 'M', 'obito', '1985-12-03', '401.561.328-95', 'O-'),
   ('Camila Rosângela Aparecida Melo', 'F', 'alta', '1970-04-10', '419.234.708-33', 'O+'),
   ('Pedro Henrique Henrique Juan Dias', 'M', 'alta', '1953-02-05', '429.326.274-14', 'AB-'),
   ('Teresinha Jaqueline da Cunha', 'F', 'alta', '1979-06-05', '436.232.985-49', 'AB+'),
   ('Anderson Manuel da Cunha', 'M', 'alta', '1967-07-16', '448.953.115-03', 'A-'),
   ('Ester Maya Alice da Paz', 'F', 'internado', '1971-08-04', '450.331.323-18', 'O+'),
+  ('Giovane Damasco Touro', 'F', 'obito', '1979-11-07', '481.561.521-91', 'O+'),
   ('Leandro Mário Ferreira', 'M', 'alta', '1975-12-21', '483.410.653-55', 'O-'),
   ('Vinicius Mateus Santos', 'M', 'alta', '1955-09-27', '486.038.078-92', 'A+'),
+  ('Julia Lama Sousa', 'F', 'obito', '1978-12-17', '491.591.529-81', 'AB'),
   ('Paulo Sebastião Sales', 'M', 'internado', '1982-05-14', '494.194.016-42', 'A-'),
   ('Giovana Lorena Pires', 'F', 'internado', '1975-12-03', '501.661.629-90', 'AB-'),
   ('Pietra Mariah da Rosa', 'F', 'alta', '1977-05-11', '530.492.786-92', 'A+'),
@@ -13065,20 +13070,15 @@ INSERT INTO `pacientes` (`Nome_Paciente`, `Sexo`, `Estado`, `Data_Nasc`, `CPF`, 
   ('Benjamin Bento Rodrigues', 'M', 'internado', '1967-06-21', '856.213.656-58', 'A+'),
   ('Isadora Natália da Mata', 'F', 'internado', '1955-11-12', '901.930.181-01', 'AB+'),
   ('Analu Aparecida Vanessa Brito', 'F', 'alta', '1963-02-19', '921.670.790-95', 'B+'),
-  ('Analu Caroline dos Santos', 'F', 'alta', '1989-12-01', '981.757.680-96', 'O-'),
-  ('Julho Florence Alves','M','obito','1980-02-04', '201.441.679-22', 'A-'),
-	('Julho Algustino Silva','M','obito','1990-01-24', '107.341.659-12', 'A+'),
-	('Giovane Damasco Touro','F','obito','1979-11-07', '481.561.521-91', 'O+'),
-	('Julia Lama Sousa','F','obito','1978-12-17', '491.591.529-81', 'AB'),
-	('Giovano Jorge Cerqueira','M','obito','1985-12-03', '401.561.328-95', 'O-');
+  ('Analu Caroline dos Santos', 'F', 'alta', '1989-12-01', '981.757.680-96', 'O-');
 
 -- --------------------------------------------------------
 
 --
 -- Estrutura da tabela `permissao_cargo`
 --
--- Criação: 05-Jun-2021 às 00:34
--- Última actualização: 05-Jun-2021 às 02:38
+-- Criação: 14-Jun-2021 às 00:20
+-- Última actualização: 14-Jun-2021 às 00:20
 --
 
 CREATE TABLE IF NOT EXISTS `permissao_cargo` (
@@ -13206,15 +13206,15 @@ INSERT INTO `permissao_cargo` (`id`, `permissao_id`, `cargo_id`, `ativo`) VALUES
 --
 -- Estrutura da tabela `permissoes`
 --
--- Criação: 05-Jun-2021 às 00:34
--- Última actualização: 05-Jun-2021 às 00:34
+-- Criação: 14-Jun-2021 às 00:20
+-- Última actualização: 14-Jun-2021 às 00:20
 --
 
 CREATE TABLE IF NOT EXISTS `permissoes` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `nome` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4;
 
 --
 -- RELACIONAMENTOS PARA TABELAS `permissoes`:
@@ -13266,8 +13266,8 @@ INSERT INTO `permissoes` (`id`, `nome`) VALUES
 --
 -- Estrutura da tabela `prontuarios`
 --
--- Criação: 05-Jun-2021 às 00:34
--- Última actualização: 05-Jun-2021 às 00:34
+-- Criação: 14-Jun-2021 às 00:20
+-- Última actualização: 14-Jun-2021 às 00:20
 --
 
 CREATE TABLE IF NOT EXISTS `prontuarios` (
@@ -13280,7 +13280,7 @@ CREATE TABLE IF NOT EXISTS `prontuarios` (
   PRIMARY KEY (`ID`),
   KEY `Id_leito` (`Id_leito`),
   KEY `Cpfpaciente` (`Cpfpaciente`)
-) ENGINE=InnoDB AUTO_INCREMENT=144 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=152 DEFAULT CHARSET=utf8mb4;
 
 --
 -- RELACIONAMENTOS PARA TABELAS `prontuarios`:
@@ -13444,14 +13444,13 @@ INSERT INTO `prontuarios` (`aberto`, `ID`, `Data_Internacao`, `Data_Saida`, `Id_
 	(0, 148, '2019-06-13', '2019-07-01', 'LB001', '491.591.529-81'),
 	(0, 149, '2021-03-16', '2021-03-20', 'LA002', '800.170.953-10');
 
-
 -- --------------------------------------------------------
 
 --
 -- Estrutura da tabela `usuarios`
 --
--- Criação: 05-Jun-2021 às 00:34
--- Última actualização: 05-Jun-2021 às 00:34
+-- Criação: 14-Jun-2021 às 00:20
+-- Última actualização: 14-Jun-2021 às 00:27
 --
 
 CREATE TABLE IF NOT EXISTS `usuarios` (
@@ -13476,26 +13475,26 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 --
 
 INSERT INTO `usuarios` (`CPF`, `Nome`, `Senha`, `Email`, `Data_Nasc`, `Atribuicao`, `Sexo`, `Ip`, `Ativo`) VALUES
-  ('021.446.717-41', 'João da Silva e Silva', 'silvajao123', 'joaosilva.hp@gmail.com', '1980-12-05', 'Administrador', 'M', '0010101', 1),
-  ('046.822.991-40', 'Fernando Miguel Galvão', 'GFdZCYh6Yo', 'fernandomiguelgalvao-92@gmail.com', '1959-04-23', 'Enfermeiro', 'M', '011010001', 1),
-  ('072.003.190-74', 'Isaac Márcio Enrico Almada', 'malfada234', 'malfada.enricoIsaac@gmail.com', '1988-07-26', 'Enfermeiro', 'M', '110100101', 1),
-  ('127.066.920-65', 'Rafael Yago Rocha', 'goya761s', 'Yagorafael.hp@gmail.com', '1968-09-26', 'Enfermeiro', 'M', '11010010100', 1),
-  ('136.382.370-10', 'Diego Luan Cardoso', 'dosos23doso12', 'dieguinho87luan@gmail.com', '1968-02-18', 'Enfermeiro', 'M', '1101010', 1),
-  ('174.985.367-13', 'Juscelino Silva dos Santos', 'jusck987', 'santosjuscelino.hp@gmail.com', '1976-01-19', 'Administrador', 'M', '11010110', 1),
-  ('175.585.124-92', 'Maria joaquina Drumond', 'maria981', 'mariazinhaquina@gmail.com', '1995-07-12', 'Administrador', 'F', '00100101', 1),
-  ('202.457.365-11', 'Vinicius Martins magalhães', 'viniciinEhdeiz10', 'mmvinicius@gmail.com', '1989-09-24', 'Enfermeiro Chefe', 'M', '00110101001', 1),
-  ('213.223.336-53', 'Severino Nathan Ferreira', 'frefedo872', 'severinonathanferreira@gmail.com', '1996-02-17', 'Estagiario', 'M', '011111000', 1),
-  ('250.414.528-74', 'Alfredo Estrada Félix', 'frefedo872', 'estrada.felixfred@gmail.com', '1979-02-27', 'Enfermeiro', 'M', '110100101', 1),
-  ('252.696.001-73', 'Brenda Estefanir souza', '09szai2', 'brendasouza.hp@gmail.com', '1995-07-29', 'Enfermeiro', 'F', '0100110101011', 1),
-  ('475.013.135-62', 'Ana Catarina Melo', '09annamello', 'anna.melocatarina@gmail.com', '1986-10-11', 'Enfermeiro Chefe', 'F', '010010110', 1),
-  ('558.570.920-86', 'Jaqueline Marina da Cunha', 'cunh87ja212que', 'cunha.jaquemarina@gmail.com', '1987-08-21', 'Enfermeiro', 'F', '0010110101', 1),
-  ('607.500.500-55', 'Alfredo Estrada Félix', 'frefedo872', 'suelimirellaaparecidadossantos@gmail.com', '1971-01-21', 'Enfermeiro', 'F', '11001010', 1),
-  ('645.566.964-96', 'Nina Gabriela Camila Figueiredo', '7bfc8LG23j', 'inagabrielacamilafigueiredo@gmail.com', '1971-01-21', 'Estagiario', 'F', '010100111', 1),
-  ('657.687.833-85', 'Rayssa Larissa da Rosa', 'ro029090710sa', 'rrayssalarissadarosa@gmail.com', '1994-11-14', 'Estagiario', 'F', '00100010', 1),
-  ('658.002.101-02', 'Ambrozina pereira amorim', '98378s2', 'amorim.Ambozina@gmail.com', '1974-04-27', 'Enfermeiro Chefe', 'F', '10001010', 1),
-  ('841.084.862-77', 'Diego Theo Nathan Vieira', '08F993d2gq', '_diegotheonathanvieira@gmail.com', '1992-02-25', 'Enfermeiro', 'M', '1010010101', 1),
-  ('868.500.956-17', 'Marlene Sarah Alana Moura', 'm4a13mp0s8m', 'smmarlenesarahalanamoura@gmail.com', '1992-11-06', 'Estagiario', 'F', '01001010', 1),
-  ('873.325.550-42', 'Cauã Mário da Luz', 'luz21s1z', 'cauamariodaluz.81@gmail.com', '1984-07-07', 'Enfermeiro', 'M', '001011011', 1);
+  ('021.446.717-41', 'João da Silva e Silva', '$2y$10$7jWU2w3ajIPD5AWU4waoI.lAVWl6kRLyq5r8AxzmfcTPO8aKKW8AK', 'joaosilva.hp@gmail.com', '1980-12-05', 'Administrador', 'M', '0010101', 1),
+  ('046.822.991-40', 'Fernando Miguel Galvão', '$2y$10$9FsmLSiyhp0xAPLWD7RiZurInmcIj1qQGldVtgKJiP.4YWaYpHf52', 'fernandomiguelgalvao-92@gmail.com', '1959-04-23', 'Enfermeiro', 'M', '011010001', 1),
+  ('072.003.190-74', 'Isaac Márcio Enrico Almada', '$2y$10$SrJHuxfHw3IDg3UcY5WVVOPG.ZyxXySNjV.hzq3F43JknRApuDOxy', 'malfada.enricoIsaac@gmail.com', '1988-07-26', 'Enfermeiro', 'M', '110100101', 1),
+  ('127.066.920-65', 'Rafael Yago Rocha', '$2y$10$.BFJ5l8fQCR3clgk2n6N6OnubnB9Pwjzq5mlhxWNRsxZEyV6dD5qm', 'Yagorafael.hp@gmail.com', '1968-09-26', 'Enfermeiro', 'M', '11010010100', 1),
+  ('136.382.370-10', 'Diego Luan Cardoso', '$2y$10$uYc0tNJkj37Ym6H3lhDxYun5ioRSeSC1Obu0tiK3zt2TaFx.DXo/.', 'dieguinho87luan@gmail.com', '1968-02-18', 'Enfermeiro', 'M', '1101010', 1),
+  ('174.985.367-13', 'Juscelino Silva dos Santos', '$2y$10$BalMabIIQvI24RxDR1WWlumoorsZHfAQCoiK4lt697CUIR8kkPg9a', 'santosjuscelino.hp@gmail.com', '1976-01-19', 'Administrador', 'M', '11010110', 1),
+  ('175.585.124-92', 'Maria joaquina Drumond', '$2y$10$833Prl7EMsN8LJ4qgtBh5egUKcN97Pg38aLL414CM.eEdft3as5zK', 'mariazinhaquina@gmail.com', '1995-07-12', 'Administrador', 'F', '00100101', 1),
+  ('202.457.365-11', 'Vinicius Martins magalhães', '$2y$10$m13rSbDG8pumBifJAuLZF.1payfEJBSjSkBkiHxYdcpXPc/ZQ0WHi', 'mmvinicius@gmail.com', '1989-09-24', 'Enfermeiro Chefe', 'M', '00110101001', 1),
+  ('213.223.336-53', 'Severino Nathan Ferreira', '$2y$10$rRw3K2MDhRtuKzZCQD1hM.jOVwuTxWQP6McGSuX39hxeBCjGOg.ne', 'severinonathanferreira@gmail.com', '1996-02-17', 'Estagiario', 'M', '011111000', 1),
+  ('250.414.528-74', 'Alfredo Estrada Félix', '$2y$10$cl2nLZJ2nHvpevacee/ECOizvpoRO3S.4RFkh5ybhu8EK1CiKx8mO', 'estrada.felixfred@gmail.com', '1979-02-27', 'Enfermeiro', 'M', '110100101', 1),
+  ('252.696.001-73', 'Brenda Estefanir souza', '$2y$10$Iefi01NgzHu8ho8JQS6FMOkcwbNFMDqs6ioIdrIejml6Ls8FnJvIS', 'brendasouza.hp@gmail.com', '1995-07-29', 'Enfermeiro', 'F', '0100110101011', 1),
+  ('475.013.135-62', 'Ana Catarina Melo', '$2y$10$dtKg3N94yiKc7jMBvUamXum0LFVa5xlzCfT.dVgZozKEjZLiFntCm', 'anna.melocatarina@gmail.com', '1986-10-11', 'Enfermeiro Chefe', 'F', '010010110', 1),
+  ('558.570.920-86', 'Jaqueline Marina da Cunha', '$2y$10$zg9Vw01B7MbJt1CAXLKSDegalLV/LQQ8iI8nYu5AKmo8xW9vDQqxm', 'cunha.jaquemarina@gmail.com', '1987-08-21', 'Enfermeiro', 'F', '0010110101', 1),
+  ('607.500.500-55', 'Alfredo Estrada Félix', '$2y$10$Wu/px0e4vm4Spgl5MZNSUez5.GAiij1Bwwi1ad.0q795GsD0XxBW2', 'suelimirellaaparecidadossantos@gmail.com', '1971-01-21', 'Enfermeiro', 'F', '11001010', 1),
+  ('645.566.964-96', 'Nina Gabriela Camila Figueiredo', '$2y$10$Onr6Wp/qTFzffQSjEXtwY.6MIwNS97OvqvaPaB4ALl9oXMob/5iY6', 'inagabrielacamilafigueiredo@gmail.com', '1971-01-21', 'Estagiario', 'F', '010100111', 1),
+  ('657.687.833-85', 'Rayssa Larissa da Rosa', '$2y$10$DjAbHQlHcmPAiprncqRuAedBVqjYv4afl0gOZJNC/4RoruAkE1Tsm', 'rrayssalarissadarosa@gmail.com', '1994-11-14', 'Estagiario', 'F', '00100010', 1),
+  ('658.002.101-02', 'Ambrozina pereira amorim', '$2y$10$cQo4T3yyEnZqiHGHUqGfOusxbYhnf6IlT0rV4egtjD.v3QOBFTAWy', 'amorim.Ambozina@gmail.com', '1974-04-27', 'Enfermeiro Chefe', 'F', '10001010', 1),
+  ('841.084.862-77', 'Diego Theo Nathan Vieira', '$2y$10$nyOf77xJhEoO70igqRqQwO3q0W0IMojblRKd7VgLf5B33zT8BKLgS', '_diegotheonathanvieira@gmail.com', '1992-02-25', 'Enfermeiro', 'M', '1010010101', 1),
+  ('868.500.956-17', 'Marlene Sarah Alana Moura', '$2y$10$/MmXXJJqWGpt.JnNLwIa2.N.AKT1mdmoG4QZrA/B4viXtHuOW8ibW', 'smmarlenesarahalanamoura@gmail.com', '1992-11-06', 'Estagiario', 'F', '01001010', 1),
+  ('873.325.550-42', 'Cauã Mário da Luz', '$2y$10$MhfrDoHO1bSX5TsHJcbUtOvdvv1Gx7CnGT5fgywgqc8dPprnBlnra', 'cauamariodaluz.81@gmail.com', '1984-07-07', 'Enfermeiro', 'M', '001011011', 1);
 
 --
 -- Restrições para despejos de tabelas
