@@ -46,14 +46,7 @@ class HomeController extends Controller
         $buscarCpf = mysqli_query($connect,"SELECT CPF FROM usuarios WHERE CPF = '$request->cpf'"); 
         $row = mysqli_num_rows($buscarCpf);        //resultado da verificação
         
-        
-        //captura a senha do banco
-        $buscarSenha = "SELECT Senha FROM usuarios WHERE CPF = '$request->cpf'";
-        $senhaBanco = mysqli_query($connect,$buscarSenha);
-        while($buscarSenha = mysqli_fetch_array($senhaBanco)){              
-            $senhaEncontrada = $buscarSenha["Senha"];
-        }
-        
+   
         /* se a senha digitada pelo usuário for igual a senha padrão (12345), que é a que está no banco também,
         *   ele é mandado para página de primeiro acesso */
         if($request->senha == 12345 AND $senhaEncontrada == 12345){
@@ -64,22 +57,26 @@ class HomeController extends Controller
        //verifica se o usuario existe no sistema. $row = 1 significa que sim
         if($row == 1){ 
 
-            //Percorre vetor gerado pela query em busca do status ativo e sua atribuição
+            //busca a senha, status ativo e sua atribuição
             $sql = "SELECT * FROM usuarios where CPF = '$request->cpf'";
             $query = mysqli_query($connect,$sql);
             while($sql = mysqli_fetch_array($query)){
                 $atribuicao = $sql["Atribuicao"];
                 $ativo = $sql['Ativo'];
+                $senhaEncontrada = $sql["Senha"];
             }
 
-            
-            if(Hash::check($request->senha,$senhaEncontrada)){
 
+            //se a senha que foi digitada for igual ao do banco
+            if(Hash::check($request->senha,$senhaEncontrada)){
                 session_start();
+                
                 if($ativo == 1){
-                    /*Sequência de condicionais que verifica o cargo para reirecionar para o menu correto */
+                    //Sequência de condicionais que verifica o cargo para redirecionar para o menu correspondente
+
                     if($atribuicao == "Administrador"){
-                        $_SESSION['administrador'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
+                        // inicia uma sessão de nome usuario com o cpf recuperado
+                        $_SESSION['administrador'] = $request->cpf; 
     
                         //log
                         $ip = $_SERVER["REMOTE_ADDR"];
@@ -90,7 +87,8 @@ class HomeController extends Controller
                         exit();
     
                     }else if($atribuicao == "Enfermeiro Chefe"){
-                        $_SESSION['enfermeiroChefe'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
+                        // inicia uma sessão de nome usuario com o cpf recuperado
+                        $_SESSION['enfermeiroChefe'] = $request->cpf; 
     
                         //log
                         $ip = $_SERVER["REMOTE_ADDR"];
@@ -101,7 +99,8 @@ class HomeController extends Controller
                         exit();
     
                     }else if($atribuicao == "Enfermeiro"){
-                        $_SESSION['enfermeiro'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
+                        // inicia uma sessão de nome usuario com o cpf recuperado
+                        $_SESSION['enfermeiro'] = $request->cpf; 
     
                         //log
                         $ip = $_SERVER["REMOTE_ADDR"];
@@ -113,7 +112,8 @@ class HomeController extends Controller
                         exit();
     
                     }else if($atribuicao == "Estagiario"){
-                        $_SESSION['estagiario'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
+                        // inicia uma sessão de nome usuario com o cpf recuperado
+                        $_SESSION['estagiario'] = $request->cpf; 
     
                         //log
                         $ip = $_SERVER["REMOTE_ADDR"];
@@ -128,15 +128,15 @@ class HomeController extends Controller
                     }
     
                 }else{
-                    return redirect() -> back() ->with('msg-error','Conta do funcionário encontra-se desativada');
+                    return redirect() -> back() ->with('msg-error','Conta do funcionário encontra-se desativada!');
                 }
 
             }else{
-                return redirect() -> back() ->with('msg-error','Senha errada!!');
+                return redirect() -> back() ->with('msg-error','Senha digitada está errada!!');
             }
             
         }else{ // caso em que o $row = 0, usuário não existe 
-            return redirect() -> back() ->with('msg-error','Usuário não existe!');
+            return redirect() -> back() ->with('msg-error','Usuário não existe!!');
         }
     }
 
@@ -201,13 +201,9 @@ class HomeController extends Controller
 
         //se a nova senha desejada for igual a de confimação
         if ($senhaConfirmacao == $senhaDefinida){
-           $senhaCript = Hash::make($senhaConfirmacao);         //cria um hash a partir da nova senha 
-           //$senhaCript = bcrypt($senhaConfirmacao);
-           //$senhaCript = password_hash($senhaConfirmacao,PASSWORD_DEFAULT); 
-           //dd($senhaCript);    
-
-            //$buscaSenha = "SELECT * FROM usuarios where CPF = '$request->cpf' AND Senha = '$senhaCript";
-            // $senhaDescript = AES_DECRYPT()
+        
+            //cria um hash a partir da nova senha 
+           $senhaCript = Hash::make($senhaConfirmacao);         
 
             //atualiza senha no banco de dados
             $update = "UPDATE usuarios SET Senha = '$senhaCript' WHERE CPF = '$cpf'";
@@ -229,8 +225,6 @@ class HomeController extends Controller
             while ($sql = mysqli_fetch_array($buscar)) {
                 $atribuicao = $sql["Atribuicao"];
             }
-
-
 
             //verifica se o usuario existe no sistema. $row = 1 significa que sim
             if ($row == 1) {
@@ -1522,3 +1516,4 @@ class HomeController extends Controller
         $mpdf->Output(); // função que redireciona para o arquivo pdf para baixa-lo
     }
 }
+ 
