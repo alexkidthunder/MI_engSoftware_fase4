@@ -1283,7 +1283,7 @@ class HomeController extends Controller
         date_default_timezone_set('America/Sao_Paulo');
         $data_a = date('d-m-y - h:i:s'); //data e hora atual obtida
         //$mpdf->WriteHTML($css,\Mpdf\HTMLParserMode::HEADER_CSS);
-        if (isset($_SESSION['administrador'])) {
+        if ($request->tela == 'log') {
             dd("Temos que achar um jeito de transformar matriz em string pra passar pelo input:hidden na pagina do log");
         } else { // listas gerais
             //ultizam dados obtidos da pagina para concatenar na string
@@ -1565,6 +1565,77 @@ class HomeController extends Controller
                     <p id="Copyright">Informações para o Footer da página</p> <!--Caso queira deixar alguma informação no Footer-->
                 </footer>
             </body>');
+            } elseif ($request->tela == 'rg') {
+                $mpdf->WriteHTML('<!doctype html>
+                <html lang="en">
+                <style>'.$css.'</style>
+                    <body>
+                        <header class="container-personal-data">
+                            <div>
+                                <h2>Nome Hospital</h2> <!--Nome do nosso Hospital-->
+                            </div>
+                            <div>
+                                <h2>'.$nome.' / '.$cpf.'</h2> <!--Nome e CPF de quem requisitou o download-->
+                            </div>
+                            <div>
+                                <h2>'.$data_a.'</h2> <!--Data e Hora em que foi feito o download-->
+                            </div>
+                        </header>
+                        <hr>
+                        <section>
+                            <div class="container-header"> 
+                                <h1>Tabela - Relatorio Gerencial</h1> <!--De onde saiu a lista-->
+                            </div>
+                            <hr>
+                            <div class="container-listagem">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Pacientes Internados</th>
+                                            <th>Funcionários Cadastrados</th>
+                                            <th>CID mais frequente</th>
+                                            <th>Taxa de óbito</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr> 
+                                            <td>'.$vetor[0].'</td> <!--Pacientes Internados-->
+                                            <td>'.$vetor[1].'</td> <!--Funcionários Cadastrados-->
+                                            <td>'.$vetor[2].'</td> <!--CID mais frequente-->
+                                            <td>'.$vetor[3].'% </td> <!--Taxa de óbito-->
+                                        </tr>
+                                        <tr>
+                                            <th>Idade Media entre Pacientes</th>
+                                            <th>Medicamento mais usado</th>
+                                            <th>Quantidade de Leitos Cadastrados</th>
+                                            <th>Quantidade de Leitos Ocupados</th>
+                                        </tr>
+                                        <tr> 
+                                            <td>'.$vetor[4].' anos </td> <!--Idade Media entre Pacientes-->
+                                            <td>'.$vetor[5].'</td> <!--Medicamento mais usado-->
+                                            <td>'.$vetor[6].'</td> <!--Quantidade de Leitos Cadastrados-->
+                                            <td>'.$vetor[7].'</td> <!--Quantidade de Leitos Ocupados-->
+                                        </tr>
+                                        <tr>
+                                            <th>Enfermeiros Chefes Ativos</th>
+                                            <th>Enfermeiros Ativos</th>
+                                            <th>Estagiários Ativos</th>
+                                            <th>Administradores Cadastrados</th>
+                                        </tr>
+                                        <tr> 
+                                            <td>'.$vetor[8].'</td> <!--Enfermeiros Chefes Ativos-->
+                                            <td>'.$vetor[9].'</td> <!--Enfermeiros Ativos-->
+                                            <td>'.$vetor[10].'</td> <!--Estagiários Ativos-->
+                                            <td>'.$vetor[11].'</td> <!--Administradores Cadastrados-->
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                    <footer style="position: absolute; bottom: 0;">
+                        <p id="Copyright">Informações para o Footer da página</p> <!--Caso queira deixar alguma informação no Footer-->
+                    </footer>
+                    </body>');
             }
         }
         $mpdf->Output(); // função que redireciona para o arquivo pdf para baixa-lo
