@@ -1284,7 +1284,70 @@ class HomeController extends Controller
         $data_a = date('d-m-y - h:i:s'); //data e hora atual obtida
         //$mpdf->WriteHTML($css,\Mpdf\HTMLParserMode::HEADER_CSS);
         if ($request->tela == 'log') {
-            dd("Temos que achar um jeito de transformar matriz em string pra passar pelo input:hidden na pagina do log");
+            $contador = 0;
+            $sql = "SELECT * from logs";
+            $query = mysqli_query($connect, $sql);
+            while ($sql = mysqli_fetch_array($query)) {
+                $vetor[$contador]= $sql['Ip'];
+                $vetor[$contador + 1]= $sql['Data_Log'];
+                $vetor[$contador + 2]= $sql['Hora_Agend'];
+                $vetor[$contador + 3]= $sql['Acao'];
+                $contador = $contador + 4;
+            };
+
+            for ($i = 0; $i < count($vetor);$i++) {
+                if ($i % 4 == 0) {
+                    $lista =  $lista.'
+                    <tr> <!--Cada Log-->
+                        <td>'.$vetor[$i].'</td>
+                        <td>'.$vetor[$i+1].'</td>
+                        <td>'.$vetor[$i+2].'</td>
+                        <td>'.$vetor[$i+3].'</td>
+                    </tr>
+                    ';
+                }
+            }
+            $mpdf->WriteHTML('<!doctype html>
+                <html lang="en">
+                <style>'.$css.'</style>
+                    <body>
+                        <header class="container-personal-data">
+                            <div>
+                                <h2>Nome Hospital</h2> <!--Nome do nosso Hospital-->
+                            </div>
+                            <div>
+                                <h2>'.$nome.' / '.$cpf.'</h2> <!--Nome e CPF de quem requisitou o download-->
+                            </div>
+                            <div>
+                                <h2>'.$data_a.'</h2> <!--Data e Hora em que foi feito o download-->
+                            </div>
+                        </header>
+                        <hr>
+                        <section>
+                            <div class="container-header"> 
+                                <h1>Logs</h1> <!--De onde saiu a lista-->
+                            </div>
+                            <hr>
+                            <div class="container-listagem">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>IP</th>
+                                            <th>Data</th>
+                                            <th>Hora do Log</th>
+                                            <th>Ação</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        '.$lista.'
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                        <footer style="position: absolute; bottom: 0;">
+                            <p id="Copyright">Informações para o Footer da página</p> <!--Caso queira deixar alguma informação no Footer-->
+                        </footer>
+                    </body>');
         } else { // listas gerais
             //ultizam dados obtidos da pagina para concatenar na string
             // IFs dentro dos FORs são para pegar posições estrategicas de cada vetor de acordo com o numero de dados que ele possui de cada instancia
