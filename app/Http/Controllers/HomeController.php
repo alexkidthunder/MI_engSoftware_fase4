@@ -41,80 +41,102 @@ class HomeController extends Controller
             'cpf' => 'required',
             'senha' => 'required'
         ]);
-        $result = mysqli_query($connect, "SELECT CPF FROM usuarios WHERE CPF = '$request->cpf' AND Senha = '$request->senha'"); /*Verificando se cpf e senha estão cadastrados no banco de dados*/
-        $row = mysqli_num_rows($result); /*resultado da verificação*/
-        /*While percorrendo vetor gerado pela query */
-        $sql = "SELECT * FROM usuarios where CPF = '$request->cpf'";
-        $query = mysqli_query($connect, $sql);
-        while ($sql = mysqli_fetch_array($query)) {
-            $atribuicao = $sql["Atribuicao"];
-            $ativo = $sql['Ativo'];
+
+        //Verificando se cpf estão cadastrados no banco de dados 
+        $buscarCpf = mysqli_query($connect,"SELECT CPF FROM usuarios WHERE CPF = '$request->cpf'"); 
+        $row = mysqli_num_rows($buscarCpf);        //resultado da verificação
+        
+        
+        //captura a senha do banco
+        $buscarSenha = "SELECT Senha FROM usuarios WHERE CPF = '$request->cpf'";
+        $senhaBanco = mysqli_query($connect,$buscarSenha);
+        while($buscarSenha = mysqli_fetch_array($senhaBanco)){              
+            $senhaEncontrada = $buscarSenha["Senha"];
         }
-        if ($row == 1) { // verifica se o usuario existe no sistema. $row = 1 significa que sim
-            session_start();
-            if ($ativo == 1) {
-                /*Sequência de condicionais que verifica o cargo para reirecionar para o menu correto */
-                if ($atribuicao == "Administrador") {
-                    $_SESSION['administrador'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
-                    if ($request->senha == 12345) {
-                        return redirect('/primeiroAcesso')->with('cpf', $request->cpf);
-                    }
-
-                    //log
-                    $ip = $_SERVER["REMOTE_ADDR"];
-                    $acao = "Administrador logou";
-                    AdminController::salvarLog($acao, $ip);
-
-                    header("Location: /menuAdm");
-                    exit();
-                } elseif ($atribuicao == "Enfermeiro Chefe") {
-                    $_SESSION['enfermeiroChefe'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
-                    if ($request->senha == 12345) {
-                        return redirect('/primeiroAcesso')->with('cpf', $request->cpf);
-                    }
-
-                    //log
-                    $ip = $_SERVER["REMOTE_ADDR"];
-                    $acao = "Enfermeiro chefe logou";
-                    AdminController::salvarLog($acao, $ip);
-
-                    header("Location: /menu");
-                    exit();
-                } elseif ($atribuicao == "Enfermeiro") {
-                    $_SESSION['enfermeiro'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
-                    if ($request->senha == 12345) {
-                        return redirect('/primeiroAcesso')->with('cpf', $request->cpf);
-                    }
-
-                    //log
-                    $ip = $_SERVER["REMOTE_ADDR"];
-                    $acao = "Enfermeiro logou";
-                    AdminController::salvarLog($acao, $ip);
+        
+        /* se a senha digitada pelo usuário for igual a senha padrão (12345), que é a que está no banco também,
+        *   ele é mandado para página de primeiro acesso */
+        if($request->senha == 12345 AND $senhaEncontrada == 12345){
+            return redirect('/primeiroAcesso')->with('cpf', $request->cpf);
+        }
 
 
-                    header("Location: /menu");
-                    exit();
-                } elseif ($atribuicao == "Estagiario") {
-                    $_SESSION['estagiario'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
-                    if ($request->senha == 12345) {
-                        return redirect('/primeiroAcesso')->with('cpf', $request->cpf);
-                    }
+       //verifica se o usuario existe no sistema. $row = 1 significa que sim
+        if($row == 1){ 
 
-                    //log
-                    $ip = $_SERVER["REMOTE_ADDR"];
-                    $acao = "Estagiário logou";
-                    AdminController::salvarLog($acao, $ip);
-
-                    header("Location: /menu");
-                    exit();
-                } else {
-                    return redirect() -> back() ->with('msg-error', 'Funcionário sem cargo, algo está errado!!!');
-                }
-            } else {
-                return redirect() -> back() ->with('msg-error', 'Conta do funcionário encontra-se desativada');
+            //Percorre vetor gerado pela query em busca do status ativo e sua atribuição
+            $sql = "SELECT * FROM usuarios where CPF = '$request->cpf'";
+            $query = mysqli_query($connect,$sql);
+            while($sql = mysqli_fetch_array($query)){
+                $atribuicao = $sql["Atribuicao"];
+                $ativo = $sql['Ativo'];
             }
-        } else { // caso em que o $row = 0
-            return redirect() -> back() ->with('msg-error', 'Acesso negado para essas credenciais!');
+
+            
+            if(Hash::check($request->senha,$senhaEncontrada)){
+
+                session_start();
+                if($ativo == 1){
+                    /*Sequência de condicionais que verifica o cargo para reirecionar para o menu correto */
+                    if($atribuicao == "Administrador"){
+                        $_SESSION['administrador'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
+    
+                        //log
+                        $ip = $_SERVER["REMOTE_ADDR"];
+                        $acao = "Administrador logou";           
+                        AdminController::salvarLog($acao, $ip);
+    
+                        header("Location: /menuAdm");
+                        exit();
+    
+                    }else if($atribuicao == "Enfermeiro Chefe"){
+                        $_SESSION['enfermeiroChefe'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
+    
+                        //log
+                        $ip = $_SERVER["REMOTE_ADDR"];
+                        $acao = "Enfermeiro chefe logou";           
+                        AdminController::salvarLog($acao, $ip);
+    
+                        header("Location: /menu");
+                        exit();
+    
+                    }else if($atribuicao == "Enfermeiro"){
+                        $_SESSION['enfermeiro'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
+    
+                        //log
+                        $ip = $_SERVER["REMOTE_ADDR"];
+                        $acao = "Enfermeiro logou";           
+                        AdminController::salvarLog($acao, $ip);
+    
+    
+                        header("Location: /menu");
+                        exit();
+    
+                    }else if($atribuicao == "Estagiario"){
+                        $_SESSION['estagiario'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
+    
+                        //log
+                        $ip = $_SERVER["REMOTE_ADDR"];
+                        $acao = "Estagiário logou";           
+                        AdminController::salvarLog($acao, $ip);
+    
+                        header("Location: /menu");
+                        exit();
+    
+                    }else{
+                        return redirect() -> back() ->with('msg-error','Funcionário sem cargo, algo está errado!!!');
+                    }
+    
+                }else{
+                    return redirect() -> back() ->with('msg-error','Conta do funcionário encontra-se desativada');
+                }
+
+            }else{
+                return redirect() -> back() ->with('msg-error','Senha errada!!');
+            }
+            
+        }else{ // caso em que o $row = 0, usuário não existe 
+            return redirect() -> back() ->with('msg-error','Usuário não existe!');
         }
     }
 
@@ -178,16 +200,18 @@ class HomeController extends Controller
         $senhaConfirmacao = $request->confirmacao;
 
         //se a nova senha desejada for igual a de confimação
-        if ($senhaConfirmacao == $senhaDefinida) {
-            //$senhaCript = md5($senhaConfirmacao);         //cria um hash a partir da nova senha
-            //dd($senhaCript);
+        if ($senhaConfirmacao == $senhaDefinida){
+           $senhaCript = Hash::make($senhaConfirmacao);         //cria um hash a partir da nova senha 
+           //$senhaCript = bcrypt($senhaConfirmacao);
+           //$senhaCript = password_hash($senhaConfirmacao,PASSWORD_DEFAULT); 
+           //dd($senhaCript);    
 
             //$buscaSenha = "SELECT * FROM usuarios where CPF = '$request->cpf' AND Senha = '$senhaCript";
             // $senhaDescript = AES_DECRYPT()
 
             //atualiza senha no banco de dados
-            $update = "UPDATE usuarios SET Senha = '$senhaConfirmacao' WHERE CPF = '$cpf'";
-            mysqli_query($connect, $update);
+            $update = "UPDATE usuarios SET Senha = '$senhaCript' WHERE CPF = '$cpf'";
+            mysqli_query($connect,$update);
             
             //log
             $ip = $_SERVER["REMOTE_ADDR"];
@@ -205,6 +229,8 @@ class HomeController extends Controller
             while ($sql = mysqli_fetch_array($buscar)) {
                 $atribuicao = $sql["Atribuicao"];
             }
+
+
 
             //verifica se o usuario existe no sistema. $row = 1 significa que sim
             if ($row == 1) {
