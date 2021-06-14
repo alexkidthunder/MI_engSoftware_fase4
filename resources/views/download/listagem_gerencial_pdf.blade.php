@@ -26,7 +26,7 @@
         <hr>
         <section>
             <div class="container-header"> 
-                <h1>Histórico de Prontuários</h1> <!--De onde saiu a lista-->
+                <h1>Relatório Gerencial</h1> <!--De onde saiu a lista-->
             </div>
             <hr>
             <div class="container-listagem">

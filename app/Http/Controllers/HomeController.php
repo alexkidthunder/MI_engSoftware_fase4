@@ -76,11 +76,18 @@ class HomeController extends Controller
             if(Hash::check($request->senha,$senhaEncontrada)){
 
                 session_start();
+                $sqlNome = "SELECT * FROM usuarios where CPF = '$request->cpf'";
+                $queryNome = mysqli_query($connect,$sqlNome);
+                while($sqlNome = mysqli_fetch_array($queryNome)){
+                    $NavNome = $sqlNome["Nome"];
+                }
+
                 if($ativo == 1){
                     /*Sequência de condicionais que verifica o cargo para reirecionar para o menu correto */
                     if($atribuicao == "Administrador"){
                         $_SESSION['administrador'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
-    
+                        $_SESSION['nome'] = $NavNome;
+
                         //log
                         $ip = $_SERVER["REMOTE_ADDR"];
                         $acao = "Administrador logou";           
@@ -91,7 +98,8 @@ class HomeController extends Controller
     
                     }else if($atribuicao == "Enfermeiro Chefe"){
                         $_SESSION['enfermeiroChefe'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
-    
+                        $_SESSION['nome'] = $NavNome;
+                        
                         //log
                         $ip = $_SERVER["REMOTE_ADDR"];
                         $acao = "Enfermeiro chefe logou";           
@@ -102,7 +110,8 @@ class HomeController extends Controller
     
                     }else if($atribuicao == "Enfermeiro"){
                         $_SESSION['enfermeiro'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
-    
+                        $_SESSION['nome'] = $NavNome;
+
                         //log
                         $ip = $_SERVER["REMOTE_ADDR"];
                         $acao = "Enfermeiro logou";           
@@ -114,7 +123,8 @@ class HomeController extends Controller
     
                     }else if($atribuicao == "Estagiario"){
                         $_SESSION['estagiario'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
-    
+                        $_SESSION['nome'] = $NavNome;
+                        
                         //log
                         $ip = $_SERVER["REMOTE_ADDR"];
                         $acao = "Estagiário logou";           
@@ -409,6 +419,7 @@ class HomeController extends Controller
         $cpf = HomeController::obterCpf();
         // altera dados como nome e email digitados na tela de perfil apos clicar no botão de edição  de acordo com o cpf do usuario cadastrado 
         $updateNome = "UPDATE usuarios SET Nome = '$request->fnome' WHERE CPF = '$cpf'";
+        $_SESSION['nome'] = $request->fnome;
         mysqli_query($connect, $updateNome);
         $updateEmail = "UPDATE usuarios SET Email = '$request->femail' WHERE CPF = '$cpf'";
         mysqli_query($connect, $updateEmail);
@@ -1167,7 +1178,7 @@ class HomeController extends Controller
                     return redirect() -> back() ->with('msg', 'CID adicionada ao prontuario com sucesso!!!!');
                 }
             } elseif ($aberto == '0' or $aberto == null) {
-                return redirect() -> back() ->with('msg-error', 'Não pode mais haver cadastro de cids nesse prontuario pos ele se enconta fechado');
+                return redirect() -> back() ->with('msg-error', 'Não pode haver cadastro de cids nesse prontuario pois ele se enconta fechado');
             } else {
                 return redirect() -> back() ->with('msg-error', 'CID digitada não existe na base de dados');
             }
