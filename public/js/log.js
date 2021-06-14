@@ -1,7 +1,7 @@
 input_with_size = document.getElementById('tamanho_log');
 log_show_size = document.getElementById('n_log');
 size_log = document.getElementById('show_size');
-size_log.innerHTML = "Temos "+input_with_size.value+" Logs Registrados";
+size_log.innerHTML = "Temos "+input_with_size.value+" Logs registrados";
 
 selectValueNoChange();
 

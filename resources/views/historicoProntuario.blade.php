@@ -86,7 +86,7 @@
         <!---------- Fim da Busca do paciente ---------->
 
         <!---------- Infomações do Paciente buscado ---------->
-        @if(isset($prontuario))
+        @if(isset($prontuario["nome".$i]))
         <div class="row">
             <!------ Nome do Paciente ------>
             <div class="col-12 col-sm-12 col-md-8 col-lg-8">

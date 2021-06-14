@@ -181,6 +181,11 @@ class EnfChefeController extends Controller
      */
     public function buscarPacienteAg(Request $request){
         include("db.php");
+        VerificaLoginController::verificarLogin();
+        $resultado = VerificaLoginController::verificaPermissao(12);
+        
+        if ($resultado == "1") {
+
         // pacientes e prontuários
         $sql = "SELECT * FROM prontuarios WHERE Cpfpaciente = '$request->cpf_user'";
         $sql1 = "SELECT * FROM pacientes WHERE CPF = '$request->cpf_user'";
@@ -207,8 +212,7 @@ class EnfChefeController extends Controller
 
         // COMO O PACIENTE EXISTE, AGORA PREPARA OS PLANTONISTAS PARA SER ENVIADS JUNTOS AO PACIENTE PARA A VIEW
                $sql2 = "SELECT * FROM enfermeiros WHERE Plantao = '1'";
-               $sql21 = "SELECT * FROM estagiarios WHERE Plantao = '1'";
-               //WHERE Plantao = '1'";       
+               $sql21 = "SELECT * FROM estagiarios WHERE Plantao = '1'";      
                $sql3 = "SELECT * FROM usuarios WHERE Atribuicao = 'Enfermeiro' OR 'Estagiario'";
                
                $query2 = mysqli_query($connect, $sql2);
@@ -251,21 +255,108 @@ class EnfChefeController extends Controller
                }
                //FIM AGRUPAMENTOS DOS PLANTONISTAS
               
+            // RECEBER OS MEDICAMENTOS
+            $sql5 = "SELECT * FROM medicamentos";
+            $query5 = mysqli_query($connect, $sql5);
+            $medicamentos = null;
+            $i = 0;
+            while($medicamento = mysqli_fetch_array($query5)){
+             $medicamentos[$i] = $medicamento;
+             $i++;
+            }
                
-        return view('/enfChefe/cadastroAgendamento',['paciente' => $paciente, 'plantonistas'=>$plantonistas]);
+            return view('/enfChefe/cadastroAgendamento',['paciente' => $paciente, 'plantonistas'=>$plantonistas,
+               'medicamentos'=>$medicamentos]);
             }
 
         }
 
-        return redirect()->back()->with('msg-error', 'Não existe prontuário em aberto para esse paciente!');          
-    }
+        return redirect()->back()->with('msg-error', 'Não existe prontuário em aberto para esse paciente!');
+        
+        }else {
+            return redirect()->back()->with('msg-error', 'Você não tem acesso a essa pagina!!!');
+        }
+    
+}
 
 
     /**
      * Método que CADASTRA um agendamento
      */
     public function cadastrarAgendamento(Request $request){
-        dd($request->all());
+        include('db.php');
+        VerificaLoginController::verificarLogin();
+        $resultado = VerificaLoginController::verificaPermissao(12);
+        if($resultado == 1){   
+        
+        
+        // verificar se medicamento existe
+        $sql = "SELECT * FROM medicamentos WHERE Nome_Medicam = '$request->medicamento_agendamento'";
+        $query1 = mysqli_query($connect,$sql);
+     
+        if(mysqli_num_rows($query1) == 0){ // medicamento n existe
+            return redirect()->back()->with('msg-error', 'Medicamento não cadastrado em nosso sistema, verifique se digitou corretamente!');   
+        }
+        $medicamento = mysqli_fetch_array($query1);
+        // verificar se o aplicador existe
+        $sql2 = "SELECT * FROM usuarios WHERE Nome= '$request->aplicador_agendamento'";
+        $query2 = mysqli_query($connect, $sql2);    
+        if(mysqli_num_rows($query2) == 0){ // aplicador n existe
+            return redirect()->back()->with('msg-error', 'Aplicador não cadastrado em nosso sistema, verifique se digitou corretamente!');   
+        }
+
+        // buscar os agendamentos do aplicador para checar o choque de horários
+        $usuario = mysqli_fetch_array($query2);
+        $Cpf_Aplicador = $usuario['CPF'];
+        $str_hora = "$request->horario_agendamento:00";
+        $sql3 = "SELECT * FROM agendamentos WHERE CPF_usuario = '$Cpf_Aplicador'";
+        $query3 = mysqli_query($connect, $sql3);
+        while($agendamento = mysqli_fetch_array($query3)){
+            if($agendamento['Realizado'] == 0){
+                if(strtotime($agendamento['Data_Agend']) == strtotime($request->data_agendamento)){                     
+                   if( (abs(strtotime($agendamento['Hora_Agend']) - strtotime($str_hora) ) / 60)  <= 5 ){ 
+                       // se a diferença de tempo das datas for em um intervalo de 5 minutos retorna choque de horários                    
+                      return redirect()->back()->with('msg-error', 'O aplicador já possui um agendamento nessa data e horário');
+                   }
+                }
+            }
+        }
+
+        // Pegar o prontuário do paciente
+         $sql4 = "SELECT * FROM prontuarios WHERE Cpfpaciente = '$request->Cpf_Paciente'";
+         $query4 = mysqli_query($connect, $sql4);
+         $prontuario = null;
+         while($dado = mysqli_fetch_array($query4)){
+            if($dado['aberto']){
+                $prontuario = $dado;
+            }
+         }
+
+         // cadastrar o agendamento
+         $str_hora = "$request->horario_agendamento:00";
+       
+         $id_prontuario = $prontuario['ID'];
+         $codigo_medicamento = $medicamento['Codigo'];
+         $cpf_usuario = $usuario['CPF'];
+      
+         
+ $sql5 = "INSERT INTO `agendamentos` (`Codigo`, `Posologia`, `Data_Agend`, `Realizado`, `Hora_Agend`, `ID_prontuario`, `CPF_usuario`, `Cod_medicamento`) VALUES (NULL, '$request->posologia_agendamento', '$request->data_agendamento', '0'  , '$str_hora' , '$id_prontuario' , '$cpf_usuario', '$codigo_medicamento' ) "; 
+
+        // $sql6 = "INSERT INTO `agendamentos` (`Codigo`, `Posologia`, `Data_Agend`, `Realizado`, `Hora_Agend`, `ID_prontuario`, `CPF_usuario`, `Cod_medicamento`) VALUES (NULL, '1', '2021-06-14', '0', '11:22:00', '1', '250.414.528-74', '511301501162416')";
+         //$query6 = mysqli_query($connect, $sql6);
+         
+
+        $query5 = mysqli_query($connect, $sql5);
+         
+        if($query5 == true){
+            return redirect()->route('cadastroAgendamento')->with('msg-sucess', 'Agendamento cadastrado com sucesso!');
+        }else{
+            return redirect()->back()->with('msg-error', 'ocorreu algum erro com o banco de dados ao efetuar o cadastro');
+        }
+        
+     }else{    
+            return redirect()->back()->with('msg-error', 'Você não tem acesso a essa pagina!!!');
+     }
     }
 
     public function listaPlantonistas() //listagem dos plantonistas ativos

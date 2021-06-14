@@ -41,80 +41,119 @@ class HomeController extends Controller
             'cpf' => 'required',
             'senha' => 'required'
         ]);
-        $result = mysqli_query($connect, "SELECT CPF FROM usuarios WHERE CPF = '$request->cpf' AND Senha = '$request->senha'"); /*Verificando se cpf e senha estão cadastrados no banco de dados*/
-        $row = mysqli_num_rows($result); /*resultado da verificação*/
-        /*While percorrendo vetor gerado pela query */
-        $sql = "SELECT * FROM usuarios where CPF = '$request->cpf'";
-        $query = mysqli_query($connect, $sql);
-        while ($sql = mysqli_fetch_array($query)) {
-            $atribuicao = $sql["Atribuicao"];
-            $ativo = $sql['Ativo'];
+
+        //Verificando se cpf estão cadastrados no banco de dados
+        $buscarCpf = mysqli_query($connect, "SELECT CPF FROM usuarios WHERE CPF = '$request->cpf'");
+        $row = mysqli_num_rows($buscarCpf);        //resultado da verificação
+        
+        //captura a senha do banco
+        $buscarSenha = "SELECT Senha FROM usuarios WHERE CPF = '$request->cpf'";
+        $senhaBanco = mysqli_query($connect, $buscarSenha);
+        while ($buscarSenha = mysqli_fetch_array($senhaBanco)) {
+            $senhaEncontrada = $buscarSenha["Senha"];
         }
-        if ($row == 1) { // verifica se o usuario existe no sistema. $row = 1 significa que sim
-            session_start();
-            if ($ativo == 1) {
-                /*Sequência de condicionais que verifica o cargo para reirecionar para o menu correto */
-                if ($atribuicao == "Administrador") {
-                    $_SESSION['administrador'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
-                    if ($request->senha == 12345) {
-                        return redirect('/primeiroAcesso')->with('cpf', $request->cpf);
-                    }
 
-                    //log
-                    $ip = $_SERVER["REMOTE_ADDR"];
-                    $acao = "Administrador logou";
-                    AdminController::salvarLog($acao, $ip);
-
-                    header("Location: /menuAdm");
-                    exit();
-                } elseif ($atribuicao == "Enfermeiro Chefe") {
-                    $_SESSION['enfermeiroChefe'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
-                    if ($request->senha == 12345) {
-                        return redirect('/primeiroAcesso')->with('cpf', $request->cpf);
-                    }
-
-                    //log
-                    $ip = $_SERVER["REMOTE_ADDR"];
-                    $acao = "Enfermeiro chefe logou";
-                    AdminController::salvarLog($acao, $ip);
-
-                    header("Location: /menu");
-                    exit();
-                } elseif ($atribuicao == "Enfermeiro") {
-                    $_SESSION['enfermeiro'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
-                    if ($request->senha == 12345) {
-                        return redirect('/primeiroAcesso')->with('cpf', $request->cpf);
-                    }
-
-                    //log
-                    $ip = $_SERVER["REMOTE_ADDR"];
-                    $acao = "Enfermeiro logou";
-                    AdminController::salvarLog($acao, $ip);
+        /* se a senha digitada pelo usuário for igual a senha padrão (12345), que é a que está no banco também,
+        *   ele é mandado para página de primeiro acesso */
+        if ($request->senha == 12345 and $senhaEncontrada == 12345) {
+            return redirect('/primeiroAcesso')->with('cpf', $request->cpf);
+        }
 
 
-                    header("Location: /menu");
-                    exit();
-                } elseif ($atribuicao == "Estagiario") {
-                    $_SESSION['estagiario'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
-                    if ($request->senha == 12345) {
-                        return redirect('/primeiroAcesso')->with('cpf', $request->cpf);
-                    }
+        //verifica se o usuario existe no sistema. $row = 1 significa que sim
+        if ($row == 1) {
 
-                    //log
-                    $ip = $_SERVER["REMOTE_ADDR"];
-                    $acao = "Estagiário logou";
-                    AdminController::salvarLog($acao, $ip);
-
-                    header("Location: /menu");
-                    exit();
-                } else {
-                    return redirect() -> back() ->with('msg-error', 'Funcionário sem cargo, algo está errado!!!');
-                }
-            } else {
-                return redirect() -> back() ->with('msg-error', 'Conta do funcionário encontra-se desativada');
+            //busca a senha, status ativo e sua atribuição
+            $sql = "SELECT * FROM usuarios where CPF = '$request->cpf'";
+            $query = mysqli_query($connect, $sql);
+            while ($sql = mysqli_fetch_array($query)) {
+                $atribuicao = $sql["Atribuicao"];
+                $ativo = $sql['Ativo'];
+                $senhaEncontrada = $sql["Senha"];
             }
-        } else { // caso em que o $row = 0
-            return redirect() -> back() ->with('msg-error', 'Acesso negado para essas credenciais!');
+
+
+
+            //se a senha que foi digitada for igual ao do banco
+            if(Hash::check($request->senha,$senhaEncontrada)){
+                session_start();
+              
+                $sqlNome = "SELECT * FROM usuarios where CPF = '$request->cpf'";
+                $queryNome = mysqli_query($connect,$sqlNome);
+                while($sqlNome = mysqli_fetch_array($queryNome)){
+                    $NavNome = $sqlNome["Nome"];
+                }
+              
+                if($ativo == 1){
+                    //Sequência de condicionais que verifica o cargo para redirecionar para o menu correspondente
+
+                    if($atribuicao == "Administrador"){
+                      
+                        $_SESSION['administrador'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
+                        $_SESSION['nome'] = $NavNome;
+
+                        //log
+                        $ip = $_SERVER["REMOTE_ADDR"];
+                        $acao = "Administrador logou";
+                        AdminController::salvarLog($acao, $ip);
+    
+                        header("Location: /menuAdm");
+                        exit();
+
+                    }else if($atribuicao == "Enfermeiro Chefe"){
+
+                        $_SESSION['enfermeiroChefe'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
+                        $_SESSION['nome'] = $NavNome;
+                        
+                        //log
+                        $ip = $_SERVER["REMOTE_ADDR"];
+                        $acao = "Enfermeiro chefe logou";
+                        AdminController::salvarLog($acao, $ip);
+    
+                        header("Location: /menu");
+                        exit();
+    
+                    }else if($atribuicao == "Enfermeiro"){
+
+                        $_SESSION['enfermeiro'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
+                        $_SESSION['nome'] = $NavNome;
+
+                        //log
+                        $ip = $_SERVER["REMOTE_ADDR"];
+                        $acao = "Enfermeiro logou";
+                        AdminController::salvarLog($acao, $ip);
+    
+    
+                        header("Location: /menu");
+                        exit();
+
+                    }else if($atribuicao == "Estagiario"){
+
+                        $_SESSION['estagiario'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
+                        $_SESSION['nome'] = $NavNome;
+                        
+                        //log
+                        $ip = $_SERVER["REMOTE_ADDR"];
+                        $acao = "Estagiário logou";
+                        AdminController::salvarLog($acao, $ip);
+    
+                        header("Location: /menu");
+                        exit();
+                    } else {
+                        return redirect() -> back() ->with('msg-error', 'Funcionário sem cargo, algo está errado!!!');
+                    }
+
+    
+                }else{
+                    return redirect() -> back() ->with('msg-error','Conta do funcionário encontra-se desativada!');
+                }
+
+            }else{
+                return redirect() -> back() ->with('msg-error','Senha digitada está errada!!');
+            }
+            
+        }else{ // caso em que o $row = 0, usuário não existe 
+            return redirect() -> back() ->with('msg-error','Usuário não existe!!');
         }
     }
 
@@ -178,15 +217,14 @@ class HomeController extends Controller
         $senhaConfirmacao = $request->confirmacao;
 
         //se a nova senha desejada for igual a de confimação
-        if ($senhaConfirmacao == $senhaDefinida) {
-            //$senhaCript = md5($senhaConfirmacao);         //cria um hash a partir da nova senha
-            //dd($senhaCript);
 
-            //$buscaSenha = "SELECT * FROM usuarios where CPF = '$request->cpf' AND Senha = '$senhaCript";
-            // $senhaDescript = AES_DECRYPT()
+        if ($senhaConfirmacao == $senhaDefinida){
+        
+            //cria um hash a partir da nova senha 
+           $senhaCript = Hash::make($senhaConfirmacao);         
 
             //atualiza senha no banco de dados
-            $update = "UPDATE usuarios SET Senha = '$senhaConfirmacao' WHERE CPF = '$cpf'";
+            $update = "UPDATE usuarios SET Senha = '$senhaCript' WHERE CPF = '$cpf'";
             mysqli_query($connect, $update);
             
             //log
@@ -272,7 +310,7 @@ class HomeController extends Controller
         include("db.php");
         $usuario = [];
         $cpf = '';
-        // verifica o cargo de quem ta logado 
+        // verifica o cargo de quem ta logado
         //se for enfermeiro ou enfermeiro chefe obtem o coren e o cpf do banco se for administrador ou estagiario so o cpf
         if (isset($_SESSION['enfermeiroChefe'])) {
             $cpf = $_SESSION['enfermeiroChefe'];
@@ -321,7 +359,7 @@ class HomeController extends Controller
         // pega o usuario com o cpf na tabela de usuarios e compara a senha antiga digitada com a cadastrada e se forem correspondente substituem pela nova  digitada senha
         if (isset($_SESSION['administrador'])) {
             $cpf = $_SESSION['administrador'];
-            $sql = "SELECT * FROM usuarios where CPF = '$cpf'"; 
+            $sql = "SELECT * FROM usuarios where CPF = '$cpf'";
             $query = mysqli_query($connect, $sql);
             while ($sql = mysqli_fetch_array($query)) {
                 $usuario['senha'] = $sql['Senha'];
@@ -370,7 +408,7 @@ class HomeController extends Controller
         $acao = "Usuário alterou senha";
         AdminController::salvarLog($acao, $ip);
 
-        header('Location: /meuPerfil'); // redireciona para o meu perfil 
+        header('Location: /meuPerfil'); // redireciona para o meu perfil
         exit();
     }
 
@@ -381,8 +419,9 @@ class HomeController extends Controller
         session_start();
         include("db.php");
         $cpf = HomeController::obterCpf();
-        // altera dados como nome e email digitados na tela de perfil apos clicar no botão de edição  de acordo com o cpf do usuario cadastrado 
+        // altera dados como nome e email digitados na tela de perfil apos clicar no botão de edição  de acordo com o cpf do usuario cadastrado
         $updateNome = "UPDATE usuarios SET Nome = '$request->fnome' WHERE CPF = '$cpf'";
+        $_SESSION['nome'] = $request->fnome;
         mysqli_query($connect, $updateNome);
         $updateEmail = "UPDATE usuarios SET Email = '$request->femail' WHERE CPF = '$cpf'";
         mysqli_query($connect, $updateEmail);
@@ -399,7 +438,7 @@ class HomeController extends Controller
         $i= 0;
         $p = [];
         $identicador = [];
-        $perm = VerificaLoginController::verificaPermissao(18); // verifica permissão 
+        $perm = VerificaLoginController::verificaPermissao(18); // verifica permissão
         if ($perm == "1") {
             if ($request->novaAtribuicao == "internado") {
                 //busca pacientes no banco com o status internado
@@ -492,19 +531,19 @@ class HomeController extends Controller
     public function agendamentosRealizados()
     {
         VerificaLoginController::verificarLogin();
-        $resultado = VerificaLoginController::verificaPermissao(22); // verifica permissão 
+        $resultado = VerificaLoginController::verificaPermissao(22); // verifica permissão
         include("db.php");
         $infos = [];
         $identificaP = null;
         $i = 0;
         if ($resultado == "1") {
-            $cpf = HomeController::obterCpf(); // função estatica para obter cpf do usuario logado 
+            $cpf = HomeController::obterCpf(); // função estatica para obter cpf do usuario logado
             $sql = "SELECT * FROM agendamentos WHERE CPF_usuario = '$cpf'";
             $query = mysqli_query($connect, $sql);
             $verificaN = mysqli_num_rows($query);
             if ($verificaN > 0) { // verifica se tem agendamentos cadastrados no bd
                 while ($sql = mysqli_fetch_array($query)) {
-                    if ($sql['Realizado'] == 1) { // verifica se o agendamento ja foi realizado  
+                    if ($sql['Realizado'] == 1) { // verifica se o agendamento ja foi realizado
                         // se sim obtem os dados
                         $medicamento = $sql['Cod_medicamento'];
                         $prontuario = $sql['ID_prontuario'];
@@ -553,7 +592,7 @@ class HomeController extends Controller
     {
         //verifica permissã busca agendamentos com aplicado cadastrado com aquele cpf e exibi na tela se encontrado.
         VerificaLoginController::verificarLogin();
-        $resultado = VerificaLoginController::verificaPermissao(23); 
+        $resultado = VerificaLoginController::verificaPermissao(23);
         include("db.php");
         $infos = [];
         $i = 0;
@@ -600,7 +639,7 @@ class HomeController extends Controller
                 $acao = "Visualizou lista de meus agendamentos";
                 AdminController::salvarLog($acao, $ip);
 
-                return view('meusAgendamentos', ['infos' => $infos]); // retorna dados encontrados para view 
+                return view('meusAgendamentos', ['infos' => $infos]); // retorna dados encontrados para view
             } else {
                 return redirect()->back()->with('msg-error', 'Nenhuma informação encontrada na base de dados!!!');
             }
@@ -697,7 +736,7 @@ class HomeController extends Controller
         $perm = VerificaLoginController::verificaPermissao(25); //verifica se usuario tem permissão
         if ($perm == "1") {
             $cpf = HomeController::obterCpf();
-            if ($cpf!=null) { // se cpf diferente de nulo 
+            if ($cpf!=null) { // se cpf diferente de nulo
                 // adiciona seu proprio cpf ao agendamento sem responsavel
                 $update = "UPDATE agendamentos SET CPF_usuario = '$cpf' WHERE Codigo = '$request->codA'";
                 mysqli_query($connect, $update);
@@ -764,7 +803,6 @@ class HomeController extends Controller
     //função de listagem de medicamentos
     public function listaMedicamento()
     {
-    
         VerificaLoginController::verificarLogin();
         include("db.php");
         $resultado = VerificaLoginController::verificaPermissao(35);
@@ -791,7 +829,7 @@ class HomeController extends Controller
                 AdminController::salvarLog($acao, $ip);
 
                 return view('listaMedicamento', ['m' => $m]); // retorna os dados dos medicamentos
-            }else{
+            } else {
                 return redirect()->back()->with('msg-error', 'Nenhuma informação encontrada na base de dados!!!');
             }
         } else {
@@ -850,6 +888,7 @@ class HomeController extends Controller
         VerificaLoginController::verificarLogin();
         $resultado = VerificaLoginController::verificaPermissao(19);
         $paciente=[];
+        $agendamentos = [];
         $infosA = [];
         $infosM = [];
         $i = 0;
@@ -1098,7 +1137,7 @@ class HomeController extends Controller
         $aberto = null;
 
         //busca no banco de dados
-        $sql = "SELECT * FROM prontuarios WHERE ID = '$codigo'"; // com o id fornecido 
+        $sql = "SELECT * FROM prontuarios WHERE ID = '$codigo'"; // com o id fornecido
         $query = mysqli_query($connect, $sql);
         while ($sql = mysqli_fetch_array($query)) {
             $aberto = $sql['aberto']; //pega se o prontuario esta aberto ou não(1 para verdadeiro e 0 para falso)
@@ -1112,22 +1151,22 @@ class HomeController extends Controller
     {
         session_start();
         include("db.php");
-        $perm = VerificaLoginController::verificaPermissao(10); // verifica se tem a permissão 
+        $perm = VerificaLoginController::verificaPermissao(10); // verifica se tem a permissão
         if ($perm == "1") {
             $cid = null;
             $sql = "SELECT * FROM cid WHERE codCid = '$request->fcid'";
             $query = mysqli_query($connect, $sql);
             while ($sql = mysqli_fetch_array($query)) {
-                $cid = $sql['id']; // procura cid com o mesmo codigo de identificação na tabela de cids para ver se existe 
+                $cid = $sql['id']; // procura cid com o mesmo codigo de identificação na tabela de cids para ver se existe
             }
             $aberto = HomeController::estadoPronturio($request->prontuario); // ve se o prontuario esta aberto
-            if ($cid != null and $aberto == '1') { // se o prontuario esta aberto e a cid foi encontada 
+            if ($cid != null and $aberto == '1') { // se o prontuario esta aberto e a cid foi encontada
                 $sql1 = "SELECT * FROM cid_prontuario WHERE id_CID = '$cid' AND id_prontuario = '$request->prontuario'"; // procura se ja tem uma cid naquele prontuario que seja igual a cid a ser cadastrada usando o id do prontuario
                 $query1 = mysqli_query($connect, $sql1);
                 while ($sql1 = mysqli_fetch_array($query1)) {
-                    $igual = $sql1['id']; 
+                    $igual = $sql1['id'];
                 }
-                if (isset($igual)) { // se existe da mensagem de erro 
+                if (isset($igual)) { // se existe da mensagem de erro
                     return redirect() -> back() ->with('msg-error', 'Esta CID já se encontra cadastrada no prontuario!!!!');
                 } else { // se não ele cadastra a cid no prontuario e exibi mensagem de sucesso
                     $insert = "INSERT INTO cid_prontuario (id_CID,id_prontuario) VALUES ('$cid','$request->prontuario')";
@@ -1140,7 +1179,7 @@ class HomeController extends Controller
                     return redirect() -> back() ->with('msg', 'CID adicionada ao prontuario com sucesso!!!!');
                 }
             } elseif ($aberto == '0' or $aberto == null) {
-                return redirect() -> back() ->with('msg-error', 'Não pode mais haver cadastro de cids nesse prontuario pos ele se enconta fechado');
+                return redirect() -> back() ->with('msg-error', 'Não pode haver cadastro de cids nesse prontuario pois ele se enconta fechado');
             } else {
                 return redirect() -> back() ->with('msg-error', 'CID digitada não existe na base de dados');
             }
@@ -1152,7 +1191,7 @@ class HomeController extends Controller
 
     //função de obter cpf
     public static function obterCpf()
-    { // função para obter cpf do usuario logado 
+    { // função para obter cpf do usuario logado
         $cpf = null;
         if (isset($_SESSION['administrador'])) {
             $cpf = $_SESSION['administrador'];
@@ -1187,7 +1226,7 @@ class HomeController extends Controller
             while ($sql = mysqli_fetch_array($query)) {
                 $nome = $sql['Nome'];
             }
-            if ($aberto == '1' and $nome!=null) { // se nome foi encontrado e prontuario aberto 
+            if ($aberto == '1' and $nome!=null) { // se nome foi encontrado e prontuario aberto
                 $sql = "SELECT * FROM ocorrencias";
                 $query = mysqli_query($connect, $sql);
                 while ($sql = mysqli_fetch_array($query)) {
@@ -1221,7 +1260,7 @@ class HomeController extends Controller
         include("db.php");
         
         $aberto = HomeController::estadoPronturio($request->prontuario); // verifca se prontuario esta aberto
-        if ($aberto == '1') { // se sim muda o estado dele para fechado 
+        if ($aberto == '1') { // se sim muda o estado dele para fechado
             $update = "UPDATE prontuarios SET aberto = '0', Data_Saida = '$request->fsaida' WHERE ID = '$request->prontuario'";
             mysqli_query($connect, $update);
             $sql = "SELECT * FROM prontuarios WHERE ID = '$request->prontuario'";
@@ -1260,19 +1299,82 @@ class HomeController extends Controller
         while ($sql = mysqli_fetch_array($query)) {
             $nome = $sql['Nome']; // obter nome do usuario a partir do cpf
         };
-        $css = file_get_contents("../public/css/download-style.css"); // caminho do css 
+        $css = file_get_contents("../public/css/download-style.css"); // caminho do css
         $mpdf =  new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'Legal']); // nova instancia da biblioteca que gera pdm
         date_default_timezone_set('America/Sao_Paulo');
-        $data_a = date('d-m-y - h:i:s'); //data e hora atual obtida 
+        $data_a = date('d-m-y - h:i:s'); //data e hora atual obtida
         //$mpdf->WriteHTML($css,\Mpdf\HTMLParserMode::HEADER_CSS);
-        if (isset($_SESSION['administrador'])) {
-            dd("Temos que achar um jeito de transformar matriz em string pra passar pelo input:hidden na pagina do log");
-        } else { // listas gerais 
-            //ultizam dados obtidos da pagina para concatenar na string 
+        if ($request->tela == 'log') {
+            $contador = 0;
+            $sql = "SELECT * from logs";
+            $query = mysqli_query($connect, $sql);
+            while ($sql = mysqli_fetch_array($query)) {
+                $vetor[$contador]= $sql['Ip'];
+                $vetor[$contador + 1]= $sql['Data_Log'];
+                $vetor[$contador + 2]= $sql['Hora_Agend'];
+                $vetor[$contador + 3]= $sql['Acao'];
+                $contador = $contador + 4;
+            };
+
+            for ($i = 0; $i < count($vetor);$i++) {
+                if ($i % 4 == 0) {
+                    $lista =  $lista.'
+                    <tr> <!--Cada Log-->
+                        <td>'.$vetor[$i].'</td>
+                        <td>'.$vetor[$i+1].'</td>
+                        <td>'.$vetor[$i+2].'</td>
+                        <td>'.$vetor[$i+3].'</td>
+                    </tr>
+                    ';
+                }
+            }
+            $mpdf->WriteHTML('<!doctype html>
+                <html lang="en">
+                <style>'.$css.'</style>
+                    <body>
+                        <header class="container-personal-data">
+                            <div>
+                                <h2>Nome Hospital</h2> <!--Nome do nosso Hospital-->
+                            </div>
+                            <div>
+                                <h2>'.$nome.' / '.$cpf.'</h2> <!--Nome e CPF de quem requisitou o download-->
+                            </div>
+                            <div>
+                                <h2>'.$data_a.'</h2> <!--Data e Hora em que foi feito o download-->
+                            </div>
+                        </header>
+                        <hr>
+                        <section>
+                            <div class="container-header"> 
+                                <h1>Logs</h1> <!--De onde saiu a lista-->
+                            </div>
+                            <hr>
+                            <div class="container-listagem">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>IP</th>
+                                            <th>Data</th>
+                                            <th>Hora do Log</th>
+                                            <th>Ação</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        '.$lista.'
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                        <footer style="position: absolute; bottom: 0;">
+                            <p id="Copyright">Informações para o Footer da página</p> <!--Caso queira deixar alguma informação no Footer-->
+                        </footer>
+                    </body>');
+        } else { // listas gerais
+            //ultizam dados obtidos da pagina para concatenar na string
             // IFs dentro dos FORs são para pegar posições estrategicas de cada vetor de acordo com o numero de dados que ele possui de cada instancia
-            //variavel de string concatenada junto com tabelas para ficar organizado 
+            //variavel de string concatenada junto com tabelas para ficar organizado
             // Função  writeHTML função onde vc passa o html da pagina que sera impressa os dados concatenado com o estilo do css
-            if ($request->tela == 'lp') { // lista de pacientes 
+            if ($request->tela == 'lp') { // lista de pacientes
                 $sql = "SELECT *  from pacientes where Nome_Paciente = '$request->numero'";
                 $query = mysqli_query($connect, $sql);
                 while ($sql = mysqli_fetch_array($query)) {
@@ -1322,7 +1424,7 @@ class HomeController extends Controller
                             <p id="Copyright">Informações para o Footer da página</p> <!--Caso queira deixar alguma informação no Footer-->
                         </footer>
                     </body>');
-            } elseif ($request->tela == 'lm') {
+            } elseif ($request->tela == 'lm') {// lista de medicamentos
                 for ($i =  0; $i <= count($vetor)-1;$i++) {
                     if ($i%4 ==0) {
                         $lista =$lista.
@@ -1376,7 +1478,7 @@ class HomeController extends Controller
                             <p id="Copyright">Informações para o Footer da página</p> <!--Caso queira deixar alguma informação no Footer-->
                         </footer>
                     </body>');
-            } elseif ($request->tela == 'lr') {
+            } elseif ($request->tela == 'lr') { // lista de responsaveis
                 for ($i =  0; $i <= count($vetor)-1;$i++) {
                     if ($i%8 ==0) {
                         $lista =$lista.
@@ -1434,7 +1536,7 @@ class HomeController extends Controller
                             <p id="Copyright">Informações para o Footer da página</p> <!--Caso queira deixar alguma informação no Footer-->
                         </footer>
                     </body>');
-            } elseif ($request->tela == 'la') {
+            } elseif ($request->tela == 'la') { // lista de agendamentos
                 for ($i =  0; $i <= count($vetor)-1;$i++) {
                     if ($i%8 ==0) {
                         $lista =$lista.
@@ -1490,8 +1592,137 @@ class HomeController extends Controller
                             <p id="Copyright">Informações para o Footer da página</p> <!--Caso queira deixar alguma informação no Footer-->
                         </footer>
                     </body>');
+            } elseif ($request->tela == 'hp') { // historico de prontuario
+                for ($i =  0; $i <= count($vetor)-1;$i++) {
+                    if ($i%6 ==0) {
+                        $lista =$lista.
+                        '<tr> <!--Cada Prontuário-->
+                        <td>'.$vetor[$i].'</td> <!--Numero do Prontuário-->
+                        <td>'.$vetor[$i+4].'</td> <!--Data de Internação-->
+                        <td>'.$vetor[$i+5].'</td> <!--Data de Saída-->
+                        <td>'.$vetor[$i+2].'</td> <!--Motivo-->
+                        </tr>';
+                    }
+                }
+                
+                $mpdf->WriteHTML('<!doctype html>
+                <html lang="en">
+                <style>'.$css.'</style>
+                <body>
+                <header class="container-personal-data">
+                            <div>
+                                <h2>Nome Hospital</h2> <!--Nome do nosso Hospital-->
+                            </div>
+                            <div>
+                                <h2>'.$nome.' / '.$cpf.'</h2> <!--Nome e CPF de quem requisitou o download-->
+                            </div>
+                            <div>
+                                <h2>'.$data_a.'</h2> <!--Data e Hora em que foi feito o download-->
+                            </div>
+                        </header>
+                <hr>
+                <section>
+                    <div class="container-header"> 
+                        <h1>Historico de Prontuarios</h1> <!--De onde saiu a lista-->
+                    </div>
+                    <hr>
+                    <div>
+                        <p><span>'.$vetor[1].'</span> - <span>'.$vetor[3].'</span></p>
+                    </div>
+                    <div class="container-listagem">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th> <!--Numero do Prontuário-->
+                                    <th>Data de Internação</th>
+                                    <th>Data de Saída</th>
+                                    <th>Motivo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            '.$lista.'
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                <footer style="position: absolute; bottom: 0;">
+                    <p id="Copyright">Informações para o Footer da página</p> <!--Caso queira deixar alguma informação no Footer-->
+                </footer>
+            </body>');
+            } elseif ($request->tela == 'rg') {
+                $mpdf->WriteHTML('<!doctype html>
+                <html lang="en">
+                <style>'.$css.'</style>
+                    <body>
+                        <header class="container-personal-data">
+                            <div>
+                                <h2>Nome Hospital</h2> <!--Nome do nosso Hospital-->
+                            </div>
+                            <div>
+                                <h2>'.$nome.' / '.$cpf.'</h2> <!--Nome e CPF de quem requisitou o download-->
+                            </div>
+                            <div>
+                                <h2>'.$data_a.'</h2> <!--Data e Hora em que foi feito o download-->
+                            </div>
+                        </header>
+                        <hr>
+                        <section>
+                            <div class="container-header"> 
+                                <h1>Tabela - Relatorio Gerencial</h1> <!--De onde saiu a lista-->
+                            </div>
+                            <hr>
+                            <div class="container-listagem">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Pacientes Internados</th>
+                                            <th>Funcionários Cadastrados</th>
+                                            <th>CID mais frequente</th>
+                                            <th>Taxa de óbito</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr> 
+                                            <td>'.$vetor[0].'</td> <!--Pacientes Internados-->
+                                            <td>'.$vetor[1].'</td> <!--Funcionários Cadastrados-->
+                                            <td>'.$vetor[2].'</td> <!--CID mais frequente-->
+                                            <td>'.$vetor[3].'% </td> <!--Taxa de óbito-->
+                                        </tr>
+                                        <tr>
+                                            <th>Idade Media entre Pacientes</th>
+                                            <th>Medicamento mais usado</th>
+                                            <th>Quantidade de Leitos Cadastrados</th>
+                                            <th>Quantidade de Leitos Ocupados</th>
+                                        </tr>
+                                        <tr> 
+                                            <td>'.$vetor[4].' anos </td> <!--Idade Media entre Pacientes-->
+                                            <td>'.$vetor[5].'</td> <!--Medicamento mais usado-->
+                                            <td>'.$vetor[6].'</td> <!--Quantidade de Leitos Cadastrados-->
+                                            <td>'.$vetor[7].'</td> <!--Quantidade de Leitos Ocupados-->
+                                        </tr>
+                                        <tr>
+                                            <th>Enfermeiros Chefes Ativos</th>
+                                            <th>Enfermeiros Ativos</th>
+                                            <th>Estagiários Ativos</th>
+                                            <th>Administradores Cadastrados</th>
+                                        </tr>
+                                        <tr> 
+                                            <td>'.$vetor[8].'</td> <!--Enfermeiros Chefes Ativos-->
+                                            <td>'.$vetor[9].'</td> <!--Enfermeiros Ativos-->
+                                            <td>'.$vetor[10].'</td> <!--Estagiários Ativos-->
+                                            <td>'.$vetor[11].'</td> <!--Administradores Cadastrados-->
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                    <footer style="position: absolute; bottom: 0;">
+                        <p id="Copyright">Informações para o Footer da página</p> <!--Caso queira deixar alguma informação no Footer-->
+                    </footer>
+                    </body>');
             }
         }
         $mpdf->Output(); // função que redireciona para o arquivo pdf para baixa-lo
     }
 }
+ 

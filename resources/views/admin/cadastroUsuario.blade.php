@@ -93,7 +93,8 @@
                         <div  class="row">
                             <div class="col-lg-4">
                                 <label for="fcoren">Coren</label> <!--Campo do coren--> <!--Fica invisível se o usuário estiver sendo cadastrado como um Estagiário-->
-                                <input placeholder="Informe o Coren" id="fcoren" name="fcoren" type="text" maxlength="14" pattern="\d{2}\-\d{3}.\d{3}.\d{3}">
+                                <!--Por Lei o Coren do enfermeiro tem que obedecer o estado atual onde o mesmo atua, por isso automaticamente já será preenchido com BA-->
+                                <input placeholder="Informe o Coren" id="fcoren" name="fcoren" type="text" maxlength="14" onkeyup="mascara('BA-###.###.###',this,event,true)"  pattern="\d{2}\-\d{3}.\d{3}.\d{3}">
                             </div>
                         </div>
                     </div>
