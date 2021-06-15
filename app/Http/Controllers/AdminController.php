@@ -493,7 +493,7 @@ class AdminController extends Controller
     public function busca(Request $request)
     {
         session_start();
-        include('..\app\Http\Controllers\db.php');
+        include("db.php");
         $query = "SELECT * FROM usuarios WHERE CPF= '$request->cpf_user'";
         $result = mysqli_query($connect, $query);
         $user = mysqli_fetch_array($result);
@@ -856,7 +856,7 @@ class AdminController extends Controller
 
     public static function notificarUsuarioAgendamento(){ // função estatica para notificação. Deve ser chamada usando funcionalidade de chamad automatica da hospedagem
         session_start();
-        include("bd.php");
+        include("db.php");
         //obtem data e hora atual 
         date_default_timezone_set('America/Sao_Paulo');
         $data = date('H:i:s');
