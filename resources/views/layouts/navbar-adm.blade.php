@@ -20,9 +20,10 @@
                 <!-------- Nome do funcionário e acesso ao perfil -------->
                 <div class="d-flex">
                     <a name="nav-item" href="{{ route('editarPerfil') }} " class="user"> <i class="fas fa-user"></i></a>
-                    <div class="col-lg-9 scrolls">
+
+                    <div class="col-lg-9">
                         @if (isset($_SESSION['administrador']))
-                            <h2><a name="nav-item" href="{{ route('editarPerfil') }}">{{ $_SESSION['nome']}}</a></h2>
+                            <h2><a id="user-name" name="nav-item" href="{{ route('editarPerfil') }}">{{ $_SESSION['nome']}}</a></h2>
                         @endif
                     </div>
                 </div>
