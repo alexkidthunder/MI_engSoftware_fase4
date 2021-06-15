@@ -62,7 +62,7 @@ class HomeController extends Controller
 
         //verifica se o usuario existe no sistema. $row = 1 significa que sim
         if ($row == 1) {
-
+            $resultado = 'p|e|r|m|i|ssã|os|';
             //busca a senha, status ativo e sua atribuição
             $sql = "SELECT * FROM usuarios where CPF = '$request->cpf'";
             $query = mysqli_query($connect, $sql);
@@ -75,20 +75,20 @@ class HomeController extends Controller
 
 
             //se a senha que foi digitada for igual ao do banco
-            if(Hash::check($request->senha,$senhaEncontrada)){
+            if (Hash::check($request->senha, $senhaEncontrada)) {
                 session_start();
               
                 $sqlNome = "SELECT * FROM usuarios where CPF = '$request->cpf'";
-                $queryNome = mysqli_query($connect,$sqlNome);
-                while($sqlNome = mysqli_fetch_array($queryNome)){
+                $queryNome = mysqli_query($connect, $sqlNome);
+                while ($sqlNome = mysqli_fetch_array($queryNome)) {
                     $NavNome = $sqlNome["Nome"];
                 }
+                
               
-                if($ativo == 1){
+                if ($ativo == 1) {
                     //Sequência de condicionais que verifica o cargo para redirecionar para o menu correspondente
 
-                    if($atribuicao == "Administrador"){
-                      
+                    if ($atribuicao == "Administrador") {
                         $_SESSION['administrador'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
                         $_SESSION['nome'] = $NavNome;
 
@@ -99,11 +99,18 @@ class HomeController extends Controller
     
                         header("Location: /menuAdm");
                         exit();
-
-                    }else if($atribuicao == "Enfermeiro Chefe"){
-
+                    }// A partir daqui ele vai obter todas as permissões
+                    // Coloca-la em uma string
+                    // Transforma-la em um array
+                    // e passala para sessão de permissoes 
+                    elseif ($atribuicao == "Enfermeiro Chefe") {
                         $_SESSION['enfermeiroChefe'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
                         $_SESSION['nome'] = $NavNome;
+                        for ($i = 7;$i <= 35;$i++) {
+                            $resultado .= VerificaLoginController::verificaPermissao($i).'|'; 
+                        }
+                        $vetor = explode('|', $resultado);
+                        $_SESSION['permissoes'] = $vetor;
                         
                         //log
                         $ip = $_SERVER["REMOTE_ADDR"];
@@ -112,12 +119,14 @@ class HomeController extends Controller
     
                         header("Location: /menu");
                         exit();
-    
-                    }else if($atribuicao == "Enfermeiro"){
-
+                    } elseif ($atribuicao == "Enfermeiro") {
                         $_SESSION['enfermeiro'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
                         $_SESSION['nome'] = $NavNome;
-
+                        for ($i = 36;$i < 65;$i++) {
+                            $resultado .= VerificaLoginController::verificaPermissao($i).'|';
+                        }
+                        $vetor = explode('|', $resultado);
+                        $_SESSION['permissoes'] = $vetor;
                         //log
                         $ip = $_SERVER["REMOTE_ADDR"];
                         $acao = "Enfermeiro logou";
@@ -126,12 +135,14 @@ class HomeController extends Controller
     
                         header("Location: /menu");
                         exit();
-
-                    }else if($atribuicao == "Estagiario"){
-
+                    } elseif ($atribuicao == "Estagiario") {
                         $_SESSION['estagiario'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
                         $_SESSION['nome'] = $NavNome;
-                        
+                        for ($i = 65;$i < 94 ;$i++) {
+                            $resultado .= VerificaLoginController::verificaPermissao($i).'|';
+                        }
+                        $vetor = explode('|', $resultado);
+                        $_SESSION['permissoes'] = $vetor;
                         //log
                         $ip = $_SERVER["REMOTE_ADDR"];
                         $acao = "Estagiário logou";
@@ -142,18 +153,14 @@ class HomeController extends Controller
                     } else {
                         return redirect() -> back() ->with('msg-error', 'Funcionário sem cargo, algo está errado!!!');
                     }
-
-    
-                }else{
-                    return redirect() -> back() ->with('msg-error','Conta do funcionário encontra-se desativada!');
+                } else {
+                    return redirect() -> back() ->with('msg-error', 'Conta do funcionário encontra-se desativada!');
                 }
-
-            }else{
-                return redirect() -> back() ->with('msg-error','Senha digitada está errada!!');
+            } else {
+                return redirect() -> back() ->with('msg-error', 'Senha digitada está errada!!');
             }
-            
-        }else{ // caso em que o $row = 0, usuário não existe 
-            return redirect() -> back() ->with('msg-error','Usuário não existe!!');
+        } else { // caso em que o $row = 0, usuário não existe
+            return redirect() -> back() ->with('msg-error', 'Usuário não existe!!');
         }
     }
 
@@ -218,10 +225,10 @@ class HomeController extends Controller
 
         //se a nova senha desejada for igual a de confimação
 
-        if ($senhaConfirmacao == $senhaDefinida){
+        if ($senhaConfirmacao == $senhaDefinida) {
         
-            //cria um hash a partir da nova senha 
-           $senhaCript = Hash::make($senhaConfirmacao);         
+            //cria um hash a partir da nova senha
+            $senhaCript = Hash::make($senhaConfirmacao);
 
             //atualiza senha no banco de dados
             $update = "UPDATE usuarios SET Senha = '$senhaCript' WHERE CPF = '$cpf'";
@@ -1725,4 +1732,3 @@ class HomeController extends Controller
         $mpdf->Output(); // função que redireciona para o arquivo pdf para baixa-lo
     }
 }
- 
