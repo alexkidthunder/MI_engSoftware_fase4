@@ -19,7 +19,7 @@
         <div class="d-flex align-items-center justify-content-between">
             <div class="d-flex ml-3">
                 <a name="nav-item" href="{{ route('editarPerfil') }} " class="user"> <i class="fas fa-user"></i></a>
-                <div class="col-lg-3">
+                <div class="col-lg-9">
                      @if(isset($_SESSION['administrador']))
                     <h2><a id="user-name" name="nav-item" href="{{ route('editarPerfil') }}">{{$_SESSION['nome']}}</a></h2>
                     @endif
