@@ -102,12 +102,12 @@ class HomeController extends Controller
                     }// A partir daqui ele vai obter todas as permissões
                     // Coloca-la em uma string
                     // Transforma-la em um array
-                    // e passala para sessão de permissoes 
+                    // e passala para sessão de permissoes
                     elseif ($atribuicao == "Enfermeiro Chefe") {
                         $_SESSION['enfermeiroChefe'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
                         $_SESSION['nome'] = $NavNome;
                         for ($i = 7;$i <= 35;$i++) {
-                            $resultado .= VerificaLoginController::verificaPermissao($i).'|'; 
+                            $resultado .= VerificaLoginController::verificaPermissao($i).'|';
                         }
                         $vetor = explode('|', $resultado);
                         $_SESSION['permissoes'] = $vetor;
@@ -372,7 +372,7 @@ class HomeController extends Controller
                 $usuario['senha'] = $sql['Senha'];
             }
             if (($request->senhaAtual == $usuario['senha']) and ($request->senha == $request->confirmacao)) {
-                //cria um hash a partir da nova senha 
+                //cria um hash a partir da nova senha
                 $senhaCript = Hash::make($request->senha);
 
                 $updateSenha = "UPDATE usuarios SET Senha = '$senhaCript' WHERE CPF = '$cpf'";
@@ -386,7 +386,7 @@ class HomeController extends Controller
                 $usuario['senha'] = $sql['Senha'];
             }
             if (($request->senhaAtual == $usuario['senha']) and ($request->senha == $request->confirmacao)) {
-                //cria um hash a partir da nova senha 
+                //cria um hash a partir da nova senha
                 $senhaCript = Hash::make($request->senha);
 
                 $updateSenha = "UPDATE usuarios SET Senha = '$senhaCript' WHERE CPF = '$cpf'";
@@ -400,7 +400,7 @@ class HomeController extends Controller
                 $usuario['senha'] = $sql['Senha'];
             }
             if (($request->senhaAtual == $usuario['senha']) and ($request->senha == $request->confirmacao)) {
-                //cria um hash a partir da nova senha 
+                //cria um hash a partir da nova senha
                 $senhaCript = Hash::make($request->senha);
 
                 $updateSenha = "UPDATE usuarios SET Senha = '$senhaCript' WHERE CPF = '$cpf'";
@@ -414,7 +414,7 @@ class HomeController extends Controller
                 $usuario['senha'] = $sql['Senha'];
             }
             if (($request->senhaAtual == $usuario['senha']) and ($request->senha == $request->confirmacao)) {
-                //cria um hash a partir da nova senha 
+                //cria um hash a partir da nova senha
                 $senhaCript = Hash::make($request->senha);
 
                 $updateSenha = "UPDATE usuarios SET Senha = '$senhaCript' WHERE CPF = '$cpf'";
@@ -1393,6 +1393,7 @@ class HomeController extends Controller
                             <p id="Copyright">Informações para o Footer da página</p> <!--Caso queira deixar alguma informação no Footer-->
                         </footer>
                     </body>');
+            $mpdf->Output('log'.$data_a.'.pdf', \Mpdf\Output\Destination::DOWNLOAD);
         } else { // listas gerais
             //ultizam dados obtidos da pagina para concatenar na string
             // IFs dentro dos FORs são para pegar posições estrategicas de cada vetor de acordo com o numero de dados que ele possui de cada instancia
@@ -1448,6 +1449,7 @@ class HomeController extends Controller
                             <p id="Copyright">Informações para o Footer da página</p> <!--Caso queira deixar alguma informação no Footer-->
                         </footer>
                     </body>');
+                $mpdf->Output('Paciente_Prontuario'.$data_a.'.pdf', \Mpdf\Output\Destination::DOWNLOAD);
             } elseif ($request->tela == 'lm') {// lista de medicamentos
                 for ($i =  0; $i <= count($vetor)-1;$i++) {
                     if ($i%4 ==0) {
@@ -1502,6 +1504,7 @@ class HomeController extends Controller
                             <p id="Copyright">Informações para o Footer da página</p> <!--Caso queira deixar alguma informação no Footer-->
                         </footer>
                     </body>');
+                $mpdf->Output('Listagem_Medicamentos'.$data_a.'.pdf', \Mpdf\Output\Destination::DOWNLOAD);
             } elseif ($request->tela == 'lr') { // lista de responsaveis
                 for ($i =  0; $i <= count($vetor)-1;$i++) {
                     if ($i%8 ==0) {
@@ -1560,6 +1563,7 @@ class HomeController extends Controller
                             <p id="Copyright">Informações para o Footer da página</p> <!--Caso queira deixar alguma informação no Footer-->
                         </footer>
                     </body>');
+                $mpdf->Output('Listagem_Responsaveis'.$data_a.'.pdf', \Mpdf\Output\Destination::DOWNLOAD);
             } elseif ($request->tela == 'la') { // lista de agendamentos
                 for ($i =  0; $i <= count($vetor)-1;$i++) {
                     if ($i%8 ==0) {
@@ -1616,6 +1620,7 @@ class HomeController extends Controller
                             <p id="Copyright">Informações para o Footer da página</p> <!--Caso queira deixar alguma informação no Footer-->
                         </footer>
                     </body>');
+                $mpdf->Output('Listagem_Agendamentos'.$data_a.'.pdf', \Mpdf\Output\Destination::DOWNLOAD);
             } elseif ($request->tela == 'hp') { // historico de prontuario
                 for ($i =  0; $i <= count($vetor)-1;$i++) {
                     if ($i%6 ==0) {
@@ -1673,6 +1678,7 @@ class HomeController extends Controller
                     <p id="Copyright">Informações para o Footer da página</p> <!--Caso queira deixar alguma informação no Footer-->
                 </footer>
             </body>');
+                $mpdf->Output('Historico_Prontuario'.$data_a.'.pdf', \Mpdf\Output\Destination::DOWNLOAD);
             } elseif ($request->tela == 'rg') {
                 $mpdf->WriteHTML('<!doctype html>
                 <html lang="en">
@@ -1744,8 +1750,90 @@ class HomeController extends Controller
                         <p id="Copyright">Informações para o Footer da página</p> <!--Caso queira deixar alguma informação no Footer-->
                     </footer>
                     </body>');
+                $mpdf->Output('Relatorio_Gerencial'.$data_a.'.pdf', \Mpdf\Output\Destination::DOWNLOAD);
+            } elseif ($request->tela == 'lpt') {
+                for ($i =  0; $i <= count($vetor)-1;$i++) {
+                    if ($i%2 ==0) {
+                        $lista =$lista.
+                        '<tr>
+                        <th>'.$vetor[$i].'</td> 
+                        <th>'.$vetor[$i+1].'</td> 
+                        </tr>';
+                    }
+                }
+                
+                $mpdf->WriteHTML('<!doctype html>
+                <html lang="en">
+                <style>'.$css.'</style>
+                <body>
+                <header class="container-personal-data">
+                            <div>
+                                <h2>Nome Hospital</h2> <!--Nome do nosso Hospital-->
+                            </div>
+                            <div>
+                                <h2>'.$nome.' / '.$cpf.'</h2> <!--Nome e CPF de quem requisitou o download-->
+                            </div>
+                            <div>
+                                <h2>'.$data_a.'</h2> <!--Data e Hora em que foi feito o download-->
+                            </div>
+                        </header>
+                <hr>
+                <section>
+            <div class="container-header"> 
+                <h1>Listagem Plantonista</h1> <!--De onde saiu a lista-->
+            </div>
+            <hr>
+            <div class="container-listagem">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Cargo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        '.$lista.'
+                    </tbody>
+                </table>
+            </div>
+        </section>
+                <footer style="position: absolute; bottom: 0;">
+                    <p id="Copyright">Informações para o Footer da página</p> <!--Caso queira deixar alguma informação no Footer-->
+                </footer>
+            </body>');
+                $mpdf->Output('Listagem_Plantonistas'.$data_a.'.pdf', \Mpdf\Output\Destination::DOWNLOAD);
             }
         }
-        $mpdf->Output(); // função que redireciona para o arquivo pdf para baixa-lo
+    }
+
+    public static function notificarUsuarioAgendamento()
+    { // função estatica para notificação. Deve ser chamada usando funcionalidade de chamad automatica da hospedagem
+        session_start();
+        include("db.php");
+        //obtem data e hora atual
+        $hora = date('H-i-s');
+        $data = date('Y-m-d');
+        $cpf = HomeController::ObterCpf();
+        $sql = "SELECT * FROM agendamentos WHERE CPF_usuario = '$cpf'"; // verifica se o usuario logado tem agendamento
+        $query = mysqli_query($connect, $sql);
+        while ($sql= mysqli_fetch_array($query)) {
+            if ($sql['Realizado'] == 0) {
+                $pronturario = $sql['ID_Prontuario'];
+                $sql1 = "SELECT * FROM prontuarios WHERE ID = 'prontuario'";
+                $query1 = mysqli_query($connect, $sql1);
+                while ($sql1= mysqli_fetch_array($query1)) {
+                    $leito = $sql1['Id_leito'];
+                }
+                if ($data == $sql['Data_Agend'] and $dhora == $sql['Hora_Agend']) { //verifica se as datas e horas cadastradas e obtidas batem e se sim manda a notificação
+                    $_SESSION['notifi'] = 'Você tem o agendamento marcado para o leiot:'.$leito;
+                }
+                //OBS - Adicionar um css tbm de msg-notification assim como tem pra sucess e error e colocar em todas as paginas no inicio do body
+            }
+        }
+    }
+
+    public function apagarN(){
+        $_SESSION['notify'] = array();
+        return redirect()->back();
     }
 }
