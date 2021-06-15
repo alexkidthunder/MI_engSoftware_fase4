@@ -21,12 +21,40 @@
     <!----------Hearder------------>
     @include('layouts.navbar')
     <!----------End Hearder-------->
-    <div id="screen-icon">
-        <!-- Icone de Download Em Telas -->
-        <form class="download-icon">
+
+    <!---------------Notificação para o usuário-------------->
+    @if(isset($_SESSION['notifi']))
+    @if(!empty ($_SESSION['notifi']))
+    <div id="notification">
+        <div class='msg-notification'>
+            <div class="row">
+                <div class="col-lg-2 col-md-2 col-12 col-sm-12">
+                    <i class="fas fa-bell"></i>
+                </div>
+                <div class="col-lg-8 col-md-8 col-10 col-sm-10">
+                    {{$_SESSION['notifi']}} 
+                </div>
+                <form action="/apagarN" method="get">
+                    <div class="col-lg-2 col-md-2 col-2 col-sm-2">
+                        <button name="fechar" type="submit" class="btn-close" id="close"><i class="fas fa-times"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    <div>
+    @endif
+    @endif
+    <!---------------Fim de notificação-------------->
+
+    <div id="screen-icon"> <!-- Icone de Download Em Telas -->
+        <form method="get" action="/baixarArquivos" class="download-icon">
             <button>
                 <i class="fas fa-download"></i>
             </button>
+            @if(isset($plantonista["nome".$i]))
+            <input type="hidden" name="listagem" value="{{implode('|',$plantonista)}}">
+            <input type="hidden" name="tela" value="lpt">
+            @endif
         </form>
     </div>
 

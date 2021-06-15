@@ -25,6 +25,31 @@
     <!----------Hearder------------>
     @include('layouts.navbar')
     <!----------End Hearder-------->
+
+    <!---------------Notificação para o usuário-------------->
+    @if(isset($_SESSION['notifi']))
+    @if(!empty ($_SESSION['notifi']))
+    <div id="notification">
+        <div class='msg-notification'>
+            <div class="row">
+                <div class="col-lg-2 col-md-2 col-12 col-sm-12">
+                    <i class="fas fa-bell"></i>
+                </div>
+                <div class="col-lg-8 col-md-8 col-10 col-sm-10">
+                    {{$_SESSION['notifi']}} 
+                </div>
+                <form action="/apagarN" method="get">
+                    <div class="col-lg-2 col-md-2 col-2 col-sm-2">
+                        <button name="fechar" type="submit" class="btn-close" id="close"><i class="fas fa-times"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    <div>
+    @endif
+    @endif
+    <!---------------Fim de notificação-------------->
+
     <section>
         <div class="container-1">
             <h1>CADASTRO DE AGENDAMENTO</h1>
@@ -104,7 +129,7 @@
                                 <div class="col-lg-12">
                                     <label for="medicamento_agendamento">Medicamento</label>
                                     <!--Front precisa de uma lista de todos os medicamentos. Ps: em Json-->
-                                    <input type="text" name="medicamento_agendamento" id="medicamento_agendamento" list="listaMedicamentos">
+                                    <input type="text" name="medicamento_agendamento" id="medicamento_agendamento" list="listaMedicamentos" required>
                                     <!-- Auto Complete Lista de medicamentos  -->
                                     <datalist id="listaMedicamentos">
                                             @if(isset($medicamentos))
