@@ -65,7 +65,7 @@ CREATE TABLE enfermeiros (
 /*Cria tabela de enfermeiros  chefes*/
 CREATE TABLE enfermeiros_chefes (
   CPF char(14) NOT NULL, /* Chave estrangeira que faz referência ao usuarios*/
-  COREN char(12) NOT NULL
+  COREN char(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Cria tabela de estagiarios*/

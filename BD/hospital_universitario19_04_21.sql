@@ -12747,7 +12747,7 @@ INSERT INTO `enfermeiros` (`CPF`, `COREN`, `Plantao`) VALUES
 
 CREATE TABLE IF NOT EXISTS `enfermeiros_chefes` (
   `CPF` char(14) NOT NULL,
-  `COREN` char(12) NOT NULL,
+  `COREN` char(15) NOT NULL,
   PRIMARY KEY (`COREN`),
   KEY `CPF` (`CPF`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
