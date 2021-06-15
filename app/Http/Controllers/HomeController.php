@@ -365,7 +365,10 @@ class HomeController extends Controller
                 $usuario['senha'] = $sql['Senha'];
             }
             if (($request->senhaAtual == $usuario['senha']) and ($request->senha == $request->confirmacao)) {
-                $updateSenha = "UPDATE usuarios SET Senha = '$request->senha' WHERE CPF = '$cpf'";
+                //cria um hash a partir da nova senha 
+                $senhaCript = Hash::make($request->senha);
+
+                $updateSenha = "UPDATE usuarios SET Senha = '$senhaCript' WHERE CPF = '$cpf'";
                 mysqli_query($connect, $updateSenha);
             }
         } elseif (isset($_SESSION['enfermeiroChefe'])) {
@@ -376,7 +379,10 @@ class HomeController extends Controller
                 $usuario['senha'] = $sql['Senha'];
             }
             if (($request->senhaAtual == $usuario['senha']) and ($request->senha == $request->confirmacao)) {
-                $updateSenha = "UPDATE usuarios SET Senha = '$request->senha' WHERE CPF = '$cpf'";
+                //cria um hash a partir da nova senha 
+                $senhaCript = Hash::make($request->senha);
+
+                $updateSenha = "UPDATE usuarios SET Senha = '$senhaCript' WHERE CPF = '$cpf'";
                 mysqli_query($connect, $updateSenha);
             }
         } elseif (isset($_SESSION['enfermeiro'])) {
@@ -387,7 +393,10 @@ class HomeController extends Controller
                 $usuario['senha'] = $sql['Senha'];
             }
             if (($request->senhaAtual == $usuario['senha']) and ($request->senha == $request->confirmacao)) {
-                $updateSenha = "UPDATE usuarios SET Senha = '$request->senha' WHERE CPF = '$cpf'";
+                //cria um hash a partir da nova senha 
+                $senhaCript = Hash::make($request->senha);
+
+                $updateSenha = "UPDATE usuarios SET Senha = '$senhaCript' WHERE CPF = '$cpf'";
                 mysqli_query($connect, $updateSenha);
             }
         } else {
@@ -398,7 +407,10 @@ class HomeController extends Controller
                 $usuario['senha'] = $sql['Senha'];
             }
             if (($request->senhaAtual == $usuario['senha']) and ($request->senha == $request->confirmacao)) {
-                $updateSenha = "UPDATE usuarios SET Senha = '$request->senha' WHERE CPF = '$cpf'";
+                //cria um hash a partir da nova senha 
+                $senhaCript = Hash::make($request->senha);
+
+                $updateSenha = "UPDATE usuarios SET Senha = '$senhaCript' WHERE CPF = '$cpf'";
                 mysqli_query($connect, $updateSenha);
             }
         }
@@ -425,6 +437,11 @@ class HomeController extends Controller
         mysqli_query($connect, $updateNome);
         $updateEmail = "UPDATE usuarios SET Email = '$request->femail' WHERE CPF = '$cpf'";
         mysqli_query($connect, $updateEmail);
+
+        //log
+        $ip = $_SERVER["REMOTE_ADDR"];
+        $acao = "Usuário alterou dados cadastrados";
+        AdminController::salvarLog($acao, $ip);
 
         return redirect()->back(); // retorna de volta para a mesma tela
     }
