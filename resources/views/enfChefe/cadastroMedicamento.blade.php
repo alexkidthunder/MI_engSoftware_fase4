@@ -66,7 +66,7 @@
                         <!---------------------Inserção da quantidadedo medicamento--------------------->
                         <div class="col-md-6 col-lg-4">
                             <label>Quantidade</label> <br>
-                            <input id="fquantidade" name="fquantidade" type="text" required maxlength="15" required>
+                            <input id="fquantidade" name="fquantidade" type="number" required maxlength="15" required>
                         </div>
                     </div>
 

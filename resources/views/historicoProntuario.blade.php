@@ -17,6 +17,7 @@
     <link href="{{ asset('img/favicon.png') }}" rel="icon">
 
     <script src="{{ 'js/historicoProntuario.js' }}" defer></script>
+    <script src="{{ 'js/mascara.min.js' }}"></script>
     {{$i = 0}}
     <title>Historico de prontuários</title>
 
@@ -74,8 +75,9 @@
                     <h3>BUSCAR PACIENTE</h3>
                     <form class="search-bar" method="get" action="/hp">
                         <!--- Campo para a inserção do CPF do paciente --->
-                        <input name="cpf_user" id="cpf_user" type="text" placeholder="Informe o CPF" required maxlength="14"
-                            pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
+                         <input id="cpf_user" name="cpf_user" type="text"
+                                onkeyup="mascara('###.###.###-##',this,event,true)" required maxlength="14"
+                                pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" placeholder="Informe o CPF">
                         <button type="submit">
                             <i class="fas fa-search"></i>
                         </button>

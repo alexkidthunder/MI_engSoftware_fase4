@@ -96,7 +96,7 @@
                             <div class="col-md-6 col-lg-4">
                                 <div>
                                     <label name="data_internacao">Data de Internação</label>
-                                    <input type="date" name="data_internacao" requerid>
+                                    <input type="date" name="data_internacao" required>
                                 </div>
                             </div>
                         </div>
