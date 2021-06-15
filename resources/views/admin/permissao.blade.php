@@ -32,7 +32,6 @@
                 <h3>SELECIONE O TIPO DE CARGO</h3>
                 <form action="/editarPermissao" method="GET">
                     <select id="atribuicao" name="atribuicao" onchange="this.form.submit()">
-                        <option value="admin">Administrador</option>
                         <option value="enfermeiroChefe">Enfermeiro chefe</option>
                         <option value="enfermeiro">Enfermeiro</option>
                         <option value="estagiario">Estagiário</option>
@@ -45,7 +44,6 @@
             <form action="/alterarPermissao" method="get">
                 @csrf
                 <h3 id="Nome_Permissao" class="content-center"> </h3> <br>
-                <!-- ========== Linha 1 (REFERENTE AO ADM) ========== -->
                 <!---------------------Mensagens de erro--------------->
                 <div class="container">
                     <div class="row">
@@ -68,7 +66,7 @@
                     </div>
                 </div>
                 <!---------------------fim de mensagens de erro---------------->
-                
+               {{-- <!-- ========== Linha 1 (REFERENTE AO ADM) ========== -->
                 @if (isset($p))
                     <div class="row">
                         <!--Inicio da permissão-->
@@ -126,8 +124,8 @@
                         @endif
                         <!--Fim da permissão-->
                     </div>
-                    <!-- ========== fim da linha 1 ========== -->
-
+                    <!-- ========== fim da linha 1 ========== --> --}} 
+                 @if (isset($p))
                     <!-- ========== Linha 2 ========== -->
                     <h3 id="title" >Pacientes e prontuários</h3><br>
                     <div class="row">
