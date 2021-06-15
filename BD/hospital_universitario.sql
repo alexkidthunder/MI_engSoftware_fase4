@@ -58,7 +58,7 @@ CREATE TABLE cid_prontuario (
 /*Cria tabela de enfermeiros*/
 CREATE TABLE enfermeiros (
   CPF char(14) NOT NULL, /* Chave estrangeira que faz referência ao usuarios*/
-  COREN char(12) NOT NULL,
+  COREN char(15) NOT NULL,
   Plantao tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
