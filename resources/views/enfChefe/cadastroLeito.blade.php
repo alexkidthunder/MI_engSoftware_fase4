@@ -49,7 +49,7 @@
                             <div class="col-lg-6">
                                 <div>
                                     <label name="Leito">Leito:</label>
-                                    <input type="text" name="Leito" requerid>
+                                    <input type="text" name="Leito" maxlength="10" required>
                                 </div>
                                 <button type="submit" class="btn-blue"> Cadastrar </button>
                             </div>

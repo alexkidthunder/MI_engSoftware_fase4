@@ -104,7 +104,7 @@
                                 <div class="col-lg-12">
                                     <label for="medicamento_agendamento">Medicamento</label>
                                     <!--Front precisa de uma lista de todos os medicamentos. Ps: em Json-->
-                                    <input type="text" name="medicamento_agendamento" id="medicamento_agendamento" list="listaMedicamentos">
+                                    <input type="text" name="medicamento_agendamento" id="medicamento_agendamento" list="listaMedicamentos" required>
                                     <!-- Auto Complete Lista de medicamentos  -->
                                     <datalist id="listaMedicamentos">
                                             @if(isset($medicamentos))
