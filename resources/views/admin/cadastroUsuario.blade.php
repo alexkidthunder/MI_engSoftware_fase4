@@ -15,7 +15,7 @@
 
     <script src="{{ ('js/cadastroUsuario.js') }}" defer></script>
     <script src="{{ ('js/mascara.min.js')}}"></script>
-
+    <script src="{{ ('js/notification.js')}}"></script>
 
     <title>Cadastro de funcionários</title>
 </head>
@@ -25,7 +25,26 @@
     @include('layouts.navbar-adm')
     <!----------End Hearder-------->
 
+    <!---------------Notificação para o usuário-------------->
+    <div id="notification">
+        <div class='msg-notification'>
+            <div class="row">
+                <div class="col-lg-2 col-md-2 col-12 col-sm-12">
+                    <i class="fas fa-bell"></i>
+                </div>
+                <div class="col-lg-8 col-md-8 col-10 col-sm-10">
+                    O AGENDAMENTO TAL DE TAL, DEVERÁ SER APLICADO POR VOCÊ NESTE EXATO MOMENTO. 
+                </div>
+                <div class="col-lg-2 col-md-2 col-2 col-sm-2">
+                    <button class="btn-close" id="close"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+        </div>
+    <div>
+    <!---------------Fim de notificação-------------->
+
     <h1>CADASTRO DE FUNCIONÁRIO</h1>
+
         <!-------Mensagem de erro------->
         @if(Session::has('error'))
         <div class="msg-error" role="alert">
