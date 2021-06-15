@@ -38,20 +38,7 @@ class AgendaBackup extends Command
      */
     public function handle()
     {
-        AdminController::salvarDB();
-        include("db.php");
-        // obtem data e hora atual 
-        $dataAtual = date('Y-m-d');
-        $horaAtual = date('H:i:s');
-        $sql = "SELECT * FROM backups_agendados";
-        $query = mysqli_query($connect, $sql); // acessa a tabela de backups agendaddos
-        while ($sql = mysqli_fetch_array($query)) {
-            //obtem a data e hora de cada aendamento 
-            $data = $sql['Data_backup'];
-            $hora = $sql['Hora_backup'];
-            if ($dataAtual == $data and $horaAtual == $hora) { //verifica se as datas e horas cadastradas e obtidas batem e se sim chamam a função estatica de backup
-                AdminController::salvarDB();
-            }
-        }
+        AdminController::salvarDB();       
+    
     }
 }
