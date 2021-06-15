@@ -997,6 +997,35 @@ input[type=number] {
     background-image: linear-gradient( to right, #ff6f88, #f5566e, #f51a3b);
 }
 
+.msg-notification{
+    position: relative;
+    border-radius: 10px;
+    border: 0.5px solid rgba(255, 255, 255, 0);
+    box-shadow: 4px 4px 4px #007bff;
+    color: black;
+    font-family: "Poppins", sans-serif;
+    font-size: 18px;
+    padding: 20px 10px;
+    margin:120px 15% 0 15%;
+    position: relative;
+    text-align: center;
+    background-color: white;
+}
+.msg-notification i{
+    font-size: 35px;
+    color:blue;
+    margin-bottom: 10px;
+}
+.btn-close{
+    cursor: pointer;
+}
+.btn-close i:hover{
+    color:#007bff;
+}
+.btn-close i{
+    font-size: 25px;
+    color: blue;
+}
 .radial-no-edit {
     background-color: #A2DBFE; /* Não selecionado */
 }
