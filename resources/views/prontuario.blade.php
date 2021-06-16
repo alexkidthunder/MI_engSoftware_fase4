@@ -210,28 +210,24 @@
                         </div>
                         <div class="row">
                             <!----------Aplicador do medicamento----------->
-                            <div class="col-lg-9">
+                            <div class="col-12 col-md-12 col-sm-12 col-lg-12">
                             @if(isset($infosA['aplicador'.$i]))
                                 <div class="box-blue"> 
-                                    <a>Aplicador: {{$infosA['aplicador'.$i]}}</a> 
+                                    <a>Preparador: {{$infosA['aplicador'.$i]}}</a> 
                                 </div>
                             @endif
                             </div>
-                            <!---------------------Leito do Paciente--------------------->
-                            <div class="col-lg-3">
-                                <div class="box-blue">
-                                    <a>Leito: {{ $paciente['leito'] }}</a>
-                                </div>
-                            </div>
                         </div>
                         <div class="row">
-                        @if(!isset($infosA['aplicador'.$i]))
-                            <form method="POST" action="/ACagendamentos">
-                            @csrf
-                                <input type="hidden" name="codA" value="{{$agendamentos}}"> 
-                                <button type="submit" class="btn-white">Ser aplicador</button>
-                            </form>
-                        @endif
+                            <div class="col-sm-12 col-12 col-md-3 col-lg-3">
+                                @if(!isset($infosA['aplicador'.$i]))
+                                    <form method="POST" action="/ACagendamentos">
+                                    @csrf
+                                        <input type="hidden" name="codA" value="{{$agendamentos}}"> 
+                                        <button type="submit" class="btn-white">Ser preparador</button>
+                                    </form>
+                                @endif
+                            </div>
                         </div>
                     </div>
                 @endif
