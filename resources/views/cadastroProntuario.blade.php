@@ -107,7 +107,7 @@
                                 <!------ Aqui em baixo o Leito cadastrado no BD, como isso não ta feito, vai um exemplo ------>
                                 <label name="inserir_leito">Selecione o leito</label>
                                 <form>
-                                    <select id="LeitoSelect" name="Leito">
+                                    <select id="LeitoSelect" name="Leito" required>
                                         @if (isset($leitos))
                                             @foreach ($leitos as $leito)
                                                 <option value="{{ $leito['Identificacao'] }}">
