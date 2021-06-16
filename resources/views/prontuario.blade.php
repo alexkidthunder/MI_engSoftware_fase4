@@ -227,6 +227,7 @@
                         <div class="row">
                         @if(!isset($infosA['aplicador'.$i]))
                             <form method="POST" action="/ACagendamentos">
+                            @csrf
                                 <input type="hidden" name="codA" value="{{$agendamentos}}"> 
                                 <button type="submit" class="btn-white">Ser aplicador</button>
                             </form>
