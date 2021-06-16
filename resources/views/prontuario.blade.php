@@ -126,7 +126,7 @@
                             <input disabled id="fcpf" name="fcpf" type="text" required maxlength="14"
                                 pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" value="{{ $paciente['cpf'] }}">
                         </div>
-                         <!----------sEXO----------->
+                         <!----------Sexo----------->
                         <div class="col-md-4 col-lg-4">
                             <div class="sex-form">
                                 <label>Sexo</label> <br>
@@ -174,14 +174,11 @@
              <!----------Agendamentos de medicamentos------------>
                 
             <button class="btn-blue" id="action-btn2">Agendamentos</button>
-            <div>
-
-            </div>
-            <div class="box-scheduling" id = "container-teste2">
+            <div id = "container-teste2">
                 <h2 class="text-center">Agendamentos</h2><br>
                 @for($i = 0;$i <= count($infosA); $i++)
                 @if(isset($infosA['hora'.$i]))
-                    <div class="container-box">
+                    <div class="box-scheduling">
                         <div class="row">
                             <!---------------------Hora--------------------->
                             <div class="col-6 col-sm-12 col-md-6 col-lg-2 text-center">
@@ -237,10 +234,11 @@
 
                 <!----------------Medicações ministradas----------------->
                 <button class="btn-blue", id="action-btn">Medicações ministradas</button>
-                    <div class="box-scheduling" id = "container-teste">
+                    <div id = "container-teste">
                         <h2 class="text-center">Medicações ministradas</h2><br>
                         @for($j = 0;$j <= count($infosM);$j++)
                         @if(isset($infosM['hora'.$j]))
+                        <div class="box-scheduling">
                             <div class="row">
                             <!---------------------Hora--------------------->
                                 <div class="col-6 col-sm-12 col-md-6 col-lg-2 text-center">
@@ -278,6 +276,7 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         @endif
                         @endfor
                     </div>
@@ -332,42 +331,44 @@
             <!----------------CIDs do paciente---------------->
             <button class="btn-blue" , id="action-btn5">CIDs</button>
             
-            <div class="box-scheduling" , id="container-teste5">
-                <h2 class="text-center">CIDs</h2><br>
-                <form action="/cadastroCID" method="POST" id="register">
-                    @csrf
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <label>Nova CID</label> <br>
-                            <input type="hidden" name="prontuario" value="{{$paciente['prontuario']}}">
-                            <input id="fcid" name="fcid" type="text" maxlength="20"  placeholder="EX: A00.1" required>
-                            <div>
-                              <button  type="submit" class="btn-blue"> Adicionar </button>
+            <div id="container-teste5">
+                <div class="box-scheduling">
+                    <h2 class="text-center">CIDs</h2><br>
+                    <form action="/cadastroCID" method="POST" id="register">
+                        @csrf
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6">
+                                <label>Nova CID</label> <br>
+                                <input type="hidden" name="prontuario" value="{{$paciente['prontuario']}}">
+                                <input id="fcid" name="fcid" type="text" maxlength="20"  placeholder="EX: A00.1" required>
+                                </div>
+                            <div class="col-lg-6 col-md-6">
+                                <button  type="submit" class="btn-blue"> Adicionar </button>
                             </div>
                         </div>
-                    </div>
-                    @while (isset($infosC['cid' . $l]))
                         <h3>CIDs do Paciente</h3>
                         <div class="box-scheduling">
                             <div class="row">
-                                <div class="col-lg-2 text-center">
-                                    <div class="box-gray">
-                                        CID: {{ $infosC['cid' . $l] }}
+                                @while (isset($infosC['cid' . $l]))
+                                    <div class="col-lg-2 col-md-4 col-sm-6 col-6 text-center">
+                                        <div class="box-gray">
+                                            CID: {{ $infosC['cid' . $l] }}
+                                        </div>
+                                        {{ $l++ }}
                                     </div>
-                                    {{ $l++ }}
-                                </div>
+                                @endwhile
                             </div>
                         </div>
-                    @endwhile
-                </form>
+                    </form>
+                </div>
             </div>
             <!----------------fim de CIDs do paciente---------------->
 
             <!-------------Encerramento do Prontuario-------------->
             @if($paciente['estado'] == 'internado')
             <button class="btn-blue" , id="action-btn6">Encerrar Prontuario</button>
-            <h2 class="text-center">Encerrar prontuário</h2><br>
-            <div class="box-scheduling" id="container-teste6">
+            <div class="box-scheduling">
+                <h2 class="text-center">Encerrar prontuário</h2><br>
                 <form action="/finalizarProntuario" method="POST" id="register">
                     @csrf
                     <input type="hidden" name="prontuario" value="{{ $paciente['prontuario'] }}">
