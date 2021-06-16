@@ -146,7 +146,7 @@
                         <div class="col-md-4 col-lg-4">
                             <div class="sex-form">
                                 <label>Sexo</label> <br>
-                                @if ($paciente['sexo'] = 'M')
+                                @if ($paciente['sexo'] == 'M')
                                     <input class="radial-no-edit" id="MASCULINO" name="fsexo" value="Masculino"
                                         type="button">
                                 @else
@@ -181,6 +181,9 @@
                             <input disabled id="fstatus" name="fstatus" id="fstatus" type="text" maxlength="50"
                                 placeholder="alta, internado ou obito" value="{{ $paciente['estado'] }}" required>
                         </div>
+                    </div>
+                    <div>
+                        <button class="btn-blue" id="edit" type="button"> Editar Dados </button>
                     </div>
                     @endif
                 </div>
