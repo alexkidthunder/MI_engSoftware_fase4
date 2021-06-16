@@ -52,15 +52,31 @@
     @endif
     <!---------------Fim de notificação-------------->
 
+    <!----------Botão de donwload------------>
     <div id="screen-icon">
-        <!-- Icone de Download Em Telas -->
-        <form class="download-icon">
+        <form method="get" action="/baixarArquivos" class="download-icon">
             <button>
                 <i class="fas fa-download"></i>
             </button>
+            @if(isset($paciente))
+            <input type="hidden" name="listagemP" value="{{implode('|',$paciente)}}">
+            @if(isset($infosA))
+            <input type="hidden" name="listagemA" value="{{implode('|',$infosA)}}">
+            @endif
+            @if(isset($infosM))
+            <input type="hidden" name="listagemM" value="{{implode('|',$infosM)}}">
+            @endif
+            @if(isset($infosC))
+            <input type="hidden" name="listagemC" value="{{implode('|',$infosC)}}">
+            @endif
+            @if(isset($infosO))
+            <input type="hidden" name="listagemO" value="{{implode('|',$infosO)}}">
+            @endif
+            <input type="hidden" name="tela" value="prontuario">
+            @endif
         </form>
     </div>
-    <!----------Criação de Prontuario------------>
+    <!--------Fim do botão de donwload-------->
 
     <section>
 
@@ -103,6 +119,7 @@
             <button class="btn-blue" , id="action-btn3">Dados de Paciente</button>
             <div class="box-scheduling" , id="container-teste3">
                 <div id="register">
+                    <form> <!--Colocar coisas do forms aqui-->
                     <div class="row">
                         @if (isset($paciente))
                             <!----------Nome----------->
@@ -130,7 +147,7 @@
                         <div class="col-md-4 col-lg-4">
                             <div class="sex-form">
                                 <label>Sexo</label> <br>
-                                @if ($paciente['sexo'] = 'M')
+                                @if ($paciente['sexo'] == 'M')
                                     <input class="radial-no-edit" id="MASCULINO" name="fsexo" value="Masculino"
                                         type="button">
                                 @else
@@ -166,7 +183,11 @@
                                 placeholder="alta, internado ou obito" value="{{ $paciente['estado'] }}" required>
                         </div>
                     </div>
+                    <div class="row">
+                        <button class="btn-blue" id="edit" type="button"> Editar Dados </button>
+                    </div>
                     @endif
+                    <form>    
                 </div>
             </div>
             <!---------------fim de dados do Paciente---------------->

@@ -1802,6 +1802,233 @@ class HomeController extends Controller
                 </footer>
             </body>');
                 $mpdf->Output('Listagem_Plantonistas'.$data_a.'.pdf', \Mpdf\Output\Destination::DOWNLOAD);
+            } elseif ($request->tela == 'prontuario') {
+                $listaP = '';
+                $listaP2 = '';
+                $listaA = '';
+                $listaM = '';
+                $listaC = '';
+                $listaO = '';
+                $vetorP = explode('|', $request->listagemP); //transformando string de dados obtidos da pagina em vetor
+                $vetorA = explode('|', $request->listagemA); //transformando string de dados obtidos da pagina em vetor
+                $vetorM = explode('|', $request->listagemM); //transformando string de dados obtidos da pagina em vetor
+                $vetorO = explode('|', $request->listagemO); //transformando string de dados obtidos da pagina em vetor
+                $vetorC = explode('|', $request->listagemC); //transformando string de dados obtidos da pagina em vetor
+                for ($i =  0; $i <= count($vetorP)-1;$i++) {
+                    if ($i%9 ==0) {
+                        $listaP =$listaP.
+                        '<tr> <!--Cada Paciente-->
+                            <td>'.$vetorP[$i].'</td>
+                            <td>'.$vetorP[$i+5].'</td>
+                            <td>'.$vetorP[$i+2].'</td>
+                            <th>'.$vetorP[$i+1].'</th>
+                            <td>'.$vetorP[$i+3].'</td>
+                        </tr>';
+                        $prontuarioID = $vetorP[$i+8];
+                        $sql = "SELECT * FROM prontuarios WHERE ID ='$prontuarioID'";
+                        $query = mysqli_query($connect, $sql);
+                        while ($sql = mysqli_fetch_array($query)) {
+                            $saiu = $sql['Data_Saida'];
+                        };
+                        $listaP2 = $listaP2.
+                        '<tr>
+                            <td>'.$vetorP[$i+6].'</td>
+                            <td>'.$saiu.'</td>
+                            <td>'.$vetorP[$i+7].'</td>
+                            <td>'.$vetorP[$i+4].'</td>
+                        </tr>';
+                    }
+                }
+
+                for ($i =  0; $i <= count($vetorA)-1;$i++) {
+                    if(count($vetorA)>1){
+                        if (count($vetorA) == 5) {
+                            if ($i%5 ==0) {
+                                $listaA =$listaA.
+                            '<tr>
+                            <td>'.$vetorA[$i].'</td>
+                            <td>'.$vetorA[$i+1].'</td>
+                            <td>'.$vetorA[$i+3].'</td>
+                            <td>'.$vetorA[$i+2].'ml </td>
+                            <td>'.$vetorA[$i+4].'</td>
+                            </tr>';
+                            }
+                        }elseif(count($vetorA) == 4){
+                            if ($i%4 ==0) {
+                                $listaA =$listaA.
+                            '<tr>
+                            <td>'.$vetorA[$i].'</td>
+                            <td>'.$vetorA[$i+1].'</td>
+                            <td>'.$vetorA[$i+3].'</td>
+                            <td>'.$vetorA[$i+2].'ml </td>
+                            <td>Agendamento sem preparador alocado</td>
+                            </tr>';
+                            }
+                        }
+                    }
+                }
+
+                for ($i =  0; $i <= count($vetorM)-1;$i++) {
+                    if (count($vetorM)>1) {
+                        if ($i%5 ==0) {
+                            $listaM =$listaM.
+                        '<tr>
+                        <td>'.$vetorM[$i+1].'</td>
+                        <td>'.$vetorM[$i+2].'</td>
+                        <td>'.$vetorM[$i].'</td>
+                        <td>'.$vetorM[$i+3].'ml </td>
+                        <td>'.$vetorM[$i+4].'</td>
+                        </tr>';
+                        }
+                    }
+                }
+
+                for ($i =  0; $i <= count($vetorO)-1;$i++) {
+                    if (count($vetorO)>1) {
+                        if ($i%4 ==0) {
+                            $listaO =$listaO.
+                            '<tr>
+                            <td>'.$vetorO[$i+2].'</td>
+                            <td>'.$vetorO[$i].'</td>
+                            <td>'.$vetorO[$i+3].'</td>
+                            <td>'.$vetorO[$i+1].'</td>
+                            </tr>';
+                        }
+                    }
+                }
+
+                for ($i =  0; $i <= count($vetorC)-1;$i++) {
+                    if (count($vetorC)>1) {
+                        $cod = $vetorC[$i];
+                        $sql = "SELECT * FROM cid WHERE codCid ='$cod'";
+                        $query = mysqli_query($connect, $sql);
+                        while ($sql = mysqli_fetch_array($query)) {
+                            $desc = $sql['descricaoCid'];
+                        };
+                        $listaC =$listaC.
+                        '<tr>
+                            <td>'.$cod.'</td>
+                            <td>'.$desc.'</td>
+                        </tr>';
+                    }
+                }
+                
+                $mpdf->WriteHTML('<!doctype html>
+                <html lang="en">
+                <style>'.$css.'</style>
+                <body>
+                <header class="container-personal-data">
+                            <div>
+                                <h2>Nome Hospital</h2> <!--Nome do nosso Hospital-->
+                            </div>
+                            <div>
+                                <h2>'.$nome.' / '.$cpf.'</h2> <!--Nome e CPF de quem requisitou o download-->
+                            </div>
+                            <div>
+                                <h2>'.$data_a.'</h2> <!--Data e Hora em que foi feito o download-->
+                            </div>
+                        </header>
+                <hr>
+                <section>
+                    <div class="container-header"> 
+                        <h1>Prontuário</h1> <!--De onde saiu a lista-->
+                    </div>
+                    <hr>
+                    <div class="container-listagem">
+                        <h2>Paciente</h2>
+                        <table> <!--Paciente-->
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>CPF</th>
+                                    <th>Sexo</th>
+                                    <th>Data de Nascimento</th>
+                                    <th>Tipo Sanguíneo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                '.$listaP.'
+                            </tbody>
+                        </table>
+                        <hr>
+                        <h2>Dados sobre internação</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Data Internação</th>
+                                    <th>Data Saida</th>
+                                    <th>Leito</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                '.$listaP2.'
+                            </tbody>
+                        </table>
+                        <hr>
+                        <h2>Agendamentos</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Hora</th>
+                                    <th>Data</th>
+                                    <th>Medicamento</th>
+                                    <th>Posologia</th>
+                                    <th>Aplicador</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                '.$listaA.'
+                            </tbody>
+                        </table>
+                        <hr>
+                        <h2>Medicações ministradas</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Hora</th>
+                                    <th>Data</th>
+                                    <th>Medicamento</th>
+                                    <th>Posologia</th>
+                                    <th>Aplicador</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                '.$listaM.'
+                            </tbody>
+                        </table>
+                        <hr>
+                        <h2>Ocorrências</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Hora</th>
+                                    <th>Data</th>
+                                    <th>Responsável</th>
+                                    <th>Ocorrências</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                '.$listaO.'
+                            </tbody>
+                        </table>
+                        <hr>
+                        <h2>CIDs</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>CIDs</th>
+                                    <th>Descrição</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                '.$listaC.'
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </body>');
+                $mpdf->Output('Prontuario: '.$vetorP[0].'-'.$data_a.'.pdf', \Mpdf\Output\Destination::DOWNLOAD);
             }
         }
     }

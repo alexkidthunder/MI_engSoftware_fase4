@@ -9,7 +9,6 @@ function splitFirstName(NomeCompleto){
 
 function addClearEvent(ListHtmlElement){
     ListHtmlElement.forEach(element =>{
-        console.log(element);
         element.addEventListener('click',function(){
             sessionStorage.clear();
         })
