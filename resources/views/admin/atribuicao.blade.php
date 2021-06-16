@@ -128,7 +128,7 @@
                                 <div class="row"> 
                                     <div class="col-lg-4" id="atribui-select-new"> 
                                         <label for="novaAtribuicao">Nova atribuição</label> <br>
-                                        <select id="novaAtribuicao" name="novaAtribuicao"> <!--Select com as opções de atribuição-->
+                                        <select id="novaAtribuicao" name="novaAtribuicao" required> <!--Select com as opções de atribuição-->
                                             <option name="enfermeiroChefe" value="enfermeiroChefe">Enfermeiro chefe</option>
                                             <option name="enfermeiro" value="enfermeiro">Enfermeiro</option>
                                         </select>
