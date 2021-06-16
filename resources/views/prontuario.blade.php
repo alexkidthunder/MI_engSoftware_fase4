@@ -52,15 +52,31 @@
     @endif
     <!---------------Fim de notificação-------------->
 
+    <!----------Botão de donwload------------>
     <div id="screen-icon">
-        <!-- Icone de Download Em Telas -->
-        <form class="download-icon">
+        <form method="get" action="/baixarArquivos" class="download-icon">
             <button>
                 <i class="fas fa-download"></i>
             </button>
+            @if(isset($paciente))
+            <input type="hidden" name="listagemP" value="{{implode('|',$paciente)}}">
+            @if(isset($infosA))
+            <input type="hidden" name="listagemA" value="{{implode('|',$infosA)}}">
+            @endif
+            @if(isset($infosM))
+            <input type="hidden" name="listagemM" value="{{implode('|',$infosM)}}">
+            @endif
+            @if(isset($infosC))
+            <input type="hidden" name="listagemC" value="{{implode('|',$infosC)}}">
+            @endif
+            @if(isset($infosO))
+            <input type="hidden" name="listagemO" value="{{implode('|',$infosO)}}">
+            @endif
+            <input type="hidden" name="tela" value="prontuario">
+            @endif
         </form>
     </div>
-    <!----------Criação de Prontuario------------>
+    <!--------Fim do botão de donwload-------->
 
     <section>
 
