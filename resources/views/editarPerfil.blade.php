@@ -138,7 +138,7 @@
                                         @if($usuario['sexo'] == "M")
                                             <div class="row no-gutters">
                                                 <div id="fmasc_div" class="col-lg-6 border-m content-center radial-no-edit">
-                                                    <input type="radio" name="fsexo" value="M" id="fmasc" checked disabled>
+                                                    <input type="radio" name="fsexo" value="M" id="fmasc" checked disabled required="required">
                                                     <label for="fmasc" class="normal-label">Masculino</label>
                                                     <!--Usar o checked para deixar marcado-->
                                                 </div>
