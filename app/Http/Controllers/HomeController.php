@@ -1919,7 +1919,7 @@ class HomeController extends Controller
                 <body>
                 <header class="container-personal-data">
                             <div>
-                                <h2>Nome Hospital</h2> <!--Nome do nosso Hospital-->
+                                <h2>Hospital Universitário da UEFS</h2> <!--Nome do nosso Hospital-->
                             </div>
                             <div>
                                 <h2>'.$nome.' / '.$cpf.'</h2> <!--Nome e CPF de quem requisitou o download-->
