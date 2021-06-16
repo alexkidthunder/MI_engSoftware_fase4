@@ -332,8 +332,8 @@
             <button class="btn-blue" , id="action-btn5">CIDs</button>
             
             <div id="container-teste5">
-                <h2 class="text-center">CIDs</h2><br>
                 <div class="box-scheduling">
+                    <h2 class="text-center">CIDs</h2><br>
                     <form action="/cadastroCID" method="POST" id="register">
                         @csrf
                         <div class="row">
@@ -367,8 +367,8 @@
             <!-------------Encerramento do Prontuario-------------->
             @if($paciente['estado'] == 'internado')
             <button class="btn-blue" , id="action-btn6">Encerrar Prontuario</button>
-            <h2 class="text-center">Encerrar prontuário</h2><br>
-            <div class="box-scheduling" id="container-teste6">
+            <div class="box-scheduling">
+                <h2 class="text-center">Encerrar prontuário</h2><br>
                 <form action="/finalizarProntuario" method="POST" id="register">
                     @csrf
                     <input type="hidden" name="prontuario" value="{{ $paciente['prontuario'] }}">
