@@ -120,3 +120,48 @@ function CreateOption(){
     a = [Alta,Obito];
     return a;
 }
+
+edit = document.getElementById('edit');
+parent_div = edit.parentNode;
+edit.addEventListener('click',function(){
+    var save = createButton();
+    editData();
+    edit.remove();
+})
+
+function createButton(){
+    let button = document.createElement('button');
+    var buttonText = document.createTextNode(' Salvar ');
+    button.appendChild(buttonText);
+    button.classList.add('btn-blue');
+    button.setAttribute('type','submit');
+
+    let buttonCnl = document.createElement('button');
+    var buttonCnlText = document.createTextNode(' Cancelar ');
+    buttonCnl.appendChild(buttonCnlText);
+    buttonCnl.classList.add('btn-blue');
+    buttonCnl.setAttribute('type','button');
+
+    buttonCnl.addEventListener('click',function(){
+        document.location.reload();
+    })
+
+    parent_div.appendChild(button);
+    parent_div.appendChild(buttonCnl);
+    return button;
+}
+function createSexButton(){
+    // Fazer
+}
+
+fnome = document.getElementById('fnome');
+fcpf = document.getElementById('fcpf');
+fleito = document.getElementById('fleito');
+fnascimento = document.getElementById('fnascimento');
+
+function editData(){
+    fnascimento.removeAttribute('disabled');
+    fnome.removeAttribute('disabled');
+    fcpf.removeAttribute('disabled');
+    fleito.removeAttribute('disabled');
+}

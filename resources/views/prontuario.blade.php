@@ -119,6 +119,7 @@
             <button class="btn-blue" , id="action-btn3">Dados de Paciente</button>
             <div class="box-scheduling" , id="container-teste3">
                 <div id="register">
+                    <form> <!--Colocar coisas do forms aqui-->
                     <div class="row">
                         @if (isset($paciente))
                             <!----------Nome----------->
@@ -146,7 +147,7 @@
                         <div class="col-md-4 col-lg-4">
                             <div class="sex-form">
                                 <label>Sexo</label> <br>
-                                @if ($paciente['sexo'] = 'M')
+                                @if ($paciente['sexo'] == 'M')
                                     <input class="radial-no-edit" id="MASCULINO" name="fsexo" value="Masculino"
                                         type="button">
                                 @else
@@ -182,7 +183,11 @@
                                 placeholder="alta, internado ou obito" value="{{ $paciente['estado'] }}" required>
                         </div>
                     </div>
+                    <div class="row">
+                        <button class="btn-blue" id="edit" type="button"> Editar Dados </button>
+                    </div>
                     @endif
+                    <form>    
                 </div>
             </div>
             <!---------------fim de dados do Paciente---------------->
