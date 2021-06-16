@@ -138,11 +138,13 @@
                     <thead>
                         <tr>
                             <th>CIDs</th>
+                            <th>Descrição</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr> <!--Criar outra <tr> para cada CIDs-->
                             <td>CIDs</td>
+                            <td>Descrição</td>
                         </tr>
                     </tbody>
                 </table>
