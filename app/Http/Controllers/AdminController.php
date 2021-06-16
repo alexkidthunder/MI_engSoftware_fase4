@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 //use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use PhpParser\Node\Stmt\ElseIf_;
+use PhpParser\Node\Stmt\Return_;
 
 use function PHPUnit\Framework\isEmpty;
 
@@ -48,9 +49,9 @@ class AdminController extends Controller
     {
         include("db.php");
 
-        date_default_timezone_set('America/Sao_Paulo');     //padrão de fuso horário    
-        $data = date('Y-m-d');                              //detecta data   
-        $horas = date('H:i:s');                               //detecta hora 
+        date_default_timezone_set('America/Sao_Paulo');     //padrão de fuso horário
+        $data = date('Y-m-d');                              //detecta data
+        $horas = date('H:i:s');                               //detecta hora
 
         //insere no banco de dados
         $novoLog = "INSERT INTO logs (Data_Log, Hora_Agend, Ip, Acao) values ('$data', '$horas', '$ip', '$acao')";
@@ -89,8 +90,8 @@ class AdminController extends Controller
                 }
             }
 
-            return view('/admin/permissao', ['p' => $p]); //retorna o vetor de posições para a pagina com as checkbox detevidamente marcadas 
-        } else if ($atribuicao == 'enfermeiroChefe') {
+            return view('/admin/permissao', ['p' => $p]); //retorna o vetor de posições para a pagina com as checkbox detevidamente marcadas
+        } elseif ($atribuicao == 'enfermeiroChefe') {
             $sql = "";
             $query = null;
 
@@ -105,7 +106,7 @@ class AdminController extends Controller
             }
 
             return view('/admin/permissao', ['p' => $p]);
-        } else if ($atribuicao == 'enfermeiro') {
+        } elseif ($atribuicao == 'enfermeiro') {
             $sql = "";
             $query = null;
 
@@ -120,7 +121,7 @@ class AdminController extends Controller
             }
 
             return view('/admin/permissao', ['p' => $p]);
-        } else if ($atribuicao == 'estagiario') {
+        } elseif ($atribuicao == 'estagiario') {
             $sql = "";
             $query = null;
 
@@ -136,7 +137,7 @@ class AdminController extends Controller
 
             return view('/admin/permissao', ['p' => $p]);
         } else {
-            return view('/admin/permissao'); //caso não tenha nada selecionado retorna a view em branco 
+            return view('/admin/permissao'); //caso não tenha nada selecionado retorna a view em branco
         }
     }
 
@@ -146,14 +147,14 @@ class AdminController extends Controller
         session_start(); //indica que existe uma sessão
 
         //pega atribuição exibida no link da pagina transformandoa num vetor
-        $array = explode("=", $_SERVER['HTTP_REFERER']); 
-        $atribuicao = $array[count($array) - 1]; 
+        $array = explode("=", $_SERVER['HTTP_REFERER']);
+        $atribuicao = $array[count($array) - 1];
 
         include("db.php");
         //Sequencia de verificações de cargos
         if ($atribuicao != "admin") {// se o usuario não for um administrador
             if ($atribuicao == 'enfermeiroChefe') { // verifica o cargo que petence para saber qual é o id da primeira e da ultima permissão pertensente a ele.
-                for ($i = 7; $i <= 35; $i++) { 
+                for ($i = 7; $i <= 35; $i++) {
                     if (isset($_GET['p' . $i])) { //verificando existencia de permissão no vetor
                         $update = "UPDATE permissao_cargo set ativo = '1' where id = $i"; //alterando estado da checkbox para cheked
                         mysqli_query($connect, $update);
@@ -169,7 +170,7 @@ class AdminController extends Controller
                 AdminController::salvarLog($acao, $ip);
 
                 return redirect()->back()->with('msg', "Permissões alteradas!!!!"); // retorna mensagem de sucesso na alteração de permissões
-            } else if ($atribuicao == 'enfermeiro') {
+            } elseif ($atribuicao == 'enfermeiro') {
                 for ($i = 36; $i < 65; $i++) {
                     if (isset($_GET['p' . ($i - 29)])) {
                         $update = "UPDATE permissao_cargo set ativo = '1' where id = $i";
@@ -186,7 +187,7 @@ class AdminController extends Controller
                 AdminController::salvarLog($acao, $ip);
 
                 return redirect()->back()->with('msg', "Permissões alteradas!!!!");
-            } else if ($atribuicao == 'estagiario') {
+            } elseif ($atribuicao == 'estagiario') {
                 for ($i = 65; $i < 94; $i++) {
                     if (isset($_GET['p' . ($i - 58)])) {
                         $update = "UPDATE permissao_cargo set ativo = '1' where id = $i";
@@ -214,21 +215,21 @@ class AdminController extends Controller
     public function backup()
     {
         include("db.php");
-        VerificaLoginController::verificarLoginAdmin(); // verificando se é um administrador que esta logado 
+        VerificaLoginController::verificarLoginAdmin(); // verificando se é um administrador que esta logado
         $info = [];
         $i = 0;
         $sql = "SELECT * FROM backups_agendados"; // comando para acessar tabela de backups agendados
         $query = mysqli_query($connect, $sql); //obtendo dados a partir da conexão com o banco
         while ($sql = mysqli_fetch_array($query)) { // percorre tabela como vetor
             //Trecho que obtem id, data, hora e se o backup é automatico alem do ip do usuario que o solicitou para exibir na pagina
-            $info["id" . $i] = $sql['ID']; 
-            $info["data" . $i] = $sql['Data_backup']; 
-            $info["hora" . $i] = $sql['Hora_backup']; 
+            $info["id" . $i] = $sql['ID'];
+            $info["data" . $i] = $sql['Data_backup'];
+            $info["hora" . $i] = $sql['Hora_backup'];
             $info["ip" . $i] = $sql['ip'];
             $info["auto" . $i] = $sql['Automatico'];
             $i++;
         }
-        return view('/admin/backup', ['info' => $info]); // retorna o vetor com os dados da pagina 
+        return view('/admin/backup', ['info' => $info]); // retorna o vetor com os dados da pagina
     }
 
 
@@ -266,7 +267,7 @@ class AdminController extends Controller
         session_start();
         include("db.php");                      // Importando BD
         $request->validate([
-            'novaAtribuicao' => 'required'      // Verificação de preenchimento de campo 
+            'novaAtribuicao' => 'required'      // Verificação de preenchimento de campo
         ]);
         $cpf = $request->cpf;                   // Obtendo CPF
 
@@ -284,15 +285,15 @@ class AdminController extends Controller
                     $sql2 = "SELECT * FROM enfermeiros where CPF='$cpf'"; //busca o funcionario na tabela de cargos equivalente ao dele
                     $query2 = mysqli_query($connect, $sql2);
                     while ($sql2 = mysqli_fetch_array($query2)) {
-                        $coren = $sql2["COREN"]; // obtem o corem do funcionario 
+                        $coren = $sql2["COREN"]; // obtem o corem do funcionario
                     }
-                } else if ($atribuicao == "Enfermeiro Chefe") {
+                } elseif ($atribuicao == "Enfermeiro Chefe") {
                     $sql2 = "SELECT * FROM enfermeiros_chefes where CPF='$cpf'";
                     $query2 = mysqli_query($connect, $sql2);
                     while ($sql2 = mysqli_fetch_array($query2)) {
                         $coren = $sql2["COREN"];
                     }
-                //para qualquer caso alem de enfermeiro ou enfemeiro chefe o coren é declarado como nulo para evitar falhas
+                    //para qualquer caso alem de enfermeiro ou enfemeiro chefe o coren é declarado como nulo para evitar falhas
                 } else {
                     $coren = null;
                 }
@@ -304,11 +305,11 @@ class AdminController extends Controller
         // Encontra a qual tabela o usuario pertence desde que não seja administrador
         if ($atribuicao != "Administrador") {
             if ($atribuicao == 'Enfermeiro Chefe') {
-                if ($request->novaAtribuicao == "Enfermeiro") { // verifica para qual atribuição vai ser mudada 
+                if ($request->novaAtribuicao == "Enfermeiro") { // verifica para qual atribuição vai ser mudada
                     $delete = "DELETE FROM enfermeiros_chefes WHERE CPF='$cpf'";
                     mysqli_query($connect, $delete); // Deleta usuarios da tabela do cargo antigo
                     $update = "UPDATE usuarios SET Atribuicao = 'Enfermeiro' WHERE CPF='$cpf'";
-                    mysqli_query($connect, $update); // atualiza a atribuicao no BD na tabela de usuarios 
+                    mysqli_query($connect, $update); // atualiza a atribuicao no BD na tabela de usuarios
                     $insert = "INSERT INTO enfermeiros (CPF,COREN,Plantao) VALUES ('$cpf','$coren','false')";
                     mysqli_query($connect, $insert); // Adiciona usuario a tabela do novo cargo
 
@@ -320,9 +321,8 @@ class AdminController extends Controller
                     return redirect()->back()->with('msg', 'Cargo alterado com sucesso!!!!'); //Redireciona para pagina anterior e mostra mensagem de erro
                 } else {
                     return redirect()->back()->with('msg-error', 'Cargo selecionado invalido'); //Redireciona para pagina anterior e mostra mensagem de erro
-
                 }
-            } else if ($atribuicao == 'Enfermeiro') {
+            } elseif ($atribuicao == 'Enfermeiro') {
                 if ($request->novaAtribuicao == "Enfermeiro Chefe") {
                     $delete = "DELETE FROM enfermeiros WHERE CPF='$cpf'";
                     mysqli_query($connect, $delete); // Deleta usuarios
@@ -340,11 +340,11 @@ class AdminController extends Controller
                 } else {
                     return redirect()->back()->with('msg-error', 'Cargo selecionado invalido'); //Redireciona para pagina anterior e mostra mensagem de erro
                 }
-            } else if ($atribuicao == 'Estagiario') {
+            } elseif ($atribuicao == 'Estagiario') {
                 if ($request->novaAtribuicao == "Enfermeiro") {
                     $delete = "DELETE FROM estagiarios WHERE CPF='$cpf'";
                     mysqli_query($connect, $delete); // Deleta usuarios
-                    $update = "UPDATE usuarios SET Atribuicao = 'Estagiario' WHERE CPF='$cpf'";
+                    $update = "UPDATE usuarios SET Atribuicao = 'Enfermeiro' WHERE CPF='$cpf'";
                     mysqli_query($connect, $update); // atualiza a atribuicao no BD
                     $insert = "INSERT INTO enfermeiros (CPF,COREN,Plantao) VALUES ('$cpf','$request->fcoren','false')";
                     mysqli_query($connect, $insert); // Adicioa usuario a novo cargo
@@ -355,7 +355,7 @@ class AdminController extends Controller
                     AdminController::salvarLog($acao, $ip);
 
                     return redirect()->back()->with('msg', 'Cargo alterado com sucesso!!!!'); //Redireciona para pagina anterior e mostra mensagem de erro
-                } else if ($request->novaAtribuicao == "Enfermeiro Chefe") {
+                } elseif ($request->novaAtribuicao == "Enfermeiro Chefe") {
                     $delete = "DELETE FROM estagiarios WHERE CPF='$cpf'";
                     mysqli_query($connect, $delete); // Deleta usuarios
                     $update = "UPDATE usuarios SET Atribuicao = 'Enfermeiro Chefe' WHERE CPF='$cpf'";
@@ -400,17 +400,17 @@ class AdminController extends Controller
                 $query2 = mysqli_query($connect, $sql2);
                 while ($sql2 = mysqli_fetch_array($query2)) { //percorrendo array de usuarios com determinado cpf
                     $user2 = $sql2;                         //retorno do usuario
-                    return view('/admin/atribuicao', ['user' => $user], ['user2' => $user2]); // se encontrou retorna usuario para view 
+                    return view('/admin/atribuicao', ['user' => $user], ['user2' => $user2]); // se encontrou retorna usuario para view
                 }
             } elseif ($user["Atribuicao"] == "Enfermeiro") {
                 $sql2 = "SELECT * FROM enfermeiros where CPF = '$request->cpf_user'";
                 $query2 = mysqli_query($connect, $sql2);
                 while ($sql2 = mysqli_fetch_array($query2)) { //percorrendo array de usuarios com determinado cpf
                     $user2 = $sql2;                         //retorno do usuario
-                    return view('/admin/atribuicao', ['user' => $user], ['user2' => $user2]); // se encontrou retorna usuario para view 
+                    return view('/admin/atribuicao', ['user' => $user], ['user2' => $user2]); // se encontrou retorna usuario para view
                 }
             } else {
-                return view('/admin/atribuicao', ['user' => $user]); // se encontrou retorna usuario para view 
+                return view('/admin/atribuicao', ['user' => $user]); // se encontrou retorna usuario para view
             }
         } else {
             return redirect()->back()->with('msg-error', 'CPF não cadastrado no sistema!!'); //Redireciona para pagina anterior e mostra mensagem de erro
@@ -441,7 +441,7 @@ class AdminController extends Controller
             return redirect()->route('salvarUsuario')->with('error', "Digite um CPF válido!!");
         }
 
-        //busca de cpf no banco  
+        //busca de cpf no banco
         $existeCPF = mysqli_query($connect, "SELECT COUNT(*) FROM usuarios WHERE CPF = '$request->fcpf'");
 
 
@@ -466,12 +466,12 @@ class AdminController extends Controller
                     mysqli_query($connect, $novoEnfChefe);
                 }
                 //insere na tabela de enfermeiro
-                else if ($request->fatribui == 'Enfermeiro') {
+                elseif ($request->fatribui == 'Enfermeiro') {
                     $novoEnf = "INSERT INTO enfermeiros (CPF,COREN,Plantao) values ('$request->fcpf', '$request->fcoren','false')";
                     mysqli_query($connect, $novoEnf);
                 }
                 //insere na tabela de estagiario
-                else if ($request->fatribui == 'Estagiário') {
+                elseif ($request->fatribui == 'Estagiário') {
                     $novoEst = "INSERT INTO estagiarios (CPF,Plantao) values ('$request->fcpf','false')";
                     mysqli_query($connect, $novoEst);
                 }
@@ -508,7 +508,7 @@ class AdminController extends Controller
             if (strcmp($user['Atribuicao'], "Enfermeiro") == 0) {
                 $enfermeiro = mysqli_query($connect, "SELECT * FROM enfermeiros WHERE CPF= '$request->cpf_user'");
                 $atribuicao = mysqli_fetch_array($enfermeiro);
-            } else if (strcmp($user['Atribuicao'], "Enfermeiro Chefe") == 0) {
+            } elseif (strcmp($user['Atribuicao'], "Enfermeiro Chefe") == 0) {
                 $enfermeiro_Chefe = mysqli_query($connect, "SELECT * FROM enfermeiros_chefes WHERE CPF= '$request->cpf_user'");
                 $atribuicao = mysqli_fetch_array($enfermeiro_Chefe);
             } else {
@@ -526,11 +526,11 @@ class AdminController extends Controller
         $sql = "SHOW TABLES"; // primeira linha do arquivo sql para exibir tabelas
         $query = mysqli_query($connect, $sql); //buscando sql
         while ($row = mysqli_fetch_row($query)) {
-            $tabelas[] = $row[0]; //obtendo tabelas e adicionando ao vetor 
+            $tabelas[] = $row[0]; //obtendo tabelas e adicionando ao vetor
         }
         $contador = 0;
         // Inicialização das variaveis do arquivo que vai ser escrito como string
-        $resultado = ""; 
+        $resultado = "";
         $resultado1 = "";
 
         foreach (array_reverse($tabelas) as $iterador) { // iterando no vetor das tabelas do fim para o inicio para ler os codigos sql
@@ -563,25 +563,25 @@ class AdminController extends Controller
         foreach (array_reverse($tabelas) as $iterador) {
             $resultado .= "\n\n" . $VetorReal[$contador] . ";\n\n"; // concatenando todos os comandos da  tabela na string da variavel do arquivo
             $contador++;// contador incrementado
-        } 
+        }
 
-        foreach (array_reverse($tabelas) as $iterador1) { // percorre array de tabelas novamente 
-            $sql = "SELECT * FROM " . $iterador1; 
-            $query = mysqli_query($connect, $sql); // obtem nome de cada tabela pelo qual o iterador passa 
-            $colunas1 = mysqli_num_fields($query); // verifica numero de campos 
+        foreach (array_reverse($tabelas) as $iterador1) { // percorre array de tabelas novamente
+            $sql = "SELECT * FROM " . $iterador1;
+            $query = mysqli_query($connect, $sql); // obtem nome de cada tabela pelo qual o iterador passa
+            $colunas1 = mysqli_num_fields($query); // verifica numero de campos
 
             //Laços de repetição com range equivalente ao numero de capos de cada tabela. Usara varivel de string auxiliar primeiro
             for ($i = 0; $i < $colunas1; $i++) {
-                while ($row1 = mysqli_fetch_row($query)) { //percorrendo arrays de colunas das tabelas 
-                    $resultado1 .= 'INSERT INTO ' . $iterador1 . ' VALUES('; // adicionando na variavel string os dados de incerção 
+                while ($row1 = mysqli_fetch_row($query)) { //percorrendo arrays de colunas das tabelas
+                    $resultado1 .= 'INSERT INTO ' . $iterador1 . ' VALUES('; // adicionando na variavel string os dados de incerção
 
                     for ($j = 0; $j < $colunas1; $j++) {
-                        $row1[$j] = addslashes(($row1[$j])); //obtendo dados daquela posição 
-                        $row1[$j] = str_replace("\n", "\\n", $row1[$j]); // procurando quebras de linhas e corriginduas para quebra dupla 
+                        $row1[$j] = addslashes(($row1[$j])); //obtendo dados daquela posição
+                        $row1[$j] = str_replace("\n", "\\n", $row1[$j]); // procurando quebras de linhas e corriginduas para quebra dupla
 
                         if (isset($row1[$j])) { // verifica a existencia do vetor
                             if (!empty($row1[$j])) { // verfica se o vetor não esta vazio
-                                $resultado1 .= '"' . $row1[$j] . '"'; // concatena na variavel de string do arquivo 
+                                $resultado1 .= '"' . $row1[$j] . '"'; // concatena na variavel de string do arquivo
                             } else {
                                 $resultado1 .= '0'; // se estiver vazia adiciona 0 que é eequivalente a false
                             }
@@ -590,15 +590,15 @@ class AdminController extends Controller
                         }
 
                         if ($j < ($colunas1 - 1)) {// verifica se chegou ao final da linha
-                            $resultado1 .= ',';  //adiciona virgula a linha 
+                            $resultado1 .= ',';  //adiciona virgula a linha
                         }
                     }
-                    $resultado1 .= ");\n"; // fecha parenteses e quebra linha 
+                    $resultado1 .= ");\n"; // fecha parenteses e quebra linha
                 }
             }
-            $resultado1 .= "\n\n"; // quebra dupla de linhas 
+            $resultado1 .= "\n\n"; // quebra dupla de linhas
         }
-        $vetor = explode("\n\n", $resultado1); // transformando string em vetor usando as quebras duplas de linha como ponto de divisão 
+        $vetor = explode("\n\n", $resultado1); // transformando string em vetor usando as quebras duplas de linha como ponto de divisão
         $VetorR = [];
         //trecho para realizar escrita da inserção na ordem correta com tabelas sem chave estrangeira sendo adicionadas antes das que tem
         $VetorR[0] = $vetor[0];
@@ -621,17 +621,16 @@ class AdminController extends Controller
         $VetorR[17] = $vetor[16];
         $contador = 0;
         foreach (array_reverse($tabelas) as $iterador) {
-
             $resultado .= $VetorR[$contador] . "\n\n";
             $contador++; // concatenando na variavel do arquivo original
         }
-        $diretorio = '../BD/'; // definindodiretorio do download 
+        $diretorio = '../BD/'; // definindodiretorio do download
         if (!is_dir($diretorio)) {
-            mkdir($diretorio, 0777, true); //definindo permissões de diretorio 
+            mkdir($diretorio, 0777, true); //definindo permissões de diretorio
             chmod($diretorio, 0777);
         }
         //adicionando data e norme ao arquivo
-        $data = date('Y-m-d-h-i-s'); 
+        $data = date('Y-m-d-h-i-s');
         $arquivoN = $diretorio . "hospita_universitario_backup_" . $data;
 
         //função de criação e escrita do arquivo
@@ -639,7 +638,7 @@ class AdminController extends Controller
         fwrite($arquivo, $resultado);
         fclose($arquivo);
 
-        //adiconando extensão 
+        //adiconando extensão
         $baixar = $arquivoN . ".sql";
 
 
@@ -653,7 +652,7 @@ class AdminController extends Controller
             header("Content-Disposition: attachment; filename=\"" . basename($baixar) . "\";");
             header("Content-Transfer-Encoding: binary");
             header("Content-Length: " . filesize($baixar));
-            readfile($baixar); // função para baixar 
+            readfile($baixar); // função para baixar
 
             //log
             $ip = $_SERVER["REMOTE_ADDR"];
@@ -662,7 +661,7 @@ class AdminController extends Controller
 
             return redirect()->back()->with('msg', "Backup realizado"); // mensagem de sucesso
         } else {
-            return redirect()->back()->with('msg-error', "Houve um erro ao tentar exportar a base de dados!!"); //mensagem de erro 
+            return redirect()->back()->with('msg-error', "Houve um erro ao tentar exportar a base de dados!!"); //mensagem de erro
         }
     }
 
@@ -678,13 +677,13 @@ class AdminController extends Controller
         $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
         $remote  = $_SERVER['REMOTE_ADDR'];
 
-        $hora = $request->fhorario; // obtend horario marcado 
+        $hora = $request->fhorario; // obtend horario marcado
         $cod = 0;
         $sql = "SELECT * FROM backups_agendados";
-        $query = mysqli_query($connect, $sql); // acesando tabela de buckups 
+        $query = mysqli_query($connect, $sql); // acesando tabela de buckups
         while ($sql = mysqli_fetch_array($query)) {
             if ($sql['ID'] != null) {
-                $cod = $sql['ID']; // obtendo id do ultimo backup cadastrado 
+                $cod = $sql['ID']; // obtendo id do ultimo backup cadastrado
             }
         }
         $cod++; // somando id com 1 para obter id unico
@@ -697,8 +696,8 @@ class AdminController extends Controller
         } else {
             $ip = $remote;
         }
-        if ($checkbox == "on") { // vericiando se o agendamento tem que ser automatico 
-            // se sim o agendamento sera inserido com data nula e automatico com 1 que equivale  a true 
+        if ($checkbox == "on") { // vericiando se o agendamento tem que ser automatico
+            // se sim o agendamento sera inserido com data nula e automatico com 1 que equivale  a true
             $insert = "INSERT INTO backups_agendados (ID,Data_backup,Hora_backup,ip,Automatico) VALUES ('$cod','null','$hora','$ip','1')";
             mysqli_query($connect, $insert);
 
@@ -707,7 +706,7 @@ class AdminController extends Controller
             $acao = "Agendou um backup automático nº $cod";
             AdminController::salvarLog($acao, $ip);
         } else {
-            //// se nãoo agendamento sera inserido com data informada e automatico com 0 que equivale  a false 
+            //// se nãoo agendamento sera inserido com data informada e automatico com 0 que equivale  a false
             $data = $request->date;
             $insert = "INSERT INTO backups_agendados (ID,Data_backup,Hora_backup,ip,Automatico) VALUES ('$cod','$data','$hora','$ip','0')";
             mysqli_query($connect, $insert);
@@ -736,10 +735,10 @@ class AdminController extends Controller
     }
 
     //função para pegar as informações do Relatório Gerencial
-    public function relatorioGerencial()      
+    public function relatorioGerencial()
     {
         include("db.php");
-        VerificaLoginController::verificarLoginAdmin();        
+        VerificaLoginController::verificarLoginAdmin();
         
         //Calculo da quantidade de pacientes
         $sql = "SELECT COUNT(*) FROM pacientes WHERE Estado = 'internado'";
@@ -755,44 +754,44 @@ class AdminController extends Controller
         $sql = "SELECT codCid FROM cid INNER JOIN cid_prontuario 
                 ON cid.id=cid_prontuario.id_CID GROUP BY codCid 
                 ORDER BY count(codCid) desc, codCid desc LIMIT 1";
-        $query = mysqli_query($connect, $sql);  
-        //dd( mysqli_fetch_assoc($query));   
-        if ($query == FALSE) {
-            $cid = ["codCid" => "0"];   
-        }         
+        $query = mysqli_query($connect, $sql);
+        //dd( mysqli_fetch_assoc($query));
+        if ($query == false) {
+            $cid = ["codCid" => "0"];
+        }
         $cid = mysqli_fetch_assoc($query);
 
         //Taxa de óbito
-                        //Quantidade total de pacientes
+        //Quantidade total de pacientes
         $sql = "SELECT COUNT(*) FROM pacientes ";
         $query = mysqli_query($connect, $sql);
         $paciV = mysqli_fetch_assoc($query);
 
-                        //Quantidade de pacientes estado Obito
+        //Quantidade de pacientes estado Obito
         $sql = "SELECT COUNT(*) FROM pacientes WHERE Estado = 'obito'";
         $query = mysqli_query($connect, $sql);
         $PaciO = mysqli_fetch_assoc($query);
-        if ($query == false ) {
+        if ($query == false) {
             $paciV = ["COUNT(*)" => "1"];
         }
-                        //Calculo da porcentagem
-        $taxa = number_format($PaciO["COUNT(*)"] / $paciV["COUNT(*)"] * 100, 2);       
+        //Calculo da porcentagem
+        $taxa = number_format($PaciO["COUNT(*)"] / $paciV["COUNT(*)"] * 100, 2);
 
-        //Idade Media entre Pacientes 
+        //Idade Media entre Pacientes
         $sql = "SELECT avg(FLOOR(DATEDIFF(NOW(), c.Data_Nasc) / 365)) AS idade FROM pacientes c";
         $query = mysqli_query($connect, $sql);
         $data = mysqli_fetch_assoc($query);
-        $media = number_format($data["idade"],);
+        $media = number_format($data["idade"], );
 
         //Medicamento mais usado
         $sql = "SELECT Nome_Medicam FROM medicamentos INNER JOIN agendamentos ON 
                 medicamentos.Codigo=agendamentos.Cod_medicamento GROUP BY Nome_Medicam 
                 ORDER BY count(Nome_Medicam) desc, Nome_Medicam desc LIMIT 1";
-        $query = mysqli_query($connect, $sql);   
-        if ($query == FALSE ) {
+        $query = mysqli_query($connect, $sql);
+        if ($query == false) {
             $medic = ["Nome_Medicam" => "Vazio"];
-        } 
-        $medic = mysqli_fetch_assoc($query);                
+        }
+        $medic = mysqli_fetch_assoc($query);
 
         //Quantidade de Leitos Cadastrados
         $sql = "SELECT COUNT(*) FROM leitos ";
@@ -824,7 +823,7 @@ class AdminController extends Controller
         $query = mysqli_query($connect, $sql);
         $adMin = mysqli_fetch_assoc($query);
 
-        $inf = ['paci' => $paci, 'func' => $func,'cid' => $cid, 'taxa' => $taxa, 'media' => $media, 
+        $inf = ['paci' => $paci, 'func' => $func,'cid' => $cid, 'taxa' => $taxa, 'media' => $media,
         'medic' =>$medic,'leito' => $leito,'leitOcu' => $leitOcu,'EnfCh' => $EnfCh,'Enf' => $Enf,'Est' => $Est,'adMin' => $adMin, ];
         //dd($inf);
 
@@ -839,13 +838,13 @@ class AdminController extends Controller
     public static function realizarBackupAgendado() // função estatica para backup automatico. Deve ser chamada usando funcionalidade de chamad automatica da hospedagem
     {
         include("db.php");
-        // obtem data e hora atual 
+        // obtem data e hora atual
         $dataAtual = date('Y-m-d');
         $horaAtual = date('H:i:s');
         $sql = "SELECT * FROM backups_agendados";
         $query = mysqli_query($connect, $sql); // acessa a tabela de backups agendaddos
         while ($sql = mysqli_fetch_array($query)) {
-            //obtem a data e hora de cada aendamento 
+            //obtem a data e hora de cada aendamento
             $data = $sql['Data_backup'];
             $hora = $sql['Hora_backup'];
             if ($dataAtual == $data and $horaAtual == $hora) { //verifica se as datas e horas cadastradas e obtidas batem e se sim chamam a função estatica de backup
@@ -854,23 +853,5 @@ class AdminController extends Controller
         }
     }
 
-    public static function notificarUsuarioAgendamento(){ // função estatica para notificação. Deve ser chamada usando funcionalidade de chamad automatica da hospedagem
-        session_start();
-        include("db.php");
-        //obtem data e hora atual 
-        $data = date('H-m-i');
-        $data = date('Y-m-d');
-        $cpf = HomeController::ObterCpf();
-        $sql = "SELECT * FROM agendamentos WHERE CPF_usuario = '$cpf'"; // verifica se o usuario logado tem agendamento 
-        $query = mysqli_query($connect,$sql);
-        while($sql= mysqli_fetch_array($query)){
-            if($sql['Realizado'] == 0){
-                if($data == $sql['Data_Agend'] and $dhora == $sql['Hora_Agend']){ //verifica se as datas e horas cadastradas e obtidas batem e se sim manda a notificação
-                    return redirect()->back()->Whit('msg-notication','Você tem um agendamento para realiza agora. Por favor verifique seus agendamentos');
-                }
-                //OBS - Adicionar um css tbm de msg-notification assim como tem pra sucess e error e colocar em todas as paginas no inicio do body
-            }
-        }
-        
-    }
+    
 }

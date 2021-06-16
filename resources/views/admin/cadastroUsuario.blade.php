@@ -26,6 +26,8 @@
     <!----------End Hearder-------->
 
     <!---------------Notificação para o usuário-------------->
+    @if(isset($_SESSION['notifi']))
+    @if(!empty ($_SESSION['notifi']))
     <div id="notification">
         <div class='msg-notification'>
             <div class="row">
@@ -33,14 +35,18 @@
                     <i class="fas fa-bell"></i>
                 </div>
                 <div class="col-lg-8 col-md-8 col-10 col-sm-10">
-                    O AGENDAMENTO TAL DE TAL, DEVERÁ SER APLICADO POR VOCÊ NESTE EXATO MOMENTO. 
+                    {{$_SESSION['notifi']}} 
                 </div>
-                <div class="col-lg-2 col-md-2 col-2 col-sm-2">
-                    <button class="btn-close" id="close"><i class="fas fa-times"></i></button>
-                </div>
+                <form action="/apagarN" method="get">
+                    <div class="col-lg-2 col-md-2 col-2 col-sm-2">
+                        <button name="fechar" type="submit" class="btn-close" id="close"><i class="fas fa-times"></i></button>
+                    </div>
+                </form>
             </div>
         </div>
     <div>
+    @endif
+    @endif
     <!---------------Fim de notificação-------------->
 
     <h1>CADASTRO DE FUNCIONÁRIO</h1>
@@ -113,7 +119,7 @@
                             <div class="col-lg-4">
                                 <label for="fcoren">Coren</label> <!--Campo do coren--> <!--Fica invisível se o usuário estiver sendo cadastrado como um Estagiário-->
                                 <!--Por Lei o Coren do enfermeiro tem que obedecer o estado atual onde o mesmo atua, por isso automaticamente já será preenchido com BA-->
-                                <input placeholder="Informe o Coren" id="fcoren" name="fcoren" type="text" maxlength="14" onkeyup="mascara('BA-###.###.###',this,event,true)"  pattern="\d{2}\-\d{3}.\d{3}.\d{3}">
+                                <input placeholder="Informe o Coren" id="fcoren" name="fcoren" type="text" maxlength="14" onkeyup="mascara('BA-###.###.###',this,event,true)"  pattern="\d{2}\-\d{3}.\d{3}.\d{3}" required>
                             </div>
                         </div>
                     </div>

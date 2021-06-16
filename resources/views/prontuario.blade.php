@@ -28,6 +28,30 @@
     @include('layouts.navbar')
     <!----------End Hearder-------->
 
+    <!---------------Notificação para o usuário-------------->
+    @if(isset($_SESSION['notifi']))
+    @if(!empty ($_SESSION['notifi']))
+    <div id="notification">
+        <div class='msg-notification'>
+            <div class="row">
+                <div class="col-lg-2 col-md-2 col-12 col-sm-12">
+                    <i class="fas fa-bell"></i>
+                </div>
+                <div class="col-lg-8 col-md-8 col-10 col-sm-10">
+                    {{$_SESSION['notifi']}} 
+                </div>
+                <form action="/apagarN" method="get">
+                    <div class="col-lg-2 col-md-2 col-2 col-sm-2">
+                        <button name="fechar" type="submit" class="btn-close" id="close"><i class="fas fa-times"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    <div>
+    @endif
+    @endif
+    <!---------------Fim de notificação-------------->
+
     <div id="screen-icon">
         <!-- Icone de Download Em Telas -->
         <form class="download-icon">
@@ -186,27 +210,24 @@
                         </div>
                         <div class="row">
                             <!----------Aplicador do medicamento----------->
-                            <div class="col-lg-9">
+                            <div class="col-12 col-md-12 col-sm-12 col-lg-12">
                             @if(isset($infosA['aplicador'.$i]))
                                 <div class="box-blue"> 
-                                    <a>Aplicador: {{$infosA['aplicador'.$i]}}</a> 
+                                    <a>Preparador: {{$infosA['aplicador'.$i]}}</a> 
                                 </div>
                             @endif
                             </div>
-                            <!---------------------Leito do Paciente--------------------->
-                            <div class="col-lg-3">
-                                <div class="box-blue">
-                                    <a>Leito: {{ $paciente['leito'] }}</a>
-                                </div>
-                            </div>
                         </div>
                         <div class="row">
-                        @if(!isset($infosA['aplicador'.$i]))
-                            <form method="POST" action="/ACagendamentos">
-                                <input type="hidden" name="codA" value="{{$agendamentos}}"> 
-                                <button type="submit" class="btn-white">Ser aplicador</button>
-                            </form>
-                        @endif
+                            <div class="col-sm-12 col-12 col-md-3 col-lg-3">
+                                @if(!isset($infosA['aplicador'.$i]))
+                                    <form method="POST" action="/ACagendamentos">
+                                    @csrf
+                                        <input type="hidden" name="codA" value="{{$agendamentos}}"> 
+                                        <button type="submit" class="btn-white">Ser preparador</button>
+                                    </form>
+                                @endif
+                            </div>
                         </div>
                     </div>
                 @endif
