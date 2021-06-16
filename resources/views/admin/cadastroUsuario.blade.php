@@ -106,7 +106,7 @@
                         </div>
                         <div class="col-lg-4">
                             <label for="fatribui">Atribuição</label> <br>
-                            <select id="fatribui" name="fatribui"> <!--Select onde se escolhe qual a atribuição do usuário a ser cadastrado-->
+                            <select id="fatribui" name="fatribui" required> <!--Select onde se escolhe qual a atribuição do usuário a ser cadastrado-->
                                 <option value="Administrador">Administrador</option>
                                 <option value="Enfermeiro Chefe">Enfermeiro Chefe</option>
                                 <option value="Enfermeiro">Enfermeiro</option>
