@@ -108,7 +108,7 @@
                             <label>Sexo</label> <br>
                             <div class="row no-gutters">
                                 <div class="col-6 col-md-3 col-lg border-m content-center">
-                                    <input type="radio" name="fsexo" value="M" id="fmasc">Masculino</input>
+                                    <input type="radio" name="fsexo" value="M" id="fmasc" required="required">Masculino</input>
                                 </div>
                                 <div class="col-6 col-md-3 col-lg border-f content-center">
                                     <input type="radio" name="fsexo" value="F" id="ffem">Feminino</input>
