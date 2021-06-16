@@ -773,7 +773,7 @@ class HomeController extends Controller
                 return redirect()->back()->with('msg', 'Você se adicionou como aplicador do agendamento');
             }
         } else {
-            return redirect()->back();
+            return redirect()->back()->with("Você não tem permissão para realizar essa ação");
         }
     }
 
@@ -1832,7 +1832,8 @@ class HomeController extends Controller
         }
     }
 
-    public function apagarN(){
+    public function apagarN()
+    {
         $_SESSION['notify'] = array();
         return redirect()->back();
     }
