@@ -82,7 +82,7 @@ CREATE TABLE leitos (
 
 /*Cria tabela  logs*/
 CREATE TABLE logs (
-  Id bigint(20) NOT NULL AUTO_INCREMENT,
+  Id bigint(20) NOT NULL,
   CPF char(14) NOT NULL,
   Data_Log date NOT NULL,
   Hora_Agend time NOT NULL,
