@@ -79,7 +79,7 @@
                         <!----- Campo para seleção do tipo sanguíneo ----->
                         <div class="col-lg-3">
                             <label>Tipo Sanguineo</label> <br>
-                            <select id="fsanguineo" name="fsanguineo">
+                            <select id="fsanguineo" name="fsanguineo" required>
                                 <option value="A+">A+</option>
                                 <option value="A-">A-</option>
                                 <option value="B+">B+</option>
