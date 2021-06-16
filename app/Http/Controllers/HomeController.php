@@ -1340,7 +1340,7 @@ class HomeController extends Controller
                 $contador = $contador + 4;
             };
 
-            for ($i = 0; $i < count($vetor);$i++) {
+            for ($i = count($vetor)-1; $i >= 0;$i--) {
                 if ($i % 4 == 0) {
                     $lista =  $lista.'
                     <tr> <!--Cada Log-->
@@ -1841,7 +1841,7 @@ class HomeController extends Controller
                 }
 
                 for ($i =  0; $i <= count($vetorA)-1;$i++) {
-                    if(count($vetorA)>1){
+                    if (count($vetorA)>1) {
                         if (count($vetorA) == 5) {
                             if ($i%5 ==0) {
                                 $listaA =$listaA.
@@ -1853,7 +1853,7 @@ class HomeController extends Controller
                             <td>'.$vetorA[$i+4].'</td>
                             </tr>';
                             }
-                        }elseif(count($vetorA) == 4){
+                        } elseif (count($vetorA) == 4) {
                             if ($i%4 ==0) {
                                 $listaA =$listaA.
                             '<tr>
