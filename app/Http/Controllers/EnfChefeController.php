@@ -546,7 +546,7 @@ class EnfChefeController extends Controller
         $query = mysqli_query($connect, $sql);
 
         //caso não esteja já cadastrado no sistema
-        if (mysqli_num_rows($query) == 0) {
+        if (mysqli_num_rows($query) == 0) { 
             $sql1 = "INSERT INTO leitos (Identificacao,Ocupado) values ('$request->Leito','0')";
             $query1 = mysqli_query($connect, $sql1);
             if ($query1 == 1) {
@@ -578,6 +578,14 @@ class EnfChefeController extends Controller
             $sql = "SELECT * FROM leitos WHERE Identificacao = '$request->focorrencia'";
             $query = mysqli_query($connect, $sql);
             if (mysqli_num_rows($query) == 1) {
+
+                  // verifica se o leito está ocupado
+                $leito = mysqli_fetch_array($query);
+                if($leito['Ocupado'] == 0){
+                    return redirect()->back()->with('msg-error', 'Você não pode remover um leito ocupado');
+                }
+
+                // Query de remoção SQL
                 $sql1 = "DELETE FROM leitos WHERE Identificacao = '$request->focorrencia'";
                 $query1 = mysqli_query($connect, $sql1);
                 if ($query1 == 1) {
