@@ -24,25 +24,21 @@
         <hr>
         <section>
             <div class="container-header"> 
-                <h1>Medicamentos</h1> <!--De onde saiu a lista-->
+                <h1>listagem Plantonista</h1> <!--De onde saiu a lista-->
             </div>
             <hr>
             <div class="container-listagem">
                 <table>
                     <thead>
                         <tr>
-                            <th>Nome Medicamento</th>
-                            <th>Nome do Fabricante</th>
-                            <th>Data de Validade</th>
-                            <th>Quantidade</th>
+                            <th>Nome</th>
+                            <th>Cargo</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr> <!--Cada Medicamento-->
+                        <tr> <!--Cada Log-->
                             <td>Nome</td>
-                            <td>Nome do Fabricante</td>
-                            <td>xx/xx/xx</td>
-                            <td>100</td>
+                            <td>Cargo</td>
                         </tr>
                     </tbody>
                 </table>

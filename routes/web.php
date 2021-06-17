@@ -133,3 +133,7 @@ Route::get('/listaMedicamento', [HomeController::class, 'listaMedicamento'])->na
 /*------------ Rotas para downloads-------------------*/
 
 Route::get('/baixarArquivos', [HomeController::class, 'baixarArquivos']);
+
+
+/*------------------Rota notificação---------------------- */
+Route::get('/apagarN', [HomeController::class, 'apagarN']);

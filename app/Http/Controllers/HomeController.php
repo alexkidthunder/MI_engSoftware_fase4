@@ -60,14 +60,13 @@ class HomeController extends Controller
         //verifica se o usuario existe no sistema. $row = 1 significa que sim
         if ($row == 1) {
 
-
             /* se a senha digitada pelo usuário for igual a senha padrão (12345), que é a que está no banco também,
             *   ele é mandado para página de primeiro acesso */
             if ($request->senha == 12345 and $senhaEncontrada == 12345) {
                 return redirect('/primeiroAcesso')->with('cpf', $request->cpf);
             }
 
-
+            $resultado = 'p|e|r|m|i|ssã|os|';
             //busca a senha, status ativo e sua atribuição
             $sql = "SELECT * FROM usuarios where CPF = '$request->cpf'";
             $query = mysqli_query($connect, $sql);
@@ -80,20 +79,20 @@ class HomeController extends Controller
 
 
             //se a senha que foi digitada for igual ao do banco
-            if(Hash::check($request->senha,$senhaEncontrada)){
+            if (Hash::check($request->senha, $senhaEncontrada)) {
                 session_start();
               
                 $sqlNome = "SELECT * FROM usuarios where CPF = '$request->cpf'";
-                $queryNome = mysqli_query($connect,$sqlNome);
-                while($sqlNome = mysqli_fetch_array($queryNome)){
+                $queryNome = mysqli_query($connect, $sqlNome);
+                while ($sqlNome = mysqli_fetch_array($queryNome)) {
                     $NavNome = $sqlNome["Nome"];
                 }
+                
               
-                if($ativo == 1){
+                if ($ativo == 1) {
                     //Sequência de condicionais que verifica o cargo para redirecionar para o menu correspondente
 
-                    if($atribuicao == "Administrador"){
-                      
+                    if ($atribuicao == "Administrador") {
                         $_SESSION['administrador'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
                         $_SESSION['nome'] = $NavNome;
 
@@ -104,11 +103,18 @@ class HomeController extends Controller
     
                         header("Location: /menuAdm");
                         exit();
-
-                    }else if($atribuicao == "Enfermeiro Chefe"){
-
+                    }// A partir daqui ele vai obter todas as permissões
+                    // Coloca-la em uma string
+                    // Transforma-la em um array
+                    // e passala para sessão de permissoes
+                    elseif ($atribuicao == "Enfermeiro Chefe") {
                         $_SESSION['enfermeiroChefe'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
                         $_SESSION['nome'] = $NavNome;
+                        for ($i = 7;$i <= 35;$i++) {
+                            $resultado .= VerificaLoginController::verificaPermissao($i).'|';
+                        }
+                        $vetor = explode('|', $resultado);
+                        $_SESSION['permissoes'] = $vetor;
                         
                         //log
                         $ip = $_SERVER["REMOTE_ADDR"];
@@ -117,12 +123,14 @@ class HomeController extends Controller
     
                         header("Location: /menu");
                         exit();
-    
-                    }else if($atribuicao == "Enfermeiro"){
-
+                    } elseif ($atribuicao == "Enfermeiro") {
                         $_SESSION['enfermeiro'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
                         $_SESSION['nome'] = $NavNome;
-
+                        for ($i = 36;$i < 65;$i++) {
+                            $resultado .= VerificaLoginController::verificaPermissao($i).'|';
+                        }
+                        $vetor = explode('|', $resultado);
+                        $_SESSION['permissoes'] = $vetor;
                         //log
                         $ip = $_SERVER["REMOTE_ADDR"];
                         $acao = "Enfermeiro logou";
@@ -131,12 +139,14 @@ class HomeController extends Controller
     
                         header("Location: /menu");
                         exit();
-
-                    }else if($atribuicao == "Estagiario"){
-
+                    } elseif ($atribuicao == "Estagiario") {
                         $_SESSION['estagiario'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
                         $_SESSION['nome'] = $NavNome;
-                        
+                        for ($i = 65;$i < 94 ;$i++) {
+                            $resultado .= VerificaLoginController::verificaPermissao($i).'|';
+                        }
+                        $vetor = explode('|', $resultado);
+                        $_SESSION['permissoes'] = $vetor;
                         //log
                         $ip = $_SERVER["REMOTE_ADDR"];
                         $acao = "Estagiário logou";
@@ -147,18 +157,16 @@ class HomeController extends Controller
                     } else {
                         return redirect() -> back() ->with('msg-error', 'Funcionário sem cargo, algo está errado!!!');
                     }
-
-    
-                }else{
-                    return redirect() -> back() ->with('msg-error','Conta do funcionário encontra-se desativada!');
+                } else {
+                    return redirect() -> back() ->with('msg-error', 'Conta do funcionário encontra-se desativada!');
                 }
-
-            }else{
-                return redirect() -> back() ->with('msg-error','Senha digitada está errada!!');
+            } else {
+                return redirect() -> back() ->with('msg-error', 'Senha digitada está errada!!');
             }
-            
+
         }else{ // caso em que o $row = 0, usuário não existe 
             return redirect() -> back() ->with('msg-error','Usuário não existe no sistema!!');
+
         }
     }
 
@@ -223,10 +231,10 @@ class HomeController extends Controller
 
         //se a nova senha desejada for igual a de confimação
 
-        if ($senhaConfirmacao == $senhaDefinida){
+        if ($senhaConfirmacao == $senhaDefinida) {
         
-            //cria um hash a partir da nova senha 
-           $senhaCript = Hash::make($senhaConfirmacao);         
+            //cria um hash a partir da nova senha
+            $senhaCript = Hash::make($senhaConfirmacao);
 
             //atualiza senha no banco de dados
             $update = "UPDATE usuarios SET Senha = '$senhaCript' WHERE CPF = '$cpf'";
@@ -376,7 +384,6 @@ class HomeController extends Controller
             }
 
             if (($request->senhaAtual == $usuario['senha']) and ($request->senha == $request->confirmacao)) {
-                
                 //cria um hash a partir da nova senha 
                 $senhaCript = Hash::make($request->senha);
 
@@ -392,7 +399,7 @@ class HomeController extends Controller
                 $usuario['senha'] = $sql['Senha'];
             }
             if (($request->senhaAtual == $usuario['senha']) and ($request->senha == $request->confirmacao)) {
-                //cria um hash a partir da nova senha 
+                //cria um hash a partir da nova senha
                 $senhaCript = Hash::make($request->senha);
 
                 $updateSenha = "UPDATE usuarios SET Senha = '$senhaCript' WHERE CPF = '$cpf'";
@@ -406,7 +413,7 @@ class HomeController extends Controller
                 $usuario['senha'] = $sql['Senha'];
             }
             if (($request->senhaAtual == $usuario['senha']) and ($request->senha == $request->confirmacao)) {
-                //cria um hash a partir da nova senha 
+                //cria um hash a partir da nova senha
                 $senhaCript = Hash::make($request->senha);
 
                 $updateSenha = "UPDATE usuarios SET Senha = '$senhaCript' WHERE CPF = '$cpf'";
@@ -420,7 +427,7 @@ class HomeController extends Controller
                 $usuario['senha'] = $sql['Senha'];
             }
             if (($request->senhaAtual == $usuario['senha']) and ($request->senha == $request->confirmacao)) {
-                //cria um hash a partir da nova senha 
+                //cria um hash a partir da nova senha
                 $senhaCript = Hash::make($request->senha);
 
                 $updateSenha = "UPDATE usuarios SET Senha = '$senhaCript' WHERE CPF = '$cpf'";
@@ -781,7 +788,7 @@ class HomeController extends Controller
                 return redirect()->back()->with('msg', 'Você se adicionou como aplicador do agendamento');
             }
         } else {
-            return redirect()->back();
+            return redirect()->back()->with("Você não tem permissão para realizar essa ação");
         }
     }
 
@@ -1448,7 +1455,7 @@ class HomeController extends Controller
                 $contador = $contador + 4;
             };
 
-            for ($i = 0; $i < count($vetor);$i++) {
+            for ($i = count($vetor)-1; $i >= 0;$i--) {
                 if ($i % 4 == 0) {
                     $lista =  $lista.'
                     <tr> <!--Cada Log-->
@@ -1466,7 +1473,7 @@ class HomeController extends Controller
                     <body>
                         <header class="container-personal-data">
                             <div>
-                                <h2>Nome Hospital</h2> <!--Nome do nosso Hospital-->
+                                <h2>Hospital Universitário da UEFS</h2> 
                             </div>
                             <div>
                                 <h2>'.$nome.' / '.$cpf.'</h2> <!--Nome e CPF de quem requisitou o download-->
@@ -1501,6 +1508,7 @@ class HomeController extends Controller
                             <p id="Copyright">Informações para o Footer da página</p> <!--Caso queira deixar alguma informação no Footer-->
                         </footer>
                     </body>');
+            $mpdf->Output('log'.$data_a.'.pdf', \Mpdf\Output\Destination::DOWNLOAD);
         } else { // listas gerais
             //ultizam dados obtidos da pagina para concatenar na string
             // IFs dentro dos FORs são para pegar posições estrategicas de cada vetor de acordo com o numero de dados que ele possui de cada instancia
@@ -1523,7 +1531,7 @@ class HomeController extends Controller
                     <body>
                         <header class="container-personal-data">
                             <div>
-                                <h2>Nome Hospital</h2> <!--Nome do nosso Hospital-->
+                                <h2>Hospital Universitário da UEFS</h2>
                             </div>
                             <div>
                                 <h2>'.$nome.' / '.$cpf.'</h2> <!--Nome e CPF de quem requisitou o download-->
@@ -1556,6 +1564,7 @@ class HomeController extends Controller
                             <p id="Copyright">Informações para o Footer da página</p> <!--Caso queira deixar alguma informação no Footer-->
                         </footer>
                     </body>');
+                $mpdf->Output('Paciente_Prontuario'.$data_a.'.pdf', \Mpdf\Output\Destination::DOWNLOAD);
             } elseif ($request->tela == 'lm') {// lista de medicamentos
                 for ($i =  0; $i <= count($vetor)-1;$i++) {
                     if ($i%4 ==0) {
@@ -1574,7 +1583,7 @@ class HomeController extends Controller
                     <body>
                         <header class="container-personal-data">
                             <div>
-                                <h2>Nome Hospital</h2> <!--Nome do nosso Hospital-->
+                                <h2>Hospital Universitário da UEFS</h2>
                             </div>
                             <div>
                                 <h2>'.$nome.' / '.$cpf.'</h2> <!--Nome e CPF de quem requisitou o download-->
@@ -1610,6 +1619,7 @@ class HomeController extends Controller
                             <p id="Copyright">Informações para o Footer da página</p> <!--Caso queira deixar alguma informação no Footer-->
                         </footer>
                     </body>');
+                $mpdf->Output('Listagem_Medicamentos'.$data_a.'.pdf', \Mpdf\Output\Destination::DOWNLOAD);
             } elseif ($request->tela == 'lr') { // lista de responsaveis
                 for ($i =  0; $i <= count($vetor)-1;$i++) {
                     if ($i%8 ==0) {
@@ -1631,7 +1641,7 @@ class HomeController extends Controller
                     <body>
                         <header class="container-personal-data">
                             <div>
-                                <h2>Nome Hospital</h2> <!--Nome do nosso Hospital-->
+                                <h2>Hospital Universitário da UEFS</h2>
                             </div>
                             <div>
                                 <h2>'.$nome.' / '.$cpf.'</h2> <!--Nome e CPF de quem requisitou o download-->
@@ -1668,6 +1678,7 @@ class HomeController extends Controller
                             <p id="Copyright">Informações para o Footer da página</p> <!--Caso queira deixar alguma informação no Footer-->
                         </footer>
                     </body>');
+                $mpdf->Output('Listagem_Responsaveis'.$data_a.'.pdf', \Mpdf\Output\Destination::DOWNLOAD);
             } elseif ($request->tela == 'la') { // lista de agendamentos
                 for ($i =  0; $i <= count($vetor)-1;$i++) {
                     if ($i%8 ==0) {
@@ -1688,7 +1699,7 @@ class HomeController extends Controller
                     <body>
                         <header class="container-personal-data">
                             <div>
-                                <h2>Nome Hospital</h2> <!--Nome do nosso Hospital-->
+                                <h2>Hospital Universitário da UEFS</h2>
                             </div>
                             <div>
                                 <h2>'.$nome.' / '.$cpf.'</h2> <!--Nome e CPF de quem requisitou o download-->
@@ -1724,6 +1735,7 @@ class HomeController extends Controller
                             <p id="Copyright">Informações para o Footer da página</p> <!--Caso queira deixar alguma informação no Footer-->
                         </footer>
                     </body>');
+                $mpdf->Output('Listagem_Agendamentos'.$data_a.'.pdf', \Mpdf\Output\Destination::DOWNLOAD);
             } elseif ($request->tela == 'hp') { // historico de prontuario
                 for ($i =  0; $i <= count($vetor)-1;$i++) {
                     if ($i%6 ==0) {
@@ -1743,7 +1755,7 @@ class HomeController extends Controller
                 <body>
                 <header class="container-personal-data">
                             <div>
-                                <h2>Nome Hospital</h2> <!--Nome do nosso Hospital-->
+                                <h2>Hospital Universitário da UEFS</h2>
                             </div>
                             <div>
                                 <h2>'.$nome.' / '.$cpf.'</h2> <!--Nome e CPF de quem requisitou o download-->
@@ -1781,6 +1793,7 @@ class HomeController extends Controller
                     <p id="Copyright">Informações para o Footer da página</p> <!--Caso queira deixar alguma informação no Footer-->
                 </footer>
             </body>');
+                $mpdf->Output('Historico_Prontuario'.$data_a.'.pdf', \Mpdf\Output\Destination::DOWNLOAD);
             } elseif ($request->tela == 'rg') {
                 $mpdf->WriteHTML('<!doctype html>
                 <html lang="en">
@@ -1788,7 +1801,7 @@ class HomeController extends Controller
                     <body>
                         <header class="container-personal-data">
                             <div>
-                                <h2>Nome Hospital</h2> <!--Nome do nosso Hospital-->
+                                <h2>Hospital Universitário da UEFS</h2>
                             </div>
                             <div>
                                 <h2>'.$nome.' / '.$cpf.'</h2> <!--Nome e CPF de quem requisitou o download-->
@@ -1852,9 +1865,318 @@ class HomeController extends Controller
                         <p id="Copyright">Informações para o Footer da página</p> <!--Caso queira deixar alguma informação no Footer-->
                     </footer>
                     </body>');
+                $mpdf->Output('Relatorio_Gerencial'.$data_a.'.pdf', \Mpdf\Output\Destination::DOWNLOAD);
+            } elseif ($request->tela == 'lpt') {
+                for ($i =  0; $i <= count($vetor)-1;$i++) {
+                    if ($i%2 ==0) {
+                        $lista =$lista.
+                        '<tr>
+                        <th>'.$vetor[$i].'</td> 
+                        <th>'.$vetor[$i+1].'</td> 
+                        </tr>';
+                    }
+                }
+                
+                $mpdf->WriteHTML('<!doctype html>
+                <html lang="en">
+                <style>'.$css.'</style>
+                <body>
+                <header class="container-personal-data">
+                            <div>
+                                <h2>Hospital Universitário da UEFS</h2>
+                            </div>
+                            <div>
+                                <h2>'.$nome.' / '.$cpf.'</h2> <!--Nome e CPF de quem requisitou o download-->
+                            </div>
+                            <div>
+                                <h2>'.$data_a.'</h2> <!--Data e Hora em que foi feito o download-->
+                            </div>
+                        </header>
+                <hr>
+                <section>
+            <div class="container-header"> 
+                <h1>Listagem Plantonista</h1> <!--De onde saiu a lista-->
+            </div>
+            <hr>
+            <div class="container-listagem">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Cargo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        '.$lista.'
+                    </tbody>
+                </table>
+            </div>
+        </section>
+                <footer style="position: absolute; bottom: 0;">
+                    <p id="Copyright">Informações para o Footer da página</p> <!--Caso queira deixar alguma informação no Footer-->
+                </footer>
+            </body>');
+                $mpdf->Output('Listagem_Plantonistas'.$data_a.'.pdf', \Mpdf\Output\Destination::DOWNLOAD);
+            } elseif ($request->tela == 'prontuario') {
+                $listaP = '';
+                $listaP2 = '';
+                $listaA = '';
+                $listaM = '';
+                $listaC = '';
+                $listaO = '';
+                $vetorP = explode('|', $request->listagemP); //transformando string de dados obtidos da pagina em vetor
+                $vetorA = explode('|', $request->listagemA); //transformando string de dados obtidos da pagina em vetor
+                $vetorM = explode('|', $request->listagemM); //transformando string de dados obtidos da pagina em vetor
+                $vetorO = explode('|', $request->listagemO); //transformando string de dados obtidos da pagina em vetor
+                $vetorC = explode('|', $request->listagemC); //transformando string de dados obtidos da pagina em vetor
+                for ($i =  0; $i <= count($vetorP)-1;$i++) {
+                    if ($i%9 ==0) {
+                        $listaP =$listaP.
+                        '<tr> <!--Cada Paciente-->
+                            <td>'.$vetorP[$i].'</td>
+                            <td>'.$vetorP[$i+5].'</td>
+                            <td>'.$vetorP[$i+2].'</td>
+                            <th>'.$vetorP[$i+1].'</th>
+                            <td>'.$vetorP[$i+3].'</td>
+                        </tr>';
+                        $prontuarioID = $vetorP[$i+8];
+                        $sql = "SELECT * FROM prontuarios WHERE ID ='$prontuarioID'";
+                        $query = mysqli_query($connect, $sql);
+                        while ($sql = mysqli_fetch_array($query)) {
+                            $saiu = $sql['Data_Saida'];
+                        };
+                        $listaP2 = $listaP2.
+                        '<tr>
+                            <td>'.$vetorP[$i+6].'</td>
+                            <td>'.$saiu.'</td>
+                            <td>'.$vetorP[$i+7].'</td>
+                            <td>'.$vetorP[$i+4].'</td>
+                        </tr>';
+                    }
+                }
+
+                for ($i =  0; $i <= count($vetorA)-1;$i++) {
+                    if (count($vetorA)>1) {
+                        if (count($vetorA) == 5) {
+                            if ($i%5 ==0) {
+                                $listaA =$listaA.
+                            '<tr>
+                            <td>'.$vetorA[$i].'</td>
+                            <td>'.$vetorA[$i+1].'</td>
+                            <td>'.$vetorA[$i+3].'</td>
+                            <td>'.$vetorA[$i+2].'ml </td>
+                            <td>'.$vetorA[$i+4].'</td>
+                            </tr>';
+                            }
+                        } elseif (count($vetorA) == 4) {
+                            if ($i%4 ==0) {
+                                $listaA =$listaA.
+                            '<tr>
+                            <td>'.$vetorA[$i].'</td>
+                            <td>'.$vetorA[$i+1].'</td>
+                            <td>'.$vetorA[$i+3].'</td>
+                            <td>'.$vetorA[$i+2].'ml </td>
+                            <td>Agendamento sem preparador alocado</td>
+                            </tr>';
+                            }
+                        }
+                    }
+                }
+
+                for ($i =  0; $i <= count($vetorM)-1;$i++) {
+                    if (count($vetorM)>1) {
+                        if ($i%5 ==0) {
+                            $listaM =$listaM.
+                        '<tr>
+                        <td>'.$vetorM[$i+1].'</td>
+                        <td>'.$vetorM[$i+2].'</td>
+                        <td>'.$vetorM[$i].'</td>
+                        <td>'.$vetorM[$i+3].'ml </td>
+                        <td>'.$vetorM[$i+4].'</td>
+                        </tr>';
+                        }
+                    }
+                }
+
+                for ($i =  0; $i <= count($vetorO)-1;$i++) {
+                    if (count($vetorO)>1) {
+                        if ($i%4 ==0) {
+                            $listaO =$listaO.
+                            '<tr>
+                            <td>'.$vetorO[$i+2].'</td>
+                            <td>'.$vetorO[$i].'</td>
+                            <td>'.$vetorO[$i+3].'</td>
+                            <td>'.$vetorO[$i+1].'</td>
+                            </tr>';
+                        }
+                    }
+                }
+
+                for ($i =  0; $i <= count($vetorC)-1;$i++) {
+                    if (count($vetorC)>1) {
+                        $cod = $vetorC[$i];
+                        $sql = "SELECT * FROM cid WHERE codCid ='$cod'";
+                        $query = mysqli_query($connect, $sql);
+                        while ($sql = mysqli_fetch_array($query)) {
+                            $desc = $sql['descricaoCid'];
+                        };
+                        $listaC =$listaC.
+                        '<tr>
+                            <td>'.$cod.'</td>
+                            <td>'.$desc.'</td>
+                        </tr>';
+                    }
+                }
+                
+                $mpdf->WriteHTML('<!doctype html>
+                <html lang="en">
+                <style>'.$css.'</style>
+                <body>
+                <header class="container-personal-data">
+                            <div>
+                                <h2>Hospital Universitário da UEFS</h2> <!--Nome do nosso Hospital-->
+                            </div>
+                            <div>
+                                <h2>'.$nome.' / '.$cpf.'</h2> <!--Nome e CPF de quem requisitou o download-->
+                            </div>
+                            <div>
+                                <h2>'.$data_a.'</h2> <!--Data e Hora em que foi feito o download-->
+                            </div>
+                        </header>
+                <hr>
+                <section>
+                    <div class="container-header"> 
+                        <h1>Prontuário</h1> <!--De onde saiu a lista-->
+                    </div>
+                    <hr>
+                    <div class="container-listagem">
+                        <h2>Paciente</h2>
+                        <table> <!--Paciente-->
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>CPF</th>
+                                    <th>Sexo</th>
+                                    <th>Data de Nascimento</th>
+                                    <th>Tipo Sanguíneo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                '.$listaP.'
+                            </tbody>
+                        </table>
+                        <hr>
+                        <h2>Dados sobre internação</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Data Internação</th>
+                                    <th>Data Saida</th>
+                                    <th>Leito</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                '.$listaP2.'
+                            </tbody>
+                        </table>
+                        <hr>
+                        <h2>Agendamentos</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Hora</th>
+                                    <th>Data</th>
+                                    <th>Medicamento</th>
+                                    <th>Posologia</th>
+                                    <th>Aplicador</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                '.$listaA.'
+                            </tbody>
+                        </table>
+                        <hr>
+                        <h2>Medicações ministradas</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Hora</th>
+                                    <th>Data</th>
+                                    <th>Medicamento</th>
+                                    <th>Posologia</th>
+                                    <th>Aplicador</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                '.$listaM.'
+                            </tbody>
+                        </table>
+                        <hr>
+                        <h2>Ocorrências</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Hora</th>
+                                    <th>Data</th>
+                                    <th>Responsável</th>
+                                    <th>Ocorrências</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                '.$listaO.'
+                            </tbody>
+                        </table>
+                        <hr>
+                        <h2>CIDs</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>CIDs</th>
+                                    <th>Descrição</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                '.$listaC.'
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </body>');
+                $mpdf->Output('Prontuario: '.$vetorP[0].'-'.$data_a.'.pdf', \Mpdf\Output\Destination::DOWNLOAD);
             }
         }
-        $mpdf->Output(); // função que redireciona para o arquivo pdf para baixa-lo
+    }
+
+    public static function notificarUsuarioAgendamento()
+    { // função estatica para notificação. Deve ser chamada usando funcionalidade de chamad automatica da hospedagem
+        session_start();
+        include("db.php");
+        //obtem data e hora atual
+        $hora = date('H-i-s');
+        $data = date('Y-m-d');
+        $cpf = HomeController::ObterCpf();
+        $sql = "SELECT * FROM agendamentos WHERE CPF_usuario = '$cpf'"; // verifica se o usuario logado tem agendamento
+        $query = mysqli_query($connect, $sql);
+        while ($sql= mysqli_fetch_array($query)) {
+            if ($sql['Realizado'] == 0) {
+                $pronturario = $sql['ID_Prontuario'];
+                $sql1 = "SELECT * FROM prontuarios WHERE ID = 'prontuario'";
+                $query1 = mysqli_query($connect, $sql1);
+                while ($sql1= mysqli_fetch_array($query1)) {
+                    $leito = $sql1['Id_leito'];
+                }
+                if ($data == $sql['Data_Agend'] and $dhora == $sql['Hora_Agend']) { //verifica se as datas e horas cadastradas e obtidas batem e se sim manda a notificação
+                    $_SESSION['notifi'] = 'Você tem o agendamento marcado para o leiot:'.$leito;
+                }
+                //OBS - Adicionar um css tbm de msg-notification assim como tem pra sucess e error e colocar em todas as paginas no inicio do body
+            }
+        }
+    }
+
+    public function apagarN()
+    {
+        $_SESSION['notify'] = array();
+        return redirect()->back();
     }
 }
- 

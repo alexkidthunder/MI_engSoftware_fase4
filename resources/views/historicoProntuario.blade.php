@@ -17,6 +17,7 @@
     <link href="{{ asset('img/favicon.png') }}" rel="icon">
 
     <script src="{{ 'js/historicoProntuario.js' }}" defer></script>
+    <script src="{{ 'js/mascara.min.js' }}"></script>
     {{$i = 0}}
     <title>Historico de prontuários</title>
 
@@ -26,6 +27,30 @@
     <!----------Hearder------------>
     @include('layouts.navbar')
     <!----------End Hearder-------->
+
+    <!---------------Notificação para o usuário-------------->
+    @if(isset($_SESSION['notifi']))
+    @if(!empty ($_SESSION['notifi']))
+    <div id="notification">
+        <div class='msg-notification'>
+            <div class="row">
+                <div class="col-lg-2 col-md-2 col-12 col-sm-12">
+                    <i class="fas fa-bell"></i>
+                </div>
+                <div class="col-lg-8 col-md-8 col-10 col-sm-10">
+                    {{$_SESSION['notifi']}} 
+                </div>
+                <form action="/apagarN" method="get">
+                    <div class="col-lg-2 col-md-2 col-2 col-sm-2">
+                        <button name="fechar" type="submit" class="btn-close" id="close"><i class="fas fa-times"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    <div>
+    @endif
+    @endif
+    <!---------------Fim de notificação-------------->
 
     <!----------Botão de donwload------------>
     <div id="screen-icon">
@@ -74,8 +99,9 @@
                     <h3>BUSCAR PACIENTE</h3>
                     <form class="search-bar" method="get" action="/hp">
                         <!--- Campo para a inserção do CPF do paciente --->
-                        <input name="cpf_user" id="cpf_user" type="text" placeholder="Informe o CPF" required maxlength="14"
-                            pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
+                         <input id="cpf_user" name="cpf_user" type="text"
+                                onkeyup="mascara('###.###.###-##',this,event,true)" required maxlength="14"
+                                pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" placeholder="Informe o CPF">
                         <button type="submit">
                             <i class="fas fa-search"></i>
                         </button>

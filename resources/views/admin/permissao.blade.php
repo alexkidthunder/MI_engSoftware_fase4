@@ -24,6 +24,30 @@
     @include('layouts.navbar-adm')
     <!----------End Hearder-------->
 
+    <!---------------Notificação para o usuário-------------->
+    @if(isset($_SESSION['notifi']))
+    @if(!empty ($_SESSION['notifi']))
+    <div id="notification">
+        <div class='msg-notification'>
+            <div class="row">
+                <div class="col-lg-2 col-md-2 col-12 col-sm-12">
+                    <i class="fas fa-bell"></i>
+                </div>
+                <div class="col-lg-8 col-md-8 col-10 col-sm-10">
+                    {{$_SESSION['notifi']}} 
+                </div>
+                <form action="/apagarN" method="get">
+                    <div class="col-lg-2 col-md-2 col-2 col-sm-2">
+                        <button name="fechar" type="submit" class="btn-close" id="close"><i class="fas fa-times"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    <div>
+    @endif
+    @endif
+    <!---------------Fim de notificação-------------->
+
     <h1>ALTERAR PERMISSÕES</h1>
     <div class="container-80">
         <div class="box" id="permission">
@@ -32,7 +56,6 @@
                 <h3>SELECIONE O TIPO DE CARGO</h3>
                 <form action="/editarPermissao" method="GET">
                     <select id="atribuicao" name="atribuicao" onchange="this.form.submit()">
-                        <option value="admin">Administrador</option>
                         <option value="enfermeiroChefe">Enfermeiro chefe</option>
                         <option value="enfermeiro">Enfermeiro</option>
                         <option value="estagiario">Estagiário</option>
@@ -45,7 +68,6 @@
             <form action="/alterarPermissao" method="get">
                 @csrf
                 <h3 id="Nome_Permissao" class="content-center"> </h3> <br>
-                <!-- ========== Linha 1 (REFERENTE AO ADM) ========== -->
                 <!---------------------Mensagens de erro--------------->
                 <div class="container">
                     <div class="row">
@@ -68,7 +90,7 @@
                     </div>
                 </div>
                 <!---------------------fim de mensagens de erro---------------->
-                
+               {{-- <!-- ========== Linha 1 (REFERENTE AO ADM) ========== -->
                 @if (isset($p))
                     <div class="row">
                         <!--Inicio da permissão-->
@@ -126,8 +148,8 @@
                         @endif
                         <!--Fim da permissão-->
                     </div>
-                    <!-- ========== fim da linha 1 ========== -->
-
+                    <!-- ========== fim da linha 1 ========== --> --}} 
+                 @if (isset($p))
                     <!-- ========== Linha 2 ========== -->
                     <h3 id="title" >Pacientes e prontuários</h3><br>
                     <div class="row">

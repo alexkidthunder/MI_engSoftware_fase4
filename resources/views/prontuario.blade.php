@@ -28,15 +28,55 @@
     @include('layouts.navbar')
     <!----------End Hearder-------->
 
+    <!---------------Notificação para o usuário-------------->
+    @if(isset($_SESSION['notifi']))
+    @if(!empty ($_SESSION['notifi']))
+    <div id="notification">
+        <div class='msg-notification'>
+            <div class="row">
+                <div class="col-lg-2 col-md-2 col-12 col-sm-12">
+                    <i class="fas fa-bell"></i>
+                </div>
+                <div class="col-lg-8 col-md-8 col-10 col-sm-10">
+                    {{$_SESSION['notifi']}} 
+                </div>
+                <form action="/apagarN" method="get">
+                    <div class="col-lg-2 col-md-2 col-2 col-sm-2">
+                        <button name="fechar" type="submit" class="btn-close" id="close"><i class="fas fa-times"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    <div>
+    @endif
+    @endif
+    <!---------------Fim de notificação-------------->
+
+    <!----------Botão de donwload------------>
     <div id="screen-icon">
-        <!-- Icone de Download Em Telas -->
-        <form class="download-icon">
+        <form method="get" action="/baixarArquivos" class="download-icon">
             <button>
                 <i class="fas fa-download"></i>
             </button>
+            @if(isset($paciente))
+            <input type="hidden" name="listagemP" value="{{implode('|',$paciente)}}">
+            @if(isset($infosA))
+            <input type="hidden" name="listagemA" value="{{implode('|',$infosA)}}">
+            @endif
+            @if(isset($infosM))
+            <input type="hidden" name="listagemM" value="{{implode('|',$infosM)}}">
+            @endif
+            @if(isset($infosC))
+            <input type="hidden" name="listagemC" value="{{implode('|',$infosC)}}">
+            @endif
+            @if(isset($infosO))
+            <input type="hidden" name="listagemO" value="{{implode('|',$infosO)}}">
+            @endif
+            <input type="hidden" name="tela" value="prontuario">
+            @endif
         </form>
     </div>
-    <!----------Criação de Prontuario------------>
+    <!--------Fim do botão de donwload-------->
 
     <section>
 
@@ -79,6 +119,7 @@
             <button class="btn-blue" , id="action-btn3">Dados de Paciente</button>
             <div class="box-scheduling" , id="container-teste3">
                 <div id="register">
+                    <form> <!--Colocar coisas do forms aqui-->
                     <div class="row">
                         @if (isset($paciente))
                             <!----------Nome----------->
@@ -102,11 +143,11 @@
                             <input disabled id="fcpf" name="fcpf" type="text" required maxlength="14"
                                 pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" value="{{ $paciente['cpf'] }}">
                         </div>
-                         <!----------sEXO----------->
+                         <!----------Sexo----------->
                         <div class="col-md-4 col-lg-4">
                             <div class="sex-form">
                                 <label>Sexo</label> <br>
-                                @if ($paciente['sexo'] = 'M')
+                                @if ($paciente['sexo'] == 'M')
                                     <input class="radial-no-edit" id="MASCULINO" name="fsexo" value="Masculino"
                                         type="button">
                                 @else
@@ -142,7 +183,11 @@
                                 placeholder="alta, internado ou obito" value="{{ $paciente['estado'] }}" required>
                         </div>
                     </div>
+                    <div class="row">
+                        <button class="btn-blue" id="edit" type="button"> Editar Dados </button>
+                    </div>
                     @endif
+                    <form>    
                 </div>
             </div>
             <!---------------fim de dados do Paciente---------------->
@@ -150,14 +195,11 @@
              <!----------Agendamentos de medicamentos------------>
                 
             <button class="btn-blue" id="action-btn2">Agendamentos</button>
-            <div>
-
-            </div>
-            <div class="box-scheduling" id = "container-teste2">
+            <div id = "container-teste2">
                 <h2 class="text-center">Agendamentos</h2><br>
                 @for($i = 0;$i <= count($infosA); $i++)
                 @if(isset($infosA['hora'.$i]))
-                    <div class="container-box">
+                    <div class="box-scheduling">
                         <div class="row">
                             <!---------------------Hora--------------------->
                             <div class="col-6 col-sm-12 col-md-6 col-lg-2 text-center">
@@ -186,27 +228,24 @@
                         </div>
                         <div class="row">
                             <!----------Aplicador do medicamento----------->
-                            <div class="col-lg-9">
+                            <div class="col-12 col-md-12 col-sm-12 col-lg-12">
                             @if(isset($infosA['aplicador'.$i]))
                                 <div class="box-blue"> 
-                                    <a>Aplicador: {{$infosA['aplicador'.$i]}}</a> 
+                                    <a>Preparador: {{$infosA['aplicador'.$i]}}</a> 
                                 </div>
                             @endif
                             </div>
-                            <!---------------------Leito do Paciente--------------------->
-                            <div class="col-lg-3">
-                                <div class="box-blue">
-                                    <a>Leito: {{ $paciente['leito'] }}</a>
-                                </div>
-                            </div>
                         </div>
                         <div class="row">
-                        @if(!isset($infosA['aplicador'.$i]))
-                            <form method="POST" action="/ACagendamentos">
-                                <input type="hidden" name="codA" value="{{$agendamentos}}"> 
-                                <button type="submit" class="btn-white">Ser aplicador</button>
-                            </form>
-                        @endif
+                            <div class="col-sm-12 col-12 col-md-3 col-lg-3">
+                                @if(!isset($infosA['aplicador'.$i]))
+                                    <form method="POST" action="/ACagendamentos">
+                                    @csrf
+                                        <input type="hidden" name="codA" value="{{$agendamentos}}"> 
+                                        <button type="submit" class="btn-white">Ser preparador</button>
+                                    </form>
+                                @endif
+                            </div>
                         </div>
                     </div>
                 @endif
@@ -216,10 +255,11 @@
 
                 <!----------------Medicações ministradas----------------->
                 <button class="btn-blue", id="action-btn">Medicações ministradas</button>
-                    <div class="box-scheduling" id = "container-teste">
+                    <div id = "container-teste">
                         <h2 class="text-center">Medicações ministradas</h2><br>
                         @for($j = 0;$j <= count($infosM);$j++)
                         @if(isset($infosM['hora'.$j]))
+                        <div class="box-scheduling">
                             <div class="row">
                             <!---------------------Hora--------------------->
                                 <div class="col-6 col-sm-12 col-md-6 col-lg-2 text-center">
@@ -257,6 +297,7 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         @endif
                         @endfor
                     </div>
@@ -311,42 +352,44 @@
             <!----------------CIDs do paciente---------------->
             <button class="btn-blue" , id="action-btn5">CIDs</button>
             
-            <div class="box-scheduling" , id="container-teste5">
-                <h2 class="text-center">CIDs</h2><br>
-                <form action="/cadastroCID" method="POST" id="register">
-                    @csrf
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <label>Nova CID</label> <br>
-                            <input type="hidden" name="prontuario" value="{{$paciente['prontuario']}}">
-                            <input id="fcid" name="fcid" type="text" maxlength="20"  placeholder="EX: A00.1" required>
-                            <div>
-                              <button  type="submit" class="btn-blue"> Adicionar </button>
+            <div id="container-teste5">
+                <div class="box-scheduling">
+                    <h2 class="text-center">CIDs</h2><br>
+                    <form action="/cadastroCID" method="POST" id="register">
+                        @csrf
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6">
+                                <label>Nova CID</label> <br>
+                                <input type="hidden" name="prontuario" value="{{$paciente['prontuario']}}">
+                                <input id="fcid" name="fcid" type="text" maxlength="20"  placeholder="EX: A00.1" required>
+                                </div>
+                            <div class="col-lg-6 col-md-6">
+                                <button  type="submit" class="btn-blue"> Adicionar </button>
                             </div>
                         </div>
-                    </div>
-                    @while (isset($infosC['cid' . $l]))
                         <h3>CIDs do Paciente</h3>
                         <div class="box-scheduling">
                             <div class="row">
-                                <div class="col-lg-2 text-center">
-                                    <div class="box-gray">
-                                        CID: {{ $infosC['cid' . $l] }}
+                                @while (isset($infosC['cid' . $l]))
+                                    <div class="col-lg-2 col-md-4 col-sm-6 col-6 text-center">
+                                        <div class="box-gray">
+                                            CID: {{ $infosC['cid' . $l] }}
+                                        </div>
+                                        {{ $l++ }}
                                     </div>
-                                    {{ $l++ }}
-                                </div>
+                                @endwhile
                             </div>
                         </div>
-                    @endwhile
-                </form>
+                    </form>
+                </div>
             </div>
             <!----------------fim de CIDs do paciente---------------->
 
             <!-------------Encerramento do Prontuario-------------->
             @if($paciente['estado'] == 'internado')
             <button class="btn-blue" , id="action-btn6">Encerrar Prontuario</button>
-            <h2 class="text-center">Encerrar prontuário</h2><br>
-            <div class="box-scheduling" id="container-teste6">
+            <div class="box-scheduling">
+                <h2 class="text-center">Encerrar prontuário</h2><br>
                 <form action="/finalizarProntuario" method="POST" id="register">
                     @csrf
                     <input type="hidden" name="prontuario" value="{{ $paciente['prontuario'] }}">

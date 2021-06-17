@@ -19,6 +19,31 @@
     <!----------Hearder------------>
     @include('layouts.navbar')
     <!----------End Hearder-------->
+
+    <!---------------Notificação para o usuário-------------->
+    @if(isset($_SESSION['notifi']))
+    @if(!empty ($_SESSION['notifi']))
+    <div id="notification">
+        <div class='msg-notification'>
+            <div class="row">
+                <div class="col-lg-2 col-md-2 col-12 col-sm-12">
+                    <i class="fas fa-bell"></i>
+                </div>
+                <div class="col-lg-8 col-md-8 col-10 col-sm-10">
+                    {{$_SESSION['notifi']}} 
+                </div>
+                <form action="/apagarN" method="get">
+                    <div class="col-lg-2 col-md-2 col-2 col-sm-2">
+                        <button name="fechar" type="submit" class="btn-close" id="close"><i class="fas fa-times"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    <div>
+    @endif
+    @endif
+    <!---------------Fim de notificação-------------->
+
     <section>
 
         <div class="container-1">
@@ -82,7 +107,7 @@
                                 <!------ Aqui em baixo o Leito cadastrado no BD, como isso não ta feito, vai um exemplo ------>
                                 <label name="inserir_leito">Selecione o leito</label>
                                 <form>
-                                    <select id="LeitoSelect" name="Leito">
+                                    <select id="LeitoSelect" name="Leito" required>
                                         @if (isset($leitos))
                                             @foreach ($leitos as $leito)
                                                 <option value="{{ $leito['Identificacao'] }}">
@@ -96,7 +121,7 @@
                             <div class="col-md-6 col-lg-4">
                                 <div>
                                     <label name="data_internacao">Data de Internação</label>
-                                    <input type="date" name="data_internacao" requerid>
+                                    <input type="date" name="data_internacao" required>
                                 </div>
                             </div>
                         </div>
