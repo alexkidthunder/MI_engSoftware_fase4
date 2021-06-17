@@ -12,6 +12,8 @@ use Dompdf\Options;
 use Hamcrest\Core\IsSame;
 use Mpdf\Mpdf;
 use mysqli;
+use Illuminate\Support\Facades\Mail;
+
 
 class HomeController extends Controller
 {
@@ -53,15 +55,18 @@ class HomeController extends Controller
             $senhaEncontrada = $buscarSenha["Senha"];
         }
 
-        /* se a senha digitada pelo usuário for igual a senha padrão (12345), que é a que está no banco também,
-        *   ele é mandado para página de primeiro acesso */
-        if ($request->senha == 12345 and $senhaEncontrada == 12345) {
-            return redirect('/primeiroAcesso')->with('cpf', $request->cpf);
-        }
-
+        
 
         //verifica se o usuario existe no sistema. $row = 1 significa que sim
         if ($row == 1) {
+
+
+            /* se a senha digitada pelo usuário for igual a senha padrão (12345), que é a que está no banco também,
+            *   ele é mandado para página de primeiro acesso */
+            if ($request->senha == 12345 and $senhaEncontrada == 12345) {
+                return redirect('/primeiroAcesso')->with('cpf', $request->cpf);
+            }
+
 
             //busca a senha, status ativo e sua atribuição
             $sql = "SELECT * FROM usuarios where CPF = '$request->cpf'";
@@ -153,7 +158,7 @@ class HomeController extends Controller
             }
             
         }else{ // caso em que o $row = 0, usuário não existe 
-            return redirect() -> back() ->with('msg-error','Usuário não existe!!');
+            return redirect() -> back() ->with('msg-error','Usuário não existe no sistema!!');
         }
     }
 
@@ -355,19 +360,27 @@ class HomeController extends Controller
     {
         session_start();
         include("db.php");
+
         //Verificação realizada para todos os cargos
-        // pega o usuario com o cpf na tabela de usuarios e compara a senha antiga digitada com a cadastrada e se forem correspondente substituem pela nova  digitada senha
+        /* pega o usuario com o cpf na tabela de usuarios e compara a senha antiga 
+        digitada com a cadastrada e se forem correspondente substituem pela nova  digitada senha */
+    
         if (isset($_SESSION['administrador'])) {
             $cpf = $_SESSION['administrador'];
+
+            //busca de senha de usuário
             $sql = "SELECT * FROM usuarios where CPF = '$cpf'";
             $query = mysqli_query($connect, $sql);
             while ($sql = mysqli_fetch_array($query)) {
                 $usuario['senha'] = $sql['Senha'];
             }
+
             if (($request->senhaAtual == $usuario['senha']) and ($request->senha == $request->confirmacao)) {
+                
                 //cria um hash a partir da nova senha 
                 $senhaCript = Hash::make($request->senha);
 
+                //atualização de senha
                 $updateSenha = "UPDATE usuarios SET Senha = '$senhaCript' WHERE CPF = '$cpf'";
                 mysqli_query($connect, $updateSenha);
             }
@@ -420,7 +433,9 @@ class HomeController extends Controller
         $acao = "Usuário alterou senha";
         AdminController::salvarLog($acao, $ip);
 
-        header('Location: /meuPerfil'); // redireciona para o meu perfil
+        //header('Location: /meuPerfil');
+        return redirect()->route('/meuPerfil')->with('msg', 'Senha alterada com sucesso!');
+        // redireciona para o meu perfil
         exit();
     }
 
@@ -810,12 +825,112 @@ class HomeController extends Controller
     }
 
 
-    //função de esqueci a senha
-    public function esqueciSenha()
-    {
+    public function esqueciSenhaView(){
         return view('esqueciSenha');
     }
-    
+
+    //função de esqueci a senha
+    public function esqueciSenha(Request $request)
+    {
+        include('db.php');
+
+        
+        $existeEmail = mysqli_query($connect, "SELECT COUNT(*) FROM usuarios WHERE Email = '$request->email'");
+
+        //se não existir o email
+        if (mysqli_fetch_assoc($existeEmail)['COUNT(*)'] == 0) {
+            return redirect()->route('esqueciSenha')->with('error', "Email não existente!");
+
+        } else {  //se existir
+
+            //busca o nome do usuário no banco
+            $buscarNome = "SELECT Nome FROM usuarios WHERE Email = '$request->email'";
+            $busca = mysqli_query($connect, $buscarNome);
+            while ($buscarNome = mysqli_fetch_array($busca)) {
+                $nome = $buscarNome["Nome"];
+            }
+
+
+            $codigo = rand(000000,999999);
+            $link = "http://127.0.0.1:8000/checarHash/".$codigo;
+
+            Mail::send(new \App\Mail\ClasseMail($nome, $request->email, $link));
+
+
+            return redirect()->back()->with('msg-sucess', 'Verifique sua caixa de entrada ou de spam!');
+        }
+
+    }
+
+    public function definirSenhaView(){
+        return view('novaSenha');
+    }
+
+    public function checarCPFView(){
+        return view('checarCPF');
+    }
+
+    public function checarCPF(Request $request){
+        include('db.php');
+
+
+        //captura a senha do banco
+        $buscarCPF = "SELECT CPF FROM usuarios WHERE CPF = '$request->cpf'";
+        $resultado = mysqli_query($connect, $buscarSenha);
+        while ($buscarCPF = mysqli_fetch_array($resultado)) {
+            $existeCPF = $buscarCPF["CPF"];
+        }
+
+        if($existeCPF == $request->cpf){
+            return redirect('/definirSenha')->with('cpf', $request->cpf);
+        }else{
+            return redirect()-> back()-> with('msg-sucess', 'O CPF digitado está incorreto!');
+        }
+
+
+        return view('checarCPF');
+    }
+
+    //função de comparação de hash
+    public function checarHash($hash)
+    {
+        dd($hash);
+
+            return redirect()->route('index')->with('msg-sucess', 'Verifique sua caixa de entrada ou de spam!');
+        
+    }
+
+    //função de redefinir a senha a partir do esqueci a senha
+    public function definirSenha(Request $request)
+    {
+        include('db.php');
+
+
+        $cpf = $request->cpf;
+        $senhaDefinida = $request->senha;
+        $senhaConfirmacao = $request->confirmacao;
+
+        //se a nova senha desejada for igual a de confimação
+
+        if ($senhaConfirmacao == $senhaDefinida){
+        
+            //cria um hash a partir da nova senha 
+           $senhaCript = Hash::make($senhaConfirmacao);         
+
+            //atualiza senha no banco de dados
+            $update = "UPDATE usuarios SET Senha = '$senhaCript' WHERE CPF = '$cpf'";
+            mysqli_query($connect, $update);
+            
+            //log
+            $ip = $_SERVER["REMOTE_ADDR"];
+            $acao = "Usuário redefiniu senha";
+            AdminController::salvarLog($acao, $ip);
+
+            return redirect()->route('index')->with('msg-sucess', 'Senha alterada com sucesso!');
+        }
+    }
+
+
 
     //função de listagem de medicamentos
     public function listaMedicamento()

@@ -5,17 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Esqueci a Senha</title>
+    <title>Nova senha</title>
 
     <link href="{{ 'css/login-style.css' }}" rel="stylesheet">
 
     <!-- Favicon -->
     <link href="{{ asset('img/favicon.png') }}" rel="icon">
-
 </head>
 
 <body class="body-login">
-    <!----------------Imagem de onda------------->
+    <!--------------- Imagem de onda--------------->
     <div id="container-wave">
         <div class="img-login">
             <img src="{{ asset('img/wave.png') }}" />
@@ -37,35 +36,32 @@
     </div>
     <!---------------- fim da Caixa --------------->
 
-
-    <!-------Mensagem de erro------->
-        @if(Session::has('error'))
+    <!-----------Mensagem de erro----------->
+    @if (Session::has('error'))
         <div class="msg-error" role="alert">
-                {{Session::get('error')}}
+            {{ Session::get('error') }}
         </div>
-        @endif  
-        <!-------Mensagem de sucesso------->
-        @if(Session::has('success'))
+    @endif
+    <!-----------Mensagem de sucesso----------->
+    @if (Session::has('success'))
         <div class="msg-sucess">
-                {{Session::get('success')}}
+            {{ Session::get('success') }}
         </div>
-        @endif
+    @endif
 
-
-
-
-    <!----------- Recuperação da senha do usuário ----------->
-    <form id="password-login" class="form" action="{{ route('esqueciSenha') }}" method="POST">
-        @csrf
+    <!--Página de meu primeiro acesso -->
+    <form id="first-access" class="form" action="{{ route('checarCPF') }}" method="POST">
+        @csrf 
         <div class="box-login">
-            <h2>Esqueci a senha</h2>
-            <h4>Informe no campo abaixo o endereço de e-mail de cadastro que você possui no site</h4>
+
+            <h2>Nova senha</h2>
+            <h4>Defina seu CPF abaixo:</h4>
             <div>
-                <!------ Campo para a inserção do e-mail ------>
-                <label>Email</label>
-                <input type="email" name="email" placeholder="Digite seu e-mail" required>
+                <!------- Inserção da cpf ------>
+                <label>CPF</label>
+                <input id="cpf" name="cpf" type="text" onkeyup="mascara('###.###.###-##',this,event,true)" 
+                            required maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
             </div>
-            <!------- Botão para enviar o link de recuperação ------->
             <div class="enter">
                 <button type="submit">ENVIAR</button>
             </div>
