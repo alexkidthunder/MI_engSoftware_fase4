@@ -83,6 +83,7 @@
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr> <!--Header da Tabela-->
+                            <th scope="CPF">Data</th>
                             <th scope="col">Data</th>
                             <th scope="col">Hora</th>
                             <th scope="col">Ação</th>
@@ -94,6 +95,7 @@
     
                             @foreach (array_reverse($logs) as $value)
                                 <tr>
+                                    <td> {{ $value['CPF'] }} </td>
                                     <td> {{ $value['Data_Log'] }} </td>
                                     <td> {{ $value['Hora_Agend'] }} </td>
                                     <td> {{ $value['Acao']}} </td>
