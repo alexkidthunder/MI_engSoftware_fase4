@@ -54,7 +54,8 @@ class AdminController extends Controller
         $horas = date('H:i:s');                               //detecta hora
 
         //insere no banco de dados
-        $novoLog = "INSERT INTO logs (Data_Log, Hora_Agend, Ip, Acao) values ('$data', '$horas', '$ip', '$acao')";
+        $cpf = HomeController::obterCpf();
+        $novoLog = "INSERT INTO logs (CPF,Data_Log, Hora_Agend, Ip, Acao) values ('$cpf','$data', '$horas', '$ip', '$acao')";
         mysqli_query($connect, $novoLog);
     }
 

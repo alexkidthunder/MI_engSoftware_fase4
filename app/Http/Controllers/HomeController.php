@@ -1452,13 +1452,15 @@ class HomeController extends Controller
                 $vetor[$contador + 1]= $sql['Data_Log'];
                 $vetor[$contador + 2]= $sql['Hora_Agend'];
                 $vetor[$contador + 3]= $sql['Acao'];
-                $contador = $contador + 4;
+                $vetor[$contador + 4]= $sql['CPF'];
+                $contador = $contador + 5;
             };
 
             for ($i = count($vetor)-1; $i >= 0;$i--) {
-                if ($i % 4 == 0) {
+                if ($i % 5 == 0) {
                     $lista =  $lista.'
                     <tr> <!--Cada Log-->
+                        <td>'.$vetor[$i+4].'</td>
                         <td>'.$vetor[$i].'</td>
                         <td>'.$vetor[$i+1].'</td>
                         <td>'.$vetor[$i+2].'</td>
@@ -1492,6 +1494,7 @@ class HomeController extends Controller
                                 <table>
                                     <thead>
                                         <tr>
+                                            <th>CPF</th>
                                             <th>IP</th>
                                             <th>Data</th>
                                             <th>Hora do Log</th>
