@@ -276,14 +276,14 @@
                         @endif
                         <!--Fim da permissão-->
 
-                        <!--Inicio da permissão-->
+                      {{-- <!--Inicio da permissão-->
                         @if (isset($p[30]))
                             <div class="col-6 col-md-3 col-lg-13 content-center" name="gerenciamento_hospitalar">
                                 <input type="checkbox" name="p30" {{ $p[30] }}><br>
                                 <label>Remoção do leito</label>
                             </div>
                         @endif
-                        <!--Fim da permissão-->
+                        <!--Fim da permissão--> --}} 
                         
                         <!--Inicio da permissão-->
                         @if (isset($p[9]))
