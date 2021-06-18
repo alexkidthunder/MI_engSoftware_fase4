@@ -1200,3 +1200,6 @@ input[type=number] {
     padding-inline: 10px;
 }
 
+.NoWrapText{
+    white-space: nowrap;
+}
