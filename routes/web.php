@@ -3,6 +3,7 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EnfChefeController;
+use App\Mail\ClasseMail;
 use Illuminate\Support\Facades\Route;
 
 
@@ -26,7 +27,16 @@ Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::post('/primeiroAcesso', [HomeController::class, 'primeiroAcesso'])->name('primeiroAcesso');
 Route::get('/primeiroAcesso', [HomeController::class, 'acessarPrimeiroAcesso'])->name('acessarPrimeiroAcesso');
 Route::post('index/menu', [HomeController::class, 'login']);
-Route::get('/esqueciSenha', [HomeController::class, 'esqueciSenha'])->name('esqueciSenha');
+Route::post('/esqueciSenha', [HomeController::class, 'esqueciSenha'])->name('esqueciSenha');
+Route::get('/esqueciSenha', [HomeController::class, 'esqueciSenhaView'])->name('esqueciSenhaView');
+Route::post('/definirSenha', [HomeController::class, 'definirSenha'])->name('definirSenha');
+Route::get('/definirSenha', [HomeController::class, 'definirSenhaView'])->name('definirSenhaView');
+Route::get('/checarCPF', [HomeController::class, 'checarCPFView'])->name('checarCPFView');
+Route::post('/checarCPF', [HomeController::class, 'checarCPF'])->name('checarCPF');
+
+Route::get('/checarHash/{hash}', [HomeController::class, 'checarHash'])->name('checarHash');
+//Route::get('checarHash/{param}', [HomeController::class, 'checarHash']);
+
 
 /*-------------------Rota para logout----------------- */
 

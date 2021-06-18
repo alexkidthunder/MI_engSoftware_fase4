@@ -62,14 +62,33 @@
     </div>
     <!---------------- fim da Caixa --------------->
 
+
+    <!-------Mensagem de erro------->
+        @if(Session::has('error'))
+        <div class="msg-error" role="alert">
+                {{Session::get('error')}}
+        </div>
+        @endif  
+        <!-------Mensagem de sucesso------->
+        @if(Session::has('success'))
+        <div class="msg-sucess">
+                {{Session::get('success')}}
+        </div>
+        @endif
+
+
+
+
     <!----------- Recuperação da senha do usuário ----------->
-    <form id="password-login" class="form" action="">
+    <form id="password-login" class="form" action="{{ route('esqueciSenha') }}" method="POST">
+        @csrf
         <div class="box-login">
-            <h2>Esqueci a Senha</h2>
+            <h2>Esqueci a senha</h2>
+            <h4>Informe no campo abaixo o endereço de e-mail de cadastro que você possui no site</h4>
             <div>
                 <!------ Campo para a inserção do e-mail ------>
                 <label>Email</label>
-                <input type="email" name="email" placeholder="Digite seu Email" required>
+                <input type="email" name="email" placeholder="Digite seu e-mail" required>
             </div>
             <!------- Botão para enviar o link de recuperação ------->
             <div class="enter">

@@ -12862,6 +12862,7 @@ INSERT INTO `leitos` (`Ocupado`, `Identificacao`) VALUES
 
 CREATE TABLE IF NOT EXISTS `logs` (
   `Id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `CPF` char(14) NOT NULL,
   `Data_Log` date NOT NULL,
   `Hora_Agend` time NOT NULL,
   `Ip` varchar(15) NOT NULL,

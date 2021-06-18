@@ -83,6 +83,7 @@ CREATE TABLE leitos (
 /*Cria tabela  logs*/
 CREATE TABLE logs (
   Id bigint(20) NOT NULL,
+  CPF char(14) NOT NULL,
   Data_Log date NOT NULL,
   Hora_Agend time NOT NULL,
   Ip varchar(15) NOT NULL,
@@ -175,7 +176,6 @@ ALTER TABLE cid_prontuario
   ADD PRIMARY KEY (id),
   ADD KEY id_CID (id_CID),
   ADD KEY id_prontuario (id_prontuario);
-
 
 ALTER TABLE usuarios
   ADD PRIMARY KEY CPF (CPF); /* Seleciona o campo CPF como chave primaria*/

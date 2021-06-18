@@ -60,7 +60,7 @@
                         </li>
 
 
-                        <li class="drop-down title-nav"><a>AGENDAMENTOS E<br> MEDICAMENTOS <i
+                        <li class="drop-down title-nav"><a>AGENDAMENTOS E MEDICAMENTOS <i
                                     class="fas fa-angle-down"></i></a>
                             <ul>
                                 <!-- Comum a enfermeiro e estagiário -->
