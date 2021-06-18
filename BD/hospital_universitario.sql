@@ -281,4 +281,4 @@ ALTER TABLE permissao_cargo
 
 ALTER TABLE prontuarios
   ADD CONSTRAINT prontuario_ibfk_1 FOREIGN KEY (Id_leito) REFERENCES leitos (Identificacao), /*Cria chave estrangeira fazendo referencia a leito*/
-  ADD CONSTRAINT prontuario_ibfk_2 FOREIGN KEY (Cpfpaciente) REFERENCES pacientes (CPF); /*Cria chave estrangeira fazendo referencia a paciente*/
+  ADD CONSTRAINT prontuario_ibfk_2 FOREIGN KEY (Cpfpaciente) REFERENCES pacientes (CPF) ON UPDATE CASCADE; /*Cria chave estrangeira fazendo referencia a paciente*/
