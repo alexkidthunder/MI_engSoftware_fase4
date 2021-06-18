@@ -115,20 +115,19 @@
                         </div>
                     </form>
                 </div>
-
             </div>
 
-            <!---------------------Fim da tela de Leitos Cadastrados --------------------->
-            <form action="/removerLeito" method="get">
+          <!---------------------Fim da tela de Leitos Cadastrados --------------------->
+            <!--<form action="/removerLeito" method="get">
                 <div class="col-lg-6">
-                    <label>Remover leito</label> <br> <br>
+                    <label>Remover leito</label> <br> <br>-->
                     <!---------------------Inicio de remover leito--------------------->
-                    <input id="focorrencia" name="focorrencia" type="text" maxlength="10" required>
+                 <!--   <input id="focorrencia" name="focorrencia" type="text" maxlength="10" required>
                     <div>
                         <button class="btn-blue"> Deletar </button>
                     </div>
                 </div>
-            </form>
+            </form>-->
             <!---------------------Fim de remover leito--------------------->
         </div>
     </section>
