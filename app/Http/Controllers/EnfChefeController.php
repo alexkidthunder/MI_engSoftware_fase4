@@ -299,14 +299,16 @@ class EnfChefeController extends Controller
             return redirect()->back()->with('msg-error', 'Medicamento não cadastrado em nosso sistema, verifique se digitou corretamente!');   
         }
         $medicamento = mysqli_fetch_array($query1);
-        // verificar se o aplicador existe
-        $sql2 = "SELECT * FROM usuarios WHERE Nome= '$request->aplicador_agendamento'";
-        $query2 = mysqli_query($connect, $sql2);    
-        if(mysqli_num_rows($query2) == 0){ // aplicador n existe
-            return redirect()->back()->with('msg-error', 'Aplicador não cadastrado em nosso sistema, verifique se digitou corretamente!');   
-        }
-
+   
+          
+      
+        
         // buscar os agendamentos do aplicador para checar o choque de horários
+        if($request->aplicador_agendamento != null){
+        // buscar dados do aplicador
+        $sql2 = "SELECT * FROM usuarios WHERE Nome= '$request->aplicador_agendamento'";
+        $query2 = mysqli_query($connect, $sql2); 
+
         $usuario = mysqli_fetch_array($query2);
         $Cpf_Aplicador = $usuario['CPF'];
         $str_hora = "$request->horario_agendamento:00";
@@ -323,6 +325,10 @@ class EnfChefeController extends Controller
             }
         }
 
+    }else{
+        $usuario = null;
+    }
+
         // Pegar o prontuário do paciente
          $sql4 = "SELECT * FROM prontuarios WHERE Cpfpaciente = '$request->Cpf_Paciente'";
          $query4 = mysqli_query($connect, $sql4);
@@ -332,21 +338,34 @@ class EnfChefeController extends Controller
                 $prontuario = $dado;
             }
          }
+         
 
-         // cadastrar o agendamento
-         $str_hora = "$request->horario_agendamento:00";
-       
+        //dados para o cadastro do agendamento
+         $str_hora = "$request->horario_agendamento:00";       
          $id_prontuario = $prontuario['ID'];
          $codigo_medicamento = $medicamento['Codigo'];
+         //verificar se o agendamento não está duplicado
+         $sql6 = "SELECT * FROM agendamentos WHERE ID_Prontuario = '$id_prontuario'";
+         $query6 = mysqli_query($connect, $sql6);
+         while($agnd = mysqli_fetch_array($query6)){
+             if($agnd['Cod_medicamento'] == $codigo_medicamento && $agnd['Data_Agend'] == $request->data_agendamento
+                && $agnd['Hora_Agend'] == $str_hora && $agnd['Posologia'] == $request->posologia_agendamento){
+                    return redirect()->back()->with('msg-error', 'Já existe um agendamento idêntico a esse para essa date e horário');
+                }
+         }
+
+
+
+         // verifica se o agendamento é em aberto ou possuí aplicador
+         if($usuario != null){
          $cpf_usuario = $usuario['CPF'];
+         $sql5 = "INSERT INTO `agendamentos` (`Codigo`, `Posologia`, `Data_Agend`, `Realizado`, `Hora_Agend`, `ID_prontuario`, `CPF_usuario`, `Cod_medicamento`) VALUES (NULL, '$request->posologia_agendamento', '$request->data_agendamento', '0'  , '$str_hora' , '$id_prontuario' , '$cpf_usuario', '$codigo_medicamento' ) "; 
+         }else{
+             $cpf_usuario = NULL;
+             $sql5 = "INSERT INTO `agendamentos` (`Codigo`, `Posologia`, `Data_Agend`, `Realizado`, `Hora_Agend`, `ID_prontuario`, `CPF_usuario`, `Cod_medicamento`) VALUES (NULL, '$request->posologia_agendamento', '$request->data_agendamento', '0'  , '$str_hora' , '$id_prontuario' , NULL, '$codigo_medicamento' ) "; 
+         }         
       
-         
- $sql5 = "INSERT INTO `agendamentos` (`Codigo`, `Posologia`, `Data_Agend`, `Realizado`, `Hora_Agend`, `ID_prontuario`, `CPF_usuario`, `Cod_medicamento`) VALUES (NULL, '$request->posologia_agendamento', '$request->data_agendamento', '0'  , '$str_hora' , '$id_prontuario' , '$cpf_usuario', '$codigo_medicamento' ) "; 
-
-        // $sql6 = "INSERT INTO `agendamentos` (`Codigo`, `Posologia`, `Data_Agend`, `Realizado`, `Hora_Agend`, `ID_prontuario`, `CPF_usuario`, `Cod_medicamento`) VALUES (NULL, '1', '2021-06-14', '0', '11:22:00', '1', '250.414.528-74', '511301501162416')";
-         //$query6 = mysqli_query($connect, $sql6);
-         
-
+   
         $query5 = mysqli_query($connect, $sql5);
          
         if($query5 == true){
@@ -539,7 +558,12 @@ class EnfChefeController extends Controller
     public function cadastrarLeito(Request $request)
     {               //cadastro de leito
 
+        VerificaLoginController::verificarLogin();
         include("db.php");
+        $resultado = VerificaLoginController::verificaPermissao(29);
+
+        if($resultado == 1){
+     
 
         //busca no banco de dados
         $sql = "SELECT * FROM leitos WHERE Identificacao = '$request->Leito'";
@@ -566,6 +590,11 @@ class EnfChefeController extends Controller
         } else {
             return redirect()->route('cadastroLeito')->with('msg-error', 'Leito já cadastrado!');
         }
+
+
+    }else{
+        return redirect()->back()->with('msg-error', 'Você não tem acesso a essa pagina!!!'); 
+    }
     }
 
     public function removerLeito(Request $request)
@@ -581,7 +610,7 @@ class EnfChefeController extends Controller
 
                   // verifica se o leito está ocupado
                 $leito = mysqli_fetch_array($query);
-                if($leito['Ocupado'] == 0){
+                if($leito['Ocupado'] == 1){
                     return redirect()->back()->with('msg-error', 'Você não pode remover um leito ocupado');
                 }
 
