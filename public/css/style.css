@@ -1160,6 +1160,117 @@ input[type=number] {
 }
 
 /*----------------------------Relatorio Gerencial ---------------------------------*/
+.card-relatorio {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #F2F2F2;
+    background-clip: border-box;
+    border-radius: 40px;
+    width: 500px;
+    height: 140px;
+    box-shadow: 1px 1px 1px #C8C8C8;
+    -webkit-box-shadow: 2px 2px 8px #C8C8C8;
+    -moz-box-shadow: 2px 2px 8px #C8C8C8;
+    padding: 0 30px;
+}
+
+.card-relatorio:hover {
+    background-color: #8ED1F0;
+    border-radius: 5px;
+    transform: scale(1.2);
+}
+
+.card-relatorio {
+    border: 0;
+    margin: 0 10px 30px 10px;
+}
+
+.card-relatorio_title a {
+    align-self: center;
+    color: black;
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+    line-height: 20px;
+}
+
+.card-relatorio_title b {
+    align-self: center;
+    color: blue;
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+    line-height: 60px;
+    padding-top: 20px;
+    font-size: 45px;
+}
+.card-relatorio_title b:hover, .card-relatorio_title b:focus {
+    color: #0D6EFD;
+}
+
+.card-relatorio_title a:hover, .card-relatorio_title a:focus {
+    color: #0D6EFD;
+}
+
+
+.card-relatorio-icon {
+    position: relative;
+    margin: 10px 0 10px 0;
+}
+
+.card-relatorio-icon .relatorio-icon {
+    width: 50px;
+    height: 100px;
+}
+.relatorio-icon i {
+    padding-top: 30px;
+    font-size: 60px;
+    color: #007bff;
+}
+
+.relatorio-list i {
+    font-size: 25px;
+}
+
+@media (min-width: 426px) and (max-width:768px) {
+    .card-relatorio {
+        margin: 0 5px 20px 5px;
+    }
+    .card-relatorio-icon .relatorio-icon {
+        width: 40px;
+        height: 40px;
+    }
+    .relatorio-icon i {
+        padding-top: 8px;
+        font-size: 35px;
+    }
+}
+
+@media (max-width: 425px) {
+    .card-relatorio {
+        margin: 0 5px 20px 5px;
+    }
+    .card-relatorio-icon .relatorio-icon {
+        width: 35px;
+        height: 35px;
+    }
+    .relatorio-icon i {
+        padding-top: 8px;
+        font-size: 35px;
+    }
+    .card-relatorio {
+        height: 120px;
+    }
+}
+
+h5 {
+    color: #028DCE;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+
 .card-options_title b {
     align-self: center;
     color: blue;
