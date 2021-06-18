@@ -21,16 +21,16 @@
                 <a name="nav-item" href="{{ route('editarPerfil') }} " class="user"> <i class="fas fa-user"></i></a>
                 <div class="col-lg-9">
                      @if(isset($_SESSION['administrador']))
-                    <h2 class="NoWrapText"><a id="user-name" name="nav-item" href="{{ route('editarPerfil') }}">{{$_SESSION['nome']}}</a></h2>
+                    <h2 class="NoWrapText"><a id="user-name" name="nav-item" href="{{ route('editarPerfil') }}">{{ $_SESSION['permissoes'][36] }}</a></h2>
                     @endif
                     @if(isset($_SESSION['enfermeiroChefe']))
-                    <h2 class="NoWrapText"><a id="user-name" name="nav-item" href="{{ route('editarPerfil') }}">{{$_SESSION['nome']}}</a></h2>
+                    <h2 class="NoWrapText"><a id="user-name" name="nav-item" href="{{ route('editarPerfil') }}">{{ $_SESSION['permissoes'][36] }}</a></h2>
                     @endif
                     @if(isset($_SESSION['enfermeiro']))
-                    <h2 class="NoWrapText"><a id="user-name" name="nav-item" href="{{ route('editarPerfil') }}">{{$_SESSION['nome']}}</a></h2>
+                    <h2 class="NoWrapText"><a id="user-name" name="nav-item" href="{{ route('editarPerfil') }}">{{ $_SESSION['permissoes'][36] }}</a></h2>
                     @endif
                     @if(isset($_SESSION['estagiario']))
-                    <h2 class="NoWrapText"><a id="user-name" name="nav-item" href="{{ route('editarPerfil') }}">{{$_SESSION['nome']}}</a></h2>
+                    <h2 class="NoWrapText"><a id="user-name" name="nav-item" href="{{ route('editarPerfil') }}">{{ $_SESSION['permissoes'][36] }}</a></h2>
                     @endif
                     
                 </div>

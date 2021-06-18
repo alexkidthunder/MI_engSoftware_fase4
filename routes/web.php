@@ -89,7 +89,7 @@ Route::post('/cadastroCID', [HomeController::class, 'cadastrarCidProntuario']);
 Route::post('/cadastroOcorr', [HomeController::class, 'adicionarOcorrencias']);
 Route::post('/finalizarProntuario', [HomeController::class, 'finalizarProntuario']);
 
-/*Atenção*/Route::post('/editarProntuario', [HomeController::class, 'editarProntuario']); // Não está sendo mais utilizada
+Route::post('/editarProntuario', [HomeController::class, 'editarProntuario']);
 
 /*------------ Rota para cadastro de paciente  e prontuário------------------------ */
 
