@@ -4,9 +4,7 @@ userName = document.getElementById('user-name'); // Nome do usuário
 
 function splitFirstName(NomeCompleto){
     Nome = NomeCompleto.split(' ');
-    console.log(Nome);
-    PrimeiroNome = Nome[0] + " " + Nome[1];
-    console.log(PrimeiroNome);
+    PrimeiroNome = Nome[0] + " " + Nome[Nome.length-1];
     return PrimeiroNome;
 }
 
