@@ -46,7 +46,27 @@
     @endif
     <!---------------Fim de notificação-------------->
 
+ 
+
     <h1>Backup do Sistema</h1>
+
+   
+                <!----------- Mensagem de erro ------------->
+                @if (Session::has('error'))
+                    <div class="msg-error" role="alert">
+                        {{ Session::get('error') }}
+                    </div>
+                @endif
+                <!--------- Fim da mensagem de erro --------->
+
+                <!---------- Mensagem de confirmação ---------->
+                @if (Session::has('success'))
+                    <div class="msg-sucess" role="alert">
+                        {{ Session::get('success') }}
+                    </div>
+                @endif
+                <!------ Fim da mensagem de confirmação ------->
+
     <section>
         <div class="container-1">
             <div class="box">

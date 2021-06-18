@@ -247,11 +247,11 @@
                         <!------------ Senha atual ------------>
                             <div align="center">
                                 <input type="password" id="senha-atual" name="senhaAtual"
-                                    placeholder="insira a senha atual">
+                                    placeholder="Insira a senha atual">
                             </div>
                             <!------------ Nova senha ------------>
                             <div align="center">
-                                <input type="password" id="senha" name="senha" placeholder="insira a nova senha">
+                                <input type="password" id="senha" name="senha" placeholder="Insira a nova senha">
                             </div>
                             <!------------ Confirmação da nova senha ------------>
                             <div align="center">

@@ -716,7 +716,7 @@ class AdminController extends Controller
             $acao = "Agendou um backup não automático nº $cod";
             AdminController::salvarLog($acao, $ip);
         }
-        return redirect()->back();
+        return redirect()->back()->with('success',"Agendamento de backup cadastrado com sucesso!!");
     }
 
     //função para remover agendamento de backup
@@ -731,7 +731,7 @@ class AdminController extends Controller
         $acao = "Removeu um backup agendamento";
         AdminController::salvarLog($acao, $ip);
 
-        return redirect()->back();
+        return redirect()->back()->with('error',"Agendamento de backup removido com sucesso!!");;
     }
 
     //função para pegar as informações do Relatório Gerencial
