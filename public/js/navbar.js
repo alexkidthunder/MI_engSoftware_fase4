@@ -3,7 +3,10 @@ nav_itens = document.getElementsByName('nav-item')
 userName = document.getElementById('user-name'); // Nome do usuário
 
 function splitFirstName(NomeCompleto){
-    PrimeiroNome = NomeCompleto.split(' ',1);
+    Nome = NomeCompleto.split(' ');
+    console.log(Nome);
+    PrimeiroNome = Nome[0] + " " + Nome[1];
+    console.log(PrimeiroNome);
     return PrimeiroNome;
 }
 
@@ -26,7 +29,9 @@ menu_options = document.getElementById('check-options');
 
 nav = document.getElementById('nav');
 
-menu_options.addEventListener('click',function(){
-    nav.classList.toggle('active');
-    sessionStorage.clear();
-});
+if(menu_options != null){
+    menu_options.addEventListener('click',function(){
+        nav.classList.toggle('active');
+        sessionStorage.clear();
+    });
+}

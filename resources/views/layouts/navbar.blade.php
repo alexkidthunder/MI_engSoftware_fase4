@@ -22,13 +22,13 @@
                     <a name="nav-item" href="{{ route('editarPerfil') }} " class="user"> <i class="fas fa-user"></i></a>
                     <div class="col-lg-6">
                         @if (isset($_SESSION['enfermeiro']))
-                            <h2><a id="user-name" name="nav-item" href="{{ route('editarPerfil') }}">{{ $_SESSION['nome'] }}</a></h2>
+                            <h2 class="NoWrapText"><a id="user-name" name="nav-item" href="{{ route('editarPerfil') }}">{{ $_SESSION['permissoes'][36] }}</a></h2>
                         @endif
                         @if (isset($_SESSION['estagiario']))
-                            <h2><a id="user-name" name="nav-item" href="{{ route('editarPerfil') }}">{{ $_SESSION['nome'] }}</a></h2>
+                            <h2 class="NoWrapText"><a id="user-name" name="nav-item" href="{{ route('editarPerfil') }}">{{ $_SESSION['permissoes'][36] }}</a></h2>
                         @endif
                         @if (isset($_SESSION['enfermeiroChefe']))
-                            <h2><a id="user-name" name="nav-item" href="{{ route('editarPerfil') }}">{{ $_SESSION['nome'] }}</a></h2>
+                            <h2 class="NoWrapText"><a id="user-name" name="nav-item" href="{{ route('editarPerfil') }}">{{ $_SESSION['permissoes'][36] }}</a></h2>
                         @endif
                     </div>
                 </div>
@@ -39,21 +39,21 @@
 
                     <ul id="menu">
                         <li class="title-nav"><a name="nav-item" href="{{ route('menu') }}">INÍCIO</a></li>
-
+                        @if(isset($_SESSION['permissoes']))
                         <li class="drop-down title-nav"><a>PACIENTES <i class="fas fa-angle-down"></i></a>
                             <ul>
                                 <!-- Apenas enfermeiro e enfermeiro chefe-->
-                                @if (isset($_SESSION['permissoes'][17]))    
+                                @if ($_SESSION['permissoes'][17] == "1")    
                                     <li><a name="nav-item" href="{{ route('cadastroPaciente') }}">Cadastro de pacientes</a></li>
                                 @endif
-                                @if (isset($_SESSION['permissoes'][33]))
+                                @if ($_SESSION['permissoes'][33] == "1")
                                     <li><a name="nav-item" href="{{ route('cadastroProntuario') }}">Cadastro de prontuário</a></li>
                                 @endif
                                 <!-- Comum a enfermeiro, estagiário e enfermeiro chefe -->
-                                @if (isset($_SESSION['permissoes'][18]))
+                                @if ($_SESSION['permissoes'][18] == "1")
                                 <li><a name="nav-item" href="{{ route('pacientes') }}">Pacientes e prontuários</a></li>
                                 @endif
-                                @if (isset($_SESSION['permissoes'][34]))
+                                @if ($_SESSION['permissoes'][34] == "1")
                                 <li><a name="nav-item" href="{{ route('historicoProntuario') }}">Histórico de prontuários</a></li>
                                 @endif
                             </ul>
@@ -64,39 +64,39 @@
                                     class="fas fa-angle-down"></i></a>
                             <ul>
                                 <!-- Comum a enfermeiro e estagiário -->
-                                @if (isset($_SESSION['permissoes'][15]))
+                                @if ($_SESSION['permissoes'][15] == "1")
                                     <li><a name="nav-item" href="{{ route('agendamentos') }}">Verificação de agendamentos</a></li>
                                 @endif
-                                @if (isset($_SESSION['permissoes'][23]))
+                                @if ($_SESSION['permissoes'][23] == "1")
                                     <li><a name="nav-item" href="{{ route('meusAgendamentos') }}">Meus agendamentos</a></li>
                                 @endif
-                                @if (isset($_SESSION['permissoes'][22]))
+                                @if ($_SESSION['permissoes'][22] == "1")
                                     <li><a name="nav-item" href="{{ route('agendamentosRealizados') }}">Meus agendamentos
                                             realizados</a>
                                     </li>
                                 @endif
                                 <!-- Enfermeiro chefe-->
-                                @if (isset($_SESSION['permissoes'][12]))
+                                @if ($_SESSION['permissoes'][12] == "1")
                                     <li><a name="nav-item" href="{{ route('cadastroAgendamento') }}">Cadastro de agendamentos</a>
                                     </li>
                                 @endif
                                 @if (isset($_SESSION['enfermeiroChefe']))
                                     <li><a name="nav-item" href="{{ route('listaAgendamentos') }}">Listagem de agendamentos</a></li>
                                 @endif
-                                @if (isset($_SESSION['permissoes'][9]))  
+                                @if ($_SESSION['permissoes'][9] == "1")  
                                     <li><a name="nav-item" href="{{ route('cadastroMedicamento') }}">Cadastro de medicamentos</a>
                                     </li>
                                 @endif
-                                @if (isset($_SESSION['permissoes'][35]))
+                                @if ($_SESSION['permissoes'][35] == "1")
                                     <li><a name="nav-item" href="{{ route('listaMedicamento') }}">Medicamentos cadastados</a></li>
                                 @endif
-                                @if (isset($_SESSION['permissoes'][16]))
+                                @if ($_SESSION['permissoes'][16] == "1")
                                     <li><a name="nav-item" href="{{ route('responsaveis') }}">Responsáveis por aplicação</a></li>
                                 @endif
                             </ul>
                         </li>
 
-                        @if (isset($_SESSION['permissoes'][29]))
+                        @if ($_SESSION['permissoes'][29] == "1")
                             <li class="drop-down title-nav"><a>LEITOS <i class="fas fa-angle-down"></i></a>
                                 <ul>
                                     <li><a name="nav-item" href="{{ route('cadastroLeito') }}">Cadastro e remoção de leito</a>
@@ -108,17 +108,17 @@
 
                             <li class="drop-down title-nav"><a>PLANTONISTAS <i class="fas fa-angle-down"></i></a>
                                 <ul>
-                                @if (isset($_SESSION['permissoes'][7]))
+                                @if ($_SESSION['permissoes'][7] == "1")
                                     <li><a name="nav-item" href="{{ route('cadastroPlantonista') }}">Cadastro de plantonista</a>
                                     </li>
                                 @endif
-                                @if (isset($_SESSION['permissoes'][14]))
+                                @if ($_SESSION['permissoes'][14] == "1")
                                     <li><a name="nav-item" href="{{ route('listagemPlantonistas') }}">Listagem de
                                             plantonista</a></li>
                                 @endif
                                 </ul>
                             </li>
-
+                        @endif
                         <!-------- Botão de logout -------->
                         <li><a name="nav-item" href="/logout" class="logout-icon"> <i class="fas fa-sign-out-alt"></i></a></li>
                     </ul>

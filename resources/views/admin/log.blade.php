@@ -83,7 +83,7 @@
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr> <!--Header da Tabela-->
-                            <th scope="CPF">Data</th>
+                            <th scope="col">CPF</th>
                             <th scope="col">Data</th>
                             <th scope="col">Hora</th>
                             <th scope="col">Ação</th>
