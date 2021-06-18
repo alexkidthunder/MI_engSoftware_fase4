@@ -119,7 +119,12 @@
             <button class="btn-blue" , id="action-btn3">Dados de Paciente</button>
             <div class="box-scheduling" , id="container-teste3">
                 <div id="register">
-                    <form> <!--Colocar coisas do forms aqui-->
+                    <form action="/editarProntuario" method="post"> <!--Colocar coisas do forms aqui-->
+                    @csrf
+                    <input type="hidden" name="cpfA" value="{{ $paciente['cpf'] }}">
+                    <input type="hidden" name="nomeA" value="{{ $paciente['nome'] }}">
+                    <input type="hidden" name="leitoA" value="{{ $paciente['leito'] }}">
+                    <input type="hidden" name="nascimentoA" value="{{ $paciente['nascimento'] }}">
                     <div class="row">
                         @if (isset($paciente))
                             <!----------Nome----------->
