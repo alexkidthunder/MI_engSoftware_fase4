@@ -90,8 +90,8 @@ class AdminController extends Controller
                     }
                 }
             }
-
             return view('/admin/permissao', ['p' => $p]); //retorna o vetor de posições para a pagina com as checkbox detevidamente marcadas
+        
         } elseif ($atribuicao == 'enfermeiroChefe') {
             $sql = "";
             $query = null;
@@ -105,8 +105,8 @@ class AdminController extends Controller
                     }
                 }
             }
-
             return view('/admin/permissao', ['p' => $p]);
+        
         } elseif ($atribuicao == 'enfermeiro') {
             $sql = "";
             $query = null;
@@ -120,8 +120,8 @@ class AdminController extends Controller
                     }
                 }
             }
-
             return view('/admin/permissao', ['p' => $p]);
+
         } elseif ($atribuicao == 'estagiario') {
             $sql = "";
             $query = null;
@@ -135,8 +135,8 @@ class AdminController extends Controller
                     }
                 }
             }
-
             return view('/admin/permissao', ['p' => $p]);
+
         } else {
             return view('/admin/permissao'); //caso não tenha nada selecionado retorna a view em branco
         }
@@ -171,6 +171,7 @@ class AdminController extends Controller
                 AdminController::salvarLog($acao, $ip);
 
                 return redirect()->back()->with('msg', "Permissões alteradas!!!!"); // retorna mensagem de sucesso na alteração de permissões
+
             } elseif ($atribuicao == 'enfermeiro') {
                 for ($i = 36; $i < 65; $i++) {
                     if (isset($_GET['p' . ($i - 29)])) {
@@ -188,6 +189,7 @@ class AdminController extends Controller
                 AdminController::salvarLog($acao, $ip);
 
                 return redirect()->back()->with('msg', "Permissões alteradas!!!!");
+
             } elseif ($atribuicao == 'estagiario') {
                 for ($i = 65; $i < 94; $i++) {
                     if (isset($_GET['p' . ($i - 58)])) {
@@ -207,7 +209,7 @@ class AdminController extends Controller
                 return redirect()->back()->with('msg', "Permissões alteradas!!!!");
             }
         } else {
-            return redirect()->back()->with('msg-error', 'Você não pode alterar permissões de Administradores'); // caso tente alterar permissão de um administrador exibi mensagem de erro pois ela não pode ser alterada
+            return redirect()->back()->with('msg-error', 'Você não pode alterar permissões de administradores'); // caso tente alterar permissão de um administrador exibi mensagem de erro pois ela não pode ser alterada
         }
     }
 
@@ -244,7 +246,7 @@ class AdminController extends Controller
         if (isset($_GET['cpf'])) {
             $cpf = $_GET['cpf'];
             if (strcmp($_SESSION['administrador'], $cpf) == 0) {
-                return redirect()->back()->with('msg-error', 'Você não pode remover sua própria conta');
+                return redirect()->back()->with('msg-error', 'Você não pode remover sua própria conta!!');
             }
 
             $query = "DELETE FROM usuarios WHERE CPF = '$cpf'";
@@ -252,7 +254,7 @@ class AdminController extends Controller
             $status = mysqli_query($connect, $query);
 
             $ip = $_SERVER["REMOTE_ADDR"];
-            $acao = "Removeu usuario do sistema";
+            $acao = "Removeu usuário do sistema";
             AdminController::salvarLog($acao, $ip);
 
             return view('/admin/remocaoUsuario', ['status' => $status]);
@@ -337,9 +339,9 @@ class AdminController extends Controller
                     $acao = "Alterou cargo de enfermeiro para enfermeiro chefe";
                     AdminController::salvarLog($acao, $ip);
 
-                    return redirect()->back()->with('msg', 'Cargo alterado com sucesso!!!!'); //Redireciona para pagina anterior e mostra mensagem de erro
+                    return redirect()->back()->with('msg', 'Cargo alterado com sucesso!!'); //Redireciona para pagina anterior e mostra mensagem de erro
                 } else {
-                    return redirect()->back()->with('msg-error', 'Cargo selecionado invalido'); //Redireciona para pagina anterior e mostra mensagem de erro
+                    return redirect()->back()->with('msg-error', 'Cargo selecionado inválido!!'); //Redireciona para pagina anterior e mostra mensagem de erro
                 }
             } elseif ($atribuicao == 'Estagiario') {
                 if ($request->novaAtribuicao == "Enfermeiro") {
@@ -355,7 +357,7 @@ class AdminController extends Controller
                     $acao = "Alterou cargo de estagiário para enfermeiro";
                     AdminController::salvarLog($acao, $ip);
 
-                    return redirect()->back()->with('msg', 'Cargo alterado com sucesso!!!!'); //Redireciona para pagina anterior e mostra mensagem de erro
+                    return redirect()->back()->with('msg', 'Cargo alterado com sucesso!!!'); //Redireciona para pagina anterior e mostra mensagem de erro
                 } elseif ($request->novaAtribuicao == "Enfermeiro Chefe") {
                     $delete = "DELETE FROM estagiarios WHERE CPF='$cpf'";
                     mysqli_query($connect, $delete); // Deleta usuarios
@@ -370,9 +372,9 @@ class AdminController extends Controller
                     $acao = "Alterou cargo de estagiário para enfermeiro chefe";
                     AdminController::salvarLog($acao, $ip);
 
-                    return redirect()->back()->with('msg', 'Cargo alterado com sucesso!!!!'); //Redireciona para pagina anterior e mostra mensagem de erro
+                    return redirect()->back()->with('msg', 'Cargo alterado com sucesso!!!'); //Redireciona para pagina anterior e mostra mensagem de erro
                 } else {
-                    return redirect()->back()->with('msg-error', 'Cargo selecionado invalido'); //Redireciona para pagina anterior e mostra mensagem de erro
+                    return redirect()->back()->with('msg-error', 'Cargo selecionado inválido!!'); //Redireciona para pagina anterior e mostra mensagem de erro
                 }
             }
         } else {
@@ -707,7 +709,7 @@ class AdminController extends Controller
             $acao = "Agendou um backup automático nº $cod";
             AdminController::salvarLog($acao, $ip);
         } else {
-            //// se nãoo agendamento sera inserido com data informada e automatico com 0 que equivale  a false
+            //// se não o agendamento sera inserido com data informada e automatico com 0 que equivale  a false
             $data = $request->date;
             $insert = "INSERT INTO backups_agendados (ID,Data_backup,Hora_backup,ip,Automatico) VALUES ('$cod','$data','$hora','$ip','0')";
             mysqli_query($connect, $insert);
@@ -729,7 +731,7 @@ class AdminController extends Controller
 
         //log
         $ip = $_SERVER["REMOTE_ADDR"];
-        $acao = "Removeu um backup agendamento";
+        $acao = "Removeu um backup agendado";
         AdminController::salvarLog($acao, $ip);
 
         return redirect()->back()->with('error',"Agendamento de backup removido com sucesso!!");;

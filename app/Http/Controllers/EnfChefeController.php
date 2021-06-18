@@ -308,8 +308,12 @@ class EnfChefeController extends Controller
         // buscar dados do aplicador
         $sql2 = "SELECT * FROM usuarios WHERE Nome= '$request->aplicador_agendamento'";
         $query2 = mysqli_query($connect, $sql2); 
-
+        if(mysqli_num_rows($query2) == 0){
+            return redirect()->back()->with('msg-error', 'Aplicador não encontrado');            
+        }    
         $usuario = mysqli_fetch_array($query2);
+        
+
         $Cpf_Aplicador = $usuario['CPF'];
         $str_hora = "$request->horario_agendamento:00";
         $sql3 = "SELECT * FROM agendamentos WHERE CPF_usuario = '$Cpf_Aplicador'";

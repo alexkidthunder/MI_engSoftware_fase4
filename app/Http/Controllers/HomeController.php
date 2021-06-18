@@ -199,7 +199,7 @@ class HomeController extends Controller
     //função de logout
     public function logout()
     {
-        // destroi todas as sessões existentes e retorna para pagina de login
+        // destroi todas as sessões existentes e retorna para página de login
         session_start();
         session_destroy();
 
@@ -395,26 +395,31 @@ class HomeController extends Controller
                 AdminController::salvarLog($acao, $ip);
 
                 //header('Location: /meuPerfil');
-                return redirect()->back()->with('msg', 'Senha alterada com sucesso!');
-                // redireciona para o meu perfil
+                return redirect()->back()->with('msg', 'Senha alterada com sucesso!');    // redireciona para o meu perfil
+                
+                //outros casos
             }else if(!(Hash::check($request->senhaAtual, $usuario['senha']))){
-                return redirect()->back()->with('msg-error', 'Senha antiga não bate com o nosso banco de dados!!!');
+                return redirect()->back()->with('msg-error', 'A senha digitada está diferente da senha cadastrada!!!');
             }else if($request->senha != $request->confirmacao){
-                return redirect()->back()->with('msg-error', 'Confirmação de senha falho. As senha precisam ser identicas!!!');
+                return redirect()->back()->with('msg-error', 'A senha de confirmação está diferente da nova senha. As senhas precisam ser idênticas!!!');
             }else{
-                return redirect()->back()->with('msg-error', 'Campos de confirmação de nova e antiga incorretos!!!!');
+                return redirect()->back()->with('msg-error', 'Campos de confirmação de nova e antiga senha estão incorretos!!!');
             }
         } elseif (isset($_SESSION['enfermeiroChefe'])) {
             $cpf = $_SESSION['enfermeiroChefe'];
+
+            //busca de senha do usuário
             $sql = "SELECT * FROM usuarios where CPF = '$cpf'";
             $query = mysqli_query($connect, $sql);
             while ($sql = mysqli_fetch_array($query)) {
                 $usuario['senha'] = $sql['Senha'];
             }
+
             if ((Hash::check($request->senhaAtual, $usuario['senha'])) and ($request->senha == $request->confirmacao)) {
                 //cria um hash a partir da nova senha
                 $senhaCript = Hash::make($request->senha);
 
+                //atualização de senha
                 $updateSenha = "UPDATE usuarios SET Senha = '$senhaCript' WHERE CPF = '$cpf'";
                 mysqli_query($connect, $updateSenha);
 
@@ -423,27 +428,32 @@ class HomeController extends Controller
                 $acao = "Usuário alterou senha";
                 AdminController::salvarLog($acao, $ip);
 
-                //header('Location: /meuPerfil');
-                return redirect()->back()->with('msg', 'Senha alterada com sucesso!');
-                // redireciona para o meu perfil
+                return redirect()->back()->with('msg', 'Senha alterada com sucesso!');      // redireciona para o meu perfil
+                
+                //outros casos
             }else if(!(Hash::check($request->senhaAtual, $usuario['senha']))){
-                return redirect()->back()->with('msg-error', 'Senha antiga não bate com o nosso banco de dados!!!');
+                return redirect()->back()->with('msg-error', 'A senha digitada está diferente da senha cadastrada!!!');
             }else if($request->senha != $request->confirmacao){
-                return redirect()->back()->with('msg-error', 'Confirmação de senha falho. As senha precisam ser identicas!!!');
+                return redirect()->back()->with('msg-error', 'A senha de confirmação está diferente da nova senha. As senhas precisam ser idênticas!!!');
             }else{
-                return redirect()->back()->with('msg-error', 'Campos de confirmação de nova e antiga incorretos!!!!');
+                return redirect()->back()->with('msg-error', 'Campos de confirmação de nova e antiga senha estão incorretos!!!');
             }
+
         } elseif (isset($_SESSION['enfermeiro'])) {
             $cpf = $_SESSION['enfermeiro'];
+
+            //busca de senha de usuário 
             $sql = "SELECT * FROM usuarios where CPF = '$cpf'";
             $query = mysqli_query($connect, $sql);
             while ($sql = mysqli_fetch_array($query)) {
                 $usuario['senha'] = $sql['Senha'];
             }
+
             if ((Hash::check($request->senhaAtual, $usuario['senha'])) and ($request->senha == $request->confirmacao)) {
                 //cria um hash a partir da nova senha
                 $senhaCript = Hash::make($request->senha);
 
+                //atualização de senha
                 $updateSenha = "UPDATE usuarios SET Senha = '$senhaCript' WHERE CPF = '$cpf'";
                 mysqli_query($connect, $updateSenha);
 
@@ -452,43 +462,50 @@ class HomeController extends Controller
                 $acao = "Usuário alterou senha";
                 AdminController::salvarLog($acao, $ip);
 
-                //header('Location: /meuPerfil');
-                return redirect()->back()->with('msg', 'Senha alterada com sucesso!');
-                // redireciona para o meu perfil
+                return redirect()->back()->with('msg', 'Senha alterada com sucesso!');          // redireciona para o meu perfil
+                
+                //outros casos
             }else if(!(Hash::check($request->senhaAtual, $usuario['senha']))){
-                return redirect()->back()->with('msg-error', 'Senha antiga não bate com o nosso banco de dados!!!');
+                return redirect()->back()->with('msg-error', 'A senha digitada está diferente da senha cadastrada!!!');
             }else if($request->senha != $request->confirmacao){
-                return redirect()->back()->with('msg-error', 'Confirmação de senha falho. As senha precisam ser identicas!!!');
+                return redirect()->back()->with('msg-error', 'A senha de confirmação está diferente da nova senha. As senhas precisam ser idênticas!!!');
             }else{
-                return redirect()->back()->with('msg-error', 'Campos de confirmação de nova e antiga incorretos!!!!');
+                return redirect()->back()->with('msg-error', 'Campos de confirmação de nova e antiga senha estão incorretos!!!');
             }
+
         } else {
             $cpf = $_SESSION['estagiario'];
+
+            //busca de senha de usuário
             $sql = "SELECT * FROM usuarios where CPF = '$cpf'";
             $query = mysqli_query($connect, $sql);
             while ($sql = mysqli_fetch_array($query)) {
                 $usuario['senha'] = $sql['Senha'];
             }
+
+
             if ((Hash::check($request->senhaAtual, $usuario['senha'])) and ($request->senha == $request->confirmacao)) {
                 //cria um hash a partir da nova senha
                 $senhaCript = Hash::make($request->senha);
 
+                //atualização de senha
                 $updateSenha = "UPDATE usuarios SET Senha = '$senhaCript' WHERE CPF = '$cpf'";
                 mysqli_query($connect, $updateSenha);
+
                 //log
                 $ip = $_SERVER["REMOTE_ADDR"];
                 $acao = "Usuário alterou senha";
                 AdminController::salvarLog($acao, $ip);
 
-                //header('Location: /meuPerfil');
-                return redirect()->back()->with('msg', 'Senha alterada com sucesso!');
-                // redireciona para o meu perfil
+                return redirect()->back()->with('msg', 'Senha alterada com sucesso!');          // redireciona para o meu perfil
+                
+                //outros casos
             }else if(!(Hash::check($request->senhaAtual, $usuario['senha']))){
-                return redirect()->back()->with('msg-error', 'Senha antiga não bate com o nosso banco de dados!!!');
+                return redirect()->back()->with('msg-error', 'A senha digitada está diferente da senha cadastrada!!!');
             }else if($request->senha != $request->confirmacao){
-                return redirect()->back()->with('msg-error', 'Confirmação de senha falhou. As senha precisam ser identicas!!!');
+                return redirect()->back()->with('msg-error', 'A senha de confirmação está diferente da nova senha. As senhas precisam ser idênticas!!!');
             }else{
-                return redirect()->back()->with('msg-error', 'Campos de confirmação de nova e antiga incorretos!!!!');
+                return redirect()->back()->with('msg-error', 'Campos de confirmação de nova e antiga senha estão incorretos!!!');
             }
         }
 
@@ -513,7 +530,8 @@ class HomeController extends Controller
         $acao = "Usuário alterou dados cadastrados";
         AdminController::salvarLog($acao, $ip);
 
-        return redirect()->back(); // retorna de volta para a mesma tela
+
+        return redirect()->back()->with('msg',"Dados cadastrais atualizados com sucesso!!"); // retorna de volta para a mesma tela
     }
 
 
@@ -669,7 +687,7 @@ class HomeController extends Controller
                 return redirect()->back()->with('msg-error', 'Nenhuma informação encontrada na base de dados!!!');
             }
         } else {
-            return redirect()->back()->with('msg-error', 'Você não tem acesso a essa pagina!!!');
+            return redirect()->back()->with('msg-error', 'Você não tem acesso a essa página!!!');
         }
     }
 
@@ -731,7 +749,7 @@ class HomeController extends Controller
                 return redirect()->back()->with('msg-error', 'Nenhuma informação encontrada na base de dados!!!');
             }
         } else {
-            return redirect()->back()->with('msg-error', 'Você não tem acesso a essa pagina!!!');
+            return redirect()->back()->with('msg-error', 'Você não tem acesso a essa página!!!');
         }
     }
 
@@ -849,7 +867,7 @@ class HomeController extends Controller
         if ($resultado == "1") {
             return view('cadastroAgendamentos');
         } else {
-            return redirect()->back()->with('msg-error', 'Você não tem acesso a essa pagina!!!');
+            return redirect()->back()->with('msg-error', 'Você não tem acesso a essa página!!!');
         }
     }
 
@@ -875,7 +893,7 @@ class HomeController extends Controller
         if ($resultado == "1") {
             return view('cadastroPaciente');
         } else {
-            return redirect()->back()->with('msg-error', 'Você não tem acesso a essa pagina!!!');
+            return redirect()->back()->with('msg-error', 'Você não tem acesso a essa página!!!');
         }
     }
 
@@ -890,7 +908,6 @@ class HomeController extends Controller
     {
         include('db.php');
 
-        
         $existeEmail = mysqli_query($connect, "SELECT COUNT(*) FROM usuarios WHERE Email = '$request->email'");
 
         //se não existir o email
@@ -905,18 +922,17 @@ class HomeController extends Controller
                 $nome = $buscarNome["Nome"];
             }
 
-
             $codigo = rand(000000, 999999);
             $link = "http://127.0.0.1:8000/checarHash/".$codigo;
 
+            //envia email
             Mail::send(new \App\Mail\ClasseMail($nome, $request->email, $link));
-
 
             return redirect()->back()->with('msg-sucess', 'Verifique sua caixa de entrada ou de spam!');
         }
     }
 
-    public function definirSenhaView()
+    public function definirSenhaView()          //chamada de view
     {
         return view('novaSenha');
     }
@@ -941,9 +957,8 @@ class HomeController extends Controller
         if ($existeCPF == $request->cpf) {
             return redirect('/definirSenha')->with('cpf', $request->cpf);
         } else {
-            return redirect()-> back()-> with('msg-sucess', 'O CPF digitado está incorreto!');
+            return redirect()-> back()-> with('msg-sucess', 'O CPF digitado não está cadastrado!!');
         }
-
 
         return view('checarCPF');
     }
@@ -960,7 +975,6 @@ class HomeController extends Controller
     public function definirSenha(Request $request)
     {
         include('db.php');
-
 
         $cpf = $request->cpf;
         $senhaDefinida = $request->senha;
@@ -1021,7 +1035,7 @@ class HomeController extends Controller
                 return redirect()->back()->with('msg-error', 'Nenhuma informação encontrada na base de dados!!!');
             }
         } else {
-            return redirect()->back()->with('msg-error', 'Você não tem acesso a essa pagina!!!');
+            return redirect()->back()->with('msg-error', 'Você não tem acesso a essa página!!!');
         }
     }
 
@@ -1193,7 +1207,7 @@ class HomeController extends Controller
             
             return view('prontuario', ['paciente' => $paciente, 'infosA' => $infosA, 'infosM' => $infosM, 'infosO' => $infosO, 'infosC' => $infosC, 'agendamentos' => $agendamentos]); // os dados obtidos são retornados para view
         } else {
-            return redirect()->back()->with('msg-error', 'Você não tem acesso a essa pagina!!!');
+            return redirect()->back()->with('msg-error', 'Você não tem acesso a essa página!!!');
         }
     }
 
@@ -1304,7 +1318,7 @@ class HomeController extends Controller
                 return redirect()->back()->with('msg-error', 'Ocorreu um erro com o Banco de Dados tente novamente');
             }
         } else {
-            return redirect()->back()->with('msg-error', 'Você não tem acesso a essa pagina!!!');
+            return redirect()->back()->with('msg-error', 'Você não tem acesso a essa página!!!');
         }
     }
 
@@ -1544,7 +1558,7 @@ class HomeController extends Controller
         session_start();
         include("db.php");
         $cpf = HomeController::obterCpf(); // obtendo cpf do usuario
-        $vetor = explode('|', $request->listagem); //transformando string de dados obtidos da pagina em vetor
+        $vetor = explode('|', $request->listagem); //transformando string de dados obtidos da página em vetor
         $lista = ''; // inicialização da string que sera usada para escrita
         $sql = "SELECT * from usuarios where CPF = '$cpf'";
         $query = mysqli_query($connect, $sql);
@@ -1626,10 +1640,10 @@ class HomeController extends Controller
                     </body>');
             $mpdf->Output('log'.$data_a.'.pdf', \Mpdf\Output\Destination::DOWNLOAD);
         } else { // listas gerais
-            //ultizam dados obtidos da pagina para concatenar na string
+            //ultizam dados obtidos da página para concatenar na string
             // IFs dentro dos FORs são para pegar posições estrategicas de cada vetor de acordo com o numero de dados que ele possui de cada instancia
             //variavel de string concatenada junto com tabelas para ficar organizado
-            // Função  writeHTML função onde vc passa o html da pagina que sera impressa os dados concatenado com o estilo do css
+            // Função  writeHTML função onde vc passa o html da página que sera impressa os dados concatenado com o estilo do css
             if ($request->tela == 'lp') { // lista de pacientes
                 $sql = "SELECT *  from pacientes where Nome_Paciente = '$request->numero'";
                 $query = mysqli_query($connect, $sql);
@@ -2040,11 +2054,11 @@ class HomeController extends Controller
                 $listaM = '';
                 $listaC = '';
                 $listaO = '';
-                $vetorP = explode('|', $request->listagemP); //transformando string de dados obtidos da pagina em vetor
-                $vetorA = explode('|', $request->listagemA); //transformando string de dados obtidos da pagina em vetor
-                $vetorM = explode('|', $request->listagemM); //transformando string de dados obtidos da pagina em vetor
-                $vetorO = explode('|', $request->listagemO); //transformando string de dados obtidos da pagina em vetor
-                $vetorC = explode('|', $request->listagemC); //transformando string de dados obtidos da pagina em vetor
+                $vetorP = explode('|', $request->listagemP); //transformando string de dados obtidos da página em vetor
+                $vetorA = explode('|', $request->listagemA); //transformando string de dados obtidos da página em vetor
+                $vetorM = explode('|', $request->listagemM); //transformando string de dados obtidos da página em vetor
+                $vetorO = explode('|', $request->listagemO); //transformando string de dados obtidos da página em vetor
+                $vetorC = explode('|', $request->listagemC); //transformando string de dados obtidos da página em vetor
                 for ($i =  0; $i <= count($vetorP)-1;$i++) {
                     if ($i%9 ==0) {
                         $listaP =$listaP.
@@ -2285,7 +2299,7 @@ class HomeController extends Controller
                 if ($data == $sql['Data_Agend'] and $dhora == $sql['Hora_Agend']) { //verifica se as datas e horas cadastradas e obtidas batem e se sim manda a notificação
                     $_SESSION['notifi'] = 'Você tem o agendamento marcado para o leiot:'.$leito;
                 }
-                //OBS - Adicionar um css tbm de msg-notification assim como tem pra sucess e error e colocar em todas as paginas no inicio do body
+                //OBS - Adicionar um css tbm de msg-notification assim como tem pra sucess e error e colocar em todas as páginas no inicio do body
             }
         }
     }
