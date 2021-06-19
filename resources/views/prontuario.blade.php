@@ -393,28 +393,30 @@
             <!-------------Encerramento do Prontuario-------------->
             @if($paciente['estado'] == 'internado')
             <button class="btn-blue"  type="button" id="action-btn6">Encerrar Prontuario</button>
-            <div class="box-scheduling">
-                <h2 class="text-center">Encerrar prontuário</h2><br>
-                <form action="/finalizarProntuario" method="POST" id="register">
-                    @csrf
-                    <input type="hidden" name="prontuario" value="{{ $paciente['prontuario'] }}">
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <label>Data de Saída</label> <br>
-                            <input id="fsaida" name="fsaida" type="date" required>
+            <div id="container-teste6">
+                <div class="box-scheduling">
+                    <h2 class="text-center">Encerrar prontuário</h2><br>
+                    <form action="/finalizarProntuario" method="POST" id="register">
+                        @csrf
+                        <input type="hidden" name="prontuario" value="{{ $paciente['prontuario'] }}">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label>Data de Saída</label> <br>
+                                <input id="fsaida" name="fsaida" type="date" required>
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="status_saida">Status para Fechamento</label> <br>
+                                <select required name="status_saida" id="status_saida">
+                                </select>
+                            </div>
                         </div>
-                        <div class="col-lg-4">
-                            <label for="status_saida">Status para Fechamento</label> <br>
-                            <select required name="status_saida" id="status_saida">
-                            </select>
+                        <!----------Com a finalização do Prontuario o responsável irá arquivar o mesmo, tornando assim ineditável.------------>
+                        <div>
+                            <button class="btn-blue"> Finalizar </button>
                         </div>
-                    </div>
-                    <!----------Com a finalização do Prontuario o responsável irá arquivar o mesmo, tornando assim ineditável.------------>
-                    <div>
-                        <button class="btn-blue"> Finalizar </button>
-                    </div>
 
-                </form>
+                    </form>
+                </div>
             </div>
             @endif
             <!-------------fim de encerramento do Prontuario-------------->

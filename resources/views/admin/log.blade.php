@@ -69,14 +69,20 @@
                     <option value="100">100</option>
                     <option value="250">250</option>
                     <option value="500">500</option>
+                    <option value="1000">1000</option>
                 </select>
             </div>
             <div style="display:flex; float:left;">
                 <a id="show_size">Temos x Logs</a>
             </div>
+            <hr>
             <div id="log_controller" name="log_controller" style="display:flex; float:right;">
                 <ul class="horizontal-list" id="list-page">
                 </ul>
+            </div>
+            <div>
+                <label for="CPF-field">Filtro de CPF</label>
+                <input id="CPF-field" type="number" placeholder="CPF">
             </div>
             <!--Tabela com os Logs do Sistema-->
             <div class="table-responsive scrolls">
@@ -95,7 +101,7 @@
     
                             @foreach (array_reverse($logs) as $value)
                                 <tr>
-                                    <td> {{ $value['CPF'] }} </td>
+                                    <td name="cpf_log"> {{ $value['CPF'] }} </td>
                                     <td> {{ $value['Data_Log'] }} </td>
                                     <td> {{ $value['Hora_Agend'] }} </td>
                                     <td> {{ $value['Acao']}} </td>
