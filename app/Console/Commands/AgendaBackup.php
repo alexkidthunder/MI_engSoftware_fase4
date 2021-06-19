@@ -38,7 +38,7 @@ class AgendaBackup extends Command
      */
     public function handle()
     {
-        AdminController::salvarDB();       
+        AdminController::realizarBackupAgendado();       
     
     }
 }
