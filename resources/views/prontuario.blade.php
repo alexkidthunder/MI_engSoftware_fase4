@@ -380,7 +380,7 @@
                                         <div class="box-gray">
                                             CID: {{ $infosC['cid' . $l] }}
                                         </div>
-                                        {{ $l++ }}
+                                        <p class="hide">{{ $l++ }}</p>
                                     </div>
                                 @endwhile
                             </div>
