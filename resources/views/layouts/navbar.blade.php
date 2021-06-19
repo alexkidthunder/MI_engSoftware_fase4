@@ -99,7 +99,7 @@
                         @if ($_SESSION['permissoes'][29] == "1")
                             <li class="drop-down title-nav"><a>LEITOS <i class="fas fa-angle-down"></i></a>
                                 <ul>
-                                    <li><a name="nav-item" href="{{ route('cadastroLeito') }}">Cadastro e remoção de leito</a>
+                                    <li><a name="nav-item" href="{{ route('cadastroLeito') }}">Cadastro de leito</a>
                                     </li>
                                 </ul>
                             </li>

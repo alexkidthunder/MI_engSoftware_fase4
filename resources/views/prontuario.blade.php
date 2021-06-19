@@ -116,150 +116,150 @@
             <h1 class="title-download">PRONTÚARIO</h1>
 
             <!---------------Dados do Paciente---------------->
-            <button class="btn-blue" , id="action-btn3">Dados de Paciente</button>
-            <div class="box-scheduling" , id="container-teste3">
-                <div id="register">
-                    <form action="/editarProntuario" method="post"> <!--Colocar coisas do forms aqui-->
-                    @csrf
-                    <input type="hidden" name="cpfA" value="{{ $paciente['cpf'] }}">
-                    <input type="hidden" name="nomeA" value="{{ $paciente['nome'] }}">
-                    <input type="hidden" name="leitoA" value="{{ $paciente['leito'] }}">
-                    <input type="hidden" name="nascimentoA" value="{{ $paciente['nascimento'] }}">
-                    <div class="row">
+            <form action="/editarProntuario" method="post"> <!--Colocar coisas do forms aqui-->
+            @csrf
+                <button class="btn-blue" type="button" id="action-btn3">Dados de Paciente</button>
+                <div class="box-scheduling" id="container-teste3">
+                    <div id="register">
                         @if (isset($paciente))
-                            <!----------Nome----------->
-                            <div class="col-lg-12">
-                                <label>Nome</label> <br>
-                                <input disabled id="fnome" name="fnome" type="text" maxlength="50"
-                                    value="{{ $paciente['nome'] }}" required>
+                        <input type="hidden" name="cpfA" value="{{ $paciente['cpf'] }}">
+                        <input type="hidden" name="nomeA" value="{{ $paciente['nome'] }}">
+                        <input type="hidden" name="leitoA" value="{{ $paciente['leito'] }}">
+                        <input type="hidden" name="nascimentoA" value="{{ $paciente['nascimento'] }}">
+                            <div class="row">
+                                <!----------Nome----------->
+                                <div class="col-lg-12">
+                                    <label>Nome</label> <br>
+                                    <input disabled id="fnome" name="fnome" type="text" maxlength="50" value="{{ $paciente['nome'] }}" required>
+                                </div>
                             </div>
-                    </div>
 
-                    <div class="row">
-                     <!---------data de nascimento----------->
-                        <div class="col-md-4 col-lg-4">
-                            <label>Data de Nascimento</label> <br>
-                            <input disabled id="fnascimento" name="fnascimento" type="date"
-                                value="{{ $paciente['nascimento'] }}" required>
-                        </div>
-                         <!----------CPF----------->
-                        <div class="col-md-4 col-lg-4">
-                            <label>CPF</label> <br>
-                            <input disabled id="fcpf" name="fcpf" type="text" required maxlength="14"
-                                pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" value="{{ $paciente['cpf'] }}">
-                        </div>
-                         <!----------Sexo----------->
-                        <div class="col-md-4 col-lg-4">
-                            <div class="sex-form">
-                                <label>Sexo</label> <br>
-                                @if ($paciente['sexo'] == 'M')
-                                    <input class="radial-no-edit" id="MASCULINO" name="fsexo" value="Masculino"
-                                        type="button">
-                                @else
-                                    <input class="radial-no-edit" id="FEMININO" name="fsexo" value="Feminino"
-                                        type="button">
-                                @endif
+                            <div class="row">
+                            <!---------data de nascimento----------->
+                                <div class="col-md-4 col-lg-4">
+                                    <label>Data de Nascimento</label> <br>
+                                    <input disabled id="fnascimento" name="fnascimento" type="date"
+                                        value="{{ $paciente['nascimento'] }}" required>
+                                </div>
+                                <!----------CPF----------->
+                                <div class="col-md-4 col-lg-4">
+                                    <label>CPF</label> <br>
+                                    <input disabled id="fcpf" name="fcpf" type="text" required maxlength="14"
+                                        pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" value="{{ $paciente['cpf'] }}">
+                                </div>
+                                <!----------Sexo----------->
+                                <div class="col-md-4 col-lg-4">
+                                    <div class="sex-form">
+                                        <label>Sexo</label> <br>
+                                        @if ($paciente['sexo'] == 'M')
+                                            <input class="radial-no-edit" id="MASCULINO" name="fsexo" value="Masculino"
+                                                type="button">
+                                        @else
+                                            <input class="radial-no-edit" id="FEMININO" name="fsexo" value="Feminino"
+                                                type="button">
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                            <div class="row">
+                            <!----------Tipo Sanguineo----------->
+                                <div class="col-md-4 col-lg-4">
+                                    <label>Tipo Sanguineo</label> <br>
+                                    <input disabled id="fsanguineo" name="fsanguineo" type="text"
+                                        value="{{ $paciente['sangue'] }}" maxlength="50" required>
+                                </div>
+                                <!----------data de internação----------->
+                                <div class="col-md-4 col-lg-4">
+                                    <label>Data de Internação</label> <br>
+                                    <input disabled id="fdatainternacao" name="fdatainternacao" type="date"
+                                        value="{{ $paciente['internacao'] }}" required>
+                                </div>
+                                <!----------Leito----------->
+                                <div class="col-6 col-sm-6 col-md-4 col-lg-4">
+                                    <label>Leito</label> <br>
+                                    <input disabled id="fleito" name="fleito" type="text" maxlength="50"
+                                        value="{{ $paciente['leito'] }}" required>
+                                </div>
+                                <!----------Status----------->
+                                <div class="col-6 col-sm-6 col-md-4 col-lg-4">
+                                    <label>Status</label> <br>
+                                    <input disabled id="fstatus" name="fstatus" id="fstatus" type="text" maxlength="50"
+                                        placeholder="alta, internado ou obito" value="{{ $paciente['estado'] }}" required>
+                                </div>
+                            </div>
+                                <div class="row">
+                                    <button class="btn-blue" id="edit" type="button"> Editar Dados </button>
+                                </div> 
+                        @endif   
                     </div>
-                    <div class="row">
-                     <!----------Tipo Sanguineo----------->
-                        <div class="col-md-4 col-lg-4">
-                            <label>Tipo Sanguineo</label> <br>
-                            <input disabled id="fsanguineo" name="fsanguineo" type="text"
-                                value="{{ $paciente['sangue'] }}" maxlength="50" required>
-                        </div>
-                         <!----------data de internação----------->
-                        <div class="col-md-4 col-lg-4">
-                            <label>Data de Internação</label> <br>
-                            <input disabled id="fdatainternacao" name="fdatainternacao" type="date"
-                                value="{{ $paciente['internacao'] }}" required>
-                        </div>
-                         <!----------Leito----------->
-                        <div class="col-6 col-sm-6 col-md-4 col-lg-4">
-                            <label>Leito</label> <br>
-                            <input disabled id="fleito" name="fleito" type="text" maxlength="50"
-                                value="{{ $paciente['leito'] }}" required>
-                        </div>
-                         <!----------Status----------->
-                        <div class="col-6 col-sm-6 col-md-4 col-lg-4">
-                            <label>Status</label> <br>
-                            <input disabled id="fstatus" name="fstatus" id="fstatus" type="text" maxlength="50"
-                                placeholder="alta, internado ou obito" value="{{ $paciente['estado'] }}" required>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <button class="btn-blue" id="edit" type="button"> Editar Dados </button>
-                    </div>
-                    @endif
-                    <form>    
                 </div>
-            </div>
+            </form>
             <!---------------fim de dados do Paciente---------------->
 
              <!----------Agendamentos de medicamentos------------>
                 
-            <button class="btn-blue" id="action-btn2">Agendamentos</button>
-            <div id = "container-teste2">
-                <h2 class="text-center">Agendamentos</h2><br>
-                @for($i = 0;$i <= count($infosA); $i++)
-                @if(isset($infosA['hora'.$i]))
-                    <div class="box-scheduling">
-                        <div class="row">
-                            <!---------------------Hora--------------------->
-                            <div class="col-6 col-sm-12 col-md-6 col-lg-2 text-center">
-                                <div class="box-gray">
-                                    <a>{{ $infosA['hora' . $i] }}</a>
+                <button class="btn-blue" type="button" id="action-btn2">Agendamentos</button>
+                <div id = "container-teste2">
+                    <h2 class="text-center">Agendamentos</h2><br>
+                    @for($i = 0;$i <= count($infosA); $i++)
+                    @if(isset($infosA['hora'.$i]))
+                        <div class="box-scheduling">
+                            <div class="row">
+                                <!---------------------Hora--------------------->
+                                <div class="col-6 col-sm-12 col-md-6 col-lg-2 text-center">
+                                    <div class="box-gray">
+                                        <a>{{ $infosA['hora' . $i] }}</a>
+                                    </div>
+                                </div>
+                                <!---------------------Data--------------------->
+                                <div class="col-6 col-sm-12 col-md-6 col-lg-2 text-center">
+                                    <div class="box-gray">
+                                        <a>{{ $infosA['data' . $i] }}</a>
+                                    </div>
+                                </div>
+                                <!---------------------Nome do Medicamento--------------------->
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-5 text-center">
+                                    <div class="box-white scrolls">
+                                        <a>{{$infosA['medicamento'.$i]}}</a>
+                                    </div>
+                                </div>
+                                <!---------------------Posologia--------------------->
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-3 text-center">
+                                    <div class="box-white">
+                                        <a>{{$infosA['posologia'.$i]}} ml</a>
+                                    </div>
                                 </div>
                             </div>
-                            <!---------------------Data--------------------->
-                            <div class="col-6 col-sm-12 col-md-6 col-lg-2 text-center">
-                                <div class="box-gray">
-                                    <a>{{ $infosA['data' . $i] }}</a>
-                                </div>
-                            </div>
-                            <!---------------------Nome do Medicamento--------------------->
-                            <div class="col-12 col-sm-12 col-md-6 col-lg-5 text-center">
-                                <div class="box-white scrolls">
-                                    <a>{{$infosA['medicamento'.$i]}}</a>
-                                </div>
-                            </div>
-                            <!---------------------Posologia--------------------->
-                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 text-center">
-                                <div class="box-white">
-                                    <a>{{$infosA['posologia'.$i]}} ml</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <!----------Aplicador do medicamento----------->
-                            <div class="col-12 col-md-12 col-sm-12 col-lg-12">
-                            @if(isset($infosA['aplicador'.$i]))
-                                <div class="box-blue"> 
-                                    <a>Preparador: {{$infosA['aplicador'.$i]}}</a> 
-                                </div>
-                            @endif
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12 col-12 col-md-3 col-lg-3">
-                                @if(!isset($infosA['aplicador'.$i]))
-                                    <form method="POST" action="/ACagendamentos">
-                                    @csrf
-                                        <input type="hidden" name="codA" value="{{$agendamentos}}"> 
-                                        <button type="submit" class="btn-white">Ser preparador</button>
-                                    </form>
+                            <div class="row">
+                                <!----------Aplicador do medicamento----------->
+                                <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                                @if(isset($infosA['aplicador'.$i]))
+                                    <div class="box-blue"> 
+                                        <a>Preparador: {{$infosA['aplicador'.$i]}}</a> 
+                                    </div>
                                 @endif
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-12 col-md-3 col-lg-3">
+                                    @if(!isset($infosA['aplicador'.$i]))
+                                        <form method="POST" action="/ACagendamentos">
+                                        @csrf
+                                            <input type="hidden" name="codA" value="{{$agendamentos}}"> 
+                                            <button type="submit" class="btn-white">Ser preparador</button>
+                                        </form>
+                                    @endif
+                                </div>
                             </div>
                         </div>
-                    </div>
-                @endif
-                @endfor
-            </div>
+                        @endif
+                        @endfor
+                </div>
+
                  <!----------fim de Agendamentos de medicamentos------------>
 
                 <!----------------Medicações ministradas----------------->
-                <button class="btn-blue", id="action-btn">Medicações ministradas</button>
+                <button class="btn-blue" type="button" id="action-btn">Medicações ministradas</button>
                     <div id = "container-teste">
                         <h2 class="text-center">Medicações ministradas</h2><br>
                         @for($j = 0;$j <= count($infosM);$j++)
@@ -309,7 +309,7 @@
                 <!----------------fim de medicações ministradas----------------->
 
                 <!------------------Ocorrências--------------->
-                <button class="btn-blue" id="action-btn4">Ocorrências</button>
+                <button class="btn-blue" type="button" id="action-btn4">Ocorrências</button>
                 <div class="box-scheduling" id="container-teste4">
                     <h2 class="text-center">Ocorrencias</h2><br>
                     <form action="/cadastroOcorr" method="POST" id="register">
@@ -355,7 +355,7 @@
             <!------------------fim de ocorrências--------------->
 
             <!----------------CIDs do paciente---------------->
-            <button class="btn-blue" , id="action-btn5">CIDs</button>
+            <button class="btn-blue" type="button" id="action-btn5">CIDs</button>
             
             <div id="container-teste5">
                 <div class="box-scheduling">
@@ -392,7 +392,7 @@
 
             <!-------------Encerramento do Prontuario-------------->
             @if($paciente['estado'] == 'internado')
-            <button class="btn-blue" , id="action-btn6">Encerrar Prontuario</button>
+            <button class="btn-blue"  type="button" id="action-btn6">Encerrar Prontuario</button>
             <div class="box-scheduling">
                 <h2 class="text-center">Encerrar prontuário</h2><br>
                 <form action="/finalizarProntuario" method="POST" id="register">
@@ -419,6 +419,7 @@
             @endif
             <!-------------fim de encerramento do Prontuario-------------->
         </div>
+
     </section>
 </body>
 
