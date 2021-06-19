@@ -93,7 +93,7 @@ class HomeController extends Controller
 
                     if ($atribuicao == "Administrador") {
                         $_SESSION['administrador'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
-
+                        $_SESSION['permissoes'][36] = $NavNome;
                         //log
                         $ip = $_SERVER["REMOTE_ADDR"];
                         $acao = "Administrador logou";
@@ -146,7 +146,6 @@ class HomeController extends Controller
                         $resultado .= $NavNome;
                         $vetor = explode('|', $resultado);
                         $_SESSION['permissoes'] = $vetor;
-                        dd($_SESSION['permissoes']);
                         //log
                         $ip = $_SERVER["REMOTE_ADDR"];
                         $acao = "Estagiário logou";
@@ -398,11 +397,11 @@ class HomeController extends Controller
                 return redirect()->back()->with('msg', 'Senha alterada com sucesso!');    // redireciona para o meu perfil
                 
                 //outros casos
-            }else if(!(Hash::check($request->senhaAtual, $usuario['senha']))){
+            } elseif (!(Hash::check($request->senhaAtual, $usuario['senha']))) {
                 return redirect()->back()->with('msg-error', 'A senha digitada está diferente da senha cadastrada!!!');
-            }else if($request->senha != $request->confirmacao){
+            } elseif ($request->senha != $request->confirmacao) {
                 return redirect()->back()->with('msg-error', 'A senha de confirmação está diferente da nova senha. As senhas precisam ser idênticas!!!');
-            }else{
+            } else {
                 return redirect()->back()->with('msg-error', 'Campos de confirmação de nova e antiga senha estão incorretos!!!');
             }
         } elseif (isset($_SESSION['enfermeiroChefe'])) {
@@ -431,18 +430,17 @@ class HomeController extends Controller
                 return redirect()->back()->with('msg', 'Senha alterada com sucesso!');      // redireciona para o meu perfil
                 
                 //outros casos
-            }else if(!(Hash::check($request->senhaAtual, $usuario['senha']))){
+            } elseif (!(Hash::check($request->senhaAtual, $usuario['senha']))) {
                 return redirect()->back()->with('msg-error', 'A senha digitada está diferente da senha cadastrada!!!');
-            }else if($request->senha != $request->confirmacao){
+            } elseif ($request->senha != $request->confirmacao) {
                 return redirect()->back()->with('msg-error', 'A senha de confirmação está diferente da nova senha. As senhas precisam ser idênticas!!!');
-            }else{
+            } else {
                 return redirect()->back()->with('msg-error', 'Campos de confirmação de nova e antiga senha estão incorretos!!!');
             }
-
         } elseif (isset($_SESSION['enfermeiro'])) {
             $cpf = $_SESSION['enfermeiro'];
 
-            //busca de senha de usuário 
+            //busca de senha de usuário
             $sql = "SELECT * FROM usuarios where CPF = '$cpf'";
             $query = mysqli_query($connect, $sql);
             while ($sql = mysqli_fetch_array($query)) {
@@ -465,14 +463,13 @@ class HomeController extends Controller
                 return redirect()->back()->with('msg', 'Senha alterada com sucesso!');          // redireciona para o meu perfil
                 
                 //outros casos
-            }else if(!(Hash::check($request->senhaAtual, $usuario['senha']))){
+            } elseif (!(Hash::check($request->senhaAtual, $usuario['senha']))) {
                 return redirect()->back()->with('msg-error', 'A senha digitada está diferente da senha cadastrada!!!');
-            }else if($request->senha != $request->confirmacao){
+            } elseif ($request->senha != $request->confirmacao) {
                 return redirect()->back()->with('msg-error', 'A senha de confirmação está diferente da nova senha. As senhas precisam ser idênticas!!!');
-            }else{
+            } else {
                 return redirect()->back()->with('msg-error', 'Campos de confirmação de nova e antiga senha estão incorretos!!!');
             }
-
         } else {
             $cpf = $_SESSION['estagiario'];
 
@@ -500,15 +497,14 @@ class HomeController extends Controller
                 return redirect()->back()->with('msg', 'Senha alterada com sucesso!');          // redireciona para o meu perfil
                 
                 //outros casos
-            }else if(!(Hash::check($request->senhaAtual, $usuario['senha']))){
+            } elseif (!(Hash::check($request->senhaAtual, $usuario['senha']))) {
                 return redirect()->back()->with('msg-error', 'A senha digitada está diferente da senha cadastrada!!!');
-            }else if($request->senha != $request->confirmacao){
+            } elseif ($request->senha != $request->confirmacao) {
                 return redirect()->back()->with('msg-error', 'A senha de confirmação está diferente da nova senha. As senhas precisam ser idênticas!!!');
-            }else{
+            } else {
                 return redirect()->back()->with('msg-error', 'Campos de confirmação de nova e antiga senha estão incorretos!!!');
             }
         }
-
     }
 
 
@@ -531,7 +527,7 @@ class HomeController extends Controller
         AdminController::salvarLog($acao, $ip);
 
 
-        return redirect()->back()->with('msg',"Dados cadastrais atualizados com sucesso!!"); // retorna de volta para a mesma tela
+        return redirect()->back()->with('msg', "Dados cadastrais atualizados com sucesso!!"); // retorna de volta para a mesma tela
     }
 
 
@@ -1208,43 +1204,47 @@ class HomeController extends Controller
         }
     }
 
-    public function editarProntuario(Request $request){
+    public function editarProntuario(Request $request)
+    {
         session_start();
         include("db.php");
         $msgAlteração = "Dados alterados: "; // Mensagem que indica itens do menu alterado
         $resultado = VerificaLoginController::verificaPermissao(20); // verifica se tem permição
-        if($resultado == 1){
+        if ($resultado == 1) {
             $sql = "SELECT * FROM prontuarios where Cpfpaciente = '$request->cpfA' AND aberto = '1'";
             $query = mysqli_query($connect, $sql);
-            if(mysqli_num_rows($query) == 1){ // verifica se encontrou algum prontuario na busca do bd
-                if($request->nomeA != $request->fnome){ // compara os dados pra ver se foram modificados
+            if (mysqli_num_rows($query) == 1) { // verifica se encontrou algum prontuario na busca do bd
+                if ($request->nomeA != $request->fnome) { // compara os dados pra ver se foram modificados
                     $msgAlteração .= "Nome,"; // caso este dado tenha sido alterado concatena o dado que foi modificado
-                    $update = "UPDATE pacientes SET Nome_Paciente = '$request->fnome' WHERE CPF = '$request->cpfA'"; 
+                    $update = "UPDATE pacientes SET Nome_Paciente = '$request->fnome' WHERE CPF = '$request->cpfA'";
                     mysqli_query($connect, $update);// altera no d
-                }if($request->cpfA != $request->fcpf){
+                }
+                if ($request->cpfA != $request->fcpf) {
                     $sqlp = "SELECT * FROM pacientes WHERE CPF = '$request->fcpf'";
                     $queryp = mysqli_query($connect, $sqlp);
-                    if(mysqli_num_rows($queryp) == 0){
+                    if (mysqli_num_rows($queryp) == 0) {
                         $msgAlteração .= " CPF,";
                         $updatepac = "UPDATE pacientes SET CPF = '$request->fcpf' WHERE CPF = '$request->cpfA'";
                         mysqli_query($connect, $updatepac);
                         $updatepront = "UPDATE prontuarios SET Cpfpaciente = '$request->fcpf' WHERE CPF = '$request->cpfA' AND aberto = '1'";
                         mysqli_query($connect, $updatepront);
-                    }else{
+                    } else {
                         return redirect()->back()->with('msg-error', "CPF ja cadastrado no sistema!!!!");
                     }
-                }if($request->nascimentoA != $request->fnascimento){
+                }
+                if ($request->nascimentoA != $request->fnascimento) {
                     $msgAlteração .= " Data de nascimento,";
                     $update = "UPDATE pacientes SET Data_Nasc = '$request->fnascimento' WHERE CPF = '$request->cpfA'";
                     mysqli_query($connect, $update);
-                }if($request->leitoA != $request->fleito){
+                }
+                if ($request->leitoA != $request->fleito) {
                     $sqll = "SELECT * FROM leitos where Identificacao = '$request->fleito'";
                     $queryl = mysqli_query($connect, $sqll);
-                    if(mysqli_num_rows($queryl) >= 1){
-                        while($sqll = mysqli_fetch_array($queryl)){
+                    if (mysqli_num_rows($queryl) >= 1) {
+                        while ($sqll = mysqli_fetch_array($queryl)) {
                             $ocupado = $sqll['Ocupado'];
                         }
-                        if($ocupado == 0){ // verifica se o leito requisitado para alteração esta ocupado
+                        if ($ocupado == 0) { // verifica se o leito requisitado para alteração esta ocupado
                             $msgAlteração .= " Leito";
                             $updateLeito = "UPDATE leitos SET Ocupado = '0' where Identificacao = '$request->leitoA'"; // desocupa o antigo
                             mysqli_query($connect, $updateLeito);
@@ -1252,22 +1252,21 @@ class HomeController extends Controller
                             mysqli_query($connect, $updateLeito);
                             $update = "UPDATE prontuarios SET id_leito = '$request->fleito' where Cpfpaciente = '$request->cpfA' AND aberto = '1'";
                             mysqli_query($connect, $update); // altera o prontuario do paciente
-                        }else{
+                        } else {
                             return redirect()->back()->with('msg-error', "O leito não pode ser alterado para o informado pois encontrasse ocupado");
                         }
-                    }else{
+                    } else {
                         return redirect()->back()->with('msg-error', "O leito foi o unico dado a não ser alterado pois não existe no nosso banco de dados!!!!");
                     }
                 }
 
                 return redirect()->back()->with('msg', $msgAlteração);
-
-            }else if(mysqli_num_rows($query) == 0){ // não encotrou nenum prontuario
+            } elseif (mysqli_num_rows($query) == 0) { // não encotrou nenum prontuario
                 return redirect()->back()->with('msg-error', "Não existe prontuario cadastrado para este paciente!!!!!");
-            }else{ // cso de erro estremo onde o retorno é negativo por algum bug
-                return redirect()->back()->with('msg-error',"Algo deu errado. Por favor tente novamente ou contate o suporte tecnico");
+            } else { // cso de erro estremo onde o retorno é negativo por algum bug
+                return redirect()->back()->with('msg-error', "Algo deu errado. Por favor tente novamente ou contate o suporte tecnico");
             }
-        }else{ // não tem permissão para acesso
+        } else { // não tem permissão para acesso
             return redirect()->back()->with('msg-error', "Este prontuario não pode ser editado pois ja foi finalizado!!!!!");
         }
     }
