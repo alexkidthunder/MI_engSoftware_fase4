@@ -672,6 +672,7 @@ class AdminController extends Controller
     //função de cadastro de backup
     public function cadastrarBD(Request $request)
     {
+        session_start();
         include("db.php");
         $checkbox = $request->alwaysCheck; // obtendo checkbox para ver se o downloadé altomatico
         
@@ -726,6 +727,7 @@ class AdminController extends Controller
     public function removerAgendamentoBackup(Request $request)
     {
         include("db.php");
+        session_start();
         $sql =  "DELETE FROM backups_agendados WHERE ID = '$request->removerAB'";
         mysqli_query($connect, $sql);
 
@@ -734,7 +736,7 @@ class AdminController extends Controller
         $acao = "Removeu um backup agendado";
         AdminController::salvarLog($acao, $ip);
 
-        return redirect()->back()->with('error',"Agendamento de backup removido com sucesso!!");;
+        return redirect()->back()->with('success',"Agendamento de backup removido com sucesso!!");;
     }
 
     //função para pegar as informações do Relatório Gerencial
