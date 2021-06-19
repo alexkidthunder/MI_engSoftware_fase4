@@ -922,8 +922,10 @@ class HomeController extends Controller
                 $nome = $buscarNome["Nome"];
             }
 
-            $codigo = rand(000000, 999999);
-            $link = "http://127.0.0.1:8000/checarHash/".$codigo;
+            $codigo = rand(100000, 999999);
+            $link = "http://127.0.0.1:8000/checarCPF/".$codigo;
+
+            
 
             //envia email
             Mail::send(new \App\Mail\ClasseMail($nome, $request->email, $link));
@@ -937,15 +939,17 @@ class HomeController extends Controller
         return view('novaSenha');
     }
 
-    public function checarCPFView()
+    public function checarCPFView($codigo)
     {
+       if($codigo < 100000 && $codigo < 999999){
+        abort(404);
+        }
         return view('checarCPF');
     }
 
     public function checarCPF(Request $request)
     {
         include('db.php');
-
 
         //captura a senha do banco
         $buscarCPF = "SELECT CPF FROM usuarios WHERE CPF = '$request->cpf'";
@@ -963,13 +967,6 @@ class HomeController extends Controller
         return view('checarCPF');
     }
 
-    //função de comparação de hash
-    public function checarHash($hash)
-    {
-        dd($hash);
-
-        return redirect()->route('index')->with('msg-sucess', 'Verifique sua caixa de entrada ou de spam!');
-    }
 
     //função de redefinir a senha a partir do esqueci a senha
     public function definirSenha(Request $request)

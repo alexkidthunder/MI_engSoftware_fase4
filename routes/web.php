@@ -31,10 +31,11 @@ Route::post('/esqueciSenha', [HomeController::class, 'esqueciSenha'])->name('esq
 Route::get('/esqueciSenha', [HomeController::class, 'esqueciSenhaView'])->name('esqueciSenhaView');
 Route::post('/definirSenha', [HomeController::class, 'definirSenha'])->name('definirSenha');
 Route::get('/definirSenha', [HomeController::class, 'definirSenhaView'])->name('definirSenhaView');
-Route::get('/checarCPF', [HomeController::class, 'checarCPFView'])->name('checarCPFView');
+
+
+Route::get('/checarCPF/{codigo}', [HomeController::class, 'checarCPFView'])->name('checarCPFView');
 Route::post('/checarCPF', [HomeController::class, 'checarCPF'])->name('checarCPF');
 
-Route::get('/checarHash/{hash}', [HomeController::class, 'checarHash'])->name('checarHash');
 //Route::get('checarHash/{param}', [HomeController::class, 'checarHash']);
 
 
