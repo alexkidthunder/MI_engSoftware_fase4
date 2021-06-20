@@ -2,9 +2,17 @@
 
 namespace App\Http\Controllers;
 
+/**
+ * Classe VerificaLoginController
+ */
 class VerificaLoginController extends Controller
-{
-    public static function verificarLogin(){ // verifica se tem alguem logado se não redireciona para login
+{    
+    /**
+     *  Função para verificar se tem alguem logado se não redireciona para login
+     *
+     * @return void
+     */
+    public static function verificarLogin(){ 
         session_start();  
         if((isset($_SESSION['administrador']) == false) AND (isset($_SESSION['enfermeiroChefe']) == false) 
         AND (isset($_SESSION['enfermeiro']) == false) AND (isset($_SESSION['estagiario']) == false)){
@@ -12,40 +20,66 @@ class VerificaLoginController extends Controller
             exit();
         }
     }
-
-    public static function verificarLoginAdmin(){ // verifica se tem adinistrador logado se não redireciona para login
+    
+    /**
+     * Função para verificar se tem adinistrador logado se não redireciona para login
+     *
+     * @return void
+     */
+    public static function verificarLoginAdmin(){ 
         session_start();  
         if(isset($_SESSION['administrador']) == false){
             header("Location: /");
             exit();
         }
     }
-
-    public static function verificarLoginEnfC(){ // verifica se tem enfermeiro chefe logado se não redireciona para login
+    
+    /**
+     * Função para verificar se tem enfermeiro chefe logado se não redireciona para login
+     *
+     * @return void
+     */
+    public static function verificarLoginEnfC(){ // 
         session_start();  
         if(isset($_SESSION['enfermeiroChefe']) == false){
             header("Location: /");
             exit();
         }
     }
-
-    public static function verificarLoginEnf(){ // verifica se tem enfermeiro logado se não redireciona para login
+    
+    /**
+     * Função para verificar se tem enfermeiro logado se não redireciona para login
+     *
+     * @return void
+     */
+    public static function verificarLoginEnf(){ 
         session_start();  
         if(isset($_SESSION['enfermeiro']) == false){
             header("Location: /");
             exit();
         }
     }
-
-    public static function verificarLoginEst(){ // verifica se tem estagiario logado se não redireciona para login
+    
+    /**
+     * Função para verificar se tem estagiario logado se não redireciona para login
+     *
+     * @return void
+     */
+    public static function verificarLoginEst(){ 
         session_start();  
         if(isset($_SESSION['estagiario']) == false){
             header("Location: /");
             exit();
         }
     }
-
-    public static function verificaPermissao($numeroP){ // função que verifica permissão com determinado ID cargo por cargo de 
+    
+    /**
+     * Função que verifica permissão com determinado ID cargo por cargo de 
+     *
+     * @param  mixed $numeroP
+     * @return int
+     */
+    public static function verificaPermissao($numeroP){ // 
         include("db.php");
         $resultado = "";
         if(isset($_SESSION['enfermeiroChefe'])){

@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use mysqli;
 
+/**
+ * Classe EnfChefeController
+ */
 class EnfChefeController extends Controller
 {
     /* public function menu(){
@@ -16,8 +19,11 @@ class EnfChefeController extends Controller
         return view('/enfChefe/menu');
     }*/
 
+   
     /**
-     * Função que Lista os Plantonistas e opções de manipular os checkbox 
+     * Função que Lista os Plantonistas e opções de manipular os checkbox
+     *
+     * @return view()
      */
     public function cadastroPlantonista()
     {
@@ -71,9 +77,12 @@ class EnfChefeController extends Controller
         }
     }
 
-
+   
     /**
      * Função que atualiza o status dos plantonistas
+     *
+     * @param  mixed $request
+     * @return redirect()->route()->with()
      */
     public function cadastrarPlantonistas(Request $request)
     {
@@ -115,9 +124,14 @@ class EnfChefeController extends Controller
 
         return redirect()->route('cadastroPlantonista')->with('msg-sucess', "Plantões Alterados com sucesso");
     }
-
+    
+    /**
+     * Função para chamar a função salvar medicamento pela view
+     *
+     * @return view
+     */
     public function cadastroMedicamento()
-    {          //função para chamar a função salvar medicamento pela view
+    {
         VerificaLoginController::verificarLogin();
         $resultado = VerificaLoginController::verificaPermissao(9);
         if ($resultado == "1") {
@@ -126,7 +140,13 @@ class EnfChefeController extends Controller
             return redirect()->back()->with('msg-error', 'Você não tem acesso a essa pagina!!!');
         }
     }
-
+    
+    /**
+     * Função para salvar o novo medicamento
+     *
+     * @param  mixed $request
+     * @return redirect()->route()->with()
+     */
     public function salvarMedicamento(Request $request)
     {
         include('db.php');
@@ -156,7 +176,12 @@ class EnfChefeController extends Controller
             return redirect()->route('cadastroMedicamento')->with('error', "Medicamento já cadastrado!!");
         }
     }
-
+    
+    /**
+     * Função para o cadastro de agendamento
+     *
+     * @return view()
+     */
     public function cadastroAgendamento()
     {
         VerificaLoginController::verificarLogin();
@@ -175,9 +200,12 @@ class EnfChefeController extends Controller
             return redirect()->back()->with('msg-error', 'Você não tem acesso a essa pagina!!!');
         }
     }
-
+  
     /**
-     * Método que busca um paciente para o cadastro de agendamento
+     * Função que busca um paciente para o cadastro de agendamento
+     *
+     * @param  mixed $request
+     * @return view()
      */
     public function buscarPacienteAg(Request $request){
         include("db.php");
@@ -229,9 +257,7 @@ class EnfChefeController extends Controller
                while($dado = mysqli_fetch_array($query21)){                              
                 $plantonistas[$i] = $dado;
                 $i++;                   
-              }
-
-               
+              }               
 
                $i = 0;       
                //agrupando usuários
@@ -251,9 +277,7 @@ class EnfChefeController extends Controller
                         $i++;                        
                        }
                    }
-
-               }
-              
+               }              
                //FIM AGRUPAMENTOS DOS PLANTONISTAS
               
             // RECEBER OS MEDICAMENTOS
@@ -280,16 +304,18 @@ class EnfChefeController extends Controller
     
 }
 
-
+    
     /**
-     * Método que CADASTRA um agendamento
+     * Função que cadastra um agendamento
+     *
+     * @param  mixed $request
+     * @return redirect()->route()->with()
      */
     public function cadastrarAgendamento(Request $request){
         include('db.php');
         VerificaLoginController::verificarLogin();
         $resultado = VerificaLoginController::verificaPermissao(12);
-        if($resultado == 1){   
-        
+        if($resultado == 1){          
         
         // verificar se medicamento existe
         $sql = "SELECT * FROM medicamentos WHERE Nome_Medicam = '$request->medicamento_agendamento'";
@@ -298,9 +324,7 @@ class EnfChefeController extends Controller
         if(mysqli_num_rows($query1) == 0){ // medicamento n existe
             return redirect()->back()->with('msg-error', 'Medicamento não cadastrado em nosso sistema, verifique se digitou corretamente!');   
         }
-        $medicamento = mysqli_fetch_array($query1);
-   
-          
+        $medicamento = mysqli_fetch_array($query1);          
       
         
         // buscar os agendamentos do aplicador para checar o choque de horários
@@ -359,7 +383,6 @@ class EnfChefeController extends Controller
          }
 
 
-
          // verifica se o agendamento é em aberto ou possuí aplicador
          if($usuario != null){
          $cpf_usuario = $usuario['CPF'];
@@ -382,8 +405,13 @@ class EnfChefeController extends Controller
             return redirect()->back()->with('msg-error', 'Você não tem acesso a essa pagina!!!');
      }
     }
-
-    public function listaPlantonistas() //listagem dos plantonistas ativos
+    
+    /**
+     * Função de listagem dos plantonistas ativos
+     *
+     * @return view()
+     */
+    public function listaPlantonistas()
     {
         VerificaLoginController::verificarLogin();
         $resultado = VerificaLoginController::verificaPermissao(14); // checando se enfermeiro chefe tem permissão de acesso
@@ -421,8 +449,13 @@ class EnfChefeController extends Controller
             return redirect()->back()->with('msg-error', 'Você não tem acesso a essa pagina!!!'); // se não tiver acesso volta para pagina anterior
         }
     }
-
-    public function responsaveis() // listagem de responsaveis pela aplicação do medicamento
+    
+    /**
+     *  Função de listagem de responsaveis pela aplicação do medicamento
+     *
+     * @return view()
+     */
+    public function responsaveis()
     {
         VerificaLoginController::verificarLogin(); // verifica se usuario esta logado 
         include("db.php");
@@ -480,9 +513,14 @@ class EnfChefeController extends Controller
             return redirect()->back()->with('msg-error', 'Você não tem acesso a essa pagina!!!'); // msg caso você não tnha permissão 
         }
     }
-
+    
+    /**
+     * Função de listagem de agendamentos e medicamentos
+     *
+     * @return view()
+     */
     public function listaAgendamentos()
-    {            //LISTAGEM DE AGENDAMENTOS E MEDICAMENTOS
+    {
         VerificaLoginController::verificarLogin(); // verifica se ta logado 
         include("db.php");
         $resultado = VerificaLoginController::verificaPermissao(15); // verifica se tem permissão 
@@ -529,9 +567,14 @@ class EnfChefeController extends Controller
             return redirect()->back()->with('msg-error', 'Você não tem acesso a essa pagina!!!'); // caso não tenha permissão
         }
     }
-
+    
+    /**
+     * Função que exibe os leitos na página
+     *
+     * @return void
+     */
     public function cadastroLeito()
-    {                        //exibe os leitos na página
+    {
         VerificaLoginController::verificarLogin();
         include("db.php");
         $resultado = VerificaLoginController::verificaPermissao(29);
@@ -558,9 +601,15 @@ class EnfChefeController extends Controller
         }
     }
 
-
+    
+    /**
+     * Função que faz o cadastro de leito
+     *
+     * @param  mixed $request
+     * @return redirect()->route()->with()
+     */
     public function cadastrarLeito(Request $request)
-    {               //cadastro de leito
+    {
 
         VerificaLoginController::verificarLogin();
         include("db.php");
@@ -600,7 +649,13 @@ class EnfChefeController extends Controller
         return redirect()->back()->with('msg-error', 'Você não tem acesso a essa pagina!!!'); 
     }
     }
-
+    
+    /**
+     * Função que faz remover o leito de ser ocupado
+     *
+     * @param  mixed $request
+     * @return redirect()->route()->with()
+     */
     public function removerLeito(Request $request)
     {
         session_start();
@@ -636,7 +691,14 @@ class EnfChefeController extends Controller
             return redirect()->back();
         }
     }
-
+    
+    /**
+     * Função que verifica as permissões
+     *
+     * @param  mixed $cargoId
+     * @param  mixed $permissaoId
+     * @return $saida
+     */
     public function verificarPermissao($cargoId, $permissaoId)
     {
         include('db.php');
