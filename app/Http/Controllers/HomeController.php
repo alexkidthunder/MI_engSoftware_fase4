@@ -547,7 +547,8 @@ class HomeController extends Controller
 
 
     /**
-     * Função de alterar dados 
+     * Função de alterar dados.
+     * Altera dados como nome e email digitados na tela de perfil apos clicar no botão de edição  de acordo com o cpf do usuario cadastrado
      *
      * @param  mixed $request
      * @return redirect()->back()->with()
@@ -557,7 +558,6 @@ class HomeController extends Controller
         session_start();
         include("db.php");
         $cpf = HomeController::obterCpf();
-        // altera dados como nome e email digitados na tela de perfil apos clicar no botão de edição  de acordo com o cpf do usuario cadastrado
         $updateNome = "UPDATE usuarios SET Nome = '$request->fnome' WHERE CPF = '$cpf'";
         $_SESSION['nome'] = $request->fnome;
         mysqli_query($connect, $updateNome);
@@ -1629,7 +1629,7 @@ class HomeController extends Controller
             $cpf = $_SESSION['enfermeiro'];
         } elseif (isset($_SESSION['enfermeiroChefe'])) {
             $cpf = $_SESSION['enfermeiroChefe'];
-        } else {
+        } elseif (isset($_SESSION['estagiario'])){
             $cpf = $_SESSION['estagiario'];
         }
         return $cpf; // retorna o cpf caso exista
@@ -2467,6 +2467,7 @@ class HomeController extends Controller
         session_start();
         include("db.php");
         //obtem data e hora atual
+        date_default_timezone_set('America/Sao_Paulo');
         $hora = date('H-i-s');
         $data = date('Y-m-d');
         $cpf = HomeController::ObterCpf();

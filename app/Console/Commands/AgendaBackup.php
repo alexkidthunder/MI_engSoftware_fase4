@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Http\Controllers\AdminController;
+use Symfony\Component\VarDumper\Cloner\Data;
 
 class AgendaBackup extends Command
 {
@@ -38,7 +39,6 @@ class AgendaBackup extends Command
      */
     public function handle()
     {
-        AdminController::realizarBackupAgendado();       
-    
+        AdminController::realizarBackupAgendado();          
     }
 }
