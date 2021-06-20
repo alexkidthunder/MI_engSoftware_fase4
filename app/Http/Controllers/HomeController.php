@@ -164,16 +164,16 @@ class HomeController extends Controller
                         header("Location: /menu");
                         exit();
                     } else {
-                        return redirect() -> back() ->with('msg-error', 'Funcionário sem cargo, algo está errado!!!');
+                        return redirect() -> back() ->with('msg-error', 'Funcionário sem cargo, algo está errado');
                     }
                 } else {
-                    return redirect() -> back() ->with('msg-error', 'Conta do funcionário encontra-se desativada!');
+                    return redirect() -> back() ->with('msg-error', 'Conta do funcionário encontra-se desativada');
                 }
             } else {
-                return redirect() -> back() ->with('msg-error', 'Senha digitada está errada!!');
+                return redirect() -> back() ->with('msg-error', 'A senha informada está incorreta');
             }
         } else { // caso em que o $row = 0, usuário não existe
-            return redirect() -> back() ->with('msg-error', 'Usuário não existe no sistema!!');
+            return redirect() -> back() ->with('msg-error', 'O Usuário não existe no sistema');
         }
     }
 
@@ -436,7 +436,7 @@ class HomeController extends Controller
                 
                 //outros casos
             } elseif (!(Hash::check($request->senhaAtual, $usuario['senha']))) {
-                return redirect()->back()->with('msg-error', 'A senha digitada está diferente da senha cadastrada!!!');
+                return redirect()->back()->with('msg-error', 'A senha atual digitada, é diferente da senha cadastrada.');
             } elseif ($request->senha != $request->confirmacao) {
                 return redirect()->back()->with('msg-error', 'A senha de confirmação está diferente da nova senha. As senhas precisam ser idênticas!!!');
             } else {
@@ -469,7 +469,7 @@ class HomeController extends Controller
                 
                 //outros casos
             } elseif (!(Hash::check($request->senhaAtual, $usuario['senha']))) {
-                return redirect()->back()->with('msg-error', 'A senha digitada está diferente da senha cadastrada!!!');
+                return redirect()->back()->with('msg-error', 'A senha atual digitada, é diferente da senha cadastrada.');
             } elseif ($request->senha != $request->confirmacao) {
                 return redirect()->back()->with('msg-error', 'A senha de confirmação está diferente da nova senha. As senhas precisam ser idênticas!!!');
             } else {
@@ -502,7 +502,7 @@ class HomeController extends Controller
                 
                 //outros casos
             } elseif (!(Hash::check($request->senhaAtual, $usuario['senha']))) {
-                return redirect()->back()->with('msg-error', 'A senha digitada está diferente da senha cadastrada!!!');
+                return redirect()->back()->with('msg-error', 'A senha atual digitada, é diferente da senha cadastrada.');
             } elseif ($request->senha != $request->confirmacao) {
                 return redirect()->back()->with('msg-error', 'A senha de confirmação está diferente da nova senha. As senhas precisam ser idênticas!!!');
             } else {
@@ -536,7 +536,7 @@ class HomeController extends Controller
                 
                 //outros casos
             } elseif (!(Hash::check($request->senhaAtual, $usuario['senha']))) {
-                return redirect()->back()->with('msg-error', 'A senha digitada está diferente da senha cadastrada!!!');
+                return redirect()->back()->with('msg-error', 'A senha atual digitada, é diferente da senha cadastrada.');
             } elseif ($request->senha != $request->confirmacao) {
                 return redirect()->back()->with('msg-error', 'A senha de confirmação está diferente da nova senha. As senhas precisam ser idênticas!!!');
             } else {
