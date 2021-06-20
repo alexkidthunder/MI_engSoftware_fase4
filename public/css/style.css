@@ -1196,6 +1196,11 @@ input[type=number] {
     line-height: 20px;
 }
 
+
+.card-relatorio_title a:hover, .card-relatorio_title a:focus {
+    color: #0D6EFD;
+}
+
 .card-relatorio_title b {
     align-self: center;
     color: blue;
@@ -1209,9 +1214,19 @@ input[type=number] {
     color: #0D6EFD;
 }
 
-.card-relatorio_title a:hover, .card-relatorio_title a:focus {
+.card-relatorio_title r {
+    align-self: center;
+    color: blue;
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+    line-height: 60px;
+    padding-top: 20px;
+    font-size: 45px;
+}
+.card-relatorio_title r:hover, .card-relatorio_title b:focus {
     color: #0D6EFD;
 }
+
 
 
 .card-relatorio-icon {
@@ -1236,10 +1251,16 @@ input[type=number] {
 @media (min-width: 426px) and (max-width:768px) {
     .card-relatorio {
         margin: 0 5px 20px 5px;
+        width: 260px;
+        height: 120px;
     }
-    .card-relatorio-icon .relatorio-icon {
+    .card-relatorio-icon .options-icon {
         width: 40px;
         height: 40px;
+    }
+
+    .card-relatorio_title r{
+        font-size: 14px;
     }
     .relatorio-icon i {
         padding-top: 8px;
@@ -1259,8 +1280,13 @@ input[type=number] {
         padding-top: 8px;
         font-size: 35px;
     }
+    
+    .card-relatorio_title r{
+        font-size: 10px;
+    }
     .card-relatorio {
-        height: 120px;
+        width: 200px;
+        height: 100px;
     }
 }
 

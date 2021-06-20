@@ -42,7 +42,7 @@ function UpdateTable(){
 
     var log_table = document.getElementById('Log_table');
     Log_body = log_table.getElementsByTagName('tr');
-    Log_list = Array.prototype.slice.call(Log_body);
+    var Log_list = Array.prototype.slice.call(Log_body);
     ClearTable(Log_list);
 }
 
@@ -111,3 +111,43 @@ log_show_size.addEventListener('change',function(){
     UpdateData();
     location.reload();
 })
+
+CPF_field = document.getElementById("CPF-field");
+
+CPF_field.addEventListener('keyup',function(){
+    typewatch(function(){
+        CPFs = document.getElementsByName('cpf_log');
+        removeHide(CPFs);
+        CPF_Filter(CPF_field.value,CPFs);
+    }, 600 );
+})
+
+function removeHide(Array){
+    sizeArray = Array.length
+    for(i = 0;i < sizeArray;i++){
+        if(Array[i] != null){
+            if(Array[i].parentElement.classList.contains('hide')){
+                Array[i].parentElement.classList.remove('hide');
+            }
+        }
+    }
+}
+
+function CPF_Filter(cpf,Array){
+    sizeArray = Array.length
+    for(i = 0;i < sizeArray;i++){
+        if(Array[i] != null){
+            if(!Array[i].innerHTML.includes(cpf)){
+                Array[i].parentElement.classList.add('hide');
+            }
+        }
+    }
+}
+
+var typewatch = function(){
+    var timer = 0;
+    return function(callback, ms){
+        clearTimeout (timer);
+        timer = setTimeout(callback, ms);
+    }  
+}();
