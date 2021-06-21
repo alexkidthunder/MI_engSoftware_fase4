@@ -155,20 +155,30 @@ class EnfChefeController extends Controller
         //se não existir o medicamento
         if (mysqli_fetch_assoc($existeMed)['COUNT(*)'] == 0) {
 
-            //gera um código aleatório
-            $cod = rand(00000, 9999999999);
+            //detecta data
+            date_default_timezone_set('America/Sao_Paulo');     
+            $dataAtual = date('Y-m-d');                              
 
-            //cria medicamento e adiciona
-            $novoMed = "INSERT INTO medicamentos (Nome_Medicam, Quantidade, Fabricante, Data_Validade, Codigo) values
-            ('$request->fnome', '$request->fquantidade', '$request->ffabricante', '$request->fvalidade', '$cod')";
-            mysqli_query($connect, $novoMed);
+            if( $request->fdata > $dataAtual ){
 
-            //log
-            $ip = $_SERVER["REMOTE_ADDR"];
-            $acao = "Cadastrou medicamento $request->fnome";
-            AdminController::salvarLog($acao, $ip);
+                //gera um código aleatório
+                $cod = rand(00000, 9999999999);
 
-            return redirect()->route('cadastroMedicamento')->with('success', "Novo medicamento adicionado!");
+                //cria medicamento e adiciona
+                $novoMed = "INSERT INTO medicamentos (Nome_Medicam, Quantidade, Fabricante, Data_Validade, Codigo) values
+                ('$request->fnome', '$request->fquantidade', '$request->ffabricante', '$request->fvalidade', '$cod')";
+                mysqli_query($connect, $novoMed);
+
+                //log
+                $ip = $_SERVER["REMOTE_ADDR"];
+                $acao = "Cadastrou medicamento $request->fnome";
+                AdminController::salvarLog($acao, $ip);
+
+                return redirect()->route('cadastroMedicamento')->with('success', "Novo medicamento adicionado!");
+            }else{
+                return redirect()->route('cadastroMedicamento')->with('error', "A data de validade é menor que a data atual. Digite novamente.");
+            }
+            
         } else {
             //se existir o medicamento cadastrado
             return redirect()->route('cadastroMedicamento')->with('error', "Medicamento já cadastrado!!");
