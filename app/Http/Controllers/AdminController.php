@@ -11,18 +11,29 @@ use PhpParser\Node\Stmt\Return_;
 
 use function PHPUnit\Framework\isEmpty;
 
+/**
+ * Classe AdminController
+ */
 class AdminController extends Controller
 {
-
-    //função de chamada de menu de adm
+  
+    /**
+     * Função de chamada de menu de adm
+     *
+     * @return view 
+     */
     public function menu()
     {
         VerificaLoginController::verificarLoginAdmin();
         return view('/admin/menu');
     }
 
-
-    //função para listar log
+   
+    /**
+     * Função para listar log
+     *
+     * @return view 
+     */
     public function log()
     {
         VerificaLoginController::verificarLoginAdmin();
@@ -43,8 +54,14 @@ class AdminController extends Controller
         return view('/admin/log', ['logs' => $logs]);
     }
 
-
-    //função para salvar log
+ 
+    /**
+     * Função para salvar log  
+     *
+     * @param  mixed $acao
+     * @param  mixed $ip
+     * @return void
+     */
     public static function salvarLog($acao, $ip)
     {
         include("db.php");
@@ -59,8 +76,12 @@ class AdminController extends Controller
         mysqli_query($connect, $novoLog);
     }
 
-
-    //função para chamada de view de atribuição
+  
+    /**
+     * Função para chamada de view de atribuição
+     *
+     * @return view
+     */
     public function atribuicao()
     {
         VerificaLoginController::verificarLoginAdmin();
@@ -68,7 +89,12 @@ class AdminController extends Controller
     }
 
 
-    //função marcar as para permissões na tela
+    /**
+     * Função marcar as para permissões na tela    
+     *
+     * @param  mixed $request
+     * @return view
+     */
     public function permissao(Request $request)
     {
         VerificaLoginController::verificarLoginAdmin(); //verifica se o usuario tem permissão de acesso a pagina de acordo com o seu cargo
@@ -141,8 +167,13 @@ class AdminController extends Controller
             return view('/admin/permissao'); //caso não tenha nada selecionado retorna a view em branco
         }
     }
-
-    //função para alterar permissão
+ 
+    /**
+     * função para alterar permissão
+     *
+     * @param  mixed $request
+     * @return redirect()->back()->with()
+     */
     public function alterarPermissao(Request $request)
     {
         session_start(); //indica que existe uma sessão
@@ -213,8 +244,12 @@ class AdminController extends Controller
         }
     }
 
-
-    //função para redirecionar para pagina de backup e mostrar os agendados
+   
+    /**
+     * Função para redirecionar para pagina de backup e mostrar os agendados
+     *
+     * @return view()
+     */
     public function backup()
     {
         include("db.php");
@@ -236,7 +271,11 @@ class AdminController extends Controller
     }
 
 
-    // Função que remove um usuario do sistema
+    /**
+     * Função que remove um usuario do sistema
+     *
+     * @return view()
+     */
     public function remocao()
     {
         include("db.php");
@@ -263,8 +302,13 @@ class AdminController extends Controller
         }
     }
 
-
-    //função para alterar atribuição
+ 
+    /**
+     * Função para alterar atribuição
+     *
+     * @param  mixed $request
+     * @return redirect()->back()->with()
+     */
     public function alterarAtribuicao(Request $request)
     {
         session_start();
@@ -381,8 +425,13 @@ class AdminController extends Controller
             return redirect()->back()->with('msg-error', 'Você não pode alterar o cargo de administradores!!!'); //Redireciona para pagina anterior e mostra mensagem de erro
         }
     }
-
-    //função de busca
+    
+    /**
+     * Função de busca
+     *
+     * @param  mixed $request
+     * @return view
+     */
     public function lupinha(Request $request)
     {
         session_start();
@@ -420,15 +469,24 @@ class AdminController extends Controller
         }
     }
 
-
-    //função para chamar a função salvar usuário pela view
+   
+    /**
+     * Função para chamar a função salvar usuário pela view
+     *
+     * @return view()
+     */
     public function cadastro()
     {
         VerificaLoginController::verificarLoginAdmin();
         return view('/admin/cadastroUsuario');
     }
-
-    //função para salvar usuário
+    
+    /**
+     * Função para salvar usuário
+     *
+     * @param  mixed $request
+     * @return redirect()->route()
+     */
     public function salvarUsuario(Request $request)
     {
         session_start();
@@ -492,7 +550,12 @@ class AdminController extends Controller
     }
 
 
-    //Função que busca e retorna um usuario no banco de dados
+    /**
+     * Função que busca e retorna um usuario no banco de dados
+     *
+     * @param  mixed $request
+     * @return view()
+     */
     public function busca(Request $request)
     {
         session_start();
@@ -520,8 +583,12 @@ class AdminController extends Controller
         }
         return view('/admin/remocaoUsuario', ['user' => $user, 'atribuicao' => $atribuicao]);
     }
-
-    //função de salvar backup do banco de dados
+  
+    /**
+     * Função de salvar backup do banco de dados
+     *
+     * @return redirect()->back()->with()
+     */
     public static function salvarDB()
     {
         include("db.php");
@@ -647,7 +714,7 @@ class AdminController extends Controller
 
         //veificando existencia do arquivo
         if (file_exists(($baixar))) {
-            header("Pragma: public");
+           header("Pragma: public");
             header("Expires: 0");
             header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
             header("Cache-Control: private", false);
@@ -668,8 +735,13 @@ class AdminController extends Controller
         }
     }
 
-
-    //função de cadastro de backup
+  
+    /**
+     * Função de cadastro de backup
+     *
+     * @param  mixed $request
+     * @return redirect()->back()->with()
+     */
     public function cadastrarBD(Request $request)
     {
         session_start();
@@ -723,7 +795,12 @@ class AdminController extends Controller
         return redirect()->back()->with('success',"Agendamento de backup cadastrado com sucesso!!");
     }
 
-    //função para remover agendamento de backup
+    /**
+     * Função para remover agendamento de backup  
+     *
+     * @param  mixed $request
+     * @return redirect()->back()->with()
+     */
     public function removerAgendamentoBackup(Request $request)
     {
         include("db.php");
@@ -739,7 +816,11 @@ class AdminController extends Controller
         return redirect()->back()->with('success',"Agendamento de backup removido com sucesso!!");;
     }
 
-    //função para pegar as informações do Relatório Gerencial
+    /**
+     * Função para pegar as informações do Relatório Gerencial
+     *
+     * @return view
+     */
     public function relatorioGerencial()
     {
         include("db.php");
@@ -834,16 +915,28 @@ class AdminController extends Controller
 
         return view('/admin/relatorioGerencial', $inf);
     }
-
+    
+    /**
+     * Função para realizar Backup
+     *
+     * @return AdminController::salvarDB()
+     */
     public function realizarBackup()
     {
         AdminController::salvarDB(); // Quando clicado no botão de realizar backup chama fução estatica de backup
     }
-
-    public static function realizarBackupAgendado() // função estatica para backup automatico. Deve ser chamada usando funcionalidade de chamad automatica da hospedagem
+    
+    /**
+     * Função estatica para backup automatico. 
+     * Deve ser chamada usando funcionalidade de chamada automatica da hospedagem
+     *
+     * @return void
+     */
+    public static function realizarBackupAgendado()
     {
         include("db.php");
         // obtem data e hora atual
+        date_default_timezone_set('America/Sao_Paulo');
         $dataAtual = date('Y-m-d');
         $horaAtual = date('H:i:s');
         $sql = "SELECT * FROM backups_agendados";

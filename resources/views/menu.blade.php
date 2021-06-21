@@ -190,7 +190,6 @@
                 @endfor
                 <!----------Card responsável por listar todos os agendamentos------------>
                 @if(isset($_SESSION["enfermeiroChefe"]))
-                @if($resultado[15] == 1)
                 <div class="col-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
@@ -200,7 +199,6 @@
                             href="{{ route('listaAgendamentos') }}">Listagem de agendamentos</a></h4>
                     </div>
                 </div>
-                @endif 
                 @endif
                 <!----------Card responsável por mostrar os Planotnistas------------>
                 @for($i = 14; $i <=72; $i = $i+29)

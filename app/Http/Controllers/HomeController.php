@@ -14,10 +14,17 @@ use Mpdf\Mpdf;
 use mysqli;
 use Illuminate\Support\Facades\Mail;
 
+/**
+ * Classe HomeController
+ */
 class HomeController extends Controller
 {
 
-    //função de página inicial
+    /**
+     * Função de página inicial
+     *
+     * @return view
+     */
     public function index()
     {
         session_start();
@@ -34,7 +41,12 @@ class HomeController extends Controller
     }
 
 
-    //função de login
+    /**
+     * Função de login
+     *
+     * @param  mixed $request
+     * @return redirect() -> back() ->with()
+     */
     public function login(Request $request)
     {
         include("db.php");
@@ -53,8 +65,6 @@ class HomeController extends Controller
         while ($buscarSenha = mysqli_fetch_array($senhaBanco)) {
             $senhaEncontrada = $buscarSenha["Senha"];
         }
-
-        
 
         //verifica se o usuario existe no sistema. $row = 1 significa que sim
         if ($row == 1) {
@@ -154,21 +164,25 @@ class HomeController extends Controller
                         header("Location: /menu");
                         exit();
                     } else {
-                        return redirect() -> back() ->with('msg-error', 'Funcionário sem cargo, algo está errado!!!');
+                        return redirect() -> back() ->with('msg-error', 'Funcionário sem cargo, algo está errado');
                     }
                 } else {
-                    return redirect() -> back() ->with('msg-error', 'Conta do funcionário encontra-se desativada!');
+                    return redirect() -> back() ->with('msg-error', 'Conta do funcionário encontra-se desativada');
                 }
             } else {
-                return redirect() -> back() ->with('msg-error', 'Senha digitada está errada!!');
+                return redirect() -> back() ->with('msg-error', 'A senha informada está incorreta');
             }
         } else { // caso em que o $row = 0, usuário não existe
-            return redirect() -> back() ->with('msg-error', 'Usuário não existe no sistema!!');
+            return redirect() -> back() ->with('msg-error', 'O Usuário não existe no sistema');
         }
     }
 
-
-    //função de menu, exceto do adm
+ 
+    /**
+     * Função de menu com exceção do adm
+     *
+     * @return view
+     */
     public function menu()
     {
         VerificaLoginController::verificarLogin();
@@ -194,8 +208,12 @@ class HomeController extends Controller
         }
     }
 
-
-    //função de logout
+ 
+    /**
+     * Função de logout
+     *
+     * @return void
+     */
     public function logout()
     {
         // destroi todas as sessões existentes e retorna para página de login
@@ -211,15 +229,25 @@ class HomeController extends Controller
         exit();
     }
     
-
-    //função de chamada de view de primeiro acesso
+ 
+    /**
+     * Função de chamada de view de primeiro acesso
+     *
+     * @return view()
+     */
     public function acessarPrimeiroAcesso()
     {
         return view('primeiroAcesso');
     }
-
+    
+    /**
+     * Função de processar o primeiro acesso
+     *
+     * @param  mixed $request
+     * @return redirect()
+     */
     public function primeiroAcesso(Request $request)
-    {       //função de processar o primeiro acesso
+    {
         include('db.php');
 
         $cpf = $request->cpf;
@@ -313,7 +341,12 @@ class HomeController extends Controller
     }*/
 
 
-    //função de editar perfil
+    /**
+     * Função de editar perfil
+     *
+     * @param  mixed $request
+     * @return view()
+     */
     public function editPerfil(Request $request)
     {
         VerificaLoginController::verificarLogin();
@@ -359,8 +392,13 @@ class HomeController extends Controller
         return view('editarPerfil', ['usuario' => $usuario]); // envia os dados para view para preencher os campos
     }
     
-
-    //função de alterar senha
+  
+    /**
+     * Função de alterar senha
+     *
+     * @param  mixed $request
+     * @return redirect()->back()->with()
+     */
     public function alterarSenhaPerfil(Request $request)
     {
         session_start();
@@ -398,7 +436,7 @@ class HomeController extends Controller
                 
                 //outros casos
             } elseif (!(Hash::check($request->senhaAtual, $usuario['senha']))) {
-                return redirect()->back()->with('msg-error', 'A senha digitada está diferente da senha cadastrada!!!');
+                return redirect()->back()->with('msg-error', 'A senha atual digitada, é diferente da senha cadastrada.');
             } elseif ($request->senha != $request->confirmacao) {
                 return redirect()->back()->with('msg-error', 'A senha de confirmação está diferente da nova senha. As senhas precisam ser idênticas!!!');
             } else {
@@ -431,7 +469,7 @@ class HomeController extends Controller
                 
                 //outros casos
             } elseif (!(Hash::check($request->senhaAtual, $usuario['senha']))) {
-                return redirect()->back()->with('msg-error', 'A senha digitada está diferente da senha cadastrada!!!');
+                return redirect()->back()->with('msg-error', 'A senha atual digitada, é diferente da senha cadastrada.');
             } elseif ($request->senha != $request->confirmacao) {
                 return redirect()->back()->with('msg-error', 'A senha de confirmação está diferente da nova senha. As senhas precisam ser idênticas!!!');
             } else {
@@ -464,7 +502,7 @@ class HomeController extends Controller
                 
                 //outros casos
             } elseif (!(Hash::check($request->senhaAtual, $usuario['senha']))) {
-                return redirect()->back()->with('msg-error', 'A senha digitada está diferente da senha cadastrada!!!');
+                return redirect()->back()->with('msg-error', 'A senha atual digitada, é diferente da senha cadastrada.');
             } elseif ($request->senha != $request->confirmacao) {
                 return redirect()->back()->with('msg-error', 'A senha de confirmação está diferente da nova senha. As senhas precisam ser idênticas!!!');
             } else {
@@ -498,7 +536,7 @@ class HomeController extends Controller
                 
                 //outros casos
             } elseif (!(Hash::check($request->senhaAtual, $usuario['senha']))) {
-                return redirect()->back()->with('msg-error', 'A senha digitada está diferente da senha cadastrada!!!');
+                return redirect()->back()->with('msg-error', 'A senha atual digitada, é diferente da senha cadastrada.');
             } elseif ($request->senha != $request->confirmacao) {
                 return redirect()->back()->with('msg-error', 'A senha de confirmação está diferente da nova senha. As senhas precisam ser idênticas!!!');
             } else {
@@ -508,13 +546,18 @@ class HomeController extends Controller
     }
 
 
-    //função de alterar dados
+    /**
+     * Função de alterar dados.
+     * Altera dados como nome e email digitados na tela de perfil apos clicar no botão de edição  de acordo com o cpf do usuario cadastrado
+     *
+     * @param  mixed $request
+     * @return redirect()->back()->with()
+     */
     public function alterarDados(Request $request)
     {
         session_start();
         include("db.php");
         $cpf = HomeController::obterCpf();
-        // altera dados como nome e email digitados na tela de perfil apos clicar no botão de edição  de acordo com o cpf do usuario cadastrado
         $updateNome = "UPDATE usuarios SET Nome = '$request->fnome' WHERE CPF = '$cpf'";
         $_SESSION['nome'] = $request->fnome;
         mysqli_query($connect, $updateNome);
@@ -531,7 +574,12 @@ class HomeController extends Controller
     }
 
 
-    //função de listar pacientes
+    /**
+     * Função de listar pacientes
+     *
+     * @param  mixed $request
+     * @return view()
+     */
     public function listaPacientes(Request $request)
     {
         VerificaLoginController::verificarLogin();
@@ -628,7 +676,11 @@ class HomeController extends Controller
     }
 
 
-    //função de agendamentos realizados
+    /**
+     * Função de agendamentos realizados
+     *
+     * @return view()
+     */
     public function agendamentosRealizados()
     {
         VerificaLoginController::verificarLogin();
@@ -688,7 +740,11 @@ class HomeController extends Controller
     }
 
 
-    //função de visualizar meus agendamentos
+    /**
+     * Função de visualizar meus agendamentos
+     *
+     * @return view()
+     */
     public function meusAgendamentos()
     {
         //verifica permissã busca agendamentos com aplicado cadastrado com aquele cpf e exibi na tela se encontrado.
@@ -750,7 +806,12 @@ class HomeController extends Controller
     }
 
 
-    //função de finalizar meus agendamentos
+    /**
+     * Função de finalizar meus agendamentos
+     *
+     * @param  mixed $request
+     * @return redirect()->back()
+     */
     public function finalizarMeusAgendamentos(Request $request)
     {
         include("db.php");
@@ -768,7 +829,12 @@ class HomeController extends Controller
     }
         
 
-    //função de ver agendamentos
+    /**
+     * Função de ver agendamentos
+     *
+     * @param  mixed $request
+     * @return view()
+     */
     public function agendamentos(Request $request)
     {
         //verifica se tem permissão e busca agendamentoS
@@ -829,7 +895,12 @@ class HomeController extends Controller
     }
 
 
-    //função auto cadastro em agendamentos
+    /**
+     * Função auto cadastro em agendamentos
+     *
+     * @param  mixed $request
+     * @return redirect()->back()->with()
+     */
     public function autoCadastroAgendamento(Request $request)
     {
         include("db.php");
@@ -855,7 +926,11 @@ class HomeController extends Controller
     }
 
 
-    //função para permissão de cadastro de agendamentos
+    /**
+     * Função para permissão de cadastro de agendamentos
+     *
+     * @return view()
+     */
     public function cadastroAgendamentos()
     {
         VerificaLoginController::verificarLogin();
@@ -867,8 +942,12 @@ class HomeController extends Controller
         }
     }
 
-
-    //função para permissão de cadastro de prontuário
+ 
+    /**
+     * Função para permissão de cadastro de prontuário
+     *
+     * @return view()
+     */
     public function cadastroProntuario()
     {
         VerificaLoginController::verificarLogin();
@@ -880,8 +959,12 @@ class HomeController extends Controller
         }
     }
 
-
-    //função para permissão de cadastro de paciente
+   
+    /**
+     * Função para permissão de cadastro de paciente
+     *
+     * @return view()
+     */
     public function cadastroPaciente()
     {
         VerificaLoginController::verificarLogin();
@@ -893,13 +976,23 @@ class HomeController extends Controller
         }
     }
 
-
+    
+    /**
+     * Função para redirecionar para a página de esqueci a senha
+     *
+     * @return view()
+     */
     public function esqueciSenhaView()
     {
         return view('esqueciSenha');
     }
 
-    //função de esqueci a senha
+    /**
+     * Função de esqueci a senha
+     *
+     * @param  mixed $request
+     * @return  redirect()->back()->with()
+     */
     public function esqueciSenha(Request $request)
     {
         include('db.php');
@@ -929,12 +1022,23 @@ class HomeController extends Controller
             return redirect()->back()->with('msg-sucess', 'Verifique sua caixa de entrada ou de spam!');
         }
     }
-
-    public function definirSenhaView()          //chamada de view
+    
+    /**
+     * Função para a chamada da view
+     *
+     * @return view()
+     */
+    public function definirSenhaView()
     {
         return view('novaSenha');
     }
-
+    
+    /**
+     * Função para redirecionar a tela
+     *
+     * @param  mixed $codigo
+     * @return view()
+     */
     public function checarCPFView($codigo)
     {
        if($codigo < 100000 && $codigo < 999999){
@@ -942,7 +1046,13 @@ class HomeController extends Controller
         }
         return view('checarCPF');
     }
-
+    
+    /**
+     * Função para checar o CPF
+     *
+     * @param  mixed $request
+     * @return redirect()->with
+     */
     public function checarCPF(Request $request)
     {
         include('db.php');
@@ -963,8 +1073,13 @@ class HomeController extends Controller
         return view('checarCPF');
     }
 
-
-    //função de redefinir a senha a partir do esqueci a senha
+  
+    /**
+     * Função de redefinir a senha a partir do esqueci a senha
+     *
+     * @param  mixed $request
+     * @return redirect()->route()->with()
+     */
     public function definirSenha(Request $request)
     {
         include('db.php');
@@ -994,8 +1109,11 @@ class HomeController extends Controller
     }
 
 
-
-    //função de listagem de medicamentos
+    /**
+     * Função de listagem de medicamentos
+     *
+     * @return view()
+     */
     public function listaMedicamento()
     {
         VerificaLoginController::verificarLogin();
@@ -1033,7 +1151,11 @@ class HomeController extends Controller
     }
 
 
-    //função de permissão de histórico de prontuário
+    /**
+     * Função de permissão de histórico de prontuário
+     *
+     * @return view()
+     */
     public function historicoProntuario()
     {
         VerificaLoginController::verificarLogin();
@@ -1046,7 +1168,12 @@ class HomeController extends Controller
     }
 
 
-    //função de salvar paciente no banco de dados
+    /**
+     * Função de salvar paciente no banco de dados
+     *
+     * @param  mixed $request
+     * @return redirect()->route()->with()
+     */
     public function salvarPaciente(Request $request)
     {
         session_start();
@@ -1084,7 +1211,12 @@ class HomeController extends Controller
     }
 
 
-    //função de permissão de acesso ao prontuário
+    /**
+     * Função de permissão de acesso ao prontuário
+     *
+     * @param  mixed $request
+     * @return view()
+     */
     public function prontuario(Request $request)
     {
         //Essa função busca na tabela de pacientes,cids, medicamentos, e agendamentos os dados daquele paciente a partir das informações do prontuario
@@ -1212,7 +1344,13 @@ class HomeController extends Controller
             return redirect()->back()->with('msg-error', 'Você não tem acesso a essa página!!!');
         }
     }
-
+    
+    /**
+     * Função para editar o prontuário
+     *
+     * @param  mixed $request
+     * @return redirect()->back()->with()
+     */
     public function editarProntuario(Request $request)
     {
         session_start();
@@ -1279,7 +1417,13 @@ class HomeController extends Controller
             return redirect()->back()->with('msg-error', "Este prontuario não pode ser editado pois ja foi finalizado!!!!!");
         }
     }
-
+    
+    /**
+     * Função para cadastrar o prontuário
+     *
+     * @param  mixed $request
+     * @return redirect()->back()->with()
+     */
     public function cadastrarProntuario(Request $request)
     {
         session_start();
@@ -1328,7 +1472,12 @@ class HomeController extends Controller
     }
 
 
-    //função de buscar prontuário
+    /**
+     * Função de buscar prontuário
+     *
+     * @param  mixed $request
+     * @return view()
+     */
     public function buscaProntuario(Request $request)
     {
         //função que obtem todos os prontuarios finalizados de determinado paciente de acordo com o cpf
@@ -1370,7 +1519,12 @@ class HomeController extends Controller
     }
 
 
-    //Função que busca um paciente para o cadastro de prontuário e também retorna os leitos disponíveis
+    /**
+     * Função que busca um paciente para o cadastro de prontuário e também retorna os leitos disponíveis
+     *
+     * @param  mixed $request
+     * @return view()
+     */
     public function buscarPaciente(Request $request)
     {
         session_start();
@@ -1401,7 +1555,12 @@ class HomeController extends Controller
         }
     }
 
-    //função para checar se prontuario foi finalizado
+    /**
+     * Função para checar se prontuario foi finalizado
+     *
+     * @param  mixed $codigo
+     * @return int
+     */
     public static function estadoPronturio($codigo)
     {
         include("db.php");
@@ -1417,7 +1576,12 @@ class HomeController extends Controller
     }
 
 
-    //função de cadastrar cid em prontuário
+    /**
+     * Função de cadastrar cid em prontuário
+     *
+     * @param  mixed $request
+     * @return redirect() -> back() ->with()
+     */
     public function cadastrarCidProntuario(Request $request)
     {
         session_start();
@@ -1449,6 +1613,24 @@ class HomeController extends Controller
 
                     return redirect() -> back() ->with('msg', 'CID adicionada ao prontuario com sucesso!!!!');
                 }
+            } elseif ($cid == null and $aberto == '1') {
+                $descri = "Esta cid não possui descrição";
+                $sqlc = "SELECT * FROM cid" ;
+                $queryc = mysqli_query($connect, $sqlc);
+                while ($sqlc = mysqli_fetch_array($queryc)) {
+                    $c = $sqlc['id'];
+                }
+                $c++;
+                $insertNC = "INSERT INTO cid (id,codCid,descricaoCid) VALUES ('$c','$request->fcid','$descri')";
+                mysqli_query($connect, $insertNC);
+                $sql = "SELECT * FROM cid WHERE codCid = '$request->fcid'";
+                $query = mysqli_query($connect, $sql);
+                while ($sql = mysqli_fetch_array($query)) {
+                    $cid = $sql['id']; // procura cid com o mesmo codigo de identificação na tabela de cids para ver se existe
+                }
+                $insertC = "INSERT INTO cid_prontuario (id_CID,id_prontuario) VALUES ('$cid','$request->prontuario')";
+                mysqli_query($connect, $insertC);
+                return redirect() -> back() ->with('msg', 'CID não se encontrava na base de dados. Uma nova cid foi adicionada a base de dados e ao prontuario!!!!');
             } elseif ($aberto == '0' or $aberto == null) {
                 return redirect() -> back() ->with('msg-error', 'Não pode haver cadastro de cids nesse prontuario pois ele se enconta fechado');
             } else {
@@ -1460,7 +1642,11 @@ class HomeController extends Controller
     }
 
 
-    //função de obter cpf
+    /**
+     * Função de obter cpf
+     *
+     * @return char
+     */
     public static function obterCpf()
     { // função para obter cpf do usuario logado
         $cpf = null;
@@ -1470,14 +1656,19 @@ class HomeController extends Controller
             $cpf = $_SESSION['enfermeiro'];
         } elseif (isset($_SESSION['enfermeiroChefe'])) {
             $cpf = $_SESSION['enfermeiroChefe'];
-        } else {
+        } elseif (isset($_SESSION['estagiario'])) {
             $cpf = $_SESSION['estagiario'];
         }
         return $cpf; // retorna o cpf caso exista
     }
 
 
-    //função de adicionar ocorrencias em prontuário
+    /**
+     * Função de adicionar ocorrencias em prontuário
+     *
+     * @param  mixed $request
+     * @return redirect() -> back() ->with()
+     */
     public function adicionarOcorrencias(Request $request)
     {
         session_start();
@@ -1523,16 +1714,21 @@ class HomeController extends Controller
             return redirect() -> back() ->with('msg-error', 'Você não possui permissão para realizar essa ação');
         }
     }
-    
-    //função de finalizar prontuário
+     
+    /**
+     * função de finalizar prontuário
+     *
+     * @param  mixed $request
+     * @return redirect() -> back() ->with()
+     */
     public function finalizarProntuario(Request $request)
     {
         session_start();
         include("db.php");
-        
+        $dataA = date('Y-m-d');
         $aberto = HomeController::estadoPronturio($request->prontuario); // verifca se prontuario esta aberto
         if ($aberto == '1') { // se sim muda o estado dele para fechado
-            $update = "UPDATE prontuarios SET aberto = '0', Data_Saida = '$request->fsaida' WHERE ID = '$request->prontuario'";
+            $update = "UPDATE prontuarios SET aberto = '0', Data_Saida = '$dataA' WHERE ID = '$request->prontuario'";
             mysqli_query($connect, $update);
             $sql = "SELECT * FROM prontuarios WHERE ID = '$request->prontuario'";
             $query =  mysqli_query($connect, $sql);
@@ -1557,7 +1753,12 @@ class HomeController extends Controller
     }
 
 
-    //função de baixar arquivos de listagem
+    /**
+     * Função de baixar arquivos de listagem
+     *
+     * @param  mixed $request
+     * @return void
+     */
     public function baixarArquivos(Request $request)
     {
         session_start();
@@ -2282,12 +2483,18 @@ class HomeController extends Controller
             }
         }
     }
-
+    
+    /**
+     * Função para notificar o usuario do seu agendamento
+     *
+     * @return void
+     */
     public static function notificarUsuarioAgendamento()
     { // função estatica para notificação. Deve ser chamada usando funcionalidade de chamad automatica da hospedagem
         session_start();
         include("db.php");
         //obtem data e hora atual
+        date_default_timezone_set('America/Sao_Paulo');
         $hora = date('H-i-s');
         $data = date('Y-m-d');
         $cpf = HomeController::ObterCpf();
@@ -2301,14 +2508,19 @@ class HomeController extends Controller
                 while ($sql1= mysqli_fetch_array($query1)) {
                     $leito = $sql1['Id_leito'];
                 }
-                if ($data == $sql['Data_Agend'] and $dhora == $sql['Hora_Agend']) { //verifica se as datas e horas cadastradas e obtidas batem e se sim manda a notificação
+                if ($data == $sql['Data_Agend'] and $hora == $sql['Hora_Agend']) { //verifica se as datas e horas cadastradas e obtidas batem e se sim manda a notificação
                     $_SESSION['notifi'] = 'Você tem o agendamento marcado para o leiot:'.$leito;
                 }
                 //OBS - Adicionar um css tbm de msg-notification assim como tem pra sucess e error e colocar em todas as páginas no inicio do body
             }
         }
     }
-
+    
+    /**
+     * Função de apagarN
+     *
+     * @return void
+     */
     public function apagarN()
     {
         $_SESSION['notify'] = array();

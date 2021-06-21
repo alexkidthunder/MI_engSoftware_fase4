@@ -3,24 +3,23 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use App\Http\Controllers\AdminController;
-use Symfony\Component\VarDumper\Cloner\Data;
+use App\Http\Controllers\HomeController;
 
-class AgendaBackup extends Command
+class ChecarAgendamento extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'program:backup';
+    protected $signature = 'check:agenda';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Comando para realizar o backup programado do Banco de Dados';
+    protected $description = 'Comando para ficar checando os agendamentos ';
 
     /**
      * Create a new command instance.
@@ -39,6 +38,6 @@ class AgendaBackup extends Command
      */
     public function handle()
     {
-        AdminController::realizarBackupAgendado();          
+        HomeController::notificarUsuarioAgendamento();
     }
 }

@@ -73,7 +73,7 @@
                             </div>
                             <div class="col-9">
                                 <div class="card-relatorio_title">
-                                    <h3><b>{{ $paci['COUNT(*)'] }}</b></h3>
+                                    <h5><b>{{ $paci['COUNT(*)'] }}</b></h5>
                                     <h4><a>Pacientes Internados</a></h4>
                                 </div>
                             </div>
@@ -93,7 +93,7 @@
                             </div>
                             <div class="col-9">
                             <div class="card-relatorio_title">
-                                    <h3><b>{{ $func['COUNT(*)'] }}</b></h3>
+                                    <h5><b>{{ $func['COUNT(*)'] }}</b></h5>
                                     <h4><a>Funcionários Cadastrados</a></h4>
                                 </div>
                             </div>
@@ -109,12 +109,12 @@
                         <div class="row">
                             <div class="col-3">
                                 <div class="card-relatorio-icon relatorio-icon">
-                                    <i class="fas fa-disease"></i>
+                                <i class="fa fa-thermometer-full" aria-hidden="true"></i>
                                 </div>
                             </div>
                             <div class="col-9">
                                 <div class="card-relatorio_title">
-                                    <h3><b>{{$cid["codCid"]}}</b></h3>
+                                    <h5><b>{{$cid["codCid"]}}</b></h5>
                                     <h4><a>CID mais frequente</a></h4>
                                 </div>
                             </div>
@@ -134,7 +134,7 @@
                             </div>
                             <div class="col-9">
                                 <div class="card-relatorio_title">
-                                    <h3><b>{{ $taxa }} %</b></h3>
+                                    <h5><b>{{ $taxa }} %</b></h5>
                                     <h4><a>Taxa de óbito</a></h4>
                                 </div>
                             </div>
@@ -150,12 +150,12 @@
                         <div class="row">
                             <div class="col-3">
                                 <div class="card-relatorio-icon relatorio-icon">
-                                    <i class="fas fa-"></i>
+                                <i class="fa fa-heartbeat" aria-hidden="true"></i>
                                 </div>
                             </div>
                             <div class="col-9">
                                 <div class="card-relatorio_title">
-                                    <h3><b>{{ $media }}</b></h3>
+                                    <h5><b>{{ $media }}</b></h5>
                                     <h4><a>Idade Media entre Pacientes</a></h4>
                                 </div>
                             </div>
@@ -175,7 +175,7 @@
                             </div>
                             <div class="col-9">
                                 <div class="card-relatorio_title">
-                                    <h3><b>{{ $medic['Nome_Medicam'] }}</b></h3>
+                                    <h5><b>{{ $medic['Nome_Medicam'] }}</b></h5>
                                     <h4><a>Medicamento mais usado</a></h4>
                                 </div>
                             </div>
@@ -196,7 +196,7 @@
                             </div>
                             <div class="col-9">
                                 <div class="card-relatorio_title">
-                                    <h3><b>{{ $leito['COUNT(*)'] }}</b></h3>
+                                    <h5><b>{{ $leito['COUNT(*)'] }}</b></h5>
                                     <h4><a>Quantidade de Leitos Cadastrados</a></h4>
                                 </div>
                             </div>
@@ -216,7 +216,7 @@
                             </div>
                             <div class="col-9">
                                 <div class="card-relatorio_title">
-                                    <h3><b>{{ $leitOcu['COUNT(*)'] }}</b></h3>
+                                    <h5><b>{{ $leitOcu['COUNT(*)'] }}</b></h5>
                                     <h4><a>Quantidade de Leitos Ocupados</a></h4>
                                 </div>
                             </div>
@@ -237,7 +237,7 @@
                             </div>
                             <div class="col-9">
                                 <div class="card-relatorio_title">
-                                    <h3><b>{{ $EnfCh['COUNT(*)'] }}</b></h3>
+                                    <h5><b>{{ $EnfCh['COUNT(*)'] }}</b></h5>
                                     <h4><a>Enfermeiros Chefes Ativos</a></h4>
                                 </div>
                             </div>
@@ -257,7 +257,7 @@
                             </div>
                             <div class="col-9">
                                 <div class="card-relatorio_title">
-                                    <h3><b>{{ $Enf['COUNT(*)'] }}</b></h3>
+                                    <h5><b>{{ $Enf['COUNT(*)'] }}</b></h5>
                                     <h4><a>Enfermeiros Ativos</a></h4>
                                 </div>
                             </div>
@@ -278,7 +278,7 @@
                             </div>
                             <div class="col-9">
                                 <div class="card-relatorio_title">
-                                    <h3><b>{{ $Est['COUNT(*)'] }}</b></h3>
+                                    <h5><b>{{ $Est['COUNT(*)'] }}</b></h5>
                                     <h4><a>Estagiarios Ativos</a></h4>
                                 </div>
                             </div>
@@ -298,7 +298,7 @@
                             </div>
                             <div class="col-9">
                                 <div class="card-relatorio_title">
-                                    <h3><b>{{ $adMin['COUNT(*)'] }}</b></h3>
+                                    <h5><b>{{ $adMin['COUNT(*)'] }}</b></h5>
                                     <h4><a>Administradores Cadastrados</a></h4>
                                 </div>
                             </div>
