@@ -172,7 +172,7 @@
                 @endif
                 @endfor
         
-                <!----------Card responsável pelo Cadastro de Leito------------>
+                <!----------Card responsável pelo Cadastro e Exclusão de Leito------------>
                 @for($i = 29; $i <=87; $i = $i+29)
                 @if(isset($resultado[$i]))
                 @if($resultado[$i] == 1)
@@ -182,7 +182,7 @@
                             <i class="fas fa-procedures"></i>
                         </div>
                         <h4 class="card-options_title"><a
-                            href="{{ route('cadastroLeito') }}">Cadastrar leito</a></h4>
+                            href="{{ route('cadastroLeito') }}">Cadastrar e Remover leito</a></h4>
                     </div>
                 </div>
                 @endif
