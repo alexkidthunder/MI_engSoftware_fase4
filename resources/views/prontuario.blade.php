@@ -401,10 +401,6 @@
                         <input type="hidden" name="prontuario" value="{{ $paciente['prontuario'] }}">
                         <div class="row">
                             <div class="col-lg-4">
-                                <label>Data de Saída</label> <br>
-                                <input id="fsaida" name="fsaida" type="date" required>
-                            </div>
-                            <div class="col-lg-4">
                                 <label for="status_saida">Status para Fechamento</label> <br>
                                 <select required name="status_saida" id="status_saida">
                                 </select>
