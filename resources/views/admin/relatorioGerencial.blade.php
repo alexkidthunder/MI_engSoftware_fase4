@@ -109,7 +109,7 @@
                         <div class="row">
                             <div class="col-3">
                                 <div class="card-relatorio-icon relatorio-icon">
-                                    <i class="fas fa-disease"></i>
+                                <i class="fa fa-thermometer-full" aria-hidden="true"></i>
                                 </div>
                             </div>
                             <div class="col-9">
@@ -150,7 +150,7 @@
                         <div class="row">
                             <div class="col-3">
                                 <div class="card-relatorio-icon relatorio-icon">
-                                    <i class="fas fa-"></i>
+                                <i class="fa fa-heartbeat" aria-hidden="true"></i>
                                 </div>
                             </div>
                             <div class="col-9">

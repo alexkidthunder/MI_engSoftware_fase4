@@ -40,6 +40,7 @@
                     <ul id="menu">
                         <li class="title-nav"><a name="nav-item" href="{{ route('menu') }}">INÍCIO</a></li>
                         @if(isset($_SESSION['permissoes']))
+                        @if($_SESSION['permissoes'][17] == 1 or $_SESSION['permissoes'][33] == 1 or $_SESSION['permissoes'][18] == 1 or $_SESSION['permissoes'][34] == 1)
                         <li class="drop-down title-nav"><a>PACIENTES <i class="fas fa-angle-down"></i></a>
                             <ul>
                                 <!-- Apenas enfermeiro e enfermeiro chefe-->
@@ -58,8 +59,9 @@
                                 @endif
                             </ul>
                         </li>
+                        @endif
 
-
+                        @if($_SESSION['permissoes'][15] == 1 or $_SESSION['permissoes'][23] == 1 or $_SESSION['permissoes'][22] == 1 or $_SESSION['permissoes'][12] == 1 or $_SESSION['permissoes'][9] == 1 or $_SESSION['permissoes'][35] == 1 or $_SESSION['permissoes'][16] == 1 or isset($_SESSION['enfermeiroChefe']))
                         <li class="drop-down title-nav"><a>AGENDAMENTOS E MEDICAMENTOS <i
                                     class="fas fa-angle-down"></i></a>
                             <ul>
@@ -95,17 +97,18 @@
                                 @endif
                             </ul>
                         </li>
+                        @endif
 
-                        @if ($_SESSION['permissoes'][29] == "1")
+                            @if ($_SESSION['permissoes'][29] == "1")
                             <li class="drop-down title-nav"><a>LEITOS <i class="fas fa-angle-down"></i></a>
                                 <ul>
                                     <li><a name="nav-item" href="{{ route('cadastroLeito') }}">Cadastro de leito</a>
                                     </li>
                                 </ul>
                             </li>
-                        @endif
+                            @endif
 
-
+                            @if($_SESSION['permissoes'][7] == 1 or $_SESSION['permissoes'][14] == 1)
                             <li class="drop-down title-nav"><a>PLANTONISTAS <i class="fas fa-angle-down"></i></a>
                                 <ul>
                                 @if ($_SESSION['permissoes'][7] == "1")
@@ -118,6 +121,7 @@
                                 @endif
                                 </ul>
                             </li>
+                            @endif
                         @endif
                         <!-------- Botão de logout -------->
                         <li><a name="nav-item" href="/logout" class="logout-icon"> <i class="fas fa-sign-out-alt"></i></a></li>
