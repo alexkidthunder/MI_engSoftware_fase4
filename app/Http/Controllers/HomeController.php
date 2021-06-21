@@ -938,7 +938,7 @@ class HomeController extends Controller
     public function checarCPFView($codigo)
     {
        if($codigo < 100000 && $codigo < 999999){
-        abort(404);
+            abort(404);
         }
         return view('checarCPF');
     }
@@ -1058,16 +1058,25 @@ class HomeController extends Controller
         //se não existir o paciente
         if (mysqli_fetch_assoc($existePac)['COUNT(*)'] == 0) {
 
-            //cria paciente e adiciona
-            $novoPac = "INSERT INTO pacientes (Nome_Paciente, Sexo, Data_Nasc, CPF, Tipo_Sang) values
-            ('$request->fnome', '$request->fsexo', '$request->fnascimento', '$request->fcpf', '$request->fsanguineo')";
-            mysqli_query($connect, $novoPac);
-            
-            $ip = $request->ip();
-            $acao = "Cadastrou paciente $request->fnome";
-            AdminController::salvarLog($acao, $ip);
+            //detecta data
+            date_default_timezone_set('America/Sao_Paulo');     
+            $dataAtual = date('Y-m-d');                              
 
-            return redirect()->route('cadastroPaciente')->with('success', "Paciente cadastrado com sucesso!");
+            if( $request->fnascimento <= $dataAtual ){
+
+                //cria paciente e adiciona
+                $novoPac = "INSERT INTO pacientes (Nome_Paciente, Sexo, Data_Nasc, CPF, Tipo_Sang) values
+                ('$request->fnome', '$request->fsexo', '$request->fnascimento', '$request->fcpf', '$request->fsanguineo')";
+                mysqli_query($connect, $novoPac);
+                
+                $ip = $request->ip();
+                $acao = "Cadastrou paciente $request->fnome";
+                AdminController::salvarLog($acao, $ip);
+
+                return redirect()->route('cadastroPaciente')->with('success', "Paciente cadastrado com sucesso!");
+            }else{
+                return redirect()->route('cadastroPaciente')->with('error', "Data de nascimento inválida! Digite novamente.");
+            }
         } else {
             //se existir o paciente cadastrado
             return redirect()->route('cadastroPaciente')->with('error', "Paciente já existente no banco de dados!!");

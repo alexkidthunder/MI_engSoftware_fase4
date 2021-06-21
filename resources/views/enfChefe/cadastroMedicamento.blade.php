@@ -13,7 +13,7 @@
     <!-- Favicon -->
     <link href="{{ asset('img/favicon.png') }}" rel="icon">
     
-    <title>Cadastro de Medicamentos</title>
+    <title>Cadastro de medicamentos</title>
 </head>
 
 <body>
@@ -83,7 +83,7 @@
                     <div class="row">
                     <!---------------------Inserção da data de validade do medicamento--------------------->
                         <div class="col-md-6 col-lg-4">
-                            <label>Data de Validade</label> <br>
+                            <label>Data de validade</label> <br>
                             <input id="fvalidade" name="fvalidade" type="date" required>
                         </div>
                         <!---------------------Inserção da quantidadedo medicamento--------------------->
