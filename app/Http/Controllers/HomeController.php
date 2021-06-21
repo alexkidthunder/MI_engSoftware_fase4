@@ -21,7 +21,7 @@ class HomeController extends Controller
 {
 
     /**
-     * Função de página inicial 
+     * Função de página inicial
      *
      * @return view
      */
@@ -42,7 +42,7 @@ class HomeController extends Controller
 
 
     /**
-     * Função de login 
+     * Função de login
      *
      * @param  mixed $request
      * @return redirect() -> back() ->with()
@@ -64,7 +64,7 @@ class HomeController extends Controller
         $senhaBanco = mysqli_query($connect, $buscarSenha);
         while ($buscarSenha = mysqli_fetch_array($senhaBanco)) {
             $senhaEncontrada = $buscarSenha["Senha"];
-        }        
+        }
 
         //verifica se o usuario existe no sistema. $row = 1 significa que sim
         if ($row == 1) {
@@ -210,7 +210,7 @@ class HomeController extends Controller
 
  
     /**
-     * Função de logout 
+     * Função de logout
      *
      * @return void
      */
@@ -247,7 +247,7 @@ class HomeController extends Controller
      * @return redirect()
      */
     public function primeiroAcesso(Request $request)
-    {       
+    {
         include('db.php');
 
         $cpf = $request->cpf;
@@ -342,7 +342,7 @@ class HomeController extends Controller
 
 
     /**
-     * Função de editar perfil    
+     * Função de editar perfil
      *
      * @param  mixed $request
      * @return view()
@@ -394,7 +394,7 @@ class HomeController extends Controller
     
   
     /**
-     * Função de alterar senha 
+     * Função de alterar senha
      *
      * @param  mixed $request
      * @return redirect()->back()->with()
@@ -575,7 +575,7 @@ class HomeController extends Controller
 
 
     /**
-     * Função de listar pacientes    
+     * Função de listar pacientes
      *
      * @param  mixed $request
      * @return view()
@@ -677,7 +677,7 @@ class HomeController extends Controller
 
 
     /**
-     * Função de agendamentos realizados    
+     * Função de agendamentos realizados
      *
      * @return view()
      */
@@ -741,7 +741,7 @@ class HomeController extends Controller
 
 
     /**
-     * Função de visualizar meus agendamentos   
+     * Função de visualizar meus agendamentos
      *
      * @return view()
      */
@@ -807,7 +807,7 @@ class HomeController extends Controller
 
 
     /**
-     * Função de finalizar meus agendamentos   
+     * Função de finalizar meus agendamentos
      *
      * @param  mixed $request
      * @return redirect()->back()
@@ -896,7 +896,7 @@ class HomeController extends Controller
 
 
     /**
-     * Função auto cadastro em agendamentos 
+     * Função auto cadastro em agendamentos
      *
      * @param  mixed $request
      * @return redirect()->back()->with()
@@ -927,7 +927,7 @@ class HomeController extends Controller
 
 
     /**
-     * Função para permissão de cadastro de agendamentos  
+     * Função para permissão de cadastro de agendamentos
      *
      * @return view()
      */
@@ -944,7 +944,7 @@ class HomeController extends Controller
 
  
     /**
-     * Função para permissão de cadastro de prontuário 
+     * Função para permissão de cadastro de prontuário
      *
      * @return view()
      */
@@ -961,7 +961,7 @@ class HomeController extends Controller
 
    
     /**
-     * Função para permissão de cadastro de paciente  
+     * Função para permissão de cadastro de paciente
      *
      * @return view()
      */
@@ -988,7 +988,7 @@ class HomeController extends Controller
     }
 
     /**
-     * Função de esqueci a senha   
+     * Função de esqueci a senha
      *
      * @param  mixed $request
      * @return  redirect()->back()->with()
@@ -1041,8 +1041,8 @@ class HomeController extends Controller
      */
     public function checarCPFView($codigo)
     {
-       if($codigo < 100000 && $codigo < 999999){
-        abort(404);
+        if ($codigo < 100000 && $codigo < 999999) {
+            abort(404);
         }
         return view('checarCPF');
     }
@@ -1075,7 +1075,7 @@ class HomeController extends Controller
 
   
     /**
-     * Função de redefinir a senha a partir do esqueci a senha 
+     * Função de redefinir a senha a partir do esqueci a senha
      *
      * @param  mixed $request
      * @return redirect()->route()->with()
@@ -1110,7 +1110,7 @@ class HomeController extends Controller
 
 
     /**
-     * Função de listagem de medicamentos   
+     * Função de listagem de medicamentos
      *
      * @return view()
      */
@@ -1169,7 +1169,7 @@ class HomeController extends Controller
 
 
     /**
-     * Função de salvar paciente no banco de dados  
+     * Função de salvar paciente no banco de dados
      *
      * @param  mixed $request
      * @return redirect()->route()->with()
@@ -1203,7 +1203,7 @@ class HomeController extends Controller
 
 
     /**
-     * Função de permissão de acesso ao prontuário 
+     * Função de permissão de acesso ao prontuário
      *
      * @param  mixed $request
      * @return view()
@@ -1464,7 +1464,7 @@ class HomeController extends Controller
 
 
     /**
-     * Função de buscar prontuário 
+     * Função de buscar prontuário
      *
      * @param  mixed $request
      * @return view()
@@ -1511,7 +1511,7 @@ class HomeController extends Controller
 
 
     /**
-     * Função que busca um paciente para o cadastro de prontuário e também retorna os leitos disponíveis    
+     * Função que busca um paciente para o cadastro de prontuário e também retorna os leitos disponíveis
      *
      * @param  mixed $request
      * @return view()
@@ -1547,7 +1547,7 @@ class HomeController extends Controller
     }
 
     /**
-     * Função para checar se prontuario foi finalizado 
+     * Função para checar se prontuario foi finalizado
      *
      * @param  mixed $codigo
      * @return int
@@ -1568,7 +1568,7 @@ class HomeController extends Controller
 
 
     /**
-     * Função de cadastrar cid em prontuário 
+     * Função de cadastrar cid em prontuário
      *
      * @param  mixed $request
      * @return redirect() -> back() ->with()
@@ -1604,6 +1604,24 @@ class HomeController extends Controller
 
                     return redirect() -> back() ->with('msg', 'CID adicionada ao prontuario com sucesso!!!!');
                 }
+            } elseif ($cid == null and $aberto == '1') {
+                $descri = "Esta cid não possui descrição";
+                $sqlc = "SELECT * FROM cid" ;
+                $queryc = mysqli_query($connect, $sqlc);
+                while ($sqlc = mysqli_fetch_array($queryc)) {
+                    $c = $sqlc['id'];
+                }
+                $c++;
+                $insertNC = "INSERT INTO cid (id,codCid,descricaoCid) VALUES ('$c','$request->fcid','$descri')";
+                mysqli_query($connect, $insertNC);
+                $sql = "SELECT * FROM cid WHERE codCid = '$request->fcid'";
+                $query = mysqli_query($connect, $sql);
+                while ($sql = mysqli_fetch_array($query)) {
+                    $cid = $sql['id']; // procura cid com o mesmo codigo de identificação na tabela de cids para ver se existe
+                }
+                $insertC = "INSERT INTO cid_prontuario (id_CID,id_prontuario) VALUES ('$cid','$request->prontuario')";
+                mysqli_query($connect, $insertC);
+                return redirect() -> back() ->with('msg', 'CID não se encontrava na base de dados. Uma nova cid foi adicionada a base de dados e ao prontuario!!!!');
             } elseif ($aberto == '0' or $aberto == null) {
                 return redirect() -> back() ->with('msg-error', 'Não pode haver cadastro de cids nesse prontuario pois ele se enconta fechado');
             } else {
@@ -1616,7 +1634,7 @@ class HomeController extends Controller
 
 
     /**
-     * Função de obter cpf 
+     * Função de obter cpf
      *
      * @return char
      */
@@ -1629,7 +1647,7 @@ class HomeController extends Controller
             $cpf = $_SESSION['enfermeiro'];
         } elseif (isset($_SESSION['enfermeiroChefe'])) {
             $cpf = $_SESSION['enfermeiroChefe'];
-        } elseif (isset($_SESSION['estagiario'])){
+        } elseif (isset($_SESSION['estagiario'])) {
             $cpf = $_SESSION['estagiario'];
         }
         return $cpf; // retorna o cpf caso exista
@@ -1698,10 +1716,10 @@ class HomeController extends Controller
     {
         session_start();
         include("db.php");
-        
+        $dataA = date('Y-m-d');
         $aberto = HomeController::estadoPronturio($request->prontuario); // verifca se prontuario esta aberto
         if ($aberto == '1') { // se sim muda o estado dele para fechado
-            $update = "UPDATE prontuarios SET aberto = '0', Data_Saida = '$request->fsaida' WHERE ID = '$request->prontuario'";
+            $update = "UPDATE prontuarios SET aberto = '0', Data_Saida = '$dataA' WHERE ID = '$request->prontuario'";
             mysqli_query($connect, $update);
             $sql = "SELECT * FROM prontuarios WHERE ID = '$request->prontuario'";
             $query =  mysqli_query($connect, $sql);
@@ -1727,7 +1745,7 @@ class HomeController extends Controller
 
 
     /**
-     * Função de baixar arquivos de listagem 
+     * Função de baixar arquivos de listagem
      *
      * @param  mixed $request
      * @return void
