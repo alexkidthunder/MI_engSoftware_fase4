@@ -1604,6 +1604,24 @@ class HomeController extends Controller
 
                     return redirect() -> back() ->with('msg', 'CID adicionada ao prontuario com sucesso!!!!');
                 }
+            }else if($cid == null and $aberto == '1'){
+                $descri = "Esta cid não possui descrição";
+                $sqlc = "SELECT * FROM cid" ; 
+                $queryc = mysqli_query($connect, $sqlc);
+                while ($sqlc = mysqli_fetch_array($queryc)) {
+                    $c = $sqlc['id'];
+                }
+                $c++;
+                $insertNC = "INSERT INTO cid (id,codCid,descricaoCid) VALUES ('$c','$request->fcid','$descri')";
+                mysqli_query($connect, $insertNC);
+                $sql = "SELECT * FROM cid WHERE codCid = '$request->fcid'";
+                $query = mysqli_query($connect, $sql);
+                while ($sql = mysqli_fetch_array($query)) {
+                    $cid = $sql['id']; // procura cid com o mesmo codigo de identificação na tabela de cids para ver se existe
+                }
+                $insertC = "INSERT INTO cid_prontuario (id_CID,id_prontuario) VALUES ('$cid','$request->prontuario')";
+                mysqli_query($connect, $insertC);
+                return redirect() -> back() ->with('msg', 'CID não se encontrava na base de dados. Uma nova cid foi adicionada a base de dados e ao prontuario!!!!');
             } elseif ($aberto == '0' or $aberto == null) {
                 return redirect() -> back() ->with('msg-error', 'Não pode haver cadastro de cids nesse prontuario pois ele se enconta fechado');
             } else {
