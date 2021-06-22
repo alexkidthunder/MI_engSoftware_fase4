@@ -1549,12 +1549,10 @@ class HomeController extends Controller
                             $prontuario["internacao".$i] = $sql["Data_Internacao"];
                             $prontuario["saida".$i] = $sql["Data_Saida"];
                             $i++;
-                        } else if($sql["aberto"]!= 1 and $i == $row1 - 1) {
-                            return redirect()->back()->with('msg-error', 'Paciente procurado não possui prontuario em aberto');
-                        }
+                        } 
                     }
                 } else {
-                    return redirect()->back()->with('msg-error', 'Paciente procurado não esta cadastrado no sistema');
+                    return redirect()->back()->with('msg-error', 'O Paciente buscado não está cadastrado no sistema.');
                 }
             }
 
@@ -1565,7 +1563,7 @@ class HomeController extends Controller
 
             return view('historicoProntuario', ['prontuario' => $prontuario]); // retorna os dados para serem exibidos na view
         } else {
-            return redirect()->back()->with('msg-error', 'Paciente procurado não possui prontuario');
+            return redirect()->back()->with('msg-error', 'O Paciente buscado não possui prontuário.');
         }
     }
 
