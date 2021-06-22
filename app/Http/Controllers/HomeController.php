@@ -2497,7 +2497,7 @@ class HomeController extends Controller
         date_default_timezone_set('America/Sao_Paulo');
         $hora = date('H-i-s');
         $data = date('Y-m-d');
-        $cpf = '252.696.001-73';
+        $cpf = HomeController::ObterCpf();
         $sql = "SELECT * FROM agendamentos WHERE CPF_usuario = '$cpf'"; // verifica se o usuario logado tem agendamento
         $query = mysqli_query($connect, $sql);
         while ($sql= mysqli_fetch_array($query)) {
@@ -2508,15 +2508,8 @@ class HomeController extends Controller
                 while ($sql1= mysqli_fetch_array($query1)) {
                     $leito = $sql1['Id_leito'];
                 }
-                if ($data == date('Y-m-d') and $hora == date('H-i-s')) { //verifica se as datas e horas cadastradas e obtidas batem e se sim manda a notificação
-                    
-                    $notify = 'Você tem o agendamento marcado para o leiot:'.$leito;
-                    return redirect()->back()->with('notify',$notify);
-                    
-                }
-                else {
+                if ($data == $sql['Data_Agend'] and $hora == $sql['Hora_Agend']) { //verifica se as datas e horas cadastradas e obtidas batem e se sim manda a notificação
                     $_SESSION['notifi'] = 'Você tem o agendamento marcado para o leiot:'.$leito;
-                    return redirect()->back()->with('notify','Está no else');
                 }
                 //OBS - Adicionar um css tbm de msg-notification assim como tem pra sucess e error e colocar em todas as páginas no inicio do body
             }
