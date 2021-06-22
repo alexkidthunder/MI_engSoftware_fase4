@@ -6,7 +6,6 @@ var selectAtribuicao = document.getElementById('atribuicao');
 
 if(sessionStorage.getItem("Atribuicao") != null){
     selectAtribuicao.value = sessionStorage.getItem("Atribuicao");
-    console.log("Entrou aqui Sim");
 }
 else{
     selectAtribuicao.value = "";
