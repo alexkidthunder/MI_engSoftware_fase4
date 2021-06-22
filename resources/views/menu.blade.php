@@ -196,7 +196,7 @@
                             <div><i class="fas fa-clipboard"></i></div>
                         </div>
                         <h4 class="card-options_title"><a
-                            href="{{ route('listaAgendamentos') }}">Listagem de agendamentos</a></h4>
+                            href="{{ route('listaAgendamentos') }}">Listagem de agendamentos cadastrados</a></h4>
                     </div>
                 </div>
                 @endif
@@ -271,7 +271,7 @@
                 @endif
                 @endfor
                 
-                <!--Botão para visualizar agendamentos-->
+                <!--Botão para visualizar agendamentos ainda não realizados e sem aplicador-->
                 @for($i = 15; $i <=73; $i = $i+29)
                 @if(isset($resultado[$i]))
                 @if($resultado[$i] == 1)
@@ -281,7 +281,7 @@
                             <div><i class="fas fa-notes-medical"></i></div>
                         </div>
                         <h4 class="card-options_title"><a
-                            href="{{ route('agendamentos') }}">Agendamentos</a></h4>
+                            href="{{ route('agendamentos') }}">Verificação de agendamentos</a></h4>
                     </div>
                 </div> <!--Fim do Botão-->
                 @endif
