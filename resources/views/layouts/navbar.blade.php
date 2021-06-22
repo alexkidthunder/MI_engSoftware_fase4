@@ -61,7 +61,7 @@
                         </li>
                         @endif
 
-                        @if($_SESSION['permissoes'][21] == 1 or $_SESSION['permissoes'][23] == 1 or $_SESSION['permissoes'][22] == 1 or $_SESSION['permissoes'][12] == 1 or $_SESSION['permissoes'][9] == 1 or $_SESSION['permissoes'][35] == 1 or $_SESSION['permissoes'][16] == 1 or isset($_SESSION['enfermeiroChefe']))
+                        @if($_SESSION['permissoes'][21] == 1 or $_SESSION['permissoes'][15] == 1 or $_SESSION['permissoes'][23] == 1 or $_SESSION['permissoes'][22] == 1 or $_SESSION['permissoes'][12] == 1 or $_SESSION['permissoes'][9] == 1 or $_SESSION['permissoes'][35] == 1 or $_SESSION['permissoes'][16] == 1 or isset($_SESSION['enfermeiroChefe']))
                         <li class="drop-down title-nav"><a>AGENDAMENTOS E MEDICAMENTOS <i
                                     class="fas fa-angle-down"></i></a>
                             <ul>
@@ -82,8 +82,7 @@
                                     <li><a name="nav-item" href="{{ route('cadastroAgendamento') }}">Cadastro de agendamentos</a>
                                     </li>
                                 @endif
-                                <!---Precisa conferir a permissão 15 aqui-->
-                                @if (isset($_SESSION['enfermeiroChefe']))
+                                @if ($_SESSION['permissoes'][15] == "1")
                                     <li><a name="nav-item" href="{{ route('listaAgendamentos') }}">Listagem de agendamentos cadastrados</a></li>
                                 @endif
                                 @if ($_SESSION['permissoes'][9] == "1")  
