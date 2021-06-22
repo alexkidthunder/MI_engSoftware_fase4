@@ -148,6 +148,59 @@ margin: 0 30%;
     height: 100%;
 }
 
+.msg-sucess, .msg-error {
+    border-radius: 10px;
+    border: 0.5px solid rgba(255, 255, 255, 0);
+    box-shadow: 3px 3px 3px #e0dede;
+    color: black;
+    font-family: "Poppins", sans-serif;
+    font-size: 18px;
+    opacity: 0.9;
+    padding: 20px 10px;
+    margin-bottom:0;
+    position: relative;
+    text-align: center;
+    height: fit-content;
+}
+
+.msg-sucess {
+    background-image: linear-gradient( to right, #7fffd4, #00fa9a, #00ff7f);
+}
+
+.msg-error {
+    background-image: linear-gradient( to right, #ff6f88, #f5566e, #f51a3b);
+}
+
+.container-1 {
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+@media (min-width: 321px) and (max-width:958px) {
+    .container-1 {
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+}
+
+@media (max-width: 320px) {
+    .container-1{
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}
+
+@media (min-width: 761px) and (max-width: 958px){
+    .msg-sucess, .msg-error {
+        position: absolute;
+        width: 80%;
+        padding:10px;
+    }
+}
+
 /*--------------------------------------------------------------
 Login para mobile
 --------------------------------------------------------------*/
@@ -244,6 +297,12 @@ Login para mobile
     .text{
         font-size:13px;
     }
+
+    .msg-sucess, .msg-error {
+        font-size: 14px;
+        padding: 10px;
+    }
+    
   }
 
 /*--------------------------------------------------------------

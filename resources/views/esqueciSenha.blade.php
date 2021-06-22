@@ -63,17 +63,21 @@
     <!---------------- fim da Caixa --------------->
 
 
-    <!-------Mensagem de erro------->
+         <!-------Mensagem de erro------->
         @if(Session::has('error'))
-        <div class="msg-error" role="alert">
-                {{Session::get('error')}}
-        </div>
+            <div class="container-1">
+                <div class="msg-error" role="alert">
+                    {{Session::get('error')}}
+                </div>
+            </div>
         @endif  
         <!-------Mensagem de sucesso------->
         @if(Session::has('success'))
-        <div class="msg-sucess">
-                {{Session::get('success')}}
-        </div>
+            <div class="container-1">
+                <div class="msg-sucess">
+                    {{Session::get('success')}}
+                </div>
+            </div>
         @endif
 
 
