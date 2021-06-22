@@ -329,7 +329,6 @@ class HomeController extends Controller
     
                         header("Location: /menu");
                         exit();
-
                     } elseif ($atribuicao == "Enfermeiro") {
                         $_SESSION['enfermeiro'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
                         for ($i = 7;$i <= 35;$i++) {
@@ -346,7 +345,6 @@ class HomeController extends Controller
     
                         header("Location: /menu");
                         exit();
-
                     } elseif ($atribuicao == "Estagiario") {
                         $_SESSION['estagiario'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
 
@@ -364,12 +362,11 @@ class HomeController extends Controller
                         header("Location: /menu");
                         exit();
                     }
-                }   
-            }           
-        }else {                  //se a nova senha desejada for diferente da confirmada
+                }
+            }
+        } else {                  //se a nova senha desejada for diferente da confirmada
             return redirect('/primeiroAcesso')->with('cpf', $request->cpf);
         }
-        
     }
 
     /*public function menu(){
@@ -454,7 +451,7 @@ class HomeController extends Controller
                 $usuario['senha'] = $sql['Senha'];
             }
 
-            if ((Hash::check($request->senhaAtual, $usuario['senha'])) and ($request->senha == $request->confirmacao) 
+            if ((Hash::check($request->senhaAtual, $usuario['senha'])) and ($request->senha == $request->confirmacao)
                 and ($request->senhaAtual != $request->confirmacao)) {
 
                 //cria um hash a partir da nova senha
@@ -473,17 +470,16 @@ class HomeController extends Controller
                 return redirect()->back()->with('msg', 'Senha alterada com sucesso!');    // redireciona para o meu perfil
                 
                 //outros casos
-          } else if (!(Hash::check($request->senhaAtual, $usuario['senha']))) {
+            } elseif (!(Hash::check($request->senhaAtual, $usuario['senha']))) {
                 return redirect()->back()->with('msg-error', 'A senha digitada está diferente da senha cadastrada!!!');
-            } else if ($request->senha != $request->confirmacao) {
+            } elseif ($request->senha != $request->confirmacao) {
                 return redirect()->back()->with('msg-error', 'A senha de confirmação está diferente da nova senha. As senhas precisam ser idênticas!!!');
-            } else if((Hash::check($request->senhaAtual, $usuario['senha'])) and ((Hash::check($request->senha, $usuario['senha'])))
-                        and ($request->senha == $request->confirmacao) ){
+            } elseif ((Hash::check($request->senhaAtual, $usuario['senha'])) and ((Hash::check($request->senha, $usuario['senha'])))
+                        and ($request->senha == $request->confirmacao)) {
                 return redirect()->back()->with('msg-error', 'A nova senha digitada é igual a senha cadastrada!');
-            }else {
+            } else {
                 return redirect()->back()->with('msg-error', 'Campos de confirmação de nova e antiga senha estão incorretos!');
             }
-            
         } elseif (isset($_SESSION['enfermeiroChefe'])) {
             $cpf = $_SESSION['enfermeiroChefe'];
 
@@ -867,7 +863,7 @@ class HomeController extends Controller
         $acao = "Finalizou um agendamento de medicamento";
         AdminController::salvarLog($acao, $ip);
 
-        return redirect()->back()->with('msg',"Agendamento finalizado com sucesso!"); // redireciona de volta
+        return redirect()->back()->with('msg', "Agendamento finalizado com sucesso!"); // redireciona de volta
     }
         
 
@@ -1083,7 +1079,7 @@ class HomeController extends Controller
      */
     public function checarCPFView($codigo)
     {
-       if($codigo < 100000 && $codigo < 999999){
+        if ($codigo < 100000 && $codigo < 999999) {
             abort(404);
         }
         return view('checarCPF');
@@ -1228,15 +1224,15 @@ class HomeController extends Controller
         if (mysqli_fetch_assoc($existePac)['COUNT(*)'] == 0) {
 
             //detecta data
-            date_default_timezone_set('America/Sao_Paulo');     
-            $dataAtual = date('Y-m-d');       
+            date_default_timezone_set('America/Sao_Paulo');
+            $dataAtual = date('Y-m-d');
 
-            if($request->fcpf=='000.000.000-00' and ($request->fnascimento <= $dataAtual)){
+            if ($request->fcpf=='000.000.000-00' and ($request->fnascimento <= $dataAtual)) {
                 return redirect()->route('cadastroPaciente')->with('error', "CPF inválido! Digite novamente.");
-            }else if($request->fcpf=='000.000.000-00' and ($request->fnascimento > $dataAtual)){
+            } elseif ($request->fcpf=='000.000.000-00' and ($request->fnascimento > $dataAtual)) {
                 return redirect()->route('cadastroPaciente')->with('error', "CPF e data de nascimento inválidos! Digite novamente.");
-            }else{
-                if($request->fnascimento <= $dataAtual ){       
+            } else {
+                if ($request->fnascimento <= $dataAtual) {
                 
                     //cria paciente e adiciona
                     $novoPac = "INSERT INTO pacientes (Nome_Paciente, Sexo, Data_Nasc, CPF, Tipo_Sang) values
@@ -1248,11 +1244,10 @@ class HomeController extends Controller
                     AdminController::salvarLog($acao, $ip);
     
                     return redirect()->route('cadastroPaciente')->with('success', "Paciente cadastrado com sucesso!");
-                }else{
+                } else {
                     return redirect()->route('cadastroPaciente')->with('error', "Data de nascimento inválida! Digite novamente.");
                 }
             }
-
         } else {
             //se existir o paciente cadastrado
             return redirect()->route('cadastroPaciente')->with('error', "Paciente já existente no banco de dados!!");
@@ -1543,16 +1538,23 @@ class HomeController extends Controller
             while ($sql = mysqli_fetch_array($query)) { //percorrendo array de usuarios com determinado cpf
                 $sql1 = "SELECT * FROM pacientes where CPF = '$request->cpf_user'";
                 $query1 = mysqli_query($connect, $sql1);
-                while ($sql1 = mysqli_fetch_array($query1)) {
-                    if ($sql["aberto"]!= 1) { // se o prontuario ja foi fechado obtem os dados
-                        $prontuario["id".$i] = $sql['ID'];
-                        $prontuario["nome".$i] = $sql1["Nome_Paciente"];
-                        $prontuario["estado".$i] = $sql1["Estado"];
-                        $prontuario["cpf".$i] = $sql["Cpfpaciente"];
-                        $prontuario["internacao".$i] = $sql["Data_Internacao"];
-                        $prontuario["saida".$i] = $sql["Data_Saida"];
-                        $i++;
+                $row1 = mysqli_num_rows($query1);
+                if ($row1 >= 1) {
+                    while ($sql1 = mysqli_fetch_array($query1)) {
+                        if ($sql["aberto"]!= 1) { // se o prontuario ja foi fechado obtem os dados
+                            $prontuario["id".$i] = $sql['ID'];
+                            $prontuario["nome".$i] = $sql1["Nome_Paciente"];
+                            $prontuario["estado".$i] = $sql1["Estado"];
+                            $prontuario["cpf".$i] = $sql["Cpfpaciente"];
+                            $prontuario["internacao".$i] = $sql["Data_Internacao"];
+                            $prontuario["saida".$i] = $sql["Data_Saida"];
+                            $i++;
+                        } else if($sql["aberto"]!= 1 and $i == $row1 - 1) {
+                            return redirect()->back()->with('msg-error', 'Paciente procurado não possui prontuario em aberto');
+                        }
                     }
+                } else {
+                    return redirect()->back()->with('msg-error', 'Paciente procurado não esta cadastrado no sistema');
                 }
             }
 
