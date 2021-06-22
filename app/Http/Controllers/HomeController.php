@@ -194,7 +194,7 @@ class HomeController extends Controller
             }
         } elseif (isset($_SESSION['enfermeiro'])) {
             for ($i = 36;$i < 65;$i++) {
-                $resultado[$i] = VerificaLoginController::verificaPermissao($i-28);
+                $resultado[$i] = VerificaLoginController::verificaPermissao($i-29);
             }
         } elseif (isset($_SESSION['estagiario'])) {
             for ($i = 65;$i < 94;$i++) {
@@ -1549,7 +1549,7 @@ class HomeController extends Controller
                             $prontuario["internacao".$i] = $sql["Data_Internacao"];
                             $prontuario["saida".$i] = $sql["Data_Saida"];
                             $i++;
-                        } 
+                        }
                     }
                 } else {
                     return redirect()->back()->with('msg-error', 'O Paciente buscado não está cadastrado no sistema.');
