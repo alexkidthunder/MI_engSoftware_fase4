@@ -83,7 +83,7 @@
                                     </li>
                                 @endif
                                 @if (isset($_SESSION['enfermeiroChefe']))
-                                    <li><a name="nav-item" href="{{ route('listaAgendamentos') }}">Listagem de agendamentos</a></li>
+                                    <li><a name="nav-item" href="{{ route('listaAgendamentos') }}">Listagem de agendamentos cadastrados</a></li>
                                 @endif
                                 @if ($_SESSION['permissoes'][9] == "1")  
                                     <li><a name="nav-item" href="{{ route('cadastroMedicamento') }}">Cadastro de medicamentos</a>
