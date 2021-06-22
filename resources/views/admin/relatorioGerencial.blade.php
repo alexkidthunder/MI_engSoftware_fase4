@@ -175,7 +175,7 @@
                             </div>
                             <div class="col-9">
                                 <div class="card-relatorio_title">
-                                    <h5><b>{{ $medic['Nome_Medicam'] }}</b></h5>
+                                <label style="white-space: nowrap">  <h5 class = "scrolls"><b>{{ $medic['Nome_Medicam'] }}</b></h5> </label>
                                     <h4><a>Medicamento mais usado</a></h4>
                                 </div>
                             </div>
