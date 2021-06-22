@@ -879,7 +879,7 @@ class HomeController extends Controller
         VerificaLoginController::verificarLogin();
         include("db.php");
         $identificaP = null;
-        $perm = VerificaLoginController::verificaPermissao(15);
+        $perm = VerificaLoginController::verificaPermissao(21);
         if ($perm == "1") {
             $i = 0;
             $infos = [];
