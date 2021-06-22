@@ -714,7 +714,7 @@ class AdminController extends Controller
 
         //veificando existencia do arquivo
         if (file_exists(($baixar))) {
-           header("Pragma: public");
+            header("Pragma: public");
             header("Expires: 0");
             header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
             header("Cache-Control: private", false);
@@ -946,6 +946,10 @@ class AdminController extends Controller
             $data = $sql['Data_backup'];
             $hora = $sql['Hora_backup'];
             if ($dataAtual == $data and $horaAtual == $hora) { //verifica se as datas e horas cadastradas e obtidas batem e se sim chamam a função estatica de backup
+               AdminController::salvarDB();
+            }
+            else if($data == '0000-00-00' and $horaAtual == $hora)
+            {
                 AdminController::salvarDB();
             }
         }

@@ -2502,13 +2502,14 @@ class HomeController extends Controller
         $query = mysqli_query($connect, $sql);
         while ($sql= mysqli_fetch_array($query)) {
             if ($sql['Realizado'] == 0) {
-                $pronturario = $sql['ID_Prontuario'];
-                $sql1 = "SELECT * FROM prontuarios WHERE ID = 'prontuario'";
+                $prontuario = $sql['ID_prontuario'];
+                $sql1 = "SELECT * FROM prontuarios WHERE ID = '$prontuario'";
                 $query1 = mysqli_query($connect, $sql1);
                 while ($sql1= mysqli_fetch_array($query1)) {
                     $leito = $sql1['Id_leito'];
                 }
-                if ($data == $sql['Data_Agend'] and $hora == $sql['Hora_Agend']) { //verifica se as datas e horas cadastradas e obtidas batem e se sim manda a notificação
+                //if ($data == $sql['Data_Agend'] and $hora == $sql['Hora_Agend']) { //verifica se as datas e horas cadastradas e obtidas batem e se sim manda a notificação
+                    if ($data == date('Y-m-d') and $hora == date('H-i-s')) {
                     $_SESSION['notifi'] = 'Você tem o agendamento marcado para o leiot:'.$leito;
                 }
                 //OBS - Adicionar um css tbm de msg-notification assim como tem pra sucess e error e colocar em todas as páginas no inicio do body
