@@ -867,7 +867,7 @@ class HomeController extends Controller
         $acao = "Finalizou um agendamento de medicamento";
         AdminController::salvarLog($acao, $ip);
 
-        return redirect()->back(); // redireciona de volta
+        return redirect()->back()->with('msg',"Agendamento finalizado com sucesso!"); // redireciona de volta
     }
         
 
@@ -1229,23 +1229,30 @@ class HomeController extends Controller
 
             //detecta data
             date_default_timezone_set('America/Sao_Paulo');     
-            $dataAtual = date('Y-m-d');                              
+            $dataAtual = date('Y-m-d');       
 
-            if( $request->fnascimento <= $dataAtual ){
-
-                //cria paciente e adiciona
-                $novoPac = "INSERT INTO pacientes (Nome_Paciente, Sexo, Data_Nasc, CPF, Tipo_Sang) values
-                ('$request->fnome', '$request->fsexo', '$request->fnascimento', '$request->fcpf', '$request->fsanguineo')";
-                mysqli_query($connect, $novoPac);
-                
-                $ip = $request->ip();
-                $acao = "Cadastrou paciente $request->fnome";
-                AdminController::salvarLog($acao, $ip);
-
-                return redirect()->route('cadastroPaciente')->with('success', "Paciente cadastrado com sucesso!");
+            if($request->fcpf=='000.000.000-00' and ($request->fnascimento <= $dataAtual)){
+                return redirect()->route('cadastroPaciente')->with('error', "CPF inválido! Digite novamente.");
+            }else if($request->fcpf=='000.000.000-00' and ($request->fnascimento > $dataAtual)){
+                return redirect()->route('cadastroPaciente')->with('error', "CPF e data de nascimento inválidos! Digite novamente.");
             }else{
-                return redirect()->route('cadastroPaciente')->with('error', "Data de nascimento inválida! Digite novamente.");
+                if($request->fnascimento <= $dataAtual ){       
+                
+                    //cria paciente e adiciona
+                    $novoPac = "INSERT INTO pacientes (Nome_Paciente, Sexo, Data_Nasc, CPF, Tipo_Sang) values
+                    ('$request->fnome', '$request->fsexo', '$request->fnascimento', '$request->fcpf', '$request->fsanguineo')";
+                    mysqli_query($connect, $novoPac);
+                    
+                    $ip = $request->ip();
+                    $acao = "Cadastrou paciente $request->fnome";
+                    AdminController::salvarLog($acao, $ip);
+    
+                    return redirect()->route('cadastroPaciente')->with('success', "Paciente cadastrado com sucesso!");
+                }else{
+                    return redirect()->route('cadastroPaciente')->with('error', "Data de nascimento inválida! Digite novamente.");
+                }
             }
+
         } else {
             //se existir o paciente cadastrado
             return redirect()->route('cadastroPaciente')->with('error', "Paciente já existente no banco de dados!!");
