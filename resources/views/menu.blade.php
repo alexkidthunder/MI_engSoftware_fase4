@@ -21,7 +21,7 @@
 
     <!---------------Notificação para o usuário-------------->
     @if(isset($_SESSION['notifi']))
-    @if(!empty ($_SESSION['notifi']))
+    
     <div id="notification">
         <div class='msg-notification'>
             <div class="row">
@@ -39,7 +39,7 @@
             </div>
         </div>
     <div>
-    @endif
+    
     @endif
     <!---------------Fim de notificação-------------->
 
