@@ -196,7 +196,7 @@
                             <div><i class="fas fa-clipboard"></i></div>
                         </div>
                         <h4 class="card-options_title"><a
-                            href="{{ route('listaAgendamentos') }}">Listagem de agendamentos</a></h4>
+                            href="{{ route('listaAgendamentos') }}">Listagem de agendamentos cadastrados</a></h4>
                     </div>
                 </div>
                 @endif
