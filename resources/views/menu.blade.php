@@ -20,8 +20,7 @@
     <!----------End Hearder-------->
 
     <!---------------Notificação para o usuário-------------->
-    @if(isset($_SESSION['notifi']))
-    
+    @if(isset($notify))
     <div id="notification">
         <div class='msg-notification'>
             <div class="row">
@@ -29,7 +28,7 @@
                     <i class="fas fa-bell"></i>
                 </div>
                 <div class="col-lg-8 col-md-8 col-10 col-sm-10">
-                    {{$_SESSION['notifi']}} 
+                    {{$notify}} 
                 </div>
                 <form action="/apagarN" method="get">
                     <div class="col-lg-2 col-md-2 col-2 col-sm-2">
@@ -39,7 +38,6 @@
             </div>
         </div>
     <div>
-    
     @endif
     <!---------------Fim de notificação-------------->
 
