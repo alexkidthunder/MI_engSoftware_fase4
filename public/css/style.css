@@ -975,7 +975,6 @@ input[type=number] {
 }
 
 .msg-sucess, .msg-error {
-    position: relative;
     border-radius: 10px;
     border: 0.5px solid rgba(255, 255, 255, 0);
     box-shadow: 3px 3px 3px #e0dede;
