@@ -29,6 +29,7 @@ class ChecarAgendamento extends Command
     public function __construct()
     {
         parent::__construct();
+
     }
 
     /**
@@ -38,6 +39,6 @@ class ChecarAgendamento extends Command
      */
     public function handle()
     {
-        HomeController::notificarUsuarioAgendamento();
+       HomeController::notificarUsuarioAgendamento();
     }
 }

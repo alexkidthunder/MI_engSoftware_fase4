@@ -508,45 +508,62 @@ class AdminController extends Controller
 
 
         if (mysqli_fetch_assoc($existeCPF)['COUNT(*)'] == 0) {
+            //detecta ip
             $ip = $request->ip();
 
-            //insere na trabela usuário
-            $novoUsuario = "INSERT INTO usuarios (CPF, Nome, Senha, Email, Data_Nasc, Atribuicao, Sexo, Ip, Ativo) values ('$request->fcpf', 
-            '$request->fnome', 12345, '$request->femail', '$request->fnascimento', '$request->fatribui','$request->fsexo','$ip',1)";
-            mysqli_query($connect, $novoUsuario);
+            //detecta data
+            date_default_timezone_set('America/Sao_Paulo');     
+            $dataAtual = date('Y-m-d'); 
+
+            //verifica erros de digitação
+            if($request->fcpf=='000.000.000-00' and ($request->fnascimento <= $dataAtual)){
+                return redirect()->route('cadastroPaciente')->with('error', "CPF inválido! Digite novamente.");
+            }else if($request->fcpf=='000.000.000-00' and ($request->fnascimento > $dataAtual)){
+                return redirect()->route('cadastroPaciente')->with('error', "CPF e data de nascimento inválidos! Digite novamente.");
+            }else{
+                
+                if($request->fnascimento <= $dataAtual ){
+
+                    //insere na tabela usuário
+                    $novoUsuario = "INSERT INTO usuarios (CPF, Nome, Senha, Email, Data_Nasc, Atribuicao, Sexo, Ip, Ativo) values ('$request->fcpf', 
+                    '$request->fnome', 12345, '$request->femail', '$request->fnascimento', '$request->fatribui','$request->fsexo','$ip',1)";
+                    mysqli_query($connect, $novoUsuario);
 
 
-            //insere na tabela de administrador
-            if ($request->fatribui == 'Administrador') {
-                $novoAdm = "INSERT INTO administradores (CPF) values ('$request->fcpf')";
-                mysqli_query($connect, $novoAdm);
-            } else {
-                //insere na tabela de enfermeiro chefe
-                if ($request->fatribui == 'Enfermeiro Chefe') {
-                    $novoEnfChefe = "INSERT INTO enfermeiros_chefes (CPF,COREN) values ('$request->fcpf','$request->fcoren')";
-                    mysqli_query($connect, $novoEnfChefe);
-                }
-                //insere na tabela de enfermeiro
-                elseif ($request->fatribui == 'Enfermeiro') {
-                    $novoEnf = "INSERT INTO enfermeiros (CPF,COREN,Plantao) values ('$request->fcpf', '$request->fcoren','false')";
-                    mysqli_query($connect, $novoEnf);
-                }
-                //insere na tabela de estagiario
-                elseif ($request->fatribui == 'Estagiário') {
-                    $novoEst = "INSERT INTO estagiarios (CPF,Plantao) values ('$request->fcpf','false')";
-                    mysqli_query($connect, $novoEst);
+                    //insere na tabela de administrador
+                    if ($request->fatribui == 'Administrador') {
+                        $novoAdm = "INSERT INTO administradores (CPF) values ('$request->fcpf')";
+                        mysqli_query($connect, $novoAdm);
+                    } else {
+                        //insere na tabela de enfermeiro chefe
+                        if ($request->fatribui == 'Enfermeiro Chefe') {
+                            $novoEnfChefe = "INSERT INTO enfermeiros_chefes (CPF,COREN) values ('$request->fcpf','$request->fcoren')";
+                            mysqli_query($connect, $novoEnfChefe);
+                        }
+                        //insere na tabela de enfermeiro
+                        elseif ($request->fatribui == 'Enfermeiro') {
+                            $novoEnf = "INSERT INTO enfermeiros (CPF,COREN,Plantao) values ('$request->fcpf', '$request->fcoren','false')";
+                            mysqli_query($connect, $novoEnf);
+                        }
+                        //insere na tabela de estagiario
+                        elseif ($request->fatribui == 'Estagiário') {
+                            $novoEst = "INSERT INTO estagiarios (CPF,Plantao) values ('$request->fcpf','false')";
+                            mysqli_query($connect, $novoEst);
+                        }
+                    }
+
+
+                    $acao = "Cadastrou usuário $request->fnome";
+                    $this->salvarLog($acao, $ip);
+
+                    return redirect()->route('cadastrarUsuario')->with('success', 'Usuário cadastrado com sucesso!!');
                 }
             }
-
-
-            $acao = "Cadastrou usuário $request->fnome";
-            $this->salvarLog($acao, $ip);
-
-            return redirect()->route('cadastrarUsuario')->with('success', 'Usuário cadastrado com sucesso!!');
-        } else {
+         
+        }else {
             //se o usuário já existir
             return redirect()->route('cadastrarUsuario')->with('error', 'Usuário já cadastrado!!');
-        }
+    }
     }
 
 
@@ -714,7 +731,7 @@ class AdminController extends Controller
 
         //veificando existencia do arquivo
         if (file_exists(($baixar))) {
-           header("Pragma: public");
+            header("Pragma: public");
             header("Expires: 0");
             header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
             header("Cache-Control: private", false);
@@ -946,6 +963,10 @@ class AdminController extends Controller
             $data = $sql['Data_backup'];
             $hora = $sql['Hora_backup'];
             if ($dataAtual == $data and $horaAtual == $hora) { //verifica se as datas e horas cadastradas e obtidas batem e se sim chamam a função estatica de backup
+               AdminController::salvarDB();
+            }
+            else if($data == '0000-00-00' and $horaAtual == $hora)
+            {
                 AdminController::salvarDB();
             }
         }

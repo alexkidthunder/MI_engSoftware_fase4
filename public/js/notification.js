@@ -10,5 +10,4 @@ box = document.getElementById('notification');
 
 button.addEventListener('click',function(){
     box.classList.add('hide');
-    console.log();
 })

@@ -66,6 +66,7 @@ class HomeController extends Controller
             $senhaEncontrada = $buscarSenha["Senha"];
         }
 
+        
         //verifica se o usuario existe no sistema. $row = 1 significa que sim
         if ($row == 1) {
 
@@ -76,6 +77,7 @@ class HomeController extends Controller
             }
 
             $resultado = 'p|e|r|m|i|ssã|os|';
+
             //busca a senha, status ativo e sua atribuição
             $sql = "SELECT * FROM usuarios where CPF = '$request->cpf'";
             $query = mysqli_query($connect, $sql);
@@ -84,8 +86,6 @@ class HomeController extends Controller
                 $ativo = $sql['Ativo'];
                 $senhaEncontrada = $sql["Senha"];
             }
-
-
 
             //se a senha que foi digitada for igual ao do banco
             if (Hash::check($request->senha, $senhaEncontrada)) {
@@ -285,55 +285,91 @@ class HomeController extends Controller
             //verifica se o usuario existe no sistema. $row = 1 significa que sim
             if ($row == 1) {
                 session_start();
-                //Sequência de condicionais que verifica o cargo para reirecionar para o menu correto
-                if ($atribuicao == "Administrador") {
-                    // inicia uma sessão de nome usuario com o cpf recuperado
-                    $_SESSION['administrador'] = $request->cpf;
-                    
-                    //log
-                    $ip = $_SERVER["REMOTE_ADDR"];
-                    $acao = "Administrador logou no sistema";
-                    AdminController::salvarLog($acao, $ip);
-                    
-                    header("Location: /menuAdm");
-                    exit();
-                } elseif ($atribuicao == "Enfermeiro Chefe") {
-                    $_SESSION['enfermeiroChefe'] = $request->cpf;
-
-                    //log
-                    $ip = $_SERVER["REMOTE_ADDR"];
-                    $acao = "Enfermeiro chefe logou no sistema";
-                    AdminController::salvarLog($acao, $ip);
-
-                    header("Location: /menu");
-                    exit();
-                } elseif ($atribuicao == "Enfermeiro") {
-                    $_SESSION['enfermeiro'] = $request->cpf;
-
-                    //log
-                    $ip = $_SERVER["REMOTE_ADDR"];
-                    $acao = "Enfermeiro logou no sistema";
-                    AdminController::salvarLog($acao, $ip);
-
-                    header("Location: /menu");
-                    exit();
-                } elseif ($atribuicao == "Estagiario") {
-                    $_SESSION['estagiario'] = $request->cpf;
-
-                    //log
-                    $ip = $_SERVER["REMOTE_ADDR"];
-                    $acao = "Estagiário logou no sistema";
-                    AdminController::salvarLog($acao, $ip);
-
-                    header("Location: /menu");
-                    exit();
-                }
-            }
           
-            //se a nova senha desejada for diferente da confirmada
-        } else {
+                $sqlNome = "SELECT * FROM usuarios where CPF = '$request->cpf'";
+                $queryNome = mysqli_query($connect, $sqlNome);
+                while ($sqlNome = mysqli_fetch_array($queryNome)) {
+                    $NavNome = $sqlNome["Nome"];
+                }
+
+                $resultado = 'p|e|r|m|i|ssã|os|';
+              
+                if ($ativo == 1) {
+                    //Sequência de condicionais que verifica o cargo para redirecionar para o menu correspondente
+
+                    if ($atribuicao == "Administrador") {
+                        $_SESSION['administrador'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
+                        $_SESSION['permissoes'][36] = $NavNome;
+                        //log
+                        $ip = $_SERVER["REMOTE_ADDR"];
+                        $acao = "Administrador logou";
+                        AdminController::salvarLog($acao, $ip);
+    
+                        header("Location: /menuAdm");
+                        exit();
+                    }
+                    
+                    // A partir daqui ele vai obter todas as permissões
+                    // Coloca-la em uma string
+                    // Transforma-la em um array
+                    // e passa-la para sessão de permissoes
+                    elseif ($atribuicao == "Enfermeiro Chefe") {
+                        $_SESSION['enfermeiroChefe'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
+                        for ($i = 7;$i <= 35;$i++) {
+                            $resultado .= VerificaLoginController::verificaPermissao($i).'|';
+                        }
+                        $resultado .= $NavNome;
+                        $vetor = explode('|', $resultado);
+                        $_SESSION['permissoes'] = $vetor;
+                        
+                        //log
+                        $ip = $_SERVER["REMOTE_ADDR"];
+                        $acao = "Enfermeiro chefe logou";
+                        AdminController::salvarLog($acao, $ip);
+    
+                        header("Location: /menu");
+                        exit();
+
+                    } elseif ($atribuicao == "Enfermeiro") {
+                        $_SESSION['enfermeiro'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
+                        for ($i = 7;$i <= 35;$i++) {
+                            $resultado .= VerificaLoginController::verificaPermissao($i).'|';
+                        }
+                        $resultado .= $NavNome;
+                        $vetor = explode('|', $resultado);
+                        $_SESSION['permissoes'] = $vetor;
+                        //log
+                        $ip = $_SERVER["REMOTE_ADDR"];
+                        $acao = "Enfermeiro logou";
+                        AdminController::salvarLog($acao, $ip);
+    
+    
+                        header("Location: /menu");
+                        exit();
+
+                    } elseif ($atribuicao == "Estagiario") {
+                        $_SESSION['estagiario'] = $request->cpf; // inicia uma sessão de nome usuario com o cpf recuperado
+
+                        for ($i = 7;$i <= 35;$i++) {
+                            $resultado .= VerificaLoginController::verificaPermissao($i).'|';
+                        }
+                        $resultado .= $NavNome;
+                        $vetor = explode('|', $resultado);
+                        $_SESSION['permissoes'] = $vetor;
+                        //log
+                        $ip = $_SERVER["REMOTE_ADDR"];
+                        $acao = "Estagiário logou";
+                        AdminController::salvarLog($acao, $ip);
+    
+                        header("Location: /menu");
+                        exit();
+                    }
+                }   
+            }           
+        }else {                  //se a nova senha desejada for diferente da confirmada
             return redirect('/primeiroAcesso')->with('cpf', $request->cpf);
         }
+        
     }
 
     /*public function menu(){
@@ -418,7 +454,9 @@ class HomeController extends Controller
                 $usuario['senha'] = $sql['Senha'];
             }
 
-            if ((Hash::check($request->senhaAtual, $usuario['senha'])) and ($request->senha == $request->confirmacao)) {
+            if ((Hash::check($request->senhaAtual, $usuario['senha'])) and ($request->senha == $request->confirmacao) 
+                and ($request->senhaAtual != $request->confirmacao)) {
+
                 //cria um hash a partir da nova senha
                 $senhaCript = Hash::make($request->senha);
 
@@ -435,13 +473,17 @@ class HomeController extends Controller
                 return redirect()->back()->with('msg', 'Senha alterada com sucesso!');    // redireciona para o meu perfil
                 
                 //outros casos
-            } elseif (!(Hash::check($request->senhaAtual, $usuario['senha']))) {
-                return redirect()->back()->with('msg-error', 'A senha atual digitada, é diferente da senha cadastrada.');
-            } elseif ($request->senha != $request->confirmacao) {
+          } else if (!(Hash::check($request->senhaAtual, $usuario['senha']))) {
+                return redirect()->back()->with('msg-error', 'A senha digitada está diferente da senha cadastrada!!!');
+            } else if ($request->senha != $request->confirmacao) {
                 return redirect()->back()->with('msg-error', 'A senha de confirmação está diferente da nova senha. As senhas precisam ser idênticas!!!');
-            } else {
-                return redirect()->back()->with('msg-error', 'Campos de confirmação de nova e antiga senha estão incorretos!!!');
+            } else if((Hash::check($request->senhaAtual, $usuario['senha'])) and ((Hash::check($request->senha, $usuario['senha'])))
+                        and ($request->senha == $request->confirmacao) ){
+                return redirect()->back()->with('msg-error', 'A nova senha digitada é igual a senha cadastrada!');
+            }else {
+                return redirect()->back()->with('msg-error', 'Campos de confirmação de nova e antiga senha estão incorretos!');
             }
+            
         } elseif (isset($_SESSION['enfermeiroChefe'])) {
             $cpf = $_SESSION['enfermeiroChefe'];
 
@@ -825,7 +867,7 @@ class HomeController extends Controller
         $acao = "Finalizou um agendamento de medicamento";
         AdminController::salvarLog($acao, $ip);
 
-        return redirect()->back(); // redireciona de volta
+        return redirect()->back()->with('msg',"Agendamento finalizado com sucesso!"); // redireciona de volta
     }
         
 
@@ -1187,23 +1229,30 @@ class HomeController extends Controller
 
             //detecta data
             date_default_timezone_set('America/Sao_Paulo');     
-            $dataAtual = date('Y-m-d');                              
+            $dataAtual = date('Y-m-d');       
 
-            if( $request->fnascimento <= $dataAtual ){
-
-                //cria paciente e adiciona
-                $novoPac = "INSERT INTO pacientes (Nome_Paciente, Sexo, Data_Nasc, CPF, Tipo_Sang) values
-                ('$request->fnome', '$request->fsexo', '$request->fnascimento', '$request->fcpf', '$request->fsanguineo')";
-                mysqli_query($connect, $novoPac);
-                
-                $ip = $request->ip();
-                $acao = "Cadastrou paciente $request->fnome";
-                AdminController::salvarLog($acao, $ip);
-
-                return redirect()->route('cadastroPaciente')->with('success', "Paciente cadastrado com sucesso!");
+            if($request->fcpf=='000.000.000-00' and ($request->fnascimento <= $dataAtual)){
+                return redirect()->route('cadastroPaciente')->with('error', "CPF inválido! Digite novamente.");
+            }else if($request->fcpf=='000.000.000-00' and ($request->fnascimento > $dataAtual)){
+                return redirect()->route('cadastroPaciente')->with('error', "CPF e data de nascimento inválidos! Digite novamente.");
             }else{
-                return redirect()->route('cadastroPaciente')->with('error', "Data de nascimento inválida! Digite novamente.");
+                if($request->fnascimento <= $dataAtual ){       
+                
+                    //cria paciente e adiciona
+                    $novoPac = "INSERT INTO pacientes (Nome_Paciente, Sexo, Data_Nasc, CPF, Tipo_Sang) values
+                    ('$request->fnome', '$request->fsexo', '$request->fnascimento', '$request->fcpf', '$request->fsanguineo')";
+                    mysqli_query($connect, $novoPac);
+                    
+                    $ip = $request->ip();
+                    $acao = "Cadastrou paciente $request->fnome";
+                    AdminController::salvarLog($acao, $ip);
+    
+                    return redirect()->route('cadastroPaciente')->with('success', "Paciente cadastrado com sucesso!");
+                }else{
+                    return redirect()->route('cadastroPaciente')->with('error', "Data de nascimento inválida! Digite novamente.");
+                }
             }
+
         } else {
             //se existir o paciente cadastrado
             return redirect()->route('cadastroPaciente')->with('error', "Paciente já existente no banco de dados!!");
@@ -2502,8 +2551,8 @@ class HomeController extends Controller
         $query = mysqli_query($connect, $sql);
         while ($sql= mysqli_fetch_array($query)) {
             if ($sql['Realizado'] == 0) {
-                $pronturario = $sql['ID_Prontuario'];
-                $sql1 = "SELECT * FROM prontuarios WHERE ID = 'prontuario'";
+                $prontuario = $sql['ID_prontuario'];
+                $sql1 = "SELECT * FROM prontuarios WHERE ID = '$prontuario'";
                 $query1 = mysqli_query($connect, $sql1);
                 while ($sql1= mysqli_fetch_array($query1)) {
                     $leito = $sql1['Id_leito'];
