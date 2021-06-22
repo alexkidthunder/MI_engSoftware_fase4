@@ -13,6 +13,7 @@
     <link href="{{ asset('img/favicon.png') }}" rel="icon">
 
     <script src="{{ ('js/log.js') }}" defer></script>
+    <script src="{{ ('js/mascara.min.js')}}"></script>
 
     <title>Log do sistema</title>
 </head>
@@ -82,7 +83,8 @@
             </div>
             <div>
                 <label for="CPF-field">Filtro de CPF</label>
-                <input id="CPF-field" type="number" placeholder="CPF">
+                <input id="CPF-field" name="CPF-field" type="text" onkeyup="mascara('###.###.###-##',this,event,true)" 
+                            required maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" placeholder="CPF">
             </div>
             <!--Tabela com os Logs do Sistema-->
             <div class="table-responsive scrolls">

@@ -10,7 +10,7 @@
     <link href="{{ 'css/style.css' }}" rel="stylesheet">
     <link href="{{ 'bootstrap/css/bootstrap.css' }}" rel="stylesheet">
 
-    <title>Cadastro e remoção de Leito</title>
+    <title>Cadastro de Leito</title>
 
 </head>
 
@@ -45,7 +45,7 @@
 
     <section>
         <div class="container-1">
-            <h1>CADASTRO E REMOÇÃO DE LEITO</h1>
+            <h1>CADASTRO DE LEITO</h1>
 
             <!---------------------Mensagens do sistema--------------------->
             @if (session('msg-sucess'))
