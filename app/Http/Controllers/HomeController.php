@@ -1637,6 +1637,7 @@ class HomeController extends Controller
     {
         session_start();
         include("db.php");
+        $c=0;
         $perm = VerificaLoginController::verificaPermissao(10); // verifica se tem a permissão
         if ($perm == "1") {
             $cid = null;

@@ -189,7 +189,9 @@
                 @endif
                 @endfor
                 <!----------Card responsável por listar todos os agendamentos------------>
-                @if(isset($_SESSION["enfermeiroChefe"]))
+                @for($i = 15; $i <=73; $i = $i+29)
+                @if(isset($resultado[$i]))
+                @if($resultado[$i] == 1)
                 <div class="col-6 col-md-4 col-lg-3">
                     <div class="card-menu text-center card-options">
                         <div class="card-options-icon options-icon">
@@ -200,6 +202,8 @@
                     </div>
                 </div>
                 @endif
+                @endif
+                @endfor
                 <!----------Card responsável por mostrar os Planotnistas------------>
                 @for($i = 14; $i <=72; $i = $i+29)
                 @if(isset($resultado[$i]))
@@ -272,7 +276,7 @@
                 @endfor
                 
                 <!--Botão para visualizar agendamentos ainda não realizados e sem aplicador-->
-                @for($i = 15; $i <=73; $i = $i+29)
+                @for($i = 21; $i <=79; $i = $i+29)
                 @if(isset($resultado[$i]))
                 @if($resultado[$i] == 1)
                 <div class="col-6 col-md-4 col-lg-3">

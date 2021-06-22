@@ -90,67 +90,8 @@
                     </div>
                 </div>
                 <!---------------------fim de mensagens de erro---------------->
-               {{-- <!-- ========== Linha 1 (REFERENTE AO ADM) ========== -->
-                @if (isset($p))
-                    <div class="row">
-                        <!--Inicio da permissão-->
-                        @if (isset($p[1]))
-                            <div class="col-6 col-md-3 col-lg-13 content-center" name="adm">
-                                <input type="checkbox" name="p1" {{ $p[1] }}><br>
-                                <label>Cadastro de funcionário</label>
-                            </div>
-                        @endif
-                        <!--Fim da permissão-->
-
-
-                        <!--Inicio da permissão-->
-                        @if (isset($p[2]))
-                            <div class="col-6 col-md-3 col-lg-13 content-center" name="adm">
-                                <input type="checkbox" name="p2" {{ $p[2] }}><br>
-                                <label>Remoção de funcionário</label>
-                            </div>
-                        @endif
-                        <!--Fim da permissão-->
-
-                        <!--Inicio da permissão-->
-                        @if (isset($p[3]))
-                            <div class="col-6 col-md-3 col-lg-13 content-center" name="adm">
-                                <input type="checkbox" name="p3" {{ $p[3] }}><br>
-                                <label>Alterar atribuição do funcionário</label>
-                            </div>
-                        @endif
-                        <!--Fim da permissão-->
-
-                        <!--Inicio da permissão-->
-                        @if (isset($p[4]))
-                            <div class="col-6 col-md-3 col-lg-13 content-center" name="adm">
-                                <input type="checkbox" name="p4" {{ $p[4] }}><br>
-                                <label>Editar permissões de cargo</label>
-                            </div>
-                        @endif
-                        <!--Fim da permissão-->
-
-                        <!--Inicio da permissão-->
-                        @if (isset($p[5]))
-                            <div class="col-6 col-md-3 col-lg-13 content-center" name="adm">
-                                <input type="checkbox" name="p5" {{ $p[5] }}><br>
-                                <label>Visualizar permissões de cargo</label>
-                            </div>
-                        @endif
-                        <!--Fim da permissão-->
-
-                        @if (isset($p[6]))
-                            <!--Inicio da permissão-->
-                            <div class="col-6 col-md-3 col-lg-13 content-center" name="adm">
-                                <input type="checkbox" name="p6" {{ $p[6] }}><br>
-                                <label>Realizar / Agendar Backup</label>
-                            </div>
-                        @endif
-                        <!--Fim da permissão-->
-                    </div>
-                    <!-- ========== fim da linha 1 ========== --> --}} 
                  @if (isset($p))
-                    <!-- ========== Linha 2 ========== -->
+                    <!-- ========== Linha 1 ========== -->
                     <h3 id="title" >Pacientes e prontuários</h3><br>
                     <div class="row">
                         @if (isset($p[17]))
@@ -208,15 +149,6 @@
                         <!--Fim da permissão-->
 
                         <!--Inicio da permissão-->
-                        @if (isset($p[11]))
-                            <div class="col-6 col-md-3 col-lg-13 content-center" name="paciente">
-                                <input type="checkbox" name="p11" {{ $p[11] }}><br>
-                                <label>Remoção de CID</label>
-                            </div>
-                        @endif
-                        <!--Fim da permissão-->
-
-                        <!--Inicio da permissão-->
                         @if (isset($p[27]))
                             <div class="col-6 col-md-3 col-lg-13 content-center" name="paciente">
                                 <input type="checkbox" name="p27" {{ $p[27] }}><br>
@@ -262,9 +194,9 @@
                         <!--Fim da permissão-->
 
                     </div>
-                    <!-- ========== fim da linha 2 ========== -->
+                    <!-- ========== fim da linha 1 ========== -->
 
-                    <!-- ========== Linha 3 ========== -->
+                    <!-- ========== Linha 2 ========== -->
                     <h3 id="title-2">Gerenciamento hospitalar</h3><br>
                     <div class="row">
                         <!--Inicio da permissão-->
@@ -276,15 +208,6 @@
                         @endif
                         <!--Fim da permissão-->
 
-                      {{-- <!--Inicio da permissão-->
-                        @if (isset($p[30]))
-                            <div class="col-6 col-md-3 col-lg-13 content-center" name="gerenciamento_hospitalar">
-                                <input type="checkbox" name="p30" {{ $p[30] }}><br>
-                                <label>Remoção do leito</label>
-                            </div>
-                        @endif
-                        <!--Fim da permissão--> --}} 
-                        
                         <!--Inicio da permissão-->
                         @if (isset($p[9]))
                             <div class="col-6 col-md-3 col-lg-13 content-center" name="gerenciamento_hospitalar">
@@ -304,9 +227,9 @@
                         <!--Fim da permissão-->
                         </div>
 
-                        <!-- ========== fim da linha 3 ========== -->
+                        <!-- ========== fim da linha 2 ========== -->
 
-                        <!-- ========== Linha 4 ========== -->
+                        <!-- ========== Linha 3 ========== -->
                         <h3 id="title-3">Gerenciamento de Enfermeiros e Estagiários</h3> <br>
                         <div class="row">
 
@@ -356,9 +279,9 @@
                         <!--Fim da permissão-->
                        
                     </div>
-                    <!-- ========== fim da linha 4 ========== -->
+                    <!-- ========== fim da linha 3 ========== -->
 
-                    <!-- ========== Linha 5 ========== -->
+                    <!-- ========== Linha 4 ========== -->
                     <h3 id="title-4">Agendamentos e medicamentos para aplicação</h3> <br>
                     <div class="row">
                     <!--Inicio da permissão-->
@@ -433,7 +356,7 @@
                         @endif
                         <!--Fim da permissão-->
                     </div>
-                    <!-- ========== fim da linha 5 ========== -->
+                    <!-- ========== fim da linha 4 ========== -->
 
                 @endif
                 <div>
