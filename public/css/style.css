@@ -987,6 +987,7 @@ input[type=number] {
     margin-bottom: 1rem;
     position: relative;
     text-align: center;
+    height: fit-content;
 }
 
 .msg-sucess {
@@ -998,7 +999,6 @@ input[type=number] {
 }
 
 .msg-notification{
-    position: relative;
     border-radius: 10px;
     border: 0.5px solid rgba(255, 255, 255, 0);
     box-shadow: 4px 4px 4px #007bff;
