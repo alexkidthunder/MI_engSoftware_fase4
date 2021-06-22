@@ -2497,7 +2497,7 @@ class HomeController extends Controller
         date_default_timezone_set('America/Sao_Paulo');
         $hora = date('H-i-s');
         $data = date('Y-m-d');
-        $cpf = HomeController::ObterCpf();
+        $cpf = '252.696.001-73';
         $sql = "SELECT * FROM agendamentos WHERE CPF_usuario = '$cpf'"; // verifica se o usuario logado tem agendamento
         $query = mysqli_query($connect, $sql);
         while ($sql= mysqli_fetch_array($query)) {
