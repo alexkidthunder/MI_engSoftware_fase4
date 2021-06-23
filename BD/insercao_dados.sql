@@ -9,8 +9,8 @@ insert into usuarios values
 	('174.985.367-13', 'Juscelino Silva dos Santos', '$2y$10$BalMabIIQvI24RxDR1WWlumoorsZHfAQCoiK4lt697CUIR8kkPg9a', 'santosjuscelino.hp@gmail.com', '1976-01-19', 'Administrador', 'M', '11010110', 1),
 	('175.585.124-92', 'Maria joaquina Drumond', '$2y$10$833Prl7EMsN8LJ4qgtBh5egUKcN97Pg38aLL414CM.eEdft3as5zK', 'mariazinhaquina@gmail.com', '1995-07-12', 'Administrador', 'F', '00100101', 1),
 	
-	('202.457.365-11', 'Vinicius Martins magalhães', '$2y$10$m13rSbDG8pumBifJAuLZF.1payfEJBSjSkBkiHxYdcpXPc/ZQ0WHi', 'mmvinicius@gmail.com', '1989-09-24', 'Enfermeiro Chefe', 'M', '00110101001', 1),
-	('658.002.101-02', 'Ambrozina pereira amorim', '$2y$10$cQo4T3yyEnZqiHGHUqGfOusxbYhnf6IlT0rV4egtjD.v3QOBFTAWy', 'amorim.Ambozina@gmail.com', '1974-04-27', 'Enfermeiro Chefe', 'F', '10001010', 1),
+	('202.457.365-11', 'Vinicius Martins Magalhães', '$2y$10$m13rSbDG8pumBifJAuLZF.1payfEJBSjSkBkiHxYdcpXPc/ZQ0WHi', 'mmvinicius@gmail.com', '1989-09-24', 'Enfermeiro Chefe', 'M', '00110101001', 1),
+	('658.002.101-02', 'Ambrozina Pereira Amorim', '$2y$10$cQo4T3yyEnZqiHGHUqGfOusxbYhnf6IlT0rV4egtjD.v3QOBFTAWy', 'amorim.Ambozina@gmail.com', '1974-04-27', 'Enfermeiro Chefe', 'F', '10001010', 1),
 	('475.013.135-62', 'Ana Catarina Melo', '$2y$10$dtKg3N94yiKc7jMBvUamXum0LFVa5xlzCfT.dVgZozKEjZLiFntCm', 'anna.melocatarina@gmail.com', '1986-10-11', 'Enfermeiro Chefe', 'F', '010010110', 1),
 	
 	('046.822.991-40', 'Fernando Miguel Galvão', '$2y$10$9FsmLSiyhp0xAPLWD7RiZurInmcIj1qQGldVtgKJiP.4YWaYpHf52', 'fernandomiguelgalvao-92@gmail.com', '1959-04-23', 'Enfermeiro', 'M', '011010001', 1),
@@ -19,7 +19,7 @@ insert into usuarios values
 	('136.382.370-10', 'Diego Luan Cardoso', '$2y$10$uYc0tNJkj37Ym6H3lhDxYun5ioRSeSC1Obu0tiK3zt2TaFx.DXo/.', 'dieguinho87luan@gmail.com', '1968-02-18', 'Enfermeiro', 'M', '1101010', 1),
 	('873.325.550-42', 'Cauã Mário da Luz', '$2y$10$MhfrDoHO1bSX5TsHJcbUtOvdvv1Gx7CnGT5fgywgqc8dPprnBlnra', 'cauamariodaluz.81@gmail.com', '1984-07-07', 'Enfermeiro', 'M', '001011011', 1),
 	('250.414.528-74', 'Alfredo Estrada Félix', '$2y$10$cl2nLZJ2nHvpevacee/ECOizvpoRO3S.4RFkh5ybhu8EK1CiKx8mO', 'estrada.felixfred@gmail.com', '1979-02-27', 'Enfermeiro', 'M', '110100101', 1),
-	('252.696.001-73', 'Brenda Estefanir souza', '$2y$10$Iefi01NgzHu8ho8JQS6FMOkcwbNFMDqs6ioIdrIejml6Ls8FnJvIS', 'brendasouza.hp@gmail.com', '1995-07-29', 'Enfermeiro', 'F', '0100110101011', 1),
+	('252.696.001-73', 'Brenda Estefanir Souza', '$2y$10$Iefi01NgzHu8ho8JQS6FMOkcwbNFMDqs6ioIdrIejml6Ls8FnJvIS', 'brendasouza.hp@gmail.com', '1995-07-29', 'Enfermeiro', 'F', '0100110101011', 1),
 	('841.084.862-77', 'Diego Theo Nathan Vieira', '$2y$10$nyOf77xJhEoO70igqRqQwO3q0W0IMojblRKd7VgLf5B33zT8BKLgS', '_diegotheonathanvieira@gmail.com', '1992-02-25', 'Enfermeiro', 'M', '1010010101', 1),
 	('558.570.920-86', 'Jaqueline Marina da Cunha', '$2y$10$zg9Vw01B7MbJt1CAXLKSDegalLV/LQQ8iI8nYu5AKmo8xW9vDQqxm', 'cunha.jaquemarina@gmail.com', '1987-08-21', 'Enfermeiro', 'F', '0010110101', 1),
 	('607.500.500-55', 'Alfredo Estrada Félix', '$2y$10$Wu/px0e4vm4Spgl5MZNSUez5.GAiij1Bwwi1ad.0q795GsD0XxBW2', 'suelimirellaaparecidadossantos@gmail.com', '1971-01-21', 'Enfermeiro', 'F', '11001010', 1),
@@ -87,7 +87,7 @@ INSERT INTO pacientes VALUES
 	('Valentina Fátima Santos','F','alta','2000-01-12','759.661.020-07','O-'),
 	('Olivia Natália Sueli de Paula','F','alta','1984-05-05','012.456.594-80','AB-'),
 	('Francisca Bruna Eduarda Vieira','F','alta','1994-06-04','613.234.078-55','B+'),
-	( 'Liz Francisca Fogaça','F','alta','1998-10-13', '575.168.453-29', 'O+'),
+	('Liz Francisca Fogaça','F','alta','1998-10-13', '575.168.453-29', 'O+'),
 	('Teresinha Jaqueline da Cunha','F','alta','1979-06-05', '436.232.985-49', 'AB+'),
 	('Leandro Mário Ferreira','M','alta','1975-12-21', '483.410.653-55', 'O-'),
 	('Analu Aparecida Vanessa Brito','F','alta','1963-02-19', '921.670.790-95', 'B+'),
